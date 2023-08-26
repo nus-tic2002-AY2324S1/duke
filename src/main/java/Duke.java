@@ -10,5 +10,8 @@ public class Duke {
                 + "                             __/ |                  \n"
                 + "                            |___/                  \n";
         System.out.println("Hello from\n" + logo);
+        System.out.println("I'm Wonky the Fairy.");
+        System.out.println("What can I do for you?");
+        System.out.println("Bye! Thank you for using Wonky Bot. Hope to see you again soon!");
     }
 }
