@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Duke {
     public static void main(String[] args) {
         String logo =
@@ -9,9 +11,17 @@ public class Duke {
                 + "    \\/  \\/ \\___/|_| |_|_|\\_\\\\__, | |____/ \\___/ \\__|\n"
                 + "                             __/ |                  \n"
                 + "                            |___/                  \n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("I'm Wonky the Fairy.");
-        System.out.println("What can I do for you?");
-        System.out.println("Bye! Thank you for using Wonky Bot. Hope to see you again soon!");
+        System.out.println("Wonky: Hello from\n" + logo);
+        System.out.println("Wonky: I'm Wonky the Fairy.");
+        System.out.println("Wonky: What can I do for you?");
+
+        String line;
+        Scanner in = new Scanner(System.in);
+
+        while (!(line = in.nextLine()).equals("bye")) {
+            System.out.println("Wonky: " + line);
+        }
+        System.out.println("Wonky: Bye! Thank you for using Wonky Bot. Hope to see you again soon!");
+        in.close();
     }
 }
