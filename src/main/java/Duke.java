@@ -1,6 +1,11 @@
 public class Duke {
     public static void main(String[] args) {
+        clearScreen();
         greet();
+    }
+
+    private static void clearScreen(){
+        System.out.print("\033");
     }
 
     private static void greet(){
