@@ -1,4 +1,4 @@
-package com.duke.task;
+package seedu.duke.task;
 
 public abstract class Task {
     protected String description;
@@ -16,4 +16,6 @@ public abstract class Task {
     public String getStatusMsg() {
         return description;
     }
+
+    
 }

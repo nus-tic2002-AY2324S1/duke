@@ -1,4 +1,4 @@
-package com.duke.task;
+package seedu.duke.task;
 
 public class Deadline extends Task {
 
@@ -11,6 +11,6 @@ public class Deadline extends Task {
 
     @Override
     public String getStatusMsg() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.getStatusMsg() + " (by: " + by + ")";
     }
 }
