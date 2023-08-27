@@ -1,7 +1,14 @@
+import java.util.Scanner;
+
 public class Duke {
     public static void main(String[] args) {
         greet();
-    }
+        Scanner in = new Scanner(System.in);
+        String input = "";
+        input = in.next();
+        System.out.println(input);
+        bye();
+}
 
     private static void clearScreen(){
         System.out.print("\033");
@@ -10,17 +17,18 @@ public class Duke {
     private static void greet(){
         String myChatBotName = "Luna";
 
-        System.out.println(line());
+        line();
         System.out.println(logo());
-        System.out.println(line());
+        line();
         System.out.printf("Hello! I'm %s\n", myChatBotName);
         System.out.println("What can I do for you?");
-        System.out.println(line());
+        line();
     }
 
-    private static String line () {
+    private static void line () {
         String horizontalBox = "─";
-        return horizontalBox.repeat(80);
+        String line = horizontalBox.repeat(80);
+        System.out.println(line);
     }
 
     private static String logo(){
