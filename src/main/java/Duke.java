@@ -5,8 +5,15 @@ public class Duke {
         greet();
         Scanner in = new Scanner(System.in);
         String input = "";
-        input = in.next();
-        System.out.println(input);
+        do{
+            input = in.next();
+            if (input.equalsIgnoreCase("bye")){
+                break;
+            }
+            line();
+            System.out.println(input);
+            line();
+        }while(!input.equalsIgnoreCase("bye"));
         bye();
 }
 
@@ -42,6 +49,8 @@ public class Duke {
     }
 
     private static void bye(){
+        line();
         System.out.println("Bye. Hope to see you again soon!");
+        line();
     }
 }
