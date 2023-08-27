@@ -1,21 +1,40 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
+    private static ArrayList<String> userInputs = new ArrayList<>();
+    final static String BYE = "bye";
+    final static  String LIST = "list";
     public static void main(String[] args) {
         clearScreen();
         greet();
         Scanner in = new Scanner(System.in);
-        String input = "";
+        String input;
         do {
-            input = in.next();
-            if (input.equalsIgnoreCase("bye")) {
+            input = in.nextLine();
+            if (input.equalsIgnoreCase(BYE)) {
                 break;
+            }else if(input.equalsIgnoreCase(LIST)){
+                printList();
+                continue;
             }
+            userInputs.add(input);
             line();
-            echo(input);
+            echoAdd(input);
             line();
-        } while (!input.equalsIgnoreCase("bye"));
+        } while (!input.equalsIgnoreCase(BYE));
         bye();
+    }
+
+    private static void printList(){
+        line();
+        int count = 0;
+        for (String userInput : userInputs) {
+            count++;
+            userInput = String.format("%d. %s",count, userInput);
+            echo(userInput);
+        }
+        line();
     }
 
     private static void indentation() {
@@ -24,6 +43,12 @@ public class Duke {
 
     private static void echo(String input){
         indentation();
+        System.out.println(input);
+    }
+
+    private static void echoAdd(String input){
+        indentation();
+        System.out.print("added: ");
         System.out.println(input);
     }
 
@@ -37,10 +62,10 @@ public class Duke {
         line();
         logo();
         line();
-        String str = String.format("Hello! I'm %s\n", myChatBotName);
-        echo(str);
-        str = "What can I do for you?";
-        echo(str);
+        indentation();
+        System.out.printf("Hello! I'm %s\n", myChatBotName);
+        indentation();
+        System.out.println("What can I do for you?");
         line();
     }
 
