@@ -29,8 +29,7 @@ public class Duke {
                     }
                 }
             }
-            WonkyLogger.bye();
-            WonkyScanner.close();
+            shutdown();
         } catch (DukeException e) {
             throw e;
         } catch (Exception e) {
@@ -42,5 +41,10 @@ public class Duke {
     private static void initialise() throws DukeException {
         WonkyLogger.startUp();
         WonkyScanner.startUp();
+    }
+
+    private static void shutdown() throws DukeException {
+        WonkyLogger.bye();
+        WonkyScanner.close();
     }
 }
