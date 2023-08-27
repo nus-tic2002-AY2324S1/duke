@@ -4,7 +4,7 @@ public class Duke {
     }
 
     private static void greet(){
-        String myChatBotName = "Duke";
+        String myChatBotName = "Luna";
 
         System.out.println(line());
         System.out.println(logo());
@@ -22,11 +22,11 @@ public class Duke {
 
     private static String logo(){
         String logo =
-                " ____        _        \n"
-                        + "|  _ \\ _   _| | _____ \n"
-                        + "| | | | | | | |/ / _ \\\n"
-                        + "| |_| | |_| |   <  __/\n"
-                        + "|____/ \\__,_|_|\\_\\___|\n";
+                  " _                    \n"
+                + "| |    _   _ _  __     __\n"
+                + "| |   | | | | | __  \\/ __ \\\n"
+                + "| |___| |_| | |   | | |__| |\n"
+                + "|_____|\\__,_|_|   |_|_|  |_|\n";
         return logo;
     }
 }
