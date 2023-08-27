@@ -2,31 +2,45 @@ package seedu.duke;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
+import seedu.duke.exceptions.DukeException;
+import seedu.duke.exceptions.DukeUnhandledException;
 import seedu.duke.logger.WonkyLogger;
+import seedu.duke.logger.WonkyScanner;
 import seedu.duke.task.Deadline;
 import seedu.duke.task.Task;
 
 public class Duke {
-    public static void main(String[] args) {
-        WonkyLogger.startUp();
-        String line;
-        Scanner in = new Scanner(System.in);
-        List<Task> tasks = new ArrayList<>();
-        while (!(line = in.nextLine()).equals("bye")) {
-            if (line.equals("list")) {
-                WonkyLogger.postList();
-                for (Task task : tasks) {
-                    WonkyLogger.task(task.getStatusMsg());
+    public static void main(String[] args) throws DukeException {
+        try {
+            initialise();
+            List<Task> tasks = new ArrayList<>();
+            while (WonkyScanner.isActive()) {
+                if (WonkyScanner.islastCmdValid()) {
+                    if (WonkyScanner.userIsList()) {
+                        WonkyLogger.postList();
+                        for (Task task : tasks) {
+                            WonkyLogger.task(task.getStatusMsg());
+                        }
+                    } else {
+                        Deadline newTask = new Deadline(" : " + WonkyScanner.getCmdStr(), "27/08/2023");
+                        WonkyLogger.preList(WonkyScanner.getCmdStr());
+                        tasks.add(newTask);
+                    }
                 }
-            } else {
-                Deadline newTask = new Deadline(" : " + line, "27/08/2023");
-                WonkyLogger.preList(line);
-                tasks.add(newTask);
             }
+            WonkyLogger.bye();
+            WonkyScanner.close();
+        } catch (DukeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new DukeUnhandledException(e.getMessage());
         }
-        WonkyLogger.bye();
-        in.close();
+        System.exit(0);
+    }
+
+    private static void initialise() throws DukeException {
+        WonkyLogger.startUp();
+        WonkyScanner.startUp();
     }
 }
