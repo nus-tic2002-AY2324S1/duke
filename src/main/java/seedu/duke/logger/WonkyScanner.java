@@ -3,6 +3,8 @@ package seedu.duke.logger;
 import java.util.Objects;
 import java.util.Scanner;
 
+import seedu.duke.exceptions.DukeScannerException;
+
 public class WonkyScanner {
 
     private static final String EXIT_CMD = "bye";
@@ -15,8 +17,12 @@ public class WonkyScanner {
         in = new Scanner(System.in);
     }
 
-    public static boolean nextLine() {
-        line = in.nextLine();
+    public static boolean nextLine() throws DukeScannerException {
+        try {
+            line = in.nextLine();
+        } catch (Exception e) {
+            throw new DukeScannerException(e.getMessage());
+        }
         return true;
     }
     
