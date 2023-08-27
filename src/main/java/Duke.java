@@ -1,6 +1,5 @@
 public class Duke {
     public static void main(String[] args) {
-        clearScreen();
         greet();
     }
 
@@ -17,7 +16,6 @@ public class Duke {
         System.out.printf("Hello! I'm %s\n", myChatBotName);
         System.out.println("What can I do for you?");
         System.out.println(line());
-        System.out.println("Bye. Hope to see you again soon!");
     }
 
     private static String line () {
@@ -33,5 +31,9 @@ public class Duke {
                 + "| |___| |_| | |   | | |__| |\n"
                 + "|_____|\\__,_|_|   |_|_|  |_|\n";
         return logo;
+    }
+
+    private static void bye(){
+        System.out.println("Bye. Hope to see you again soon!");
     }
 }
