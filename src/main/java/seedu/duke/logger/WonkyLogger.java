@@ -1,5 +1,11 @@
 package seedu.duke.logger;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.Random;
+
 import seedu.duke.exceptions.DukeLoggerException;
 
 public class WonkyLogger {
@@ -14,6 +20,26 @@ public class WonkyLogger {
         + "\t                             __/ |                  \n"
         + "\t                            |___/                  \n";
 
+    private static final List<String> unknownCmdMsgs = new ArrayList<>(
+        Arrays.asList(
+            "Oops! I do not understand the command [%s].",
+            "Sorry, the command [%s] you entered does not exist.",
+            "My vocabulary of commands does not include [%s]."
+        )
+    );
+
+    private static final List<String> suggestCmdMsgs = new ArrayList<>(
+        Arrays.asList(
+            "Did you mean to type command [%s] instead?"
+        )
+    );
+
+    private static final Random rnd = new Random();
+
+    private static void printlnWithWonky(String toPrint) throws DukeLoggerException {
+        println("Wonky: " + toPrint);
+    }
+
     private static void println(String toPrint) throws DukeLoggerException {
         try {
             System.out.println("\t" + toPrint);
@@ -23,9 +49,9 @@ public class WonkyLogger {
     }
 
     public static void startUp() throws DukeLoggerException {
-        println("Wonky: Hello from\n" + LOGO);
-        println("Wonky: I'm Wonky the Fairy.");
-        println("Wonky: What can I do for you?");
+        printlnWithWonky("Hello from\n" + LOGO);
+        printlnWithWonky("I'm Wonky the Fairy.");
+        printlnWithWonky("What can I do for you?");
     }
 
     public static void task(String task) throws DukeLoggerException {
@@ -33,14 +59,36 @@ public class WonkyLogger {
     }
 
     public static void postList() throws DukeLoggerException {
-        println("Wonky: Below are the list of items you have added!");
+        printlnWithWonky("Below are the list of items you have added!");
     }
 
     public static void preList(String line) throws DukeLoggerException {
-        println("Wonky: I have added " + "[" + line + "] to our list!");
+        printlnWithWonky("I have added " + "[" + line + "] to our list!");
     }
 
     public static void bye() throws DukeLoggerException {
-        println("Wonky: Bye! Thank you for using Wonky Bot. Hope to see you again soon!");
+        printlnWithWonky("Bye! Thank you for using Wonky Bot. Hope to see you again soon!");
+    }
+
+    public static void unknownCommand(String cmd) throws DukeLoggerException {
+        printlnWithWonky(
+            String.format(
+                unknownCmdMsgs.get(
+                    rnd.nextInt(unknownCmdMsgs.size())
+                ), cmd
+            )
+        );
+    }
+
+    public static void suggestCommand(String cmd) throws DukeLoggerException {
+        if (Objects.nonNull(cmd)) {
+            printlnWithWonky(
+                String.format(
+                    suggestCmdMsgs.get(
+                        rnd.nextInt(suggestCmdMsgs.size())
+                    ), cmd
+                )
+            );
+        }
     }
 }

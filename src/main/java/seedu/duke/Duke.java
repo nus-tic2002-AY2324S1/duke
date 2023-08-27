@@ -15,16 +15,18 @@ public class Duke {
         try {
             initialise();
             List<Task> tasks = new ArrayList<>();
-            while (WonkyScanner.nextLine() && WonkyScanner.userNotExit()) {
-                if (WonkyScanner.userIsList()) {
-                    WonkyLogger.postList();
-                    for (Task task : tasks) {
-                        WonkyLogger.task(task.getStatusMsg());
+            while (WonkyScanner.isActive()) {
+                if (WonkyScanner.islastCmdValid()) {
+                    if (WonkyScanner.userIsList()) {
+                        WonkyLogger.postList();
+                        for (Task task : tasks) {
+                            WonkyLogger.task(task.getStatusMsg());
+                        }
+                    } else {
+                        Deadline newTask = new Deadline(" : " + WonkyScanner.getCmdStr(), "27/08/2023");
+                        WonkyLogger.preList(WonkyScanner.getCmdStr());
+                        tasks.add(newTask);
                     }
-                } else {
-                    Deadline newTask = new Deadline(" : " + WonkyScanner.getLine(), "27/08/2023");
-                    WonkyLogger.preList(WonkyScanner.getLine());
-                    tasks.add(newTask);
                 }
             }
             WonkyLogger.bye();
