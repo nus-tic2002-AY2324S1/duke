@@ -18,7 +18,7 @@ public class Duke {
         String myChatBotName = "Luna";
 
         line();
-        System.out.println(logo());
+        logo();
         line();
         System.out.printf("Hello! I'm %s\n", myChatBotName);
         System.out.println("What can I do for you?");
@@ -31,14 +31,14 @@ public class Duke {
         System.out.println(line);
     }
 
-    private static String logo(){
+    private static void logo(){
         String logo =
                   " _                    \n"
                 + "| |    _   _ _  __     __\n"
                 + "| |   | | | | | __  \\/ __ \\\n"
                 + "| |___| |_| | |   | | |__| |\n"
                 + "|_____|\\__,_|_|   |_|_|  |_|\n";
-        return logo;
+        System.out.println(logo);
     }
 
     private static void bye(){
