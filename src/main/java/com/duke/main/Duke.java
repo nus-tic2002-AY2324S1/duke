@@ -1,6 +1,11 @@
+package com.duke.main;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import com.duke.task.Deadline;
+import com.duke.task.Task;
 
 public class Duke {
     public static void main(String[] args) {
@@ -19,16 +24,17 @@ public class Duke {
 
         String line;
         Scanner in = new Scanner(System.in);
-        List<String> enteredTexts = new ArrayList<>();
+        List<Task> tasks = new ArrayList<>();
         while (!(line = in.nextLine()).equals("bye")) {
             if (line.equals("list")) {
                 System.out.println("\tWonky: Below are the list of items you have added!");
-                for (String enteredText : enteredTexts) {
-                    System.out.println("\t\t" + enteredText);
+                for (Task task : tasks) {
+                    System.out.println("\t\t" + task.getStatusMsg());
                 }
             } else {
+                Deadline newTask = new Deadline(tasks.size() + 1 + ": " + line, "27/08/2023");
                 System.out.println("\tWonky: I have added " + "[" + line + "] to our list!");
-                enteredTexts.add(enteredTexts.size() + 1 + ": " + line);
+                tasks.add(newTask);
             }
         }
         System.out.println("\tWonky: Bye! Thank you for using Wonky Bot. Hope to see you again soon!");
