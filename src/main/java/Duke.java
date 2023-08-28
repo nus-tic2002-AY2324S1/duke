@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Duke {
     public static final String logo = "   ____                  _      __   __\n" +
             "  / ___|  _ __    __ _  | |__   \\ \\ / /\n" +
@@ -21,7 +23,35 @@ public class Duke {
         System.out.println(line);
         System.out.println(hello);
         System.out.println(line);
-        System.out.println("   Bye. Hope to see you again soon!");
+        Scanner userName = new Scanner(System.in);
+        String answerName = userName.nextLine();
+        System.out.println(line);
+        System.out.println("   Hi " + answerName + ", How can I help you today?");
+        System.out.println(line);
+        Scanner userAnswer = new Scanner(System.in);
+        while (true) {
+            boolean exitW = false;
+            String answer2 = userAnswer.nextLine();
+            System.out.println(line);
+            switch (answer2) {
+                case "list":
+                    System.out.println("   list");
+                    break;
+                case "blah":
+                    System.out.println("   blah");
+                    System.out.println(line);
+                    break;
+                case "bye":
+                    System.out.println("   Bye " + answerName + ", hope to see you again soon!");
+                    exitW = true;
+                    break;
+                default:
+            }
+            if (exitW) {
+                break;
+            }
+        }
+
         System.out.println(line);
         System.out.println(crab);
     }
