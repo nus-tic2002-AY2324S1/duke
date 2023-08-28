@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -17,10 +19,13 @@ public class Duke {
             "              .='     `=.";
     public static final String line = "  _____________________________________";
     public static final String hello = "   Hello! I'm CrabY 🦀 \n" + "   What is your name?";
+    public static void addList(List<String> listTodo, String answer) {
+        listTodo.add(answer);
+    }
+
     public static void main(String[] args) {
         System.out.println(line);
         System.out.println(logo);
-        System.out.println(line);
         System.out.println(hello);
         System.out.println(line);
         Scanner userName = new Scanner(System.in);
@@ -29,13 +34,20 @@ public class Duke {
         System.out.println("   Hi " + answerName + ", How can I help you today?");
         System.out.println(line);
         Scanner userAnswer = new Scanner(System.in);
+        List<String> list = new ArrayList<>();
         while (true) {
             boolean exitW = false;
             String answer2 = userAnswer.nextLine();
             System.out.println(line);
             switch (answer2) {
                 case "list":
-                    System.out.println("   list");
+                    int i = 0;
+                    System.out.println("   Here are the tasks in your list:");
+                    for (String s : list) {
+                        i++;
+                        System.out.println("   " + i + ". " + s);
+                    }
+                    System.out.println(line);
                     break;
                 case "blah":
                     System.out.println("   blah");
@@ -46,12 +58,14 @@ public class Duke {
                     exitW = true;
                     break;
                 default:
+                    addList(list, answer2);
+                    System.out.println("   added: " + answer2 + " - to your list");
+                    System.out.println(line);
             }
             if (exitW) {
                 break;
             }
         }
-
         System.out.println(line);
         System.out.println(crab);
     }
