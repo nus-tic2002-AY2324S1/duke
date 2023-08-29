@@ -25,20 +25,20 @@ public class Duke {
 
     public static void printList(){
         System.out.println("|| List: ||");
-//        if (list.length > 0){
-//            for(int i = 1; i <= list.length ; i++){
-//                System.out.println(i + ". " + list[i-1]);
-//            }
-//        }
+        if (list.length > 0){
+            for(int i = 1; i <= list.length ; i++){
+                System.out.println(i + ". " + list[i-1]);
+            }
+        }
         printDashes();
     }
 
-//    public static void addList(String inputEntry){
-//        list = Arrays.copyOf(list,list.length+1);
-//        list[list.length-1]=inputEntry;
-//        System.out.println("now there is: "+ list.length + " item(s)");
-//        System.out.println("added: "+ list[list.length-1] );
-//    }
+    public static void addList(String inputEntry){
+        list = Arrays.copyOf(list,list.length+1);
+        list[list.length-1]=inputEntry;
+        System.out.println("now there is: "+ list.length + " item(s)");
+        System.out.println("added: "+ list[list.length-1] );
+    }
 
     public static void printDate(){
         System.out.println("|| Current Date: ||");
@@ -65,7 +65,7 @@ public class Duke {
                     break;
                 case "date": printDate();
                     break;
-//                default: addList(input);
+                default: addList(input);
             }
         }
 
