@@ -38,8 +38,10 @@ public class Duke {
         while (true) {
             boolean exitW = false;
             String answer2 = userAnswer.nextLine();
+            String answer1 = answer2.toLowerCase();
             System.out.println(line);
-            switch (answer2) {
+
+            switch (answer1) {
                 case "list":
                     int i = 0;
                     System.out.println("   Here are the tasks in your list:");
