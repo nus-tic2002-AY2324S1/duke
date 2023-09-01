@@ -26,18 +26,17 @@ public class Duke {
 
     public static void main(String[] args) {
         System.out.println(line + "\n" + logo + "\n" + hello + "\n" + line);
-        Scanner userName = new Scanner(System.in);
-        String answerName = userName.nextLine();
-        System.out.println(line + "\n" + "   Hi " + answerName + ", How can I help you today?" + "\n" + line);
-        Scanner userAnswer = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        String answerName = scanner.nextLine();
+        System.out.println("   Hi " + answerName + ", How can I help you today?" + "\n" + line);
         List<Task> tasks = new ArrayList<>();
 
         while (true) {
             boolean exitW = false;
-            String answer2 = userAnswer.nextLine();
+            String answer2 = scanner.nextLine();
             String answer1 = answer2.split(" ")[0];
             answer1 = answer1.toLowerCase();
-            System.out.println(line);
+            //System.out.println(line);
             switch (answer1) {
                 case "list":
                     int i = 0;
@@ -58,12 +57,12 @@ public class Duke {
                 case "mark":
                     String str = answer2.split(" ")[1];
                     if (!isNumeric(str)) {
-                        System.out.println("   '" + answer2.split(" ")[1] + "' is invalid number. Please try again! \n" + line);
+                        System.out.println("   '" + answer2.split(" ")[1] + "' is invalid number. Please try again!\n" + line);
                         break;
                     }
                     int a = (Integer.parseInt(answer2.split(" ")[1])) - 1;
                     if (a >= tasks.size() || a < 0) {
-                        System.out.println("   Opp, something wrong! Your list only have 1 to " + tasks.size() + " tasks. \n" + "   Please try again! \n" + line);
+                        System.out.println("   Opp, something wrong! Your list only have 1 to " + tasks.size() + " tasks.\n" + "   Please try again!\n" + line);
                         break;
                     }
                     tasks.get(a).setDone(true);
@@ -72,12 +71,12 @@ public class Duke {
                 case "unmark":
                     String str1 = answer2.split(" ")[1];
                     if (!isNumeric(str1)) {
-                        System.out.println("   '" + answer2.split(" ")[1] + "' is invalid number. Please try again! \n" + line);
+                        System.out.println("   '" + answer2.split(" ")[1] + "' is invalid number. Please try again!\n" + line);
                         break;
                     }
                     int b = (Integer.parseInt(answer2.split(" ")[1])) - 1;
                     if (b >= tasks.size() || b < 0) {
-                        System.out.println("   Opp, something wrong! Your list only have 1 to " + tasks.size() + "tasks. \n" + "   Please try again! \n" + line);
+                        System.out.println("   Opp, something wrong! Your list only have 1 to " + tasks.size() + "tasks. \n" + "   Please try again!\n" + line);
                         break;
                     }
                     tasks.get(b).setDone(false);
@@ -85,7 +84,7 @@ public class Duke {
                     break;
                 default:
                     tasks.add(new Task(answer2));
-                    System.out.println("   added: " + answer2 + " - to your list. \n" + line);
+                    System.out.println("   added: " + answer2 + " - to your list.\n" + line);
             }
             if (exitW) {
                 break;
