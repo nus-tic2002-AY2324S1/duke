@@ -20,6 +20,10 @@ public class Duke {
     public static final String line = "  _____________________________________";
     public static final String hello = "   Hello! I'm CrabY 🦀 \n" + "   What is your name?";
 
+    public static boolean isNumeric(String str) {
+        return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+    }
+
     public static void main(String[] args) {
         System.out.println(line + "\n" + logo + "\n" + hello + "\n" + line);
         Scanner userName = new Scanner(System.in);
@@ -52,8 +56,13 @@ public class Duke {
                     exitW = true;
                     break;
                 case "mark":
+                    String str = answer2.split(" ")[1];
+                    if (!isNumeric(str)) {
+                        System.out.println("   '" + answer2.split(" ")[1] + "' is invalid number. Please try again! \n" + line);
+                        break;
+                    }
                     int a = (Integer.parseInt(answer2.split(" ")[1])) - 1;
-                    if (a >= tasks.size() || a < 0){
+                    if (a >= tasks.size() || a < 0) {
                         System.out.println("   Opp, something wrong! Your list only have 1 to " + tasks.size() + " tasks. \n" + "   Please try again! \n" + line);
                         break;
                     }
@@ -61,8 +70,13 @@ public class Duke {
                     System.out.println("Nice! I've marked this task as done:" + "\n" + "   " + tasks.get(a) + "\n" + line);
                     break;
                 case "unmark":
+                    String str1 = answer2.split(" ")[1];
+                    if (!isNumeric(str1)) {
+                        System.out.println("   '" + answer2.split(" ")[1] + "' is invalid number. Please try again! \n" + line);
+                        break;
+                    }
                     int b = (Integer.parseInt(answer2.split(" ")[1])) - 1;
-                    if (b >= tasks.size() || b < 0){
+                    if (b >= tasks.size() || b < 0) {
                         System.out.println("   Opp, something wrong! Your list only have 1 to " + tasks.size() + "tasks. \n" + "   Please try again! \n" + line);
                         break;
                     }
