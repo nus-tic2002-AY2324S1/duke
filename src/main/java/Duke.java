@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-
 public class Duke {
     private static ArrayList<String> userInputs = new ArrayList<>();
     final static String BYE = "bye";
@@ -70,7 +69,7 @@ public class Duke {
     }
 
     private static void line() {
-        String horizontalBox = "─";
+        String horizontalBox = "*";
         String line = horizontalBox.repeat(80);
         System.out.print("    ");
         System.out.println(line);
