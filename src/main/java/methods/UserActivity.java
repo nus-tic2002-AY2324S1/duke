@@ -4,33 +4,48 @@ import java.util.Scanner;
 
 public class UserActivity {
     private String input;
+    private boolean isExit;
 
     public UserActivity() {
+        this.input = "";
+        this.isExit = false;
+    }
+
+    public void UserInput() {
         Scanner scanInput = new Scanner(System.in);
+        Tasks task = new Tasks();
 
         do {
             setInput(scanInput.nextLine());
+
             if (this.input.isEmpty()) {
                 this.ErrorMessage();
                 continue;
             }
 
-            this.Echo();
-        } while (!this.input.equals("bye"));
+            if (this.input.equals("bye")) {
+                this.Exit();
+            } else {
+                this.Echo(task);
+            }
+        } while (!this.isExit);
     }
 
-    public void Echo() {
-        if (this.input.equals("bye")) {
-            this.Exit();
+    public void Echo(Tasks task) {
+        System.out.println("________________________________________________________________________________");
+
+        if (this.input.equals("list")) {
+            task.List();
         } else {
-            System.out.println("________________________________________________________________________________");
-            System.out.println(this.input.toUpperCase());
-            System.out.println("--------------------------------------------------------------------------------\n");
+            task.AddToList(this.input);
         }
+
+        System.out.println("--------------------------------------------------------------------------------\n");
     }
 
     public void Exit() {
         System.out.println("Thanks for using AMEBOT~!\n");
+        this.isExit = true;
     }
 
     public void ErrorMessage() {

@@ -1,4 +1,3 @@
-import methods.Commands;
 import methods.UserActivity;
 
 public class Duke {
@@ -32,5 +31,6 @@ public class Duke {
 
         System.out.println("Yokoso, your personal assistant AMEBOT~!\nPlease enter a command:");
         UserActivity user = new UserActivity();
+        user.UserInput();
     }
 }
