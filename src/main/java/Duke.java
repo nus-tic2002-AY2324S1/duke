@@ -1,3 +1,6 @@
+import methods.Commands;
+import methods.UserActivity;
+
 public class Duke {
     public static void header() {
         String message = "                               _|\n"
@@ -26,9 +29,8 @@ public class Duke {
 
     public static void main(String[] args) {
         header();
-        System.out.println("Yokoso, your personal assistant AMEBOT~!\nPlease enter a command:");
-        System.out.println("________________________________________________________________________________\n");
 
-        System.out.println("Thanks for using AMEBOT~!\n");
+        System.out.println("Yokoso, your personal assistant AMEBOT~!\nPlease enter a command:");
+        UserActivity user = new UserActivity();
     }
 }
