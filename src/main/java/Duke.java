@@ -1,5 +1,19 @@
 import java.util.Scanner;
 public class Duke {
+    private static String[] list = new String[100];
+    private static int listCount =0;
+
+    public static void addMessage(String msg){
+        list[listCount] = msg;
+        listCount++;
+        System.out.println("added: " + msg);
+    }
+    public static void printList(){
+        for (int i=0; i<listCount; i++){
+            System.out.println( i+1 +". " + list[i]);
+        }
+    }
+
     public static void main(String[] args) {
         //String logo = " ____        _        \n"
         //        + "|  _ \\ _   _| | _____ \n"
@@ -17,8 +31,10 @@ public class Duke {
             if (line.equals("bye")) {
                 System.out.println("Bye! Hope to see you again soon!");
                 break;
+            } else if (line.equals("list")) {
+                printList();
             } else {
-                System.out.println(line);
+                addMessage(line);
             }
         }
 
