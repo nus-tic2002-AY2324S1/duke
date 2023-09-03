@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+        String[] itemList = new String[100];
+        int index = 0;
 
         welcomeMessage();
 
@@ -15,7 +17,11 @@ public class Duke {
             if (Objects.equals(input, "bye")) {
                 byeMessage();
                 break;
+            } else if (Objects.equals(input, "list")) {
+                printItemList(itemList);
             } else {
+                itemList[index] = input;
+                index++;
                 echoMessage(input);
             }
         }
@@ -35,7 +41,15 @@ public class Duke {
 
     public static void echoMessage(String args) {
         System.out.println("\t────────────────────────────────────────");
-        System.out.println("\t" + args);
+        System.out.println("\tadded: " + args);
+        System.out.println("\t────────────────────────────────────────");
+    }
+
+    public static void printItemList(String[] itemList) {
+        System.out.println("\t────────────────────────────────────────");
+        for (int i = 0; itemList[i] != null; i++) {
+            System.out.println("\t" + (i+1) + ". " + itemList[i]);
+        }
         System.out.println("\t────────────────────────────────────────");
     }
 }
