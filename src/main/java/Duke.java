@@ -3,17 +3,6 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Duke {
-    public static String getGreeting(){
-        LocalDateTime currentTime = LocalDateTime.now();
-        int hour = currentTime.getHour();
-        if(hour >=0 && hour < 12){
-            return "Good morning";
-        }else if(hour >= 12 && hour < 18){
-            return "Good afternoon";
-        }else {
-            return "Good evening";
-        }
-    }
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -35,7 +24,36 @@ public class Duke {
         System.out.println(greeting+"! I'am "+name + ", Your personal chatbot. ");
         System.out.println("What can I do for you today?");
         System.out.println("----".repeat(10));
-        System.out.println("Bye. Hope to see you again soon!");
 
+        while(true){
+            System.out.print("Please input your instruction: \n");
+            String instruction = input.nextLine();
+            printService(instruction);
+            if(instruction.equals("bye")){
+                break;
+            }
+        }
+
+    }
+
+    public static String getGreeting(){
+        LocalDateTime currentTime = LocalDateTime.now();
+        int hour = currentTime.getHour();
+        if(hour < 12){
+            return "Good morning";
+        }else if(hour < 18){
+            return "Good afternoon";
+        }else {
+            return "Good evening";
+        }
+    }
+
+    public static void printService(String message){
+        if(message.equals("bye")){
+            message = "Bye. Hope to see you again soon!";
+        }
+        System.out.println("----".repeat(10));
+        System.out.println(message);
+        System.out.println("----".repeat(10));
     }
 }

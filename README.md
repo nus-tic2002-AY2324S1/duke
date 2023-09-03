@@ -26,3 +26,6 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 ## Feather
 ### Level 0
 1, Fork and Clone repository, implement greeting and set name function.
+
+### Level 1
+1, Add printService, get instruction from command terminal and print corresponding message.
