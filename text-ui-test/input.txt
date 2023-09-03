@@ -1,0 +1,9 @@
+read book
+return book
+buy breakfast
+list
+mark 3
+mark 1
+unmark 1
+list
+bye
