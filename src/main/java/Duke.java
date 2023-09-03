@@ -13,14 +13,15 @@ public class Duke {
         String input;
         do {
             input = in.nextLine();
-            if (input.equalsIgnoreCase(BYE)) {
+            if (askKeyword(input).equalsIgnoreCase(BYE)) {
                 break;
-            }else if(input.equalsIgnoreCase(LIST)){
+            }else if(askKeyword(input).equalsIgnoreCase(LIST)){
                 printList();
                 continue;
-            }else if(input.contains(MARK)){
+            }else if(askKeyword(input).equalsIgnoreCase(MARK)){
                 String[] inputs = input.split(" ");
                 int index = -1;
+                // Todo: handle the mark/unmark without number and out of range error
                 try{
                     index = Integer.parseInt(inputs[1]);
                 } catch (NumberFormatException e) {
@@ -30,9 +31,10 @@ public class Duke {
                     markTask(index);
                 }
                 continue;
-            }else if(input.contains((UNMARK))){
+            }else if(askKeyword(input).equalsIgnoreCase((UNMARK))){
                 String[] inputs = input.split(" ");
                 int index = -1;
+                // Todo: handle the mark/unmark without number and out of range error
                 try{
                     index = Integer.parseInt(inputs[1]);
                 }catch (NumberFormatException e){
@@ -81,6 +83,11 @@ public class Duke {
         indentation();
         System.out.println(tasks.get(index-1));
         line();
+    }
+
+    private static String askKeyword(String input){
+        String[] inputs = input.split(" ");
+        return inputs[0];
     }
 
     private static void indentation() {
