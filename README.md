@@ -28,4 +28,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 1, Fork and Clone repository, implement greeting and set name function.
 
 ### Level 1
-1, Add printService, get instruction from command terminal and print corresponding message.
+1, Add printService, get command from terminal and print corresponding message.
+
+### Level 2
+1, add "add task" and "print task" function

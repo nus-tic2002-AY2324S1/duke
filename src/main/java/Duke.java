@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -11,26 +12,54 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n\n" + logo);
 
-        System.out.println("Hello! I am Duke , your chatbot, set a name for me!!");
+        printMessage("Hello! I am Duke , your chatbot, set a name for me!!");
         String name;
         Scanner input = new Scanner(System.in);
-        System.out.print("Please enter a name for your chatbot (enter to set to default 'Duke'): ");
+        printMessage("Please enter a name for your chatbot (enter to set to default 'Duke'): ");
         name = input.nextLine();
         if(name.isBlank()){
             name = "Duke";
         }
-        System.out.println("----".repeat(10));
+        printLine();
         String greeting = getGreeting();
-        System.out.println(greeting+"! I'am "+name + ", Your personal chatbot. ");
-        System.out.println("What can I do for you today?");
-        System.out.println("----".repeat(10));
+        printMessage(greeting+"! I'am "+name + ", Your personal chatbot. ");
+        printMessage("What can I do for you today?");
+        printLine();
 
+        List<String> taskList = new ArrayList<>();
         while(true){
-            System.out.print("Please input your instruction: \n");
-            String instruction = input.nextLine();
-            printService(instruction);
-            if(instruction.equals("bye")){
+            printMessage("Please input command: ");
+            String command = input.nextLine();
+            String[] task = command.split(" ");
+            if(command.equals("bye")){
+                printLine();
+                printMessage("Bye. Hope to see you again soon!");
+                printLine();
                 break;
+            }else if (command.equals("list")){
+                if (!taskList.isEmpty()){
+                    int idx = 1;
+                    printLine();
+                    printMessage("Here are the tasks in your list:");
+                    for (String item:taskList) {
+                        printMessage(idx+". "+item);
+                        idx++;
+                    }
+                    printLine();
+                }else{
+                    printLine();
+                    printMessage(command);
+                    printLine();
+                }
+            }else if(task.length>1){
+                taskList.add("[ ] "+command);
+                printLine();
+                System.out.println("added: "+command);
+                printLine();
+            }else {
+                printLine();
+                printMessage(command);
+                printLine();
             }
         }
 
@@ -48,12 +77,11 @@ public class Duke {
         }
     }
 
-    public static void printService(String message){
-        if(message.equals("bye")){
-            message = "Bye. Hope to see you again soon!";
-        }
+    public static void printLine(){
         System.out.println("----".repeat(10));
+    }
+
+    public static void printMessage(String message){
         System.out.println(message);
-        System.out.println("----".repeat(10));
     }
 }
