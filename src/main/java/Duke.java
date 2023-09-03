@@ -1,9 +1,11 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 public class Duke {
-    private static ArrayList<String> userInputs = new ArrayList<>();
+    private static ArrayList<Task> tasks = new ArrayList<>();
     final static String BYE = "bye";
     final static  String LIST = "list";
+    final static String MARK = "mark";
+    final static String UNMARK = "unmark";
     public static void main(String[] args) {
         clearScreen();
         greet();
@@ -16,8 +18,32 @@ public class Duke {
             }else if(input.equalsIgnoreCase(LIST)){
                 printList();
                 continue;
+            }else if(input.contains(MARK)){
+                String[] inputs = input.split(" ");
+                int index = -1;
+                try{
+                    index = Integer.parseInt(inputs[1]);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid index number for the mark item.");
+                }
+                if(index != -1) {
+                    markTask(index);
+                }
+                continue;
+            }else if(input.contains((UNMARK))){
+                String[] inputs = input.split(" ");
+                int index = -1;
+                try{
+                    index = Integer.parseInt(inputs[1]);
+                }catch (NumberFormatException e){
+                    System.out.println("Invalid index number for the unmark item.");
+                }
+                if(index != -1) {
+                    unMarkTask(index);
+                }
+                continue;
             }
-            userInputs.add(input);
+            tasks.add(new Task(input));
             line();
             echoAdd(input);
             line();
@@ -27,12 +53,33 @@ public class Duke {
 
     private static void printList(){
         line();
-        int count = 0;
-        for (String userInput : userInputs) {
-            count++;
-            userInput = String.format("%d. %s",count, userInput);
-            echo(userInput);
+        indentation();
+        System.out.println("Here are the tasks in your list:");
+        for (int i = 1; i <= tasks.size(); i++) {
+            indentation();
+            System.out.print(i + " ");
+            System.out.println(tasks.get(i-1));
         }
+        line();
+    }
+
+    private static void markTask(int index){
+        line();
+        indentation();
+        System.out.println("Nice! I've marked this task as done:");
+        tasks.get(index-1).markAsDone(true);
+        indentation();
+        System.out.println(tasks.get(index-1));
+        line();
+    }
+
+    private static void unMarkTask(int index){
+        line();
+        indentation();
+        System.out.println("Ok, I've marked this task as not done yet:");
+        tasks.get(index-1).markAsDone(false);
+        indentation();
+        System.out.println(tasks.get(index-1));
         line();
     }
 
@@ -44,6 +91,7 @@ public class Duke {
         indentation();
         System.out.println(input);
     }
+
 
     private static void echoAdd(String input){
         indentation();
