@@ -11,11 +11,25 @@ public class Duke {
         System.out.println("What can I do for you?");
 
         String echo = "";
+        String[] list = new String[100];
         Scanner typed = new Scanner(System.in);
+        int count = 0;
         while(!echo.equals("bye")){
             echo = typed.nextLine();
-            if(!echo.equals("bye")){
-                System.out.println(echo);
+            if(!echo.equals("bye") && !echo.equals("list")){
+                //add to array:
+                list[count] = echo;
+                count++;
+                //System.out.println(echo);
+                System.out.println("added: " + echo);
+            } else if (echo.equals("list")) {
+                for(int i = 1; i<= list.length; i++){
+                    if(list[i-1]!=null) {
+                        System.out.println(i + ". " + list[i - 1]);
+                    }else{
+                        break;
+                    }
+                }
             }
         }
         System.out.println("Bye. Hope to see you again soon!");
