@@ -28,6 +28,15 @@ public class WonkyLogger {
         )
     );
 
+    private static final List<String> missingArgMsgs = new ArrayList<>(
+        Arrays.asList(
+            "Oops! Seems like you are missing arguments for command [%s].",
+            "Sorry, you need arguments for this command [%s].",
+            "Please add arguments for this command [%s]."
+        )
+    );
+
+
     private static final List<String> suggestCmdMsgs = new ArrayList<>(
         Arrays.asList(
             "Did you mean to type command [%s] instead?"
@@ -58,11 +67,11 @@ public class WonkyLogger {
         println("\t" + task);
     }
 
-    public static void postList() throws DukeLoggerException {
+    public static void printListTitle() throws DukeLoggerException {
         printlnWithWonky("Below are the list of items you have added!");
     }
 
-    public static void preList(String line) throws DukeLoggerException {
+    public static void addedToList(String line) throws DukeLoggerException {
         printlnWithWonky("I have added " + "[" + line + "] to our list!");
     }
 
@@ -75,6 +84,16 @@ public class WonkyLogger {
             String.format(
                 unknownCmdMsgs.get(
                     rnd.nextInt(unknownCmdMsgs.size())
+                ), cmd
+            )
+        );
+    }
+
+    public static void missingArgs(String cmd) throws DukeLoggerException {
+        printlnWithWonky(
+            String.format(
+                missingArgMsgs.get(
+                    rnd.nextInt(missingArgMsgs.size())
                 ), cmd
             )
         );
