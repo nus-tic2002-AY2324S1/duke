@@ -1,7 +1,8 @@
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
-    private static final Task[] task = new Task[100];
+    private static final ArrayList<Task> task = new ArrayList<>();
     private static int taskCount =0;
     private static final String[] keyWords = {"todo", "deadline", "event"};
 
@@ -11,10 +12,13 @@ public class Duke {
     }
 
     public static void printList(){
-        if (taskCount == 0) { return; }
+        if (taskCount == 0) {
+            System.out.println("There are no tasks in your list.");
+            return;
+        }
         System.out.println("Here are the tasks in your list:");
         for (int i=0; i < taskCount; i++){
-            System.out.println( (i+1) + ". " + task[i].toString());
+            System.out.println( (i+1) + ". " + task.get(i).toString());
         }
     }
 
@@ -22,21 +26,32 @@ public class Duke {
         if (words.length == 1) { throw new DukeException(); }
         int item = Integer.parseInt(words[1])-1;
         if (words[0].equalsIgnoreCase("mark")) {
-            if (task[item].getIsDone()){
+            if (task.get(item).getIsDone()){
                 System.out.println("The item has already been marked as done!");
             } else {
-                task[item].setIsDone(true);
+                task.get(item).setIsDone(true);
                 System.out.println("Nice! I've marked this task as done:");
             }
         } else {
-            if (task[item].getIsDone()){
-                task[item].setIsDone(false);
+            if (task.get(item).getIsDone()){
+                task.get(item).setIsDone(false);
                 System.out.println("OK, I've marked this task as not done yet:");
             } else {
                 System.out.println("The item wasn't done");
             }
         }
-        System.out.println(task[item].toString());
+        System.out.println(task.get(item).toString());
+    }
+
+    public static void deleteTask(String[] words) throws DukeException {
+        if (words.length == 1) { throw new DukeException(); }
+        int item = Integer.parseInt(words[1])-1;
+        String taskDetail = task.get(item).toString();
+        task.remove(item);
+        taskCount--;
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(taskDetail);
+        System.out.println("Now you have " + taskCount + " tasks in the list." );
     }
 
     public static void processLine(String line) throws DukeException {
@@ -48,10 +63,15 @@ public class Duke {
         if (firstWord.equalsIgnoreCase("list")) {
             printList();
         } else if (firstWord.equals("mark") || firstWord.equals("unmark")) {
-            try {
-                markTask(words);
-            } catch (NullPointerException|NumberFormatException|ArrayIndexOutOfBoundsException|DukeException e) {
+            try { markTask(words);
+            } catch (NullPointerException|NumberFormatException|IndexOutOfBoundsException|DukeException e) {
                 System.out.println("Please follow the [mark/unmark] syntax: e.g. \"mark/unmark <#>\"");
+                printList();
+            }
+        } else if (firstWord.equals("delete")) {
+            try { deleteTask(words);
+            } catch (NullPointerException|NumberFormatException|IndexOutOfBoundsException|DukeException e) {
+                System.out.println("Please follow the [delete] syntax: e.g. \"delete <#>\"");
                 printList();
             }
         } else if (isKeyword) {
@@ -90,7 +110,7 @@ public class Duke {
 
         if (taskType.equalsIgnoreCase("todo")) {
             String description = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
-            task[taskCount] = new Todo(description);
+            task.add(new Todo(description));
 
         } else if (taskType.equalsIgnoreCase("deadline")) {
             int position = 0, positionBy = 0;
@@ -101,7 +121,7 @@ public class Duke {
             if (positionBy == 0 || positionBy == words.length-1) { throw new DukeException(); }
             String description = String.join(" ", Arrays.copyOfRange(words,1,positionBy));
             String byText = String.join(" ", Arrays.copyOfRange(words, positionBy+1, words.length));
-            task[taskCount] = new Deadline(description,byText);
+            task.add(new Deadline(description,byText));
 
         } else if (taskType.equalsIgnoreCase("event")) {
             int position =0, positionFrom = 0, positionTo = 0;
@@ -114,11 +134,11 @@ public class Duke {
             String description = String.join(" ", Arrays.copyOfRange(words,1,positionFrom));
             String fromText = String.join(" ", Arrays.copyOfRange(words, positionFrom+1, positionTo));
             String toText = String.join(" ", Arrays.copyOfRange(words, positionTo+1, words.length));
-            task[taskCount] = new Event(description,fromText, toText);
+            task.add(new Event(description,fromText, toText));
 
         }
         System.out.println("Got it. I've added this task:");
-        System.out.println(task[taskCount]);
+        System.out.println(task.get(taskCount));
         taskCount++;
         System.out.println("Now you have " + taskCount + " tasks in the list." );
     }
