@@ -8,6 +8,7 @@ import seedu.duke.task.WonkyManager;
 
 // TODO
 // trim description / other attributes when storing for list
+// add A-TextUiTesting
 
 public class Duke {
     public static void main(String[] args) throws DukeException {
