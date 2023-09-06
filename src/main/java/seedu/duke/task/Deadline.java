@@ -1,11 +1,13 @@
 package seedu.duke.task;
 
+import seedu.duke.commands.Command;
+
 public class Deadline extends Task {
 
     protected String by;
 
     public Deadline(String description, String by) {
-        super(description);
+        super(Command.DEADLINE, description);
         this.by = by;
     }
 
