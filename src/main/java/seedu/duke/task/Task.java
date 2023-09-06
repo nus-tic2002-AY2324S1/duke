@@ -1,6 +1,8 @@
 package seedu.duke.task;
 
 import seedu.duke.commands.Command;
+import seedu.duke.exceptions.DukeLoggerException;
+import seedu.duke.io.WonkyLogger;
 
 public abstract class Task {
 
@@ -20,5 +22,15 @@ public abstract class Task {
 
     public Command getCommand() {
         return command;
+    }
+
+    public void setDone(boolean toSet) throws DukeLoggerException {
+        String isDoneLitr = toSet ? "done" : "not done";
+        if (isDone == toSet) {
+            WonkyLogger.markTypo(description, isDoneLitr);
+        } else {
+            WonkyLogger.taskMarked(description, isDoneLitr);
+            isDone = toSet;
+        }
     }
 }

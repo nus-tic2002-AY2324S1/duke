@@ -2,6 +2,8 @@ package seedu.duke.commands;
 
 public enum Command {
     LIST("list"),
+    MARK("mark"),
+    UNMARK("unmark"),
     TODO("todo"),
     DEADLINE("deadline"),
     EVENT("event"),
@@ -13,7 +15,11 @@ public enum Command {
         this.command = command;
     }
 
-    public String command() {
-    return command;
+    public String getLitr() {
+        return command;
+    }
+
+    public static Command getEnum(String cmd) {
+        return Command.valueOf(cmd.toUpperCase());
     }
 }
