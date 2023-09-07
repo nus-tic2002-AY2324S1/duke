@@ -139,13 +139,10 @@ public class WonkyManager {
     }
 
     private static boolean validateArgs(List<String> argList, int expectedSize) throws DukeException {
-        System.out.println(argList.size());
-        System.out.println("a");
         if (argList.size() != expectedSize) {
             WonkyLogger.mismatchArgs(getLastCommand().getLitr(), expectedSize);
             return false;
         }
-        System.out.println("b");
         for (String arg : argList) {
             if (EMPTY_LITR.equals(arg)) {
                 return false;
