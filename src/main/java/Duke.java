@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        System.out.println("GREETINGS PROFESSOR FALKEN.\n\n"
-                            + "SHALL WE PLAY A GAME?\n");
+        joshuaSays("GREETINGS PROFESSOR FALKEN.\n\n"
+                            + "SHALL WE PLAY A GAME?");
         String input;
         do {
             System.out.print(">> ");
@@ -11,7 +11,7 @@ public class Duke {
             joshuaSays(input);
         } while (!input.equals("bye"));
 
-        System.out.println("\nGOODBYE.\n");
+        joshuaSays("\nGOODBYE.");
     }
 
     public static String getUserInput(){
