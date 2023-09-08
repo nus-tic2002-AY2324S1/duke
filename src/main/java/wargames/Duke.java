@@ -1,10 +1,14 @@
+package main.java;
 import java.util.Scanner;
+import main.java.MyList;
 
 public class Duke {
     public static void main(String[] args) {
         joshuaSays("GREETINGS PROFESSOR FALKEN.\n\n"
-                            + "SHALL WE PLAY A GAME?");
+                    + "SHALL WE PLAY A GAME?");
+
         String input;
+        MyList list_obj = new MyList();
         do {
             System.out.print(">> ");
             input = getUserInput();
