@@ -22,6 +22,20 @@ public class Duke {
                 " Bye. Hope to see you again soon!\n" +
                 "____________________________________________________________\n";
 
-        System.out.println(greeting + bye);
+        System.out.println(greeting);
+
+        while(true){
+            echo = in.nextLine();
+            if(echo.equals("bye")){
+                System.out.println("Goodbye");
+                break;
+            }else {
+                System.out.println(
+                        "____________________________________________________________\n" +
+                                echo + "\n" +
+                                "____________________________________________________________\n"
+                );
+            }
+        }
     }
 }
