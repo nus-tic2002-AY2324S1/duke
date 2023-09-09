@@ -7,7 +7,6 @@ public class Duke {
     final static String MARK = "mark";
     final static String UNMARK = "unmark";
     public static void main(String[] args) {
-        clearScreen();
         greet();
         Scanner in = new Scanner(System.in);
         String input;
@@ -106,9 +105,9 @@ public class Duke {
         System.out.println(input);
     }
 
-    private static void clearScreen() {
+    /*private static void clearScreen() {
         System.out.println("\033");
-    }
+    }*/
 
     private static void greet() {
         String myChatBotName = "Luna";
