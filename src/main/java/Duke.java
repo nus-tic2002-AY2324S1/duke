@@ -1,11 +1,9 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+
 public class Duke {
     private static ArrayList<Task> tasks = new ArrayList<>();
-    final static String BYE = "bye";
-    final static  String LIST = "list";
-    final static String MARK = "mark";
-    final static String UNMARK = "unmark";
+
     public static void main(String[] args) {
         greet();
         processInput();
@@ -17,79 +15,87 @@ public class Duke {
         String input;
         do {
             input = in.nextLine();
-            if (askKeyword(input).equalsIgnoreCase(BYE)) {
-                break;
-            }else if(askKeyword(input).equalsIgnoreCase(LIST)){
-                printList();
-                continue;
-            }else if(askKeyword(input).equalsIgnoreCase(MARK)){
-                boolean isMark = true;
-                processMark(input, isMark);
-                continue;
-            }else if(askKeyword(input).equalsIgnoreCase((UNMARK))){
-                boolean isMark = false;
-                processMark(input, isMark);
-                continue;
+            String inputKey = askKeyword(input);
+            Keyword key = Keyword.getKeyword(inputKey);
+            boolean isMark;
+            if(key!=null) {
+                switch (key) {
+                case BYE:
+                    return;
+                case LIST:
+                    printList();
+                    continue;
+                case MARK:
+                    isMark = true;
+                    processMark(input, isMark);
+                    continue;
+                case UNMARK:
+                    isMark = false;
+                    processMark(input, isMark);
+                    continue;
+                default:
+                }
             }
+            
             tasks.add(new Task(input));
             line();
             echoAdd(input);
             line();
-        } while (!input.equalsIgnoreCase(BYE));
+        } while (!input.equalsIgnoreCase(Keyword.BYE.name()));
     }
 
     private static void processMark(String input, boolean isMark) {
         String[] inputs = input.split(" ");
         int index = -1;
         // Todo: handle the mark/unmark without number and out of range error
-        try{
+        try {
             index = Integer.parseInt(inputs[1]);
         } catch (NumberFormatException e) {
             System.out.println("Invalid index number for the mark item.");
         }
-        if(index == -1) {
+        if (index == -1) {
             return;
         }
-        if(isMark){
+        if (isMark) {
             markTask(index);
-        }else{
+        } else {
             unMarkTask(index);
         }
     }
 
-    private static void printList(){
+    private static void printList() {
         line();
         indentation();
         System.out.println("Here are the tasks in your list:");
         for (int i = 1; i <= tasks.size(); i++) {
             indentation();
             System.out.print(i + " ");
-            System.out.println(tasks.get(i-1));
+            System.out.println(tasks.get(i - 1));
         }
         line();
     }
 
-    private static void markTask(int index){
+    private static void markTask(int index) {
         line();
         indentation();
         System.out.println("Nice! I've marked this task as done:");
-        tasks.get(index-1).markAsDone(true);
+        tasks.get(index - 1).markAsDone(true);
         indentation();
-        System.out.println(tasks.get(index-1));
+        System.out.println(tasks.get(index - 1));
         line();
     }
 
-    private static void unMarkTask(int index){
+    private static void unMarkTask(int index) {
         line();
         indentation();
         System.out.println("Ok, I've marked this task as not done yet:");
-        tasks.get(index-1).markAsDone(false);
+        tasks.get(index - 1).markAsDone(false);
         indentation();
-        System.out.println(tasks.get(index-1));
+        System.out.println(tasks.get(index - 1));
         line();
     }
 
-    private static String askKeyword(String input){
+    private static String askKeyword(String input) {
         String[] inputs = input.split(" ");
         return inputs[0];
     }
@@ -98,12 +104,12 @@ public class Duke {
         System.out.print("     ");
     }
 
-    private static void echo(String input){
+    private static void echo(String input) {
         indentation();
         System.out.println(input);
     }
 
-    private static void echoAdd(String input){
+    private static void echoAdd(String input) {
         indentation();
         System.out.print("added: ");
         System.out.println(input);
@@ -132,10 +138,10 @@ public class Duke {
     private static void logo() {
         String logo =
                 "      _                    \n"
-                + "     | |    _   _ _  __     __\n"
-                + "     | |   | | | | | __  \\/ __ \\\n"
-                + "     | |___| |_| | |   | | |__| |\n"
-                + "     |_____|\\__,_|_|   |_|_|  |_|\n";
+                        + "     | |    _   _ _  __     __\n"
+                        + "     | |   | | | | | __  \\/ __ \\\n"
+                        + "     | |___| |_| | |   | | |__| |\n"
+                        + "     |_____|\\__,_|_|   |_|_|  |_|\n";
         System.out.println(logo);
     }
 
