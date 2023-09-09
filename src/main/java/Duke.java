@@ -15,6 +15,8 @@ public class Duke {
         
         Scanner in = new Scanner(System.in);
         boolean typing = true;
+        String[] taskList = new String[100];
+        int items = 0;
 
         while(typing){
             String line = in.nextLine();
@@ -23,8 +25,16 @@ public class Duke {
                 System.out.println("Bye! Hope I'll get to see you soon! :)");
                 typing = false;
             }
+            else if(line.equals("list")){
+                System.out.println("Here's what you've added to your task list so far.");
+                for (int i=1; i<=items; i++){
+                    System.out.println(i + ". " + taskList[i-1]);
+                }
+            }
             else{
-                System.out.println("You said: " + line);
+                taskList[items] = line;
+                items++;
+                System.out.println(line + " has been added to your list!");
             }
 
         }
