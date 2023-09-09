@@ -1,4 +1,4 @@
-import methods.UserActivity;
+import amebot.methods.User;
 
 public class Duke {
     public static void header() {
@@ -30,7 +30,7 @@ public class Duke {
         header();
 
         System.out.println("Yokoso, your personal assistant AMEBOT~!\nPlease enter a command:");
-        UserActivity user = new UserActivity();
-        user.UserInput();
+        User mainUser = new User();
+        mainUser.userInput();
     }
 }
