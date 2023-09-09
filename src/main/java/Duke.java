@@ -9,6 +9,11 @@ public class Duke {
     public static void main(String[] args) {
         greet();
         Scanner in = new Scanner(System.in);
+        processInput(in);
+        bye();
+    }
+
+    private static void processInput(Scanner in) {
         String input;
         do {
             input = in.nextLine();
@@ -49,7 +54,6 @@ public class Duke {
             echoAdd(input);
             line();
         } while (!input.equalsIgnoreCase(BYE));
-        bye();
     }
 
     private static void printList(){
