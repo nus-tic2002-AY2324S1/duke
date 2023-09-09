@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Duke {
     public static void main(String[] args) {
 
@@ -10,6 +12,22 @@ public class Duke {
         String botName = "Angel";
         System.out.println("Hello! I'm " + botName);
         System.out.println("What can I do for you?");
-        System.out.println("Bye. Hope to see you again soon!");
+        
+        Scanner in = new Scanner(System.in);
+        boolean typing = true;
+
+        while(typing){
+            String line = in.nextLine();
+
+            if(line.equals("bye")){
+                System.out.println("Bye! Hope I'll get to see you soon! :)");
+                typing = false;
+            }
+            else{
+                System.out.println("You said: " + line);
+            }
+
+        }
+
     }
 }
