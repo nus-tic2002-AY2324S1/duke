@@ -3,6 +3,8 @@ import java.util.ArrayList;
 
 public class Duke {
     private static ArrayList<Task> tasks = new ArrayList<>();
+    private String keyword;
+    private String taskDescription;
 
     public static void main(String[] args) {
         greet();
@@ -13,10 +15,12 @@ public class Duke {
     private static void processInput() {
         Scanner in = new Scanner(System.in);
         String input;
+        Duke duke = new Duke();
         do {
             input = in.nextLine();
-            String inputKey = askKeyword(input);
-            Keyword key = Keyword.getKeyword(inputKey);
+//            String inputKey = askKeyword(input);
+            duke.locateInput(input);
+            Keyword key = Keyword.getKeyword(duke.keyword);
             boolean isMark;
             if(key!=null) {
                 switch (key) {
@@ -33,15 +37,26 @@ public class Duke {
                     isMark = false;
                     processMark(input, isMark);
                     continue;
+                case TODO:
+                    tasks.add(new Todo(duke.taskDescription));
+                    break;
+                case DEADLINE:
+                    break;
+                case EVENT:
+                    break;
                 default:
                 }
+            }else{
+                responseIDK();
             }
-            
-            tasks.add(new Task(input));
-            line();
-            echoAdd(input);
-            line();
         } while (!input.equalsIgnoreCase(Keyword.BYE.name()));
+    }
+
+    private static void responseIDK() {
+        line();
+        indentation();
+        System.out.println("I'm sorry, I'm not sure what you're asking.");
+        line();
     }
 
     private static void processMark(String input, boolean isMark) {
@@ -52,7 +67,10 @@ public class Duke {
             index = Integer.parseInt(inputs[1]);
         } catch (NumberFormatException e) {
             System.out.println("Invalid index number for the mark item.");
+        } catch (ArrayIndexOutOfBoundsException e){
+            System.out.printf("The number after the %s is mandatory!\n",isMark?"Mark":"Unmark");
         }
+
         if (index == -1) {
             return;
         }
@@ -69,7 +87,7 @@ public class Duke {
         System.out.println("Here are the tasks in your list:");
         for (int i = 1; i <= tasks.size(); i++) {
             indentation();
-            System.out.print(i + " ");
+            System.out.print(i + ".");
             System.out.println(tasks.get(i - 1));
         }
         line();
@@ -100,7 +118,19 @@ public class Duke {
         return inputs[0];
     }
 
-    private static void indentation() {
+    private void locateInput (String input){
+        String[] inputs = input.split(" ");
+        keyword = inputs[0];
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i < inputs.length; i++) {
+            sb.append(inputs[i]);
+            sb.append(" ");
+        }
+        taskDescription = sb.toString().trim();
+
+    }
+
+    public static void indentation() {
         System.out.print("     ");
     }
 
@@ -128,7 +158,7 @@ public class Duke {
         line();
     }
 
-    private static void line() {
+    public static void line() {
         String horizontalBox = "*";
         String line = horizontalBox.repeat(80);
         System.out.print("    ");
