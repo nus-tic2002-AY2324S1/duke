@@ -8,12 +8,12 @@ public class Duke {
     final static String UNMARK = "unmark";
     public static void main(String[] args) {
         greet();
-        Scanner in = new Scanner(System.in);
-        processInput(in);
+        processInput();
         bye();
     }
 
-    private static void processInput(Scanner in) {
+    private static void processInput() {
+        Scanner in = new Scanner(System.in);
         String input;
         do {
             input = in.nextLine();
@@ -23,30 +23,12 @@ public class Duke {
                 printList();
                 continue;
             }else if(askKeyword(input).equalsIgnoreCase(MARK)){
-                String[] inputs = input.split(" ");
-                int index = -1;
-                // Todo: handle the mark/unmark without number and out of range error
-                try{
-                    index = Integer.parseInt(inputs[1]);
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid index number for the mark item.");
-                }
-                if(index != -1) {
-                    markTask(index);
-                }
+                boolean isMark = true;
+                processMark(input, isMark);
                 continue;
             }else if(askKeyword(input).equalsIgnoreCase((UNMARK))){
-                String[] inputs = input.split(" ");
-                int index = -1;
-                // Todo: handle the mark/unmark without number and out of range error
-                try{
-                    index = Integer.parseInt(inputs[1]);
-                }catch (NumberFormatException e){
-                    System.out.println("Invalid index number for the unmark item.");
-                }
-                if(index != -1) {
-                    unMarkTask(index);
-                }
+                boolean isMark = false;
+                processMark(input, isMark);
                 continue;
             }
             tasks.add(new Task(input));
@@ -54,6 +36,25 @@ public class Duke {
             echoAdd(input);
             line();
         } while (!input.equalsIgnoreCase(BYE));
+    }
+
+    private static void processMark(String input, boolean isMark) {
+        String[] inputs = input.split(" ");
+        int index = -1;
+        // Todo: handle the mark/unmark without number and out of range error
+        try{
+            index = Integer.parseInt(inputs[1]);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid index number for the mark item.");
+        }
+        if(index == -1) {
+            return;
+        }
+        if(isMark){
+            markTask(index);
+        }else{
+            unMarkTask(index);
+        }
     }
 
     private static void printList(){
@@ -102,16 +103,11 @@ public class Duke {
         System.out.println(input);
     }
 
-
     private static void echoAdd(String input){
         indentation();
         System.out.print("added: ");
         System.out.println(input);
     }
-
-    /*private static void clearScreen() {
-        System.out.println("\033");
-    }*/
 
     private static void greet() {
         String myChatBotName = "Luna";
