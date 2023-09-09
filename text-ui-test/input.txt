@@ -1,13 +1,21 @@
 Amber
+  list
 Task 1
-Task 2 /by Sunday
-deadline return book /by Sunday
+Task 2 /by                    Sunday
+   deadline return book /by Sunday
 event project meeting /from Mon 2pm /to 4pm
+ event hangout /from Sat 2pm
+task 3 /by
+task 4 /from
+                      Task 6
 List
 mark 1
-mark 4
-mark 2
+mark 40
+mark 3
+mark           5
 unmark 1*
-unmark 3
+          unmark 3
+unmark         1
+        blah
 list
 bye

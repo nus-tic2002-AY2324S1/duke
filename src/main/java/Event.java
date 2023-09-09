@@ -3,6 +3,7 @@ public class Event extends Task {
     protected String time1;
 
 
+
     public Event(String description, String time) {
         super(description);
         this.time = time;
@@ -16,9 +17,9 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-//        if (!time.contains("/to")) {
-//            return "[E]" + super.toString() + "(from:" + time + ")";
-//        }
+        if (time1==null) {
+            return "[E]" + super.toString() + "(from:" + time + ")";
+        }
         return "[E]" + super.toString() + "(from:" + time + "➞ to:" + time1 + ")";
     }
 
