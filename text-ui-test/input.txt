@@ -1,0 +1,22 @@
+list
+add Ride a shinkansen
+add Go-kart around Tokyo
+add Enter Universal Studios Japan
+add Visit an arcade
+add Make your own takoyaki
+add Learn the art of tea ceremony
+add Visit an izakaya
+add Go cherry blossom viewing
+add Climb Mount Fuji
+add Visit bamboo forest
+add Spend a night in Ryokan
+add Visit an Onsen
+list
+Check 4
+Check 5
+Check 7
+Check 11
+Uncheck 11
+
+list
+bye
