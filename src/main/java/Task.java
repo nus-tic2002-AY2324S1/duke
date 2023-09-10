@@ -13,7 +13,7 @@ public abstract class Task {
 
     protected static void responseNumberOfTasks() {
         Duke.indentation();
-        System.out.printf("Now you have %d tasks in the list.\n",numberOfTasks);
+        System.out.printf("Now you have %d %s in the list.\n",numberOfTasks,numberOfTasks>1?"tasks":"task");
         Duke.line();
     }
 
