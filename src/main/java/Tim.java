@@ -33,7 +33,8 @@ public class Tim {
     }
 
     public static void printSingle(int index){
-        System.out.println(index + ". " + "[" + list[index-1].getIsDone() + "] " + list[index-1].getDescription() );
+        Task current = list[index-1];
+        System.out.println(index + ". [" + current.type  + "] [" + current.getIsDone() + "] " + current.getDescription() );
     }
 
     public static void addList(String inputEntry){
@@ -45,6 +46,40 @@ public class Tim {
 
     }
 
+    public static void addToDo (String inputEntry){
+        list = Arrays.copyOf(list,list.length+1);
+        list[list.length-1]= new ToDo(inputEntry);
+        System.out.println("Gotcha! Added this task:");
+        printSingle(list.length);
+        System.out.println("now there is: "+ list.length + " item(s)");
+        printDashes();
+    }
+
+    public static void addDeadline (String inputEntry){
+        String[] inputTokenized =  inputEntry.split(" /by ",2);
+        String by = inputTokenized[1];
+        String description = inputTokenized[0];
+        list = Arrays.copyOf(list,list.length+1);
+        list[list.length-1]= new Deadline(description,by);
+        System.out.println("Gotcha! Added this task:");
+        printSingle(list.length);
+        System.out.println("now there is: "+ list.length + " item(s)");
+        printDashes();
+    }
+
+    public static void addEvent (String inputEntry){
+        String[] inputTokenized =  inputEntry.split(" /from ",2);
+        String to = inputTokenized[1].split(" /to ",2)[1];
+        String from = inputTokenized[1].split(" /to ",2)[0];
+        String description = inputTokenized[0];
+        list = Arrays.copyOf(list,list.length+1);
+        list[list.length-1]= new Event(description,from,to);
+        System.out.println("Gotcha! Added this task:");
+        printSingle(list.length);
+        System.out.println("now there is: "+ list.length + " item(s)");
+        printDashes();
+    }
+
     public static void markUnmarkTask(int index, boolean markUnmark){
         Task target = list[index-1];
         if(markUnmark){
@@ -54,6 +89,7 @@ public class Tim {
         }
         target.setIsDone(markUnmark);
         printSingle(index);
+        printDashes();
     }
 
     public static void printDate(){
@@ -69,14 +105,15 @@ public class Tim {
     }
     public static void main(String[] args) {
         printLogo();
+        greetings();
         String input = "init" ;
         int index = -1;
         Scanner in = new Scanner(System.in);
 
         while(!input.equalsIgnoreCase("bye")){
-            greetings();
             input = in.nextLine();
-            String[] token = input.split(" ");
+            String[] token = input.split(" ",2);
+            String taskName;
             String mode = token[0].toLowerCase();
             System.out.println("|| "+ mode + " ||");
             switch (mode) {
@@ -102,6 +139,30 @@ public class Tim {
                     }
                     if ((index != -1 && index < list.length+1)) {
                         markUnmarkTask(index, false);
+                    } else {
+                        System.out.println("index out of bound");
+                    }
+                    break;
+                case "todo":
+                    if(token.length > 1){
+                        taskName = token[1];
+                        addToDo(taskName);
+                    } else {
+                        System.out.println("index out of bound");
+                    }
+                    break;
+                case "deadline":
+                    if(token.length > 1){
+                        taskName = token[1];
+                        addDeadline(taskName);
+                    } else {
+                        System.out.println("index out of bound");
+                    }
+                    break;
+                case "event":
+                    if(token.length > 1){
+                        taskName = token[1];
+                        addEvent(taskName);
                     } else {
                         System.out.println("index out of bound");
                     }

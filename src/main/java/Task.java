@@ -1,10 +1,12 @@
 public class Task {
     protected String description;
+    protected char type;
     protected boolean isDone;
 
     public Task(String description){
         this.description = description;
         isDone = false;
+        type = '-';
     }
 
     public String getDescription() {
@@ -17,5 +19,9 @@ public class Task {
 
     public void setIsDone(boolean markUnmark){
         isDone = markUnmark;
+    }
+
+    public char getType (){
+        return type;
     }
 }
