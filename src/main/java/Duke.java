@@ -1,52 +1,48 @@
-import java.util.Objects;
-import java.util.Scanner;
-public class Duke {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+import java.util.ArrayList;
+import java.util.List;
 
-        String lineBreak = "****************************************";
-        String logo ="\n" +
-                "╭━━━╮╱╱╱╱╱╭╮\n" +
-                "┃╭━╮┃╱╱╱╱╱┃┃\n" +
-                "┃╰━━┳━━┳━━┫╰━┳━━┳━╮\n" +
-                "╰━━╮┃╭╮┃╭╮┃╭╮┃╭╮┃╭╮╮\n" +
-                "┃╰━╯┃╰╯┃╰╯┃┃┃┃╰╯┃┃┃┃\n" +
-                "╰━━━┻━━┫╭━┻╯╰┻━━┻╯╰╯\n" +
-                "╱╱╱╱╱╱╱┃┃\n" +
-                "╱╱╱╱╱╱╱╰╯\n";
+class Duke {
+    private final List<String> userInputList;
+
+    private final UserInterface userInterface;
+
+    private final MessageDisplay messageDisplay;
+
+    public Duke() {
+        userInputList = new ArrayList<>();
+        userInterface = new UserInterface();
+        messageDisplay = new MessageDisplay();
+    }
+
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.start();
+    }
+
+    public void start() {
 
         // Greet the user and ask for input
-        System.out.println(logo+"Hello, I'm Sophon:). \nHow can i assist you today?");
-        System.out.println(lineBreak);
+        messageDisplay.Hello();
 
-        // Create an array of string to store user's input
-        String[] userInputArray = new String[100];
-        // Counter to store the number of input stored in the array
-        int n = 0;
-
-        while(true){
-            String userInput = scanner.nextLine();
-            if(Objects.equals(userInput.toUpperCase(), "BYE")){
-                System.out.println(lineBreak);
-                System.out.println("Bye! Hope to see you again soon!");
-                System.out.println(lineBreak);
+        while (true) {
+            String userInput = userInterface.getUserInput();
+            if (userInput.equals("bye")) {
                 break;
-            }else{
-                if(Objects.equals(userInput.toUpperCase(),"LIST")){
-                    System.out.println(lineBreak);
-                    for (int i = 0; i < n; i++) {
-                        System.out.println((i + 1)+ ". " + userInputArray[i]);
-                    }
-                    System.out.println(lineBreak);
-                }else{
-                    userInputArray[n] = userInput;
-                    n++;
-                    System.out.println(lineBreak);
-                    System.out.println("Added: " + userInput);
-                    System.out.println(lineBreak);
-                }
+            } else if (userInput.isEmpty()) {
+                messageDisplay.MissingInput();
+            } else if (userInput.equals("list")) {
+                messageDisplay.UserInputList(userInputList);
+            } else {
+                storeUserInput(userInput);
             }
         }
-        scanner.close();
+        userInterface.closeScanner();
+        messageDisplay.Goodbye();
     }
+
+    private void storeUserInput(String userInput) {
+        userInputList.add(userInput);
+        messageDisplay.AddedMessage(userInput);
+    }
+
 }
