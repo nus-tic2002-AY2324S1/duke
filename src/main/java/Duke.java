@@ -31,12 +31,12 @@ public class Duke {
             printMessage("Please input command: ");
             String command = input.nextLine();
             String[] task = command.split(" ");
-            if(command.equals("bye")){
+            if(command.equalsIgnoreCase("bye")){
                 printLine();
                 printMessage("Bye. Hope to see you again soon!");
                 printLine();
                 break;
-            }else if (command.equals("list")){
+            }else if (command.equalsIgnoreCase("list")){
                 if (!taskList.isEmpty()){
                     int idx = 1;
                     printLine();

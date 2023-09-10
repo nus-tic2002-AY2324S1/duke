@@ -23,7 +23,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    |____/ \__,_|_|\_\___|
    ```
 
-## Feather
+## Feature
 ### Level 0
 1, Fork and Clone repository, implement greeting and set name function.
 
