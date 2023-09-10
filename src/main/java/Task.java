@@ -10,28 +10,28 @@ public class Task {
         totalTasks++;
     }
 
-    // Method to mark the task as completed
+    /** Method to mark the task as completed **/
     public void markAsCompleted() {
         this.completed = true;
     }
 
-    // Method to mark the task as not completed
+    /** Method to mark the task as not completed **/
     public void markAsNotCompleted() {
         this.completed = false;
     }
 
-    // Getter method to get the task name
+    /** Getter method to get the task name **/
     public String getTaskName() {
         return taskName;
     }
 
 
-    // Getter method to check if the task is completed
+    /** Getter method to check if the task is completed **/
     public boolean isCompleted() {
         return completed;
     }
 
-    // Getter method to get the total number of tasks
+    /** Getter method to get the total number of tasks **/
     public static int getTotalTasks() {
         return totalTasks;
     }
