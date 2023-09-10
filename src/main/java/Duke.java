@@ -3,8 +3,11 @@ import java.util.ArrayList;
 
 public class Duke {
     private static ArrayList<Task> tasks = new ArrayList<>();
-    private String keyword;
-    private String taskDescription;
+    private static String keyword;
+    private static String taskDescription;
+    private static String by;
+    private static String from;
+    private static String to;
 
     public static void main(String[] args) {
         greet();
@@ -15,13 +18,10 @@ public class Duke {
     private static void processInput() {
         Scanner in = new Scanner(System.in);
         String input;
-        Duke duke = new Duke();
         do {
             input = in.nextLine();
-//            String inputKey = askKeyword(input);
-            duke.locateInput(input);
-            Keyword key = Keyword.getKeyword(duke.keyword);
-            boolean isMark;
+            locateInput(input);
+            Keyword key = Keyword.getKeyword(keyword);
             if(key!=null) {
                 switch (key) {
                 case BYE:
@@ -30,19 +30,21 @@ public class Duke {
                     printList();
                     continue;
                 case MARK:
-                    isMark = true;
-                    processMark(input, isMark);
+                    processMark(input, true);
                     continue;
                 case UNMARK:
-                    isMark = false;
-                    processMark(input, isMark);
+                    processMark(input, false);
                     continue;
                 case TODO:
-                    tasks.add(new Todo(duke.taskDescription));
+                    tasks.add(new Todo(taskDescription));
                     break;
                 case DEADLINE:
+                    pullDeadlineDate(taskDescription);
+                    tasks.add(new Deadline(taskDescription, by));
                     break;
                 case EVENT:
+                    pullEventDateTime(taskDescription);
+                    tasks.add(new Event(taskDescription, from, to));
                     break;
                 default:
                 }
@@ -62,7 +64,7 @@ public class Duke {
     private static void processMark(String input, boolean isMark) {
         String[] inputs = input.split(" ");
         int index = -1;
-        // Todo: handle the mark/unmark without number and out of range error
+
         try {
             index = Integer.parseInt(inputs[1]);
         } catch (NumberFormatException e) {
@@ -74,6 +76,8 @@ public class Duke {
         if (index == -1) {
             return;
         }
+
+        // Todo: handle the mark/unmark index out of range exception
         if (isMark) {
             markTask(index);
         } else {
@@ -81,7 +85,15 @@ public class Duke {
         }
     }
 
-    private static void printList() {
+    private static void printList () {
+        if(Task.getNumberOfTasks() == 0){
+            line();
+            indentation();
+            System.out.println("Your list is empty. Let's start adding some items! :)");
+            line();
+            return;
+        }
+
         line();
         indentation();
         System.out.println("Here are the tasks in your list:");
@@ -93,7 +105,7 @@ public class Duke {
         line();
     }
 
-    private static void markTask(int index) {
+    private static void markTask (int index) {
         line();
         indentation();
         System.out.println("Nice! I've marked this task as done:");
@@ -103,7 +115,7 @@ public class Duke {
         line();
     }
 
-    private static void unMarkTask(int index) {
+    private static void unMarkTask (int index) {
         line();
         indentation();
         System.out.println("Ok, I've marked this task as not done yet:");
@@ -113,12 +125,44 @@ public class Duke {
         line();
     }
 
-    private static String askKeyword(String input) {
-        String[] inputs = input.split(" ");
-        return inputs[0];
+    private static void pullDeadlineDate (String input){
+        final String BY = "/by";
+        int len = BY.length();
+        int pos = -1;
+
+        pos = input.indexOf(BY);
+
+        //Todo: throw IllegalInputException here
+        /*if(pos == -1){
+            throw new IllegalInputException();
+        }*/
+
+        by = input.substring(pos + len).trim();
+        taskDescription = input.substring(0,pos).trim();
     }
 
-    private void locateInput (String input){
+    private static void pullEventDateTime(String input){
+        final String FROM = "/from";
+        final String TO = "/to";
+        int lenOfFrom = FROM.length();
+        int lenOfTo = TO.length();
+        int posOfFrom = -1;
+        int posOfTo = -1;
+
+        posOfFrom = input.indexOf(FROM);
+        posOfTo = input.indexOf(TO);
+
+        //Todo: throw IllegalInputException here
+        /*if(posOfFrom == -1 || posOfTo == -1){
+            throw new IllegalInputException();
+        }*/
+
+        from = input.substring(posOfFrom + lenOfFrom, posOfTo).trim();
+        to = input.substring(posOfTo + lenOfTo).trim();
+        taskDescription = input.substring(0,posOfFrom).trim();
+    }
+
+    private static void locateInput (String input){
         String[] inputs = input.split(" ");
         keyword = inputs[0];
         StringBuilder sb = new StringBuilder();
@@ -136,12 +180,6 @@ public class Duke {
 
     private static void echo(String input) {
         indentation();
-        System.out.println(input);
-    }
-
-    private static void echoAdd(String input) {
-        indentation();
-        System.out.print("added: ");
         System.out.println(input);
     }
 

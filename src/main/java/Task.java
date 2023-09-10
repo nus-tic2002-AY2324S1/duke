@@ -31,6 +31,10 @@ public abstract class Task {
         this.isDone = done;
     }
 
+    public static int getNumberOfTasks(){
+        return numberOfTasks;
+    }
+
     @Override
     public abstract String toString();
     /*public String toString(){
