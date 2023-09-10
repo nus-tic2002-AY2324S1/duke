@@ -18,6 +18,7 @@ public class Duke {
             if(line.equals("bye")){
                 System.out.println("Bye! Hope I'll get to see you soon! :)");
                 typing = false;
+                continue;
             }
 
             else if(line.equals("list")){
