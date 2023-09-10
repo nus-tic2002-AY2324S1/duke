@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Duke {
+
     public static void main(String[] args) {
 
         String botName = "Angel";
@@ -10,7 +11,6 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         boolean typing = true;
         Task[] taskList = new Task[100];
-
 
         while(typing){
             String line = in.nextLine();
@@ -49,14 +49,36 @@ public class Duke {
             }
 
             else{
-                Task t = new Task(line);
+                Task t;
+                String[] input = line.split(" ",2); 
+                if(input[0].contains("deadline")){
+                    int by = input[1].indexOf("/by");
+                    String date = input[1].substring(by+4, input[1].length());
+                    String description = input[1].substring(0, by);
+                    t = new Deadline(description, date);
+                }
+                // event project meeting /from Mon 2pm /to 4pm
+                else if(input[0].contains("event")){
+                    int from = input[1].indexOf("/from");
+                    int to = input[1].indexOf("/to");
+                    String fromDate = input[1].substring(from+6, to-1);
+                    String toDate = input[1].substring(to+3, input[1].length());
+                    String description = input[1].substring(0, from);
+                    t = new Event(description, fromDate, toDate);
+                }
+
+                // else if(input[0].contains("todo"))
+                else{
+                    t = new ToDo(input[1]);
+                }
+
                 taskList[Task.getTotalTasks()] = t;
-                System.out.println(line + " has been added to your list!");
+                System.out.println("---------------------------------------");
+                System.out.println("Got it. I've added this task: \n" + t);
+                System.out.println("Now you have " + Task.getTotalTasks() + " tasks in the list.");
             }
 
             System.out.println("---------------------------------------");
-
-
             System.out.println("Anything else?");
 
         }

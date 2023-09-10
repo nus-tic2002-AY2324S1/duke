@@ -14,6 +14,7 @@ public class Task {
         totalTasks ++;
     }
 
+    
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
