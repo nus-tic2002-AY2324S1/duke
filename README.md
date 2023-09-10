@@ -32,3 +32,8 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 
 ### Level 2
 1, add "add task" and "print task" function
+
+### Level 3
+1, add Mark as Done and mark as not done function. 
+
+2, Use the input/output redirection technique to semi-automate the testing of Duke. change the .gitignore file, include text-ui-test folder in the remote repo
