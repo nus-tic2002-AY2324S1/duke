@@ -1,0 +1,15 @@
+list
+task 1
+list
+task 2
+list
+mark
+mark 0
+mark 3
+mark 1
+list
+mark 2
+list
+unmark 1
+list
+bye
