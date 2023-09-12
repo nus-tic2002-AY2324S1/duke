@@ -1,3 +1,5 @@
+// MyList.java manages the list of tasks
+
 package wargames;
 import java.util.Arrays;
 
@@ -22,5 +24,15 @@ public class MyList {
 
     public String[] getList(){
         return list;
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        for (int i = 0; i < list.length; i++) {
+            int count = i + 1;
+            str += count + ". " + list[i] + "\n";
+        }
+        return str;
     }
 }
