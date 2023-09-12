@@ -1,3 +1,5 @@
+package command;
+
 public class CrabyMessage {
     protected static final String line = "  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈";
     public static final String crab = "              __       __\n" +

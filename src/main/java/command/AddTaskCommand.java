@@ -1,11 +1,18 @@
+package command;
+
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.Todo;
+
 import java.util.List;
 
 public class AddTaskCommand extends CrabyMessage {
     public void addTaskCommand(String input, List<Task> tasks) {
         input = input
-                .replace("Deadline", "")
-                .replace("Todo", "")
-                .replace("Event", "")
+                .replace("task.Deadline", "")
+                .replace("task.Todo", "")
+                .replace("task.Event", "")
                 .replace("deadline", "")
                 .replace("todo", "")
                 .replace("event", "");
