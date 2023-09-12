@@ -88,75 +88,103 @@ public class Duke {
         checkInput = checkInput.toLowerCase().trim();
         switch (checkInput) {
             case "list":
-                if (tasks.isEmpty()) {
-                    System.out.println("   Your list is empty!\n" + line);
-                    break;
-                } else {
-                    int i = 0;
-                    System.out.println("    ╭─────────────────────────────────╮");
-                    System.out.println("     Here are the tasks in your list:");
-                    for (Task s : tasks) {
-                        i++;
-                        System.out.println("   " + i + ". " + s);
-                    }
-                    System.out.println("    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦");
-                    System.out.println(line);
-                    break;
-                }
+                handleListCommand(tasks);
+                break;
             case "blah":
-                System.out.println("   Oops!!! I'm sorry, but I don't know what that means ☘\n" + line);
+                handleBlahCommand();
                 break;
             case "bye":
-                System.out.println("   Bye " + answerName + " ♡, hope to see you again soon!");
-                exit = true;
+                exit = handleByeCommand(answerName);
                 break;
             case "mark":
-                try {
-                    int tmp = input.indexOf("k");
-                    String checkMark = input.substring(tmp+1).trim();
-                    int a = (Integer.parseInt(checkMark)) - 1;
-                    if (a >= tasks.size() || a < 0) {
-                        System.out.println("   Oops, something wrong! Your list only have 1 to " + tasks.size() + " tasks.\n" + "   Please try again!\n" + line);
-                        break;
-                    }
-                    tasks.get(a).setDone(true);
-                    System.out.println("   Nice! I've marked this task as DONE ツ:" + "\n" + "   ╰┈➤ " + tasks.get(a) + "\n" + line);
-                    break;
-                } catch (NumberFormatException e) {
-                    System.out.println("   '" + input.split(" ")[1] + "' is invalid number. Please try again!\n" + line);
-                    break;
-                } catch (ArrayIndexOutOfBoundsException a) {
-                    System.out.println("   Oops!!! Looks like you used the wrong format.\n   Try format: mark [integer] e.g: mark 1\n" + line);
-                    break;
-                }
-
+                handleMarkCommand(input, tasks);
+                break;
             case "unmark":
-                try {
-                    int tmp = input.indexOf("k");
-                    String checkMark = input.substring(tmp+1).trim();
-                    int b = (Integer.parseInt(checkMark)) - 1;
-                    if (b >= tasks.size() || b < 0) {
-                        System.out.println("   Oops, something wrong! Your list only have 1 to " + tasks.size() + "tasks. \n" + "   Please try again!\n" + line);
-                        break;
-                    }
-                    tasks.get(b).setDone(false);
-                    System.out.println("   OK, I've marked this task as ☉⌓☉ NOT DONE yet:" + "\n" + "   ╰┈➤ " + tasks.get(b) + "\n" + line);
-                    break;
-                } catch (NumberFormatException e) {
-                    System.out.println("   '" + input.split(" ")[1] + "' is invalid number. Please try again!\n" + line);
-                    break;
-                } catch (ArrayIndexOutOfBoundsException a) {
-                    System.out.println("   Oops!!! Looks like you used the wrong format.\n   Try format: unmark [integer] e.g: unmark 1\n" + line);
-                    break;
-                }
+                handleUnmarkCommand(input, tasks);
+                break;
             default:
-                if (!input.contains("/by") && !input.contains("/from")) {
-                    tasks.add(new Todo(input));
-                    System.out.println("   ✎ added: " + input + " - to your list.");
-                    System.out.println("   You have " + tasks.size() + " tasks in the list \uD83D\uDDCE.\n" + line);
-                }
+                handleDefaultCommand(input, tasks);
 
         }
         return exit;
+    }
+
+    private static void handleDefaultCommand(String input, List<Task> tasks) {
+        if (!input.contains("/by") && !input.contains("/from")) {
+            tasks.add(new Todo(input));
+            System.out.println("   ✎ added: " + input + " - to your list.");
+            System.out.println("   You have " + tasks.size() + " tasks in the list \uD83D\uDDCE.\n" + line);
+        }
+    }
+
+    private static void handleUnmarkCommand(String input, List<Task> tasks) {
+        try {
+            int tmp = input.indexOf("k");
+            String checkMark = input.substring(tmp+1).trim();
+            int b = (Integer.parseInt(checkMark)) - 1;
+            if (b >= tasks.size() || b < 0) {
+                System.out.println("   Oops, something wrong! Your list only have 1 to " + tasks.size() + "tasks. \n" + "   Please try again!\n" + line);
+                return;
+            }
+            tasks.get(b).setDone(false);
+            System.out.println("   OK, I've marked this task as ☉⌓☉ NOT DONE yet:" + "\n" + "   ╰┈➤ " + tasks.get(b) + "\n" + line);
+            return;
+        } catch (NumberFormatException e) {
+            System.out.println("   '" + input.split(" ")[1] + "' is invalid number. Please try again!\n" + line);
+            return;
+        } catch (ArrayIndexOutOfBoundsException a) {
+            System.out.println("   Oops!!! Looks like you used the wrong format.\n   Try format: unmark [integer] e.g: unmark 1\n" + line);
+            return;
+        }
+    }
+
+    private static void handleMarkCommand(String input, List<Task> tasks) {
+        try {
+            int tmp = input.indexOf("k");
+            String checkMark = input.substring(tmp+1).trim();
+            int a = (Integer.parseInt(checkMark)) - 1;
+            if (a >= tasks.size() || a < 0) {
+                System.out.println("   Oops, something wrong! Your list only have 1 to " + tasks.size() + " tasks.\n" + "   Please try again!\n" + line);
+                return;
+            }
+            tasks.get(a).setDone(true);
+            System.out.println("   Nice! I've marked this task as DONE ツ:" + "\n" + "   ╰┈➤ " + tasks.get(a) + "\n" + line);
+            return;
+        } catch (NumberFormatException e) {
+            System.out.println("   '" + input.split(" ")[1] + "' is invalid number. Please try again!\n" + line);
+            return;
+        } catch (ArrayIndexOutOfBoundsException a) {
+            System.out.println("   Oops!!! Looks like you used the wrong format.\n   Try format: mark [integer] e.g: mark 1\n" + line);
+            return;
+        }
+    }
+
+    private static boolean handleByeCommand(String answerName) {
+        boolean exit;
+        System.out.println("   Bye " + answerName + " ♡, hope to see you again soon!");
+        exit = true;
+        return exit;
+    }
+
+    private static void handleBlahCommand() {
+        System.out.println("   Oops!!! I'm sorry, but I don't know what that means ☘\n" + line);
+    }
+
+    private static void handleListCommand(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            System.out.println("   Your list is empty!\n" + line);
+            return;
+        } else {
+            int i = 0;
+            System.out.println("    ╭─────────────────────────────────╮");
+            System.out.println("     Here are the tasks in your list:");
+            for (Task s : tasks) {
+                i++;
+                System.out.println("   " + i + ". " + s);
+            }
+            System.out.println("    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦");
+            System.out.println(line);
+            return;
+        }
     }
 }
