@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -24,18 +25,33 @@ public class Duke {
 
         System.out.println(greeting);
 
+        ArrayList<String> shelf = new ArrayList<String>();
         while(true){
             echo = in.nextLine();
             if(echo.equals("bye")){
                 System.out.println("Goodbye");
                 break;
-            }else {
+            }else if(echo.equals("list")){
+                for(int i = 0; i < shelf.size(); i++){
+                    System.out.println(
+                            "____________________________________________________________\n" +
+                                    Integer.toString(i+1)+ ": " + shelf.get(i) + "\n" +
+                                    "____________________________________________________________\n"
+                    );
+                }
+            } else {
+                addItems(shelf, echo);
                 System.out.println(
                         "____________________________________________________________\n" +
-                                echo + "\n" +
+                                "added: " + echo + "\n" +
                                 "____________________________________________________________\n"
                 );
             }
         }
     }
+
+    public static void addItems(ArrayList<String> shelf, String item){
+    shelf.add(item);
+    }
+
 }
