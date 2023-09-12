@@ -9,16 +9,16 @@ public class MarkCommand extends CrabyMessage {
         try {
             int tmp = input.indexOf("k");
             String checkMark = input.substring(tmp + 1).trim();
-            int a = (Integer.parseInt(checkMark)) - 1;
-            if (a >= tasks.size() || a < 0) {
+            int checkNum = (Integer.parseInt(checkMark)) - 1;
+            if (checkNum >= tasks.size() || checkNum < 0) {
                 System.out.print("   Oops, something wrong! Your list only have 1 to ");
                 System.out.println(tasks.size() + " tasks.");
                 System.out.println("   Please try again!\n" + line);
                 return;
             }
-            tasks.get(a).setDone(true);
+            tasks.get(checkNum).setDone(true);
             System.out.println("   Nice! I've marked this task as DONE ツ:");
-            System.out.println("   ╰┈➤ " + tasks.get(a) + "\n" + line);
+            System.out.println("   ╰┈➤ " + tasks.get(checkNum) + "\n" + line);
         } catch (NumberFormatException e) {
             System.out.println("   Oops!!! Looks like you used the wrong format.");
             System.out.println("   Try with: mark [integer] e.g: mark 1\n" + line);

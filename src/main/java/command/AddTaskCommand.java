@@ -48,7 +48,8 @@ public class AddTaskCommand extends CrabyMessage {
     }
 
     private static void printAddMessage(String input, List<Task> tasks) {
-        System.out.println("   ✎ added: " + input + " - to your list.");
-        System.out.println("   You have " + tasks.size() + " tasks in the list \uD83D\uDDCE.\n" + line);
+        System.out.println("   ✎ added: ");
+        System.out.println("   ╰┈➤ " + input + " - to your list");
+        System.out.println("   Now you have " + tasks.size() + " tasks in the list \uD83D\uDDCE.\n" + line);
     }
 }

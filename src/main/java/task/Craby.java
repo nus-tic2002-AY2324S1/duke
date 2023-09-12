@@ -58,6 +58,9 @@ public class Craby extends CrabyMessage {
             case "unmark":
                 handleUnmarkCommand(input, tasks);
                 break;
+            case "delete":
+                handleDeleteCommand(input,tasks);
+                break;
             default:
                 addTaskCommand(input, tasks);
         }
@@ -75,7 +78,9 @@ public class Craby extends CrabyMessage {
     private static void handleMarkCommand(String input, List<Task> tasks) {
         new MarkCommand().handleMarkCommand(input, tasks);
     }
-
+    private static void handleDeleteCommand(String input, List<Task> tasks) {
+        new DeleteCommand().handleDeleteCommand(input, tasks);
+    }
     private static void handleBlahCommand() {
         new BlahCommand().handleBlahCommand();
     }
