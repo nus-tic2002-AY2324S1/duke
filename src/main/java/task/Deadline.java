@@ -2,7 +2,7 @@ package task;
 
 public class Deadline extends Task {
     protected String time;
-   // private final String by;
+    // private final String by;
 
     public Deadline(String description, String time) {
         super(description);
@@ -11,7 +11,8 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() +"(by: " + time.trim() + ")";
+        return "[D]" + super.toString()
+                + " (by: " + time.trim() + ")";
     }
 
 }

@@ -1,2 +1,4 @@
-package exceptions;public class InputBlankException {
+package exceptions;
+
+public class InputBlankException extends Exception {
 }

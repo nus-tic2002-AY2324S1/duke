@@ -16,15 +16,14 @@ public class AddTaskCommand extends CrabyMessage {
                 .replace("deadline", "")
                 .replace("todo", "")
                 .replace("event", "");
-
         if (input.contains("/by")) {
             String[] formatDeadline = input.split("/by");
             if (formatDeadline.length > 1) {
                 tasks.add(new Deadline(formatDeadline[0].trim(), formatDeadline[1]));
-                System.out.println("   ✎ added: " + input + " - to your list.");
-                System.out.println("   You have " + tasks.size() + " tasks in the list \uD83D\uDDCE.\n" + line);
+                printAddMessage(input, tasks);
             } else {
-                System.out.println("   Oops!!! Looks like you used the wrong format.\n   Please give more information after use /by\n" + line);
+                System.out.println("   Oops!!! Looks like you used the wrong format.");
+                System.out.println("   Please give more information after use /by\n" + line);
             }
             return;
         }
@@ -37,15 +36,18 @@ public class AddTaskCommand extends CrabyMessage {
                 } else {
                     tasks.add(new Event(formatEvent[0].trim(), formatEvent[1]));
                 }
-                System.out.println("   ✎ added: " + input + " - to your list.");
-                System.out.println("   You have " + tasks.size() + " tasks in the list \uD83D\uDDCE.\n" + line);
+                printAddMessage(input, tasks);
             } else {
-                System.out.println("   Oops!!! Looks like you used the wrong format.\n   Please give more information after use /from\n" + line);
+                System.out.println("   Oops!!! Looks like you used the wrong format.");
+                System.out.println("   Please give more information after use /from\n" + line);
             }
             return;
         }
-
         tasks.add(new Todo(input));
+        printAddMessage(input, tasks);
+    }
+
+    private static void printAddMessage(String input, List<Task> tasks) {
         System.out.println("   ✎ added: " + input + " - to your list.");
         System.out.println("   You have " + tasks.size() + " tasks in the list \uD83D\uDDCE.\n" + line);
     }

@@ -10,12 +10,13 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? " ✓ " : "҉҉҉"); // mark done task with X
+        return (isDone ? " ✓ " : "҉҉҉");
     }
 
     public void setDone(boolean done) {
         isDone = done;
     }
+
     public boolean isDone() {
         return isDone;
     }
