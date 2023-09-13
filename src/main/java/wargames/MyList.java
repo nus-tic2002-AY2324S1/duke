@@ -4,21 +4,21 @@ package wargames;
 import java.util.Arrays;
 
 public class MyList {
-    private String[] list = new String[0];
+    private Task[] list = new Task[0];
 
     public MyList(){
 
     }
 
-    public void addToList(String item){
+    public void addToList(Task task){
         list = Arrays.copyOf(list, list.length + 1);
-        list[list.length - 1] = item;
+        list[list.length - 1] = task;
     }
 
-    public void addToList(String[] arr){
-        for (String item : arr){
+    public void addToList(Task[] arr){
+        for (Task task : arr){
             list = Arrays.copyOf(list, list.length + 1);
-            list[list.length - 1] = item;
+            list[list.length - 1] = task;
         }
     }
 
@@ -28,11 +28,11 @@ public class MyList {
 
     @Override
     public String toString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (int i = 0; i < list.length; i++) {
             int count = i + 1;
-            str += count + ". " + list[i] + "\n";
+            str.append(count).append(". ").append(list[i]).append("\n");
         }
-        return str;
+        return str.toString();
     }
 }
