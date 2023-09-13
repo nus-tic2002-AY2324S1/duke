@@ -1,4 +1,3 @@
-package wargames;public class Task {
 package wargames;
 
 public class Task {
@@ -26,4 +25,12 @@ public class Task {
         this.isDone = isDone;
     }
 
+    @Override
+    public String toString() {
+        String doneMarker = " ";
+        if (isDone) {
+            doneMarker = "X";
+        }
+        return "[" + doneMarker + "] " + desc;
+    }
 }

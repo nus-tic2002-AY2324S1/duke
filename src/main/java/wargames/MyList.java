@@ -22,7 +22,11 @@ public class MyList {
         }
     }
 
-    public String[] getList(){
+    public Task getItem(int index){
+        return list[index];
+    }
+
+    public Task[] getList(){
         return list;
     }
 

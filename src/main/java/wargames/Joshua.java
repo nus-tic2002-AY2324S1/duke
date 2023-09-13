@@ -3,7 +3,7 @@
 package wargames;
 
 public class Joshua {
-    private static MyList myList = new MyList();
+    private static final MyList myList = new MyList();
 
     public Joshua(){
 
@@ -24,11 +24,23 @@ public class Joshua {
         joshuaSays(myList.toString());
     }
 
-    public static void addTaskToList(String task){
+    public static void addTaskToList(Task task){
         myList.addToList(task);
     }
 
-    public static void addTaskToList(String[] taskArr){
+    public static void addTaskToList(Task[] taskArr){
         myList.addToList(taskArr);
+    }
+
+    public static void markTaskAsDone(int taskNum){
+        int taskIdx = taskNum - 1;
+        Task task = myList.getItem(taskIdx);
+        task.setIsDone(true);
+    }
+
+    public static void markTaskAsNotDone(int taskNum){
+        int taskIdx = taskNum - 1;
+        Task task = myList.getItem(taskIdx);
+        task.setIsDone(false);
     }
 }

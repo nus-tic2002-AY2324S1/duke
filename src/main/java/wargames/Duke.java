@@ -6,28 +6,51 @@ public class Duke {
         Joshua.printGreetings();
 
         String input;
+        Scanner in = new Scanner(System.in);
 
         do {
             System.out.print(">> ");
-            input = getUserInput();
+            input = in.nextLine();
+            input = input.toLowerCase();
 
             if (input.equals("list")){
                 Joshua.printMyList();
             }
+            else if (input.startsWith("mark ")) {
+                try {
+                    int taskNum = parseTaskNumber(input, 5);
+                    Joshua.markTaskAsDone(taskNum);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    Joshua.joshuaSays("Enter a number from the task list.");
+                }
+            }
+            else if (input.startsWith("unmark ")) {
+                try {
+                    int taskNum = parseTaskNumber(input, 7);
+                    Joshua.markTaskAsNotDone(taskNum);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    Joshua.joshuaSays("Enter a number from the task list.");
+                }
+            }
             else {
-                Joshua.addTaskToList(input);
+                Task task = new Task(input);
+                Joshua.addTaskToList(task);
+                Joshua.joshuaSays("ADDED TASK: " + input);
             }
         } while (!input.equals("bye"));
 
         Joshua.joshuaSays("\nGOODBYE.");
     }
 
-    public static String getUserInput() {
-        String line;
-        Scanner in = new Scanner(System.in);
-        line = in.nextLine();
-        line = line.toLowerCase();
-        return line;
+    public static int parseTaskNumber(String input, int beginIndex) {
+        int taskNum = -1;
+        try {
+            taskNum = Integer.parseInt(input.substring(beginIndex));
+        } catch (NumberFormatException e) {
+            // Did not find a valid integer
+            Joshua.joshuaSays("Enter a valid task number.");
+        }
+        return taskNum;
     }
 
 }
