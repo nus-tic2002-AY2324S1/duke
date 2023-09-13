@@ -13,7 +13,10 @@ public class Duke {
             input = in.nextLine();
             input = input.toLowerCase();
 
-            if (input.equals("list")){
+            if (input.equals("bye")) {
+
+            }
+            else if (input.equals("list")) {
                 Joshua.printMyList();
             }
             else if (input.startsWith("mark ")) {
@@ -35,7 +38,6 @@ public class Duke {
             else {
                 Task task = new Task(input);
                 Joshua.addTaskToList(task);
-                Joshua.joshuaSays("ADDED TASK: " + input);
             }
         } while (!input.equals("bye"));
 

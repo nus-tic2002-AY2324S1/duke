@@ -26,6 +26,7 @@ public class Joshua {
 
     public static void addTaskToList(Task task){
         myList.addToList(task);
+        Joshua.joshuaSays("ADDED TASK: " + task);
     }
 
     public static void addTaskToList(Task[] taskArr){
@@ -36,11 +37,13 @@ public class Joshua {
         int taskIdx = taskNum - 1;
         Task task = myList.getItem(taskIdx);
         task.setIsDone(true);
+        Joshua.joshuaSays("Marked task: " + task);
     }
 
     public static void markTaskAsNotDone(int taskNum){
         int taskIdx = taskNum - 1;
         Task task = myList.getItem(taskIdx);
         task.setIsDone(false);
+        Joshua.joshuaSays("Unmarked task: " + task);
     }
 }
