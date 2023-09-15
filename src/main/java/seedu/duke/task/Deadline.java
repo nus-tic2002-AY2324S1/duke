@@ -7,12 +7,12 @@ public class Deadline extends Task {
     protected String by;
 
     public Deadline(String description, String by) {
-        super(Command.DEADLINE, description);
-        this.by = by;
+        super(Command.DEADLINE, "D", description);
+        this.by = by.trim();
     }
 
     @Override
-    public String getStatusMsg() {
-        return "[D]" + super.getStatusMsg() + " (by: " + by + ")";
+    public String getStatusMsg(int idx) {
+        return super.getStatusMsg(idx) + " |   by: " + by;
     }
 }

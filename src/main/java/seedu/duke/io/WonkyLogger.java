@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import seedu.duke.commands.WonkyMode;
 import seedu.duke.exceptions.DukeLoggerException;
 import seedu.duke.task.Task;
 
@@ -53,6 +54,8 @@ public class WonkyLogger {
 
     private static final Random RND = new Random();
 
+    private static WonkyMode mode = WonkyMode.NORMAL;
+
     private static void printlnWithWonky(String toPrint) throws DukeLoggerException {
         println("Wonky: " + toPrint);
     }
@@ -75,12 +78,13 @@ public class WonkyLogger {
 
     public static void printListCommand(List<Task> tasks) throws DukeLoggerException {
         printListTitle(tasks.size());
-        for (Task task : tasks) {
-            WonkyLogger.task(task.getStatusMsg());
+        for (int i = 0; i < tasks.size(); i += 1) {
+            WonkyLogger.task(tasks.get(i).getStatusMsg(i + 1));
         }
     }
 
-    public static void startUp() throws DukeLoggerException {
+    public static void startUp(WonkyMode modeToSet) throws DukeLoggerException {
+        mode = modeToSet;
         printlnWithWonky("Hello from\n" + LOGO);
         printlnWithWonky("I'm Wonky the Fairy.");
         printlnWithWonky("What can I do for you?");
@@ -145,6 +149,9 @@ public class WonkyLogger {
     }
 
     private static String randomFromArray(List<String> choices) {
+        if (WonkyMode.TEST.equals(mode)) {
+            return choices.get(0);
+        }
         return choices.get(RND.nextInt(choices.size()));
     }
 }

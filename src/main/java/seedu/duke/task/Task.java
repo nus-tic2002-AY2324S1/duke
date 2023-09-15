@@ -6,18 +6,22 @@ import seedu.duke.io.WonkyLogger;
 
 public abstract class Task {
 
+    private final String STATUS_MSG = "%s. [%s][%s] %s";
+
     protected Command command;
     protected String description;
     protected boolean isDone;
+    protected String letter;
 
-    public Task(Command command, String description) {
+    public Task(Command command, String letter, String description) {
         this.command = command;
-        this.description = description;
+        this.letter = letter;
+        this.description = description.trim();
         this.isDone = false;
     }
 
-    public String getStatusMsg() {
-        return (isDone ? "[X]" : "[ ]") + description; // mark done task with X
+    public String getStatusMsg(int idx) {
+        return String.format(STATUS_MSG, String.valueOf(idx), letter, isDone ? "X" : " ", description);
     }
 
     public Command getCommand() {

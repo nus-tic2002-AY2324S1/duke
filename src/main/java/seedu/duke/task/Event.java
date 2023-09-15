@@ -8,13 +8,13 @@ public class Event extends Task {
     protected String to;
 
     public Event(String description, String from, String to) {
-        super(Command.EVENT, description);
-        this.from = from;
-        this.to = to;
+        super(Command.EVENT, "E", description);
+        this.from = from.trim();
+        this.to = to.trim();
     }
 
     @Override
-    public String getStatusMsg() {
-        return "[D]" + super.getStatusMsg() + " (from: " + from + " to: "  + to + ")";
+    public String getStatusMsg(int idx) {
+        return super.getStatusMsg(idx) + " | from: " + from + " | to: "  + to;
     }
 }

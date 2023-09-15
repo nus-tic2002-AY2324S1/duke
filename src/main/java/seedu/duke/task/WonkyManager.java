@@ -1,11 +1,10 @@
 package seedu.duke.task;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import seedu.duke.commands.Command;
+import seedu.duke.commands.CommandArgument;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeManagerException;
 import seedu.duke.io.WonkyLogger;
@@ -24,65 +23,41 @@ public class WonkyManager {
     private final static int FROM_IDX = 1;
     private final static int TO_IDX = 0;
 
-    private static List<Command> commands = new ArrayList<Command>();
+    private static List<CommandArgument> cmdArgs = new ArrayList<CommandArgument>();
     private static List<Task> tasks = new ArrayList<Task>();
-    private static Command cmdToExecute = null;
 
-    public static void manage() throws DukeException {
-        if (Objects.nonNull(cmdToExecute)) {
-            handleCmdExecution(cmdToExecute);
-        }
-    }
-
-    public static void executeCommand(Command cmd, String args) throws DukeException {
-        commands.add(cmd);
-        switch (cmd) {
+    public static void executeCommand(CommandArgument cmdArg) throws DukeException {
+        cmdArgs.add(cmdArg);
+        switch (cmdArg.getCmd()) {
         case BYE:
-            //Fallthrough
+            WonkyScanner.bye();
+            break;
         case LIST:
-            cmdToExecute = cmd;
+            WonkyLogger.printListCommand(tasks);
             break;
         case MARK:
             //Fallthrough
         case UNMARK:
-            mark(cmd, args);
+            mark(cmdArg);
             break;
         case TODO:
             //Fallthrough
         case DEADLINE:
             //Fallthrough
         case EVENT:
-            parseCmdToTask(cmd, args);
+            parseCmdToTask(cmdArg);
             break;
         default:
-            throw new DukeManagerException("Unhandled command to be added: " + cmd.getLitr());
+            throw new DukeManagerException("Unhandled command to be added: " + cmdArg.getCmdLitr());
         }
     }
 
-    private static void handleCmdExecution(Command cmd) throws DukeException {
-            switch (cmdToExecute) {
-            case BYE:
-                WonkyScanner.setBye(true);
-                break;
-            case LIST:
-                WonkyLogger.printListCommand(tasks);
-                break;
-            case MARK:
-                break;
-            case UNMARK:
-                break;
-            default:
-                throw new DukeManagerException("Unhandled command to be executed: " + cmd.getLitr());
-            }
-            cmdToExecute = null;
-    }
-
-    private static void mark(Command cmd, String args) throws DukeException {
-        List<String> argList = Arrays.asList(args.split("/"));
+    private static void mark(CommandArgument cmdArg) throws DukeException {
+        List<String> argList = cmdArg.getArgList();
         if (validateArgs(argList , 1)) {
             try {
                 int taskToMark = Integer.parseInt(argList.get(0)) - 1;
-                switch (cmd) {
+                switch (cmdArg.getCmd()) {
                 case MARK:
                     tasks.get(taskToMark).setDone(true);
                     break;
@@ -90,7 +65,7 @@ public class WonkyManager {
                     tasks.get(taskToMark).setDone(false);
                     break;
                 default:
-                    throw new DukeManagerException("Unhandled mark operation: " + cmd.getLitr());
+                    throw new DukeManagerException("Unhandled mark operation: " + cmdArg.getCmdLitr());
                 }
             } catch (NumberFormatException e) {
                 WonkyLogger.expectedInteger(argList.get(0));
@@ -98,9 +73,9 @@ public class WonkyManager {
         }
     }
 
-    private static void parseCmdToTask(Command cmd, String args) throws DukeException {
-        List<String> argList = Arrays.asList(args.split("/"));
-        switch (cmd) {
+    private static void parseCmdToTask(CommandArgument cmdArg) throws DukeException {
+        List<String> argList = cmdArg.getArgList();
+        switch (cmdArg.getCmd()) {
         case TODO:
             if (validateArgs(argList, TODO_ARGS)) {
                 addTask(new Todo(argList.get(DESC_IDX)));
@@ -128,7 +103,7 @@ public class WonkyManager {
             }
             break;
         default:
-            throw new DukeManagerException("Unhandled task to be added: " + cmd.getLitr());
+            throw new DukeManagerException("Unhandled task to be added: " + cmdArg.getCmdLitr());
         }
 
     }
@@ -139,8 +114,8 @@ public class WonkyManager {
     }
 
     private static boolean validateArgs(List<String> argList, int expectedSize) throws DukeException {
-        if (argList.size() != expectedSize) {
-            WonkyLogger.mismatchArgs(getLastCommand().getLitr(), expectedSize);
+        if (argList.size() != expectedSize || argList.get(0).trim().isEmpty()) {
+            WonkyLogger.mismatchArgs(getLastCmd().getLitr(), expectedSize);
             return false;
         }
         for (String arg : argList) {
@@ -151,7 +126,7 @@ public class WonkyManager {
         return true;
     }
 
-    private static Command getLastCommand() {
-        return commands.get(commands.size() - 1);
+    private static Command getLastCmd() {
+        return cmdArgs.get(cmdArgs.size() - 1).getCmd();
     }
 }

@@ -1,23 +1,19 @@
 package seedu.duke;
 
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.duke.commands.WonkyMode;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeUnhandledException;
 import seedu.duke.io.WonkyLogger;
 import seedu.duke.io.WonkyScanner;
-import seedu.duke.task.WonkyManager;
-
-// TODO
-// trim description / other attributes when storing for list
-// add A-TextUiTesting
 
 public class Duke {
     public static void main(String[] args) throws DukeException {
+        WonkyMode mode = checkMode(args);
         try {
-            initialise();
-            while (WonkyScanner.isActive()) {
-                WonkyManager.manage();
-            }
-            shutdown();
+            initialise(mode);
         } catch (DukeException e) {
             throw e;
         } catch (Exception e) {
@@ -26,13 +22,20 @@ public class Duke {
         System.exit(0);
     }
 
-    private static void initialise() throws DukeException {
-        WonkyLogger.startUp();
+    private static void initialise(WonkyMode mode) throws DukeException {
+        WonkyLogger.startUp(mode);
         WonkyScanner.startUp();
     }
 
-    private static void shutdown() throws DukeException {
-        WonkyLogger.bye();
-        WonkyScanner.close();
+    private static WonkyMode checkMode(String[] args) {
+        List<String> argList = Arrays.asList(args);
+        if (argList.size() > 0) {
+            try {
+                return WonkyMode.getEnum(argList.get(0));
+            } catch (IllegalArgumentException e) {
+                return WonkyMode.NORMAL;
+            }
+        }
+        return WonkyMode.NORMAL;
     }
 }

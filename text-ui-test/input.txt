@@ -1,0 +1,13 @@
+invalidcmd
+ list 
+todo homework1 
+deadline    homework2/  today 
+event homework3   /  tmr    /  tmrtmr  
+list 
+mark 2
+list
+mark 3
+unmark 2
+mark 1
+list
+bye
