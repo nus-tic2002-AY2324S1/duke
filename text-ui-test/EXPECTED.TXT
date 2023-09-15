@@ -1,7 +1,59 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+	Wonky: Hello from
+	__          __         _            ____        _   
+	\ \        / /        | |          |  _ \      | |  
+	 \ \  /\  / /__  _ __ | | ___   _  | |_) | ___ | |_ 
+	  \ \/  \/ / _ \| '_ \| |/ / | | | |  _ < / _ \| __|
+	   \  /\  / (_) | | | |   <| |_| | | |_) | (_) | |_ 
+	    \/  \/ \___/|_| |_|_|\_\\__, | |____/ \___/ \__|
+	                             __/ |                  
+	                            |___/                  
 
+	Wonky: I'm Wonky the Fairy.
+	Wonky: What can I do for you?
+	Wonky: Oops! I do not understand the command [lisq].
+	Wonky: Did you mean to type command [list] instead?
+	Wonky: Oops! I do not understand the command [invalidcmd].
+	Wonky: Hooray you have no pending tasks!
+	Wonky: Oops! Seems like your argument(s) for command [todo] are wrong.
+	Wonky: Did you input the wrong argument(s)? Expected [1] argument(s) for the command.
+	Wonky: Oops! Seems like your argument(s) for command [todo] are wrong.
+	Wonky: Did you input the wrong argument(s)? Expected [1] argument(s) for the command.
+	Wonky: I have added todo task [homework1] to our list!
+	Wonky: Oops! Seems like your argument(s) for command [deadline] are wrong.
+	Wonky: Did you input the wrong argument(s)? Expected [2] argument(s) for the command.
+	Wonky: Oops! Seems like your argument(s) for command [deadline] are wrong.
+	Wonky: Did you input the wrong argument(s)? Expected [2] argument(s) for the command.
+	Wonky: Oops! Seems like your argument(s) for command [deadline] are wrong.
+	Wonky: Did you input the wrong argument(s)? Expected [2] argument(s) for the command.
+	Wonky: I have added deadline task [homework2] to our list!
+	Wonky: I have added event task [homework3] to our list!
+	Wonky: Below are the list of tasks you have added!
+		1. [T][ ] homework1
+		2. [D][ ] homework2 |   by: today
+		3. [E][ ] homework3 | from: tmr | to: homework3
+	Wonky: Your task [homework2] is marked as [done].
+	Wonky: Below are the list of tasks you have added!
+		1. [T][ ] homework1
+		2. [D][X] homework2 |   by: today
+		3. [E][ ] homework3 | from: tmr | to: homework3
+	Wonky: Your task [homework3] is marked as [done].
+	Wonky: Your task [homework2] is marked as [not done].
+	Wonky: Your task [homework1] is marked as [done].
+	Wonky: Below are the list of tasks you have added!
+		1. [T][X] homework1
+		2. [D][ ] homework2 |   by: today
+		3. [E][X] homework3 | from: tmr | to: homework3
+	Wonky: Did you make a mistake trying to delete task [-5]? A task can't be be less than 1.
+	Wonky: Did you want to delete the wrong task? There is no task no. [7].
+	Wonky: Did you make a mistake trying to delete task [0]? A task can't be be less than 1.
+	Wonky: Your task [homework2] is deleted!
+	Wonky: Below are the list of tasks you have added!
+		1. [T][X] homework1
+		2. [E][X] homework3 | from: tmr | to: homework3
+	Wonky: Did you want to delete the wrong task? There is no task no. [3].
+	Wonky: Your task [homework3] is deleted!
+	Wonky: Below are the list of tasks you have added!
+		1. [T][X] homework1
+	Wonky: Your task [homework1] is deleted!
+	Wonky: Hooray you have no pending tasks!
+	Wonky: Bye! Thank you for using Wonky Bot. Hope to see you again soon!

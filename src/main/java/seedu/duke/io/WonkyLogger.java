@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import seedu.duke.commands.WonkyMode;
 import seedu.duke.exceptions.DukeLoggerException;
 import seedu.duke.task.Task;
 
@@ -25,15 +26,15 @@ public class WonkyLogger {
         Arrays.asList(
             "Oops! I do not understand the command [%s].",
             "Sorry, the command [%s] you entered does not exist.",
-            "My vocabulary of commands does not include [%s]."
+            "My vocabulary of command(s) does not include [%s]."
         )
     );
 
     private static final List<String> MISMATCH_ARG_MSGS = new ArrayList<>(
         Arrays.asList(
-            "Oops! Seems like your arguments for command [%s] are wrong.",
-            "Sorry, the arguments for this command [%s] are incorrect.",
-            "Please check your arguments for this command [%s]."
+            "Oops! Seems like your argument(s) for command [%s] are wrong.",
+            "Sorry, the argument(s) for this command [%s] are incorrect.",
+            "Please check your argument(s) for this command [%s]."
         )
     );
 
@@ -43,15 +44,21 @@ public class WonkyLogger {
         )
     );
 
-    private static final String EXPECTED_ARG_MSG = "Expected [%d] arguments for the command.";
-    private static final String EXPECTED_INT_MSG = "Expected integer instead of [%s].";
+    private static final String EXPECTED_ARG_MSG = "Did you input the wrong argument(s)? Expected [%d] argument(s) for the command.";
+    private static final String EXPECTED_INT_MSG = "There is mistake with the argument. Expected an integer instead of [%s].";
 
     private static final String ADD_TO_LIST_MSG = "I have added %s task [%s] to our list!";
 
-    private static final String MARK_TYPO_MSG = "Did you mark/unmark the wrong task? %s is already set to %s.";
-    private static final String TASK_MARKED_MSG = "Your task %s is marked as %s.";
+    private static final String MARK_TYPO_MSG = "Did you mark/unmark the wrong task? %s is already set to [%s].";
+    private static final String TASK_MARKED_MSG = "Your task [%s] is marked as [%s].";
+
+    private static final String DELETE_INVALID_MSG = "Did you make a mistake trying to delete task [%d]? A task can't be be less than 1.";
+    private static final String DELETE_TYPO_MSG = "Did you want to delete the wrong task? There is no task no. [%d].";
+    private static final String TASK_DELETED_MSG = "Your task [%s] is deleted!";
 
     private static final Random RND = new Random();
+
+    private static WonkyMode mode = WonkyMode.NORMAL;
 
     private static void printlnWithWonky(String toPrint) throws DukeLoggerException {
         println("Wonky: " + toPrint);
@@ -75,12 +82,13 @@ public class WonkyLogger {
 
     public static void printListCommand(List<Task> tasks) throws DukeLoggerException {
         printListTitle(tasks.size());
-        for (Task task : tasks) {
-            WonkyLogger.task(task.getStatusMsg());
+        for (int i = 0; i < tasks.size(); i += 1) {
+            WonkyLogger.task(tasks.get(i).getStatusMsg(i + 1));
         }
     }
 
-    public static void startUp() throws DukeLoggerException {
+    public static void startUp(WonkyMode modeToSet) throws DukeLoggerException {
+        mode = modeToSet;
         printlnWithWonky("Hello from\n" + LOGO);
         printlnWithWonky("I'm Wonky the Fairy.");
         printlnWithWonky("What can I do for you?");
@@ -144,7 +152,22 @@ public class WonkyLogger {
         printlnWithWonky(String.format(TASK_MARKED_MSG, desc, isDoneLitr));
     }
 
+    public static void deleteTypo(int idx) throws DukeLoggerException {
+        String msg = DELETE_TYPO_MSG;
+        if (idx <= 0) {
+            msg = DELETE_INVALID_MSG;
+        }
+        printlnWithWonky(String.format(msg, idx));
+    }
+
+    public static void taskDeleted(String desc) throws DukeLoggerException {
+        printlnWithWonky(String.format(TASK_DELETED_MSG, desc));
+    }
+
     private static String randomFromArray(List<String> choices) {
+        if (WonkyMode.TEST.equals(mode)) {
+            return choices.get(0);
+        }
         return choices.get(RND.nextInt(choices.size()));
     }
 }
