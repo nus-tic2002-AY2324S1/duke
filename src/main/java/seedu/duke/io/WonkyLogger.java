@@ -26,15 +26,15 @@ public class WonkyLogger {
         Arrays.asList(
             "Oops! I do not understand the command [%s].",
             "Sorry, the command [%s] you entered does not exist.",
-            "My vocabulary of commands does not include [%s]."
+            "My vocabulary of command(s) does not include [%s]."
         )
     );
 
     private static final List<String> MISMATCH_ARG_MSGS = new ArrayList<>(
         Arrays.asList(
-            "Oops! Seems like your arguments for command [%s] are wrong.",
-            "Sorry, the arguments for this command [%s] are incorrect.",
-            "Please check your arguments for this command [%s]."
+            "Oops! Seems like your argument(s) for command [%s] are wrong.",
+            "Sorry, the argument(s) for this command [%s] are incorrect.",
+            "Please check your argument(s) for this command [%s]."
         )
     );
 
@@ -44,13 +44,17 @@ public class WonkyLogger {
         )
     );
 
-    private static final String EXPECTED_ARG_MSG = "Expected [%d] arguments for the command.";
-    private static final String EXPECTED_INT_MSG = "Expected integer instead of [%s].";
+    private static final String EXPECTED_ARG_MSG = "Did you input the wrong argument(s)? Expected [%d] argument(s) for the command.";
+    private static final String EXPECTED_INT_MSG = "There is mistake with the argument. Expected an integer instead of [%s].";
 
     private static final String ADD_TO_LIST_MSG = "I have added %s task [%s] to our list!";
 
-    private static final String MARK_TYPO_MSG = "Did you mark/unmark the wrong task? %s is already set to %s.";
-    private static final String TASK_MARKED_MSG = "Your task %s is marked as %s.";
+    private static final String MARK_TYPO_MSG = "Did you mark/unmark the wrong task? %s is already set to [%s].";
+    private static final String TASK_MARKED_MSG = "Your task [%s] is marked as [%s].";
+
+    private static final String DELETE_INVALID_MSG = "Did you make a mistake trying to delete task [%d]? A task can't be be less than 1.";
+    private static final String DELETE_TYPO_MSG = "Did you want to delete the wrong task? There is no task no. [%d].";
+    private static final String TASK_DELETED_MSG = "Your task [%s] is deleted!";
 
     private static final Random RND = new Random();
 
@@ -146,6 +150,18 @@ public class WonkyLogger {
 
     public static void taskMarked(String desc, String isDoneLitr) throws DukeLoggerException {
         printlnWithWonky(String.format(TASK_MARKED_MSG, desc, isDoneLitr));
+    }
+
+    public static void deleteTypo(int idx) throws DukeLoggerException {
+        String msg = DELETE_TYPO_MSG;
+        if (idx <= 0) {
+            msg = DELETE_INVALID_MSG;
+        }
+        printlnWithWonky(String.format(msg, idx));
+    }
+
+    public static void taskDeleted(String desc) throws DukeLoggerException {
+        printlnWithWonky(String.format(TASK_DELETED_MSG, desc));
     }
 
     private static String randomFromArray(List<String> choices) {

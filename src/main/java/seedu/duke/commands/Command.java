@@ -1,13 +1,14 @@
 package seedu.duke.commands;
 
 public enum Command {
-    LIST("list"),
-    MARK("mark"),
-    UNMARK("unmark"),
-    TODO("todo"),
+    BYE("bye"),
     DEADLINE("deadline"),
+    DELETE("delete"),
     EVENT("event"),
-    BYE("bye");
+    LIST("list"),
+    TODO("todo"),
+    MARK("mark"),
+    UNMARK("unmark");
 
     private String command;
 

@@ -35,10 +35,12 @@ public class WonkyManager {
         case LIST:
             WonkyLogger.printListCommand(tasks);
             break;
+        case DELETE:
+            //Fallthrough
         case MARK:
             //Fallthrough
         case UNMARK:
-            mark(cmdArg);
+            modifyTask(cmdArg);
             break;
         case TODO:
             //Fallthrough
@@ -52,20 +54,30 @@ public class WonkyManager {
         }
     }
 
-    private static void mark(CommandArgument cmdArg) throws DukeException {
+    private static void modifyTask(CommandArgument cmdArg) throws DukeException {
         List<String> argList = cmdArg.getArgList();
-        if (validateArgs(argList , 1)) {
+        if (validateArgs(argList, 1)) {
             try {
-                int taskToMark = Integer.parseInt(argList.get(0)) - 1;
+                int taskIdx = Integer.parseInt(argList.get(0)) - 1;
                 switch (cmdArg.getCmd()) {
                 case MARK:
-                    tasks.get(taskToMark).setDone(true);
+                    tasks.get(taskIdx).setDone(true);
                     break;
                 case UNMARK:
-                    tasks.get(taskToMark).setDone(false);
+                    tasks.get(taskIdx).setDone(false);
+                    break;
+                case DELETE:
+                    try {
+                        Task taskToDelete = tasks.get(taskIdx);
+                        tasks.remove(taskIdx);
+                        WonkyLogger.taskDeleted(taskToDelete.description);
+                    } catch (IndexOutOfBoundsException e) {
+                        WonkyLogger.deleteTypo(taskIdx + 1);
+                        break;
+                    }
                     break;
                 default:
-                    throw new DukeManagerException("Unhandled mark operation: " + cmdArg.getCmdLitr());
+                    throw new DukeManagerException("Unhandled modify task operation: " + cmdArg.getCmdLitr());
                 }
             } catch (NumberFormatException e) {
                 WonkyLogger.expectedInteger(argList.get(0));
