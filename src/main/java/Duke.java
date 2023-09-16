@@ -28,7 +28,7 @@ public class Duke {
                     command = new Bye();
                     return;
                 case LIST:
-                    printList();
+                    command = new List();
                     continue;
                 case MARK:
                     processMark(input, true);
@@ -56,10 +56,8 @@ public class Duke {
     }
 
     private static void responseIDK() {
-        line();
-        indentation();
-        System.out.println("I'm sorry, I'm not sure what you're asking.");
-        line();
+        String str = "I'm sorry, I'm not sure what you're asking.";
+        Conversation.echo(str);
     }
 
     private static void processMark(String input, boolean isMark) {
@@ -84,26 +82,6 @@ public class Duke {
         } else {
             unMarkTask(index);
         }
-    }
-
-    private static void printList () {
-        if(Task.getNumberOfTasks() == 0){
-            line();
-            indentation();
-            System.out.println("Your list is empty. Let's start adding some items! :)");
-            line();
-            return;
-        }
-
-        line();
-        indentation();
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 1; i <= tasks.size(); i++) {
-            indentation();
-            System.out.print(i + ".");
-            System.out.println(tasks.get(i - 1));
-        }
-        line();
     }
 
     private static void markTask (int index) {
@@ -203,5 +181,9 @@ public class Duke {
                 + "     | |___| |_| | |   | | |__| |\n"
                 + "     |_____|\\__,_|_|   |_|_|  |_|\n";
         return logo;
+    }
+
+    public ArrayList<Task> getTasks(){
+        return tasks;
     }
 }
