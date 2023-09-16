@@ -1,7 +1,7 @@
 public class MessageDisplay {
-    private final String lineBreak = "****************************************";
+    private static final String LINE_BREAK = "****************************************";
 
-    private final String logo =
+    private static final String LOGO =
             "╭━━━╮╱╱╱╱╱╭╮\n" +
             "┃╭━╮┃╱╱╱╱╱┃┃\n" +
             "┃╰━━┳━━┳━━┫╰━┳━━┳━╮\n" +
@@ -11,19 +11,15 @@ public class MessageDisplay {
             "╱╱╱╱╱╱╱┃┃\n" +
             "╱╱╱╱╱╱╱╰╯\n";
 
-
-
     public void print(String line) {
-        System.out.println(lineBreak);
-        System.out.println(line);
-        System.out.println(lineBreak);
+        System.out.printf("%s\n%s\n%s\n",LINE_BREAK,line,LINE_BREAK);
     }
 
     /**
-     * Displays a welcome message with the Duke logo.
+     * Displays a welcome message with the Duke LOGO.
      */
     public void Hello() {
-        print(logo + "Hello, I'm Sophon:). \nHow can I assist you today?");
+        print(LOGO + "Hello, I'm Sophon:). \nHow can I assist you today?");
     }
 
     /**
@@ -33,23 +29,19 @@ public class MessageDisplay {
         print("Bye! Hope to see you again soon!");
     }
 
-    /**
-     * Displays a message when user input is missing or empty.
-     */
-    public void MissingInput() {
-        print("OOPS!!! The description of a todo cannot be empty.");
-    }
+
 
     /**
      * Displays a message when a task is added.
-     * @param message The message to be displayed.
      */
-    public void AddedMessage(String message) {
-        print("Added: " + message);
+    public void addedMessage(Task[] userInputArray, int itemNumber) {
+        int totalTasks = Task.getTotalTasks();
+        System.out.printf("%s\nGot it. I've added this task:\n   %s\nNow you have %d tasks in the list.\n%s%n", LINE_BREAK, userInputArray[itemNumber].toString(), totalTasks, LINE_BREAK);
     }
 
     /**
      * Displays a message when attempting to mark a task that is already marked as completed.
+     *
      * @param taskName The name of the task.
      */
     public void alreadyMark(String taskName) {
@@ -58,6 +50,7 @@ public class MessageDisplay {
 
     /**
      * Displays a message when attempting to unmark a task that is not marked as completed.
+     *
      * @param taskName The name of the task.
      */
     public void notMark(String taskName) {
@@ -76,57 +69,53 @@ public class MessageDisplay {
         print("Sorry, I don't understand that command. Please try again.");
     }
 
+    public void invalidItemNumber() {
+        print("Please provide me with Task item number only!");
+    }
+
     /**
      * Displays a message when a task is marked as completed.
+     *
      * @param userInputArray The array of user tasks.
-     * @param itemNumber The index of the completed task.
+     * @param itemNumber     The index of the completed task.
      */
     public void completeMessage(Task[] userInputArray, int itemNumber) {
-        System.out.println(lineBreak);
-        System.out.println("That's some progress! I've mark this task as done:");
-        System.out.println(" ".repeat(3) + "[X] " + userInputArray[itemNumber].getTaskName());
-        System.out.println(lineBreak);
+        System.out.printf("%s\nThat's some progress! I've marked this task as done:\n   %s\n%s", LINE_BREAK, userInputArray[itemNumber].toString(), LINE_BREAK);
     }
 
     /**
      * Displays a message when a task is unmarked.
+     *
      * @param userInputArray The array of user tasks.
-     * @param itemNumber The index of the unmarked task.
+     * @param itemNumber     The index of the unmarked task.
      */
     public void unCompleteMessage(Task[] userInputArray, int itemNumber) {
-        System.out.println(lineBreak);
-        System.out.println("Okay, you can do it at a later time:");
-        System.out.println(" ".repeat(3) + "[ ] " + userInputArray[itemNumber].getTaskName());
-        System.out.println(lineBreak);
+        System.out.printf("%s\nOkay, you can do it at a later time:\n   %s\n%s", LINE_BREAK, userInputArray[itemNumber].toString(), LINE_BREAK);
     }
 
     /**
      * Displays an error message for invalid number format.
      */
     public void invalidNumberFormat() {
-        print("That doesn't seems like a item number.");
+        print("Invalid Number format for task item number!");
     }
 
     /**
      * Displays the list of user tasks.
-     * @param userInputList The array of user tasks.
+     *
+     * @param userInputArray The array of user tasks.
      */
-    public void UserInputList(Task[] userInputList) {
+    public void UserInputList(Task[] userInputArray) {
         if (Task.getTotalTasks() == 0) {
             print("There's nothing in your list");
             return;
         }
-        System.out.println(lineBreak);
+        System.out.println(LINE_BREAK);
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < Task.getTotalTasks(); i++) {
-            String Completed = "";
-            if (userInputList[i].isCompleted()) {
-                Completed = "[X]";
-            } else {
-                Completed = "[ ]";
-            }
-            System.out.println((i + 1) + "." + Completed + " " + userInputList[i].getTaskName());
+            System.out.println((i + 1) + "." + userInputArray[i].toString());
         }
-        System.out.println(lineBreak);
+        System.out.println(LINE_BREAK);
     }
+
 }

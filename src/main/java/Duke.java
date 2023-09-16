@@ -1,4 +1,7 @@
-
+/**
+ * The Duke class represents a task management application.
+ * Users can interact with it through a command-line interface.
+ */
 class Duke {
     // An array to store user tasks
     Task[] userInputArray = new Task[100];
@@ -7,7 +10,7 @@ class Duke {
 
     private final MessageDisplay messageDisplay;
 
-    //initializes user interface and message display.
+    // Initializes user interface and message display.
     public Duke() {
         userInterface = new UserInterface();
         messageDisplay = new MessageDisplay();
@@ -18,6 +21,9 @@ class Duke {
         duke.start();
     }
 
+    /**
+     * Starts the Duke application, greeting the user and handling user input.
+     */
     public void start() {
 
         // Greet the user and ask for input
@@ -27,38 +33,143 @@ class Duke {
             String userInput = userInterface.getUserInput();
             if (userInput.equals("bye")) {
                 break;
-            } else if (userInput.isEmpty()) {
-                messageDisplay.MissingInput();
-            } else if (userInput.equals("list")) {
-                messageDisplay.UserInputList(userInputArray);
-            } else if (markUnmarkValidate(userInput)) {
-                toggleStatus(userInput);
             } else {
-                storeUserInput(userInput);
+                checkCommand(userInput);
             }
         }
         userInterface.closeScanner();
         messageDisplay.Goodbye();
     }
 
-    //Store the user's input tasks
-    private void storeUserInput(String userInput) {
-        Task task = new Task(userInput);
-        userInputArray[Task.getTotalTasks() - 1] = task;
-        messageDisplay.AddedMessage(userInput);
-    }
+    /**
+     * Validates if the user input is a valid command.
+     *
+     * @param userInput The user's input string.
+     */
+    public void checkCommand(String userInput) {
+        try {
+            String[] inputs = userInput.split("\\s+");
+            if (inputs.length == 0 || userInput.isEmpty()) {
+                throw new EmptyCommandException();
+            }
 
-    //Validates if the user input is for marking or unmarking a task.
-    public boolean markUnmarkValidate(String userInput) {
-        int spaceIndex = userInput.indexOf(' ');
-        if (spaceIndex != -1) {
-            String commandBeforeSpace = userInput.substring(0, spaceIndex);
-            return commandBeforeSpace.equals("mark") || commandBeforeSpace.equals("unmark");
+            String command = inputs[0];
+            String arguments = userInput.substring(command.length()).trim();
+
+            switch (command) {
+                case "list": {
+                    messageDisplay.UserInputList(userInputArray);
+                    break;
+                }
+                case "todo": {
+                    if (arguments.isEmpty()) {
+                        throw new EmptyArgumentException();
+                    } else {
+                        storeUserTask('T', arguments);
+                    }
+                    break;
+                }
+                case "deadline": {
+                    if (!arguments.contains("/by")) {
+                        throw new InvalidTaskFormatException("deadline");
+                    } else {
+                        storeUserTask('D', arguments);
+                    }
+                    break;
+                }
+                case "event": {
+                    if (!arguments.contains("/from") || !arguments.contains("/to")) {
+                        throw new InvalidTaskFormatException("event");
+                    } else {
+                        storeUserTask('E', arguments);
+                    }
+                    break;
+                }
+                case "mark":
+                case "unmark": {
+                    toggleStatus(userInput);
+                    break;
+                }
+                default:
+                    messageDisplay.invalidCommand();
+            }
+        } catch (EmptyCommandException e){
+            System.out.println(e.getMessage());
+        }catch (EmptyArgumentException e) {
+            System.out.println(e.getMessage());
+        } catch (InvalidTaskFormatException e) {
+            System.out.println(e.getMessage());
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
         }
-        return false;
     }
 
-    //Toggle the status of a task
+    /**
+     * Stores a task in the userInputArray and displays a message.
+     *
+     * @param taskType  The type of the task ('T', 'D', or 'E').
+     * @param arguments The task arguments.
+     */
+    private void storeUserTask(Character taskType, String arguments) {
+        Task task = createTask(taskType, arguments);
+        if (task != null) {
+            int itemIndex = Task.getTotalTasks() - 1;
+            userInputArray[itemIndex] = task;
+            messageDisplay.addedMessage(userInputArray, itemIndex);
+        }
+    }
+    /**
+     * Creates a task based on the task type and arguments.
+     *
+     * @param taskType  The type of the task ('T', 'D', or 'E').
+     * @param arguments The remaining command from user input.
+     * @return The created task or null if the creation fails.
+     */
+    private Task createTask(Character taskType, String arguments) {
+        Task task = null;
+        switch (taskType) {
+            case 'T':
+                task = new Task('T', arguments);
+                break;
+            case 'D':
+                task = createDeadlineTask(arguments);
+                break;
+            case 'E':
+                task = createEventTask(arguments);
+                break;
+        }
+        return task;
+    }
+
+    /**
+     * Creates a deadline task based on the arguments.
+     *
+     * @param arguments The task arguments that contains task name, by time for an event task.
+     * @return The created deadline task or null if the creation fails.
+     */
+    private Task createDeadlineTask(String arguments) {
+        int byIndex = arguments.indexOf("/by");
+        String TaskName = arguments.substring(0, byIndex).trim();
+        String date = arguments.substring(byIndex + 3).trim();
+        return new DeadlineTask('D', TaskName, date);
+    }
+
+    /**
+     * Creates an event task based on the arguments.
+     *
+     * @param arguments The task arguments that contains task name, from time, to time for an event task.
+     * @return The created event task or null if the creation fails.
+     */
+    private Task createEventTask(String arguments) {
+        int fromIndex = arguments.indexOf("/from");
+        int toIndex = arguments.indexOf("/to");
+        String TaskName = arguments.substring(0, fromIndex).trim();
+        String from = arguments.substring(fromIndex + 5,toIndex).trim();
+        String to = arguments.substring(toIndex+3).trim();
+        return new EventTask('E', TaskName, from,to);
+    }
+
+    //Toggle the complete status of a task
     public void toggleStatus(String userInput) {
         int spaceIndex = userInput.indexOf(' ');
         String integerPart = userInput.substring(spaceIndex + 1);
@@ -74,21 +185,21 @@ class Duke {
 
             if (commandBeforeSpace.equals("mark")) {
                 if (userInputArray[itemIndex].isCompleted()) {
-                    messageDisplay.alreadyMark(userInputArray[itemIndex].taskName);
-                }else{
+                    messageDisplay.alreadyMark(userInputArray[itemIndex].getTaskName());
+                } else {
                     userInputArray[itemIndex].markAsCompleted();
                     messageDisplay.completeMessage(userInputArray, itemIndex);
                 }
             } else if (commandBeforeSpace.equals("unmark")) {
                 if (!userInputArray[itemIndex].isCompleted()) {
-                    messageDisplay.notMark(userInputArray[itemIndex].taskName);
-                }else{
+                    messageDisplay.notMark(userInputArray[itemIndex].getTaskName());
+                } else {
                     userInputArray[itemIndex].markAsNotCompleted();
                     messageDisplay.unCompleteMessage(userInputArray, itemIndex);
                 }
-            }else{
+            } else {
                 // Handle exception case where the command is neither mark nor unmark
-                messageDisplay.invalidCommand();
+                messageDisplay.invalidItemNumber();
             }
         } catch (NumberFormatException e1) {
             // Handle the case where the integer part is not a valid number
