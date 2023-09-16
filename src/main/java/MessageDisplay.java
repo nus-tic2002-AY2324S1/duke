@@ -1,5 +1,5 @@
 public class MessageDisplay {
-    private static final String LINE_BREAK = "****************************************";
+    public static final String LINE_BREAK = "****************************************";
 
     private static final String LOGO =
             "╭━━━╮╱╱╱╱╱╭╮\n" +
@@ -12,7 +12,7 @@ public class MessageDisplay {
             "╱╱╱╱╱╱╱╰╯\n";
 
     public void print(String line) {
-        System.out.printf("%s\n%s\n%s\n",LINE_BREAK,line,LINE_BREAK);
+        System.out.printf("%s\n%s\n%s\n", LINE_BREAK, line, LINE_BREAK);
     }
 
     /**
@@ -28,8 +28,6 @@ public class MessageDisplay {
     public void Goodbye() {
         print("Bye! Hope to see you again soon!");
     }
-
-
 
     /**
      * Displays a message when a task is added.
@@ -57,22 +55,6 @@ public class MessageDisplay {
         print("You did not complete " + taskName + " before!");
     }
 
-    //Displays a message when the requested task is not found.
-    public void notDeclared() {
-        print("I can't find this task!");
-    }
-
-    /**
-     * Displays a message when the requested task is not found.
-     */
-    public void invalidCommand() {
-        print("Sorry, I don't understand that command. Please try again.");
-    }
-
-    public void invalidItemNumber() {
-        print("Please provide me with Task item number only!");
-    }
-
     /**
      * Displays a message when a task is marked as completed.
      *
@@ -91,13 +73,6 @@ public class MessageDisplay {
      */
     public void unCompleteMessage(Task[] userInputArray, int itemNumber) {
         System.out.printf("%s\nOkay, you can do it at a later time:\n   %s\n%s", LINE_BREAK, userInputArray[itemNumber].toString(), LINE_BREAK);
-    }
-
-    /**
-     * Displays an error message for invalid number format.
-     */
-    public void invalidNumberFormat() {
-        print("Invalid Number format for task item number!");
     }
 
     /**

@@ -91,16 +91,10 @@ class Duke {
                     break;
                 }
                 default:
-                    messageDisplay.invalidCommand();
+                    throw new InvalidCommandException();
             }
-        } catch (EmptyCommandException e){
-            System.out.println(e.getMessage());
-        }catch (EmptyArgumentException e) {
-            System.out.println(e.getMessage());
-        } catch (InvalidTaskFormatException e) {
-            System.out.println(e.getMessage());
         } catch (DukeException e) {
-            System.out.println(e.getMessage());
+            System.out.printf("%s\n%s\n%s", MessageDisplay.LINE_BREAK, e.getMessage(), MessageDisplay.LINE_BREAK);
         }
     }
 
@@ -118,6 +112,7 @@ class Duke {
             messageDisplay.addedMessage(userInputArray, itemIndex);
         }
     }
+
     /**
      * Creates a task based on the task type and arguments.
      *
@@ -164,13 +159,13 @@ class Duke {
         int fromIndex = arguments.indexOf("/from");
         int toIndex = arguments.indexOf("/to");
         String TaskName = arguments.substring(0, fromIndex).trim();
-        String from = arguments.substring(fromIndex + 5,toIndex).trim();
-        String to = arguments.substring(toIndex+3).trim();
-        return new EventTask('E', TaskName, from,to);
+        String from = arguments.substring(fromIndex + 5, toIndex).trim();
+        String to = arguments.substring(toIndex + 3).trim();
+        return new EventTask('E', TaskName, from, to);
     }
 
     //Toggle the complete status of a task
-    public void toggleStatus(String userInput) {
+    public void toggleStatus(String userInput) throws InvalidNumberFormatException {
         int spaceIndex = userInput.indexOf(' ');
         String integerPart = userInput.substring(spaceIndex + 1);
         String commandBeforeSpace = userInput.substring(0, spaceIndex);
@@ -179,8 +174,7 @@ class Duke {
             int itemIndex = Integer.parseInt(integerPart) - 1;
             if (itemIndex < 0 || itemIndex >= Task.getTotalTasks()) {
                 // Handle exception case where the item index is out of bounds
-                messageDisplay.notDeclared();
-                return;
+                throw new InvalidTaskException();
             }
 
             if (commandBeforeSpace.equals("mark")) {
@@ -199,11 +193,15 @@ class Duke {
                 }
             } else {
                 // Handle exception case where the command is neither mark nor unmark
-                messageDisplay.invalidItemNumber();
+                throw new InvalidNumberFormatException();
             }
-        } catch (NumberFormatException e1) {
+        } catch (NumberFormatException e) {
+            throw new InvalidNumberFormatException(e.getMessage());
+        } catch (InvalidNumberFormatException e) {
             // Handle the case where the integer part is not a valid number
-            messageDisplay.invalidNumberFormat();
+            System.out.printf("%s\n%s\n%s", MessageDisplay.LINE_BREAK, e.getMessage(), MessageDisplay.LINE_BREAK);
+        } catch (InvalidTaskException e) {
+            System.out.printf("%s\n%s\n%s", MessageDisplay.LINE_BREAK, e.getMessage(), MessageDisplay.LINE_BREAK);
         }
     }
 }

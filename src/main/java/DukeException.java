@@ -10,6 +10,18 @@ class EmptyCommandException extends DukeException {
     }
 }
 
+class InvalidCommandException extends DukeException {
+    public InvalidCommandException() {
+        super("OOPS!!! I'm sorry, but I don't know what that means :-(");
+    }
+}
+
+class InvalidTaskException extends DukeException {
+    public InvalidTaskException() {
+        super("OOPS!!! I'm sorry, but I can't find this task!");
+    }
+}
+
 class EmptyArgumentException extends DukeException {
     public EmptyArgumentException() {
         super("You did not provide any details on your todo. Please provide in the format of <event + Task Name>.");
@@ -24,7 +36,11 @@ class TaskCreationException extends DukeException {
 
 class InvalidNumberFormatException extends DukeException {
     public InvalidNumberFormatException(String message) {
-        super(message);
+        super(message + " is not a valid number! Please Try again.");
+    }
+
+    public InvalidNumberFormatException() {
+        super("Invalid Number! Please Try again.");
     }
 }
 
