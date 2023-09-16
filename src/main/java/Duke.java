@@ -31,7 +31,8 @@ public class Duke {
                     command = new List();
                     continue;
                 case MARK:
-                    processMark(input, true);
+//                    processMark(input, true);
+                    command = new Mark(taskDescription);
                     continue;
                 case UNMARK:
                     processMark(input, false);
