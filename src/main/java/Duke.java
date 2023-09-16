@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Duke {
     private static ArrayList<Task> tasks = new ArrayList<>();
-    private static String keyword;
+    private static String inputKey;
     private static String taskDescription;
     private static String by;
     private static String from;
@@ -12,19 +12,20 @@ public class Duke {
     public static void main(String[] args) {
         greet();
         processInput();
-        bye();
     }
 
     private static void processInput() {
         Scanner in = new Scanner(System.in);
         String input;
+        ICommand command;
         do {
             input = in.nextLine();
-            locateInput(input);
-            Keyword key = Keyword.getKeyword(keyword);
+            putInput(input);
+            Keyword key = Keyword.getKeyword(inputKey);
             if(key!=null) {
                 switch (key) {
                 case BYE:
+                    command = new Bye();
                     return;
                 case LIST:
                     printList();
@@ -51,7 +52,7 @@ public class Duke {
             }else{
                 responseIDK();
             }
-        } while (!input.equalsIgnoreCase(Keyword.BYE.name()));
+        } while (!input.equalsIgnoreCase("bye"));
     }
 
     private static void responseIDK() {
@@ -162,9 +163,9 @@ public class Duke {
         taskDescription = input.substring(0,posOfFrom).trim();
     }
 
-    private static void locateInput (String input){
+    private static void putInput(String input){
         String[] inputs = input.split(" ");
-        keyword = inputs[0];
+        inputKey = inputs[0];
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i < inputs.length; i++) {
             sb.append(inputs[i]);
@@ -178,22 +179,13 @@ public class Duke {
         System.out.print("     ");
     }
 
-    private static void echo(String input) {
-        indentation();
-        System.out.println(input);
-    }
-
     private static void greet() {
         String myChatBotName = "Luna";
-
-        line();
-        logo();
-        line();
-        indentation();
-        System.out.printf("Hello! I'm %s\n", myChatBotName);
-        indentation();
-        System.out.println("What can I do for you?");
-        line();
+        ArrayList<String> inputs = new ArrayList<>();
+        inputs.add(String.format("Hello! I'm %s", myChatBotName));
+        inputs.add("What can I do for you?");
+        Conversation.echo(logo());
+        Conversation.echoForGreet(inputs);
     }
 
     public static void line() {
@@ -203,20 +195,13 @@ public class Duke {
         System.out.println(line);
     }
 
-    private static void logo() {
-        String logo =
-                "      _                    \n"
-                        + "     | |    _   _ _  __     __\n"
-                        + "     | |   | | | | | __  \\/ __ \\\n"
-                        + "     | |___| |_| | |   | | |__| |\n"
-                        + "     |_____|\\__,_|_|   |_|_|  |_|\n";
-        System.out.println(logo);
-    }
-
-    private static void bye() {
-        String str = "Bye. Hope to see you again soon!";
-        line();
-        echo(str);
-        line();
+    private static String logo() {
+        String logo;
+        logo = " _                    \n"
+                + "     | |    _   _ _  __     __\n"
+                + "     | |   | | | | | __  \\/ __ \\\n"
+                + "     | |___| |_| | |   | | |__| |\n"
+                + "     |_____|\\__,_|_|   |_|_|  |_|\n";
+        return logo;
     }
 }
