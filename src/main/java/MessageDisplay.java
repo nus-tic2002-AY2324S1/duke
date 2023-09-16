@@ -37,7 +37,7 @@ public class MessageDisplay {
      * Displays a message when user input is missing or empty.
      */
     public void MissingInput() {
-        print("Sorry, did you say something?");
+        print("OOPS!!! The description of a todo cannot be empty.");
     }
 
     /**
