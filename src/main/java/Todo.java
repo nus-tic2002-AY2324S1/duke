@@ -1,20 +1,28 @@
-public class Todo extends Task{
-    public Todo(String description) {
-        super(description);
-        abbreviation = 'T';
+import java.util.ArrayList;
 
-        responseGotIt();
-        Duke.indentation();
-        System.out.print(" ");
-        System.out.println(this);
-        responseNumberOfTasks();
+public class Todo extends Task{
+    public Todo(String description) throws MissingDescriptionException {
+        super(description);
+        setAbbreviation();
+        if(description.isEmpty()){
+            String message = "OOPS!!! The description of a todo cannot be empty :-(";
+            throw new MissingDescriptionException(message);
+        }
+        increaseNumberOfTaskByOne();
+        response();
     }
 
-    public Todo(){}
+    public void setAbbreviation() {
+        abbreviation = 'T';
+    }
+
+    public Todo(){
+        isDone = false;
+    }
 
     @Override
     public String toString() {
-        return String.format("[%c][%s] %s",abbreviation,getStatusIcon(),description);
+        return String.format("[%c][%s] %s",abbreviation,getStatusIcon(),dukeDescription);
     }
 
 }

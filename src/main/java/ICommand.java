@@ -1,3 +1,3 @@
 public interface ICommand {
-//    void response();
+    void response();
 }

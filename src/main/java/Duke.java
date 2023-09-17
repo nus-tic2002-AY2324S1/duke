@@ -1,13 +1,11 @@
+import java.util.MissingFormatArgumentException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
     private static ArrayList<Task> tasks = new ArrayList<>();
     private static String inputKey;
-    private static String taskDescription;
-    private static String by;
-    private static String from;
-    private static String to;
+    private static String dukeDescription;
 
     public static void main(String[] args) {
         greet();
@@ -22,37 +20,37 @@ public class Duke {
             input = in.nextLine();
             putInput(input);
             try {
+
                 KeywordTypes key = KeywordTypes.valueOf(inputKey.toUpperCase());
                 switch (key) {
                 case BYE:
-                    command = new Bye();
+                    command = key.createCommand();
                     return;
                 case LIST:
-                    command = new List();
+                    command = key.createCommand();
                     continue;
                 case MARK:
-                    command = new Mark(taskDescription);
+                    command = new Mark(dukeDescription);
                     continue;
                 case UNMARK:
-                    command = new Unmark(taskDescription);
+                    command = new UnMark(dukeDescription);
                     continue;
                 case TODO:
-                    command = new Todo(taskDescription);
-                    tasks.add((Task)command);
+                    tasks.add(new Todo(dukeDescription));
                     break;
                 case DEADLINE:
-                    pullDeadlineDate(taskDescription);
-                    tasks.add(new Deadline(taskDescription, by));
+                    tasks.add(new Deadline(dukeDescription));
                     break;
                 case EVENT:
-                    pullEventDateTime(taskDescription);
-                    tasks.add(new Event(taskDescription, from, to));
+                    tasks.add(new Event(dukeDescription));
                     break;
                 default:
 
                 }
             } catch (IllegalArgumentException e) {
                 responseIDK();
+            }catch (MissingDescriptionException e){
+                Conversation.echo((e.getMessage()));
             }
         } while (!input.equalsIgnoreCase("bye"));
     }
@@ -62,58 +60,16 @@ public class Duke {
         Conversation.echo(str);
     }
 
-
-    private static void pullDeadlineDate (String input){
-        final String BY = "/by";
-        int len = BY.length();
-        int pos = -1;
-
-        pos = input.indexOf(BY);
-
-        //Todo: throw IllegalInputException here
-        /*if(pos == -1){
-            throw new IllegalInputException();
-        }*/
-
-        by = input.substring(pos + len).trim();
-        taskDescription = input.substring(0,pos).trim();
-    }
-
-    private static void pullEventDateTime(String input){
-        final String FROM = "/from";
-        final String TO = "/to";
-        int lenOfFrom = FROM.length();
-        int lenOfTo = TO.length();
-        int posOfFrom = -1;
-        int posOfTo = -1;
-
-        posOfFrom = input.indexOf(FROM);
-        posOfTo = input.indexOf(TO);
-
-        //Todo: throw IllegalInputException here
-        /*if(posOfFrom == -1 || posOfTo == -1){
-            throw new IllegalInputException();
-        }*/
-
-        from = input.substring(posOfFrom + lenOfFrom, posOfTo).trim();
-        to = input.substring(posOfTo + lenOfTo).trim();
-        taskDescription = input.substring(0,posOfFrom).trim();
-    }
-
-    private static void putInput(String input){
+    private static void putInput(String input)  {
         String[] inputs = input.split(" ");
         inputKey = inputs[0];
+
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i < inputs.length; i++) {
             sb.append(inputs[i]);
             sb.append(" ");
         }
-        taskDescription = sb.toString().trim();
-
-    }
-
-    public static void indentation() {
-        System.out.print("     ");
+        dukeDescription = sb.toString().trim();
     }
 
     private static void greet() {

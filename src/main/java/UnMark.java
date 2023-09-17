@@ -1,9 +1,9 @@
-public class Unmark extends Mark implements ICommand{
-    public Unmark(){
+public class UnMark extends Mark implements ICommand{
+    public UnMark(){
         isMark = false;
     }
 
-    public Unmark(String taskDescription){
+    public UnMark(String taskDescription){
         this.isMark = false;
         process(taskDescription);
     }

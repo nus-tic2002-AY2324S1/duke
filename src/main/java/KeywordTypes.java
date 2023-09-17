@@ -20,7 +20,7 @@ public enum KeywordTypes {
     UNMARK{
         @Override
         public ICommand createCommand(){
-            return new Unmark();
+            return new UnMark();
         }
     },
     TODO{
