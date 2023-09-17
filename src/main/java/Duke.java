@@ -57,7 +57,23 @@ public class Duke {
 
     private static void responseIDK() {
         String str = "OOPS!!! I'm sorry, but I'm not sure what you're asking :-(";
-        Conversation.echo(str);
+        ArrayList<String> inputs = new ArrayList<>();
+        inputs.add(str);
+        inputs.add("You can try the limited commands available at this moment:");
+        inputs.addAll(commandList());
+        Conversation.echo(inputs);
+    }
+
+    private static ArrayList<String> commandList(){
+        ArrayList<String> out = new ArrayList<>();
+        out.add("1. bye");
+        out.add("2. list");
+        out.add("3. mark");
+        out.add("4. unmark");
+        out.add("5. todo");
+        out.add("6. deadline");
+        out.add("7. event");
+        return out;
     }
 
     private static void putInput(String input)  {
