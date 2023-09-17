@@ -1,12 +1,37 @@
-public class Duke {
-    public static void main(String[] args) {
-        String name = "Tweety";
+import java.util.Scanner;
 
-        System.out.println("____________________________________________________________");
-        System.out.println("Hello I'm " + name);
-        System.out.println("What can I do for you?");
-        System.out.println("____________________________________________________________");
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println("____________________________________________________________");
+
+public class Duke {
+
+    static String name = "Tweety";
+    static String indent = "    ";
+
+    private static void print(String msg) {
+        System.out.println(indent + "____________________________________________________________");
+
+        String[] lines = msg.split("\n");
+        for (String line: lines) {
+            System.out.println(indent + line);
+        }
+
+        System.out.println(indent + "____________________________________________________________");
+    }
+
+    public static void main(String[] args) {
+
+        String greeting = "Hello I'm " + name + "\n" + "What can I do for you?";
+        String goodbye = "Bye. Hope to see you again soon!";
+        print(greeting);
+
+        Scanner in = new Scanner(System.in);
+        String msg ="";
+
+        while (!msg.equals("bye")) {
+
+            msg = in.nextLine();
+            print(msg);
+        }
+
+        print(goodbye);
     }
 }
