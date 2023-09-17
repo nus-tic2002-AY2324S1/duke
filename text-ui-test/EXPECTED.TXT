@@ -17,130 +17,144 @@
   `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'
 ================================================================================
 Yokoso, your personal assistant AMEBOT~!
-Please enter a command:
+Please enter the command(s):
 ________________________________________________________________________________
 List is empty!
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-RIDE A SHINKANSEN successfully added to list!
+[TODO] [ ] RIDE A SHINKANSEN
+Successfully added to list!
 You've 1 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-GO-KART AROUND TOKYO successfully added to list!
+[EVENT] [ ] GO-KART AROUND TOKYO (FROM: WEDNESDAY 1PM TO: 3PM)
+Successfully added to list!
 You've 2 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-ENTER UNIVERSAL STUDIOS JAPAN successfully added to list!
+[TODO] [ ] ENTER UNIVERSAL STUDIOS JAPAN
+Successfully added to list!
 You've 3 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-VISIT AN ARCADE successfully added to list!
+[TODO] [ ] VISIT AN ARCADE
+Successfully added to list!
 You've 4 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-MAKE YOUR OWN TAKOYAKI successfully added to list!
+[EVENT] [ ] MAKE YOUR OWN TAKOYAKI (FROM: SUNDAY 1PM TO: 3PM)
+Successfully added to list!
 You've 5 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-LEARN THE ART OF TEA CEREMONY successfully added to list!
+[EVENT] [ ] LEARN THE ART OF TEA CEREMONY (FROM: SEPTEMBER 15TH 9AM TO: 11AM)
+Successfully added to list!
 You've 6 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-VISIT AN IZAKAYA successfully added to list!
+[TODO] [ ] VISIT AN IZAKAYA
+Successfully added to list!
 You've 7 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-GO CHERRY BLOSSOM VIEWING successfully added to list!
+[EVENT] [ ] GO CHERRY BLOSSOM VIEWING (FROM: TBC 7AM TO: 8AM)
+Successfully added to list!
 You've 8 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-CLIMB MOUNT FUJI successfully added to list!
+[TODO] [ ] CLIMB MOUNT FUJI
+Successfully added to list!
 You've 9 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-VISIT BAMBOO FOREST successfully added to list!
+[TODO] [ ] VISIT BAMBOO FOREST
+Successfully added to list!
 You've 10 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-SPEND A NIGHT IN RYOKAN successfully added to list!
+[DEADLINE] [ ] SPEND A NIGHT IN RYOKAN (DUE: FRIDAY)
+Successfully added to list!
 You've 11 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-VISIT AN ONSEN successfully added to list!
+[TODO] [ ] VISIT AN ONSEN
+Successfully added to list!
 You've 12 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 Item(s) in current list:
-1. [ ] RIDE A SHINKANSEN
-2. [ ] GO-KART AROUND TOKYO
-3. [ ] ENTER UNIVERSAL STUDIOS JAPAN
-4. [ ] VISIT AN ARCADE
-5. [ ] MAKE YOUR OWN TAKOYAKI
-6. [ ] LEARN THE ART OF TEA CEREMONY
-7. [ ] VISIT AN IZAKAYA
-8. [ ] GO CHERRY BLOSSOM VIEWING
-9. [ ] CLIMB MOUNT FUJI
-10. [ ] VISIT BAMBOO FOREST
-11. [ ] SPEND A NIGHT IN RYOKAN
-12. [ ] VISIT AN ONSEN
+1. [TODO] [ ] RIDE A SHINKANSEN
+2. [EVENT] [ ] GO-KART AROUND TOKYO (FROM: WEDNESDAY 1PM TO: 3PM)
+3. [TODO] [ ] ENTER UNIVERSAL STUDIOS JAPAN
+4. [TODO] [ ] VISIT AN ARCADE
+5. [EVENT] [ ] MAKE YOUR OWN TAKOYAKI (FROM: SUNDAY 1PM TO: 3PM)
+6. [EVENT] [ ] LEARN THE ART OF TEA CEREMONY (FROM: SEPTEMBER 15TH 9AM TO: 11AM)
+7. [TODO] [ ] VISIT AN IZAKAYA
+8. [EVENT] [ ] GO CHERRY BLOSSOM VIEWING (FROM: TBC 7AM TO: 8AM)
+9. [TODO] [ ] CLIMB MOUNT FUJI
+10. [TODO] [ ] VISIT BAMBOO FOREST
+11. [DEADLINE] [ ] SPEND A NIGHT IN RYOKAN (DUE: FRIDAY)
+12. [TODO] [ ] VISIT AN ONSEN
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 You've completed this item!
-[✓] VISIT AN ARCADE
+[TODO] [✓] VISIT AN ARCADE
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 You've completed this item!
-[✓] MAKE YOUR OWN TAKOYAKI
+[EVENT] [✓] MAKE YOUR OWN TAKOYAKI (FROM: SUNDAY 1PM TO: 3PM)
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 You've completed this item!
-[✓] VISIT AN IZAKAYA
+[TODO] [✓] VISIT AN IZAKAYA
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 You've completed this item!
-[✓] SPEND A NIGHT IN RYOKAN
+[DEADLINE] [✓] SPEND A NIGHT IN RYOKAN (DUE: FRIDAY)
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 Pending item!
-[ ] SPEND A NIGHT IN RYOKAN
+[DEADLINE] [ ] SPEND A NIGHT IN RYOKAN (DUE: FRIDAY)
 --------------------------------------------------------------------------------
 
-________________________________________________________________________________
 You've entered an invalid command, please try again!
---------------------------------------------------------------------------------
+
+You've entered an invalid command, please try again!
+
+You've entered an invalid description, please try again!
 
 ________________________________________________________________________________
 Item(s) in current list:
-1. [ ] RIDE A SHINKANSEN
-2. [ ] GO-KART AROUND TOKYO
-3. [ ] ENTER UNIVERSAL STUDIOS JAPAN
-4. [✓] VISIT AN ARCADE
-5. [✓] MAKE YOUR OWN TAKOYAKI
-6. [ ] LEARN THE ART OF TEA CEREMONY
-7. [✓] VISIT AN IZAKAYA
-8. [ ] GO CHERRY BLOSSOM VIEWING
-9. [ ] CLIMB MOUNT FUJI
-10. [ ] VISIT BAMBOO FOREST
-11. [ ] SPEND A NIGHT IN RYOKAN
-12. [ ] VISIT AN ONSEN
+1. [TODO] [ ] RIDE A SHINKANSEN
+2. [EVENT] [ ] GO-KART AROUND TOKYO (FROM: WEDNESDAY 1PM TO: 3PM)
+3. [TODO] [ ] ENTER UNIVERSAL STUDIOS JAPAN
+4. [TODO] [✓] VISIT AN ARCADE
+5. [EVENT] [✓] MAKE YOUR OWN TAKOYAKI (FROM: SUNDAY 1PM TO: 3PM)
+6. [EVENT] [ ] LEARN THE ART OF TEA CEREMONY (FROM: SEPTEMBER 15TH 9AM TO: 11AM)
+7. [TODO] [✓] VISIT AN IZAKAYA
+8. [EVENT] [ ] GO CHERRY BLOSSOM VIEWING (FROM: TBC 7AM TO: 8AM)
+9. [TODO] [ ] CLIMB MOUNT FUJI
+10. [TODO] [ ] VISIT BAMBOO FOREST
+11. [DEADLINE] [ ] SPEND A NIGHT IN RYOKAN (DUE: FRIDAY)
+12. [TODO] [ ] VISIT AN ONSEN
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
