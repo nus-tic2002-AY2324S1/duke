@@ -12,7 +12,7 @@ Description of the feature.
 
 ## Usage
 
-### `Keyword` - Describe action
+### `KeywordTypes` - Describe action
 
 Describe the action and its outcome.
 

@@ -1,4 +1,4 @@
-public enum Keyword {
+public enum KeywordTypes {
     BYE{
         @Override
         public ICommand createCommand(){
@@ -43,26 +43,5 @@ public enum Keyword {
     };
 
     public abstract ICommand createCommand();
-
-    /*public static Keyword getKeyword(String input) {
-        String key = input.toUpperCase();
-        switch (key) {
-        case "BYE":
-            return BYE;
-        case "LIST":
-            return LIST;
-        case "MARK":
-            return MARK;
-        case "UNMARK":
-            return UNMARK;
-        case "TODO":
-            return TODO;
-        case "DEADLINE":
-            return DEADLINE;
-        case "EVENT":
-            return EVENT;
-        }
-        return null;
-    }*/
 
 }

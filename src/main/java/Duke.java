@@ -21,8 +21,8 @@ public class Duke {
         do {
             input = in.nextLine();
             putInput(input);
-            Keyword key = Keyword.getKeyword(inputKey);
-            if(key!=null) {
+            try {
+                KeywordTypes key = KeywordTypes.valueOf(inputKey.toUpperCase());
                 switch (key) {
                 case BYE:
                     command = new Bye();
@@ -31,13 +31,14 @@ public class Duke {
                     command = new List();
                     continue;
                 case MARK:
-                    command = new Mark(taskDescription, true);
+                    command = new Mark(taskDescription);
                     continue;
                 case UNMARK:
-                    command = new Mark(taskDescription, false);
+                    command = new Unmark(taskDescription);
                     continue;
                 case TODO:
-                    tasks.add(new Todo(taskDescription));
+                    command = new Todo(taskDescription);
+                    tasks.add((Task)command);
                     break;
                 case DEADLINE:
                     pullDeadlineDate(taskDescription);
@@ -48,61 +49,19 @@ public class Duke {
                     tasks.add(new Event(taskDescription, from, to));
                     break;
                 default:
+
                 }
-            }else{
+            } catch (IllegalArgumentException e) {
                 responseIDK();
             }
         } while (!input.equalsIgnoreCase("bye"));
     }
 
     private static void responseIDK() {
-        String str = "I'm sorry, I'm not sure what you're asking.";
+        String str = "OOPS!!! I'm sorry, but I'm not sure what you're asking :-(";
         Conversation.echo(str);
     }
 
-    private static void processMark(String input, boolean isMark) {
-        String[] inputs = input.split(" ");
-        int index = -1;
-
-        try {
-            index = Integer.parseInt(inputs[1]);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid index number for the mark item.");
-        } catch (ArrayIndexOutOfBoundsException e){
-            System.out.printf("The number after the %s is mandatory!\n",isMark?"Mark":"Unmark");
-        }
-
-        if (index == -1) {
-            return;
-        }
-
-        // Todo: handle the mark/unmark index out of range exception
-        if (isMark) {
-            markTask(index);
-        } else {
-            unMarkTask(index);
-        }
-    }
-
-    private static void markTask (int index) {
-        line();
-        indentation();
-        System.out.println("Nice! I've marked this task as done:");
-        tasks.get(index - 1).markAsDone(true);
-        indentation();
-        System.out.println(tasks.get(index - 1));
-        line();
-    }
-
-    private static void unMarkTask (int index) {
-        line();
-        indentation();
-        System.out.println("Ok, I've marked this task as not done yet:");
-        tasks.get(index - 1).markAsDone(false);
-        indentation();
-        System.out.println(tasks.get(index - 1));
-        line();
-    }
 
     private static void pullDeadlineDate (String input){
         final String BY = "/by";
@@ -163,14 +122,7 @@ public class Duke {
         inputs.add(String.format("Hello! I'm %s", myChatBotName));
         inputs.add("What can I do for you?");
         Conversation.echo(logo());
-        Conversation.echoForGreet(inputs);
-    }
-
-    public static void line() {
-        String horizontalBox = "*";
-        String line = horizontalBox.repeat(80);
-        System.out.print("    ");
-        System.out.println(line);
+        Conversation.echoWithBottomLine(inputs);
     }
 
     private static String logo() {

@@ -10,8 +10,11 @@ public class Todo extends Task{
         responseNumberOfTasks();
     }
 
+    public Todo(){}
+
     @Override
     public String toString() {
         return String.format("[%c][%s] %s",abbreviation,getStatusIcon(),description);
     }
+
 }

@@ -19,12 +19,20 @@ public class Conversation {
         line();
     }
 
-    public static void echoForGreet(ArrayList<String> inputs){
+    public static void echoWithBottomLine(ArrayList<String> inputs){
         for (var input : inputs) {
             indentation(INDENT_RESPONSE);
             System.out.println(input);
         }
         line();
+    }
+
+    public static void echoWithTopLine(ArrayList<String> inputs){
+        line();
+        for (var input : inputs) {
+            indentation(INDENT_RESPONSE);
+            System.out.println(input);
+        }
     }
 
     public static void indentation(int n) {

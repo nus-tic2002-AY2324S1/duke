@@ -1,4 +1,6 @@
-public abstract class Task {
+import java.util.ArrayList;
+
+public abstract class Task implements ICommand{
     protected String description;
     protected  boolean isDone;
     protected char abbreviation;
@@ -11,16 +13,18 @@ public abstract class Task {
         numberOfTasks++;
     }
 
+    public Task(){}
+
     protected static void responseNumberOfTasks() {
-        Duke.indentation();
-        System.out.printf("Now you have %d %s in the list.\n",numberOfTasks,numberOfTasks>1?"tasks":"task");
-        Duke.line();
+        ArrayList<String> inputs = new ArrayList<>();
+        inputs.add(String.format("Now you have %d %s in the list.",numberOfTasks,numberOfTasks>1?"tasks":"task"));
+        Conversation.echoWithBottomLine(inputs);
     }
 
     protected static void responseGotIt() {
-        Duke.line();
-        Duke.indentation();
-        System.out.println("Got it. I've added this task:");
+        ArrayList<String> inputs = new ArrayList<>();
+        inputs.add("Got it. I've added this task:");
+        Conversation.echoWithTopLine(inputs);
     }
 
     public String getStatusIcon(){
@@ -37,7 +41,5 @@ public abstract class Task {
 
     @Override
     public abstract String toString();
-    /*public String toString(){
-        return String.format("[%s] %s",getStatusIcon(),description);
-    }*/
+
 }
