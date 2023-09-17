@@ -28,13 +28,13 @@ public class Event extends Task{
         posOfTo = input.indexOf(TO);
 
         if(input.isEmpty()){
-            String message = "OOPS!!! The description of a event cannot be empty :-(";
+            String message = "OOPS!!! The \"description\" of a \"event\" cannot be empty :-(";
             throw new MissingDescriptionException(message);
         }else if(posOfFrom == -1){
-            String message = "OOPS!!! The \"/from\" of a event cannot be empty :-(";
+            String message = "OOPS!!! The \"/from\" of a \"event\" cannot be empty :-(";
             throw new MissingDescriptionException(message);
         }else if(posOfTo == -1){
-            String message = "OOPS!!! The \"/to\" of a event cannot be empty :-(";
+            String message = "OOPS!!! The \"/to\" of a \"event\" cannot be empty :-(";
             throw new MissingDescriptionException(message);
         }
 

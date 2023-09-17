@@ -5,7 +5,7 @@ public class Todo extends Task{
         super(description);
         setAbbreviation();
         if(description.isEmpty()){
-            String message = "OOPS!!! The description of a todo cannot be empty :-(";
+            String message = "OOPS!!! The \"description\" of a \"todo\" cannot be empty :-(";
             throw new MissingDescriptionException(message);
         }
         increaseNumberOfTaskByOne();

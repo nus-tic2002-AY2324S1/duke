@@ -38,13 +38,17 @@
      [T][X] join sports club
     ********************************************************************************
     ********************************************************************************
+     OK, I've marked this task as not done yet:
+     [T][ ] read book
+    ********************************************************************************
+    ********************************************************************************
      Got it. I've added this task:
       [T][ ] borrow book
      Now you have 5 tasks in the list.
     ********************************************************************************
     ********************************************************************************
      Here are the tasks in your list:
-     1.[T][X] read book
+     1.[T][ ] read book
      2.[D][ ] return book (by: June 6th)
      3.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
      4.[T][X] join sports club
@@ -62,7 +66,7 @@
     ********************************************************************************
     ********************************************************************************
      Here are the tasks in your list:
-     1.[T][X] read book
+     1.[T][ ] read book
      2.[D][ ] return book (by: June 6th)
      3.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
      4.[T][X] join sports club
@@ -72,38 +76,38 @@
     ********************************************************************************
     ********************************************************************************
      OOPS!!! I'm sorry, but I'm not sure what you're asking :-(
-     You can try the limited commands available at this moment:
+     You can use the commands that are currently available.
      1. bye
      2. list
-     3. mark
-     4. unmark
-     5. todo
-     6. deadline
-     7. event
+     3. mark - [use example: mark 1]
+     4. unmark - [use example: unmark 1]
+     5. todo - [use example: todo borrow book]
+     6. deadline - [use example: deadline return book /by Sunday]
+     7. event - [use example: event project meeting /from 12pm 16th Aug /to 15pm 17th Aug
     ********************************************************************************
     ********************************************************************************
-     The index number of the "mark" must be an integer :-(
+     The "index number" of the "mark" must be an integer :-(
     ********************************************************************************
     ********************************************************************************
-     The index number of the "mark" must be an integer :-(
+     The "index number" of the "mark" must be an integer :-(
     ********************************************************************************
     ********************************************************************************
-     OOPS!!! The description of a todo cannot be empty :-(
+     OOPS!!! The "description" of a "todo" cannot be empty :-(
     ********************************************************************************
     ********************************************************************************
-     OOPS!!! The description of a deadline cannot be empty :-(
+     OOPS!!! The "description" of a "deadline" cannot be empty :-(
     ********************************************************************************
     ********************************************************************************
-     OOPS!!! The "/by" of a deadline cannot be empty :-(
+     OOPS!!! The "/by" of a "deadline" cannot be empty :-(
     ********************************************************************************
     ********************************************************************************
-     OOPS!!! The description of a event cannot be empty :-(
+     OOPS!!! The "description" of a "event" cannot be empty :-(
     ********************************************************************************
     ********************************************************************************
-     OOPS!!! The "/from" of a event cannot be empty :-(
+     OOPS!!! The "/from" of a "event" cannot be empty :-(
     ********************************************************************************
     ********************************************************************************
-     OOPS!!! The "/to" of a event cannot be empty :-(
+     OOPS!!! The "/to" of a "event" cannot be empty :-(
     ********************************************************************************
     ********************************************************************************
      Bye. Hope to see you again soon!

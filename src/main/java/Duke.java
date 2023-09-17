@@ -59,7 +59,7 @@ public class Duke {
         String str = "OOPS!!! I'm sorry, but I'm not sure what you're asking :-(";
         ArrayList<String> inputs = new ArrayList<>();
         inputs.add(str);
-        inputs.add("You can try the limited commands available at this moment:");
+        inputs.add("You can use the commands that are currently available.");
         inputs.addAll(commandList());
         Conversation.echo(inputs);
     }
@@ -68,11 +68,11 @@ public class Duke {
         ArrayList<String> out = new ArrayList<>();
         out.add("1. bye");
         out.add("2. list");
-        out.add("3. mark");
-        out.add("4. unmark");
-        out.add("5. todo");
-        out.add("6. deadline");
-        out.add("7. event");
+        out.add("3. mark - [use example: mark 1]");
+        out.add("4. unmark - [use example: unmark 1]");
+        out.add("5. todo - [use example: todo borrow book]");
+        out.add("6. deadline - [use example: deadline return book /by Sunday]");
+        out.add("7. event - [use example: event project meeting /from 12pm 16th Aug /to 15pm 17th Aug");
         return out;
     }
 

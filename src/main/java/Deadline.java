@@ -24,10 +24,10 @@ public class Deadline extends Task{
         pos = input.indexOf(BY);
 
         if(input.isEmpty()){
-            String message = "OOPS!!! The description of a deadline cannot be empty :-(";
+            String message = "OOPS!!! The \"description\" of a \"deadline\" cannot be empty :-(";
             throw new MissingDescriptionException(message);
         } else if(pos == -1){
-            String message = "OOPS!!! The \"/by\" of a deadline cannot be empty :-(";
+            String message = "OOPS!!! The \"/by\" of a \"deadline\" cannot be empty :-(";
             throw new MissingDescriptionException(message);
         }
 
