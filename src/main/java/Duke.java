@@ -31,11 +31,10 @@ public class Duke {
                     command = new List();
                     continue;
                 case MARK:
-//                    processMark(input, true);
-                    command = new Mark(taskDescription);
+                    command = new Mark(taskDescription, true);
                     continue;
                 case UNMARK:
-                    processMark(input, false);
+                    command = new Mark(taskDescription, false);
                     continue;
                 case TODO:
                     tasks.add(new Todo(taskDescription));
