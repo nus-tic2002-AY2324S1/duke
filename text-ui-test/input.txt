@@ -1,15 +1,23 @@
 list
-task 1
+todo borrow book
 list
-task 2
+deadline return book /by Sunday
+list
+event project meeting /from Mon 2pm /to 4pm
 list
 mark
 mark 0
-mark 3
+mark 9
 mark 1
 list
 mark 2
 list
+mark 3
+list
 unmark 1
+list
+unmark 2
+list
+unmark 3
 list
 bye
