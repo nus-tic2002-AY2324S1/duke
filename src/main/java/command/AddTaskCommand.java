@@ -9,21 +9,15 @@ import java.util.List;
 
 public class AddTaskCommand extends CrabyMessage {
     public void addTaskCommand(String input, List<Task> tasks) {
-        input = input
-                .replace("task.Deadline", "")
-                .replace("task.Todo", "")
-                .replace("task.Event", "")
-                .replace("deadline", "")
-                .replace("todo", "")
-                .replace("event", "");
+        input = removeKeyWords(input);
         if (input.contains("/by")) {
             String[] formatDeadline = input.split("/by");
             if (formatDeadline.length > 1) {
                 tasks.add(new Deadline(formatDeadline[0].trim(), formatDeadline[1]));
                 printAddMessage(input, tasks);
             } else {
-                System.out.println("   Oops!!! Looks like you used the wrong format.");
-                System.out.println("   Please give more information after use /by\n" + line);
+                System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
+                System.out.println(blank + "Please give more information after use /by\n" + line);
             }
             return;
         }
@@ -38,8 +32,8 @@ public class AddTaskCommand extends CrabyMessage {
                 }
                 printAddMessage(input, tasks);
             } else {
-                System.out.println("   Oops!!! Looks like you used the wrong format.");
-                System.out.println("   Please give more information after use /from\n" + line);
+                System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
+                System.out.println(blank + "Please give more information after use /from\n" + line);
             }
             return;
         }
@@ -47,9 +41,22 @@ public class AddTaskCommand extends CrabyMessage {
         printAddMessage(input, tasks);
     }
 
+    private static String removeKeyWords(String input) {
+        input = input
+                .replace("Deadline", "")
+                .replace("Todo", "")
+                .replace("Event", "")
+                .replace("deadline", "")
+                .replace("todo", "")
+                .replace("event", "")
+                .replace("add", "")
+                .replace("Add", "");
+        return input;
+    }
+
     private static void printAddMessage(String input, List<Task> tasks) {
-        System.out.println("   ✎ added: ");
-        System.out.println("   ╰┈➤ " + input + " - to your list");
-        System.out.println("   Now you have " + tasks.size() + " tasks in the list \uD83D\uDDCE.\n" + line);
+        System.out.println(blank + "✎ added:");
+        System.out.println(blank + "╰┈➤ " + input + " - to your list");
+        System.out.println(blank + "Now you have " + tasks.size() + " tasks in your list \uD83D\uDDCE.\n" + line);
     }
 }

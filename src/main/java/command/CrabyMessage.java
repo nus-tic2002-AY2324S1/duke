@@ -10,15 +10,16 @@ public class CrabyMessage {
             "\n";
     public static final String hello = "   Hello! I'm CrabY 🦀\n" + "   What is your name? ˃ᴗ˂";
     public static final String line = "  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈";
+    public static final String blank = "   ";
     public static final String crab =
-            "              __   ♡   __\n" +
-            "             /           \\\n" +
-            "            (  / @   @ \\  )\n" +
-            "             \\(_ _\\_/_ _)/\n" +
-            "           (\\ `-/     \\-' /)\n" +
-            "            \"===\\     /===\"\n" +
-            "             .==')___(`==.\n" +
-            "              .='     `=.";
+            "               __   ♡   __\n" +
+            "              /           \\\n" +
+            "             (  / @   @ \\  )\n" +
+            "              \\(_ _\\_/_ _)/\n" +
+            "            (\\ `-/     \\-' /)\n" +
+            "             \"===\\     /===\"\n" +
+            "              .==')___(`==.\n" +
+            "               .='     `=.";
 
 }
 
