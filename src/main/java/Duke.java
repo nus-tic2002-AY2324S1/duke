@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -63,7 +65,7 @@ public class Duke {
             } else if (line.equals("list")){
                 Separator();
                 for(int i=0;i<Storage.size();i++){
-                    System.out.println(i+1 + ". " + Storage.get(i));
+                System.out.println(i+1 + ". " + Storage.get(i));
                 }
                 Separator();
             } else {
@@ -75,3 +77,4 @@ public class Duke {
         }
     }
 }
+
