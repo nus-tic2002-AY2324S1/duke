@@ -20,17 +20,20 @@ public class Main {
         System.out.println("Hello! I'm DupeBot.\n" + logo);
         System.out.println("What can I do for you?");
 
-        // Read user input
-        String userInput = scanner.nextLine();
+        while (true) {
+            // Read user input
+            String userInput = scanner.nextLine();
 
-        // Check if the user wants to exit
-        if (userInput.equalsIgnoreCase("exit")) {
-            // Say goodbye and exit the program
-            System.out.println("Bye. Hope to see you again soon!");
-        } else {
-            // For any other input, you can provide a response (you can expand on this)
-            System.out.println("I'm a simple chatbot and the chat ends here. Bye.");
+            // Echo the user's input
+            System.out.println(userInput);
+
+            // Check if the user wants to exit
+            if (userInput.equalsIgnoreCase("bye")) {
+                System.out.println("Bye. Hope to see you again soon!");
+                break; // Exit the loop and end the program
+            }
         }
+
 
         // Close the scanner
         scanner.close();
