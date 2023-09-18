@@ -9,6 +9,8 @@ public class Main {
         // IntelliJ IDEA suggests fixing it.
 
         Scanner scanner = new Scanner(System.in);
+        String [] tasks = new String[100];
+        int taskCounter = 0;
 
         // Greet the user
         String logo = "    ____                       __\n" +
@@ -24,16 +26,32 @@ public class Main {
             // Read user input
             String userInput = scanner.nextLine();
 
-            // Echo the user's input
-            System.out.println(userInput);
-
             // Check if the user wants to exit
             if (userInput.equalsIgnoreCase("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break; // Exit the loop and end the program
+            } else if (userInput.equalsIgnoreCase("list")) {
+                // if user inputs list, then print out list if task list is not empty
+                if(taskCounter == 0){
+                    System.out.println("the task list is currently empty");
+                }
+                else {
+                    for (int i = 0; i < taskCounter; i++){
+                        System.out.println((i+1) + ". " + tasks[i]);
+                    }
+                }
+            }
+            else {
+                // if user inputs anything else, then insert into list. check if list does not exceed 100
+                if (taskCounter < 100) {
+                    tasks[taskCounter] = userInput;
+                    taskCounter++;
+                    System.out.println("added: " + userInput);
+                } else {
+                    System.out.println("Sorry, your task list is full.");
+                }
             }
         }
-
 
         // Close the scanner
         scanner.close();
