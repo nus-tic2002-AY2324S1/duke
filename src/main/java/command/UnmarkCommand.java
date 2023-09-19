@@ -13,15 +13,18 @@ public class UnmarkCommand extends CrabyMessage {
             if (checkNum >= tasks.size() || checkNum < 0) {
                 System.out.print(blank + "Oops, something wrong! Your list only have 1 to ");
                 System.out.println(tasks.size() + "tasks.");
-                System.out.println(blank + "Please try again!\n" + line);
+                System.out.println(blank + "Please try again!");
+                System.out.println(line);
                 return;
             }
             tasks.get(checkNum).setDone(false);
             System.out.println(blank + "OK, I've marked this task as ☉⌓☉ NOT DONE yet:");
-            System.out.println(blank + "╰┈➤ " + tasks.get(checkNum) + "\n" + line);
+            System.out.println(blank + "╰┈➤ " + tasks.get(checkNum));
+            System.out.println(line);
         } catch (NumberFormatException e) {
             System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
-            System.out.println(blank + "Try with: unmark [integer] e.g: unmark 1\n" + line);
+            System.out.println(blank + "Try with: unmark [integer] e.g: unmark 1");
+            System.out.println(line);
         }
     }
 }

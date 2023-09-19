@@ -17,7 +17,8 @@ public class AddTaskCommand extends CrabyMessage {
                 printAddMessage(input, tasks);
             } else {
                 System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
-                System.out.println(blank + "Please give more information after use /by\n" + line);
+                System.out.println(blank + "Please give more information after use /by");
+                System.out.println(line);
             }
             return;
         }
@@ -33,7 +34,9 @@ public class AddTaskCommand extends CrabyMessage {
                 printAddMessage(input, tasks);
             } else {
                 System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
-                System.out.println(blank + "Please give more information after use /from\n" + line);
+                System.out.println(blank + "Please give more information after use /from");
+                System.out.println(line);
+
             }
             return;
         }
@@ -57,6 +60,7 @@ public class AddTaskCommand extends CrabyMessage {
     private static void printAddMessage(String input, List<Task> tasks) {
         System.out.println(blank + "✎ added:");
         System.out.println(blank + "╰┈➤ " + input + " - to your list");
-        System.out.println(blank + "Now you have " + tasks.size() + " tasks in your list \uD83D\uDDCE.\n" + line);
+        System.out.println(blank + "Now you have " + tasks.size() + " tasks in your list \uD83D\uDDCE.");
+        System.out.println(line);
     }
 }

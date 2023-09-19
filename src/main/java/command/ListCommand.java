@@ -7,13 +7,13 @@ import java.util.List;
 public class ListCommand extends CrabyMessage {
     public void handleListCommand(List<Task> tasks) {
         if (tasks.isEmpty()) {
-            System.out.println(blank + " ╭─────────────────────────────────╮");
+            printStartOfList();
             System.out.println(blank + "    ░░░░ Your list is empty! ░░░░");
-            System.out.println(blank + " ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦\n" + line);
+            printEndOfList();
             return;
         }
         int i = 0;
-        System.out.println(blank + " ╭─────────────────────────────────╮");
+        printStartOfList();
         System.out.println(blank + "  Here are the tasks in your list:");
         for (Task s : tasks) {
             i++;
@@ -26,6 +26,14 @@ public class ListCommand extends CrabyMessage {
                 System.out.println("   " + i + ". " + s);
             }
         }
+        printEndOfList();
+    }
+
+    private static void printStartOfList() {
+        System.out.println(blank + " ╭─────────────────────────────────╮");
+    }
+
+    private static void printEndOfList() {
         System.out.println(blank + " ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦");
         System.out.println(line);
     }

@@ -9,12 +9,12 @@ import java.util.Scanner;
 
 public class Craby extends CrabyMessage {
     public static void crabySysterm() {
-        System.out.println(line + "\n" + logo + line);
-        System.out.println(hello + "\n" + line);
+        System.out.println(line + System.lineSeparator() + logo + line);
+        System.out.println(hello + System.lineSeparator() + line);
         Scanner scanner = new Scanner(System.in);
         String answerName = scanner.nextLine();
         System.out.print("   Hi " + answerName);
-        System.out.println(" ♡, How can I help you today?" + "\n" + line);
+        System.out.println(" ♡, How can I help you today?" + System.lineSeparator() + line);
         List<Task> tasks = new ArrayList<>();
         while (true) {
             String input = scanner.nextLine();
@@ -24,7 +24,7 @@ public class Craby extends CrabyMessage {
                 exit = handleInput(input, tasks, answerName);
             } catch (InputBlankException e) {
                 System.out.println("   Oops!!! The description cannot be empty.");
-                System.out.println("   Please try again!\n" + line);
+                System.out.println("   Please try again!" + System.lineSeparator() + line);
             }
             if (exit) {
                 break;
