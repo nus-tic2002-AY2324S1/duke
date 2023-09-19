@@ -1,17 +1,21 @@
 public class Deadline extends Todo {
-    protected String duedate;
+    protected String due;
 
     Deadline(String description, String by) {
         super(description);
-        duedate = by;
+        due = by;
     }
 
     public void setBy(String change) {
-        duedate = change;
+        due = change;
     }
 
     public String getBy() {
-        return duedate;
+        return due;
+    }
+    @Override
+    public String toString() {
+        return "[D][" + getStatusIcon() + "] " + getDescription() + "(by: " + getBy() + ")";
     }
 }
 
