@@ -37,15 +37,6 @@ public class Tim {
         System.out.println(index + ". [" + current.type  + "] [" + current.getIsDone() + "] " + current.getDescription() );
     }
 
-    public static void addList(String inputEntry){
-        list = Arrays.copyOf(list,list.length+1);
-        list[list.length-1]= new Task(inputEntry);
-        System.out.println("now there is: "+ list.length + " item(s)");
-        System.out.println("added: ");
-        printSingle(list.length);
-
-    }
-
     public static void addToDo (String inputEntry){
         list = Arrays.copyOf(list,list.length+1);
         list[list.length-1]= new ToDo(inputEntry);
@@ -56,28 +47,43 @@ public class Tim {
     }
 
     public static void addDeadline (String inputEntry){
-        String[] inputTokenized =  inputEntry.split(" /by ",2);
-        String by = inputTokenized[1];
-        String description = inputTokenized[0];
-        list = Arrays.copyOf(list,list.length+1);
-        list[list.length-1]= new Deadline(description,by);
-        System.out.println("Gotcha! Added this task:");
-        printSingle(list.length);
-        System.out.println("now there is: "+ list.length + " item(s)");
-        printDashes();
+        String[] inputTokenized = {};
+        String by = "";
+        try{
+            inputTokenized = inputEntry.split(" /by ",2);
+            by = inputTokenized[1];
+            String description = inputTokenized[0];
+            list = Arrays.copyOf(list,list.length+1);
+            list[list.length-1]= new Deadline(description,by);
+            System.out.println("Gotcha! Added this task:");
+            printSingle(list.length);
+            System.out.println("now there is: "+ list.length + " item(s)");
+            printDashes();
+        } catch (Exception e) {
+            System.err.println("you've missed out [/by] !");
+        }
+
     }
 
     public static void addEvent (String inputEntry){
-        String[] inputTokenized =  inputEntry.split(" /from ",2);
-        String to = inputTokenized[1].split(" /to ",2)[1];
-        String from = inputTokenized[1].split(" /to ",2)[0];
-        String description = inputTokenized[0];
-        list = Arrays.copyOf(list,list.length+1);
-        list[list.length-1]= new Event(description,from,to);
-        System.out.println("Gotcha! Added this task:");
-        printSingle(list.length);
-        System.out.println("now there is: "+ list.length + " item(s)");
-        printDashes();
+        String[] inputTokenized = {};
+        String from = "";
+        String to = "";
+        try {
+            inputTokenized =  inputEntry.split(" /from ",2);
+            String description = inputTokenized[0];
+            to = inputTokenized[1].split(" /to ", 2)[1];
+            from = inputTokenized[1].split(" /to ", 2)[0];
+            list = Arrays.copyOf(list,list.length+1);
+            list[list.length-1]= new Event(description,from,to);
+            System.out.println("Gotcha! Added this task:");
+            printSingle(list.length);
+            System.out.println("now there is: "+ list.length + " item(s)");
+            printDashes();
+        } catch (Exception e) {
+            System.err.println("you've missed out either [/from] or [/to] !");
+        }
+
     }
 
     public static void markUnmarkTask(int index, boolean markUnmark){
@@ -124,50 +130,55 @@ public class Tim {
                 case "date": printDate();
                     break;
                 case "mark":
-                    if(token.length > 1){
+                    try {
                         index = Integer.parseInt(token[1]);
-                    }
-                    if ((index != -1 && index < list.length+1)) {
                         markUnmarkTask(index, true);
-                    } else {
-                        System.out.println("index out of bound");
+                    } catch (ArrayIndexOutOfBoundsException AIO){
+                        System.err.println("incorrect input for index!");
                     }
                     break;
                 case "unmark":
-                    if(token.length > 1){
+                    try {
                         index = Integer.parseInt(token[1]);
-                    }
-                    if ((index != -1 && index < list.length+1)) {
                         markUnmarkTask(index, false);
-                    } else {
-                        System.out.println("index out of bound");
+                    } catch (ArrayIndexOutOfBoundsException AIO){
+                        System.err.println("incorrect input for index!");
                     }
                     break;
                 case "todo":
-                    if(token.length > 1){
+                    try {
+                        if(token[1].isBlank()){
+                            throw new BlankInputException("todo blank");
+                        }
                         taskName = token[1];
                         addToDo(taskName);
-                    } else {
-                        System.out.println("index out of bound");
+                    } catch (ArrayIndexOutOfBoundsException | BlankInputException AIO){
+                        System.err.println("what is the name of the task to complete?");
                     }
                     break;
                 case "deadline":
-                    if(token.length > 1){
+                    try {
+                        if(token[1].isBlank()){
+                            throw new BlankInputException("event blank");
+                        }
                         taskName = token[1];
                         addDeadline(taskName);
-                    } else {
-                        System.out.println("index out of bound");
+                    } catch (ArrayIndexOutOfBoundsException | BlankInputException AIO){
+                        System.err.println("what is the name of the deadline agenda?");
                     }
                     break;
                 case "event":
-                    if(token.length > 1){
+                    try {
+                        if(token[1].isBlank()){
+                            throw new BlankInputException("event blank");
+                        }
                         taskName = token[1];
                         addEvent(taskName);
-                    } else {
-                        System.out.println("index out of bound");
+                    } catch (ArrayIndexOutOfBoundsException | BlankInputException AIO){
+                        System.err.println("what is the name of the event?");
                     }
                     break;
-                default: addList(input);
+                default: System.err.println("I've not learn to do this yet!!");
             }
         }
 
