@@ -21,7 +21,9 @@ public class Duke {
         System.out.println("Type your question below. (Type \"bye\" to exit)");
         System.out.println("Function Menu:");
         System.out.println("1.bye: exit");
-        System.out.println("2.list: list out all inputs");
+        System.out.println("2.list: list out all tasks");
+        System.out.println("3.mark [task number]: mark task as done");
+        System.out.println("4.unmark [task number]: unmark task as not done");
         System.out.println("**************************************************\n");
 
         while (!isBye) {
