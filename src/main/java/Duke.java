@@ -25,29 +25,34 @@ public class Duke {
 
         while (!isBye) {
             userInput = sc.nextLine();
-            System.out.println("    **************************************************");
+            output("**************************************************");
 
             switch (userInput.toLowerCase()) {
                 case "bye":
                     isBye = true;
-                    System.out.println("    Bye. Hope to see you again.");
+                    output("Bye. Hope to see you again.");
                     break;
                 case "list":
                     int count = 1;
                     for (String str : arrList) {
-                        System.out.println("    " + count + ". " + str);
+                        output(count + ". " + str);
                         count++;
                     }
                     break;
                 default:
                     arrList.add(userInput);
-                    System.out.println("    added: " + userInput);
+                    output("added: " + userInput);
             }
 
             // end line
-            System.out.println("    **************************************************\n");
+            output("**************************************************\n");
         }
 
+    }
+
+    public static void output(String str) {
+        System.out.print("  ");
+        System.out.println(str);
     }
 }
 
