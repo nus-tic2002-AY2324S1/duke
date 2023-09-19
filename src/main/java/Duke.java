@@ -3,9 +3,14 @@ import java.util.Scanner;
 
 public class Duke {
 
-    private static ArrayList<String> arrList = new ArrayList<>();
+    private static ArrayList<Task> taskList = new ArrayList<>();
 
     public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        String userInput = "";
+        boolean isBye = false;
+
         String logo = "████████ ██ ███    ██  █████  \n" +
                 "   ██    ██ ████   ██ ██   ██ \n" +
                 "   ██    ██ ██ ██  ██ ███████ \n" +
@@ -19,28 +24,41 @@ public class Duke {
         System.out.println("2.list: list out all inputs");
         System.out.println("**************************************************\n");
 
-        Scanner sc = new Scanner(System.in);
-        String userInput = "";
-        boolean isBye = false;
-
         while (!isBye) {
             userInput = sc.nextLine();
+            // start line
             output("**************************************************");
 
-            switch (userInput.toLowerCase()) {
+            // format user input
+            String[] userInputArr = userInput.split(" ");
+            Task curTask;
+
+            switch (userInputArr[0].toLowerCase()) {
                 case "bye":
                     isBye = true;
                     output("Bye. Hope to see you again.");
                     break;
                 case "list":
                     int count = 1;
-                    for (String str : arrList) {
-                        output(count + ". " + str);
+                    for (Task task : taskList) {
+                        output(count + ".[" + task.isDone() + "] " + task.getName());
                         count++;
                     }
                     break;
+                case "mark" :
+                    curTask = taskList.get(Integer.parseInt(userInputArr[1]) - 1);
+                    curTask.setDone(true);
+                    output("Nice! I've marked this task as done:");
+                    output("[" + curTask.isDone() +"]" + curTask.getName());
+                    break;
+                case "unmark" :
+                    curTask = taskList.get(Integer.parseInt(userInputArr[1]) - 1);
+                    curTask.setDone(false);
+                    output("OK, I've marked this task as not done yet:");
+                    output("[" + curTask.isDone() +"]" + curTask.getName());
+                    break;
                 default:
-                    arrList.add(userInput);
+                    taskList.add(new Task(userInput));
                     output("added: " + userInput);
             }
 
