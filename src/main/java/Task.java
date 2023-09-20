@@ -1,13 +1,20 @@
 public class Task {
     protected String description;
     protected Boolean marked;
-
-    public void Task(String description){
+    public Task(String description){
         this.description = description;
-        this.marked = false;
+        marked = false;
     }
     public String getStatusIcon(){
-        return (marked ? "X" : " ");
+        return (this.marked ? "X" : " ");
     }
+
+    public static void setMarked(Task task){
+        task.marked = true;
+    }
+    public static void setUnmarked(Task task){
+        task.marked = false;
+    }
+
 
 }

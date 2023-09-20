@@ -5,6 +5,7 @@ public class Duke {
 
     public static void main(String[] args) {
         String echo;
+        Shelf tasklist = new Shelf();
         Scanner in = new Scanner(System.in);
 
         Text.printMessage(Text.Message.LOGO);
@@ -12,14 +13,17 @@ public class Duke {
 
         while(true){
             echo = in.nextLine();
-            if(echo.equals("bye")){
+            // lower case
+            String lecho = echo.toLowerCase();
+            if(lecho.equals("bye")){
                 Text.printMessage(Text.Message.BYE);
                 break;
-            }else if(echo.equals("list")){
-                Shelf.listShelf();
+            }else if(lecho.equals("list")) {
+                tasklist.listShelf();
+            }else if(lecho.contains("mark")){
+                tasklist.markTask(echo);
             } else {
-                Shelf.addItem(echo);
-
+                tasklist.addItem(echo);
             }
         }
 
