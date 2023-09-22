@@ -26,12 +26,12 @@ public class Duke {
     public static void printHeader() {
         System.out.print(BORDER
                 + MESSAGE
-                + LOGO);
+                + LOGO
+                + BORDER);
     }
 
     public static void printGreeting() {
-        System.out.println(BORDER
-                + GREETING);
+        System.out.println(GREETING);
     }
 
     public static void main(String[] args) {

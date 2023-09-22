@@ -7,4 +7,9 @@ public class ToDo extends Task {
         super(desc);
         super.type = TODO;
     }
+
+    @Override
+    public void printTask() {
+        System.out.println(type + status + desc);
+    }
 }

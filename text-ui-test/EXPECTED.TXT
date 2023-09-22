@@ -139,8 +139,9 @@ You've entered an invalid command, please try again!
 
 You've entered an invalid command, please try again!
 
-You've entered an invalid description, please try again!
+Description cannot be empty, please try again!
 
+You've entered an invalid index, please try again!
 ________________________________________________________________________________
 Item(s) in current list:
 1. [TODO] [ ] RIDE A SHINKANSEN

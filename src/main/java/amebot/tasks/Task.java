@@ -15,12 +15,18 @@ public abstract class Task {
         listSize++;
     }
 
-    public void printTask() {
-        System.out.println(type + status + desc);
+    public abstract void printTask();
+
+    public void setTaskType(String type) {
+        this.type = type;
     }
 
     public String getTaskType() {
         return type;
+    }
+
+    public void setTaskDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getTaskDesc() {

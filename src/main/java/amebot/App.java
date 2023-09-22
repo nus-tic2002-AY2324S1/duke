@@ -2,7 +2,7 @@ package amebot;
 
 import java.util.Scanner;
 
-import amebot.exceptions.InvalidInputException;
+import amebot.exceptions.AmebotException;
 import amebot.tasks.commands.Command;
 
 public class App {
@@ -18,7 +18,7 @@ public class App {
             try {
                 input = scanInput.nextLine().toLowerCase();
                 Command.render(input);
-            } catch (InvalidInputException err) {
+            } catch (AmebotException err) {
                 System.out.print("\n");
             }
         }

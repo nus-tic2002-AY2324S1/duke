@@ -2,7 +2,7 @@ package amebot.tasks.commands;
 
 import java.util.ArrayList;
 
-import amebot.exceptions.InvalidInputException;
+import amebot.exceptions.AmebotException;
 import amebot.App;
 import amebot.tasks.Task;
 
@@ -13,12 +13,10 @@ public class Command {
     protected static final String DUE_REGEX = " /due ";
     protected static final String NAN = "NAN";
 
-    public static void render(String input) throws InvalidInputException {
+    public static void render(String input) throws AmebotException {
         String[] inputTexts = input.trim().split(" ");
 
-        String command = extractCommand(inputTexts);
-        String[] content = new String[2];
-        int index = -1;
+        String command = extractCommand(inputTexts[0]);
 
         switch (command) {
             case "todo":
@@ -26,7 +24,7 @@ public class Command {
             case "event":
                 // Fallthrough
             case "deadline":
-                content = extractContent(input);
+                String[] content = extractContent(input);
                 String desc = content[0];
                 String date = content[1];
                 AddTask.add(desc, date);
@@ -37,31 +35,33 @@ public class Command {
             case "check":
                 // Fallthrough
             case "uncheck":
-                index = extractIndex(inputTexts);
-                printOutput(index - 1, command);
+                int index = extractIndex(inputTexts);
+                if (index > -1 && index < Task.getTaskListSize()) {
+                    printOutput(index - 1, command);
+                }
                 break;
             case "bye":
                 App.exit();
                 break;
             default:
-                throw new InvalidInputException("Invalid Input Exception");
+                throw new AmebotException("Invalid Input Exception");
         }
     }
 
-    public static String extractCommand(String[] inputTexts) {
+    public static String extractCommand(String inputCommand) {
         String command = "";
 
         try {
-            command = inputTexts[0];
+            command = inputCommand;
             checkCommand(command);
-        } catch (InvalidInputException | NumberFormatException err) {
+        } catch (AmebotException | NumberFormatException err) {
             System.out.println("You've entered an invalid command, please try again!");
         }
 
         return command;
     }
 
-    public static void checkCommand(String command) throws InvalidInputException {
+    public static void checkCommand(String command) throws AmebotException {
         boolean isValid = false;
 
         switch (command) {
@@ -83,7 +83,7 @@ public class Command {
         }
 
         if (!isValid) {
-            throw new InvalidInputException("Invalid Command Exception");
+            throw new AmebotException("Invalid Command Exception");
         }
     }
 
@@ -111,38 +111,45 @@ public class Command {
             content[0] = desc;
             content[1] = date;
             checkDate(date);
-        } catch (InvalidInputException | NumberFormatException | StringIndexOutOfBoundsException |
+        } catch (AmebotException | NumberFormatException | StringIndexOutOfBoundsException |
                  NullPointerException err) {
-            System.out.println("You've entered an invalid description, please try again!");
+            System.out.println("Description cannot be empty, please try again!");
         }
 
         return content;
     }
 
-    public static void checkDate(String date) throws InvalidInputException {
+    public static void checkDate(String date) throws AmebotException {
         boolean isValid = (date.contains(FROM_REGEX) && date.contains(TO_REGEX)) || date.contains(DUE_REGEX) || date.contains(NAN);
 
         if (!isValid) {
-            throw new InvalidInputException("Invalid Description Exception");
+            throw new AmebotException("Invalid Description Exception");
         }
     }
 
     public static int extractIndex(String[] inputTexts) {
+        int size = inputTexts.length;
         int index = -1;
 
         try {
             index = Integer.parseInt(inputTexts[1]);
             checkIndex(index);
-        } catch (InvalidInputException | NumberFormatException | IndexOutOfBoundsException err) {
+        } catch (AmebotException | NumberFormatException | IndexOutOfBoundsException err) {
             System.out.println("You've entered an invalid index, please try again!");
         }
 
         return index;
     }
 
-    public static void checkIndex(int index) throws InvalidInputException {
-        if (index < 0 && index > Task.getTaskListSize() - 1) {
-            throw new InvalidInputException("Invalid Index Exception");
+    public static void checkIndex(int index) throws AmebotException {
+        boolean isValid = false;
+
+        if (index > -1 && index < Task.getTaskListSize()) {
+            isValid = true;
+        }
+
+        if (!isValid) {
+            throw new AmebotException("Invalid Index Exception");
         }
     }
 
