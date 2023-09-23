@@ -31,6 +31,7 @@ class Duke {
 
         while (true) {
             String userInput = userInterface.getUserInput();
+            System.out.println(MessageDisplay.LINE_BREAK);
             if (userInput.equals("bye")) {
                 break;
             } else {
@@ -94,7 +95,7 @@ class Duke {
                     throw new InvalidCommandException();
             }
         } catch (DukeException e) {
-            System.out.printf("%s\n%s\n%s", MessageDisplay.LINE_BREAK, e.getMessage(), MessageDisplay.LINE_BREAK);
+            System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
         }
     }
 
@@ -199,9 +200,9 @@ class Duke {
             throw new InvalidNumberFormatException(e.getMessage());
         } catch (InvalidNumberFormatException e) {
             // Handle the case where the integer part is not a valid number
-            System.out.printf("%s\n%s\n%s", MessageDisplay.LINE_BREAK, e.getMessage(), MessageDisplay.LINE_BREAK);
+            System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
         } catch (InvalidTaskException e) {
-            System.out.printf("%s\n%s\n%s", MessageDisplay.LINE_BREAK, e.getMessage(), MessageDisplay.LINE_BREAK);
+            System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
         }
     }
 }

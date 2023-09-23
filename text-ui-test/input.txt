@@ -1,8 +1,13 @@
-Read book
-Gym
-Study
-Mark 1
+todo gym
+deadline homework /by June 6th
+event project meeting /from saturday 2pm /to 4pm
+todo join sports club
+todo borrow book
 Unmark 1
-Unmark 1
-
+mark 1
+mark 4
+list
+Todo
+Deadline project submission
+Event CCA 
 Bye
