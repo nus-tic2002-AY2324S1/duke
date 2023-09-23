@@ -44,6 +44,9 @@ public class Duke {
                 case EVENT:
                     tasks.add(new Event(dukeDescription));
                     break;
+                case DELETE:
+                    command = new Delete(dukeDescription);
+                    break;
                 default:
 
                 }
@@ -110,4 +113,8 @@ public class Duke {
     public ArrayList<Task> getTasks(){
         return tasks;
     }
+    public String getInputKey(){
+        return inputKey;
+    }
+
 }

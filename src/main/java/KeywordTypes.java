@@ -40,6 +40,12 @@ public enum KeywordTypes {
         public ICommand createCommand(){
             return new Event();
         }
+    },
+    DELETE{
+      @Override
+      public ICommand createCommand(){
+          return new Delete();
+      }
     };
 
     public abstract ICommand createCommand();
