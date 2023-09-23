@@ -7,9 +7,13 @@ todo borrow book
 Unmark 1
 mark 1
 mark 4
+Delete 6
 Mark abc
 list
 Todo
 Deadline project submission
 Event CCA
+Delete 5
+Delete 0
+List
 Bye

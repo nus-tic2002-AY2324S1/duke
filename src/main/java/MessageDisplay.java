@@ -78,6 +78,15 @@ public class MessageDisplay {
     }
 
     /**
+     * Displays a message when a task is deleted.
+     *
+     * @param task The deleted tasks.
+     */
+    public void deleteMessage(Task task) {
+        System.out.printf("Noted. I've removed this task:\n   %s\nNow you have %s tasks in the list.\n%s\n", task.toString(), Task.getTotalTasks(), LINE_BREAK);
+    }
+
+    /**
      * Displays the list of user tasks.
      *
      * @param userInputList The array of user tasks.

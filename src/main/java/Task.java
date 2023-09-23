@@ -55,6 +55,10 @@ public class Task {
         return totalTasks;
     }
 
+    public static void removeTask(){
+        totalTasks--;
+    }
+
     public String toString() {
         String taskName = getTaskName();
         Character taskType = getTaskType();

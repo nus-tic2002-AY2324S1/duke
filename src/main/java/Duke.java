@@ -93,9 +93,12 @@ class Duke {
                     }
                     break;
                 }
+                case "delete":{
+
+                }
                 case "mark":
                 case "unmark": {
-                    toggleStatus(userInput);
+                    modifyTask(userInput);
                     break;
                 }
                 default:
@@ -173,7 +176,7 @@ class Duke {
     }
 
     //Toggle the complete status of a task
-    public void toggleStatus(String userInput) throws InvalidNumberFormatException {
+    public void modifyTask(String userInput) throws InvalidNumberFormatException {
         int spaceIndex = userInput.indexOf(' ');
         String integerPart = userInput.substring(spaceIndex + 1);
         String commandBeforeSpace = userInput.substring(0, spaceIndex);
@@ -181,24 +184,16 @@ class Duke {
         try {
             int itemIndex = Integer.parseInt(integerPart) - 1;
             if (itemIndex < 0 || itemIndex >= Task.getTotalTasks()) {
-                // Handle exception case where the item index is out of bounds
+                // Handle exception case where the item index is out of bounds or does not exists
                 throw new InvalidTaskException();
             }
 
             if (commandBeforeSpace.equals("mark")) {
-                if (userInputList.get(itemIndex).isCompleted()) {
-                    messageDisplay.alreadyMark(userInputList.get(itemIndex).getTaskName());
-                } else {
-                    userInputList.get(itemIndex).markAsCompleted();
-                    messageDisplay.completeMessage(userInputList, itemIndex);
-                }
+                markAsComplete(itemIndex);
             } else if (commandBeforeSpace.equals("unmark")) {
-                if (!userInputList.get(itemIndex).isCompleted()) {
-                    messageDisplay.notMark(userInputList.get(itemIndex).getTaskName());
-                } else {
-                    userInputList.get(itemIndex).markAsNotCompleted();
-                    messageDisplay.unCompleteMessage(userInputList, itemIndex);
-                }
+                markAsIncomplete(itemIndex);
+            } else if (commandBeforeSpace.equals("delete")) {
+                deleteTask(itemIndex);
             } else {
                 // Handle exception case where the command is neither mark nor unmark
                 throw new InvalidNumberFormatException();
@@ -212,5 +207,30 @@ class Duke {
             System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
         }
     }
+    public void markAsComplete(int itemIndex){
+        if (userInputList.get(itemIndex).isCompleted()) {
+            messageDisplay.alreadyMark(userInputList.get(itemIndex).getTaskName());
+        } else {
+            userInputList.get(itemIndex).markAsCompleted();
+            messageDisplay.completeMessage(userInputList, itemIndex);
+        }
+    }
+
+    public void markAsIncomplete(int itemIndex){
+        if (!userInputList.get(itemIndex).isCompleted()) {
+            messageDisplay.notMark(userInputList.get(itemIndex).getTaskName());
+        } else {
+            userInputList.get(itemIndex).markAsNotCompleted();
+            messageDisplay.unCompleteMessage(userInputList, itemIndex);
+        }
+    }
+
+    public void deleteTask(int itemIndex){
+        Task.removeTask();
+        Task deletedTask = userInputList.remove(itemIndex);
+        messageDisplay.deleteMessage(deletedTask);
+    }
 }
+
+
 
