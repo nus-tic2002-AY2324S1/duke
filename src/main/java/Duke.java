@@ -15,48 +15,76 @@ public class Duke {
         while (!isBye) {
             userInput = sc.nextLine();
             // start line
-            output("**************************************************");
+            outputln("**************************************************");
 
             // format user input
-            String[] userInputArr = userInput.split(" ");
+            String[] tokens = userInput.split(" ");
             Task curTask;
+            String taskName;
+            Task newTask;
 
-            switch (userInputArr[0].toLowerCase()) {
+            switch (tokens[0].toLowerCase()) {
                 case "bye":
                     isBye = true;
-                    output("Bye. Hope to see you again.");
+                    outputln("Bye. Hope to see you again.");
                     break;
                 case "list":
                     int count = 1;
                     for (Task task : taskList) {
-                        output(count + ".[" + task.isDone() + "] " + task.getName());
+                        outputln(count + "." + task.toString());
                         count++;
                     }
                     break;
                 case "mark" :
-                    curTask = taskList.get(Integer.parseInt(userInputArr[1]) - 1);
+                    curTask = taskList.get(Integer.parseInt(tokens[1]) - 1);
                     curTask.setDone(true);
-                    output("Nice! I've marked this task as done:");
-                    output("[" + curTask.isDone() +"]" + curTask.getName());
+                    outputln("Nice! I've marked this task as done:");
+                    outputln("[" + curTask.isDone() +"]" + curTask.getName());
                     break;
                 case "unmark" :
-                    curTask = taskList.get(Integer.parseInt(userInputArr[1]) - 1);
+                    curTask = taskList.get(Integer.parseInt(tokens[1]) - 1);
                     curTask.setDone(false);
-                    output("OK, I've marked this task as not done yet:");
-                    output("[" + curTask.isDone() +"]" + curTask.getName());
+                    outputln("OK, I've marked this task as not done yet:");
+                    outputln("[" + curTask.isDone() +"]" + curTask.getName());
+                    break;
+                case "todo":
+                    taskName = userInput.substring(5);
+                    newTask = new Todo(taskName);
+                    taskList.add(newTask);
+                    outputln(newTask);
+                    break;
+                case "deadline":
+                    taskName = userInput.substring(9, userInput.indexOf("/by") - 1);
+                    String by = userInput.substring(userInput.indexOf("/by") + 4);
+                    newTask = new Deadline(taskName, by);
+                    taskList.add(newTask);
+                    outputln(newTask);
+                    break;
+                case "event":
+                    taskName = userInput.substring(6, userInput.indexOf("/from") - 1);
+                    String from = userInput.substring(userInput.indexOf("/from") + 6, userInput.indexOf("/to"));
+                    String to = userInput.substring(userInput.indexOf("/to") + 4);
+                    newTask = new Event(taskName, from, to);
+                    taskList.add(newTask);
+                    outputln(newTask);
                     break;
                 default:
-                    taskList.add(new Task(userInput));
-                    output("added: " + userInput);
+                    outputln(userInput);
             }
 
             // end line
-            output("**************************************************\n");
+            outputln("**************************************************\n");
         }
 
     }
 
-    public static void output(String str) {
+    public static void outputln(Task newTask) {
+        outputln("Got it. I've added this task:");
+        outputln("  " + newTask.toString());
+        outputln("Now you have " + taskList.size() + " tasks in the list.");
+    }
+
+    public static void outputln(String str) {
         System.out.print("  ");
         System.out.println(str);
     }
