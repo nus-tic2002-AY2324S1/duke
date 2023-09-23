@@ -6,26 +6,11 @@ public class Duke {
     private static ArrayList<Task> taskList = new ArrayList<>();
 
     public static void main(String[] args) {
+        welcome();
 
         Scanner sc = new Scanner(System.in);
         String userInput = "";
         boolean isBye = false;
-
-        String logo =   "████████ ██ ███    ██  █████  \n" +
-                        "   ██    ██ ████   ██ ██   ██ \n" +
-                        "   ██    ██ ██ ██  ██ ███████ \n" +
-                        "   ██    ██ ██  ██ ██ ██   ██ \n" +
-                        "   ██    ██ ██   ████ ██   ██";
-
-        System.out.println(logo);
-        System.out.println("Hello! I'm TINA. \nHow can I help you?\n");
-        System.out.println("Type your question below. (Type \"bye\" to exit)");
-        System.out.println("Function Menu:");
-        System.out.println("1.bye: exit");
-        System.out.println("2.list: list out all tasks");
-        System.out.println("3.mark [task number]: mark task as done");
-        System.out.println("4.unmark [task number]: unmark task as not done");
-        System.out.println("**************************************************\n");
 
         while (!isBye) {
             userInput = sc.nextLine();
@@ -74,6 +59,24 @@ public class Duke {
     public static void output(String str) {
         System.out.print("  ");
         System.out.println(str);
+    }
+
+    public static void welcome() {
+        String logo =   "████████ ██ ███    ██  █████  \n" +
+                "   ██    ██ ████   ██ ██   ██ \n" +
+                "   ██    ██ ██ ██  ██ ███████ \n" +
+                "   ██    ██ ██  ██ ██ ██   ██ \n" +
+                "   ██    ██ ██   ████ ██   ██";
+
+        System.out.println(logo);
+        System.out.println("Hello! I'm TINA. \nHow can I help you?\n");
+        //System.out.println("Type your question below. (Type \"bye\" to exit)");
+        System.out.println("Function Menu:");
+        System.out.println("1.bye: exit");
+        System.out.println("2.list: list out all tasks");
+        System.out.println("3.mark [task number]: mark task as done");
+        System.out.println("4.unmark [task number]: unmark task as not done");
+        System.out.println("**************************************************\n");
     }
 }
 
