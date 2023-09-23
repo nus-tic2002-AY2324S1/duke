@@ -11,7 +11,6 @@ public class Duke {
         greet();
         processInput();
     }
-
     private static void processInput() {
         Scanner in = new Scanner(System.in);
         String input;
@@ -76,6 +75,7 @@ public class Duke {
         out.add("5. todo - [use example: todo borrow book]");
         out.add("6. deadline - [use example: deadline return book /by Sunday]");
         out.add("7. event - [use example: event project meeting /from 12pm 16th Aug /to 15pm 17th Aug");
+        out.add("8 delete - [use example: delete 1]");
         return out;
     }
 

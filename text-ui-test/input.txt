@@ -10,6 +10,7 @@ list
 deadline return book /by Sunday
 event project meeting /from Mon 2pm /to 4pm
 list
+delete 4
 blah
 mark a
 mark
@@ -18,5 +19,7 @@ deadline
 deadline return book
 event
 event project meeting
-event project meeting /from Aug 6th 2pm 
+event project meeting /from Aug 6th 2pm
+delete a
+delete 7
 bye
