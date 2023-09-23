@@ -1,4 +1,3 @@
-****************************************
 ╭━━━╮╱╱╱╱╱╭╮
 ┃╭━╮┃╱╱╱╱╱┃┃
 ┃╰━━┳━━┳━━┫╰━┳━━┳━╮
@@ -11,27 +10,63 @@ Hello, I'm Sophon:).
 How can I assist you today?
 ****************************************
 ****************************************
-Added: read book
+There's nothing in your list
 ****************************************
 ****************************************
-Added: gym
+Got it. I've added this task:
+   [T][ ] gym
+Now you have 1 tasks in the list.
 ****************************************
 ****************************************
-Added: study
+Got it. I've added this task:
+   [D][ ] homework (by: june 6th)
+Now you have 2 tasks in the list.
 ****************************************
 ****************************************
-That's some progress! I've mark this task as done:
-   [X] read book
+Got it. I've added this task:
+   [E][ ] project meeting (from: saturday 2pm to: 4pm)
+Now you have 3 tasks in the list.
 ****************************************
 ****************************************
-Okay, you can do it at a later time:
-   [ ] read book
+Got it. I've added this task:
+   [T][ ] join sports club
+Now you have 4 tasks in the list.
 ****************************************
 ****************************************
-You did not complete read book before!
+Got it. I've added this task:
+   [T][ ] borrow book
+Now you have 5 tasks in the list.
 ****************************************
 ****************************************
-OOPS!!! The description of a todo cannot be empty.
+You did not complete gym before!
+****************************************
+****************************************
+That's some progress! I've marked this task as done:
+   [T][X] gym
+****************************************
+****************************************
+That's some progress! I've marked this task as done:
+   [T][X] join sports club
+****************************************
+****************************************
+For input string: "abc" is not a valid number! Please Try again.
+****************************************
+****************************************
+Here are the tasks in your list:
+1.[T][X] gym
+2.[D][ ] homework (by: june 6th)
+3.[E][ ] project meeting (from: saturday 2pm to: 4pm)
+4.[T][X] join sports club
+5.[T][ ] borrow book
+****************************************
+****************************************
+You did not provide any details on your todo. Please provide in the format of <event + Task Name>.
+****************************************
+****************************************
+Invalid format for Deadline task. Please provide in the format of <deadline + Task Name + /by + by time>
+****************************************
+****************************************
+Invalid format for Event task. Please provide in the format of <event + Task Name + /from + From time + /to + To time>
 ****************************************
 ****************************************
 Bye! Hope to see you again soon!

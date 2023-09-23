@@ -1,10 +1,17 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The Duke class represents a task management application.
  * Users can interact with it through a command-line interface.
  */
 class Duke {
     // An array to store user tasks
-    Task[] userInputArray = new Task[100];
+    private final List<Task> userInputList = new ArrayList<>();
+
+    private enum TaskType {
+        TODO, DEADLINE, EVENT
+    }
 
     private final UserInterface userInterface;
 
@@ -59,14 +66,14 @@ class Duke {
 
             switch (command) {
                 case "list": {
-                    messageDisplay.UserInputList(userInputArray);
+                    messageDisplay.UserInputList(userInputList);
                     break;
                 }
                 case "todo": {
                     if (arguments.isEmpty()) {
                         throw new EmptyArgumentException();
                     } else {
-                        storeUserTask('T', arguments);
+                        storeUserTask(TaskType.TODO, arguments);
                     }
                     break;
                 }
@@ -74,7 +81,7 @@ class Duke {
                     if (!arguments.contains("/by")) {
                         throw new InvalidTaskFormatException("deadline");
                     } else {
-                        storeUserTask('D', arguments);
+                        storeUserTask(TaskType.DEADLINE, arguments);
                     }
                     break;
                 }
@@ -82,7 +89,7 @@ class Duke {
                     if (!arguments.contains("/from") || !arguments.contains("/to")) {
                         throw new InvalidTaskFormatException("event");
                     } else {
-                        storeUserTask('E', arguments);
+                        storeUserTask(TaskType.EVENT, arguments);
                     }
                     break;
                 }
@@ -100,17 +107,17 @@ class Duke {
     }
 
     /**
-     * Stores a task in the userInputArray and displays a message.
+     * Stores a task in the userInputList and displays a message.
      *
-     * @param taskType  The type of the task ('T', 'D', or 'E').
+     * @param taskType  The type of the task ('Todo', 'Deadline', or 'Event').
      * @param arguments The task arguments.
      */
-    private void storeUserTask(Character taskType, String arguments) {
+    private void storeUserTask(TaskType taskType, String arguments) {
         Task task = createTask(taskType, arguments);
         if (task != null) {
+            userInputList.add(task);
             int itemIndex = Task.getTotalTasks() - 1;
-            userInputArray[itemIndex] = task;
-            messageDisplay.addedMessage(userInputArray, itemIndex);
+            messageDisplay.addedMessage(userInputList, itemIndex);
         }
     }
 
@@ -121,16 +128,16 @@ class Duke {
      * @param arguments The remaining command from user input.
      * @return The created task or null if the creation fails.
      */
-    private Task createTask(Character taskType, String arguments) {
+    private Task createTask(TaskType taskType, String arguments) {
         Task task = null;
         switch (taskType) {
-            case 'T':
+            case TODO:
                 task = new Task('T', arguments);
                 break;
-            case 'D':
+            case DEADLINE:
                 task = createDeadlineTask(arguments);
                 break;
-            case 'E':
+            case EVENT:
                 task = createEventTask(arguments);
                 break;
         }
@@ -145,9 +152,9 @@ class Duke {
      */
     private Task createDeadlineTask(String arguments) {
         int byIndex = arguments.indexOf("/by");
-        String TaskName = arguments.substring(0, byIndex).trim();
+        String taskName = arguments.substring(0, byIndex).trim();
         String date = arguments.substring(byIndex + 3).trim();
-        return new DeadlineTask('D', TaskName, date);
+        return new DeadlineTask('D', taskName, date);
     }
 
     /**
@@ -159,10 +166,10 @@ class Duke {
     private Task createEventTask(String arguments) {
         int fromIndex = arguments.indexOf("/from");
         int toIndex = arguments.indexOf("/to");
-        String TaskName = arguments.substring(0, fromIndex).trim();
+        String taskName = arguments.substring(0, fromIndex).trim();
         String from = arguments.substring(fromIndex + 5, toIndex).trim();
         String to = arguments.substring(toIndex + 3).trim();
-        return new EventTask('E', TaskName, from, to);
+        return new EventTask('E', taskName, from, to);
     }
 
     //Toggle the complete status of a task
@@ -179,18 +186,18 @@ class Duke {
             }
 
             if (commandBeforeSpace.equals("mark")) {
-                if (userInputArray[itemIndex].isCompleted()) {
-                    messageDisplay.alreadyMark(userInputArray[itemIndex].getTaskName());
+                if (userInputList.get(itemIndex).isCompleted()) {
+                    messageDisplay.alreadyMark(userInputList.get(itemIndex).getTaskName());
                 } else {
-                    userInputArray[itemIndex].markAsCompleted();
-                    messageDisplay.completeMessage(userInputArray, itemIndex);
+                    userInputList.get(itemIndex).markAsCompleted();
+                    messageDisplay.completeMessage(userInputList, itemIndex);
                 }
             } else if (commandBeforeSpace.equals("unmark")) {
-                if (!userInputArray[itemIndex].isCompleted()) {
-                    messageDisplay.notMark(userInputArray[itemIndex].getTaskName());
+                if (!userInputList.get(itemIndex).isCompleted()) {
+                    messageDisplay.notMark(userInputList.get(itemIndex).getTaskName());
                 } else {
-                    userInputArray[itemIndex].markAsNotCompleted();
-                    messageDisplay.unCompleteMessage(userInputArray, itemIndex);
+                    userInputList.get(itemIndex).markAsNotCompleted();
+                    messageDisplay.unCompleteMessage(userInputList, itemIndex);
                 }
             } else {
                 // Handle exception case where the command is neither mark nor unmark

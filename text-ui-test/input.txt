@@ -1,3 +1,4 @@
+List
 todo gym
 deadline homework /by June 6th
 event project meeting /from saturday 2pm /to 4pm
@@ -6,8 +7,9 @@ todo borrow book
 Unmark 1
 mark 1
 mark 4
+Mark abc
 list
 Todo
 Deadline project submission
-Event CCA 
+Event CCA
 Bye

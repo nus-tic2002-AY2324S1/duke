@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class MessageDisplay {
     public static final String LINE_BREAK = "****************************************";
 
@@ -32,9 +34,9 @@ public class MessageDisplay {
     /**
      * Displays a message when a task is added.
      */
-    public void addedMessage(Task[] userInputArray, int itemNumber) {
+    public void addedMessage(List<Task> userInputList, int itemNumber) {
         int totalTasks = Task.getTotalTasks();
-        System.out.printf("Got it. I've added this task:\n   %s\nNow you have %d tasks in the list.\n%s%n", userInputArray[itemNumber].toString(), totalTasks, LINE_BREAK);
+        System.out.printf("Got it. I've added this task:\n   %s\nNow you have %d tasks in the list.\n%s%n", userInputList.get(itemNumber).toString(), totalTasks, LINE_BREAK);
     }
 
     /**
@@ -58,36 +60,36 @@ public class MessageDisplay {
     /**
      * Displays a message when a task is marked as completed.
      *
-     * @param userInputArray The array of user tasks.
+     * @param userInputList The array of user tasks.
      * @param itemNumber     The index of the completed task.
      */
-    public void completeMessage(Task[] userInputArray, int itemNumber) {
-        System.out.printf("That's some progress! I've marked this task as done:\n   %s\n%s\n", userInputArray[itemNumber].toString(), LINE_BREAK);
+    public void completeMessage(List<Task> userInputList, int itemNumber) {
+        System.out.printf("That's some progress! I've marked this task as done:\n   %s\n%s\n", userInputList.get(itemNumber).toString(), LINE_BREAK);
     }
 
     /**
      * Displays a message when a task is unmarked.
      *
-     * @param userInputArray The array of user tasks.
+     * @param userInputList The array of user tasks.
      * @param itemNumber     The index of the unmarked task.
      */
-    public void unCompleteMessage(Task[] userInputArray, int itemNumber) {
-        System.out.printf("Okay, you can do it at a later time:\n   %s\n%s\n", userInputArray[itemNumber].toString(), LINE_BREAK);
+    public void unCompleteMessage(List<Task> userInputList, int itemNumber) {
+        System.out.printf("Okay, you can do it at a later time:\n   %s\n%s\n", userInputList.get(itemNumber).toString(), LINE_BREAK);
     }
 
     /**
      * Displays the list of user tasks.
      *
-     * @param userInputArray The array of user tasks.
+     * @param userInputList The array of user tasks.
      */
-    public void UserInputList(Task[] userInputArray) {
+    public void UserInputList(List<Task> userInputList) {
         if (Task.getTotalTasks() == 0) {
             print("There's nothing in your list");
             return;
         }
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < Task.getTotalTasks(); i++) {
-            System.out.println((i + 1) + "." + userInputArray[i].toString());
+            System.out.println((i + 1) + "." + userInputList.get(i).toString());
         }
         System.out.println(LINE_BREAK);
     }
