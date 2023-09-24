@@ -7,22 +7,19 @@ public class Duke {
     public static ArrayList<Task> actions = new ArrayList<>();
     public static int inputCount =0;
 
-
-    public static String taskStatus(boolean status){
-        if (status){
-            return "[X]";
-        }else {
-            return "[ ]";
-        }
-    }
     public static void addTasks(String input){
+//        Task newTask = new Task(input, false);
+        Task newTask = getNewTask(input);
         System.out.println(
                 "    ____________________________________________________________\n" +
-                        "     added: " + input + "\n" +
-                        "    ____________________________________________________________\n" );
-        Task newTask = new Task(input, false);
+                        "     Got it. I've added this task:");
+        System.out.print("       ");
+        newTask.printTask();
         actions.add(newTask) ;
         inputCount++;
+        System.out.println(
+                "     Now you have "+inputCount+ " tasks in the list.\n" +
+                 "    ____________________________________________________________\n");
     }
 
     public static int getNumber(String input){
@@ -38,13 +35,27 @@ public class Duke {
         return -1;
     }
 
+    public static Task getNewTask (String input){
+        if (input.trim().toLowerCase().startsWith("deadline")){
+            Deadline newDeadline = new Deadline(input, false);
+            return newDeadline;
+        }else if (input.trim().toLowerCase().startsWith("event")){
+            Event newEvent = new Event(input, false);
+            return newEvent;
+        }else {
+            Task newTask = new Task(input, false);
+            return newTask;
+        }
+    }
+
 
 
     public static void printTaskList(){
         System.out.println("    ____________________________________________________________\n"+
                 "    Here are the tasks in your list: ");
         for (int i = 1; i <= inputCount; i++){
-            System.out.println("    "+ i + "."+taskStatus(actions.get(i-1).getIsDone())+actions.get(i-1).getDescription());
+            System.out.print(" " + i +".");
+            actions.get(i-1).printTask();
         }
         System.out.println("    ____________________________________________________________");
     }
@@ -88,16 +99,18 @@ public class Duke {
                 actions.get(index-1).setIsDone(true);
                 System.out.println("    ____________________________________________________________\n"+
                         "    Nice! I've marked this task as done: ");
+                System.out.print("       ");
                 //print "[X] return book"
-                System.out.println("    "+  " "+taskStatus(actions.get(index-1).getIsDone())+ " "+actions.get(index-1).getDescription());
+                actions.get(index-1).printTask();
                 System.out.println("    ____________________________________________________________");
             }else if (input.startsWith("unmark")){
                 int index = getNumber(input);
                 actions.get(index-1).setIsDone(false);
                 System.out.println("    ____________________________________________________________\n"+
                         "    OK, I've marked this task as not done yet: ");
+                System.out.print("       ");
                 //print "[ ] return book"
-                System.out.println("    "+  " "+taskStatus(actions.get(index-1).getIsDone())+ " "+actions.get(index-1).getDescription());
+                actions.get(index-1).printTask();
                 System.out.println("    ____________________________________________________________");
             }else if (!input.trim().equals("list")){
                 addTasks(input);

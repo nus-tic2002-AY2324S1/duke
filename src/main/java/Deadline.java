@@ -1,0 +1,35 @@
+public class Deadline extends Task{
+
+    private String by;
+    public Deadline(String d,boolean x) {
+        super(d,x);
+        filterBy(d);
+    }
+    public String getBy() {
+        return by;
+    }
+    public void setBy(String newBy) {
+        by = newBy;
+    }
+
+    public void filterBy(String description) {
+        String[] words = description.split(" ", 2);
+        String[] splitBy = words[1].split("/by ");
+        setDescription(splitBy[0]);
+        try {
+            this.by = splitBy[1];
+        } catch(ArrayIndexOutOfBoundsException e) {
+            System.out.println("There has to be a date for deadline Task.");
+        }
+    }
+
+    @Override
+    public void printTask(){
+        if (!getIsDone()){
+            System.out.println("[D][ ] "+ getDescription() + "(by: "+getBy()+")");
+        }else {
+            System.out.println("[D][X] "+ getDescription() + "(by: "+getBy()+")");
+        }
+
+    }
+}

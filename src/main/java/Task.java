@@ -2,11 +2,12 @@ public class Task {
     private boolean isDone;
     private String description;
 
-    public Task (String s,boolean d){
-        this.isDone = d;
-        this.description = s;
+    public Task (String d,boolean x){
+        this.isDone = x ;
+        this.description = d;
     }
-    // get task isDone and get taskString
+
+
     public void setIsDone(boolean x){
         this.isDone = x;
     }
@@ -21,6 +22,15 @@ public class Task {
 
     public String getDescription(){
         return description;
+    }
+
+    public void printTask(){
+        if (!isDone){
+            System.out.println("[T][ ] "+ getDescription());
+        }else {
+            System.out.println("[T][X] "+ getDescription());
+        }
+
     }
 
 }
