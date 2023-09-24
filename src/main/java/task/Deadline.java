@@ -8,7 +8,6 @@ public class Deadline extends Task {
         super(description);
         this.time = time;
     }
-
     @Override
     public String toString() {
         return "[D]" + super.toString()
