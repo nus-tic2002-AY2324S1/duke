@@ -2,12 +2,15 @@ package task;
 
 import command.*;
 import exceptions.InputBlankException;
+import io.TaskStorage;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Craby extends CrabyMessage {
+    private static TaskStorage taskStorage = new TaskStorage("./data/craby.txt");
+
     public static void crabySysterm() {
         System.out.println(line + System.lineSeparator() + logo + line);
         System.out.println(hello + System.lineSeparator() + line);
@@ -15,7 +18,8 @@ public class Craby extends CrabyMessage {
         String answerName = scanner.nextLine();
         System.out.print("   Hi " + answerName);
         System.out.println(" ♡, How can I help you today?" + System.lineSeparator() + line);
-        List<Task> tasks = new ArrayList<>();
+
+        List<Task> tasks = taskStorage.load();
         while (true) {
             String input = scanner.nextLine();
             input = input.trim();
@@ -63,6 +67,8 @@ public class Craby extends CrabyMessage {
                 case DELETE:
                     handleDeleteCommand(input, tasks);
                     break;
+                case DELETEALL:
+                    handleDeleteAllCommand(input, tasks);
             }
         } catch (IllegalArgumentException ie) {
             addTaskCommand(input, tasks);
@@ -70,20 +76,30 @@ public class Craby extends CrabyMessage {
         return exit;
     }
 
+
     private static void addTaskCommand(String input, List<Task> tasks) {
         new AddTaskCommand().handleCommand(input, tasks);
+        taskStorage.save(tasks);
     }
 
     private static void handleUnmarkCommand(String input, List<Task> tasks) {
         new UnmarkCommand().handleCommand(input, tasks);
+        taskStorage.save(tasks);
     }
 
     private static void handleMarkCommand(String input, List<Task> tasks) {
         new MarkCommand().handleCommand(input, tasks);
+        taskStorage.save(tasks);
     }
 
     private static void handleDeleteCommand(String input, List<Task> tasks) {
         new DeleteCommand().handleCommand(input, tasks);
+        taskStorage.save(tasks);
+    }
+
+    private static void handleDeleteAllCommand(String input, List<Task> tasks) {
+        new DeleteAllCommand().handleCommand(input, tasks);
+        taskStorage.save(tasks);
     }
 
     private static void handleBlahCommand(String input, List<Task> tasks) {
