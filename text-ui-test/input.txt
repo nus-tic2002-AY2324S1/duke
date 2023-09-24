@@ -28,4 +28,5 @@ delete 9
 delete         5
 delete
 list
+deleteall
 bye
