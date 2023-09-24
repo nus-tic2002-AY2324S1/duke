@@ -41,28 +41,31 @@ public class Craby extends CrabyMessage {
         } catch (ArrayIndexOutOfBoundsException ai) {
             throw new InputBlankException();
         }
-        checkInput = checkInput.toLowerCase().trim();
-        switch (checkInput) {
-            case "list":
-                handleListCommand(tasks);
-                break;
-            case "blah":
-                handleBlahCommand();
-                break;
-            case "bye":
-                exit = handleByeCommand(answerName);
-                break;
-            case "mark":
-                handleMarkCommand(input, tasks);
-                break;
-            case "unmark":
-                handleUnmarkCommand(input, tasks);
-                break;
-            case "delete":
-                handleDeleteCommand(input,tasks);
-                break;
-            default:
-                addTaskCommand(input, tasks);
+        checkInput = checkInput.toUpperCase().trim();
+        try {
+            Keyword keyWords = Keyword.valueOf(checkInput);
+            switch (keyWords) {
+                case LIST:
+                    handleListCommand(tasks);
+                    break;
+                case BLAH:
+                    handleBlahCommand();
+                    break;
+                case BYE:
+                    exit = handleByeCommand(answerName);
+                    break;
+                case MARK:
+                    handleMarkCommand(input, tasks);
+                    break;
+                case UNMARK:
+                    handleUnmarkCommand(input, tasks);
+                    break;
+                case DELETE:
+                    handleDeleteCommand(input, tasks);
+                    break;
+            }
+        } catch (IllegalArgumentException ie) {
+            addTaskCommand(input, tasks);
         }
         return exit;
     }
@@ -78,9 +81,11 @@ public class Craby extends CrabyMessage {
     private static void handleMarkCommand(String input, List<Task> tasks) {
         new MarkCommand().handleMarkCommand(input, tasks);
     }
+
     private static void handleDeleteCommand(String input, List<Task> tasks) {
         new DeleteCommand().handleDeleteCommand(input, tasks);
     }
+
     private static void handleBlahCommand() {
         new BlahCommand().handleBlahCommand();
     }
