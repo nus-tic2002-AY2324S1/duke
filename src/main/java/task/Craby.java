@@ -46,13 +46,13 @@ public class Craby extends CrabyMessage {
             Keyword keyWords = Keyword.valueOf(checkInput);
             switch (keyWords) {
                 case LIST:
-                    handleListCommand(tasks);
+                    handleListCommand(input, tasks);
                     break;
                 case BLAH:
-                    handleBlahCommand();
+                    handleBlahCommand(input, tasks);
                     break;
                 case BYE:
-                    exit = handleByeCommand(answerName);
+                    exit = handleByeCommand(answerName, input, tasks);
                     break;
                 case MARK:
                     handleMarkCommand(input, tasks);
@@ -71,31 +71,31 @@ public class Craby extends CrabyMessage {
     }
 
     private static void addTaskCommand(String input, List<Task> tasks) {
-        new AddTaskCommand().addTaskCommand(input, tasks);
+        new AddTaskCommand().handleCommand(input, tasks);
     }
 
     private static void handleUnmarkCommand(String input, List<Task> tasks) {
-        new UnmarkCommand().handleUnmarkCommand(input, tasks);
+        new UnmarkCommand().handleCommand(input, tasks);
     }
 
     private static void handleMarkCommand(String input, List<Task> tasks) {
-        new MarkCommand().handleMarkCommand(input, tasks);
+        new MarkCommand().handleCommand(input, tasks);
     }
 
     private static void handleDeleteCommand(String input, List<Task> tasks) {
-        new DeleteCommand().handleDeleteCommand(input, tasks);
+        new DeleteCommand().handleCommand(input, tasks);
     }
 
-    private static void handleBlahCommand() {
-        new BlahCommand().handleBlahCommand();
+    private static void handleBlahCommand(String input, List<Task> tasks) {
+        new BlahCommand().handleCommand(input, tasks);
     }
 
-    private static void handleListCommand(List<Task> tasks) {
-        new ListCommand().handleListCommand(tasks);
+    private static void handleListCommand(String input, List<Task> tasks) {
+        new ListCommand().handleCommand(input, tasks);
     }
 
-    private static boolean handleByeCommand(String answerName) {
-        new ByeCommand().handleByeCommand(answerName);
+    private static boolean handleByeCommand(String answerName, String input, List<Task> tasks) {
+        new ByeCommand(answerName).handleCommand(answerName, tasks);
         return true;
     }
 }

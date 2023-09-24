@@ -4,8 +4,9 @@ import task.Task;
 
 import java.util.List;
 
-public class DeleteCommand extends CrabyMessage {
-    public void handleDeleteCommand(String input, List<Task> tasks) {
+public class DeleteCommand extends CrabyMessage implements CommandInterface {
+    @Override
+    public void handleCommand(String input, List<Task> tasks) {
         try {
             int tmp = input.indexOf("t");
             String checkDelete = input.substring(tmp + 2).trim();

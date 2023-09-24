@@ -1,8 +1,18 @@
 package command;
 
-public class ByeCommand extends CrabyMessage {
-    public void handleByeCommand(String answerName) {
-        System.out.println(blank + "Bye " + answerName + " ♡, hope to see you again soon!");
-        System.out.println(line + System.lineSeparator() +  crab);
+import task.Task;
+
+import java.util.List;
+
+public class ByeCommand extends CrabyMessage implements CommandInterface {
+    String answerName;
+    public ByeCommand(String answerName){
+        this.answerName = answerName;
+    };
+
+    @Override
+    public void handleCommand(String input, List<Task> tasks) {
+        System.out.println(blank + "Bye " + this.answerName + " ♡, hope to see you again soon!");
+        System.out.println(line + System.lineSeparator() + crab);
     }
 }

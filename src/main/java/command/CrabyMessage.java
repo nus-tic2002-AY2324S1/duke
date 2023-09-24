@@ -20,6 +20,5 @@ public class CrabyMessage {
             "             \"===\\     /===\"" + System.lineSeparator() +
             "              .==')___(`==." + System.lineSeparator() +
             "               .='     `=.";
-
 }
 

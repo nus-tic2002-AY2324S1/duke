@@ -4,8 +4,9 @@ import task.Task;
 
 import java.util.List;
 
-public class UnmarkCommand extends CrabyMessage {
-    public void handleUnmarkCommand(String input, List<Task> tasks) {
+public class UnmarkCommand extends CrabyMessage implements CommandInterface{
+    @Override
+    public void handleCommand(String input, List<Task> tasks) {
         try {
             int tmp = input.indexOf("k");
             String checkMark = input.substring(tmp + 1).trim();
