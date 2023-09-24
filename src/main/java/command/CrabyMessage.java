@@ -8,7 +8,7 @@ public class CrabyMessage {
             " | |___  | |    | (_| | | |_) |   | |" + System.lineSeparator() +
             "  \\____| |_|     \\__,_| |_.__/    |_|" + System.lineSeparator() +
                     System.lineSeparator();
-    public static final String hello = "   Hello! I'm CrabY 🦀"+ System.lineSeparator() + "   What is your name? ˃ᴗ˂";
+    public static final String hello = "   Hi Amber ♡, I'm CrabY 🦀"+ System.lineSeparator() + "   How can I help you today? ˃ᴗ˂";
     public static final String line = "  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈";
     public static final String blank = "   ";
     public static final String crab =

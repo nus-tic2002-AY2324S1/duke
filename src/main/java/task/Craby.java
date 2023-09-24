@@ -4,28 +4,22 @@ import command.*;
 import exceptions.InputBlankException;
 import io.TaskStorage;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Craby extends CrabyMessage {
     private static TaskStorage taskStorage = new TaskStorage("./data/craby.txt");
-
     public static void crabySysterm() {
         System.out.println(line + System.lineSeparator() + logo + line);
         System.out.println(hello + System.lineSeparator() + line);
         Scanner scanner = new Scanner(System.in);
-        String answerName = scanner.nextLine();
-        System.out.print("   Hi " + answerName);
-        System.out.println(" ♡, How can I help you today?" + System.lineSeparator() + line);
-
         List<Task> tasks = taskStorage.load();
         while (true) {
             String input = scanner.nextLine();
             input = input.trim();
             boolean exit = false;
             try {
-                exit = handleInput(input, tasks, answerName);
+                exit = handleInput(input, tasks);
             } catch (InputBlankException e) {
                 System.out.println("   Oops!!! The description cannot be empty.");
                 System.out.println("   Please try again!" + System.lineSeparator() + line);
@@ -36,7 +30,7 @@ public class Craby extends CrabyMessage {
         }
     }
 
-    private static boolean handleInput(String input, List<Task> tasks, String answerName) throws InputBlankException {
+    private static boolean handleInput(String input, List<Task> tasks) throws InputBlankException {
         if (input.isBlank()) throw new InputBlankException();
         boolean exit = false;
         String checkInput;
@@ -56,7 +50,7 @@ public class Craby extends CrabyMessage {
                     handleBlahCommand(input, tasks);
                     break;
                 case BYE:
-                    exit = handleByeCommand(answerName, input, tasks);
+                    exit = handleByeCommand(input, tasks);
                     break;
                 case MARK:
                     handleMarkCommand(input, tasks);
@@ -110,8 +104,8 @@ public class Craby extends CrabyMessage {
         new ListCommand().handleCommand(input, tasks);
     }
 
-    private static boolean handleByeCommand(String answerName, String input, List<Task> tasks) {
-        new ByeCommand(answerName).handleCommand(answerName, tasks);
+    private static boolean handleByeCommand(String input, List<Task> tasks) {
+        new ByeCommand().handleCommand(input, tasks);
         return true;
     }
 }
