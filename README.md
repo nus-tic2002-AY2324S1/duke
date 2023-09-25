@@ -40,3 +40,6 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 
 ### Level 4
 1, create Todos, Deadlines and Events class, and Modify Duke class to meet level 4 requirements
+
+### Level 5
+1,Level 5. Handle Errors,deal with errors such as incorrect inputs entered by the user

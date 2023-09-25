@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -31,6 +32,10 @@ public class Duke {
         while(true){
             printMessage("Please input command:");
             String command = input.nextLine();
+//            if (command == null || command.trim().isEmpty()) {
+//                printLine();
+//                throw new DukeException("The description cannot be empty.");
+//            }
             if(command.equalsIgnoreCase("bye")){
                 printLine();
                 printMessage("Bye. Hope to see you again soon!");
@@ -42,7 +47,7 @@ public class Duke {
                     printLine();
                     printMessage("Here are the tasks in your list:");
                     for (Task task:taskList) {
-                        printMessage(idx + ". "  + task.getStatusIcon() +task.description);
+                        printMessage(idx + ". "  + task.getStatusIcon() + " " + task.description);
                         idx++;
                     }
                     printLine();
@@ -53,12 +58,18 @@ public class Duke {
                 }
             }else if(command.toLowerCase().contains("mark")) {
                 String[] split = command.split(" ");
+//                if(split.length>2){
+//                    printLine();
+//                    throw new DukeException("Please Enter a enter number of the task you want to mark/unmark");
+//                }
                 if (split[0].trim().equalsIgnoreCase("mark")) {
                     int index = 0;
                     try {
                         index = Integer.parseInt(split[1].trim());
                     } catch (NumberFormatException e) {
+                        printLine();
                         System.out.println(split[1] + " is not a valid integer.");
+                        printLine();
                     }
                     if (taskList.size() >= index) {
                         taskList.get(index - 1).markAsDone();
@@ -84,57 +95,82 @@ public class Duke {
                 }
             }else if(command.toLowerCase().startsWith("todo")){
                 String[] split = command.split(" ");
-                String descWithBracket = Arrays.toString(Arrays.copyOfRange(split, 1, split.length));
-                String desc = descWithBracket.substring(1,descWithBracket.length()-1).trim().replace(","," ");
-                printMessage(desc);
-                Todos todoTask = new Todos(desc);
-                taskList.add(todoTask);
-                printLine();
-                printMessage("Got it. I've added this task:");
-                System.out.println(todoTask.getStatusIcon()+" "+ desc);
-                System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
-                printLine();
+                try{
+                    if(split.length<2){
+                        throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+                    }
+                    String descWithBracket = Arrays.toString(Arrays.copyOfRange(split, 1, split.length));
+                    String desc = descWithBracket.substring(1,descWithBracket.length()-1).trim().replace(","," ");
+                    printMessage(desc);
+                    Todos todoTask = new Todos(desc);
+                    taskList.add(todoTask);
+                    printLine();
+                    printMessage("Got it. I've added this task:");
+                    System.out.println(todoTask.getStatusIcon()+" "+ desc);
+                    System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
+                    printLine();
+                }catch (DukeException e){
+                    printLine();
+                    printMessage(e.getMessage());
+                    printLine();
+                }
             }else if(command.toLowerCase().startsWith("deadline")){
-                String[] split = command.split(" ");
-                String taskWithBracket = Arrays.toString(Arrays.copyOfRange(split, 1, split.length-2));
-                String task = taskWithBracket.substring(1,taskWithBracket.length()-1).replace(","," ");
-                String deadlineWithBracket = Arrays.toString(Arrays.copyOfRange(split,split.length-2,split.length));
-                String deadline = deadlineWithBracket.substring(2,deadlineWithBracket.length()-1).trim().replace(",",": ");
-                String desc = task + " (" + deadline +")";
-                printMessage(desc);
-                Deadlines deadlineTask = new Deadlines(desc);
-                taskList.add(deadlineTask);
-                printLine();
-                printMessage("Got it. I've added this task:");
-                System.out.println(deadlineTask.getStatusIcon()+" "+ desc);
-                System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
-                printLine();
+                try {
+                    String descString = command.replace("deadline","");
+                    if (descString.isEmpty()) {
+                        throw new DukeException("OOPS!!! The description of a event cannot be empty.");
+                    }
+                    int index = descString.indexOf("/");
+                    String desc = descString.substring(0,index-1).trim();
+                    String deadline = descString.substring(index).replace("/by"," (by: ")+ ")";
+                    desc = desc + deadline;
+                    printMessage(desc);
+                    Deadlines deadlineTask = new Deadlines(desc);
+                    taskList.add(deadlineTask);
+                    printLine();
+                    printMessage("Got it. I've added this task:");
+                    System.out.println(deadlineTask.getStatusIcon()+" "+ desc);
+                    System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
+                    printLine();
+                } catch ( DukeException e ) {
+                    printLine();
+                    printMessage(e.getMessage());
+                    printLine();
+                }
             }else if(command.toLowerCase().startsWith("event")){
-                String descString = command.replace("event ","");
-                String[] splitString = descString.split("/");
-                int index = descString.indexOf("/");
-                String desc = descString.substring(0,index-1);
-                String time = descString.substring(index).replace("/from"," (from:").replace("/to","to:") + ")";
-                desc = desc + time;
-                printMessage(desc);
-                Events eventTask = new Events(desc);
-                taskList.add(eventTask);
-                printLine();
-                printMessage("Got it. I've added this task:");
-                System.out.println(eventTask.getStatusIcon()+" "+ desc);
-                System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
-                printLine();
-
-//            }else if(split.length>1) {
-//                Task tempTask = new Task(command);
-//                taskList.add(tempTask);
-//                printLine();
-//                System.out.println("added: " + command);
-//                printLine();
+                try{
+                    String descString = command.replace("event","");
+                    if (descString.isEmpty()) {
+                        throw new DukeException("OOPS!!! The description of a event cannot be empty.");
+                    }
+                    int index = descString.indexOf("/");
+                    String desc = descString.substring(0,index-1).trim();
+                    String time = descString.substring(index).replace("/from"," (from:").replace("/to","to:") + ")";
+                    desc = desc + time;
+                    printMessage(desc);
+                    Events eventTask = new Events(desc);
+                    taskList.add(eventTask);
+                    printLine();
+                    printMessage("Got it. I've added this task:");
+                    System.out.println(eventTask.getStatusIcon()+" "+ desc);
+                    System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
+                    printLine();
+                }catch (DukeException e) {
+                    printLine();
+                    printMessage(e.getMessage());
+                    printLine();
+                }
             }else {
-                printLine();
-                printMessage(command);
-                printLine();
+                String[] split = command.split(" ");
+                try{
+                    if(split.length<2){
+                        throw new DukeException("I'm sorry, but I don't know what that means :-(");
+                    }
+                }catch(DukeException e){
+                    printLine();
+                    printMessage(e.getMessage());
+                    printLine();
+                }
             }
         }
 

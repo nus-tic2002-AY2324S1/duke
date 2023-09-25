@@ -18,52 +18,22 @@ Please input command:
 list
 ----------------------------------------
 Please input command:
-----------------------------------------
-added: read book
-----------------------------------------
+Please input command:
+Please input command:
 Please input command:
 ----------------------------------------
-added: return book
+list
 ----------------------------------------
 Please input command:
-----------------------------------------
-added: borrow book
-----------------------------------------
+Please input command:
 Please input command:
 ----------------------------------------
-Here are the tasks in your list:
-1. [ ] read book
-2. [ ] return book
-3. [ ] borrow book
+list
 ----------------------------------------
 Please input command:
-----------------------------------------
-Nice! I've marked this task as done:
-[X] read book
-----------------------------------------
 Please input command:
 ----------------------------------------
-Nice! I've marked this task as done:
-[X] borrow book
-----------------------------------------
-Please input command:
-----------------------------------------
-Here are the tasks in your list:
-1. [X] read book
-2. [ ] return book
-3. [X] borrow book
-----------------------------------------
-Please input command:
-----------------------------------------
-OK, I've marked this task as not done yet:
-[ ] borrow book
-----------------------------------------
-Please input command:
-----------------------------------------
-Here are the tasks in your list:
-1. [X] read book
-2. [ ] return book
-3. [ ] borrow book
+list
 ----------------------------------------
 Please input command:
 ----------------------------------------
