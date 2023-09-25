@@ -1,0 +1,11 @@
+Hello World
+Visit the shopping center for food
+Take a picture of a cute dog
+Arrange the items in the shelf
+list
+mark 2
+mark 0
+list
+unmark 2
+list
+bye

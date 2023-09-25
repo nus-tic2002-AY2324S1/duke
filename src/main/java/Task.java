@@ -8,13 +8,10 @@ public class Task {
     public String getStatusIcon(){
         return (this.marked ? "X" : " ");
     }
-
     public static void setMarked(Task task){
         task.marked = true;
     }
     public static void setUnmarked(Task task){
         task.marked = false;
     }
-
-
 }

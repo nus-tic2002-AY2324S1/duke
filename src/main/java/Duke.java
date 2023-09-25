@@ -13,20 +13,39 @@ public class Duke {
 
         while(true){
             echo = in.nextLine();
-            // lower case
-            String lecho = echo.toLowerCase();
-            if(lecho.equals("bye")){
-                Text.printMessage(Text.Message.BYE);
-                break;
-            }else if(lecho.equals("list")) {
-                tasklist.listShelf();
-            }else if(lecho.contains("mark")){
-                tasklist.markTask(echo);
-            } else {
-                tasklist.addItem(echo);
+            String[] input = InputParser(echo); //input[0] = first word, input[1] = rest of sentence
+
+            switch (input[0]) {
+                case "bye":
+                    Text.printMessage(Text.Message.BYE);
+                    return;
+                case "list":
+                    tasklist.listShelf();
+                    break;
+                case "mark":
+                    tasklist.markTask(input);
+                    break;
+                case "unmark":
+                    tasklist.markTask(input);
+                    break;
+                case "todo":
+                    tasklist.addSpecialTask(input[1],input[0]);
+                    break;
+                case "deadline":
+                    tasklist.addSpecialTask(input[1],input[0]);
+                    break;
+                case "event":
+                    tasklist.addSpecialTask(input[1],input[0]);
+                    break;
+                default:
+                    tasklist.addItem(input[0]);
             }
         }
 
+    }
+    public static String[] InputParser(String input) {
+        String[] words = input.split(" ", 2);
+        return words;
     }
 
 }
