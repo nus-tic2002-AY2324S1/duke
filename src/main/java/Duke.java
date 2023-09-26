@@ -1,18 +1,50 @@
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Scanner;
 
 public class Duke {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
-    private static final String COMMAND_BYE = "bye";
-    private static final String COMMAND_DEADLINE = "deadline";
-    private static final String COMMAND_DELETE = "delete";
-    private static final String COMMAND_EVENT = "event";
-    private static final String COMMAND_LIST = "list";
-    private static final String COMMAND_MARK = "mark";
-    private static final String COMMAND_TODO = "todo";
-    private static final String COMMAND_UNMARK = "unmark";
+    private static final Hashtable<String, DuckCommandHandler> commandHandlerMap = new Hashtable<>() {
+        {
+            put(DuckCommand.BYE.toString(), Duke::handleByeCommand);
+            put(DuckCommand.DEADLINE.toString(), Duke::handleDeadlineCommand);
+            put(DuckCommand.DELETE.toString(), Duke::handleDeleteCommand);
+            put(DuckCommand.EVENT.toString(), Duke::handleEventCommand);
+            put(DuckCommand.LIST.toString(), Duke::handleListCommand);
+            put(DuckCommand.MARK.toString(), Duke::handleMarkCommand);
+            put(DuckCommand.TODO.toString(), Duke::handleTodoCommand);
+            put(DuckCommand.UNMARK.toString(), Duke::handleUnmarkCommand);
+        }
+    };
 
     private enum ProgramAction {CONTINUE, EXIT}
+
+    private enum DuckCommand {
+        BYE("bye"),
+        DEADLINE("deadline"),
+        DELETE("delete"),
+        EVENT("event"),
+        LIST("list"),
+        MARK("mark"),
+        TODO("todo"),
+        UNMARK("unmark");
+
+        private final String commandName;
+
+        DuckCommand(String commandName) {
+            this.commandName = commandName;
+        }
+
+        @Override
+        public String toString() {
+            return commandName;
+        }
+    }
+
+    @FunctionalInterface
+    private interface DuckCommandHandler {
+        void apply(ArrayList<Task> tasks, String input) throws DukeException;
+    }
 
     public static void main(String[] args) {
         /*
@@ -53,38 +85,21 @@ public class Duke {
     }
 
     private static ProgramAction handleInput(ArrayList<Task> tasks, String input) throws DukeException {
-        if (isForCommand(input, COMMAND_BYE)) {
-            String commandArgs = input.substring(COMMAND_BYE.length()).trim();
-            handleByeCommand(commandArgs);
-            return ProgramAction.EXIT;
-        } else if (isForCommand(input, COMMAND_LIST)) {
-            String commandArgs = input.substring(COMMAND_LIST.length()).trim();
-            handleListCommand(tasks, commandArgs);
-        } else if (isForCommand(input, COMMAND_MARK)) {
-            String commandArgs = input.substring(COMMAND_MARK.length()).trim();
-            handleMarkCommand(tasks, commandArgs);
-        } else if (isForCommand(input, COMMAND_UNMARK)) {
-            String commandArgs = input.substring(COMMAND_UNMARK.length()).trim();
-            handleUnmarkCommand(tasks, commandArgs);
-        } else if (isForCommand(input, COMMAND_TODO)) {
-            String commandArgs = input.substring(COMMAND_TODO.length()).trim();
-            handleTodoCommand(tasks, commandArgs);
-        } else if (isForCommand(input, COMMAND_DEADLINE)) {
-            String commandArgs = input.substring(COMMAND_DEADLINE.length()).trim();
-            handleDeadlineCommand(tasks, commandArgs);
-        } else if (isForCommand(input, COMMAND_EVENT)) {
-            String commandArgs = input.substring(COMMAND_EVENT.length()).trim();
-            handleEventCommand(tasks, commandArgs);
-        } else if (isForCommand(input, COMMAND_DELETE)) {
-            String commandArgs = input.substring(COMMAND_DELETE.length()).trim();
-            handleDeleteCommand(tasks, commandArgs);
+        String commandName = input.trim().split(" ", -1)[0];
+        DuckCommandHandler commandHandler = commandHandlerMap.getOrDefault(commandName, null);
+        if (commandHandler != null) {
+            String commandArgs = input.substring(commandName.length()).trim();
+            commandHandler.apply(tasks, commandArgs);
+            if (commandName.equals(DuckCommand.BYE.toString())) {
+                return ProgramAction.EXIT;
+            }
         } else {
             throw new UnknownCommandDukeException("Input: " + input);
         }
         return ProgramAction.CONTINUE;
     }
 
-    private static void handleByeCommand(String args) throws InvalidCommandArgsDukeException {
+    private static void handleByeCommand(ArrayList<Task> tasks, String args) throws InvalidCommandArgsDukeException {
         if (!args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The bye command should not take any arguments.");
         }
@@ -227,10 +242,6 @@ public class Duke {
                 "   " + deletedTask.toString(),
                 String.format(" Now you have %d tasks in the list.", tasksLatestSize)
         }));
-    }
-
-    private static boolean isForCommand(String input, String commandName) {
-        return input.equals(commandName) || input.startsWith(commandName + " ");
     }
 
     private static Integer tryParseInt(String s) {
