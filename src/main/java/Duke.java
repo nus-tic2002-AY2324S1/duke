@@ -45,6 +45,8 @@ public class Duke {
                 } else {
                     printMessage(" OOPS!!! An unhandled Duke exception occurred.");
                 }
+            } catch (Exception e) {
+                printMessage(" OOPS!!! An unknown exception occurred.");
             }
         } while (true);
     }
