@@ -5,6 +5,7 @@ public class Duke {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private static final String COMMAND_BYE = "bye";
     private static final String COMMAND_DEADLINE = "deadline";
+    private static final String COMMAND_DELETE = "delete";
     private static final String COMMAND_EVENT = "event";
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_MARK = "mark";
@@ -74,6 +75,9 @@ public class Duke {
         } else if (isForCommand(input, COMMAND_EVENT)) {
             String commandArgs = input.substring(COMMAND_EVENT.length()).trim();
             handleEventCommand(tasks, commandArgs);
+        } else if (isForCommand(input, COMMAND_DELETE)) {
+            String commandArgs = input.substring(COMMAND_DELETE.length()).trim();
+            handleDeleteCommand(tasks, commandArgs);
         } else {
             throw new UnknownCommandDukeException("Input: " + input);
         }
@@ -144,7 +148,7 @@ public class Duke {
 
         Todo toto = new Todo(args);
         tasks.add(toto);
-        printAddMessage(toto, tasks.size());
+        printTaskAddedMessage(toto, tasks.size());
     }
 
     private static void handleDeadlineCommand(ArrayList<Task> tasks, String args) throws InvalidCommandArgsDukeException {
@@ -159,7 +163,7 @@ public class Duke {
 
         Deadline deadline = new Deadline(array[0], array[1]);
         tasks.add(deadline);
-        printAddMessage(deadline, tasks.size());
+        printTaskAddedMessage(deadline, tasks.size());
     }
 
     private static void handleEventCommand(ArrayList<Task> tasks, String args) throws InvalidCommandArgsDukeException {
@@ -179,7 +183,22 @@ public class Duke {
 
         Event event = new Event(array[0], fromToArray[0], fromToArray[1]);
         tasks.add(event);
-        printAddMessage(event, tasks.size());
+        printTaskAddedMessage(event, tasks.size());
+    }
+
+    private static void handleDeleteCommand(ArrayList<Task> tasks, String args) throws InvalidCommandArgsDukeException {
+        if (args.isEmpty()) {
+            throw new InvalidCommandArgsDukeException("The task number to be deleted cannot be empty.");
+        }
+
+        Integer taskNumber = tryParseInt(args);
+        if (taskNumber == null || taskNumber < 1 || taskNumber > tasks.size()) {
+            throw new InvalidCommandArgsDukeException("Invalid task number to be deleted.");
+        }
+
+        Task task = tasks.get(taskNumber - 1);
+        tasks.remove(task);
+        printTaskDeletedMessage(task, tasks.size());
     }
 
     private static void printMessage(String message) {
@@ -194,10 +213,18 @@ public class Duke {
         System.out.println(HORIZONTAL_LINE);
     }
 
-    private static void printAddMessage(Task addedTask, int tasksLatestSize) {
+    private static void printTaskAddedMessage(Task addedTask, int tasksLatestSize) {
         printMessage(String.join(System.lineSeparator(), new String[]{
                 " Got it. I've added this task:",
                 "   " + addedTask.toString(),
+                String.format(" Now you have %d tasks in the list.", tasksLatestSize)
+        }));
+    }
+
+    private static void printTaskDeletedMessage(Task deletedTask, int tasksLatestSize) {
+        printMessage(String.join(System.lineSeparator(), new String[]{
+                " Noted. I've removed this task:",
+                "   " + deletedTask.toString(),
                 String.format(" Now you have %d tasks in the list.", tasksLatestSize)
         }));
     }

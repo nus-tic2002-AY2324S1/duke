@@ -34,5 +34,14 @@ unmark 2
 list
 unmark 3
 list
+delete
+delete 0
+delete 9
+delete 3
+list
+delete 2
+list
+delete 1
+list
 bye 1
 bye
