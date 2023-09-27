@@ -1,8 +1,5 @@
-import javax.swing.*;
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class Duke {
     public static void main(String[] args) {
         Logo();
@@ -120,64 +117,119 @@ public class Duke {
             }
         }
     }
+    public static void ErrorDuke(){
+        System.out.println("Cate does not know what this means");
+        System.out.println("The available commands are : list , mark , unmark , todo , deadline , event , bye");
+    }
+    public static void Response(Keyword input,ArrayList<Task> Storage){
+        switch (input){
+            case BYE:
+                Separator();
+                System.out.println("Goodbye , See you next time '~'");
+                Separator();
+                break;
+            case LIST:
+                ListTask(Storage);
+                break;
+            case MARK:
+                Separator();
+                System.out.println("Excellent , Cate marks your Task");
+                System.out.println(Storage.get(Storage.size()-1));
+                Separator();
+                break;
+            case UNMARK:
+                Separator();
+                System.out.println("Don't worry , Cate un-marks your Task");
+                System.out.println(Storage.get(Storage.size()-1));
+                Separator();
+                break;
+            case TODO:
+                Separator();
+                System.out.println("Just do it");
+                System.out.println(Storage.get(Storage.size()-1));
+                TaskCount(Storage.size());
+                Separator();
+                break;
+            case DEADLINE:
+                Separator();
+                System.out.println("Time is ticking");
+                System.out.println(Storage.get(Storage.size()-1));
+                TaskCount(Storage.size());
+                Separator();
+                break;
+            case EVENT:
+                Separator();
+                System.out.println("Track the duration");
+                System.out.println(Storage.get(Storage.size()-1));
+                TaskCount(Storage.size());
+                Separator();
+                break;
+        }
+    }
+    public static void ListTask(ArrayList<Task> Storage){
+        Separator();
+        System.out.println("Here are your list of Tasks");
+        for (int i = 0; i < Storage.size(); i++) {
+            System.out.println(i + 1 + "." + Storage.get(i));
+        }
+        System.out.println("Work harder, there is " + Storage.size() + " more task now");
+        Separator();
+    }
+    public enum Keyword {
+        BYE,LIST,MARK,UNMARK,TODO,DEADLINE,EVENT
+    }
     public static void TED(){
         ArrayList<Task> Storage = new ArrayList<>();
         Task Selector;
         boolean Power=true;
         while(Power){
-            String line = Scan();
-            String[] words = line.split(" ");
-            switch(words[0]){
-                case "bye" : Separator();
-                    System.out.println("Goodbye , See you next time '~'");
-                    Separator();
-                    Power=false;
-                    break;
-                case "list" : Separator();
-                    System.out.println("Here are your list of Tasks");
-                    for(int i=0;i<Storage.size();i++){
-                        System.out.println(i+1 + "." + Storage.get(i));
-                    }
-                    System.out.println("Work harder, there is " + Storage.size() + " more task now");
-                    Separator();
-                    break;
-                case "mark" : Selector = Storage.get(Integer.parseInt(words[1])-1);
-                    Selector.mark(true);
-                    System.out.println("Excellent , Cate marks your Task");
-                    System.out.println(Selector);
-                    break;
-                case "unmark" : Selector = Storage.get(Integer.parseInt(words[1])-1);
-                    Selector.mark(false);
-                    System.out.println("Don't worry , Cate un-marks your Task");
-                    System.out.println(Selector);
-                    break;
-                case "todo" :
-                    Selector = new Todo(line.substring(5,line.length()));
-                    Storage.add(Selector);
-                    Separator();
-                    System.out.println("Just do it");
-                    System.out.println(Selector);
-                    TaskCount(Storage.size());
-                    Separator();
-                    break;
-                case "deadline" :
-                    Selector = new Deadline(line.substring(9,line.indexOf("/by")),line.substring(line.indexOf("/by")+4,line.length()));
-                    Storage.add(Selector);
-                    Separator();
-                    System.out.println("Time is ticking");
-                    System.out.println(Selector);
-                    TaskCount(Storage.size());
-                    Separator();
-                    break;
-                case "event" :
-                    Selector = new Event(line.substring(6,line.indexOf("/from")),line.substring(line.indexOf("/from")+6,line.indexOf("/to")),line.substring(line.indexOf("/to")+4,line.length()));
-                    Storage.add(Selector);
-                    Separator();
-                    System.out.println("Track the duration");
-                    System.out.println(Selector);
-                    TaskCount(Storage.size());
-                    Separator();
-                    break;
+            try {
+                String line = Scan();
+                String[] words = line.split(" ");
+                Keyword key = Keyword.valueOf(words[0].toUpperCase());
+                switch (key) {
+                    case BYE:
+                        Response(key,Storage);
+                        Power = false;
+                        break;
+                    case LIST:
+                        if(Storage.isEmpty()){
+                            throw new MissingArgumentException("Oops , List is Empty");
+                        }
+                        Response(key,Storage);
+                        break;
+                    case MARK:
+                        Selector = Storage.get(Integer.parseInt(words[1]) - 1);
+                        Selector.mark(true);
+                        Response(key,Storage);
+                        break;
+                    case UNMARK:
+                        Selector = Storage.get(Integer.parseInt(words[1]) - 1);
+                        Selector.mark(false);
+                        Response(key,Storage);
+                        break;
+                    case TODO:
+                        Selector = new Todo(line.substring(5, line.length()));
+                        Storage.add(Selector);
+                        Response(key,Storage);
+                        break;
+                    case DEADLINE:
+                        Selector = new Deadline(line.substring(9, line.indexOf("/by")), line.substring(line.indexOf("/by") + 4, line.length()));
+                        Storage.add(Selector);
+                        Response(key,Storage);
+                        break;
+                    case EVENT:
+                        Selector = new Event(line.substring(6, line.indexOf("/from")), line.substring(line.indexOf("/from") + 6, line.indexOf("/to")), line.substring(line.indexOf("/to") + 4, line.length()));
+                        Storage.add(Selector);
+                        Response(key,Storage);
+                        break;
+                    default:
+                        throw new IllegalArgumentException();
+                }
+            } catch (IllegalArgumentException e){
+                ErrorDuke();
+            } catch (MissingArgumentException e){
+                System.out.println(e);
             }
         }
     }
