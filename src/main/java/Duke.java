@@ -7,19 +7,58 @@ public class Duke {
     public static ArrayList<Task> actions = new ArrayList<>();
     public static int inputCount =0;
 
+    public static void printHeader(){
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
+        System.out.println("____________________________________________________________\n"+
+                "Hello! I'm venni\n" +
+                "What can I do for you?\n"
+        );
+    }
+
     public static void addTasks(String input){
-//        Task newTask = new Task(input, false);
+        boolean isValid = validateInput(input);
+        //if isValid ==false, stop process.
         Task newTask = getNewTask(input);
-        System.out.println(
-                "    ____________________________________________________________\n" +
-                        "     Got it. I've added this task:");
-        System.out.print("       ");
-        newTask.printTask();
-        actions.add(newTask) ;
-        inputCount++;
-        System.out.println(
-                "     Now you have "+inputCount+ " tasks in the list.\n" +
-                 "    ____________________________________________________________\n");
+        if (!isValid){
+            System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+        } else if(newTask.getDescription()==null){
+            System.out.println("OOPS!!! The description of a todo task cannot be empty.");
+        }else{
+            System.out.println(
+                    "    ____________________________________________________________\n" +
+                            "     Got it. I've added this task:");
+            System.out.print("       ");
+            newTask.printTask();
+            actions.add(newTask) ;
+            inputCount++;
+            System.out.println(
+                    "     Now you have "+inputCount+ " tasks in the list.\n" +
+                            "    ____________________________________________________________\n");
+        }
+    }
+
+    public static void printTaskList(){
+        System.out.println("    ____________________________________________________________\n"+
+                "    Here are the tasks in your list: ");
+        for (int i = 1; i <= inputCount; i++){
+            System.out.print("       ");
+            System.out.print(" " + i +".");
+            actions.get(i-1).printTask();
+        }
+        System.out.println("    ____________________________________________________________");
+    }
+
+    public static boolean validateInput(String input){
+        String trimInput = input.trim().toLowerCase();
+        if (!trimInput.startsWith("todo")&&!trimInput.startsWith("deadline")&&!trimInput.startsWith("event")){
+            return false;
+        }
+        return true;
     }
 
     public static int getNumber(String input){
@@ -42,36 +81,12 @@ public class Duke {
         }else if (input.trim().toLowerCase().startsWith("event")){
             Event newEvent = new Event(input, false);
             return newEvent;
-        }else {
+        }else  {
             Task newTask = new Task(input, false);
             return newTask;
         }
     }
 
-
-
-    public static void printTaskList(){
-        System.out.println("    ____________________________________________________________\n"+
-                "    Here are the tasks in your list: ");
-        for (int i = 1; i <= inputCount; i++){
-            System.out.print(" " + i +".");
-            actions.get(i-1).printTask();
-        }
-        System.out.println("    ____________________________________________________________");
-    }
-
-    public static void printHeader(){
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("____________________________________________________________\n"+
-                "Hello! I'm venni\n" +
-                "What can I do for you?\n"
-        );
-    }
 
     public static void main(String[] args) {
         //Adding testing items in Task

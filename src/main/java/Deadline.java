@@ -14,12 +14,12 @@ public class Deadline extends Task{
 
     public void filterBy(String description) {
         String[] words = description.split(" ", 2);
-        String[] splitBy = words[1].split("/by ");
-        setDescription(splitBy[0]);
         try {
+            String[] splitBy = words[1].split("/by ");
+            setDescription(splitBy[0]);
             this.by = splitBy[1];
         } catch(ArrayIndexOutOfBoundsException e) {
-            System.out.println("There has to be a date for deadline Task.");
+            //error message display is at main class
         }
     }
 

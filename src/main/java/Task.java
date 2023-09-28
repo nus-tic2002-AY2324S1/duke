@@ -4,7 +4,7 @@ public class Task {
 
     public Task (String d,boolean x){
         this.isDone = x ;
-        this.description = d;
+        setDescription(d);
     }
 
 
@@ -12,8 +12,14 @@ public class Task {
         this.isDone = x;
     }
 
-    public void setDescription(String s){
-        this.description = s;
+    public void setDescription(String description){
+        String[] words = description.split(" ", 2);
+        try {
+            this.description = words[2];
+        } catch(ArrayIndexOutOfBoundsException e) {
+            //error message display is at main class
+        }
+
     }
 
     public boolean getIsDone() {

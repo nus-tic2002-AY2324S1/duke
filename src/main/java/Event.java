@@ -14,11 +14,15 @@ public class Event extends Task{
 
     public void setFromAndTo(String description) {
         String[] words = description.split(" ", 2);
-        String[] splitFrom = words[1].split("/from ");
-        setDescription(splitFrom[0]);
-        String[] splitTo = splitFrom[1].split("/to ");
-        setFrom(splitTo[0]);
-        setTo(splitTo[1]);
+        try {
+            String[] splitFrom = words[1].split("/from ");
+            setDescription(splitFrom[0]);
+            String[] splitTo = splitFrom[1].split("/to ");
+            setFrom(splitTo[0]);
+            setTo(splitTo[1]);
+        } catch(ArrayIndexOutOfBoundsException e) {
+            //error message display is at main class
+        }
     }
 
     public void setTo(String newTo) {
