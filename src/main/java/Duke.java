@@ -118,8 +118,10 @@ public class Duke {
         }
     }
     public static void ErrorDuke(){
+        Separator();
         System.out.println("Cate does not know what this means");
         System.out.println("The available commands are : list , mark , unmark , todo , deadline , event , bye");
+        Separator();
     }
     public static void Response(Keyword input,ArrayList<Task> Storage){
         switch (input){
@@ -178,6 +180,69 @@ public class Duke {
     public enum Keyword {
         BYE,LIST,MARK,UNMARK,TODO,DEADLINE,EVENT
     }
+    public static boolean NoTextError(Keyword k,String line,ArrayList<Task> Storage){
+
+        String[] words = line.split(" ");
+        try{
+            switch(k){
+                case LIST:
+                    if(Storage.isEmpty()){
+                        throw new MissingArgumentException("Oops , List is Empty");
+                    }
+                    break;
+                case MARK:
+                    if(Integer.parseInt(words[1])<=0)
+                        throw new MissingArgumentException("Task number has to be real");
+                    if(Storage.size()<Integer.parseInt(words[1]))
+                        throw new MissingArgumentException("Task number selected to mark is larger than task list");
+                    break;
+                case UNMARK:
+                    if(Integer.parseInt(words[1])<=0)
+                        throw new MissingArgumentException("Task number has to be real");
+                    if(Storage.size()<Integer.parseInt(words[1]))
+                        throw new MissingArgumentException("Task number selected to unmark is larger than task list");
+                    break;
+                case TODO:
+                    if(words.length==1)
+                        throw new MissingArgumentException("Todo is missing content");
+                    break;
+                case DEADLINE:
+                    if(words.length==1)
+                        throw new MissingArgumentException("Deadline is missing context and due time");
+                    if(words[1].equals("/by"))
+                        throw new MissingArgumentException("Deadline is missing context");
+                    if(!line.contains("/by"))
+                        throw new MissingArgumentException("Deadline is missing due time");
+                    if(words[words.length-1].equals("/by"))
+                        throw new MissingArgumentException("Deadline is due time is blank");
+                    break;
+                case EVENT:
+                    if(words.length==1)
+                        throw new MissingArgumentException("Event is missing context , start time and end time");
+                    if(words[1].equals("/from"))
+                        throw new MissingArgumentException("Event is missing context");
+                    if(words[1].equals("/to"))
+                        throw new MissingArgumentException("Event is missing context");
+                    if(!line.contains("/from"))
+                        throw new MissingArgumentException("Event is missing start time");
+                    if(!line.contains("/to"))
+                        throw new MissingArgumentException("Event is missing end time");
+                    if(line.contains("/from /to"))
+                        throw new MissingArgumentException("Event start time is blank");
+                    if(words[words.length-1].equals("/to"))
+                        throw new MissingArgumentException("Event end time is blank");
+                    if(line.indexOf("/from")>line.indexOf("/to"))
+                        throw new MissingArgumentException("Start time first followed by end time");
+                    break;
+            }
+        } catch (MissingArgumentException e){
+            Separator();
+            System.out.println(e);
+            Separator();
+            return false;
+        }
+        return true;
+    }
     public static void TED(){
         ArrayList<Task> Storage = new ArrayList<>();
         Task Selector;
@@ -187,15 +252,13 @@ public class Duke {
                 String line = Scan();
                 String[] words = line.split(" ");
                 Keyword key = Keyword.valueOf(words[0].toUpperCase());
+                if(NoTextError(key,line,Storage))
                 switch (key) {
                     case BYE:
                         Response(key,Storage);
                         Power = false;
                         break;
                     case LIST:
-                        if(Storage.isEmpty()){
-                            throw new MissingArgumentException("Oops , List is Empty");
-                        }
                         Response(key,Storage);
                         break;
                     case MARK:
@@ -228,8 +291,6 @@ public class Duke {
                 }
             } catch (IllegalArgumentException e){
                 ErrorDuke();
-            } catch (MissingArgumentException e){
-                System.out.println(e);
             }
         }
     }
