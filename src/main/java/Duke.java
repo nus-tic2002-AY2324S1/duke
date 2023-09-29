@@ -125,13 +125,16 @@ public class Duke {
     }
     public static void Response(Keyword input,ArrayList<Task> Storage){
         switch (input){
+            case DELETE:
+                ListTask(input,Storage);
+                break;
             case BYE:
                 Separator();
                 System.out.println("Goodbye , See you next time '~'");
                 Separator();
                 break;
             case LIST:
-                ListTask(Storage);
+                ListTask(input,Storage);
                 break;
             case MARK:
                 Separator();
@@ -168,23 +171,49 @@ public class Duke {
                 break;
         }
     }
-    public static void ListTask(ArrayList<Task> Storage){
+    public static void ListTask(Keyword k,ArrayList<Task> Storage){
         Separator();
-        System.out.println("Here are your list of Tasks");
+        System.out.println("Here is your list of Tasks");
         for (int i = 0; i < Storage.size(); i++) {
             System.out.println(i + 1 + "." + Storage.get(i));
         }
-        System.out.println("Work harder, there is " + Storage.size() + " more task now");
+        if(Storage.isEmpty())
+            System.out.println("Well done , the List is now empty");
+        else if(k==Keyword.LIST)
+            System.out.println("Work harder, there is " + Storage.size() + " more task now");
+        else if (k==Keyword.DELETE)
+            System.out.println("Great! there is only " + Storage.size() + " task in the List now");
         Separator();
     }
+    public static ArrayList<Task> RemoveTask(ArrayList<Task> Storage ,int number){
+        ArrayList<Task> StorageUpdate = new ArrayList<>();
+        for(int i=0;i< Storage.size();i++){
+            if(i != number)
+            StorageUpdate.add(Storage.get(i));
+            else {
+                Separator();
+                System.out.println("Cate has deleted this Task:");
+                System.out.println(Storage.get(i));
+            }
+        }
+        return StorageUpdate;
+    }
     public enum Keyword {
-        BYE,LIST,MARK,UNMARK,TODO,DEADLINE,EVENT
+        BYE,LIST,MARK,UNMARK,TODO,DEADLINE,EVENT,DELETE
     }
     public static boolean NoTextError(Keyword k,String line,ArrayList<Task> Storage){
 
         String[] words = line.split(" ");
         try{
             switch(k){
+                case DELETE:
+                    if(words.length==1)
+                        throw new MissingArgumentException("Nothing selected to delete");
+                    if(Integer.parseInt(words[1])<=0)
+                        throw new MissingArgumentException("Cate cant find imaginary tasks");
+                    if(Storage.size()<Integer.parseInt(words[1]))
+                        throw new MissingArgumentException("Cate is unable to delete whats outside the list , try again");
+                    break;
                 case LIST:
                     if(Storage.isEmpty()){
                         throw new MissingArgumentException("Oops , List is Empty");
@@ -192,41 +221,45 @@ public class Duke {
                     break;
                 case MARK:
                     if(Integer.parseInt(words[1])<=0)
-                        throw new MissingArgumentException("Task number has to be real");
+                        throw new MissingArgumentException("If its not a real number, it wont be marked");
                     if(Storage.size()<Integer.parseInt(words[1]))
-                        throw new MissingArgumentException("Task number selected to mark is larger than task list");
+                        throw new MissingArgumentException("Task number is larger than the list , add more task");
+                    if(Storage.get(Integer.parseInt(words[1])-1).isDone)
+                        throw new MissingArgumentException("Cate has already marked it as done");
                     break;
                 case UNMARK:
                     if(Integer.parseInt(words[1])<=0)
-                        throw new MissingArgumentException("Task number has to be real");
+                        throw new MissingArgumentException("Only real numbers please");
                     if(Storage.size()<Integer.parseInt(words[1]))
-                        throw new MissingArgumentException("Task number selected to unmark is larger than task list");
+                        throw new MissingArgumentException("Task number is not within the list , try again");
+                    if(!Storage.get(Integer.parseInt(words[1])-1).isDone)
+                        throw new MissingArgumentException("Mark it as done first, Cate is unable to Unmark");
                     break;
                 case TODO:
                     if(words.length==1)
-                        throw new MissingArgumentException("Todo is missing content");
+                        throw new MissingArgumentException("Nothing Todo");
                     break;
                 case DEADLINE:
                     if(words.length==1)
-                        throw new MissingArgumentException("Deadline is missing context and due time");
+                        throw new MissingArgumentException("Where is the Deadline context and due time?");
                     if(words[1].equals("/by"))
-                        throw new MissingArgumentException("Deadline is missing context");
+                        throw new MissingArgumentException("Theres no content for Deadline");
                     if(!line.contains("/by"))
-                        throw new MissingArgumentException("Deadline is missing due time");
+                        throw new MissingArgumentException("its not a Deadline without an expiry");
                     if(words[words.length-1].equals("/by"))
-                        throw new MissingArgumentException("Deadline is due time is blank");
+                        throw new MissingArgumentException("Deadline due time is blank");
                     break;
                 case EVENT:
                     if(words.length==1)
-                        throw new MissingArgumentException("Event is missing context , start time and end time");
+                        throw new MissingArgumentException("What Event is this? there is no content , start time and end time");
                     if(words[1].equals("/from"))
                         throw new MissingArgumentException("Event is missing context");
                     if(words[1].equals("/to"))
                         throw new MissingArgumentException("Event is missing context");
                     if(!line.contains("/from"))
-                        throw new MissingArgumentException("Event is missing start time");
+                        throw new MissingArgumentException("Event cant start without a start time , add /from");
                     if(!line.contains("/to"))
-                        throw new MissingArgumentException("Event is missing end time");
+                        throw new MissingArgumentException("Does the Event not end? , add /to");
                     if(line.contains("/from /to"))
                         throw new MissingArgumentException("Event start time is blank");
                     if(words[words.length-1].equals("/to"))
@@ -252,8 +285,12 @@ public class Duke {
                 String line = Scan();
                 String[] words = line.split(" ");
                 Keyword key = Keyword.valueOf(words[0].toUpperCase());
-                if(NoTextError(key,line,Storage))
+                if(NoTextError(key,line,Storage)) //checks for argument errors
                 switch (key) {
+                    case DELETE:
+                        Storage = RemoveTask(Storage,Integer.parseInt(words[1]) - 1);
+                        Response(key,Storage);
+                        break;
                     case BYE:
                         Response(key,Storage);
                         Power = false;
@@ -295,4 +332,3 @@ public class Duke {
         }
     }
 }
-
