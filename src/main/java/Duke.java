@@ -32,14 +32,36 @@ public class Duke {
             System.out.println(
                     "    ____________________________________________________________\n" +
                             "     Got it. I've added this task:");
+            //e.g. "   [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)"
             System.out.print("       ");
             newTask.printTask();
+
             actions.add(newTask) ;
             inputCount++;
+
+            //print task number as of now
             System.out.println(
                     "     Now you have "+inputCount+ " tasks in the list.\n" +
                             "    ____________________________________________________________\n");
         }
+    }
+
+    public static void removeTasks(String input){
+        int taskNo = getNumber(input);
+        System.out.println(
+                "    ____________________________________________________________\n" +
+                        "     Noted. I've removed this task:");
+        //e.g. "   [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)"
+        System.out.print("       ");
+        actions.get(taskNo-1).printTask();
+
+        actions.remove(taskNo-1) ;
+        inputCount--;
+        //print task number as of now
+        System.out.println(
+                "     Now you have "+inputCount+ " tasks in the list.\n" +
+                        "    ____________________________________________________________\n");
+
     }
 
     public static void printTaskList(){
@@ -55,7 +77,8 @@ public class Duke {
 
     public static boolean validateInput(String input){
         String trimInput = input.trim().toLowerCase();
-        if (!trimInput.startsWith("todo")&&!trimInput.startsWith("deadline")&&!trimInput.startsWith("event")){
+        if (!trimInput.startsWith("todo")&&!trimInput.startsWith("deadline")
+                &&!trimInput.startsWith("event")){
             return false;
         }
         return true;
@@ -90,9 +113,10 @@ public class Duke {
 
     public static void main(String[] args) {
         //Adding testing items in Task
-        Task task1 = new Task("read book", false);
-        Task task2 = new Task("return book", false);
-        Task task3 = new Task("buy bread", false);
+        //what if the situation without todo
+        Task task1 = new Task("todo read book", false);
+        Task task2 = new Task("todo return book", false);
+        Task task3 = new Task("todo buy bread", false);
 
         actions.add(task1);
         actions.add(task2);
@@ -102,14 +126,14 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         printHeader();
         String input = scanner.nextLine();
-
+        String trimInput = input.trim().toLowerCase();
         //read string and execute functions accordingly.
         while (!input.trim().equalsIgnoreCase("bye")){
             //added function that handles whitespace as well
 //            if (input.trim().isEmpty()){
 //                continue;
 //            }
-            if (input.startsWith("mark")){
+            if (input.trim().toLowerCase().startsWith("mark")){
                 int index = getNumber(input);
                 actions.get(index-1).setIsDone(true);
                 System.out.println("    ____________________________________________________________\n"+
@@ -118,7 +142,7 @@ public class Duke {
                 //print "[X] return book"
                 actions.get(index-1).printTask();
                 System.out.println("    ____________________________________________________________");
-            }else if (input.startsWith("unmark")){
+            }else if (input.trim().toLowerCase().startsWith("unmark")){
                 int index = getNumber(input);
                 actions.get(index-1).setIsDone(false);
                 System.out.println("    ____________________________________________________________\n"+
@@ -127,7 +151,10 @@ public class Duke {
                 //print "[ ] return book"
                 actions.get(index-1).printTask();
                 System.out.println("    ____________________________________________________________");
-            }else if (!input.trim().equals("list")){
+
+            }else if (input.trim().toLowerCase().startsWith("delete")){
+                removeTasks(input);
+            }else if (!input.trim().equalsIgnoreCase("list")) {
                 addTasks(input);
             }else{
                 printTaskList();

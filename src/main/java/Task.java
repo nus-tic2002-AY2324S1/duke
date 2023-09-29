@@ -15,7 +15,7 @@ public class Task {
     public void setDescription(String description){
         String[] words = description.split(" ", 2);
         try {
-            this.description = words[2];
+            this.description = words[1];
         } catch(ArrayIndexOutOfBoundsException e) {
             //error message display is at main class
         }
