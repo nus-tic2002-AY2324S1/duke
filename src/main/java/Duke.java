@@ -24,29 +24,75 @@ public class Duke {
                     return;
                 }
                 case "list" : {
-                    printTaskList(taskList);
+                    if (taskList[0] == null) {
+                        printMessageWithBorder("Your task list is empty.");
+                    } else {
+                        printTaskList(taskList);
+                    }
                     break;
                 }
                 case "mark" : {
-                    // insert something
-                    int taskIndex = Integer.parseInt(stringArray[1])-1;
+                    int taskIndex;
 
-                    taskList[taskIndex].isDone = true;
+                    // condition for "mark" command without any number
+                    try {
+                        taskIndex = Integer.parseInt(stringArray[1]) - 1;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        printMessageWithBorder("Please include the task number that you'd like to mark as done.");
+                        break;
+                    } catch (NumberFormatException e) {
+                        printMessageWithBorder("Please only input a number.");
+                        break;
+                    }
+
+                    // condition for "mark" command with out-of-bounds number
+                    try {
+                        taskList[taskIndex].isDone = true;
+                    } catch (NullPointerException e) {
+                        printMessageWithBorder("Please enter a valid number, i.e. within the list.");
+                        break;
+                    }
+
                     printMessageWithBorder("Nice! I've marked this task as done:\n\t"
                             + taskList[taskIndex].printItemWithStatus());
                     break;
                 }
                 case "unmark" : {
-                    // insert something
-                    int taskIndex = Integer.parseInt(stringArray[1])-1;
+                    int taskIndex;
 
-                    taskList[taskIndex].isDone = false;
+                    // condition for "unmark" command without any number
+                    try {
+                        taskIndex = Integer.parseInt(stringArray[1]) - 1;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        printMessageWithBorder("Please include the task number that you'd like to mark as not done.");
+                        break;
+                    } catch (NumberFormatException e) {
+                        printMessageWithBorder("Please only input a number.");
+                        break;
+                    }
+
+                    // condition for "mark" command with out-of-bounds number
+                    try {
+                        taskList[taskIndex].isDone = false;
+                    } catch (NullPointerException e) {
+                        printMessageWithBorder("Please enter a valid number, i.e. within the list.");
+                        break;
+                    }
+
                     printMessageWithBorder("OK! I've marked this task as not done yet:\n\t"
                             + taskList[taskIndex].printItemWithStatus());
                     break;
                 }
                 case "todo" : {
-                    String description = createDescription(input, "todo");
+                    String description;
+
+                    try {
+                        description = createDescription(input, "todo");
+                    } catch (StringIndexOutOfBoundsException e) {
+                        printMessageWithBorder("Please follow this format:\n\t" +
+                                "\"todo\" \"your description\"");
+                        break;
+                    }
 
                     taskList[index] = new Todo(description);
                     printEchoMessage(taskList[index].printItemWithStatus(), (index+1));
@@ -54,18 +100,37 @@ public class Duke {
                     break;
                 }
                 case "deadline" : {
-                    String description = createDescription(input, "deadline");
-                    String by = createByDate(input);
+                    String by;
+                    String description;
+
+                    try {
+                        description = createDescription(input, "deadline");
+                        by = createByDate(input);
+                    } catch (StringIndexOutOfBoundsException e) {
+                        printMessageWithBorder("Please follow this format:\n\t" +
+                                "\"deadline\" \"your description\" \"/by\" \"date/time\"");
+                        break;
+                    }
 
                     taskList[index] = new Deadline(description, by);
-                    printEchoMessage(taskList[index].printItemWithStatus(), (index+1));
+                    printEchoMessage(taskList[index].printItemWithStatus(), (index + 1));
                     index++;
                     break;
                 }
                 case "event" : {
-                    String description = createDescription(input, "event");
-                    String from = createFromDate(input);
-                    String to = createToDate(input);
+                    String description;
+                    String from;
+                    String to;
+
+                    try {
+                        description = createDescription(input, "event");
+                        from = createFromDate(input);
+                        to = createToDate(input);
+                    } catch (StringIndexOutOfBoundsException e) {
+                        printMessageWithBorder("Please follow this format:\n\t" +
+                                "\"event\" \"your description\" \"/from\" \"date/time\" \"/to\" \"date/time\"");
+                        break;
+                    }
 
                     taskList[index] = new Event(description, from, to);
                     printEchoMessage(taskList[index].printItemWithStatus(), (index+1));
@@ -80,9 +145,9 @@ public class Duke {
     }
 
     public static void printMessageWithBorder(String message) {
-        System.out.println("\t─────────────────────────────────────────────");
+        System.out.println("\t─────────────────────────────────────────────────────────────────");
         System.out.println("\t" + message);
-        System.out.println("\t─────────────────────────────────────────────");
+        System.out.println("\t─────────────────────────────────────────────────────────────────");
     }
 
     public static void printEchoMessage(String message, int index) {
@@ -92,12 +157,12 @@ public class Duke {
     }
 
     public static void printTaskList(Task[] taskList) {
-        System.out.println("\t─────────────────────────────────────────────"
+        System.out.println("\t─────────────────────────────────────────────────────────────────"
                 + "\n\tHere are the tasks in your list:");
         for (int i = 0; taskList[i] != null; i++) {
             System.out.println("\t" + (i+1) + ". " + taskList[i].printItemWithStatus());
         }
-        System.out.println("\t─────────────────────────────────────────────");
+        System.out.println("\t─────────────────────────────────────────────────────────────────");
     }
 
     public static String createDescription(String input, String command) {
