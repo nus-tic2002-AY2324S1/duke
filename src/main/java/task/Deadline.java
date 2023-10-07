@@ -14,33 +14,11 @@ public class Deadline extends Task {
         timeString = timeString.trim();
         String[] isTime = timeString.split(" ");
         if (isTime.length > 1) {
-            handleDateTime(timeString);
+            this.time = handleDateTime(timeString);
         } else {
-            handleDateTime(timeString + " 0000");
+            this.time = handleDateTime(timeString + " 0000");
         }
     }
-    private void handleDateTime(String time) {
-
-        DateTimeFormatter formatter;
-        if (time.contains("/")) {
-            String[] checkFormat = time.split("/");
-            if (checkFormat[0].length() <= 2) {
-                formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
-            } else {
-                formatter = DateTimeFormatter.ofPattern("yyyy/M/d HHmm");
-            }
-        } else {
-            String[] checkFormat = time.split("-");
-            if (checkFormat[0].length() > 2) {
-                formatter = DateTimeFormatter.ofPattern("yyyy-M-d HHmm");
-            } else {
-                formatter = DateTimeFormatter.ofPattern("d-M-yyyy HHmm");
-            }
-        }
-
-        this.time = LocalDateTime.parse(time, formatter);
-    }
-
     @Override
     public String toString() {
         String tmp = String.valueOf(this.time.getDayOfWeek());

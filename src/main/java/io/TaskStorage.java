@@ -60,7 +60,12 @@ public class TaskStorage {
                             String[] formatEvent = content.split(" \\(from:");
                             String time = formatEvent[1];
                             time = time.substring(0, time.length() - 1);
-                            Event event = new Event(formatEvent[0], time);
+                            Event event;
+                            if(time.contains("to:")){
+                                String [] tmp1 = time.split(" to: ");
+                                event = new Event(formatEvent[0],tmp1[0],tmp1[1]);
+                            }else {
+                            event = new Event(formatEvent[0], time);}
                             event.setDone(isDone);
                             tasks.add(event);
                             break;
