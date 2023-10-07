@@ -24,7 +24,7 @@ public class TaskStorage {
         try {
             StringBuilder content = new StringBuilder();
             for (Task task : tasks) {
-                content.append(task.toString());
+                content.append(task.toStorageString());
                 content.append(System.lineSeparator());
             }
             BufferedWriter writer = new BufferedWriter(new FileWriter(this.filePath));
@@ -35,7 +35,6 @@ public class TaskStorage {
             e.printStackTrace();
         }
     }
-
     public List<Task> load() {
         List<Task> tasks = new ArrayList<>();
         if (file.exists()) {
@@ -52,7 +51,8 @@ public class TaskStorage {
                     switch (checkTask) {
                         case 'D':
                             String[] formatDeadline = content.split(" \\(by:");
-                            Deadline deadline = new Deadline(formatDeadline[0], formatDeadline[1]);
+                            String tmp = formatDeadline[1].substring(0,formatDeadline[1].length()-1);
+                            Deadline deadline = new Deadline(formatDeadline[0], tmp);
                             deadline.setDone(isDone);
                             tasks.add(deadline);
                             break;

@@ -40,8 +40,9 @@ public class AddTaskCommand extends CrabyMessage implements CommandInterface{
                     printAddMessage(input, tasks);
                 }catch (DateTimeParseException e) {
                     System.out.println(e);
-                    System.out.println("   The date or the timer format is incorrect.");
-                    System.out.println("   " + "╰┈➤ Please enter in format d/M/yyyy");
+                    System.out.println(blank + "The date or the timer format is incorrect.");
+                    System.out.println(blank + "╰┈➤ Please enter in format dd/mm/yyyy hhmm");
+                    System.out.println(line);
                 }
             } else {
                 System.out.println(blank + "Oops!!! Looks like you used the wrong format.");

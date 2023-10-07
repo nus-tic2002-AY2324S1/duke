@@ -1,8 +1,10 @@
   list
 Task 1 /by 2023-07-03 0000
-Task 2 /by                    2/10/2023 2359
+Task 2 /by                    2023/10/20 2359
 Task 3 /by 2023-06-27
    deadline return book /by 2/1/2023 1800
+   mark 1
    list
+
 deleteall
 bye
