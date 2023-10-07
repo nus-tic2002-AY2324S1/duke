@@ -5,6 +5,7 @@ import task.Event;
 import task.Task;
 import task.Todo;
 
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class AddTaskCommand extends CrabyMessage implements CommandInterface{
@@ -34,8 +35,14 @@ public class AddTaskCommand extends CrabyMessage implements CommandInterface{
         if (input.contains("/by")) {
             String[] formatDeadline = input.split("/by");
             if (formatDeadline.length > 1) {
-                tasks.add(new Deadline(formatDeadline[0].trim(), formatDeadline[1]));
-                printAddMessage(input, tasks);
+                try {
+                    tasks.add(new Deadline(formatDeadline[0].trim(), formatDeadline[1]));
+                    printAddMessage(input, tasks);
+                }catch (DateTimeParseException e) {
+                    System.out.println(e);
+                    System.out.println("   The date or the timer format is incorrect.");
+                    System.out.println("   " + "╰┈➤ Please enter in format d/M/yyyy");
+                }
             } else {
                 System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
                 System.out.println(blank + "Please give more information after use /by");
