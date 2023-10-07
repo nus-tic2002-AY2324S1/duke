@@ -25,6 +25,11 @@ public class Task {
 
     public void unmarkTask(){
         this.isDone = false;
+        System.out.println("Task marked as Done!");
+    }
+
+    public Boolean isMarked(){
+        return isDone;
     }
 
     @Override
