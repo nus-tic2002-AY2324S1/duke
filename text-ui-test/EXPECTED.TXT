@@ -45,9 +45,9 @@
    1.  [D][ ✓ ] Task 1 (by: 3 Jul 2023, 12AM - Monday)
    2.  [D][҉҉҉] Task 2 (by: 20 Oct 2023, 11PM - Friday)
    3.  [D][҉҉҉] Task 3 (by: 27 Jun 2023, 12AM - Tuesday)
-   4.  [D][҉҉҉] return book (by: 2 Jan 2023, 6PM - Monday)
-   5.  [E][҉҉҉] orientation (from: 4 Oct 2019, 12AM - Friday)
-   6.  [E][҉҉҉] team project meeting (from: 2 Oct 2019, 9AM - Wednesday ➞ to: 2 Oct 2019, 11AM - Wednesday)
+   4.  [D][҉҉҉] Return book (by: 2 Jan 2023, 6PM - Monday)
+   5.  [E][҉҉҉] Orientation (from: 4 Oct 2019, 12AM - Friday)
+   6.  [E][҉҉҉] Team project meeting (from: 2 Oct 2019, 9AM - Wednesday ➞ to: 2 Oct 2019, 11AM - Wednesday)
     ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Ok, I clean up all your tasks

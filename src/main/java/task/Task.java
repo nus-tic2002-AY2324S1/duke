@@ -20,9 +20,6 @@ public abstract class Task {
         isDone = done;
     }
 
-    public boolean isDone() {
-        return isDone;
-    }
     protected LocalDateTime handleDateTime(String time) {
 
         DateTimeFormatter formatter;
@@ -44,8 +41,11 @@ public abstract class Task {
 
         return LocalDateTime.parse(time, formatter);
     }
+
     @Override
     public String toString() {
+        this.description = this.description.substring(0, 1).toUpperCase()
+                + this.description.substring(1);
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
 
