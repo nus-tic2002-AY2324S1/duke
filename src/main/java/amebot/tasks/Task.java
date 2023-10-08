@@ -6,7 +6,7 @@ public abstract class Task {
     protected String status;
     protected final String SELECT = "[✓] ";
     protected final String UNSELECT = "[ ] ";
-    protected static int listSize;
+    public static int listSize;
 
     public Task(String desc) {
         type = "";

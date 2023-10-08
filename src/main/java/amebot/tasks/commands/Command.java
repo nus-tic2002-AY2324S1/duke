@@ -35,6 +35,8 @@ public class Command {
             case "check":
                 // Fallthrough
             case "uncheck":
+                // Fallthrough
+            case "remove":
                 int index = extractIndex(inputTexts);
                 if (index > -1 && index < Task.getTaskListSize()) {
                     printOutput(index - 1, command);
@@ -76,6 +78,8 @@ public class Command {
             case "check":
                 // Fallthrough
             case "uncheck":
+                // Fallthrough
+            case "remove":
                 // Fallthrough
             case "bye":
                 isValid = true;
@@ -174,10 +178,18 @@ public class Command {
     public static void printOutput(int index, String status) {
         System.out.println(App.TOP_BORDER);
 
-        String message = "";
-        message = tasks.get(index).setTaskStatus(status);
-        System.out.println(message);
-        tasks.get(index).printTask();
+        if (status.equals("remove")) {
+            tasks.get(index).printTask();
+            tasks.remove(index);
+            Task.listSize--;
+            System.out.println("Successfully removed from list!\n"
+                    + "You've " + Task.getTaskListSize() + " item(s) in list~");
+        } else {
+            String message = "";
+            message = tasks.get(index).setTaskStatus(status);
+            System.out.println(message);
+            tasks.get(index).printTask();
+        }
 
         System.out.println(App.BOTTOM_BORDER + "\n");
     }
