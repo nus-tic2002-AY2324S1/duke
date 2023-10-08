@@ -25,7 +25,7 @@ public class Joshua {
     }
 
     public static void addTaskToList(Task task){
-        myList.addToList(task);
+        myList.addToTaskList(task);
         Joshua.joshuaSays("ADDED TASK: " + task);
     }
 

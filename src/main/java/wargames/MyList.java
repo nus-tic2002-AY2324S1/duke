@@ -1,41 +1,38 @@
 // MyList.java manages the list of tasks
 
 package wargames;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MyList {
-    private Task[] list = new Task[0];
+    private ArrayList<Task> tasklist = new ArrayList<>();
 
     public MyList(){
 
     }
 
-    public void addToList(Task task){
-        list = Arrays.copyOf(list, list.length + 1);
-        list[list.length - 1] = task;
+    public void addToTaskList(Task task){
+        tasklist.add(task);
     }
 
     public void addToList(Task[] arr){
-        for (Task task : arr){
-            list = Arrays.copyOf(list, list.length + 1);
-            list[list.length - 1] = task;
-        }
+        tasklist.addAll(Arrays.asList(arr));
     }
 
     public Task getItem(int index){
-        return list[index];
+        return tasklist.get(index);
     }
 
-    public Task[] getList(){
-        return list;
+    public ArrayList<Task> getList(){
+        return tasklist;
     }
 
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        for (int i = 0; i < list.length; i++) {
+        for (int i = 0; i < tasklist.size(); i++) {
             int count = i + 1;
-            str.append(count).append(". ").append(list[i]).append("\n");
+            str.append(count).append(". ").append(tasklist.get(i)).append("\n");
         }
         return str.toString();
     }
