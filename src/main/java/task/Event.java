@@ -9,6 +9,10 @@ public class Event extends Task {
 
     public Event(String description, String timeString) {
         super(description);
+        formatTimeString(timeString);
+    }
+
+    private void formatTimeString(String timeString) {
         timeString = timeString.trim();
         String[] isTime = timeString.split(" ");
         if (isTime.length > 1) {
@@ -20,13 +24,7 @@ public class Event extends Task {
 
     public Event(String description, String timeString, String timeString1) {
         super(description);
-        timeString = timeString.trim();
-        String[] isTime = timeString.split(" ");
-        if (isTime.length > 1) {
-            this.time = handleDateTime(timeString);
-        } else {
-            this.time = handleDateTime(timeString + " 0000");
-        }
+        formatTimeString(timeString);
         timeString1 = timeString1.trim();
         String[] isTime1 = timeString1.split(" ");
         if (isTime1.length > 1) {
