@@ -1,11 +1,13 @@
 public class Task {
 
     protected String taskDescription;
+    protected String type;
     protected boolean isDone;
 
     public Task (String Description){
         this.taskDescription = Description;
         this.isDone = false;
+        this.type = "Task";
     }
 
 
@@ -13,7 +15,7 @@ public class Task {
         if (this.isDone == false) {
             return "Not Done";
         } else {
-            return "Done!";
+            return "Done";
         }
     }
 
@@ -25,7 +27,7 @@ public class Task {
     }
 
     public String toString() {
-        return "[" + getIsDone() + "] " + this.taskDescription;
+        return "[Todo] [" + getIsDone() + "] " + this.taskDescription;
     }
 
 }
