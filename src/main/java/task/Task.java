@@ -7,15 +7,24 @@ public abstract class Task {
     protected String description;
     protected boolean isDone = false;
 
+    /**
+     * @param description the description of the task
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * @return the description of the task
+     */
     public String getStatusIcon() {
         return (isDone ? " ✓ " : "҉҉҉");
     }
 
+    /**
+     * @return the description of the task
+     */
     public void setDone(boolean done) {
         isDone = done;
     }

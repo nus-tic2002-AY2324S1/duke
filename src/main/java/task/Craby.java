@@ -9,6 +9,10 @@ import java.util.Scanner;
 
 public class Craby extends CrabyMessage {
     private static TaskStorage taskStorage = new TaskStorage("./data/craby.txt");
+    /**
+     * This method will print out the logo and the hello message.
+     * It will also handle the input from the user.
+     */
     public static void crabySysterm() {
         System.out.println(line + System.lineSeparator() + logo + line);
         System.out.println(hello + System.lineSeparator() + line);
@@ -30,6 +34,13 @@ public class Craby extends CrabyMessage {
         }
     }
 
+    /**
+     * This method will handle the input from the user.
+     * @param input the input from the user.
+     * @param tasks the list of tasks.
+     * @return true if the user input bye.
+     * @throws InputBlankException if the input is blank.
+     */
     private static boolean handleInput(String input, List<Task> tasks) throws InputBlankException {
         if (input.isBlank()) throw new InputBlankException();
         boolean exit = false;
@@ -71,11 +82,21 @@ public class Craby extends CrabyMessage {
     }
 
 
+    /**
+     * This method will add the task to the list.
+     * @param input the input from the user.
+     * @param tasks the list of tasks.
+     */
     private static void addTaskCommand(String input, List<Task> tasks) {
         new AddTaskCommand().handleCommand(input, tasks);
         taskStorage.save(tasks);
     }
 
+    /**
+     * This method will unmark the task as done.
+     * @param input the input from the user.
+     * @param tasks the list of tasks.
+     */
     private static void handleUnmarkCommand(String input, List<Task> tasks) {
         new UnmarkCommand().handleCommand(input, tasks);
         taskStorage.save(tasks);

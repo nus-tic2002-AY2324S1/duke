@@ -1,5 +1,8 @@
 package task;
 
+/**
+ * This class represents a todo task.
+ */
 public class Todo extends Task {
 
     public Todo(String description) {

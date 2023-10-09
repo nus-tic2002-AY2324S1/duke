@@ -14,6 +14,11 @@ public class ListCommand extends CrabyMessage implements CommandInterface{
         System.out.println(line);
     }
 
+    /**
+     * This method will print out all the tasks in the list.
+     * @param input the input from the user.
+     * @param tasks the list of tasks.
+     */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
         if (tasks.isEmpty()) {

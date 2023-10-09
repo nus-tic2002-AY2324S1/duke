@@ -5,6 +5,12 @@ import task.Task;
 import java.util.List;
 
 public class DeleteAllCommand extends CrabyMessage implements CommandInterface {
+
+    /**
+     * This method will delete all the tasks in the list.
+     * @param input the input from the user.
+     * @param tasks the list of tasks.
+     */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
         System.out.println(blank + "✂ Ok, I clean up all your tasks");

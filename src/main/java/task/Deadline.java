@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+/**
+ * This class represents a deadline task.
+ */
 public class Deadline extends Task {
     protected LocalDateTime time;
 

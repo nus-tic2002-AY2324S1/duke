@@ -12,6 +12,11 @@ public class Event extends Task {
         formatTimeString(timeString);
     }
 
+
+    /**
+     * This method will format the time string to the correct format.
+     * @param timeString the time string from the user.
+     */
     private void formatTimeString(String timeString) {
         timeString = timeString.trim();
         String[] isTime = timeString.split(" ");
