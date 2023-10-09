@@ -20,6 +20,10 @@ public abstract class Task {
         isDone = done;
     }
 
+    public boolean getIsDone() {
+        return this.isDone;
+    }
+
     protected LocalDateTime handleDateTime(String time) {
 
         DateTimeFormatter formatter;
