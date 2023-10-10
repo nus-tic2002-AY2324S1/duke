@@ -1,9 +1,260 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.Arrays;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.*;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
-public class Duke {
+import duke.userinterface.UserInterface;
+
+// %n : new line
+
+class Duke {
+
+    private static ArrayList<Task>userInputTasks = new ArrayList<>();
+
+    public enum taskType{
+        TODO, DEADLINE, EVENT
+    }
+
+    private UserInterface userInterface;
+
+    private Display display;
+
+    //constructor Duke to initialise
+    public Duke(){
+        userInterface = new UserInterface();
+        display = new Display();
+    }
+
+    public static void main(String[] inputs){
+        Duke duke = new Duke();
+        duke.start();
+
+        try{
+            PrintWriter writer = new PrintWriter(new FileWriter("tasks.txt"));
+            for(int i = 0; i<userInputTasks.size(); i++){
+                writer.println(i+1 + ". " + userInputTasks.get(i));
+            }
+            writer.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //start the task management application
+    public void start(){
+        display.greetings();
+
+        try{
+            File file = new File("C:/repos/duke/src/main/java/TestCases");
+            Scanner scanner = new Scanner(file);
+
+            //Read the test cases from the file
+            while(scanner.hasNextLine()){
+                String testCase = scanner.nextLine();
+                //Process the test case here
+                if(testCase.equals("bye")){
+                    break;
+                }else{
+                    checkCommand(testCase);
+                    System.out.println("***************************************");
+                }
+            }
+//            scanner.close();
+            userInterface.closeScanner();
+        Display.goodbye();
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void storeTask(taskType taskType, String arguments){
+        Task task = createTask(taskType,arguments);
+        if(task != null){
+            userInputTasks.add(task);
+            int itemIndex = Task.getTaskCount() - 1;
+            display.notification(userInputTasks, itemIndex);
+        }
+    }
+
+    public void checkCommand(String userInput){
+        try{
+            String[] inputs = userInput.split("\\s+");
+            if(inputs.length == 0 || userInput.isEmpty()){
+                throw new EmptyInputException();
+            }
+
+            String command = inputs[0].toLowerCase(); //front part task type
+            String arguments = userInput.toLowerCase().substring(command.length()).trim(); //behind part info
+
+            switch(command){
+                case "list": {
+                    display.UserInputList(userInputTasks);
+                    break;
+                }
+                case "todo": {
+                    if (arguments.isEmpty()) {
+                        throw new EmptyInputException();
+                    }else{
+                        storeTask(taskType.TODO, arguments);
+                    }
+                    break;
+                }
+                case "deadline": {
+                    if(!arguments.contains("/by")){
+                        throw new InvalidDeadlineException();
+                    }else{
+                        storeTask(taskType.DEADLINE, arguments);
+                    }
+                    break;
+                }
+                case "event": {
+                    if(!arguments.contains("/from") || !arguments.contains("/to")){
+                        throw new InvalidEventException();
+                    }else{
+                        storeTask(taskType.EVENT, arguments);
+                    }
+                    break;
+                }
+                case "delete": {
+                    int indexPosition = Integer.parseInt(arguments);
+                    indexPosition = indexPosition - 1;
+                    if(indexPosition < Task.taskCount){
+                        deleteTask(indexPosition);
+                    }else{
+                        throw new NumberIndexOutOfBoundsException();
+                    }
+                    break;
+                }
+                case "mark" , "unmark": {
+                    modifyTask(userInput);
+                    break;
+                }
+                default:
+                    throw new InvalidInputException();
+            }
+        }catch(DukeExceptions e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+private Task createTask(taskType taskType, String arguments) {
+        Task task = null;
+        switch(taskType){
+            case TODO:
+                task = new Task('T', arguments);
+                break;
+            case DEADLINE:
+                task = createDeadlineTask(arguments);
+                break;
+            case EVENT:
+                task = createEventTask(arguments);
+                break;
+        }
+        return task;
+}
+
+private Task createDeadlineTask(String arguments){
+        int byIndex = arguments.indexOf("/by");
+        String taskName = arguments.substring(0, byIndex).trim();
+        String date = arguments.substring(byIndex + 3).trim();
+        return new Deadline('D', taskName, date);
+}
+
+private Task createEventTask(String arguments) {
+
+    int fromIndex = arguments.indexOf("/from");
+    int toIndex = arguments.indexOf("/to");
+    String taskName = arguments.substring(0, fromIndex).trim();
+    String from = arguments.substring(fromIndex + 5, toIndex).trim();
+    String to = arguments.substring(toIndex + 3).trim();
+    return new Event('E', taskName, from, to);
+
+}
+
+//public void markUnmark(String userInput) {
+//    int spaceIndex = userInput.indexOf(' ');
+//    String integerPart = userInput.substring(spaceIndex + 1);
+//    String commandBeforeSpace = userInput.substring(0, spaceIndex).toLowerCase();
+//    int itemIndex = Integer.parseInt(integerPart) - 1;
+//    Task text = userInputTasks.get(itemIndex);
+//
+//    if(commandBeforeSpace == "mark"){
+//        if(userInputTasks.get(itemIndex).getTaskCompletion() == true) {
+//            System.out.println("This task is already marked as completed :");
+//            System.out.println(text);
+//        }else{
+//            //change blank to X
+//            Display.markAsComplete(userInputTasks, itemIndex);
+//        }
+//    }else if(commandBeforeSpace == "unmark"){
+//        if(userInputTasks.get(itemIndex).getTaskCompletion() == false) {
+//            System.out.println("This task has not been checked yet :");
+//            System.out.println(text);
+//        }else{
+//            //change X to blank
+//            Display.markAsNotComplete(userInputTasks, itemIndex);
+//        }
+//    }
+//}
+
+    public void modifyTask(String userInput) throws DukeExceptions {
+        int spaceIndex = userInput.indexOf(' ');
+        String integerPart = userInput.substring(spaceIndex + 1);
+        String commandBeforeSpace = userInput.substring(0, spaceIndex).toLowerCase();
+
+        try {
+            int itemIndex = Integer.parseInt(integerPart) - 1;
+            if (itemIndex < 0 || itemIndex >= Task.getTaskCount()) {
+                // Handle exception case where the item index is out of bounds or does not exists
+                throw new NumberIndexOutOfBoundsException();
+            }
+
+            if (commandBeforeSpace.equals("mark")) {
+                markAsComplete(itemIndex);
+            } else if (commandBeforeSpace.equals("unmark")) {
+                markAsIncomplete(itemIndex);
+            } else if (commandBeforeSpace.equals("delete")) {
+                deleteTask(itemIndex);
+            } else {
+                // Handle exception case where the command is neither mark nor unmark
+                throw new InvalidInputException();
+            }
+        } catch (InvalidInputException e) {
+            //integer portion is not a valid number
+            System.out.printf(e.getMessage()+"\n");
+        } catch (NumberIndexOutOfBoundsException e) {
+            throw new NumberIndexOutOfBoundsException();
+        }
+    }
+
+
+    public void markAsComplete(int indexPosition){
+        if (userInputTasks.get(indexPosition).getTaskCompletion() == true) {
+            Display.alreadyCompleted(userInputTasks.get(indexPosition).getTaskName());
+        } else {
+            userInputTasks.get(indexPosition).taskCompleted();
+            display.markAsComplete(userInputTasks, indexPosition);
+        }
+    }
+
+    public void markAsIncomplete(int itemIndex){
+        if (!userInputTasks.get(itemIndex).getTaskCompletion()) {
+            Display.alreadyUnchecked(userInputTasks.get(itemIndex).getTaskName());
+        } else {
+            userInputTasks.get(itemIndex).taskNotCompleted();
+            display.markAsNotComplete(userInputTasks, itemIndex);
+        }
+    }
+
+    public void deleteTask(int itemIndex){
+        Task deletedTask = userInputTasks.remove(itemIndex);
+        Task.removeTask();
+        display.deletedMessage(deletedTask);
+    }
+
+    /*
     public static void main(String[] args) {
         String logo = "__________              .__    .__ \n"
                 + "\\______   \\__ __   ____ |  |__ |__|\n"
@@ -125,5 +376,5 @@ public class Duke {
     public static class CannotBeEmptyException extends Exception{
         //no other code needed
     }
-
+*/
 }

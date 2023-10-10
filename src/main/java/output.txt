@@ -1,0 +1,88 @@
+Hello! I'm
+__________              .__    .__ 
+\______   \__ __   ____ |  |__ |__|
+ |     ___/  |  \_/ ___\|  |  \|  |
+ |    |   |  |  /\  \___|   Y  \  |
+ |____|   |____/  \___  >___|  /__|
+                      \/     \/    
+
+What can I do for you?
+***************************************
+There is nothing in your list.
+List of tasks: 
+***************************************
+Got it. I've added this task:
+[T][ ] bake a cake
+Now you have 1 tasks in the list.
+***************************************
+Got it. I've added this task:
+[D][ ] reach restaurant (by: 2pm monday)
+Now you have 2 tasks in the list.
+***************************************
+Got it. I've added this task:
+[E][ ] do homework (from: 1pm tuesday to: 4pm tuesday)
+Now you have 3 tasks in the list.
+***************************************
+Got it. I've added this task:
+[T][ ] kiss hamster every few hours
+Now you have 4 tasks in the list.
+***************************************
+List of tasks: 
+1.[T][ ] bake a cake
+2.[D][ ] reach restaurant (by: 2pm monday)
+3.[E][ ] do homework (from: 1pm tuesday to: 4pm tuesday)
+4.[T][ ] kiss hamster every few hours
+***************************************
+That's some progress! I've marked this task as done:
+[T][X] kiss hamster every few hours
+***************************************
+OK, I've marked this task as not done yet:
+[D][ ] reach restaurant (by: 2pm monday)
+***************************************
+That's some progress! I've marked this task as done:
+[E][X] do homework (from: 1pm tuesday to: 4pm tuesday)
+***************************************
+List of tasks: 
+1.[T][X] bake a cake
+2.[D][X] reach restaurant (by: 2pm monday)
+3.[E][X] do homework (from: 1pm tuesday to: 4pm tuesday)
+4.[T][X] kiss hamster every few hours
+***************************************
+Please input a valid event using /from 'start' /to 'end'.
+***************************************
+Please input a valid deadline using /by 'deadline'.
+***************************************
+OK, I've marked this task as not done yet:
+[E][ ] do homework (from: 1pm tuesday to: 4pm tuesday)
+***************************************
+That's some progress! I've marked this task as done:
+[T][X] kiss hamster every few hours
+***************************************
+List of tasks: 
+1.[T][X] bake a cake
+2.[D][X] reach restaurant (by: 2pm monday)
+3.[E][X] do homework (from: 1pm tuesday to: 4pm tuesday)
+4.[T][X] kiss hamster every few hours
+***************************************
+Please provide an input with details.
+***************************************
+The index number of the task you indicate does not exist! Consider looking through the list again.
+***************************************
+Noted. I've removed this task:
+[D][X] reach restaurant (by: 2pm monday)
+Now you have 3 tasks in the list.
+***************************************
+List of tasks: 
+1.[T][X] bake a cake
+2.[E][X] do homework (from: 1pm tuesday to: 4pm tuesday)
+3.[T][X] kiss hamster every few hours
+***************************************
+Noted. I've removed this task:
+[T][X] bake a cake
+Now you have 2 tasks in the list.
+***************************************
+List of tasks: 
+1.[E][X] do homework (from: 1pm tuesday to: 4pm tuesday)
+2.[T][X] kiss hamster every few hours
+***************************************
+Bye. Hope to see you again soon!
