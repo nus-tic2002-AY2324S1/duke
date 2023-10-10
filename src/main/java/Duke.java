@@ -1,9 +1,8 @@
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
+import Exception.DukeException;
 
 public class Duke {
     public static void main(String[] args){
@@ -14,17 +13,17 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n\n\n" + logo);
 
-        printMessage("Hello! I am Duke , your chatbot, set a name for me!!");
+        printMessage("Hello! I am Duke , your chatBot, set a name for me!!");
         String name;
         Scanner input = new Scanner(System.in);
-        printMessage("Please enter a name for your chatbot (enter to set to default 'Duke'):");
+        printMessage("Please enter a name for your chatBot (press enter to set to default 'Duke'):");
         name = input.nextLine();
         if(name.isBlank()){
             name = "Duke";
         }
         printLine();
         String greeting = getGreeting();
-        printMessage(greeting+"! I am "+name + ", Your personal chatbot.");
+        printMessage(greeting+"! I am "+name + ", Your personal chatBot.");
         printMessage("What can I do for you today?");
         printLine();
 
@@ -32,10 +31,6 @@ public class Duke {
         while(true){
             printMessage("Please input command:");
             String command = input.nextLine();
-//            if (command == null || command.trim().isEmpty()) {
-//                printLine();
-//                throw new DukeException("The description cannot be empty.");
-//            }
             if(command.equalsIgnoreCase("bye")){
                 printLine();
                 printMessage("Bye. Hope to see you again soon!");
@@ -58,10 +53,6 @@ public class Duke {
                 }
             }else if(command.toLowerCase().contains("mark")) {
                 String[] split = command.split(" ");
-//                if(split.length>2){
-//                    printLine();
-//                    throw new DukeException("Please Enter a enter number of the task you want to mark/unmark");
-//                }
                 if (split[0].trim().equalsIgnoreCase("mark")) {
                     int index = 0;
                     try {
@@ -160,7 +151,30 @@ public class Duke {
                     printMessage(e.getMessage());
                     printLine();
                 }
-            }else {
+            } else if(command.toLowerCase().startsWith("delete")) {
+                try{
+                    String descString = command.replace("delete","");
+                    if (descString.trim().isEmpty()) {
+                        throw new DukeException("OOPS!!! Please input item number you want to delete");
+                    }
+                    int itemNumber = Integer.parseInt(descString.trim());
+                    try {
+                        Task removedItem = taskList.remove(itemNumber-1);
+                        printLine();
+                        printMessage("Noted. I've removed this task:");
+                        printMessage(removedItem.getStatusIcon() + removedItem.description);
+                        System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
+                        printLine();
+                    } catch (IndexOutOfBoundsException e) {
+                        // Handle the exception, e.g., by displaying an error message
+                        System.err.println("Index out of bounds: " + e.getMessage());
+                    }
+                } catch (DukeException e) {
+                    printLine();
+                    printMessage(e.getMessage());
+                    printLine();
+                }
+            } else {
                 String[] split = command.split(" ");
                 try{
                     if(split.length<2){

@@ -10,7 +10,7 @@ Hello from
 Hello! I am Duke , your chatbot, set a name for me!!
 Please enter a name for your chatbot (enter to set to default 'Duke'):
 ----------------------------------------
-Good evening! I am Genebot, Your personal chatbot.
+Good morning! I am Genebot, Your personal chatbot.
 What can I do for you today?
 ----------------------------------------
 Please input command:

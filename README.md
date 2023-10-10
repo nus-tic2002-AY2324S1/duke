@@ -43,3 +43,6 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 
 ### Level 5
 1,Level 5. Handle Errors,deal with errors such as incorrect inputs entered by the user
+
+### Level 6
+1, Add support for deleting tasks from the list and Use Java enum to create a TaskType Class
