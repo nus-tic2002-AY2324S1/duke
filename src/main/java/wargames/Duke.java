@@ -23,6 +23,7 @@ public class Duke {
                 Joshua.printMyList();
             }
             else if (input.startsWith("mark ")) {
+                // TODO: Handle the case where mark is empty; no number is given
                 try {
                     int taskNum = parseTaskNumber(input, 5);
                     Joshua.markTaskAsDone(taskNum);
@@ -39,18 +40,23 @@ public class Duke {
                 }
             }
             else if (input.startsWith("todo ")) {
-                Task todo = new ToDo(input);
+                List<String> inputArrayList = stringToArrayList(input);
+                List<String> descArrayList = inputArrayList.subList(1, inputArrayList.size());
+                String desc = String.join(" ", descArrayList);
+                Task todo = new ToDo(desc);
                 Joshua.addTaskToList(todo);
             }
             else if (input.startsWith("deadline ")) {
                 // TODO: Check that the input contains /by first, handle the case where it doesn't
-                // Get the due date "by" from input
+                // Get "desc" and "by" from input
                 List<String> inputArrayList = stringToArrayList(input);
                 int byMarker = inputArrayList.indexOf("/by");
-                List<String> byArrayList = inputArrayList.subList(byMarker, inputArrayList.size());
+                List<String> descArrayList = inputArrayList.subList(1, byMarker);
+                String desc = String.join(" ", descArrayList);
+                List<String> byArrayList = inputArrayList.subList(byMarker+1, inputArrayList.size());
                 String by = String.join(" ", byArrayList);
                 // Create Deadline and add to list
-                Task deadline = new Deadline(input, by);
+                Task deadline = new Deadline(desc, by);
                 Joshua.addTaskToList(deadline);
             }
             else if (input.startsWith("event ")) {
@@ -58,12 +64,14 @@ public class Duke {
                 List<String> inputArrayList = stringToArrayList(input);
                 int fromMarker = inputArrayList.indexOf("/from");
                 int toMarker = inputArrayList.indexOf("/to");
-                List<String> fromArrayList = inputArrayList.subList(fromMarker, toMarker);
+                List<String> descArrayList = inputArrayList.subList(1, fromMarker);
+                String desc = String.join(" ", descArrayList);
+                List<String> fromArrayList = inputArrayList.subList(fromMarker+1, toMarker);
                 String from = String.join(" ", fromArrayList);
-                List<String> toArrayList = inputArrayList.subList(toMarker, inputArrayList.size());
+                List<String> toArrayList = inputArrayList.subList(toMarker+1, inputArrayList.size());
                 String to = String.join(" ", toArrayList);
                 // Create Event and add to list
-                Task event = new Event(input, from, to);
+                Task event = new Event(desc, from, to);
                 Joshua.addTaskToList(event);
             }
             else {
