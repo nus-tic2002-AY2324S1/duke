@@ -9,6 +9,10 @@ public class Todo extends Task {
         super(description);
     }
 
+    /**
+     * This method returns the string representation of the todo task.
+     * @return the string representation of the todo task.
+     */
     @Override
     public String toString() {
         return "[T]" + super.toString();

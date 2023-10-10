@@ -8,11 +8,13 @@ public class DeleteCommand extends CrabyMessage implements CommandInterface {
 
     /**
      * This method will delete the task from the list.
+     *
      * @param input The input from the user.
      * @param tasks The list of tasks.
+     * @return
      */
     @Override
-    public void handleCommand(String input, List<Task> tasks) {
+    public short handleCommand(String input, List<Task> tasks) {
         try {
             int tmp = input.indexOf("t");
             String checkDelete = input.substring(tmp + 2).trim();
@@ -22,7 +24,7 @@ public class DeleteCommand extends CrabyMessage implements CommandInterface {
                 System.out.println(tasks.size() + " tasks.");
                 System.out.println(blank + "Please try again!");
                 System.out.println(line);
-                return;
+                return 0;
             }
             System.out.println(blank + "✂ Removed:");
             System.out.println(blank + "╰┈➤ " + tasks.get(checkNum) + " in your list");
@@ -31,8 +33,10 @@ public class DeleteCommand extends CrabyMessage implements CommandInterface {
             System.out.println(line);
         } catch (NumberFormatException nfe) {
             System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
-            System.out.println(blank + "Try with: delete [integer] e.g: unmark 1");
+            System.out.println(blank + "Try with: delete [integer] e.g: delete 1");
+            System.out.println(blank + "      or: deleteall to delete all the tasks in the list.");
             System.out.println(line);
         }
+        return 0;
     }
 }

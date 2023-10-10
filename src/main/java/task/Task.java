@@ -3,38 +3,41 @@ package task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public abstract class Task {
+public class Task {
     protected String description;
-    protected boolean isDone = false;
+    protected static boolean isDone = false;
 
     /**
      * @param description the description of the task
      */
     public Task(String description) {
         this.description = description;
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
      * @return the description of the task
      */
-    public String getStatusIcon() {
-        return (isDone ? " ✓ " : "҉҉҉");
+    public static String getStatusIcon(boolean isDone) {
+
+        return (Task.isDone ? " ✓ " : "҉҉҉");
     }
 
     /**
      * @return the description of the task
      */
     public void setDone(boolean done) {
+
         isDone = done;
     }
 
     public boolean getIsDone() {
-        return this.isDone;
+
+        return isDone;
     }
 
     protected LocalDateTime handleDateTime(String time) {
-
+        // check the format of the time user input
         DateTimeFormatter formatter;
         if (time.contains("/")) {
             String[] checkFormat = time.split("/");
@@ -51,17 +54,22 @@ public abstract class Task {
                 formatter = DateTimeFormatter.ofPattern("d-M-yyyy HHmm");
             }
         }
-
         return LocalDateTime.parse(time, formatter);
     }
 
+    /**
+     * @return the type, description, status of the task
+     */
     @Override
     public String toString() {
         this.description = this.description.substring(0, 1).toUpperCase()
                 + this.description.substring(1);
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return "[" + this.getStatusIcon(isDone) + "] " + this.description;
     }
 
+    /**
+     * This method is to save the data to the local file
+     */
     public String toStorageString() {
         return this.toString();
     }

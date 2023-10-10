@@ -11,7 +11,6 @@ import java.util.Date;
  */
 public class Deadline extends Task {
     protected LocalDateTime time;
-
     public Deadline(String description, String timeString) {
         super(description);
         timeString = timeString.trim();
@@ -22,6 +21,10 @@ public class Deadline extends Task {
             this.time = handleDateTime(timeString + " 0000");
         }
     }
+    /**
+     * This method is to handle the date and time.
+     * @return The LocalDateTime object to the format requirement.
+     */
     @Override
     public String toString() {
         String tmp = String.valueOf(this.time.getDayOfWeek());
@@ -30,8 +33,11 @@ public class Deadline extends Task {
         return "[D]" + super.toString()
                 + " (by: " + timeString.trim() + ")";
     }
-
+    /**
+     * This method is to save the data to the local file
+     */
     @Override
+
     public String toStorageString() {
         return "[D]" + super.toString()
                 + " (by: " + time.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";

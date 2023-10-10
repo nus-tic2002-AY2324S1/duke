@@ -17,10 +17,15 @@ public class TaskStorage {
     File file = new File("./data/craby.txt");
 
     public TaskStorage(String filePath) {
+
         this.filePath = filePath;
     }
-
+    /**
+     * This method will save the tasks into the file.
+     * @param tasks the list of tasks.
+     */
     public void save(List<Task> tasks) {
+
         try {
             StringBuilder content = new StringBuilder();
             for (Task task : tasks) {
@@ -35,6 +40,10 @@ public class TaskStorage {
             e.printStackTrace();
         }
     }
+    /**
+     * This method will load the tasks from the file.
+     * @return the list of tasks.
+     */
     public List<Task> load() {
         List<Task> tasks = new ArrayList<>();
         if (file.exists()) {
@@ -51,7 +60,7 @@ public class TaskStorage {
                     switch (checkTask) {
                         case 'D':
                             String[] formatDeadline = content.split(" \\(by:");
-                            String tmp = formatDeadline[1].substring(0,formatDeadline[1].length()-1);
+                            String tmp = formatDeadline[1].substring(0, formatDeadline[1].length() - 1);
                             Deadline deadline = new Deadline(formatDeadline[0], tmp);
                             deadline.setDone(isDone);
                             tasks.add(deadline);
@@ -61,11 +70,12 @@ public class TaskStorage {
                             String time = formatEvent[1];
                             time = time.substring(0, time.length() - 1);
                             Event event;
-                            if(time.contains("to:")){
-                                String [] tmp1 = time.split(" to: ");
-                                event = new Event(formatEvent[0],tmp1[0],tmp1[1]);
-                            }else {
-                            event = new Event(formatEvent[0], time);}
+                            if (time.contains("to:")) {
+                                String[] tmp1 = time.split(" to: ");
+                                event = new Event(formatEvent[0], tmp1[0], tmp1[1]);
+                            } else {
+                                event = new Event(formatEvent[0], time);
+                            }
                             event.setDone(isDone);
                             tasks.add(event);
                             break;

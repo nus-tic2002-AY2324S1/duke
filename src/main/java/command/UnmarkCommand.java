@@ -3,16 +3,20 @@ package command;
 import task.Task;
 
 import java.util.List;
-
+/**
+ * This class represents a unmark command.
+ */
 public class UnmarkCommand extends CrabyMessage implements CommandInterface{
 
     /**
      * This method will mark the task as done.
+     *
      * @param input the input from the user.
      * @param tasks the list of tasks.
+     * @return
      */
     @Override
-    public void handleCommand(String input, List<Task> tasks) {
+    public short handleCommand(String input, List<Task> tasks) {
         try {
             int tmp = input.indexOf("k");
             String checkMark = input.substring(tmp + 1).trim();
@@ -22,7 +26,7 @@ public class UnmarkCommand extends CrabyMessage implements CommandInterface{
                 System.out.println(tasks.size() + "tasks.");
                 System.out.println(blank + "Please try again!");
                 System.out.println(line);
-                return;
+                return 0;
             }
             tasks.get(checkNum).setDone(false);
             System.out.println(blank + "OK, I've marked this task as ☉⌓☉ NOT DONE yet:");
@@ -33,5 +37,6 @@ public class UnmarkCommand extends CrabyMessage implements CommandInterface{
             System.out.println(blank + "Try with: unmark [integer] e.g: unmark 1");
             System.out.println(line);
         }
+        return 0;
     }
 }

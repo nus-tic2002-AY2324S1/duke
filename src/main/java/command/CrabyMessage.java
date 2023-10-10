@@ -1,5 +1,8 @@
 package command;
-
+/**
+ * CrabyMessage class is a class that store all the messages that CrabY will use.
+ * It has a method to handle the command.
+ */
 public class CrabyMessage {
     public static final String logo =
             "   ____                  _      __   __" + System.lineSeparator() +

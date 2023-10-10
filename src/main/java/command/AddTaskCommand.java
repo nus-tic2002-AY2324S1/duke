@@ -8,6 +8,11 @@ import task.Todo;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
+/**
+ * AddTaskCommand class is a class that handle the add command.
+ * It implements the CommandInterface.
+ * It has a method to handle the add command.
+ */
 public class AddTaskCommand extends CrabyMessage implements CommandInterface{
     private static String removeKeyWords(String input) {
         input = input
@@ -30,7 +35,13 @@ public class AddTaskCommand extends CrabyMessage implements CommandInterface{
     }
 
     @Override
-    public void handleCommand(String input, List<Task> tasks) {
+    /**
+     * This method is to handle the add command.
+     * It will add the task to the list.
+     * @param input The input from the user.
+     * @param tasks The list of tasks.
+     */
+    public short handleCommand(String input, List<Task> tasks) {
         input = removeKeyWords(input);
         if (input.contains("/by")) {
             String[] formatDeadline = input.split("/by");
@@ -49,7 +60,7 @@ public class AddTaskCommand extends CrabyMessage implements CommandInterface{
                 System.out.println(blank + "Please give more information after use /by");
                 System.out.println(line);
             }
-            return;
+            return 0;
         }
         if (input.contains("/from")) {
             String[] formatEvent = input.split("/from");
@@ -66,9 +77,10 @@ public class AddTaskCommand extends CrabyMessage implements CommandInterface{
                 System.out.println(blank + "Please give more information after use /from");
                 System.out.println(line);
             }
-            return;
+            return 0;
         }
         tasks.add(new Todo(input));
         printAddMessage(input, tasks);
+        return 0;
     }
 }
