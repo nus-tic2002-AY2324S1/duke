@@ -50,21 +50,20 @@ public class CrabyMessage {
     public static void printNumOutOfTask(int input) {
         System.out.print(blank + "Oops!!! Something wrong! Your list only have 1 ➞ ");
         System.out.println(input + " tasks.");
-        System.out.println(blank + "Please try again!");
+        System.out.println(blank + "Please try again with another number ☘");
         System.out.println(line);
     }
 
     public static void printAddMessage(String input, List<Task> tasks) {
         System.out.println(blank + "✎ added:");
         System.out.println(blank + "╰┈➤ " + input + " - to your list");
-        System.out.println(blank + "Now you have " + tasks.size() + " tasks in your list \uD83D\uDDCE.");
-        System.out.println(line);
+        printCountTask(tasks.size());
     }
 
     public static void printDateTimeParseExceptionMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
         System.out.println(blank + "Please enter in this format after used /by or /from and /to");
-        System.out.println(blank + "Try with: \"dd/mm/yyyy hhmm\" e.g: 12/12/2020 1800");
+        System.out.println(blank + "╰┈➤ Try with: \"dd/mm/yyyy hhmm\" e.g: 12/12/2020 1800");
         System.out.println(line);
     }
 
@@ -78,19 +77,19 @@ public class CrabyMessage {
     // Print DeleteCommand Message
     public static void printDeleteMessage(String input) {
         System.out.println(blank + "✂ Noted. I've removed this task:");
-        System.out.println(blank + "╰┈➤ " + input + " in your list");
+        System.out.println(blank + "╰┈➤ " + input + " - in your list");
     }
 
     public static void printCountTask(int input) {
-        System.out.println(blank + "Now you have: " + input + " tasks your the list \uD83D\uDDCE.");
+        System.out.println(blank + "Now you have: " + input + " in your list \uD83D\uDDCE.");
         System.out.println(line);
     }
 
 
     public static void printDeleteErrorMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
-        System.out.println(blank + "Try with: delete [integer] e.g: delete 1");
-        System.out.println(blank + "      or: deleteall to delete all the tasks in the list.");
+        System.out.println(blank + "╰┈➤ Try with: delete [integer] e.g: delete 1");
+        System.out.println(blank + "          or: deleteall to delete all the tasks in your list.");
         System.out.println(line);
     }
 
@@ -132,7 +131,7 @@ public class CrabyMessage {
 
     public static void printMarkNumFormatExceptionMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
-        System.out.println(blank + "Try with: mark [integer] e.g: mark 1");
+        System.out.println(blank + "╰┈➤ Try with: mark [integer] e.g: mark 1");
         System.out.println(line);
     }
 
@@ -145,13 +144,13 @@ public class CrabyMessage {
 
     public static void printUnmarkNumFormatExceptionMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
-        System.out.println(blank + "Try with: unmark [integer] e.g: unmark 1");
+        System.out.println(blank + "╰┈➤ Try with: unmark [integer] e.g: unmark 1");
         System.out.println(line);
     }
 
     //Print FindCommand Message
     public static void printFindMessage(List<String> listFound) {
-        System.out.println(blank + "Here are the matching tasks in your list:");
+        System.out.println(blank + "⌖ Here are the matching tasks in your list:");
         for (String s : listFound) {
             System.out.println(blank + s);
         }
@@ -159,8 +158,8 @@ public class CrabyMessage {
     }
 
     public static void printNoMatchingTasks() {
-        System.out.println(blank + "No matching tasks in your list.");
-        System.out.println(blank + "Please try with another keyword. ≽ܫ≼ ");
+        System.out.println(blank + "✘ No matching tasks in your list.");
+        System.out.println(blank + "╰┈➤ Please try with another keyword ☘");
         System.out.println(line);
     }
 }

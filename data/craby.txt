@@ -4,3 +4,7 @@
 [D][҉҉҉] Return book (by: 2023/1/2 1800)
 [E][ ✓ ] Orientation event a (from: 2019/10/4 0000)
 [E][҉҉҉] Team project meeting (from: 2019/10/2 0900 to: 2019/10/2 1130)
+[T][҉҉҉] Homework
+[T][ ✓ ] Video call with Mom
+[D][҉҉҉] Submit the report for IP (by: 2023/10/17 0000)
+[T][҉҉҉] Do the TIC2002 quizz

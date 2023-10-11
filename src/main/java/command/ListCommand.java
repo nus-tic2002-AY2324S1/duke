@@ -3,6 +3,7 @@ package command;
 import io.CrabyMessage;
 import task.Task;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ListCommand extends CrabyMessage implements CommandInterface {
@@ -12,7 +13,7 @@ public class ListCommand extends CrabyMessage implements CommandInterface {
      *
      * @param input the input from the user.
      * @param tasks the list of tasks.
-     * @return
+     * @return 0.
      */
     @Override
     public short handleCommand(String input, List<Task> tasks) {
