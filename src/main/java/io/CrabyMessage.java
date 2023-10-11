@@ -62,17 +62,13 @@ public class CrabyMessage {
     }
 
     public static void printDateTimeParseExceptionMessage() {
-        System.out.println(blank + "The date or the timer format is incorrect.");
-        System.out.println(blank + "╰┈➤ Please enter in format dd/mm/yyyy hhmm");
-        System.out.println(line);
-    }
-
-    public static void printFromToFormatErrorMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
-        System.out.println(blank + "Please give more information after use /from and /to");
+        System.out.println(blank + "Please enter in this format after used /by or /from and /to");
+        System.out.println(blank + "Try with: \"dd/mm/yyyy hhmm\" e.g: 12/12/2020 1800");
         System.out.println(line);
     }
 
+    //Print BlahCommand Message
     public static void printDeleteAllMessage() {
         System.out.println(blank + "✂ Ok, I clean up all your tasks");
         System.out.println(blank + "╰┈➤ Let's start a new checklist");
@@ -150,6 +146,21 @@ public class CrabyMessage {
     public static void printUnmarkNumFormatExceptionMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
         System.out.println(blank + "Try with: unmark [integer] e.g: unmark 1");
+        System.out.println(line);
+    }
+
+    //Print FindCommand Message
+    public static void printFindMessage(List<String> listFound) {
+        System.out.println(blank + "Here are the matching tasks in your list:");
+        for (String s : listFound) {
+            System.out.println(blank + s);
+        }
+        System.out.println(line);
+    }
+
+    public static void printNoMatchingTasks() {
+        System.out.println(blank + "No matching tasks in your list.");
+        System.out.println(blank + "Please try with another keyword. ≽ܫ≼ ");
         System.out.println(line);
     }
 }

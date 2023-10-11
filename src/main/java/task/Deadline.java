@@ -27,9 +27,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        String tmp = String.valueOf(this.time.getDayOfWeek());
-        String dateOfWeek = tmp.substring(0, 1) + tmp.substring(1).toLowerCase();
-        String timeString = this.time.format(DateTimeFormatter.ofPattern("d MMM yyyy, ha")) + " - " + dateOfWeek;
+        String timeString = this.time.format(DateTimeFormatter.ofPattern("d MMM yyyy, E - ha"));
         return "[D]" + super.toString()
                 + " (by: " + timeString.trim() + ")";
     }

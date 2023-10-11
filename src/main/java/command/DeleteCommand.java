@@ -12,7 +12,7 @@ public class DeleteCommand extends CrabyMessage implements CommandInterface {
      *
      * @param input The input from the user.
      * @param tasks The list of tasks.
-     * @return
+     * @return 0.
      */
     @Override
     public short handleCommand(String input, List<Task> tasks) {

@@ -77,12 +77,25 @@ public class Craby extends CrabyMessage {
                     break;
                 case DELETEALL:
                     handleDeleteAllCommand(input, tasks);
+                    break;
+                case FIND:
+                    handleFindCommand(input, tasks);
+                    break;
+                    case HELP:
+                        //will add later
+                case TODO:
+                case DEADLINE:
+                case EVENT:
+                    input = input.substring(checkInput.length());
+                    addTaskCommand(input, tasks);
+                    break;
             }
         } catch (IllegalArgumentException ie) {
             addTaskCommand(input, tasks);
         }
         return exit;
     }
+
 
     private static void addTaskCommand(String input, List<Task> tasks) {
         new AddTaskCommand().handleCommand(input, tasks);
@@ -115,6 +128,10 @@ public class Craby extends CrabyMessage {
 
     private static void handleListCommand(String input, List<Task> tasks) {
         new ListCommand().handleCommand(input, tasks);
+    }
+
+    private static void handleFindCommand(String input, List<Task> tasks) {
+        new FindCommand().handleCommand(input, tasks);
     }
 
     private static boolean handleByeCommand(String input, List<Task> tasks) {

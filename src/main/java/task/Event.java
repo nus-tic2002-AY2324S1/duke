@@ -7,7 +7,9 @@ public class Event extends Task {
     protected LocalDateTime time;
     protected LocalDateTime time1;
 
-    /** This class represents a event task that user input only have /from
+    /**
+     * This class represents a event task that user input only have /from
+     *
      * @param description
      * @param timeString
      */
@@ -32,7 +34,9 @@ public class Event extends Task {
         }
     }
 
-    /** This class represents a event task that user input have /from and /to
+    /**
+     * This class represents a event task that user input have /from and /to
+     *
      * @param description
      * @param timeString
      * @param timeStringTo
@@ -51,22 +55,25 @@ public class Event extends Task {
 
     /**
      * This method is to handle the date and time.
+     *
      * @return The LocalDateTime object to the format requirement.
      */
     @Override
     public String toString() {
-        String tmp = String.valueOf(this.time.getDayOfWeek());
-        String dateOfWeek = tmp.substring(0, 1) + tmp.substring(1).toLowerCase();
-        String timeString = this.time.format(DateTimeFormatter.ofPattern("d MMM yyyy, ha")) + " - " + dateOfWeek;
+        String timeString = this.time.format(DateTimeFormatter.ofPattern("d MMM yyyy, E - ha"));
         if (this.time1 == null) {
             return "[E]" + super.toString()
-                    + " (from: " + timeString.trim() + ")";
+                    + " (from: " + timeString + ")";
         }
-        String tmp1 = String.valueOf(this.time1.getDayOfWeek());
-        String dateOfWeek1 = tmp1.substring(0, 1) + tmp1.substring(1).toLowerCase();
-        String timeString1 = this.time1.format(DateTimeFormatter.ofPattern("d MMM yyyy, ha")) + " - " + dateOfWeek1;
+        String timeString1;
+        if (this.time.format(DateTimeFormatter.ofPattern("d MMM yyyy"))
+                .equals(this.time1.format(DateTimeFormatter.ofPattern("d MMM yyyy")))) {
+            timeString1 = this.time1.format(DateTimeFormatter.ofPattern("ha"));
+        } else {
+            timeString1 = this.time1.format(DateTimeFormatter.ofPattern("d MMM yyyy, E - ha"));
+        }
         return "[E]" + super.toString()
-                + " (from: " + timeString.trim() + " ➞ to: " + timeString1 + ")";
+                + " (from: " + timeString + " ➞ to: " + timeString1 + ")";
     }
 
     /**

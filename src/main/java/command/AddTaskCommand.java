@@ -1,13 +1,14 @@
 package command;
 
 import io.CrabyMessage;
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.Todo;
-
+import task.*;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
+
 
 /**
  * AddTaskCommand class is a class that handle the add command.
@@ -15,19 +16,13 @@ import java.util.List;
  * It has a method to handle the add command.
  */
 public class AddTaskCommand extends CrabyMessage implements CommandInterface {
-    private static String removeKeyWords(String input) {
-        input = input
-                .replace("Deadline", "")
-                .replace("Todo", "")
-                .replace("Event", "")
-                .replace("deadline", "")
-                .replace("todo", "")
-                .replace("event", "")
-                .replace("add", "")
-                .replace("Add", "");
-        return input;
-    }
-
+//    private static String NaturalDate(String inputDay){
+//        LocalDate toDay = LocalDate.now();
+//        DayOfWeek targetDay = DayOfWeek.valueOf(inputDay.toUpperCase());
+//        LocalDate nextOccurrence = toDay.with(TemporalAdjusters.nextOrSame(targetDay));
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+//        return nextOccurrence.format(formatter);
+//    }
     /**
      * This method is to handle the add command.
      * It will add the task to the list.
@@ -37,10 +32,11 @@ public class AddTaskCommand extends CrabyMessage implements CommandInterface {
      */
     @Override
     public short handleCommand(String input, List<Task> tasks) {
-        input = removeKeyWords(input);
+        input = input.trim();
         if (input.contains("/by")) {
             String[] formatDeadline = input.split("/by");
             if (formatDeadline.length > 1) {
+
                 try {
                     tasks.add(new Deadline(formatDeadline[0].trim(), formatDeadline[1]));
                     printAddMessage(input, tasks);
@@ -48,7 +44,7 @@ public class AddTaskCommand extends CrabyMessage implements CommandInterface {
                     printDateTimeParseExceptionMessage();
                 }
             } else {
-                printFromToFormatErrorMessage();
+                printDateTimeParseExceptionMessage();
             }
             return 0;
         }
@@ -63,7 +59,7 @@ public class AddTaskCommand extends CrabyMessage implements CommandInterface {
                 }
                 printAddMessage(input, tasks);
             } else {
-                printFromToFormatErrorMessage();
+                printDateTimeParseExceptionMessage();
             }
             return 0;
         }
