@@ -1,15 +1,17 @@
-package task;
+package craby;
 
 import command.*;
 import exceptions.InputBlankException;
 import io.CrabyMessage;
 import io.TaskStorage;
+import task.Keyword;
+import task.Task;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Craby extends CrabyMessage {
-    private static TaskStorage taskStorage = new TaskStorage("./data/craby.txt");
+    private static final TaskStorage taskStorage = new TaskStorage("./data/craby.txt");
 
     /**
      * This method will print out the logo and the hello message.
@@ -26,8 +28,7 @@ public class Craby extends CrabyMessage {
             try {
                 exit = handleInput(input, tasks);
             } catch (InputBlankException e) {
-                System.out.println("   Oops!!! The description cannot be empty.");
-                System.out.println("   Please try again!" + System.lineSeparator() + line);
+                printInputBlankExceptionMessage();
             }
             if (exit) {
                 break;
@@ -83,24 +84,11 @@ public class Craby extends CrabyMessage {
         return exit;
     }
 
-
-    /**
-     * This method will add the task to the list.
-     *
-     * @param input the input from the user.
-     * @param tasks the list of tasks.
-     */
     private static void addTaskCommand(String input, List<Task> tasks) {
         new AddTaskCommand().handleCommand(input, tasks);
         taskStorage.save(tasks);
     }
 
-    /**
-     * This method will unmark the task as done.
-     *
-     * @param input the input from the user.
-     * @param tasks the list of tasks.
-     */
     private static void handleUnmarkCommand(String input, List<Task> tasks) {
         new UnmarkCommand().handleCommand(input, tasks);
         taskStorage.save(tasks);

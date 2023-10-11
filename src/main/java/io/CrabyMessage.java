@@ -41,12 +41,19 @@ public class CrabyMessage {
                         "              .==')___(`==." + System.lineSeparator() +
                         "               .='     `=.");
     }
+
+    public static void printInputBlankExceptionMessage() {
+        System.out.println("   Oops!!! The description cannot be empty.");
+        System.out.println("   Please try again!" + System.lineSeparator() + line);
+    }
+
     public static void printNumOutOfTask(int input) {
         System.out.print(blank + "Oops!!! Something wrong! Your list only have 1 ➞ ");
         System.out.println(input + " tasks.");
         System.out.println(blank + "Please try again!");
         System.out.println(line);
     }
+
     public static void printAddMessage(String input, List<Task> tasks) {
         System.out.println(blank + "✎ added:");
         System.out.println(blank + "╰┈➤ " + input + " - to your list");
@@ -84,7 +91,6 @@ public class CrabyMessage {
     }
 
 
-
     public static void printDeleteErrorMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
         System.out.println(blank + "Try with: delete [integer] e.g: delete 1");
@@ -101,9 +107,11 @@ public class CrabyMessage {
     public static void printStartOfList() {
         System.out.println(blank + " ╭─────────────────────────────────╮");
     }
+
     public static void printEmptyList() {
         System.out.println(blank + "    ░░░░ Your list is empty! ░░░░");
     }
+
     public static void printListMessage(List<Task> tasks) {
         System.out.println(blank + "  Here are the tasks in your list:");
         int i = 0;
@@ -118,23 +126,27 @@ public class CrabyMessage {
             }
         }
     }
+
     //Print MarkCommand Message
     public static void printMarkMessage(String input) {
         System.out.println(blank + "Nice! I've marked this task as DONE ツ:");
         System.out.println(blank + "╰┈➤ " + input);
         System.out.println(line);
     }
+
     public static void printMarkNumFormatExceptionMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
         System.out.println(blank + "Try with: mark [integer] e.g: mark 1");
         System.out.println(line);
     }
+
     //Print UnmarkCommand Message
     public static void printUnmarkMessage(String input) {
         System.out.println(blank + "Nice! I've marked this task as DONE ツ:");
         System.out.println(blank + "╰┈➤ " + input);
         System.out.println(line);
     }
+
     public static void printUnmarkNumFormatExceptionMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
         System.out.println(blank + "Try with: unmark [integer] e.g: unmark 1");
