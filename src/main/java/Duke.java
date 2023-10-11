@@ -6,18 +6,11 @@ import java.util.List;
  * Users can interact with it through a command-line interface.
  */
 class Duke {
-    // An array to store user tasks
-    private final List<Task> userInputList = new ArrayList<>();
-
-    private enum TaskType {
-        TODO, DEADLINE, EVENT
-    }
-
+    // Initialize a taskList array to store user tasks.
+    private final List<Task> taskList = new ArrayList<>();
     private final UserInterface userInterface;
-
     private final MessageDisplay messageDisplay;
-
-    // Initializes user interface and message display.
+    // Initializes user interface and message display class.
     public Duke() {
         userInterface = new UserInterface();
         messageDisplay = new MessageDisplay();
@@ -29,11 +22,11 @@ class Duke {
     }
 
     /**
-     * Starts the Duke application, greeting the user and handling user input.
+     * Starts the Duke application, greet the user and handle user input.
      */
     public void start() {
 
-        // Greet the user and ask for input
+        // Greet the user
         messageDisplay.Hello();
 
         while (true) {
@@ -64,38 +57,28 @@ class Duke {
             String command = inputs[0];
             String arguments = userInput.substring(command.length()).trim();
 
+            if (arguments.isEmpty()) {
+                throw new EmptyArgumentException();
+            }
+
             switch (command) {
                 case "list": {
-                    messageDisplay.UserInputList(userInputList);
+                    handleListCommand();
                     break;
                 }
                 case "todo": {
-                    if (arguments.isEmpty()) {
-                        throw new EmptyArgumentException();
-                    } else {
-                        storeUserTask(TaskType.TODO, arguments);
-                    }
+                    handleTodoCommand(arguments);
                     break;
                 }
                 case "deadline": {
-                    if (!arguments.contains("/by")) {
-                        throw new InvalidTaskFormatException("deadline");
-                    } else {
-                        storeUserTask(TaskType.DEADLINE, arguments);
-                    }
+                    handleDeadlineCommand(arguments);
                     break;
                 }
                 case "event": {
-                    if (!arguments.contains("/from") || !arguments.contains("/to")) {
-                        throw new InvalidTaskFormatException("event");
-                    } else {
-                        storeUserTask(TaskType.EVENT, arguments);
-                    }
+                    handleEventCommand(arguments);
                     break;
                 }
-                case "delete":{
-
-                }
+                case "delete":
                 case "mark":
                 case "unmark": {
                     modifyTask(userInput);
@@ -109,6 +92,28 @@ class Duke {
         }
     }
 
+    private void handleListCommand() {
+        messageDisplay.printList(taskList);
+    }
+
+    private void handleTodoCommand(String arguments) {
+        storeUserTask(TaskType.TODO, arguments);
+    }
+
+    private void handleDeadlineCommand(String arguments) throws DukeException {
+        if (!arguments.contains("/by")) {
+            throw new InvalidTaskFormatException("deadline");
+        }
+        storeUserTask(TaskType.DEADLINE, arguments);
+    }
+
+    private void handleEventCommand(String arguments) throws DukeException {
+        if (!arguments.contains("/from") || !arguments.contains("/to")) {
+            throw new InvalidTaskFormatException("event");
+        }
+        storeUserTask(TaskType.EVENT, arguments);
+    }
+
     /**
      * Stores a task in the userInputList and displays a message.
      *
@@ -118,9 +123,9 @@ class Duke {
     private void storeUserTask(TaskType taskType, String arguments) {
         Task task = createTask(taskType, arguments);
         if (task != null) {
-            userInputList.add(task);
+            taskList.add(task);
             int itemIndex = Task.getTotalTasks() - 1;
-            messageDisplay.addedMessage(userInputList, itemIndex);
+            messageDisplay.addedMessage(taskList, itemIndex);
         }
     }
 
@@ -176,60 +181,78 @@ class Duke {
     }
 
     //Toggle the complete status of a task
-    public void modifyTask(String userInput) throws InvalidNumberFormatException {
-        int spaceIndex = userInput.indexOf(' ');
-        String integerPart = userInput.substring(spaceIndex + 1);
-        String commandBeforeSpace = userInput.substring(0, spaceIndex);
-
+    public void modifyTask(String userInput) {
         try {
-            int itemIndex = Integer.parseInt(integerPart) - 1;
-            if (itemIndex < 0 || itemIndex >= Task.getTotalTasks()) {
-                // Handle exception case where the item index is out of bounds or does not exists
-                throw new InvalidTaskException();
+            int itemIndex = extractItemIndex(userInput);
+            switch (getCommandFromInput(userInput)) {
+                case "mark":
+                    markAsComplete(itemIndex);
+                    break;
+                case "unmark":
+                    markAsIncomplete(itemIndex);
+                    break;
+                case "delete":
+                    deleteTask(itemIndex);
+                    break;
+                default:
+                    // Handle exception case where the command is neither mark nor unmark
+                    throw new InvalidNumberFormatException();
             }
-
-            if (commandBeforeSpace.equals("mark")) {
-                markAsComplete(itemIndex);
-            } else if (commandBeforeSpace.equals("unmark")) {
-                markAsIncomplete(itemIndex);
-            } else if (commandBeforeSpace.equals("delete")) {
-                deleteTask(itemIndex);
-            } else {
-                // Handle exception case where the command is neither mark nor unmark
-                throw new InvalidNumberFormatException();
-            }
-        } catch (NumberFormatException e) {
-            throw new InvalidNumberFormatException(e.getMessage());
         } catch (InvalidNumberFormatException e) {
             // Handle the case where the integer part is not a valid number
             System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
-        } catch (InvalidTaskException e) {
+        } catch (TaskNotFoundException e) {
+            // Handle the case where task is not found from index
             System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
         }
     }
-    public void markAsComplete(int itemIndex){
-        if (userInputList.get(itemIndex).isCompleted()) {
-            messageDisplay.alreadyMark(userInputList.get(itemIndex).getTaskName());
+
+    private String getCommandFromInput(String userInput) {
+        int spaceIndex = userInput.indexOf(' ');
+        return userInput.substring(0, spaceIndex);
+    }
+
+    private int extractItemIndex(String userInput) throws InvalidNumberFormatException, TaskNotFoundException {
+        int spaceIndex = userInput.indexOf(' ');
+        String integerPart = userInput.substring(spaceIndex + 1).trim();
+        int itemIndex = Integer.parseInt(integerPart) - 1;
+        if (itemIndex < 0 || itemIndex >= Task.getTotalTasks()) {
+            // Handle exception case where the item index is out of bounds or does not exists
+            throw new TaskNotFoundException();
+        }
+        return itemIndex;
+    }
+
+    public void markAsComplete(int itemIndex) {
+        boolean isCompleted = taskList.get(itemIndex).isCompleted();
+        if (isCompleted) {
+            messageDisplay.alreadyMark(taskList.get(itemIndex).getTaskName());
         } else {
-            userInputList.get(itemIndex).markAsCompleted();
-            messageDisplay.completeMessage(userInputList, itemIndex);
+            taskList.get(itemIndex).markAsCompleted();
+            messageDisplay.completeMessage(taskList, itemIndex);
         }
     }
 
-    public void markAsIncomplete(int itemIndex){
-        if (!userInputList.get(itemIndex).isCompleted()) {
-            messageDisplay.notMark(userInputList.get(itemIndex).getTaskName());
+    public void markAsIncomplete(int itemIndex) {
+        boolean notComplete = !taskList.get(itemIndex).isCompleted();
+        if (notComplete) {
+            messageDisplay.notMark(taskList.get(itemIndex).getTaskName());
         } else {
-            userInputList.get(itemIndex).markAsNotCompleted();
-            messageDisplay.unCompleteMessage(userInputList, itemIndex);
+            taskList.get(itemIndex).markAsNotCompleted();
+            messageDisplay.unCompleteMessage(taskList, itemIndex);
         }
     }
 
-    public void deleteTask(int itemIndex){
+    public void deleteTask(int itemIndex) {
         Task.removeTask();
-        Task deletedTask = userInputList.remove(itemIndex);
+        Task deletedTask = taskList.remove(itemIndex);
         messageDisplay.deleteMessage(deletedTask);
     }
+
+    private enum TaskType {
+        TODO, DEADLINE, EVENT
+    }
+
 }
 
 

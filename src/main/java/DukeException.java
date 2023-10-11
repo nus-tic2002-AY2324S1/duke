@@ -16,8 +16,8 @@ class InvalidCommandException extends DukeException {
     }
 }
 
-class InvalidTaskException extends DukeException {
-    public InvalidTaskException() {
+class TaskNotFoundException extends DukeException {
+    public TaskNotFoundException() {
         super("OOPS!!! I'm sorry, but I can't find this task!");
     }
 }

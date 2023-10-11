@@ -89,16 +89,16 @@ public class MessageDisplay {
     /**
      * Displays the list of user tasks.
      *
-     * @param userInputList The array of user tasks.
+     * @param taskList The array of user tasks.
      */
-    public void UserInputList(List<Task> userInputList) {
+    public void printList(List<Task> taskList) {
         if (Task.getTotalTasks() == 0) {
             print("There's nothing in your list");
             return;
         }
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < Task.getTotalTasks(); i++) {
-            System.out.println((i + 1) + "." + userInputList.get(i).toString());
+            System.out.println((i + 1) + "." + taskList.get(i).toString());
         }
         System.out.println(LINE_BREAK);
     }
