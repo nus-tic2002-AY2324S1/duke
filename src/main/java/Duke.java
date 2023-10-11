@@ -57,9 +57,7 @@ class Duke {
             String command = inputs[0];
             String arguments = userInput.substring(command.length()).trim();
 
-            if (arguments.isEmpty()) {
-                throw new EmptyArgumentException();
-            }
+
 
             switch (command) {
                 case "list": {
@@ -96,11 +94,17 @@ class Duke {
         messageDisplay.printList(taskList);
     }
 
-    private void handleTodoCommand(String arguments) {
+    private void handleTodoCommand(String arguments) throws EmptyTodoArgumentException {
+        if (arguments.isEmpty()) {
+            throw new EmptyTodoArgumentException();
+        }
         storeUserTask(TaskType.TODO, arguments);
     }
 
     private void handleDeadlineCommand(String arguments) throws DukeException {
+        if (arguments.isEmpty()) {
+            throw new EmptyDeadlineArgumentException();
+        }
         if (!arguments.contains("/by")) {
             throw new InvalidTaskFormatException("deadline");
         }
@@ -108,6 +112,9 @@ class Duke {
     }
 
     private void handleEventCommand(String arguments) throws DukeException {
+        if (arguments.isEmpty()) {
+            throw new EmptyEventArgumentException();
+        }
         if (!arguments.contains("/from") || !arguments.contains("/to")) {
             throw new InvalidTaskFormatException("event");
         }
@@ -201,9 +208,6 @@ class Duke {
         } catch (InvalidNumberFormatException e) {
             // Handle the case where the integer part is not a valid number
             System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
-        } catch (TaskNotFoundException e) {
-            // Handle the case where task is not found from index
-            System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
         }
     }
 
@@ -212,15 +216,23 @@ class Duke {
         return userInput.substring(0, spaceIndex);
     }
 
-    private int extractItemIndex(String userInput) throws InvalidNumberFormatException, TaskNotFoundException {
-        int spaceIndex = userInput.indexOf(' ');
-        String integerPart = userInput.substring(spaceIndex + 1).trim();
-        int itemIndex = Integer.parseInt(integerPart) - 1;
-        if (itemIndex < 0 || itemIndex >= Task.getTotalTasks()) {
-            // Handle exception case where the item index is out of bounds or does not exists
-            throw new TaskNotFoundException();
+    private int extractItemIndex(String userInput) throws InvalidNumberFormatException {
+        try {
+            int spaceIndex = userInput.indexOf(' ');
+            String integerPart = userInput.substring(spaceIndex + 1).trim();
+            int itemIndex = Integer.parseInt(integerPart) - 1;
+            if (itemIndex < 0 || itemIndex >= Task.getTotalTasks()) {
+                // Handle exception case where the item index is out of bounds or does not exists
+                throw new TaskNotFoundException();
+            }
+            return itemIndex;
+        }catch(TaskNotFoundException e){
+            // Handle the case where task is not found from index
+            System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
+        }catch(NumberFormatException e){
+            throw new InvalidNumberFormatException();
         }
-        return itemIndex;
+        return 0;
     }
 
     public void markAsComplete(int itemIndex) {

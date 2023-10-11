@@ -22,9 +22,21 @@ class TaskNotFoundException extends DukeException {
     }
 }
 
-class EmptyArgumentException extends DukeException {
-    public EmptyArgumentException() {
-        super("You did not provide any details on your todo. Please provide in the format of <event + Task Name>.");
+class EmptyTodoArgumentException extends DukeException {
+    public EmptyTodoArgumentException() {
+        super("You did not provide any details on your to do task. Please provide in the format of <Todo + Task Name>.");
+    }
+}
+
+class EmptyDeadlineArgumentException extends DukeException {
+    public EmptyDeadlineArgumentException() {
+        super("You did not provide any details on your deadline task. Please provide in the format of <deadline + Task Name + /by + by time>.");
+    }
+}
+
+class EmptyEventArgumentException extends DukeException {
+    public EmptyEventArgumentException() {
+        super("You did not provide any details on your event task. Please provide in the format of <event + Task Name + /from + From time + /to + To time>.");
     }
 }
 
