@@ -62,7 +62,7 @@ public class TaskStorage {
                             String[] formatDeadline = content.split(" \\(by:");
                             String tmp = formatDeadline[1].substring(0, formatDeadline[1].length() - 1);
                             Deadline deadline = new Deadline(formatDeadline[0], tmp);
-                            deadline.setDone(isDone);
+                            deadline.setIsDone(isDone);
                             tasks.add(deadline);
                             break;
                         case 'E':
@@ -76,12 +76,12 @@ public class TaskStorage {
                             } else {
                                 event = new Event(formatEvent[0], time);
                             }
-                            event.setDone(isDone);
+                            event.setIsDone(isDone);
                             tasks.add(event);
                             break;
                         default:
                             Todo todo = new Todo(content);
-                            todo.setDone(isDone);
+                            todo.setIsDone(isDone);
                             tasks.add(todo);
                     }
                 }

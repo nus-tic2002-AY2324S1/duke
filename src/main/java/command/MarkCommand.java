@@ -26,7 +26,7 @@ public class MarkCommand extends CrabyMessage implements CommandInterface{
                 System.out.println(line);
                 return 0;
             }
-            tasks.get(checkNum).setDone(true);
+            tasks.get(checkNum).setIsDone(true);
             System.out.println(blank + "Nice! I've marked this task as DONE ツ:");
             System.out.println(blank + "╰┈➤ " + tasks.get(checkNum) );
             System.out.println(line);

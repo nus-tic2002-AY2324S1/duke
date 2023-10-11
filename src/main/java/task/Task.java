@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Task {
     protected String description;
-    protected static boolean isDone = false;
+    protected boolean isDone = false;
 
     /**
      * @param description the description of the task
@@ -16,23 +16,20 @@ public class Task {
     }
 
     /**
-     * @return the description of the task
+     * @return the status icon of the task
      */
-    public static String getStatusIcon(boolean isDone) {
-
-        return (Task.isDone ? " ✓ " : "҉҉҉");
+    public String getStatusIcon() {
+        return (isDone ? " ✓ " : "҉҉҉");
     }
 
     /**
      * @return the description of the task
      */
-    public void setDone(boolean done) {
-
+    public void setIsDone(boolean done) {
         isDone = done;
     }
 
     public boolean getIsDone() {
-
         return isDone;
     }
 
@@ -64,7 +61,7 @@ public class Task {
     public String toString() {
         this.description = this.description.substring(0, 1).toUpperCase()
                 + this.description.substring(1);
-        return "[" + this.getStatusIcon(isDone) + "] " + this.description;
+        return "[" + getStatusIcon() + "] " + this.description;
     }
 
     /**

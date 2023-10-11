@@ -28,7 +28,7 @@ public class UnmarkCommand extends CrabyMessage implements CommandInterface{
                 System.out.println(line);
                 return 0;
             }
-            tasks.get(checkNum).setDone(false);
+            tasks.get(checkNum).setIsDone(false);
             System.out.println(blank + "OK, I've marked this task as ☉⌓☉ NOT DONE yet:");
             System.out.println(blank + "╰┈➤ " + tasks.get(checkNum));
             System.out.println(line);
