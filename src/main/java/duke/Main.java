@@ -43,6 +43,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        new Main("data/tasks.txt").run();
+//        new Main("data/tasks.txt").run();
+        Main m = new Main("data/tasks.txt");
+        m.ui = new Ui();
+        m.ui.showeWelcome();
     }
 }
