@@ -1,5 +1,6 @@
 package command;
 
+import io.CrabyMessage;
 import task.Task;
 
 import java.util.List;
@@ -15,10 +16,8 @@ public class DeleteAllCommand extends CrabyMessage implements CommandInterface {
      */
     @Override
     public short handleCommand(String input, List<Task> tasks) {
-        System.out.println(blank + "✂ Ok, I clean up all your tasks");
-        System.out.println(blank + "╰┈➤ Let's start a new checklist");
+        printDeleteAllMessage();
         tasks.clear();
-        System.out.println(line);
         return 0;
     }
 }

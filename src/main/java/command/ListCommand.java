@@ -1,18 +1,11 @@
 package command;
 
+import io.CrabyMessage;
 import task.Task;
 
 import java.util.List;
 
-public class ListCommand extends CrabyMessage implements CommandInterface{
-    private static void printStartOfList() {
-        System.out.println(blank + " ╭─────────────────────────────────╮");
-    }
-
-    private static void printEndOfList() {
-        System.out.println(blank + " ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦");
-        System.out.println(line);
-    }
+public class ListCommand extends CrabyMessage implements CommandInterface {
 
     /**
      * This method will print out all the tasks in the list.
@@ -25,24 +18,12 @@ public class ListCommand extends CrabyMessage implements CommandInterface{
     public short handleCommand(String input, List<Task> tasks) {
         if (tasks.isEmpty()) {
             printStartOfList();
-            System.out.println(blank + "    ░░░░ Your list is empty! ░░░░");
+            printEmptyList();
             printEndOfList();
             return 0;
         }
-        int i = 0;
         printStartOfList();
-        System.out.println(blank + "  Here are the tasks in your list:");
-        for (Task s : tasks) {
-            i++;
-            if (i <= 9) {
-                System.out.println("   " + i + ".  " + s);
-            } else if (i > 99) {
-                System.out.println("   " + i + " " + s);
-
-            } else {
-                System.out.println("   " + i + ". " + s);
-            }
-        }
+        printListMessage(tasks);
         printEndOfList();
         return 0;
     }

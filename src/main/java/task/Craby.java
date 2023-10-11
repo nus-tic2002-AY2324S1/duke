@@ -2,6 +2,7 @@ package task;
 
 import command.*;
 import exceptions.InputBlankException;
+import io.CrabyMessage;
 import io.TaskStorage;
 
 import java.util.List;
@@ -9,13 +10,13 @@ import java.util.Scanner;
 
 public class Craby extends CrabyMessage {
     private static TaskStorage taskStorage = new TaskStorage("./data/craby.txt");
+
     /**
      * This method will print out the logo and the hello message.
      * It will also handle the input from the user.
      */
     public static void crabySysterm() {
-        System.out.println(line + System.lineSeparator() + logo + line);
-        System.out.println(hello + System.lineSeparator() + line);
+        printHello();
         Scanner scanner = new Scanner(System.in);
         List<Task> tasks = taskStorage.load();
         while (true) {
@@ -36,6 +37,7 @@ public class Craby extends CrabyMessage {
 
     /**
      * This method will handle the input from the user.
+     *
      * @param input the input from the user.
      * @param tasks the list of tasks.
      * @return true if the user input bye.
@@ -84,6 +86,7 @@ public class Craby extends CrabyMessage {
 
     /**
      * This method will add the task to the list.
+     *
      * @param input the input from the user.
      * @param tasks the list of tasks.
      */
@@ -94,6 +97,7 @@ public class Craby extends CrabyMessage {
 
     /**
      * This method will unmark the task as done.
+     *
      * @param input the input from the user.
      * @param tasks the list of tasks.
      */
