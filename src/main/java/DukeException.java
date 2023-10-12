@@ -40,12 +40,6 @@ class EmptyEventArgumentException extends DukeException {
     }
 }
 
-class TaskCreationException extends DukeException {
-    public TaskCreationException(String message) {
-        super("Error creating task: " + message);
-    }
-}
-
 class InvalidNumberFormatException extends DukeException {
     public InvalidNumberFormatException(String message) {
         super(message + " is not a valid number! Please Try again.");

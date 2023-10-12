@@ -10,6 +10,7 @@ class Duke {
     private final List<Task> taskList = new ArrayList<>();
     private final UserInterface userInterface;
     private final MessageDisplay messageDisplay;
+
     // Initializes user interface and message display class.
     public Duke() {
         userInterface = new UserInterface();
@@ -58,7 +59,6 @@ class Duke {
             String arguments = userInput.substring(command.length()).trim();
 
 
-
             switch (command) {
                 case "list": {
                     handleListCommand();
@@ -94,7 +94,7 @@ class Duke {
         messageDisplay.printList(taskList);
     }
 
-    private void handleTodoCommand(String arguments) throws EmptyTodoArgumentException {
+    private void handleTodoCommand(String arguments) throws DukeException {
         if (arguments.isEmpty()) {
             throw new EmptyTodoArgumentException();
         }
@@ -127,7 +127,7 @@ class Duke {
      * @param taskType  The type of the task ('Todo', 'Deadline', or 'Event').
      * @param arguments The task arguments.
      */
-    private void storeUserTask(TaskType taskType, String arguments) {
+    private void storeUserTask(TaskType taskType, String arguments) throws DukeException {
         Task task = createTask(taskType, arguments);
         if (task != null) {
             taskList.add(task);
@@ -143,7 +143,7 @@ class Duke {
      * @param arguments The remaining command from user input.
      * @return The created task or null if the creation fails.
      */
-    private Task createTask(TaskType taskType, String arguments) {
+    private Task createTask(TaskType taskType, String arguments) throws DukeException {
         Task task = null;
         switch (taskType) {
             case TODO:
@@ -175,10 +175,13 @@ class Duke {
      * @param arguments The task arguments that contains task name, by time for an event task.
      * @return The created deadline task or null if the creation fails.
      */
-    private Task createDeadlineTask(String arguments) {
+    private Task createDeadlineTask(String arguments) throws DukeException {
         int byIndex = arguments.indexOf("/by");
         String taskName = arguments.substring(0, byIndex).trim();
         String date = arguments.substring(byIndex + 3).trim();
+        if (date.isEmpty()) {
+            throw new EmptyDeadlineArgumentException();
+        }
         return new DeadlineTask(taskName, date);
     }
 
@@ -188,19 +191,25 @@ class Duke {
      * @param arguments The task arguments that contains task name, from time, to time for an event task.
      * @return The created event task or null if the creation fails.
      */
-    private Task createEventTask(String arguments) {
+    private Task createEventTask(String arguments) throws DukeException{
         int fromIndex = arguments.indexOf("/from");
         int toIndex = arguments.indexOf("/to");
         String taskName = arguments.substring(0, fromIndex).trim();
         String from = arguments.substring(fromIndex + 5, toIndex).trim();
         String to = arguments.substring(toIndex + 3).trim();
-        return new EventTask( taskName, from, to);
+        if (from.isEmpty() || to.isEmpty()) {
+            throw new EmptyEventArgumentException();
+        }
+        return new EventTask(taskName, from, to);
     }
 
     //Toggle the complete status of a task
     public void modifyTask(String userInput) {
         try {
             int itemIndex = extractItemIndex(userInput);
+            if(itemIndex == -1){
+                return;
+            }
             switch (getCommandFromInput(userInput)) {
                 case "mark":
                     markAsComplete(itemIndex);
@@ -236,13 +245,13 @@ class Duke {
                 throw new TaskNotFoundException();
             }
             return itemIndex;
-        }catch(TaskNotFoundException e){
+        } catch (TaskNotFoundException e) {
             // Handle the case where task is not found from index
             System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
-        }catch(NumberFormatException e){
-            throw new InvalidNumberFormatException();
+        } catch (NumberFormatException e) {
+            throw new InvalidNumberFormatException(e.getMessage());
         }
-        return 0;
+        return -1;
     }
 
     public void markAsComplete(int itemIndex) {
