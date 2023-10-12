@@ -109,15 +109,14 @@ public class CrabyMessage {
 
     public static void printListMessage(List<Task> tasks) {
         System.out.println(blank + "  Here are the tasks in your list:");
-        int i = 0;
-        for (Task s : tasks) {
-            i++;
+
+        for (int i = 1; i < tasks.size() + 1; i++) {
             if (i <= 9) {
-                System.out.println("   " + i + ".  " + s);
+                System.out.println("   " + i + ".  " + tasks.get(i - 1));
             } else if (i > 99) {
-                System.out.println("   " + i + " " + s);
+                System.out.println("   " + i + " " + tasks.get(i - 1));
             } else {
-                System.out.println("   " + i + ". " + s);
+                System.out.println("   " + i + ". " + tasks.get(i - 1));
             }
         }
     }
@@ -160,6 +159,19 @@ public class CrabyMessage {
     public static void printNoMatchingTasks() {
         System.out.println(blank + "✘ No matching tasks in your list.");
         System.out.println(blank + "╰┈➤ Please try with another keyword ☘");
+        System.out.println(line);
+    }
+
+    //Print SortByCommand Message
+    public static void printSortByErrorMessage() {
+        System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
+        System.out.println(blank + "╰┈➤ Try with: sortby [type/date] e.g: sortby type");
+        System.out.println(line);
+    }
+
+    public static void printSortByEmptyList() {
+        System.out.println(blank + "Oops!!! your list are empty.");
+        System.out.println(blank + "╰┈➤ Please add some tasks before use Sortby ☘");
         System.out.println(line);
     }
 }
