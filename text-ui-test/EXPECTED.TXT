@@ -1,3 +1,5 @@
+	Wonky: Initialisation completed successfully.
+	
 	Wonky: Hello from
 	__          __         _            ____        _   
 	\ \        / /        | |          |  _ \      | |  
@@ -14,16 +16,16 @@
 	Wonky: Did you mean to type command [list] instead?
 	Wonky: Oops! I do not understand the command [invalidcmd].
 	Wonky: Hooray you have no pending tasks!
-	Wonky: Oops! Seems like your argument(s) for command [todo] are wrong.
+	Wonky: Oops! Seems like your argument(s) for command [list] are wrong.
 	Wonky: Did you input the wrong argument(s)? Expected [1] argument(s) for the command.
-	Wonky: Oops! Seems like your argument(s) for command [todo] are wrong.
+	Wonky: Oops! Seems like your argument(s) for command [list] are wrong.
 	Wonky: Did you input the wrong argument(s)? Expected [1] argument(s) for the command.
 	Wonky: I have added todo task [homework1] to our list!
-	Wonky: Oops! Seems like your argument(s) for command [deadline] are wrong.
+	Wonky: Oops! Seems like your argument(s) for command [todo] are wrong.
 	Wonky: Did you input the wrong argument(s)? Expected [2] argument(s) for the command.
-	Wonky: Oops! Seems like your argument(s) for command [deadline] are wrong.
+	Wonky: Oops! Seems like your argument(s) for command [todo] are wrong.
 	Wonky: Did you input the wrong argument(s)? Expected [2] argument(s) for the command.
-	Wonky: Oops! Seems like your argument(s) for command [deadline] are wrong.
+	Wonky: Oops! Seems like your argument(s) for command [todo] are wrong.
 	Wonky: Did you input the wrong argument(s)? Expected [2] argument(s) for the command.
 	Wonky: I have added deadline task [homework2] to our list!
 	Wonky: I have added event task [homework3] to our list!

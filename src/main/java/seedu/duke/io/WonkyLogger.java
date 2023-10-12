@@ -58,9 +58,8 @@ public class WonkyLogger {
 
     private static final Random RND = new Random();
 
-    private static WonkyMode mode = WonkyMode.NORMAL;
     private static boolean hasError = false;
-
+    public static WonkyMode mode = WonkyMode.NORMAL;
     public static boolean isLoading = false;
 
     private static void printlnWithWonky(String toPrint) throws DukeLoggerException {

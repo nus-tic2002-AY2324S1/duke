@@ -41,20 +41,22 @@ public class WonkyStorage {
     }
 
     public static void save(List<CommandArgument> cmdArgs) throws DukeException {
-        try (
-            BufferedWriter writer = new BufferedWriter(new FileWriter(STORAGE_FILE, false));
-        ) {
-            for (CommandArgument cmdArg : cmdArgs) {
-                if (
-                    !Command.BYE.equals(cmdArg.getCmd()) &&
-                    !Command.LIST.equals(cmdArg.getCmd())
-                ) {
-                    writer.write(cmdArg.getCmdLitr() + " " + cmdArg.getArgStr());
-                    writer.newLine();
+        if (WonkyMode.NORMAL.equals(WonkyLogger.mode)) {
+            try (
+                BufferedWriter writer = new BufferedWriter(new FileWriter(STORAGE_FILE, false));
+            ) {
+                for (CommandArgument cmdArg : cmdArgs) {
+                    if (
+                        !Command.BYE.equals(cmdArg.getCmd()) &&
+                        !Command.LIST.equals(cmdArg.getCmd())
+                    ) {
+                        writer.write(cmdArg.getCmdLitr() + " " + cmdArg.getArgStr());
+                        writer.newLine();
+                    }
                 }
+            } catch (Exception e) {
+                throw new DukeStorageException(e.getMessage());
             }
-        } catch (Exception e) {
-            throw new DukeStorageException(e.getMessage());
         }
     }
 }
