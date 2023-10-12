@@ -1,6 +1,7 @@
 package command;
 
 import io.CrabyMessage;
+import io.TaskStorage;
 import task.Task;
 
 import java.util.ArrayList;
@@ -17,10 +18,10 @@ public class SortByCommand extends CrabyMessage implements CommandInterface {
             return 0;
         }
         String checkSort = input.substring(6).trim().toLowerCase();
-        if (checkSort.equals("type")) {
+        if (checkSort.equals("type") || checkSort.equals("t")) {
             sortByType(tasks);
             return 0;
-        } else if (checkSort.equals("date")) {
+        } else if (checkSort.equals("date") || checkSort.equals("d")) {
             sortByDate(tasks);
             return 0;
         } else {
