@@ -1,5 +1,7 @@
 package craby;
 
+import task.Craby;
+
 public class Duke {
     /**
      * This is the main method.

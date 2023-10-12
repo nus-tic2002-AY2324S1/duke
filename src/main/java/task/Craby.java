@@ -1,4 +1,4 @@
-package craby;
+package task;
 
 import command.*;
 import exceptions.InputBlankException;
@@ -81,8 +81,11 @@ public class Craby extends CrabyMessage {
                 case FIND:
                     handleFindCommand(input, tasks);
                     break;
-                    case HELP:
-                        //will add later
+                case SORTBY:
+                    handleSortByCommand(input, tasks);
+                    break;
+                case HELP:
+                    //will add later
                 case TODO:
                 case DEADLINE:
                 case EVENT:
@@ -95,6 +98,8 @@ public class Craby extends CrabyMessage {
         }
         return exit;
     }
+
+
 
 
     private static void addTaskCommand(String input, List<Task> tasks) {
@@ -129,7 +134,9 @@ public class Craby extends CrabyMessage {
     private static void handleListCommand(String input, List<Task> tasks) {
         new ListCommand().handleCommand(input, tasks);
     }
-
+    private static void handleSortByCommand(String input, List<Task> tasks) {
+        new SortByCommand().handleCommand(input, tasks);
+    }
     private static void handleFindCommand(String input, List<Task> tasks) {
         new FindCommand().handleCommand(input, tasks);
     }
