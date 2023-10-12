@@ -147,7 +147,7 @@ class Duke {
         Task task = null;
         switch (taskType) {
             case TODO:
-                task = new Task('T', arguments);
+                task = createToDoTask(arguments);
                 break;
             case DEADLINE:
                 task = createDeadlineTask(arguments);
@@ -160,6 +160,16 @@ class Duke {
     }
 
     /**
+     * Creates a To Do task based on the arguments.
+     *
+     * @param arguments The task arguments that contains task name of an event task.
+     * @return The created to do task or null if the creation fails.
+     */
+    private Task createToDoTask(String arguments) {
+        return new TodoTask(arguments);
+    }
+
+    /**
      * Creates a deadline task based on the arguments.
      *
      * @param arguments The task arguments that contains task name, by time for an event task.
@@ -169,7 +179,7 @@ class Duke {
         int byIndex = arguments.indexOf("/by");
         String taskName = arguments.substring(0, byIndex).trim();
         String date = arguments.substring(byIndex + 3).trim();
-        return new DeadlineTask('D', taskName, date);
+        return new DeadlineTask(taskName, date);
     }
 
     /**
@@ -184,7 +194,7 @@ class Duke {
         String taskName = arguments.substring(0, fromIndex).trim();
         String from = arguments.substring(fromIndex + 5, toIndex).trim();
         String to = arguments.substring(toIndex + 3).trim();
-        return new EventTask('E', taskName, from, to);
+        return new EventTask( taskName, from, to);
     }
 
     //Toggle the complete status of a task

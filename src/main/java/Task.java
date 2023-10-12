@@ -1,4 +1,4 @@
-public class Task {
+abstract class Task {
     private static int totalTasks = 0;
     private final String taskName;
 
@@ -68,11 +68,18 @@ public class Task {
 
 }
 
-class DeadlineTask extends Task {
-    private final String taskDueDate;
+class TodoTask extends Task{
 
-    public DeadlineTask(Character taskType, String taskName, String taskDueDate) {
-        super(taskType, taskName);
+    public TodoTask(String taskName) {
+        super('T',taskName);
+    }
+}
+
+class DeadlineTask extends Task {
+    protected String taskDueDate;
+
+    public DeadlineTask(String taskName, String taskDueDate) {
+        super('D', taskName);
         this.taskDueDate = taskDueDate;
     }
 
@@ -91,8 +98,8 @@ class EventTask extends Task {
     private final String taskFrom;
     private final String taskTo;
 
-    public EventTask(Character taskType, String taskName, String taskFrom, String taskTo) {
-        super(taskType, taskName);
+    public EventTask(String taskName, String taskFrom, String taskTo) {
+        super('E',taskName);
         this.taskFrom = taskFrom;
         this.taskTo = taskTo;
     }
