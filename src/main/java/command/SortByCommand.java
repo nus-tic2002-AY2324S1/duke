@@ -2,12 +2,8 @@ package command;
 
 import io.CrabyMessage;
 import io.Sort;
-import io.TaskStorage;
 import task.Task;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class SortByCommand extends CrabyMessage implements CommandInterface {
@@ -21,11 +17,9 @@ public class SortByCommand extends CrabyMessage implements CommandInterface {
         }
         String checkSort = input.substring(6).trim().toLowerCase();
         if (checkSort.equals("type") || checkSort.equals("t")
-                || checkSort.equals("type1") || checkSort.equals("t1")) {
-            sortByType(checkSort, tasks);
-            return 0;
-        } else if (checkSort.equals("date") || checkSort.equals("d")) {
-            sortByDate(tasks);
+                || checkSort.equals("type1") || checkSort.equals("t1")
+                || checkSort.equals("date") || checkSort.equals("d")) {
+            sortBy(checkSort, tasks);
             return 0;
         } else {
             printSortByErrorMessage();
@@ -34,10 +28,7 @@ public class SortByCommand extends CrabyMessage implements CommandInterface {
         return 0;
     }
 
-    private void sortByDate(List<Task> tasks) {
-        System.out.println("This function is not available yet.");
-    }
-    private static void sortByType(String input, List<Task> tasks) {
+    private static void sortBy(String input, List<Task> tasks) {
         Sort sort = new Sort();
         sort.sort(input, tasks);
         printListMessage(tasks);

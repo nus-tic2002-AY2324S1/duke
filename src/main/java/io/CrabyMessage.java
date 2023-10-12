@@ -136,7 +136,7 @@ public class CrabyMessage {
 
     //Print UnmarkCommand Message
     public static void printUnmarkMessage(String input) {
-        System.out.println(blank + "Nice! I've marked this task as DONE ツ:");
+        System.out.println(blank + "OK, I've marked this task as ☉⌓☉ NOT DONE yet:");
         System.out.println(blank + "╰┈➤ " + input);
         System.out.println(line);
     }

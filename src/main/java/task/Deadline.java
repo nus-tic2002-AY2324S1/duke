@@ -11,6 +11,12 @@ import java.util.Date;
  */
 public class Deadline extends Task {
     protected LocalDateTime time;
+
+    // get the time of the deadline
+    public LocalDateTime getTime() {
+        return time;
+    }
+
     public Deadline(String description, String timeString) {
         super(description);
         timeString = timeString.trim();
@@ -29,7 +35,7 @@ public class Deadline extends Task {
     public String toString() {
         String timeString = this.time.format(DateTimeFormatter.ofPattern("d MMM yyyy, E - ha"));
         return "[D]" + super.toString()
-                + " (by: " + timeString.trim() + ")";
+                + " (before: " + timeString.trim() + ")";
     }
     /**
      * This method is to save the data to the local file

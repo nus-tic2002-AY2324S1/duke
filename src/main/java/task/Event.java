@@ -4,8 +4,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-    protected LocalDateTime time;
+    public LocalDateTime time;
     protected LocalDateTime time1;
+
+    // getter and setter
+    public LocalDateTime getTime() {
+        return time;
+    }
 
     /**
      * This class represents a event task that user input only have /from
