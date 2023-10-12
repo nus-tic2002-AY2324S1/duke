@@ -22,13 +22,18 @@ public class WonkyScanner {
             in = new Scanner(System.in);
         }
         while (isActive) {
-            nextLine();
+            String nextLine = in.nextLine().trim();
+            processNextLine(nextLine);
         }
     }
 
     public static void bye() throws DukeException {
-        isActive = false;
-        shutdown();
+        if (WonkyLogger.isLoading) {
+            WonkyLogger.byeInStorage();
+        } else {
+            isActive = false;
+            shutdown();
+        }
     }
 
     public static String typoSuggestion(String invalidCmd) {
@@ -49,10 +54,9 @@ public class WonkyScanner {
         return null;
     }
 
-    private static boolean nextLine() throws DukeException {
+    public static boolean processNextLine(String nextLine) throws DukeException {
         try {
-            final String NXT_LN = in.nextLine().trim();
-            final List<String> SPLIT_LN = Arrays.asList(NXT_LN.split(" ", 2));
+            final List<String> SPLIT_LN = Arrays.asList(nextLine.split(" ", 2));
             final String INPUT_CMD = SPLIT_LN.get(0);
             try {
                 currCommand = Command.getEnum(INPUT_CMD);

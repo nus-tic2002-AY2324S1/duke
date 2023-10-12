@@ -8,6 +8,7 @@ import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeUnhandledException;
 import seedu.duke.io.WonkyLogger;
 import seedu.duke.io.WonkyScanner;
+import seedu.duke.io.WonkyStorage;
 
 public class Duke {
     public static void main(String[] args) throws DukeException {
@@ -23,6 +24,7 @@ public class Duke {
     }
 
     private static void initialise(WonkyMode mode) throws DukeException {
+        WonkyStorage.startUp(mode);
         WonkyLogger.startUp(mode);
         WonkyScanner.startUp();
     }

@@ -9,11 +9,13 @@ import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeManagerException;
 import seedu.duke.io.WonkyLogger;
 import seedu.duke.io.WonkyScanner;
+import seedu.duke.io.WonkyStorage;
 
 public class WonkyManager {
 
     private final static String EMPTY_LITR = "";
 
+    private final static int ZERO_ARGS = 0;
     private final static int TODO_ARGS = 1;
     private final static int DEADLINE_ARGS = 2;
     private final static int EVENT_ARGS = 3;
@@ -27,13 +29,16 @@ public class WonkyManager {
     private static List<Task> tasks = new ArrayList<Task>();
 
     public static void executeCommand(CommandArgument cmdArg) throws DukeException {
-        cmdArgs.add(cmdArg);
         switch (cmdArg.getCmd()) {
         case BYE:
-            WonkyScanner.bye();
+            if (validateArgs(cmdArg, ZERO_ARGS)) {
+                WonkyScanner.bye();
+            }
             break;
         case LIST:
-            WonkyLogger.printListCommand(tasks);
+            if (validateArgs(cmdArg, ZERO_ARGS)) {
+                WonkyLogger.printListCommand(tasks);
+            }
             break;
         case DELETE:
             //Fallthrough
@@ -56,7 +61,7 @@ public class WonkyManager {
 
     private static void modifyTask(CommandArgument cmdArg) throws DukeException {
         List<String> argList = cmdArg.getArgList();
-        if (validateArgs(argList, 1)) {
+        if (validateArgs(cmdArg, 1)) {
             try {
                 int taskIdx = Integer.parseInt(argList.get(0)) - 1;
                 switch (cmdArg.getCmd()) {
@@ -89,12 +94,12 @@ public class WonkyManager {
         List<String> argList = cmdArg.getArgList();
         switch (cmdArg.getCmd()) {
         case TODO:
-            if (validateArgs(argList, TODO_ARGS)) {
+            if (validateArgs(cmdArg, TODO_ARGS)) {
                 addTask(new Todo(argList.get(DESC_IDX)));
             }
             break;
         case DEADLINE:
-            if (validateArgs(argList, DEADLINE_ARGS)) {
+            if (validateArgs(cmdArg, DEADLINE_ARGS)) {
                 addTask(
                     new Deadline(
                         argList.get(DESC_IDX),
@@ -104,7 +109,7 @@ public class WonkyManager {
             }
             break;
         case EVENT:
-            if (validateArgs(argList, EVENT_ARGS)) {
+            if (validateArgs(cmdArg, EVENT_ARGS)) {
                 addTask(
                     new Event(
                         argList.get(DESC_IDX),
@@ -125,8 +130,15 @@ public class WonkyManager {
         WonkyLogger.addedToList(toAdd.command.getLitr(), toAdd.description);
     }
 
-    private static boolean validateArgs(List<String> argList, int expectedSize) throws DukeException {
-        if (argList.size() != expectedSize || argList.get(0).trim().isEmpty()) {
+    private static boolean validateArgs(CommandArgument cmdArg, int expectedSize) throws DukeException {
+        List<String> argList = cmdArg.getArgList();
+        int argCount = cmdArg.getArgCount();
+        if (argCount == expectedSize && expectedSize == ZERO_ARGS) {
+            cmdArgs.add(cmdArg);
+            WonkyStorage.save(cmdArgs);
+            return true;
+        }
+        if (argCount != expectedSize || (argList.get(0).trim().isEmpty())) {
             WonkyLogger.mismatchArgs(getLastCmd().getLitr(), expectedSize);
             return false;
         }
@@ -135,6 +147,8 @@ public class WonkyManager {
                 return false;
             }
         }
+        cmdArgs.add(cmdArg);
+        WonkyStorage.save(cmdArgs);
         return true;
     }
 
