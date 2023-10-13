@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Date;
 public class Tim {
-    private static Task[] list = {};
+//    private static Task[] list = {};
 
+    private static ArrayList<Task> list = new ArrayList<Task>();
     public static void printLogo(){
         String logo =
                 " _______                 \n"
@@ -24,8 +26,8 @@ public class Tim {
     }
 
     public static void printList(){
-        if (list.length > 0){
-            for(int i = 1; i <= list.length ; i++){
+        if (!list.isEmpty()){
+            for(int i = 1; i <= list.size() ; i++){
                 printSingle(i);
             }
         }
@@ -33,16 +35,15 @@ public class Tim {
     }
 
     public static void printSingle(int index){
-        Task current = list[index-1];
+        Task current = list.get(index-1);
         System.out.println(index + ". [" + current.type  + "] [" + current.getIsDone() + "] " + current.getDescription() );
     }
 
     public static void addToDo (String inputEntry){
-        list = Arrays.copyOf(list,list.length+1);
-        list[list.length-1]= new ToDo(inputEntry);
+        list.add(new ToDo(inputEntry));
         System.out.println("Gotcha! Added this task:");
-        printSingle(list.length);
-        System.out.println("now there is: "+ list.length + " item(s)");
+        printSingle(list.size());
+        System.out.println("now there is: "+ list.size() + " item(s)");
         printDashes();
     }
 
@@ -50,14 +51,13 @@ public class Tim {
         String[] inputTokenized = {};
         String by = "";
         try{
-            inputTokenized = inputEntry.split(" /by ",2);
+            inputTokenized = inputEntry.split("/by ",2);
             by = inputTokenized[1];
             String description = inputTokenized[0];
-            list = Arrays.copyOf(list,list.length+1);
-            list[list.length-1]= new Deadline(description,by);
+            list.add(new Deadline(description,by));
             System.out.println("Gotcha! Added this task:");
-            printSingle(list.length);
-            System.out.println("now there is: "+ list.length + " item(s)");
+            printSingle(list.size());
+            System.out.println("now there is: "+ list.size() + " item(s)");
             printDashes();
         } catch (Exception e) {
             System.err.println("you've missed out [/by] !");
@@ -70,24 +70,31 @@ public class Tim {
         String from = "";
         String to = "";
         try {
-            inputTokenized =  inputEntry.split(" /from ",2);
+            inputTokenized =  inputEntry.split("/from ",2);
             String description = inputTokenized[0];
-            to = inputTokenized[1].split(" /to ", 2)[1];
-            from = inputTokenized[1].split(" /to ", 2)[0];
-            list = Arrays.copyOf(list,list.length+1);
-            list[list.length-1]= new Event(description,from,to);
+            to = inputTokenized[1].split("/to ", 2)[1];
+            from = inputTokenized[1].split("/to ", 2)[0];
+            list.add(new Event(description,from,to));
             System.out.println("Gotcha! Added this task:");
-            printSingle(list.length);
-            System.out.println("now there is: "+ list.length + " item(s)");
+            printSingle(list.size());
+            System.out.println("now there is: "+ list.size() + " item(s)");
             printDashes();
         } catch (Exception e) {
-            System.err.println("you've missed out either [/from] or [/to] !");
+            System.err.println("you've missed out either the description, [/from] or [/to] !");
         }
 
     }
 
+    public static void deleteFromList (int deleteIndex){
+        System.out.print("Deleting: ");
+        printSingle(deleteIndex);
+        printDashes();
+        list.remove(deleteIndex-1);
+        printList();
+    }
+
     public static void markUnmarkTask(int index, boolean markUnmark){
-        Task target = list[index-1];
+        Task target = list.get(index-1);
         if(markUnmark){
             System.out.println("Nice! I've marked this task as done:");
         } else {
@@ -109,6 +116,7 @@ public class Tim {
         System.out.println("Bye. Hope to see you again soon!");
         printDashes();
     }
+
     public static void main(String[] args) {
         printLogo();
         greetings();
@@ -147,35 +155,35 @@ public class Tim {
                     break;
                 case "todo":
                     try {
-                        if(token[1].isBlank()){
-                            throw new BlankInputException("todo blank");
-                        }
                         taskName = token[1];
                         addToDo(taskName);
-                    } catch (ArrayIndexOutOfBoundsException | BlankInputException AIO){
+                    } catch (ArrayIndexOutOfBoundsException AIO){
                         System.err.println("what is the name of the task to complete?");
                     }
                     break;
                 case "deadline":
                     try {
-                        if(token[1].isBlank()){
-                            throw new BlankInputException("event blank");
-                        }
+
                         taskName = token[1];
                         addDeadline(taskName);
-                    } catch (ArrayIndexOutOfBoundsException | BlankInputException AIO){
+                    } catch (ArrayIndexOutOfBoundsException AIO){
                         System.err.println("what is the name of the deadline agenda?");
                     }
                     break;
                 case "event":
                     try {
-                        if(token[1].isBlank()){
-                            throw new BlankInputException("event blank");
-                        }
                         taskName = token[1];
                         addEvent(taskName);
-                    } catch (ArrayIndexOutOfBoundsException | BlankInputException AIO){
+                    } catch (ArrayIndexOutOfBoundsException AIO){
                         System.err.println("what is the name of the event?");
+                    }
+                    break;
+                case "delete":
+                    try {
+                        int deleteIndex = Integer.parseInt(token[1]);
+                        deleteFromList(deleteIndex);
+                    } catch (Exception e) {
+                        System.err.println("please include valid index of task to delete");
                     }
                     break;
                 default: System.err.println("I've not learn to do this yet!!");

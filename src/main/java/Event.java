@@ -6,7 +6,9 @@ public class Event extends Task{
         this.type = 'E';
         this.from = from;
         this.to = to;
-    }    @Override
+    }
+
+    @Override
     public String getDescription(){
         return (description + "(from: " + from + " to: " + to +  ")");
     }
