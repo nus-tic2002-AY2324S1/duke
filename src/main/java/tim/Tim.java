@@ -1,9 +1,11 @@
+package tim;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Date;
 public class Tim {
-//    private static Task[] list = {};
+//    private static tim.Task[] list = {};
 
     private static ArrayList<Task> list = new ArrayList<Task>();
     public static void printLogo(){
@@ -17,7 +19,7 @@ public class Tim {
     }
     public static void greetings(){
         printDashes();
-        System.out.println("Hello I'm Tim\nWhat can I do for you?");
+        System.out.println("Hello I'm Tim. \nWhat can I do for you?");
         printDashes();
     }
     public static void printDashes(){
@@ -117,13 +119,13 @@ public class Tim {
         printDashes();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         printLogo();
         greetings();
         String input = "init" ;
         int index = -1;
         Scanner in = new Scanner(System.in);
-
+        list = FileManager.loadList();
         while(!input.equalsIgnoreCase("bye")){
             input = in.nextLine();
             String[] token = input.split(" ",2);
@@ -188,7 +190,11 @@ public class Tim {
                     break;
                 default: System.err.println("I've not learn to do this yet!!");
             }
+            if (!(mode.equals("list") || mode.equals("date") || mode.equals("bye"))){
+                FileManager.saveList(list);
+            }
         }
+
 
 
 

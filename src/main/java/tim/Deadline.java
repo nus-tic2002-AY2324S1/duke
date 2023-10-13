@@ -1,3 +1,5 @@
+package tim;
+
 public class Deadline extends Task{
     String by;
     public Deadline(String description, String by){

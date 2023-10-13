@@ -1,4 +1,8 @@
-public abstract class Task {
+package tim;
+
+import java.io.Serializable;
+
+public abstract class Task implements Serializable {
     protected String description;
     protected char type;
     protected boolean isDone;
