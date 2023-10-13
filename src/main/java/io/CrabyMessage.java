@@ -24,7 +24,6 @@ public class CrabyMessage {
                 "   How can I help you today? ˃ᴗ˂"
                 + System.lineSeparator() + line);
     }
-
     public static final String line = "  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈";
     public static final String blank = "   ";
 
@@ -43,8 +42,8 @@ public class CrabyMessage {
     }
 
     public static void printInputBlankExceptionMessage() {
-        System.out.println("   Oops!!! The description cannot be empty.");
-        System.out.println("   Please try again!" + System.lineSeparator() + line);
+        System.out.println(blank + "Oops!!! The description cannot be empty.");
+        System.out.println(blank + "╰┈➤Type \"help\" if you need to see the list of command" + System.lineSeparator() + line);
     }
 
     public static void printNumOutOfTask(int input) {

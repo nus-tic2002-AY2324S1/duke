@@ -85,7 +85,8 @@ public class Craby extends CrabyMessage {
                     handleSortByCommand(input, tasks);
                     break;
                 case HELP:
-                    //will add later
+                    handleHelpCommand(input, tasks);
+                    break;
                 case TODO:
                 case DEADLINE:
                 case EVENT:
@@ -99,7 +100,9 @@ public class Craby extends CrabyMessage {
         return exit;
     }
 
-
+    private static void handleHelpCommand(String input, List<Task> tasks) {
+        new HelpCommand().handleCommand(input, tasks);
+    }
 
 
     private static void addTaskCommand(String input, List<Task> tasks) {
