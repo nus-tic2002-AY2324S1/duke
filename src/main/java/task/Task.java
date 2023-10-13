@@ -22,9 +22,6 @@ public class Task {
         return (isDone ? " ✓ " : "҉҉҉");
     }
 
-    /**
-     * @return the description of the task
-     */
     public void setIsDone(boolean done) {
         isDone = done;
     }
@@ -33,6 +30,11 @@ public class Task {
         return isDone;
     }
 
+    /**
+     * This method is to handle the date and time.
+     *
+     * @return The LocalDateTime object to the format requirement.
+     */
     protected LocalDateTime handleDateTime(String time) {
         // check the format of the time user input
         DateTimeFormatter formatter;

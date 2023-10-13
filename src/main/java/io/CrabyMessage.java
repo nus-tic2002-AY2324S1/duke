@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * CrabyMessage class is a class that store all the messages that CrabY will use.
+ * because the file quite long, I separate the help message into another file.
  * It has a method to handle the command.
  */
 public class CrabyMessage {
@@ -24,6 +25,7 @@ public class CrabyMessage {
                 "   How can I help you today? ˃ᴗ˂"
                 + System.lineSeparator() + line);
     }
+
     public static final String line = "  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈";
     public static final String blank = "   ";
 
@@ -66,7 +68,7 @@ public class CrabyMessage {
         System.out.println(line);
     }
 
-    //Print BlahCommand Message
+    //Print Delete all Message
     public static void printDeleteAllMessage() {
         System.out.println(blank + "✂ Ok, I clean up all your tasks");
         System.out.println(blank + "╰┈➤ Let's start a new checklist");
@@ -84,7 +86,6 @@ public class CrabyMessage {
         System.out.println(line);
     }
 
-
     public static void printDeleteErrorMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
         System.out.println(blank + "╰┈➤ Try with: delete [integer] e.g: delete 1");
@@ -93,22 +94,19 @@ public class CrabyMessage {
     }
 
     //Print ListCommand Message
-    public static void printEndOfList() {
-        System.out.println(blank + " ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦");
+    public static String printEndOfList = blank + " ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦";
+    public static String printStartOfList = blank + " ╭─────────────────────────────────╮";
+
+    public static void printEmptyList() {
+        System.out.println(printStartOfList);
+        System.out.println(blank + "    ░░░░ Your list is empty! ░░░░");
+        System.out.println(printEndOfList);
         System.out.println(line);
     }
 
-    public static void printStartOfList() {
-        System.out.println(blank + " ╭─────────────────────────────────╮");
-    }
-
-    public static void printEmptyList() {
-        System.out.println(blank + "    ░░░░ Your list is empty! ░░░░");
-    }
-
     public static void printListMessage(List<Task> tasks) {
+        System.out.println(printStartOfList);
         System.out.println(blank + "  Here are the tasks in your list:");
-
         for (int i = 1; i < tasks.size() + 1; i++) {
             if (i <= 9) {
                 System.out.println("   " + i + ".  " + tasks.get(i - 1));
@@ -118,6 +116,8 @@ public class CrabyMessage {
                 System.out.println("   " + i + ". " + tasks.get(i - 1));
             }
         }
+        System.out.println(printEndOfList);
+        System.out.println(line);
     }
 
     //Print MarkCommand Message
@@ -148,10 +148,12 @@ public class CrabyMessage {
 
     //Print FindCommand Message
     public static void printFindMessage(List<String> listFound) {
+        System.out.println(printStartOfList);
         System.out.println(blank + "⌖ Here are the matching tasks in your list:");
         for (String s : listFound) {
             System.out.println(blank + s);
         }
+        System.out.println(printEndOfList);
         System.out.println(line);
     }
 
@@ -171,6 +173,12 @@ public class CrabyMessage {
     public static void printSortByEmptyList() {
         System.out.println(blank + "Oops!!! your list are empty.");
         System.out.println(blank + "╰┈➤ Please add some tasks before use Sortby ☘");
+        System.out.println(line);
+    }
+
+    //Print BlahCommand Message
+    public static void printBlahMessage() {
+        System.out.println(blank + "Oops!!! I'm sorry, but I don't know what that means ☘");
         System.out.println(line);
     }
 }

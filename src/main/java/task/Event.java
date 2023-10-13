@@ -7,7 +7,13 @@ public class Event extends Task {
     public LocalDateTime time;
     protected LocalDateTime time1;
 
-    // getter and setter
+
+    /**
+     * This method is to handle the date and time.
+     * It will use for the sort function.
+     *
+     * @return The LocalDateTime object
+     */
     public LocalDateTime getTime() {
         return time;
     }

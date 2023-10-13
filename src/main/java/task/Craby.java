@@ -10,6 +10,10 @@ import task.Task;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * This class is the main class of the program.
+ * It will handle the input from the user.
+ */
 public class Craby extends CrabyMessage {
     private static final TaskStorage taskStorage = new TaskStorage("./data/craby.txt");
 
@@ -29,6 +33,7 @@ public class Craby extends CrabyMessage {
                 exit = handleInput(input, tasks);
             } catch (InputBlankException e) {
                 printInputBlankExceptionMessage();
+
             }
             if (exit) {
                 break;
@@ -50,7 +55,7 @@ public class Craby extends CrabyMessage {
         String checkInput;
         try {
             checkInput = input.split(" ")[0];
-        } catch (ArrayIndexOutOfBoundsException ai) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new InputBlankException();
         }
         checkInput = checkInput.toUpperCase().trim();
@@ -137,9 +142,11 @@ public class Craby extends CrabyMessage {
     private static void handleListCommand(String input, List<Task> tasks) {
         new ListCommand().handleCommand(input, tasks);
     }
+
     private static void handleSortByCommand(String input, List<Task> tasks) {
         new SortByCommand().handleCommand(input, tasks);
     }
+
     private static void handleFindCommand(String input, List<Task> tasks) {
         new FindCommand().handleCommand(input, tasks);
     }

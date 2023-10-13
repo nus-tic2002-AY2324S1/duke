@@ -49,42 +49,7 @@ public class TaskStorage {
         if (file.exists()) {
             try {
                 BufferedReader reader = new BufferedReader(new FileReader(filePath));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    char checkTask = line.charAt(1);
-                    boolean isDone = false;
-                    if (line.charAt(5) == '✓') {
-                        isDone = true;
-                    }
-                    String content = line.substring(9);
-                    switch (checkTask) {
-                        case 'D':
-                            String[] formatDeadline = content.split(" \\(by:");
-                            String tmp = formatDeadline[1].substring(0, formatDeadline[1].length() - 1);
-                            Deadline deadline = new Deadline(formatDeadline[0], tmp);
-                            deadline.setIsDone(isDone);
-                            tasks.add(deadline);
-                            break;
-                        case 'E':
-                            String[] formatEvent = content.split(" \\(from:");
-                            String time = formatEvent[1];
-                            time = time.substring(0, time.length() - 1);
-                            Event event;
-                            if (time.contains("to:")) {
-                                String[] tmp1 = time.split(" to: ");
-                                event = new Event(formatEvent[0], tmp1[0], tmp1[1]);
-                            } else {
-                                event = new Event(formatEvent[0], time);
-                            }
-                            event.setIsDone(isDone);
-                            tasks.add(event);
-                            break;
-                        default:
-                            Todo todo = new Todo(content);
-                            todo.setIsDone(isDone);
-                            tasks.add(todo);
-                    }
-                }
+                loadLine(reader, tasks);
                 reader.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -94,5 +59,52 @@ public class TaskStorage {
             save(tasks);
         }
         return tasks;
+    }
+
+    private static void loadLine(BufferedReader reader, List<Task> tasks) throws IOException {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            boolean isDone = isDone(line);
+            addByType(tasks, line, isDone);
+        }
+    }
+
+    private static void addByType(List<Task> tasks, String line, boolean isDone) {
+        char checkType = line.charAt(1);
+        String content = line.substring(9);
+        switch (checkType) {
+            case 'D':
+                String[] formatDeadline = content.split(" \\(by:");
+                String tmp = formatDeadline[1].substring(0, formatDeadline[1].length() - 1);
+                Deadline deadline = new Deadline(formatDeadline[0], tmp);
+                deadline.setIsDone(isDone);
+                tasks.add(deadline);
+                break;
+            case 'E':
+                String[] formatEvent = content.split(" \\(from:");
+                String time = formatEvent[1];
+                time = time.substring(0, time.length() - 1);
+                Event event;
+                if (time.contains("to:")) {
+                    String[] tmp1 = time.split(" to: ");
+                    event = new Event(formatEvent[0], tmp1[0], tmp1[1]);
+                } else {
+                    event = new Event(formatEvent[0], time);
+                }
+                event.setIsDone(isDone);
+                tasks.add(event);
+                break;
+            default:
+                Todo todo = new Todo(content);
+                todo.setIsDone(isDone);
+                tasks.add(todo);
+        }
+    }
+    private static boolean isDone(String line) {
+        boolean isDone = false;
+        if (line.charAt(5) == '✓') {
+            isDone = true;
+        }
+        return isDone;
     }
 }

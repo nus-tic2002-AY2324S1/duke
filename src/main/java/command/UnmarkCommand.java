@@ -19,6 +19,10 @@ public class UnmarkCommand extends CrabyMessage implements CommandInterface {
      */
     @Override
     public short handleCommand(String input, List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            printEmptyList();
+            return 0;
+        }
         try {
             int tmp = input.indexOf("k");
             String checkMark = input.substring(tmp + 1).trim();

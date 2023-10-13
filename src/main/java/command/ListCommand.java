@@ -18,14 +18,10 @@ public class ListCommand extends CrabyMessage implements CommandInterface {
     @Override
     public short handleCommand(String input, List<Task> tasks) {
         if (tasks.isEmpty()) {
-            printStartOfList();
             printEmptyList();
-            printEndOfList();
             return 0;
         }
-        printStartOfList();
         printListMessage(tasks);
-        printEndOfList();
         return 0;
     }
 }

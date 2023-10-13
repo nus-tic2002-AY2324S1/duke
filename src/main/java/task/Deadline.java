@@ -12,11 +12,22 @@ import java.util.Date;
 public class Deadline extends Task {
     protected LocalDateTime time;
 
-    // get the time of the deadline
+    /**
+     * This method is to handle the date and time.
+     * It will use for the sort function.
+     *
+     * @return The LocalDateTime object
+     */
     public LocalDateTime getTime() {
         return time;
     }
 
+    /**
+     * This class represents a deadline task that user input have /by
+     *
+     * @param description
+     * @param timeString
+     */
     public Deadline(String description, String timeString) {
         super(description);
         timeString = timeString.trim();
