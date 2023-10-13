@@ -38,6 +38,17 @@ public class Event extends Task{
     }
 
     @Override
+    public String toTextFile(){
+        String result = "";
+        if (!getIsDone()){
+            result = "[E][ ] "+ getDescription() + "(from: " + getFrom() + "to: "+ getTo() +")";
+        }else {
+            result = "[E][X] "+ getDescription() + "(from: " + getFrom() + "to: "+ getTo() +")";
+        }
+        return result;
+    }
+
+    @Override
     public void printTask(){
         if (!getIsDone()){
             System.out.println("[E][ ] "+ getDescription() + "(from: " + getFrom() + "to: "+ getTo() +")");

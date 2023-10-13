@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -110,6 +113,46 @@ public class Duke {
         }
     }
 
+    public static void convertToTxtFile() throws IOException {
+        //handling file/folder does not exit
+        String filePath = "./data/duke.txt";
+        File file = new File(filePath);
+
+
+//        if(!file.exists() && !file.isDirectory()) {
+//            File file = new File(filePath);
+//        }
+        try {
+            if (file.exists()) {
+                if (file.delete()) {
+                    System.out.println("File deleted successfully.");
+                } else {
+                    System.out.println("Failed to delete the file.");
+                    return;
+                }
+            }
+
+            FileWriter fw = new FileWriter(filePath);
+            for (Task task : actions) {
+                fw.write(task.toTextFile());
+            }
+            fw.close();
+
+        }catch (IOException e) {
+            System.err.println("An error occurred: " + e.getMessage());
+        }
+            //handle file overwritting
+//            try {
+//                FileWriter fw = new FileWriter(filePath);
+//                for (Task task : actions) {
+//                    fw.write(task.toTextFile());
+//                }
+//                fw.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
+    }
 
     public static void main(String[] args) {
         //Adding testing items in Task

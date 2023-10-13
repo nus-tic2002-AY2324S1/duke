@@ -30,6 +30,16 @@ public class Task {
         return description;
     }
 
+    public String toTextFile(){
+       String result = "";
+        if (!isDone){
+            result = "[T][ ] "+ getDescription();
+        }else {
+            result = "[T][X] "+ getDescription();
+        }
+       return result;
+    }
+
     public void printTask(){
         if (!isDone){
             System.out.println("[T][ ] "+ getDescription());

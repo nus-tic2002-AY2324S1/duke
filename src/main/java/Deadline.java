@@ -24,6 +24,17 @@ public class Deadline extends Task{
     }
 
     @Override
+    public String toTextFile(){
+        String result = "";
+        if (!getIsDone()){
+            result = "[D][ ] "+ getDescription() + "(by: "+getBy()+")";
+        }else {
+            result = "[D][X] "+ getDescription() + "(by: "+getBy()+")";
+        }
+        return result;
+    }
+
+    @Override
     public void printTask(){
         if (!getIsDone()){
             System.out.println("[D][ ] "+ getDescription() + "(by: "+getBy()+")");
