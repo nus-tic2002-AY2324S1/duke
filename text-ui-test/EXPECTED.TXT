@@ -10,7 +10,49 @@ Hello, I'm Sophon:).
 How can I assist you today?
 ****************************************
 ****************************************
+OOPS!!! I'm sorry, but I don't know what that means :-(
+****************************************
+****************************************
 There's nothing in your list
+****************************************
+****************************************
+You did not provide any details on your to do task. Please provide in the format of <Todo + Task Name>.
+****************************************
+****************************************
+You did not provide any details on your deadline task. Please provide in the format of <deadline + Task Name + /by + by time>.
+****************************************
+****************************************
+Invalid format for Deadline task. Please provide in the format of <deadline + Task Name + /by + by time>
+****************************************
+****************************************
+You did not provide any details on your deadline task. Please provide in the format of <deadline + Task Name + /by + by time>.
+****************************************
+****************************************
+You did not provide any details on your event task. Please provide in the format of <event + Task Name + /from + From time + /to + To time>.
+****************************************
+****************************************
+Invalid format for Event task. Please provide in the format of <event + Task Name + /from + From time + /to + To time>
+****************************************
+****************************************
+You did not provide any details on your event task. Please provide in the format of <event + Task Name + /from + From time + /to + To time>.
+****************************************
+****************************************
+For input string: "test" is not a valid number! Please Try again.
+****************************************
+****************************************
+OOPS!!! I'm sorry, but I can't find this task!
+****************************************
+****************************************
+For input string: "test" is not a valid number! Please Try again.
+****************************************
+****************************************
+OOPS!!! I'm sorry, but I can't find this task!
+****************************************
+****************************************
+For input string: "test" is not a valid number! Please Try again.
+****************************************
+****************************************
+OOPS!!! I'm sorry, but I can't find this task!
 ****************************************
 ****************************************
 Got it. I've added this task:
@@ -49,24 +91,20 @@ That's some progress! I've marked this task as done:
    [T][X] join sports club
 ****************************************
 ****************************************
-For input string: "abc" is not a valid number! Please Try again.
+Noted. I've removed this task:
+   [T][ ] borrow book
+Now you have 4 tasks in the list.
+****************************************
+****************************************
+Noted. I've removed this task:
+   [T][X] gym
+Now you have 3 tasks in the list.
 ****************************************
 ****************************************
 Here are the tasks in your list:
-1.[T][X] gym
-2.[D][ ] homework (by: june 6th)
-3.[E][ ] project meeting (from: saturday 2pm to: 4pm)
-4.[T][X] join sports club
-5.[T][ ] borrow book
-****************************************
-****************************************
-You did not provide any details on your todo. Please provide in the format of <event + Task Name>.
-****************************************
-****************************************
-Invalid format for Deadline task. Please provide in the format of <deadline + Task Name + /by + by time>
-****************************************
-****************************************
-Invalid format for Event task. Please provide in the format of <event + Task Name + /from + From time + /to + To time>
+1.[D][ ] homework (by: june 6th)
+2.[E][ ] project meeting (from: saturday 2pm to: 4pm)
+3.[T][X] join sports club
 ****************************************
 ****************************************
 Bye! Hope to see you again soon!

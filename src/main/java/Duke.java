@@ -7,14 +7,19 @@ import java.util.List;
  */
 class Duke {
     // Initialize a taskList array to store user tasks.
-    private final List<Task> taskList = new ArrayList<>();
+    public final List<Task> taskList = new ArrayList<>();
     private final UserInterface userInterface;
     private final MessageDisplay messageDisplay;
+
+    private final FileStorage fileStorage;
+    private final FileRead fileRead;
 
     // Initializes user interface and message display class.
     public Duke() {
         userInterface = new UserInterface();
         messageDisplay = new MessageDisplay();
+        fileStorage = new FileStorage();
+        fileRead = new FileRead();
     }
 
     public static void main(String[] args) {
@@ -27,6 +32,7 @@ class Duke {
      */
     public void start() {
 
+        fileRead.getSavedTask(taskList);
         // Greet the user
         messageDisplay.Hello();
 
@@ -66,20 +72,24 @@ class Duke {
                 }
                 case "todo": {
                     handleTodoCommand(arguments);
+                    storeDuke();
                     break;
                 }
                 case "deadline": {
                     handleDeadlineCommand(arguments);
+                    storeDuke();
                     break;
                 }
                 case "event": {
                     handleEventCommand(arguments);
+                    storeDuke();
                     break;
                 }
                 case "delete":
                 case "mark":
                 case "unmark": {
                     modifyTask(userInput);
+                    storeDuke();
                     break;
                 }
                 default:
@@ -191,7 +201,7 @@ class Duke {
      * @param arguments The task arguments that contains task name, from time, to time for an event task.
      * @return The created event task or null if the creation fails.
      */
-    private Task createEventTask(String arguments) throws DukeException{
+    private Task createEventTask(String arguments) throws DukeException {
         int fromIndex = arguments.indexOf("/from");
         int toIndex = arguments.indexOf("/to");
         String taskName = arguments.substring(0, fromIndex).trim();
@@ -207,7 +217,7 @@ class Duke {
     public void modifyTask(String userInput) {
         try {
             int itemIndex = extractItemIndex(userInput);
-            if(itemIndex == -1){
+            if (itemIndex == -1) {
                 return;
             }
             switch (getCommandFromInput(userInput)) {
@@ -241,7 +251,7 @@ class Duke {
             String integerPart = userInput.substring(spaceIndex + 1).trim();
             int itemIndex = Integer.parseInt(integerPart) - 1;
             if (itemIndex < 0 || itemIndex >= Task.getTotalTasks()) {
-                // Handle exception case where the item index is out of bounds or does not exists
+                // Handle exception case where the item index is out of bounds or does not exist
                 throw new TaskNotFoundException();
             }
             return itemIndex;
@@ -278,6 +288,10 @@ class Duke {
         Task.removeTask();
         Task deletedTask = taskList.remove(itemIndex);
         messageDisplay.deleteMessage(deletedTask);
+    }
+
+    public void storeDuke() {
+        fileStorage.fileStorage(taskList);
     }
 
     private enum TaskType {

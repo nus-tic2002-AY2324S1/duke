@@ -5,13 +5,13 @@ public class MessageDisplay {
 
     private static final String LOGO =
             "╭━━━╮╱╱╱╱╱╭╮\n" +
-            "┃╭━╮┃╱╱╱╱╱┃┃\n" +
-            "┃╰━━┳━━┳━━┫╰━┳━━┳━╮\n" +
-            "╰━━╮┃╭╮┃╭╮┃╭╮┃╭╮┃╭╮╮\n" +
-            "┃╰━╯┃╰╯┃╰╯┃┃┃┃╰╯┃┃┃┃\n" +
-            "╰━━━┻━━┫╭━┻╯╰┻━━┻╯╰╯\n" +
-            "╱╱╱╱╱╱╱┃┃\n" +
-            "╱╱╱╱╱╱╱╰╯\n";
+                    "┃╭━╮┃╱╱╱╱╱┃┃\n" +
+                    "┃╰━━┳━━┳━━┫╰━┳━━┳━╮\n" +
+                    "╰━━╮┃╭╮┃╭╮┃╭╮┃╭╮┃╭╮╮\n" +
+                    "┃╰━╯┃╰╯┃╰╯┃┃┃┃╰╯┃┃┃┃\n" +
+                    "╰━━━┻━━┫╭━┻╯╰┻━━┻╯╰╯\n" +
+                    "╱╱╱╱╱╱╱┃┃\n" +
+                    "╱╱╱╱╱╱╱╰╯\n";
 
     public void print(String line) {
         System.out.printf("%s\n%s\n", line, LINE_BREAK);
@@ -61,7 +61,7 @@ public class MessageDisplay {
      * Displays a message when a task is marked as completed.
      *
      * @param userInputList The array of user tasks.
-     * @param itemNumber     The index of the completed task.
+     * @param itemNumber    The index of the completed task.
      */
     public void completeMessage(List<Task> userInputList, int itemNumber) {
         System.out.printf("That's some progress! I've marked this task as done:\n   %s\n%s\n", userInputList.get(itemNumber).toString(), LINE_BREAK);
@@ -71,7 +71,7 @@ public class MessageDisplay {
      * Displays a message when a task is unmarked.
      *
      * @param userInputList The array of user tasks.
-     * @param itemNumber     The index of the unmarked task.
+     * @param itemNumber    The index of the unmarked task.
      */
     public void unCompleteMessage(List<Task> userInputList, int itemNumber) {
         System.out.printf("Okay, you can do it at a later time:\n   %s\n%s\n", userInputList.get(itemNumber).toString(), LINE_BREAK);

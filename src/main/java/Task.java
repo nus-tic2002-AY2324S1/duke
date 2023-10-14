@@ -4,13 +4,31 @@ abstract class Task {
 
     private final Character taskType;
 
-    private boolean completed;
+    boolean completed;
 
     public Task(Character taskType, String taskName) {
         this.taskType = taskType;
         this.taskName = taskName;
         this.completed = false;
         totalTasks++;
+    }
+
+    public Task(Character taskType, String taskName,boolean isCompleted) {
+        this.taskType = taskType;
+        this.taskName = taskName;
+        this.completed = isCompleted;
+        totalTasks++;
+    }
+
+    /**
+     * Getter method to get the total number of tasks
+     **/
+    public static int getTotalTasks() {
+        return totalTasks;
+    }
+
+    public static void removeTask() {
+        totalTasks--;
     }
 
     /**
@@ -48,17 +66,6 @@ abstract class Task {
         return completed;
     }
 
-    /**
-     * Getter method to get the total number of tasks
-     **/
-    public static int getTotalTasks() {
-        return totalTasks;
-    }
-
-    public static void removeTask(){
-        totalTasks--;
-    }
-
     public String toString() {
         String taskName = getTaskName();
         Character taskType = getTaskType();
@@ -66,12 +73,21 @@ abstract class Task {
         return "[" + taskType + "]" + "[" + taskComplete + "] " + taskName;
     }
 
+    public String toFile() {
+        String taskName = getTaskName();
+        Character taskType = getTaskType();
+        int taskComplete = isCompleted() ? 1 : 0;
+        return taskType + " | " + taskComplete + " | " + taskName;
+    }
 }
 
-class TodoTask extends Task{
+class TodoTask extends Task {
 
     public TodoTask(String taskName) {
-        super('T',taskName);
+        super('T', taskName);
+    }
+    public TodoTask(String taskName,boolean completed) {
+        super('T', taskName,completed);
     }
 }
 
@@ -80,6 +96,10 @@ class DeadlineTask extends Task {
 
     public DeadlineTask(String taskName, String taskDueDate) {
         super('D', taskName);
+        this.taskDueDate = taskDueDate;
+    }
+    public DeadlineTask(String taskName, boolean completed,  String taskDueDate) {
+        super('D', taskName,completed);
         this.taskDueDate = taskDueDate;
     }
 
@@ -91,6 +111,12 @@ class DeadlineTask extends Task {
     public String toString() {
         return super.toString() + String.format(" (by: %s)", getTaskDueDate());
     }
+
+    @Override
+    public String toFile() {
+        return super.toFile() + " | " + getTaskDueDate();
+    }
+
 }
 
 
@@ -99,7 +125,12 @@ class EventTask extends Task {
     private final String taskTo;
 
     public EventTask(String taskName, String taskFrom, String taskTo) {
-        super('E',taskName);
+        super('E', taskName);
+        this.taskFrom = taskFrom;
+        this.taskTo = taskTo;
+    }
+    public EventTask(String taskName, boolean completed, String taskFrom, String taskTo) {
+        super('E', taskName,completed);
         this.taskFrom = taskFrom;
         this.taskTo = taskTo;
     }
@@ -115,5 +146,10 @@ class EventTask extends Task {
     @Override
     public String toString() {
         return super.toString() + String.format(" (from: %s to: %s)", getTaskFrom(), getTaskTo());
+    }
+
+    @Override
+    public String toFile() {
+        return super.toFile() + " | " + getTaskFrom() + " | " + getTaskTo();
     }
 }

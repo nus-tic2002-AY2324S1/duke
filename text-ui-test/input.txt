@@ -3,14 +3,15 @@ List
 Todo
 Deadline
 Deadline project submission
+deadline homework /by
 Event
 Event CCA
-deadline homework /by
 event project meeting /from 2pm /to
 Mark test
-Unmark test
 Mark 0
+Unmark test
 Unmark 0
+Delete test
 Delete 0
 todo gym
 deadline homework /by June 6th
