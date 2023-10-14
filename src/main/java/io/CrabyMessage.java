@@ -22,8 +22,10 @@ public class CrabyMessage {
 
         System.out.println("   Hi Amber ♡, I'm CrabY 🦀"
                 + System.lineSeparator() +
-                "   How can I help you today? ˃ᴗ˂"
-                + System.lineSeparator() + line);
+                "   How can I help you today? ˃ᴗ˂");
+        System.out.println(line);
+        System.out.println(blank + "╰┈➤Type \"help\" if you need to see the list of command" + System.lineSeparator() + line);
+
     }
 
     public static final String line = "  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈";
@@ -64,7 +66,8 @@ public class CrabyMessage {
     public static void printDateTimeParseExceptionMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
         System.out.println(blank + "Please enter in this format after used /by or /from and /to");
-        System.out.println(blank + "╰┈➤ Try with: \"dd/mm/yyyy hhmm\" e.g: 12/12/2020 1800");
+        System.out.println(blank + "╰┈➤ Try with: \"/by dd/mm/yyyy hhmm\" e.g: /by 12/12/2020 1800");
+        System.out.println(blank + "          or: \"/by mon\" - CrabY will put the date to the next Monday");
         System.out.println(line);
     }
 

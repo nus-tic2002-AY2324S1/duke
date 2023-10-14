@@ -5,10 +5,6 @@ import task.*;
 
 import java.time.format.DateTimeParseException;
 import java.util.List;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAdjusters;
 
 /**
  * AddTaskCommand class is a class that handle the add command.
@@ -16,13 +12,6 @@ import java.time.temporal.TemporalAdjusters;
  * It has a method to handle the add command.
  */
 public class AddTaskCommand extends CrabyMessage implements CommandInterface {
-//    private static String NaturalDate(String inputDay){
-//        LocalDate toDay = LocalDate.now();
-//        DayOfWeek targetDay = DayOfWeek.valueOf(inputDay.toUpperCase());
-//        LocalDate nextOccurrence = toDay.with(TemporalAdjusters.nextOrSame(targetDay));
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-//        return nextOccurrence.format(formatter);
-//    }
 
     /**
      * This method is to handle the add command.

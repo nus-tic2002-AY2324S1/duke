@@ -89,9 +89,10 @@ public class Event extends Task {
             return "[E]" + super.toString()
                     + " (from: " + timeString + ")";
         }
+        boolean isSameDay = this.time.format(DateTimeFormatter.ofPattern("d MMM yyyy"))
+                .equals(this.time1.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
         String timeString1;
-        if (this.time.format(DateTimeFormatter.ofPattern("d MMM yyyy"))
-                .equals(this.time1.format(DateTimeFormatter.ofPattern("d MMM yyyy")))) {
+        if (isSameDay) {
             timeString1 = this.time1.format(DateTimeFormatter.ofPattern("hh:mma"));
         } else {
             timeString1 = this.time1.format(DateTimeFormatter.ofPattern(TIME_OUTPUT_FORMAT));

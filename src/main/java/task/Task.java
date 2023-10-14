@@ -62,6 +62,7 @@ public class Task {
      */
     @Override
     public String toString() {
+        // Capitalize the first letter of the description
         this.description = this.description.substring(0, 1).toUpperCase()
                 + this.description.substring(1);
         return "[" + getStatusIcon() + "] " + this.description;
