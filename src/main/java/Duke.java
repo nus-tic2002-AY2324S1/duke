@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -116,12 +118,15 @@ public class Duke {
     public static void convertToTxtFile() throws IOException {
         //handling file/folder does not exit
         String filePath = "./data/duke.txt";
+        String folderPath = "./data";
         File file = new File(filePath);
-
+        File folder = new File(folderPath);
+        Path createFolder = Path.of(folderPath);
 
 //        if(!file.exists() && !file.isDirectory()) {
 //            File file = new File(filePath);
 //        }
+
         try {
             if (file.exists()) {
                 if (file.delete()) {
@@ -130,14 +135,16 @@ public class Duke {
                     System.out.println("Failed to delete the file.");
                     return;
                 }
+            }else if (!folder.exists()) {
+                Files.createDirectories(createFolder);
             }
-
             FileWriter fw = new FileWriter(filePath);
             for (Task task : actions) {
                 fw.write(task.toTextFile());
+                //line seperator in the file
+                fw.write(System.lineSeparator());
             }
             fw.close();
-
         }catch (IOException e) {
             System.err.println("An error occurred: " + e.getMessage());
         }
@@ -154,7 +161,7 @@ public class Duke {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //Adding testing items in Task
         //what if the situation without todo
         Task task1 = new Task("todo read book", false);
@@ -165,6 +172,7 @@ public class Duke {
         actions.add(task2);
         actions.add(task3);
         inputCount +=3;
+        convertToTxtFile();
 
         Scanner scanner = new Scanner(System.in);
         printHeader();
@@ -202,7 +210,9 @@ public class Duke {
             }else{
                 printTaskList();
             }
+            convertToTxtFile();
             input = scanner.nextLine();
+
         }
 
         System.out.println("Bye. Hope to see you again soon!\n" +
