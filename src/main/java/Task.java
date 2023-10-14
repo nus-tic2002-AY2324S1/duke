@@ -13,7 +13,7 @@ abstract class Task {
         totalTasks++;
     }
 
-    public Task(Character taskType, String taskName,boolean isCompleted) {
+    public Task(Character taskType, String taskName, boolean isCompleted) {
         this.taskType = taskType;
         this.taskName = taskName;
         this.completed = isCompleted;
@@ -86,8 +86,9 @@ class TodoTask extends Task {
     public TodoTask(String taskName) {
         super('T', taskName);
     }
-    public TodoTask(String taskName,boolean completed) {
-        super('T', taskName,completed);
+
+    public TodoTask(String taskName, boolean completed) {
+        super('T', taskName, completed);
     }
 }
 
@@ -98,8 +99,9 @@ class DeadlineTask extends Task {
         super('D', taskName);
         this.taskDueDate = taskDueDate;
     }
-    public DeadlineTask(String taskName, boolean completed,  String taskDueDate) {
-        super('D', taskName,completed);
+
+    public DeadlineTask(String taskName, boolean completed, String taskDueDate) {
+        super('D', taskName, completed);
         this.taskDueDate = taskDueDate;
     }
 
@@ -129,8 +131,9 @@ class EventTask extends Task {
         this.taskFrom = taskFrom;
         this.taskTo = taskTo;
     }
+
     public EventTask(String taskName, boolean completed, String taskFrom, String taskTo) {
-        super('E', taskName,completed);
+        super('E', taskName, completed);
         this.taskFrom = taskFrom;
         this.taskTo = taskTo;
     }
