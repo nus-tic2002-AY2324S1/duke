@@ -7,8 +7,7 @@ import io.TaskStorage;
 import task.Keyword;
 import task.Task;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * This class is the main class of the program.
@@ -33,13 +32,13 @@ public class Craby extends CrabyMessage {
                 exit = handleInput(input, tasks);
             } catch (InputBlankException e) {
                 printInputBlankExceptionMessage();
-
             }
             if (exit) {
                 break;
             }
         }
     }
+    public static Stack<String> stack = new Stack<>();
 
     /**
      * This method will handle the input from the user.
@@ -59,6 +58,7 @@ public class Craby extends CrabyMessage {
             throw new InputBlankException();
         }
         checkInput = checkInput.toUpperCase().trim();
+        stack.push(input);
         try {
             Keyword keyWords = Keyword.valueOf(checkInput);
             switch (keyWords) {
@@ -92,6 +92,9 @@ public class Craby extends CrabyMessage {
                 case HELP:
                     handleHelpCommand(input, tasks);
                     break;
+                case UNDO:
+                    handleUndoCommand(input, tasks);
+                    break;
                 case TODO:
                 case DEADLINE:
                 case EVENT:
@@ -103,6 +106,11 @@ public class Craby extends CrabyMessage {
             addTaskCommand(input, tasks);
         }
         return exit;
+    }
+
+    private static void handleUndoCommand(String input, List<Task> tasks) {
+        new UndoCommand().handleCommand(input, tasks);
+        taskStorage.save(tasks);
     }
 
     private static void handleHelpCommand(String input, List<Task> tasks) {

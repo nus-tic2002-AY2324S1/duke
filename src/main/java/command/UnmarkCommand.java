@@ -20,7 +20,7 @@ public class UnmarkCommand extends CrabyMessage implements CommandInterface {
     @Override
     public short handleCommand(String input, List<Task> tasks) {
         if (tasks.isEmpty()) {
-            printEmptyList();
+            printEmptyListForAllCommand(input);
             return 0;
         }
         try {

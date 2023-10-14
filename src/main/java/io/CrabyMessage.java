@@ -50,6 +50,13 @@ public class CrabyMessage {
         System.out.println(blank + "╰┈➤Type \"help\" if you need to see the list of command" + System.lineSeparator() + line);
     }
 
+    public static void printEmptyListForAllCommand(String input) {
+        String[] inputArr = input.split(" ");
+        System.out.println(blank + "Oops!!! your list are empty.");
+        System.out.println(blank + "╰┈➤ Please add some tasks before use " + inputArr[0].trim() + "☘");
+        System.out.println(line);
+    }
+
     public static void printNumOutOfTask(int input) {
         System.out.print(blank + "Oops!!! Something wrong! Your list only have 1 ➞ ");
         System.out.println(input + " tasks.");
@@ -61,6 +68,11 @@ public class CrabyMessage {
         System.out.println(blank + "✎ added:");
         System.out.println(blank + "╰┈➤ " + input + " - to your list");
         printCountTask(tasks.size());
+    }
+
+    public static void printCountTask(int input) {
+        System.out.println(blank + "Now you have: " + input + " in your list \uD83D\uDDCE.");
+        System.out.println(line);
     }
 
     public static void printDateTimeParseExceptionMessage() {
@@ -84,11 +96,6 @@ public class CrabyMessage {
         System.out.println(blank + "╰┈➤ " + input + " - in your list");
     }
 
-    public static void printCountTask(int input) {
-        System.out.println(blank + "Now you have: " + input + " in your list \uD83D\uDDCE.");
-        System.out.println(line);
-    }
-
     public static void printDeleteErrorMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
         System.out.println(blank + "╰┈➤ Try with: delete [integer] e.g: delete 1");
@@ -103,6 +110,7 @@ public class CrabyMessage {
     public static void printEmptyList() {
         System.out.println(printStartOfList);
         System.out.println(blank + "    ░░░░ Your list is empty! ░░░░");
+        System.out.println(blank + "     Let's start a new checklist");
         System.out.println(printEndOfList);
         System.out.println(line);
     }
@@ -173,15 +181,22 @@ public class CrabyMessage {
         System.out.println(line);
     }
 
-    public static void printSortByEmptyList() {
-        System.out.println(blank + "Oops!!! your list are empty.");
-        System.out.println(blank + "╰┈➤ Please add some tasks before use Sortby ☘");
-        System.out.println(line);
-    }
-
     //Print BlahCommand Message
     public static void printBlahMessage() {
         System.out.println(blank + "Oops!!! I'm sorry, but I don't know what that means ☘");
+        System.out.println(line);
+    }
+
+    //Print UndoCommand Message
+    public static void printUndoMessage(String input) {
+        System.out.println(blank + "OK, I've removed your last input you added to the list.");
+        System.out.println(blank + "  ╰┈➤ remove: " + input);
+        System.out.println(line);
+    }
+
+    public static void printUndoError() {
+        System.out.println(blank + "Oops!!! You can only use UNDO when your last entry was to add a task to the list.");
+        System.out.println(blank + "╰┈➤ Try with: delete [integer] - I will help you remove this task ☘");
         System.out.println(line);
     }
 }
