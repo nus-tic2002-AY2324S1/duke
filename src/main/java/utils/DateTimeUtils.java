@@ -17,7 +17,7 @@ public class DateTimeUtils {
         int dayIndex = dayOfWeeks.indexOf(DayOfWeek.valueOf(dateStr.toUpperCase()));
         int currentDayIndex = now.getDayOfWeek().getValue();
         int daysToAdd = dayIndex - currentDayIndex;
-        if (daysToAdd < 0) {
+        if (daysToAdd < 1) {
             daysToAdd += 7;
         }
         // set time to end of day
