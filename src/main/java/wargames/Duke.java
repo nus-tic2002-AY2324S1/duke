@@ -75,8 +75,7 @@ public class Duke {
                 Joshua.addTaskToList(event);
             }
             else {
-                Task task = new Task(input);
-                Joshua.addTaskToList(task);
+                Joshua.joshuaSays("Please be more articulate, Professor Falken.");
             }
         } while (!input.equals("bye"));
 
