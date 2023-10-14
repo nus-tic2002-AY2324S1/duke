@@ -1,5 +1,7 @@
 package task;
 
+import utils.DateTimeUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -31,6 +33,12 @@ public class Deadline extends Task {
     public Deadline(String description, String timeString) {
         super(description);
         timeString = timeString.trim();
+        LocalDateTime dateTime = DateTimeUtils.parseNextDay(timeString);
+        if (dateTime != null) {
+            this.time = dateTime;
+            return;
+        }
+
         String[] isTime = timeString.split(" ");
         if (isTime.length > 1) {
             this.time = handleDateTime(timeString);
@@ -38,16 +46,19 @@ public class Deadline extends Task {
             this.time = handleDateTime(timeString + " 0000");
         }
     }
+
     /**
      * This method is to handle the date and time.
+     *
      * @return The LocalDateTime object to the format requirement.
      */
     @Override
     public String toString() {
-        String timeString = this.time.format(DateTimeFormatter.ofPattern("d MMM yyyy, E - ha"));
+        String timeString = this.time.format(DateTimeFormatter.ofPattern(TIME_OUTPUT_FORMAT));
         return "[D]" + super.toString()
                 + " (before: " + timeString.trim() + ")";
     }
+
     /**
      * This method is to save the data to the local file
      */
