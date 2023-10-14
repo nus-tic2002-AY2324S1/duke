@@ -3,7 +3,6 @@
 package wargames;
 
 public class Joshua {
-    private static final MyList myList = new MyList();
 
     public Joshua(){
 
@@ -19,31 +18,4 @@ public class Joshua {
                      + "SHALL WE PLAY A GAME?");
     }
 
-    public static void printMyList(){
-        joshuaSays("Here is your current list:");
-        joshuaSays(myList.toString());
-    }
-
-    public static void addTaskToList(Task task){
-        myList.addToTaskList(task);
-        Joshua.joshuaSays("ADDED TASK: " + task);
-    }
-
-    public static void addTaskToList(Task[] taskArr){
-        myList.addToList(taskArr);
-    }
-
-    public static void markTaskAsDone(int taskNum){
-        int taskIdx = taskNum - 1;
-        Task task = myList.getItem(taskIdx);
-        task.setIsDone(true);
-        Joshua.joshuaSays("Marked task: " + task);
-    }
-
-    public static void markTaskAsNotDone(int taskNum){
-        int taskIdx = taskNum - 1;
-        Task task = myList.getItem(taskIdx);
-        task.setIsDone(false);
-        Joshua.joshuaSays("Unmarked task: " + task);
-    }
 }

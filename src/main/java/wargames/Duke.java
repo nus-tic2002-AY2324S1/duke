@@ -10,69 +10,58 @@ public class Duke {
 
         String input;
         Scanner in = new Scanner(System.in);
+        JoshuaParser JParser = new JoshuaParser();
+        MyList myList = new MyList();
 
         do {
             System.out.print(">> ");
             input = in.nextLine();
             input = input.toLowerCase();
 
-            if (input.equals("bye")) {
+            if (JParser.isByeCommand(input)) {
 
             }
-            else if (input.equals("list")) {
-                Joshua.printMyList();
+            else if (JParser.isListCommand(input)) {
+                Joshua.joshuaSays("Here is your current list:");
+                Joshua.joshuaSays(myList.toString());
             }
-            else if (input.startsWith("mark ")) {
-                // TODO: Handle the case where mark is empty; no number is given
+            else if (JParser.isMarkCommand(input)) {
+                int taskNum = JParser.parseTaskNum(input);
+                myList.markTaskAsDone(taskNum);
+            }
+            else if (JParser.isUnmarkCommand(input)) {
+                int taskNum = JParser.parseTaskNum(input);
+                myList.markTaskAsNotDone(taskNum);
+            }
+            else if (JParser.isToDoCommand(input)) {
                 try {
-                    int taskNum = parseTaskNumber(input, 5);
-                    Joshua.markTaskAsDone(taskNum);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    Joshua.joshuaSays("Enter a number from the task list.");
+                    Task todo = JParser.createToDo(input);
+                    myList.addToTaskList(todo);
+                    Joshua.joshuaSays("ADDED TASK: " + todo);
+                }
+                catch (InvalidCommandException e) {
+                    Joshua.joshuaSays(e.getMessage());
                 }
             }
-            else if (input.startsWith("unmark ")) {
+            else if (JParser.isDeadlineCommand(input)) {
                 try {
-                    int taskNum = parseTaskNumber(input, 7);
-                    Joshua.markTaskAsNotDone(taskNum);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    Joshua.joshuaSays("Enter a number from the task list.");
+                    Task deadline = JParser.createDeadline(input);
+                    myList.addToTaskList(deadline);
+                    Joshua.joshuaSays("ADDED TASK: " + deadline);
+                }
+                catch (InvalidCommandException e) {
+                    Joshua.joshuaSays(e.getMessage());
                 }
             }
-            else if (input.startsWith("todo ")) {
-                List<String> inputArrayList = stringToArrayList(input);
-                List<String> descArrayList = inputArrayList.subList(1, inputArrayList.size());
-                String desc = String.join(" ", descArrayList);
-                Task todo = new ToDo(desc);
-                Joshua.addTaskToList(todo);
-            }
-            else if (input.startsWith("deadline ")) {
-                // TODO: Check that the input contains /by first, handle the case where it doesn't
-                // Get "desc" and "by" from input
-                List<String> inputArrayList = stringToArrayList(input);
-                int byMarker = inputArrayList.indexOf("/by");
-                List<String> descArrayList = inputArrayList.subList(1, byMarker);
-                String desc = String.join(" ", descArrayList);
-                List<String> byArrayList = inputArrayList.subList(byMarker+1, inputArrayList.size());
-                String by = String.join(" ", byArrayList);
-                // Create Deadline and add to list
-                Task deadline = new Deadline(desc, by);
-                Joshua.addTaskToList(deadline);
-            }
-            else if (input.startsWith("event ")) {
-                // Get "from" and "to" from the input
-                List<String> inputArrayList = stringToArrayList(input);
-                int fromMarker = inputArrayList.indexOf("/from");
-                int toMarker = inputArrayList.indexOf("/to");
-                List<String> descArrayList = inputArrayList.subList(1, fromMarker);
-                String desc = String.join(" ", descArrayList);
-                List<String> fromArrayList = inputArrayList.subList(fromMarker+1, toMarker);
-                String from = String.join(" ", fromArrayList);
-                List<String> toArrayList = inputArrayList.subList(toMarker+1, inputArrayList.size());
-                String to = String.join(" ", toArrayList);
-                // Create Event and add to list
-                Task event = new Event(desc, from, to);
-                Joshua.addTaskToList(event);
+            else if (JParser.isEventCommand(input)) {
+                try {
+                    Task event = JParser.createEvent(input);
+                    myList.addToTaskList(event);
+                    Joshua.joshuaSays("ADDED TASK: " + event);
+                }
+                catch (InvalidCommandException e) {
+                    Joshua.joshuaSays(e.getMessage());
+                }
             }
             else {
                 Joshua.joshuaSays("Please be more articulate, Professor Falken.");
@@ -91,12 +80,6 @@ public class Duke {
             Joshua.joshuaSays("Enter a valid task number.");
         }
         return taskNum;
-    }
-
-    public static ArrayList<String> stringToArrayList(String str) {
-        String[] strArray = str.split("\\s+"); // Split on any number of whitespaces
-        List<String> strList = new ArrayList<>(Arrays.asList(strArray));
-        return new ArrayList<>(strList);
     }
 
 }

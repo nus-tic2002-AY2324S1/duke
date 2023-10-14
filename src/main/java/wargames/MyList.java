@@ -11,20 +11,42 @@ public class MyList {
 
     }
 
-    public void addToTaskList(Task task){
-        tasklist.add(task);
-    }
-
-    public void addToList(Task[] arr){
-        tasklist.addAll(Arrays.asList(arr));
-    }
-
     public Task getItem(int index){
         return tasklist.get(index);
     }
 
     public ArrayList<Task> getList(){
         return tasklist;
+    }
+
+    public void markTaskAsDone(int taskNum){
+        int taskIdx = taskNum - 1;
+        try {
+            Task task = getItem(taskIdx);
+            task.setIsDone(true);
+            Joshua.joshuaSays("Marked task: " + task);
+        } catch (IndexOutOfBoundsException e) {
+            Joshua.joshuaSays("Enter a number from the task list.");
+        }
+    }
+
+    public void markTaskAsNotDone(int taskNum){
+        int taskIdx = taskNum - 1;
+        try {
+            Task task = getItem(taskIdx);
+            task.setIsDone(false);
+            Joshua.joshuaSays("Unmarked task: " + task);
+        } catch (IndexOutOfBoundsException e) {
+            Joshua.joshuaSays("Enter a number from the task list.");
+        }
+    }
+
+    public void addToTaskList(Task task){
+        tasklist.add(task);
+    }
+
+    public void addToList(Task[] arr){
+        tasklist.addAll(Arrays.asList(arr));
     }
 
     @Override
