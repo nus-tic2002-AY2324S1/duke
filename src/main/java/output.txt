@@ -16,11 +16,11 @@ Got it. I've added this task:
 Now you have 1 tasks in the list.
 ***************************************
 Got it. I've added this task:
-[D][ ] reach restaurant (by: 2pm monday)
+[D][ ] reach restaurant (by: Nov 15 2023 6pm)
 Now you have 2 tasks in the list.
 ***************************************
 Got it. I've added this task:
-[E][ ] do homework (from: 1pm tuesday to: 4pm tuesday)
+[E][ ] do homework (from: Oct 15 2023 1pm to: Oct 15 2023 4pm)
 Now you have 3 tasks in the list.
 ***************************************
 Got it. I've added this task:
@@ -29,23 +29,23 @@ Now you have 4 tasks in the list.
 ***************************************
 List of tasks: 
 1.[T][ ] bake a cake
-2.[D][ ] reach restaurant (by: 2pm monday)
-3.[E][ ] do homework (from: 1pm tuesday to: 4pm tuesday)
+2.[D][ ] reach restaurant (by: Nov 15 2023 6pm)
+3.[E][ ] do homework (from: Oct 15 2023 1pm to: Oct 15 2023 4pm)
 4.[T][ ] kiss hamster every few hours
 ***************************************
 That's some progress! I've marked this task as done:
 [T][X] kiss hamster every few hours
 ***************************************
 OK, I've marked this task as not done yet:
-[D][ ] reach restaurant (by: 2pm monday)
+[D][ ] reach restaurant (by: Nov 15 2023 6pm)
 ***************************************
 That's some progress! I've marked this task as done:
-[E][X] do homework (from: 1pm tuesday to: 4pm tuesday)
+[E][X] do homework (from: Oct 15 2023 1pm to: Oct 15 2023 4pm)
 ***************************************
 List of tasks: 
 1.[T][X] bake a cake
-2.[D][X] reach restaurant (by: 2pm monday)
-3.[E][X] do homework (from: 1pm tuesday to: 4pm tuesday)
+2.[D][X] reach restaurant (by: Nov 15 2023 6pm)
+3.[E][X] do homework (from: Oct 15 2023 1pm to: Oct 15 2023 4pm)
 4.[T][X] kiss hamster every few hours
 ***************************************
 Please input a valid event using /from 'start' /to 'end'.
@@ -53,28 +53,28 @@ Please input a valid event using /from 'start' /to 'end'.
 Please input a valid deadline using /by 'deadline'.
 ***************************************
 OK, I've marked this task as not done yet:
-[E][ ] do homework (from: 1pm tuesday to: 4pm tuesday)
+[E][ ] do homework (from: Oct 15 2023 1pm to: Oct 15 2023 4pm)
 ***************************************
 That's some progress! I've marked this task as done:
 [T][X] kiss hamster every few hours
 ***************************************
 List of tasks: 
 1.[T][X] bake a cake
-2.[D][X] reach restaurant (by: 2pm monday)
-3.[E][X] do homework (from: 1pm tuesday to: 4pm tuesday)
+2.[D][X] reach restaurant (by: Nov 15 2023 6pm)
+3.[E][X] do homework (from: Oct 15 2023 1pm to: Oct 15 2023 4pm)
 4.[T][X] kiss hamster every few hours
 ***************************************
-Please provide an input with details.
+Please input a valid task stating details after 'todo'.
 ***************************************
 The index number of the task you indicate does not exist! Consider looking through the list again.
 ***************************************
 Noted. I've removed this task:
-[D][X] reach restaurant (by: 2pm monday)
+[D][X] reach restaurant (by: Nov 15 2023 6pm)
 Now you have 3 tasks in the list.
 ***************************************
 List of tasks: 
 1.[T][X] bake a cake
-2.[E][X] do homework (from: 1pm tuesday to: 4pm tuesday)
+2.[E][X] do homework (from: Oct 15 2023 1pm to: Oct 15 2023 4pm)
 3.[T][X] kiss hamster every few hours
 ***************************************
 Noted. I've removed this task:
@@ -82,7 +82,31 @@ Noted. I've removed this task:
 Now you have 2 tasks in the list.
 ***************************************
 List of tasks: 
-1.[E][X] do homework (from: 1pm tuesday to: 4pm tuesday)
+1.[E][X] do homework (from: Oct 15 2023 1pm to: Oct 15 2023 4pm)
 2.[T][X] kiss hamster every few hours
+***************************************
+Got it. I've added this task:
+[T][ ] homework consultation with lecturer
+Now you have 3 tasks in the list.
+***************************************
+Here are the matching tasks in your list: 
+1.[E][ ] do homework (from: Oct 15 2023 1pm to: Oct 15 2023 4pm)
+3.[T][ ] homework consultation with lecturer
+***************************************
+That keyword is not valid! Consider looking through the list again.
+***************************************
+Got it. I've added this task:
+[F][ ] read for at least 1 hour
+Now you have 4 tasks in the list.
+***************************************
+List of tasks: 
+1.[E][ ] do homework (from: Oct 15 2023 1pm to: Oct 15 2023 4pm)
+2.[T][ ] kiss hamster every few hours
+3.[T][ ] homework consultation with lecturer
+4.[F][ ] read for at least 1 hour
+***************************************
+That keyword is not valid! Consider looking through the list again.
+***************************************
+Oh no, please input a task clearly!
 ***************************************
 Bye. Hope to see you again soon!

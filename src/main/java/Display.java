@@ -1,7 +1,7 @@
-import java.lang.reflect.Array;
+//This java file contains all methods for displaying specific messages
+
 import java.util.ArrayList;
 
-//this file contains all display messages.
 public class Display {
     //group everything into methods to be called & used in Duke.java file
     //logo
@@ -32,10 +32,12 @@ public class Display {
         System.out.println("Now you have " + totalTasksCount + " tasks in the list.");
     }
 
+    //message to display when want to mark a task that is already completed
     public static void alreadyCompleted(String taskName){
         System.out.println(taskName + " is completed!");
     }
 
+    //message to display when want to unmark a task that hasn't been checked
     public static void alreadyUnchecked(String taskName){
         System.out.println(taskName + " has not been checked yet.");
     }
@@ -45,6 +47,7 @@ public class Display {
         System.out.println("That's some progress! I've marked this task as done:");
         System.out.println(userInputTasks.get(taskNumber).toString());
     }
+
     //unmark if marked
     public static void markAsNotComplete(ArrayList<Task>userInputTasks, int taskNumber){
         System.out.println("OK, I've marked this task as not done yet:");
@@ -57,6 +60,7 @@ public class Display {
         System.out.println(task);
         System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
     }
+
     //list
     public void UserInputList(ArrayList<Task>userInputList){
         if(Task.getTaskCount() == 0){
@@ -67,4 +71,11 @@ public class Display {
             System.out.println((j+1) + "." + userInputList.get(j).toString());
         }
     }
+
+    //find 
+    public void findMessage(){
+        System.out.println("Here are the matching tasks in your list: ");
+    }
+
 }
+

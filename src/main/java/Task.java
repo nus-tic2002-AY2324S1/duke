@@ -1,4 +1,7 @@
-//this file contains all methods for tasks.
+//This java file contains all methods for tasks
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Task {
     //public classes need to be in a separate file
@@ -69,18 +72,27 @@ public class Task {
 class Deadline extends Task{
         //declare a new String type for storing the /by dueDate
         private String dueDate;
-        public Deadline(Character taskType, String taskName, String dueDate){
-            //super() calls the existing constructor
+
+        //declare a new String type for storing the /by dueTime
+        private String dueTime;
+        public Deadline(Character taskType, String taskName, String dueDate, String dueTime){
+            //super() calls the existing constructor in Task
             super(taskType, taskName);
             this.dueDate = dueDate;
+            this.dueTime = dueTime;
         }
         public String getDueDate(){
-            return dueDate;
+            LocalDate d1 = LocalDate.parse(dueDate);
+            return d1.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        }
+
+        public String getdueTime(){
+            return dueTime;
         }
 
         @Override
         public String toString(){
-            return super.toString() + String.format(" (by: %s)", getDueDate());
+            return super.toString() + " (by: " + getDueDate() + " " + getdueTime() + ")";
         }
 }
 
@@ -88,19 +100,45 @@ class Deadline extends Task{
 class Event extends Task{
         private String startDate;
         private String endDate;
-        public Event(Character taskType, String taskName, String startDate, String endDate){
+        private String startTime;
+        private String endTime;
+        public Event(Character taskType, String taskName, String startDate, String startTime, String endDate, String endTime){
             super(taskType, taskName);
             this.startDate = startDate;
             this.endDate = endDate;
+            this.startTime = startTime;
+            this.endTime = endTime;
         }
         public String getStartDate(){
-            return startDate;
+            LocalDate d2 = LocalDate.parse(startDate);
+            return d2.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         }
         public String getEndDate(){
-            return endDate;
+            LocalDate d3 = LocalDate.parse(endDate);
+            return d3.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         }
+
+    public String getStartTime(){
+        return startTime;
+    }
+
+    public String getEndTime(){
+        return endTime;
+    }
         @Override
         public String toString(){
-            return super.toString() + String.format(" (from: %s to: %s)", getStartDate(), getEndDate());
+            return super.toString() + " (from: " + getStartDate() + " " + getStartTime() + " to: " + getEndDate() + " " + getEndTime() + ")";
         }
+}
+
+//FixedDuration inheritance of Task
+class FixedDuration extends Task{
+    public FixedDuration(Character taskType, String taskName){
+        //super() calls the existing constructor declared in Task
+        super(taskType, taskName);
+    }
+    @Override
+    public String toString(){
+        return super.toString();
+    }
 }

@@ -8,6 +8,24 @@
 //Description: My own code were added after referencing from others' codes from the open source Project Code Dashboard
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+package seedu.duke;  //same package as the class being tested
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class DukeTest {
+    @Test
+    public void dummyTest(){
+        assertEquals(2, 2);
+    }
+
+    @Test
+    public void anotherDummyTest(){
+        assertEquals(4, 4);
+    }
+}
+
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.File;
