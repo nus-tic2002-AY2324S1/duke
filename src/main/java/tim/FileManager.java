@@ -27,13 +27,9 @@ public class FileManager {
         try{
             File f = new File("./src/main/data/list.data");
             f.createNewFile();
-            System.out.println("ok1");
             FileOutputStream fos = new FileOutputStream(f);
-            System.out.println("ok2");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            System.out.println("ok3");
             oos.writeObject(list);
-            System.out.println("ok4");
             oos.close();
 
         } catch (IOException e) {
