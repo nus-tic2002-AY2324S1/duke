@@ -11,20 +11,19 @@ public class Duke {
 
         while(typing){
             try {
-                String line = in.nextLine();
+                String line = in.nextLine().trim();
 
                 if(line.equals("bye")){
                     System.out.println("Bye! Hope I'll get to see you soon! :)");
                     typing = false;
                     continue;
                 }
-                else if(line.equals("list")){
+                else if(line.contains("list")){
                     try{
                         listItems(taskList);
                     }
                     catch (EmptyListException e) {
-                        System.out.println("Ooops! It looks like you don't have anything in your list!");
-                        System.out.println("To call for help, type: help");
+                        System.out.println("Ooops! It looks like you don't have anything in your list! Add something to your list first!");
                     }
                 }
                 else if(line.contains("mark")){
@@ -32,21 +31,23 @@ public class Duke {
                         markItem(line, taskList);
                     }
                     catch(MissingTaskException e){
-                        System.out.println("This task doesnt exist! Try again.");
-                        System.out.println("To call for help, type: help");
+                        System.out.println("This task doesnt exist!");
                     }
                     
                 }
                 else if(line.contains("help")){
                     help();
                 }
+                
                 else if(line.contains("delete")){
                     try{
                         deleteItem(line, taskList);
                     }
                     catch(EmptyListException e){
-                        System.out.println("Looks like there's nothing left in your list to delete!");
-                        System.out.println("Try adding a new item in the list.");
+                        System.out.println("Looks like there's nothing left in your list to delete! Try adding a new item in the list.");
+                    }
+                    catch (MissingTaskException e){
+                        System.out.println("This task doesnt exist! Try again.");
                     }
                 }
 
@@ -58,7 +59,6 @@ public class Duke {
                         System.out.println("Invalid Input.");
                         System.out.println("To call for help, type: help");
                     }
-                    
                 }
 
                 System.out.println();
@@ -93,6 +93,7 @@ public class Duke {
         System.out.println("(c) A To-Do: start with 'todo' and task name. e.g. todo borrow book");
         System.out.println("To List all items in your list, type: list"); 
         System.out.println("To Mark or Unmark your tasks, type: (a) mark 'task no.' or (b) unmark 'task no' ");
+        System.out.println("To Delete your tasks, type: delete 'task no.' ");
         System.out.println();
     }
 
@@ -182,7 +183,7 @@ public class Duke {
         }
     }
 
-    private static void deleteItem(String line, ArrayList<Task> taskList) throws EmptyListException{
+    private static void deleteItem(String line, ArrayList<Task> taskList) throws EmptyListException, MissingTaskException{
 
         if (Task.getTotalTasks()<1){
             throw new EmptyListException();
@@ -198,7 +199,11 @@ public class Duke {
             return;
         }
 
-        System.out.println("Removing task" + item + ":  " + taskList.get(item-1));
+        if (item>Task.getTotalTasks()){
+            throw new MissingTaskException();
+        }
+
+        System.out.println("Removing task " + item + ":" + taskList.get(item-1));
         taskList.remove((item-1));
         Task.removeTask();
         System.out.println("That's one less thing to do! You now have " + Task.getTotalTasks() + " tasks left.");
