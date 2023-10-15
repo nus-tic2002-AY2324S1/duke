@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -6,7 +7,7 @@ public class Duke {
         
         Scanner in = new Scanner(System.in);
         boolean typing = true;
-        Task[] taskList = new Task[100];
+        ArrayList<Task> taskList = new ArrayList<>();
 
         while(typing){
             try {
@@ -26,7 +27,6 @@ public class Duke {
                         System.out.println("To call for help, type: help");
                     }
                 }
-
                 else if(line.contains("mark")){
                     try{
                         markItem(line, taskList);
@@ -37,9 +37,17 @@ public class Duke {
                     }
                     
                 }
-
                 else if(line.contains("help")){
                     help();
+                }
+                else if(line.contains("delete")){
+                    try{
+                        deleteItem(line, taskList);
+                    }
+                    catch(EmptyListException e){
+                        System.out.println("Looks like there's nothing left in your list to delete!");
+                        System.out.println("Try adding a new item in the list.");
+                    }
                 }
 
                 else{
@@ -88,7 +96,7 @@ public class Duke {
         System.out.println();
     }
 
-    public static void addItem(String line, Task[] taskList) throws InvalidInputException{
+    public static void addItem(String line, ArrayList<Task> taskList) throws InvalidInputException{
         Task t;
         String[] input = line.trim().split(" ",2); 
         if(input[0].contains("deadline")){
@@ -116,13 +124,15 @@ public class Duke {
             t = new ToDo(input[1]);
         }
 
-        taskList[Task.getTotalTasks()] = t;
+        //taskList[Task.getTotalTasks()] = t;
+        //taskList.set(Task.getTotalTasks(), t);
+        taskList.add(t);
         System.out.println("---------------------------------------");
         System.out.println("Got it. I've added this task: \n" + t);
         System.out.println("Now you have " + Task.getTotalTasks() + " tasks in the list.");
     }
 
-    private static void markItem(String line, Task[] taskList) throws MissingTaskException{
+    private static void markItem(String line, ArrayList<Task> taskList) throws MissingTaskException{
         int dividerPosition = line.indexOf(" ");
         String check = line.substring(0, dividerPosition);
         int itemNum = 0;
@@ -139,37 +149,59 @@ public class Duke {
             throw new MissingTaskException();
             
         }
+        Task t = taskList.get(itemNum-1);
         if(check.equals("unmark")){
             // Boolean completed = taskList[itemNum].isMarked();
             // completed ?  taskList[itemNum].unmarkTask() : "";
-            if (!taskList[itemNum].isMarked()){
+            if (!t.isMarked()){
                 System.out.println("Task was not previously marked!");
             }
             else{
-                taskList[itemNum].unmarkTask();
-                System.out.println("OK, I've marked this task as not done yet: " + taskList[itemNum]);
+                t.unmarkTask();
+                System.out.println("OK, I've marked this task as not done yet: " + t);
             }
         }
         else{
-            if (taskList[itemNum].isMarked()){
+            if (t.isMarked()){
                 System.out.println("Task already marked!");
             }
             else{
-                taskList[itemNum].markAsDone();
-                System.out.println("Nice! I've marked this task as done: " + taskList[itemNum]);
+                t.markAsDone();
+                System.out.println("Nice! I've marked this task as done: " + t);
             }
         }
     }
 
-    private static void listItems(Task[] taskList) throws EmptyListException{
+    private static void listItems(ArrayList<Task> taskList) throws EmptyListException{
+        if (Task.getTotalTasks()<1){
+            throw new EmptyListException();
+        }   
+        System.out.println("Here are the tasks in your list: ");
+        for (int i=1; i<=Task.getTotalTasks(); i++){
+            System.out.println(i + ". " + taskList.get(i-1));
+        }
+    }
+
+    private static void deleteItem(String line, ArrayList<Task> taskList) throws EmptyListException{
 
         if (Task.getTotalTasks()<1){
             throw new EmptyListException();
         }
-        
-        System.out.println("Here are the tasks in your list: ");
-        for (int i=1; i<=Task.getTotalTasks(); i++){
-            System.out.println(i + ". " + taskList[i]);
+
+        int item = 0;
+
+        try{
+            item = Integer.parseInt(line.split(" ")[1]);
         }
+        catch (NumberFormatException e) {
+            System.out.println("Please provide the task number as an Integer!");
+            return;
+        }
+
+        System.out.println("Removing task" + item + ":  " + taskList.get(item-1));
+        taskList.remove((item-1));
+        Task.removeTask();
+        System.out.println("That's one less thing to do! You now have " + Task.getTotalTasks() + " tasks left.");
     }
+
 }
