@@ -56,13 +56,6 @@ public class Duke {
         }while(!isExit);
     }
 
-    /**
-     * Show Goodbye message and exits.
-     */
-    private void exit() {
-        ui.showGoodByeMessage();
-    }
-
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }

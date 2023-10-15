@@ -10,7 +10,7 @@ public class Ui {
 
     private final Scanner in;
     private final PrintStream out;
-    public static final String DIVIDER = "=".repeat(60);
+    public static final String DIVIDER = "=".repeat(80);
     private static final String NEWLINE = System.lineSeparator();
     private final static int INDENT_RESPONSE = 5;
     private final static int INDENT_LINE = 4;
@@ -89,12 +89,5 @@ public class Ui {
             out.println(prefixRespString() + m.replace("\n",NEWLINE));
         }
         showLine();
-    }
-
-    /**
-     * show Goodbye message
-     */
-    public void showGoodByeMessage() {
-        out.println(prefixString(INDENT_RESPONSE) + Message.MESSAGE_GOODBYE);
     }
 }

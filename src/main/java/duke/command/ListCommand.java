@@ -19,7 +19,7 @@ public class ListCommand extends Command {
         }else{
             ArrayList<Task> tasks = taskList.getTasks();
             ArrayList<String> messages = new ArrayList<>();
-            String str  = "Here are the tasks in your list:";
+            messages.add("Here are the tasks in your list:");
             for (int i = 0; i <= tasks.size()-1; i++) {
                 messages.add(String.format("%d.%s",i+1, tasks.get(i).toString()));
             }
