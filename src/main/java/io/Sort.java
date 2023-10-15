@@ -5,15 +5,14 @@ import task.Event;
 import task.Task;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
+
 import java.util.Comparator;
 import java.util.List;
 
 public class Sort {
     public void sort(String input, List<Task> tasks) {
-        System.out.println(input);
         if (input.equals("type") || input.equals("t")) {
-            System.out.println("Sorting by type...");
+            System.out.println("   Sorting by type...");
             tasks.sort(new Comparator<Task>() {
                 @Override
                 public int compare(Task task1, Task task2) {
@@ -21,7 +20,7 @@ public class Sort {
                 }
             });
         } else if (input.equals("type1") || input.equals("t1")) {
-            System.out.println("Sorting by type1...");
+            System.out.println("   Sorting by type revert order...");
             tasks.sort(new Comparator<Task>() {
                 @Override
                 public int compare(Task task1, Task task2) {
@@ -29,7 +28,7 @@ public class Sort {
                 }
             });
         } else {
-            System.out.println("Sorting by date...hmmmmm");
+            System.out.println("   Sorting by date...");
             tasks.sort(new Comparator<Task>() {
                 @Override
                 public int compare(Task task1, Task task2) {

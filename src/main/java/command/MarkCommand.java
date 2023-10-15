@@ -20,6 +20,7 @@ public class MarkCommand extends CrabyMessage implements CommandInterface {
             printEmptyListForAllCommand(input);
             return 0;
         }
+        input = input.toLowerCase().trim();
         try {
             int tmp = input.indexOf("k");
             String checkMark = input.substring(tmp + 1).trim();

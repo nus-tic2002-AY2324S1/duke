@@ -20,6 +20,7 @@ public class DeleteCommand extends CrabyMessage implements CommandInterface {
             printEmptyListForAllCommand(input);
             return 0;
         }
+        input = input.toLowerCase().trim();
         try {
             int tmp = input.indexOf("t");
             String checkDelete = input.substring(tmp + 2).trim();

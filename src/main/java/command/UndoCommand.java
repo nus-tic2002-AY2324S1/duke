@@ -19,7 +19,7 @@ public class UndoCommand extends CrabyMessage implements CommandInterface {
         String[] lastInputArr = lastInput.split(" ");
         String lastKeyword = lastInputArr[0].trim().toLowerCase();
         if (isAddTask(lastKeyword)) {
-            printUndoMessage(tasks.get(tasks.size() - 1).toString());
+            printUndoMessage(tasks.get(tasks.size() - 1).toString(), tasks);
             tasks.remove(tasks.size() - 1);
         } else {
             printUndoError();

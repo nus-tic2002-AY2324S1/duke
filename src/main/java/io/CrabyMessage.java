@@ -53,7 +53,7 @@ public class CrabyMessage {
     public static void printEmptyListForAllCommand(String input) {
         String[] inputArr = input.split(" ");
         System.out.println(blank + "Oops!!! your list are empty.");
-        System.out.println(blank + "╰┈➤ Please add some tasks before use " + inputArr[0].trim() + "☘");
+        System.out.println(blank + "╰┈➤ Please add some tasks before use " + inputArr[0].trim() + " ☘");
         System.out.println(line);
     }
 
@@ -188,10 +188,10 @@ public class CrabyMessage {
     }
 
     //Print UndoCommand Message
-    public static void printUndoMessage(String input) {
+    public static void printUndoMessage(String input, List<Task> tasks) {
         System.out.println(blank + "OK, I've removed your last input you added to the list.");
         System.out.println(blank + "  ╰┈➤ remove: " + input);
-        System.out.println(line);
+        printCountTask(tasks.size());
     }
 
     public static void printUndoError() {
