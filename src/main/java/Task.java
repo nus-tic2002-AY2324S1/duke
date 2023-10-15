@@ -1,24 +1,12 @@
 public class Task {
     protected String description;
     protected boolean isDone;
-
-    private static int totalTasks;
     
-    public static int getTotalTasks(){
-        return totalTasks;
-    }
-
-    public static void removeTask(){
-        totalTasks --;
-    }
-
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-        totalTasks ++;
     }
 
-    
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
