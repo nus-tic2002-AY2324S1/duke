@@ -59,13 +59,20 @@ public class ListManager {
 
     public static void markUnmarkTask(int index, boolean markUnmark, ArrayList<Task> list){
         Task target = list.get(index-1);
-        if(markUnmark){
-            System.out.println("Nice! I've marked this task as done:");
+
+        if((target.getIsDone().equals("x")) != markUnmark){
+            if(markUnmark){
+                System.out.println("Nice! I've marked this task as done:");
+            } else {
+                System.out.println("OK, I've marked this task as not done yet:");
+            }
+            target.setIsDone(markUnmark);
+            Messenger.printSingle(index,list);
         } else {
-            System.out.println("OK, I've marked this task as not done yet:");
+            System.out.print("Task is already " + (markUnmark ? "marked" : "unmarked") + ".");
+
         }
-        target.setIsDone(markUnmark);
-        Messenger.printSingle(index,list);
         Messenger.printDashes();
+
     }
 }
