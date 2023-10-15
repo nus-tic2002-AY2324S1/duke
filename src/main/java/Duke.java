@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 
@@ -16,6 +15,8 @@ public class Duke {
             put(DuckCommand.UNMARK.toString(), Duke::handleUnmarkCommand);
         }
     };
+    private final Storage storage;
+    private final TaskList tasks;
 
     private enum ProgramAction {CONTINUE, EXIT}
 
@@ -43,21 +44,23 @@ public class Duke {
 
     @FunctionalInterface
     private interface DuckCommandHandler {
-        void apply(ArrayList<Task> tasks, String input) throws DukeException;
+        void apply(TaskList tasks, String input) throws DukeException;
     }
 
-    public static void main(String[] args) {
-        /*
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        */
+    public Duke(String filePath) {
+        this.storage = new Storage(filePath);
+        TaskList tasks;
+        try {
+            tasks = storage.load();
+        } catch (DukeException e) {
+            printMessage(String.format(" Failed to load tasks from '%s'. An empty task list will be used instead.", storage.getPath()));
+            tasks = new TaskList();
+        }
+        this.tasks = tasks;
+    }
 
+    public void run() {
         Scanner in = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
 
         printMessage(String.join(System.lineSeparator(), new String[]{
                 " Hello! I'm DukeBot",
@@ -67,16 +70,14 @@ public class Duke {
         do {
             String input = in.nextLine();
             try {
-                if (handleInput(tasks, input) == ProgramAction.EXIT) {
+                if (handleInput(storage, tasks, input) == ProgramAction.EXIT) {
                     break;
                 }
             } catch (DukeException e) {
-                if (e instanceof InvalidCommandArgsDukeException) {
-                    printMessage(" OOPS!!! " + e.getMessage());
-                } else if (e instanceof UnknownCommandDukeException) {
+                if (e instanceof UnknownCommandDukeException) {
                     printMessage(" OOPS!!! I'm sorry, but I don't know what that means :-(");
                 } else {
-                    printMessage(" OOPS!!! An unhandled Duke exception occurred.");
+                    printMessage(" OOPS!!! " + e.getMessage());
                 }
             } catch (Exception e) {
                 printMessage(" OOPS!!! An unknown exception occurred.");
@@ -84,12 +85,18 @@ public class Duke {
         } while (true);
     }
 
-    private static ProgramAction handleInput(ArrayList<Task> tasks, String input) throws DukeException {
+    public static void main(String[] args) {
+        Duke duke = new Duke("./data/duke.txt");
+        duke.run();
+    }
+
+    private static ProgramAction handleInput(Storage storage, TaskList tasks, String input) throws DukeException {
         String commandName = input.trim().split(" ", -1)[0];
         DuckCommandHandler commandHandler = commandHandlerMap.getOrDefault(commandName, null);
         if (commandHandler != null) {
             String commandArgs = input.substring(commandName.length()).trim();
             commandHandler.apply(tasks, commandArgs);
+            storage.save(tasks);
             if (commandName.equals(DuckCommand.BYE.toString())) {
                 return ProgramAction.EXIT;
             }
@@ -99,7 +106,7 @@ public class Duke {
         return ProgramAction.CONTINUE;
     }
 
-    private static void handleByeCommand(ArrayList<Task> tasks, String args) throws InvalidCommandArgsDukeException {
+    private static void handleByeCommand(TaskList tasks, String args) throws InvalidCommandArgsDukeException {
         if (!args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The bye command should not take any arguments.");
         }
@@ -107,20 +114,20 @@ public class Duke {
         printMessage(" Bye. Hope to see you again soon!");
     }
 
-    private static void handleListCommand(ArrayList<Task> tasks, String args) throws InvalidCommandArgsDukeException {
+    private static void handleListCommand(TaskList tasks, String args) throws InvalidCommandArgsDukeException {
         if (!args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The list command should not take any arguments.");
         }
 
         String[] lines = new String[tasks.size()];
         for (int i = 0; i < tasks.size(); i++) {
-            Task task = tasks.get(i);
+            Task task = tasks.getTask(i);
             lines[i] = String.format(" %d.%s", i + 1, task.toString());
         }
         printMessage(String.join(System.lineSeparator(), lines), true);
     }
 
-    private static void handleMarkCommand(ArrayList<Task> tasks, String args) throws InvalidCommandArgsDukeException {
+    private static void handleMarkCommand(TaskList tasks, String args) throws InvalidCommandArgsDukeException {
         if (args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The task number to be marked cannot be empty.");
         }
@@ -130,7 +137,7 @@ public class Duke {
             throw new InvalidCommandArgsDukeException("Invalid task number to be marked.");
         }
 
-        Task task = tasks.get(taskNumber - 1);
+        Task task = tasks.getTask(taskNumber - 1);
         task.setDone(true);
         printMessage(String.join(System.lineSeparator(), new String[]{
                 " Nice! I've marked this task as done:",
@@ -138,7 +145,7 @@ public class Duke {
         }));
     }
 
-    private static void handleUnmarkCommand(ArrayList<Task> tasks, String args) throws InvalidCommandArgsDukeException {
+    private static void handleUnmarkCommand(TaskList tasks, String args) throws InvalidCommandArgsDukeException {
         if (args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The task number to be unmarked cannot be empty.");
         }
@@ -148,7 +155,7 @@ public class Duke {
             throw new InvalidCommandArgsDukeException("Invalid task number to be unmarked.");
         }
 
-        Task task = tasks.get(taskNumber - 1);
+        Task task = tasks.getTask(taskNumber - 1);
         task.setDone(false);
         printMessage(String.join(System.lineSeparator(), new String[]{
                 " OK, I've marked this task as not done yet:",
@@ -156,17 +163,17 @@ public class Duke {
         }));
     }
 
-    private static void handleTodoCommand(ArrayList<Task> tasks, String args) throws InvalidCommandArgsDukeException {
+    private static void handleTodoCommand(TaskList tasks, String args) throws InvalidCommandArgsDukeException {
         if (args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The description of a todo cannot be empty.");
         }
 
         Todo toto = new Todo(args);
-        tasks.add(toto);
+        tasks.addTask(toto);
         printTaskAddedMessage(toto, tasks.size());
     }
 
-    private static void handleDeadlineCommand(ArrayList<Task> tasks, String args) throws InvalidCommandArgsDukeException {
+    private static void handleDeadlineCommand(TaskList tasks, String args) throws InvalidCommandArgsDukeException {
         if (args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The description of a deadline cannot be empty.");
         }
@@ -177,11 +184,11 @@ public class Duke {
         }
 
         Deadline deadline = new Deadline(array[0], array[1]);
-        tasks.add(deadline);
+        tasks.addTask(deadline);
         printTaskAddedMessage(deadline, tasks.size());
     }
 
-    private static void handleEventCommand(ArrayList<Task> tasks, String args) throws InvalidCommandArgsDukeException {
+    private static void handleEventCommand(TaskList tasks, String args) throws InvalidCommandArgsDukeException {
         if (args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The description of a event cannot be empty.");
         }
@@ -197,11 +204,11 @@ public class Duke {
         }
 
         Event event = new Event(array[0], fromToArray[0], fromToArray[1]);
-        tasks.add(event);
+        tasks.addTask(event);
         printTaskAddedMessage(event, tasks.size());
     }
 
-    private static void handleDeleteCommand(ArrayList<Task> tasks, String args) throws InvalidCommandArgsDukeException {
+    private static void handleDeleteCommand(TaskList tasks, String args) throws InvalidCommandArgsDukeException {
         if (args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The task number to be deleted cannot be empty.");
         }
@@ -211,8 +218,8 @@ public class Duke {
             throw new InvalidCommandArgsDukeException("Invalid task number to be deleted.");
         }
 
-        Task task = tasks.get(taskNumber - 1);
-        tasks.remove(task);
+        Task task = tasks.getTask(taskNumber - 1);
+        tasks.removeTask(task);
         printTaskDeletedMessage(task, tasks.size());
     }
 

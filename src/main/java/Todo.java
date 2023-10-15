@@ -1,6 +1,15 @@
 public class Todo extends Task {
-    protected Todo(String description) {
-        super(description);
+    public Todo(String description) {
+        this(description, false);
+    }
+
+    public Todo(String description, boolean isDone) {
+        super(description, isDone);
+    }
+
+    @Override
+    public String encode() {
+        return String.format("T | %s | %s", encodeIsDone(), description);
     }
 
     @Override

@@ -1,9 +1,18 @@
 public class Deadline extends Task {
     protected String by;
 
-    protected Deadline(String description, String by) {
-        super(description);
+    public Deadline(String description, String by) {
+        this(description, by, false);
+    }
+
+    public Deadline(String description, String by, boolean isDone) {
+        super(description, isDone);
         this.by = by;
+    }
+
+    @Override
+    public String encode() {
+        return String.format("D | %s | %s | %s", encodeIsDone(), description, by);
     }
 
     @Override
