@@ -1,0 +1,25 @@
+list
+todo Ride a shinkansen
+event Go-kart around Tokyo /from Wednesday 1pm /to 3pm
+todo Enter Universal Studios Japan
+todo Visit an arcade
+event Make your own takoyaki /from Sunday 1pm /to 3pm
+event Learn the art of tea ceremony /from September 15th 9am /to 11am
+todo Visit an izakaya
+event Go cherry blossom viewing /from TBC 7am /to 8am
+todo Climb Mount Fuji
+todo Visit bamboo forest
+deadline Spend a night in Ryokan /due Friday
+todo Visit an Onsen
+list
+Check 4
+Check 5
+Check 7
+Check 11
+Uncheck 11
+
+abc
+todo
+check
+list
+bye
