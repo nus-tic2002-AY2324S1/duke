@@ -1,4 +1,6 @@
 package tim;
+import tim.tasks.Task;
+
 import java.io.*;
 import java.util.ArrayList;
 

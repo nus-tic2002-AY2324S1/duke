@@ -1,6 +1,8 @@
-package tim;
+package tim.tasks;
 
-public class Deadline extends Task{
+import tim.tasks.Task;
+
+public class Deadline extends Task {
     String by;
     public Deadline(String description, String by){
         super(description);

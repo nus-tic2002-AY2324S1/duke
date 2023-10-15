@@ -1,5 +1,5 @@
 package tim;
-
+import tim.tasks.*;
 import java.util.ArrayList;
 
 public class ListManager {
@@ -12,8 +12,8 @@ public class ListManager {
     }
 
     public static void addDeadline (String inputEntry, ArrayList<Task> list){
-        String[] inputTokenized = {};
-        String by = "";
+        String[] inputTokenized;
+        String by;
         try{
             inputTokenized = inputEntry.split("/by ",2);
             by = inputTokenized[1];
@@ -30,9 +30,9 @@ public class ListManager {
     }
 
     public static void addEvent (String inputEntry,ArrayList<Task> list){
-        String[] inputTokenized = {};
-        String from = "";
-        String to = "";
+        String[] inputTokenized;
+        String from;
+        String to;
         try {
             inputTokenized =  inputEntry.split("/from ",2);
             String description = inputTokenized[0];

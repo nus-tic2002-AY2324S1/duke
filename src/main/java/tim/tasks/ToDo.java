@@ -1,6 +1,8 @@
-package tim;
+package tim.tasks;
 
-public class ToDo extends Task{
+import tim.tasks.Task;
+
+public class ToDo extends Task {
     public ToDo (String description){
         super(description);
         this.type = 'T';

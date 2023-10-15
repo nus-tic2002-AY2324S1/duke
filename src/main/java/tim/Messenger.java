@@ -1,5 +1,5 @@
 package tim;
-
+import tim.tasks.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -43,7 +43,7 @@ public class Messenger {
 
     public static void printSingle(int index, ArrayList<Task> list){
         Task current = list.get(index-1);
-        System.out.println(index + ". [" + current.type  + "] [" + current.getIsDone() + "] " + current.getDescription() );
+        System.out.println(index + ". [" + current.getType()  + "] [" + current.getIsDone() + "] " + current.getDescription() );
     }
 
     public static void goodbyeGreet(){

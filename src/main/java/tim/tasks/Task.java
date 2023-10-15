@@ -1,4 +1,4 @@
-package tim;
+package tim.tasks;
 
 import java.io.Serializable;
 
