@@ -1,60 +1,57 @@
 package duke.parser;
 
 import duke.command.*;
-import duke.task.Todo;
-import duke.task.Deadline;
-import duke.task.Event;
 
 public enum KeywordTypes {
     BYE{
         @Override
-        public ICommand createCommand(){
-            return new Bye();
+        public Command createCommand(){
+            return new ExitCommand();
         }
     },
     LIST{
         @Override
-        public ICommand createCommand(){
-            return new List();
+        public Command createCommand(){
+            return new ListCommand();
         }
     },
     MARK{
         @Override
-        public ICommand createCommand(){
-            return new Mark();
+        public Command createCommand(){
+            return new MarkCommand();
         }
     },
     UNMARK{
         @Override
-        public ICommand createCommand(){
-            return new UnMark();
+        public Command createCommand(){
+            return new UnMarkCommand();
         }
     },
     TODO{
         @Override
-        public ICommand createCommand(){
-            return new todoCommand();
+        public Command createCommand(){
+            return new TodoCommand();
         }
     },
     DEADLINE{
         @Override
-        public ICommand createCommand(){
-            return new deadlineCommand();
+        public Command createCommand(){
+            return new DeadlineCommand();
         }
     },
     EVENT{
         @Override
-        public ICommand createCommand(){
-            return new eventCommand();
+        public Command createCommand(){
+            return new EventCommand();
         }
     },
     DELETE{
       @Override
-      public ICommand createCommand(){
-          return new Delete();
+      public Command createCommand(){
+          return new DeleteCommand();
       }
     };
 
-    public abstract ICommand createCommand();
+    public abstract Command createCommand();
 
 }

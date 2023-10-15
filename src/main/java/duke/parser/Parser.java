@@ -1,7 +1,7 @@
 package duke.parser;
 
-import duke.command.ICommand;
-import duke.common.Converse;
+import duke.command.Command;
+import duke.common.Message;
 import duke.data.UserKeywordArgument;
 import duke.ui.Ui;
 
@@ -9,15 +9,15 @@ import duke.ui.Ui;
 public class Parser {
 
     public Parser(){}
-    public static ICommand parse(String userInput, UserKeywordArgument keywordArgument) {
-        UserKeywordArgument.setKeyword(parseKeyword(userInput));
-        UserKeywordArgument.setArguments(parseArgument(userInput));
+    public static Command parse(String userInput, UserKeywordArgument keywordArgument) {
+        keywordArgument.setKeyword(parseKeyword(userInput));
+        keywordArgument.setArguments(parseArgument(userInput));
         try {
-            KeywordTypes key = KeywordTypes.valueOf(UserKeywordArgument.getKeyword().toUpperCase());
+            KeywordTypes key = KeywordTypes.valueOf(keywordArgument.getKeyword().toUpperCase());
             return key.createCommand();
         } catch (IllegalArgumentException e) {
             Ui ui = new Ui();
-            ui.showResponseToUser(Converse.MESSAGE_I_DONT_KNOW);
+            ui.showResponseToUser(Message.MESSAGE_I_DONT_KNOW);
             return null;
         }
     }

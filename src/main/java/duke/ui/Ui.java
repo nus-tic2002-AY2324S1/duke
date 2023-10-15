@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.common.Converse;
+import duke.common.Message;
 
 public class Ui {
 
@@ -95,6 +95,6 @@ public class Ui {
      * show Goodbye message
      */
     public void showGoodByeMessage() {
-        out.println(prefixString(INDENT_RESPONSE) + Converse.MESSAGE_GOODBYE);
+        out.println(prefixString(INDENT_RESPONSE) + Message.MESSAGE_GOODBYE);
     }
 }

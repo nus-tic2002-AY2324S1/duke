@@ -5,11 +5,9 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
-public class Bye implements ICommand {
-    public Bye(){}
-
-    public void response(){
-
+public class ExitCommand extends Command {
+    public ExitCommand(){
+        setExit(true);
     }
 
     @Override

@@ -1,13 +1,11 @@
 package duke;
 
-import duke.command.Bye;
-import duke.data.UserKeywordArgument;
 import duke.data.UserKeywordArgument;
 import duke.exception.MissingDescriptionException;
 import duke.ui.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.command.ICommand;
+import duke.command.Command;
 import duke.parser.Parser;
 import duke.exception.DukeException;
 
@@ -16,11 +14,12 @@ public class Main {
     private Ui ui;
     private Storage storage;
     private TaskList tasks;
-    private UserKeywordArgument userKeywordArgument;
+    private UserKeywordArgument keywordArgument;
 
     public Main(String filePath){
         ui = new Ui();
         storage = new Storage(filePath);
+        keywordArgument = new UserKeywordArgument();
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
@@ -41,12 +40,20 @@ public class Main {
      * Reads the user command and executes it, until user issues the exit command.
      */
     private void loopUntilExitCommand() {
-        ICommand command;
+        Command command;
+        boolean isExit = false;
         do {
-            String userInputCommand = ui.getUserCommand();
-            command = Parser.parse(userInputCommand, userKeywordArgument);
-            command.execute(tasks, ui, storage, userKeywordArgument);
-        }while(!(command instanceof Bye));
+            try {
+                String userInputCommand = ui.getUserCommand();
+                command = Parser.parse(userInputCommand, keywordArgument);
+                if (command != null) {
+                    command.execute(tasks, ui, storage, keywordArgument);
+                    isExit = command.isExit();
+                }
+            } catch (MissingDescriptionException e) {
+                ui.showResponseToUser(e.getMessage());
+            }
+        }while(!isExit);
     }
 
     /**

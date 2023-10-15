@@ -3,40 +3,38 @@ package duke.command;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import duke.Main;
-import duke.common.Converse;
 import duke.data.UserKeywordArgument;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
-public abstract class IndexBaseCommand implements ICommand {
+public abstract class IndexBaseCommand extends Command {
     private int index;
 
-    private ICommand indexCommand;
+    private Command indexCommand;
 
     private static final HashMap<String, IIndexCommand> INDEX_COMMANDS = new HashMap<>();
 
     static{
         INDEX_COMMANDS.put("mark", new IIndexCommand() {
             @Override
-            public ICommand create() {
-                return new Mark();
+            public Command create() {
+                return new MarkCommand();
             }
         });
 
         INDEX_COMMANDS.put("unmark", new IIndexCommand() {
             @Override
-            public ICommand create() {
-                return new UnMark();
+            public Command create() {
+                return new UnMarkCommand();
             }
         });
 
         INDEX_COMMANDS.put("delete", new IIndexCommand() {
             @Override
-            public ICommand create() {
-                return new Delete();
+            public Command create() {
+                return new DeleteCommand();
             }
         });
     }
@@ -44,40 +42,8 @@ public abstract class IndexBaseCommand implements ICommand {
     public IndexBaseCommand(){}
 
 
-    protected void process(String taskDescription){
-//        try {
-//            indexCommand = INDEX_COMMANDS.get(getInputKey()).create();
-//            putIndex(taskDescription);
-//            response();
-//        } catch (NumberFormatException e) {
-//            String str = String.format("The \"index number\" of the \"%s\" must be an integer :-(", getInputKey());
-//            Conversation.echo(str);
-//        } catch (IndexOutOfBoundsException e) {
-//            String str = String.format("The \"index number\" of the \"%s\" is out of range :-(", getInputKey());
-//            Conversation.echo(str);
-//        }
-    }
-
     private void putIndex(String input){
         index = Integer.parseInt(input);
-    }
-
-    @Override
-    public void response() {
-//        ArrayList<Task> tasks = getTasks();
-//        ArrayList<String> inputs = new ArrayList<>();
-//        IndexBaseCommand indexBaseCommand = (IndexBaseCommand)indexCommand;
-//        inputs.add(indexBaseCommand.message());
-//        if(indexCommand instanceof Mark){
-//            Mark markCommand = (Mark)indexCommand;
-//            tasks.get(index-1).markAsDone(markCommand.isMark());
-//        }
-//        inputs.add(tasks.get(index-1).toString());
-//        if(indexCommand instanceof Delete){
-//            tasks.remove(index-1);
-//        }
-//        Conversation.echo(inputs);
-
     }
 
     public abstract String message();
@@ -87,6 +53,7 @@ public abstract class IndexBaseCommand implements ICommand {
         try {
             indexCommand = INDEX_COMMANDS.get(keyword).create();
             putIndex(keywordArgument.getArguments());
+            process(taskList, ui);
         } catch (NumberFormatException e) {
             String str = String.format("The \"index number\" of the \"%s\" must be an integer :-(", keyword);
             ui.showResponseToUser(str);
@@ -95,16 +62,20 @@ public abstract class IndexBaseCommand implements ICommand {
             ui.showResponseToUser(str);
         }
 
+
+    }
+
+    private void process(TaskList taskList, Ui ui) {
         ArrayList<Task> tasks = taskList.getTasks();
         ArrayList<String> messages = new ArrayList<>();
         IndexBaseCommand indexBaseCommand = (IndexBaseCommand)indexCommand;
         messages.add(indexBaseCommand.message());
-        if(indexCommand instanceof Mark){
-            Mark markCommand = (Mark)indexCommand;
+        if(indexCommand instanceof MarkCommand){
+            MarkCommand markCommand = (MarkCommand)indexCommand;
             tasks.get(index-1).markAsDone(markCommand.isMark());
         }
         messages.add(tasks.get(index-1).toString());
-        if(indexCommand instanceof Delete){
+        if(indexCommand instanceof DeleteCommand){
             tasks.remove(index-1);
         }
         ui.showResponseToUser(messages);

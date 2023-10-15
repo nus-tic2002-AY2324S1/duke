@@ -2,7 +2,6 @@ package duke.task;
 
 import java.util.ArrayList;
 
-import duke.command.ICommand;
 import duke.ui.Ui;
 
 public abstract class Task {
