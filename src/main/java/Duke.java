@@ -1,34 +1,43 @@
-import ui.UserInterface;
-import parser.Parser;
-import commands.Command;
-import commands.ExitCommand;
-
-import java.util.ArrayList;
+import amebot.App;
 
 public class Duke {
-    private UserInterface userInterface;
+    private static final String BORDER = "================================================================================\n";
+
+    private static final String MESSAGE = "                               _|\n"
+            + "           _|    _|    _|_|    _|  _|      _|_|      _|_|_|    _|_|\n"
+            + "           _|    _|  _|    _|  _|_|      _|    _|  _|_|      _|    _|\n"
+            + "           _|    _|  _|    _|  _|  _|    _|    _|      _|_|  _|    _|\n"
+            + "             _|_|_|    _|_|    _|    _|    _|_|    _|_|_|      _|_|\n"
+            + "                 _|\n"
+            + "             _|_|\n";
+    private static final String LOGO = "    _     _      _     _      _     _      _     _      _     _      _     _\n"
+            + "   (c).-.(c)    (c).-.(c)    (c).-.(c)    (c).-.(c)    (c).-.(c)    (c).-.(c)\n"
+            + "    / ._. \\      / ._. \\      / ._. \\      / ._. \\      / ._. \\      / ._. \\\n"
+            + "  __\\( Y )/__  __\\( Y )/__  __\\( Y )/__  __\\( Y )/__  __\\( Y )/__  __\\( Y )/__\n"
+            + " (_.-/'-'\\-._)(_.-/'-'\\-._)(_.-/'-'\\-._)(_.-/'-'\\-._)(_.-/'-'\\-._)(_.-/'-'\\-._)\n"
+            + "    || A ||      || M ||      || E ||      || B ||      || O ||      || T ||\n"
+            + "  _.' `-' '._  _.' `-' '._  _.' `-' '._  _.' `-' '._  _.' `-' '._  _.' `-' '._\n"
+            + " (.-./`-'\\.-.)(.-./`-'\\.-.)(.-./`-'\\.-.)(.-./`-'\\.-.)(.-./`-'\\.-.)(.-./`-'\\.-.)\n"
+            + "  `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'\n";
+
+    private static final String GREETING = "Yokoso, your personal assistant AMEBOT~!\n"
+            + "Please enter the command(s):";
+
+    public static void printHeader() {
+        System.out.print(BORDER
+                + MESSAGE
+                + LOGO
+                + BORDER);
+    }
+
+    public static void printGreeting() {
+        System.out.println(GREETING);
+    }
 
     public static void main(String[] args) {
-        Duke amebot = new Duke();
-        amebot.launch();
-    }
+        printHeader();
+        printGreeting();
 
-    public void launch() {
-        this.userInterface = new UserInterface();
-        this.userInterface.printWelcome();
-
-        render();
-    }
-
-    public void render() {
-        String commandLine;
-        Command command = new Command();
-
-        do {
-            commandLine = this.userInterface.getInputCommand();
-            ArrayList<String> parsedCommand = new Parser().parseCommand(commandLine);
-            ArrayList<String> logs = command.executeCommand(parsedCommand);
-            this.userInterface.printOutput(logs);
-        } while (!ExitCommand.isExit(commandLine));
+        App.launch();
     }
 }
