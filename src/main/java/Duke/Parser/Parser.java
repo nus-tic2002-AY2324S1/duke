@@ -1,3 +1,10 @@
+package Duke.Parser;
+
+import Duke.Command.*;
+import Duke.DukeExceptions.*;
+import Duke.Task.Task;
+import Duke.UserInterface.UserInterface;
+
 public class Parser {
 
     /**
@@ -58,7 +65,7 @@ public class Parser {
 
     /**
      * Execute the to-do task command
-     * @param taskName Task name of the to-do task
+     * @param taskName Duke.Task.Task name of the to-do task
      */
     private void executeTodoCommand(String taskName) throws DukeException {
         if (taskName.isEmpty()) {
@@ -82,7 +89,7 @@ public class Parser {
         String taskName = arguments.substring(0, byIndex).trim();
         String taskDueDate = arguments.substring(byIndex + 3).trim();
         if (taskDueDate.isEmpty()) {
-            throw new EmptyDeadlineArgumentException();
+            throw new InvalidTaskFormatException("deadline");
         }
         new AddDeadLineCommand(taskName, taskDueDate).execute();
     }
@@ -104,7 +111,7 @@ public class Parser {
         String taskFromDate = arguments.substring(fromIndex + 5, toIndex).trim();
         String taskToDate = arguments.substring(toIndex + 3).trim();
         if (taskFromDate.isEmpty() || taskToDate.isEmpty()) {
-            throw new EmptyEventArgumentException();
+            throw new InvalidTaskFormatException("event");
         }
         new AddEventCommand(taskName, taskFromDate, taskToDate).execute();
     }

@@ -1,11 +1,17 @@
+package Duke;
+
+import Duke.FileHandler.*;
+import Duke.Parser.Parser;
+import Duke.UserInterface.UserInterface;
 import java.util.ArrayList;
+import Duke.Task.Task;
 import java.util.List;
 
 /**
  * The Duke class represents a task management application.
  * Users can interact with it through a command-line interface.
  */
-class Duke {
+public class Duke {
 
     public static List<Task> taskList;
     public static FileStorage fileStorage;

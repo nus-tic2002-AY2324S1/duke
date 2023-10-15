@@ -1,37 +1,15 @@
-import java.io.*;
+package Duke.FileHandler;
+
+import Duke.Task.*;
+import Duke.UserInterface.UserInterface;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
-abstract class FileHandler {
-    String filePath = "./data/duke.txt";
-}
-
-class FileStorage extends FileHandler {
-    public void fileStorage(List<Task> taskList) {
-
-        File outputFile = new File(filePath);
-
-        try {
-            // Check if the file exists, and create it if it doesn't
-            if (!outputFile.exists()) {
-                outputFile.getParentFile().mkdirs();
-                outputFile.createNewFile();
-            }
-
-            // Open the file for writing
-            try (FileOutputStream fileOutputStream = new FileOutputStream(outputFile, false);
-                 PrintWriter printWriter = new PrintWriter(fileOutputStream)) {
-                // Append output to the file
-                for (Task task : taskList) {
-                    printWriter.println(task.toFile());
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-class FileRead extends FileHandler {
+public class FileRead extends FileHandler {
 
     public void getSavedTask(List<Task> taskList) {
         try {
@@ -94,17 +72,5 @@ class FileRead extends FileHandler {
         } catch (IOException e) {
             e.printStackTrace(); // Handle any exceptions that may occur
         }
-    }
-}
-
-abstract class FileException extends Exception {
-    public FileException(String message) {
-        super(message);
-    }
-}
-
-class FileCorruptedException extends FileException {
-    public FileCorruptedException() {
-        super("File is corrupted, proceed to start a new session without data loading.");
     }
 }

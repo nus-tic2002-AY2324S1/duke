@@ -1,10 +1,13 @@
+package Duke.UserInterface;
+
+import Duke.Task.Task;
 import java.util.List;
 import java.util.Scanner;
 
-class UserInterface {
+public class UserInterface {
 
-    UserInterface.UserInput userInput;
-    UserInterface.MessageDisplay messageDisplay;
+    public UserInterface.UserInput userInput;
+    public UserInterface.MessageDisplay messageDisplay;
 
     public UserInterface() {
         userInput = new UserInterface.UserInput();
