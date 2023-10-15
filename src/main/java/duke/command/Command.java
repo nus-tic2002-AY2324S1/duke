@@ -7,10 +7,17 @@ import duke.ui.Ui;
 public class Command {
 
     private boolean isExit;
+
+    public Command(){
+        isExit = false;
+    }
     public void execute(TaskList tasks, Ui ui, Storage storage) {
     }
 
     public boolean isExit() {
         return isExit;
+    }
+    protected void setExit(boolean isExit){
+        this.isExit = isExit;
     }
 }

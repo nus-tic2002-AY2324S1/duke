@@ -1,16 +1,19 @@
 package duke.ui;
 
-import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.common.Converse;
 
 public class Ui {
 
     private final Scanner in;
     private final PrintStream out;
-    private static final String DIVIDER = "=========================================================";
+    public static final String DIVIDER = "=".repeat(60);
     private static final String NEWLINE = System.lineSeparator();
-    private static final String LINE_PREFIX = "    ";
+    private final static int INDENT_RESPONSE = 5;
+    private final static int INDENT_LINE = 4;
 
     public Ui(){
         in = new Scanner(System.in);
@@ -19,26 +22,32 @@ public class Ui {
     public void showLoadingError() {
     }
 
-    public void showeWelcome() {
-        showToUser(DIVIDER,
-                "Hello! I'm Luna",
-                "What can I do for you?",
-                logo(),
-                DIVIDER);
+    /**
+     * prints the welcome message upon the start of the application.
+     */
+    public void showWelcome() {
+        showToUser(
+                prefixString(INDENT_LINE) + DIVIDER,
+                logoString(),
+                prefixString(INDENT_LINE) + DIVIDER,
+                prefixString(INDENT_RESPONSE) + "Hello! I'm Luna",
+                prefixString(INDENT_RESPONSE) + "What can I do for you?",
+                prefixString(INDENT_LINE) + DIVIDER);
     }
 
-    public String readCommand() {
-        return "";
+    public String getUserCommand(){
+        return in.nextLine();
     }
 
+    /**
+     * print divider line
+     */
     public void showLine() {
-        System.out.println(DIVIDER);
+        out.println(prefixString(INDENT_LINE) + DIVIDER);
     }
 
-    public void showError(String message) {
-    }
 
-    private static String logo() {
+    private static String logoString() {
         String logo;
         logo =    "      _                    \n"
                 + "     | |    _   _ _  __     __\n"
@@ -48,9 +57,44 @@ public class Ui {
         return logo;
     }
 
+    private static String prefixString(int n){
+        return(" ".repeat(n));
+    }
+
+    public static String prefixRespString(){
+        return prefixString(INDENT_RESPONSE);
+    }
+
+    public static String prefixLineString(){
+        return prefixString(INDENT_LINE);
+    }
+
     public void showToUser(String... message){
         for (String m : message) {
-            out.println(LINE_PREFIX + m.replace("\n",NEWLINE + LINE_PREFIX));
+            out.println(m.replace("\n",NEWLINE));
         }
+    }
+
+    public void showResponseToUser(ArrayList<String> message){
+        showLine();
+        for (String m : message) {
+            out.println(prefixRespString() + m.replace("\n",NEWLINE));
+        }
+        showLine();
+    }
+
+    public void showResponseToUser(String... message){
+        showLine();
+        for (String m : message) {
+            out.println(prefixRespString() + m.replace("\n",NEWLINE));
+        }
+        showLine();
+    }
+
+    /**
+     * show Goodbye message
+     */
+    public void showGoodByeMessage() {
+        out.println(prefixString(INDENT_RESPONSE) + Converse.MESSAGE_GOODBYE);
     }
 }
