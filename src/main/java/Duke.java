@@ -1,28 +1,36 @@
+import storage.Storage;
 import ui.UserInterface;
 import parser.Parser;
 import commands.Command;
 import commands.ExitCommand;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Duke {
     private UserInterface userInterface;
+    private Storage storage;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Duke amebot = new Duke();
         amebot.launch();
     }
 
-    public void launch() {
+    public void launch() throws IOException {
         this.userInterface = new UserInterface();
         this.userInterface.printWelcome();
 
-        render();
+        Command command = new Command();
+        this.storage = new Storage();
+        this.storage.loadTasks(command);
+
+        render(command);
+
+        this.storage.saveTasks();
     }
 
-    public void render() {
+    public void render(Command command) {
         String commandLine;
-        Command command = new Command();
 
         do {
             commandLine = this.userInterface.getInputCommand();

@@ -4,8 +4,8 @@ public class Deadline extends Task {
     protected final String DEADLINE = "[DEADLINE] ";
     protected String dueDateTime;
 
-    public Deadline(String description, String dueDateTime) {
-        super(description);
+    public Deadline(boolean isSelected, String description, String dueDateTime) {
+        super(isSelected, description);
         super.type = DEADLINE;
         this.dueDateTime = dueDateTime.toUpperCase();
     }
@@ -15,6 +15,7 @@ public class Deadline extends Task {
         return type + status + description + dueDateTime;
     }
 
+    @Override
     public String getDueDateTime() {
         return dueDateTime;
     }

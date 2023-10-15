@@ -3,7 +3,10 @@ package common;
 public class Messages {
     public static final String TOP_BORDER = "________________________________________________________________________________";
     public static final String BOTTOM_BORDER = "--------------------------------------------------------------------------------" + System.lineSeparator();
-    public static final String FILE_NOT_FOUND = "File not found in this directory!";
+    public static final String FILE_NOT_FOUND = "amebot.txt file is not found in directory!";
+    public static final String FILE_CREATED = "Created file in data folder!";
+    public static final String SUCCESS_LOAD_TASK = "Successfully loaded tasks from storage!";
+    public static final String SUCCESS_SAVE_TASK = "Successfully saved tasks to storage!";
     public static final String INVALID_FILE_FORMAT = "Invalid file format! Please save as text file format~";
     public static final String EMPTY_FILE = "File content is empty!";
     public static final String EMPTY_LINE = "Current line is empty!";

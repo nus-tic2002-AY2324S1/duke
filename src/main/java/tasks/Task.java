@@ -8,10 +8,16 @@ public abstract class Task {
     protected final String UNSELECT = "[ ] ";
     protected static int listSize;
 
-    public Task(String description) {
+    public Task(boolean isSelected, String description) {
         type = "";
         this.description = description.toUpperCase();
-        status = UNSELECT;
+
+        if (isSelected) {
+            status = SELECT;
+        } else {
+            status = UNSELECT;
+        }
+
         listSize++;
     }
 
@@ -43,6 +49,18 @@ public abstract class Task {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getFromDateTime() {
+        return "";
+    }
+
+    public String getToDateTime() {
+        return "";
+    }
+
+    public String getDueDateTime() {
+        return "";
     }
 
     public static int getListSize() {

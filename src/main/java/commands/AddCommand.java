@@ -9,20 +9,20 @@ import tasks.Deadline;
 public class AddCommand extends Command {
     protected Task item;
 
-    public AddCommand(String description) {
-        item = new ToDo(description);
+    public AddCommand(boolean isSelected, String description) {
+        item = new ToDo(isSelected, description);
         tasks.add(item);
         saveLogs();
     }
 
-    public AddCommand(String description, String fromDateTime, String toDateTime) {
-        item = new Event(description, fromDateTime, toDateTime);
+    public AddCommand(boolean isSelected, String description, String fromDateTime, String toDateTime) {
+        item = new Event(isSelected, description, fromDateTime, toDateTime);
         tasks.add(item);
         saveLogs();
     }
 
-    public AddCommand(String description, String dueDateTime) {
-        item = new Deadline(description, dueDateTime);
+    public AddCommand(boolean isSelected, String description, String dueDateTime) {
+        item = new Deadline(isSelected, description, dueDateTime);
         tasks.add(item);
         saveLogs();
     }

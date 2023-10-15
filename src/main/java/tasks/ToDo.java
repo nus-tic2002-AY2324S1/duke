@@ -3,8 +3,8 @@ package tasks;
 public class ToDo extends Task {
     protected final String TODO = "[TODO] ";
 
-    public ToDo(String description) {
-        super(description);
+    public ToDo(boolean isSelected, String description) {
+        super(isSelected, description);
         super.type = TODO;
     }
 
