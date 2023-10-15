@@ -10,18 +10,18 @@ event Go cherry blossom viewing /from TBC 7am /to 8am
 todo Climb Mount Fuji
 todo Visit bamboo forest
 deadline Spend a night in Ryokan /due Friday
-todo Test remove function
 todo Visit an Onsen
+todo Test delete method
 list
-Check 4
-Check 5
-Check 7
-Check 11
-Uncheck 11
-remove 12
+select 4
+select 5
+select 7
+select 11
+unselect 11
+remove 13
 
 abc
 todo
-check
+select
 list
 bye

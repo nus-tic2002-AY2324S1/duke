@@ -13,7 +13,7 @@ then
 fi
 
 # compile the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java ../src/main/java/amebot/*.java ../src/main/java/amebot/tasks/*.java ../src/main/java/amebot/tasks/commands/*.java ../src/main/java/amebot/exceptions/*.java
+if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java ../src/main/java/ui/*.java ../src/main/java/common/*.java ../src/main/java/storage/*.java ../src/main/java/parser/*.java ../src/main/java/enumerations/*.java ../src/main/java/tasks/*.java ../src/main/java/commands/*.java ../src/main/java/exceptions/*.java
 then
     echo "********** BUILD FAILURE **********"
     exit 1

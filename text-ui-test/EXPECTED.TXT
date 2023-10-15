@@ -25,79 +25,79 @@ List is empty!
 ________________________________________________________________________________
 [TODO] [ ] RIDE A SHINKANSEN
 Successfully added to list!
-You've 1 item(s) in list~
+1 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 [EVENT] [ ] GO-KART AROUND TOKYO (FROM: WEDNESDAY 1PM TO: 3PM)
 Successfully added to list!
-You've 2 item(s) in list~
+2 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 [TODO] [ ] ENTER UNIVERSAL STUDIOS JAPAN
 Successfully added to list!
-You've 3 item(s) in list~
+3 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 [TODO] [ ] VISIT AN ARCADE
 Successfully added to list!
-You've 4 item(s) in list~
+4 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 [EVENT] [ ] MAKE YOUR OWN TAKOYAKI (FROM: SUNDAY 1PM TO: 3PM)
 Successfully added to list!
-You've 5 item(s) in list~
+5 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 [EVENT] [ ] LEARN THE ART OF TEA CEREMONY (FROM: SEPTEMBER 15TH 9AM TO: 11AM)
 Successfully added to list!
-You've 6 item(s) in list~
+6 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 [TODO] [ ] VISIT AN IZAKAYA
 Successfully added to list!
-You've 7 item(s) in list~
+7 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 [EVENT] [ ] GO CHERRY BLOSSOM VIEWING (FROM: TBC 7AM TO: 8AM)
 Successfully added to list!
-You've 8 item(s) in list~
+8 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 [TODO] [ ] CLIMB MOUNT FUJI
 Successfully added to list!
-You've 9 item(s) in list~
+9 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 [TODO] [ ] VISIT BAMBOO FOREST
 Successfully added to list!
-You've 10 item(s) in list~
+10 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 [DEADLINE] [ ] SPEND A NIGHT IN RYOKAN (DUE: FRIDAY)
 Successfully added to list!
-You've 11 item(s) in list~
---------------------------------------------------------------------------------
-
-________________________________________________________________________________
-[TODO] [ ] TEST REMOVE FUNCTION
-Successfully added to list!
-You've 12 item(s) in list~
+11 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
 [TODO] [ ] VISIT AN ONSEN
 Successfully added to list!
-You've 13 item(s) in list~
+12 item(s) in list~
+--------------------------------------------------------------------------------
+
+________________________________________________________________________________
+[TODO] [ ] TEST DELETE METHOD
+Successfully added to list!
+13 item(s) in list~
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
@@ -113,8 +113,8 @@ Item(s) in current list:
 9. [TODO] [ ] CLIMB MOUNT FUJI
 10. [TODO] [ ] VISIT BAMBOO FOREST
 11. [DEADLINE] [ ] SPEND A NIGHT IN RYOKAN (DUE: FRIDAY)
-12. [TODO] [ ] TEST REMOVE FUNCTION
-13. [TODO] [ ] VISIT AN ONSEN
+12. [TODO] [ ] VISIT AN ONSEN
+13. [TODO] [ ] TEST DELETE METHOD
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
@@ -143,18 +143,18 @@ Pending item!
 --------------------------------------------------------------------------------
 
 ________________________________________________________________________________
-[TODO] [ ] TEST REMOVE FUNCTION
+[TODO] [ ] TEST DELETE METHOD
 Successfully removed from list!
-You've 12 item(s) in list~
+12 item(s) in list~
 --------------------------------------------------------------------------------
 
-You've entered an invalid command, please try again!
+You've entered an invalid command!
 
-You've entered an invalid command, please try again!
+You've entered an invalid command!
 
-Description cannot be empty, please try again!
+You've entered an invalid command format!
 
-You've entered an invalid index, please try again!
+You've entered an invalid command format!
 ________________________________________________________________________________
 Item(s) in current list:
 1. [TODO] [ ] RIDE A SHINKANSEN
