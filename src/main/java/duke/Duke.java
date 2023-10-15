@@ -9,14 +9,14 @@ import duke.command.Command;
 import duke.parser.Parser;
 import duke.exception.DukeException;
 
-public class Main {
+public class Duke {
 
     private Ui ui;
     private Storage storage;
     private TaskList tasks;
     private UserKeywordArgument keywordArgument;
 
-    public Main(String filePath){
+    public Duke(String filePath){
         ui = new Ui();
         storage = new Storage(filePath);
         keywordArgument = new UserKeywordArgument();
@@ -64,7 +64,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        new Main("data/tasks.txt").run();
+        new Duke("data/tasks.txt").run();
     }
 
 
