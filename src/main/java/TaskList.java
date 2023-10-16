@@ -25,6 +25,10 @@ public class TaskList implements Iterable<Task> {
         return tasks.get(index);
     }
 
+    public Task getLastTask() {
+        return !tasks.isEmpty() ? tasks.get(tasks.size() - 1) : null;
+    }
+
     public void removeTask(Task task) {
         tasks.remove(task);
     }
