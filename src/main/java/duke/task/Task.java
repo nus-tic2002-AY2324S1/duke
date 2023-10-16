@@ -15,12 +15,12 @@ public abstract class Task {
         isDone = false;
     }
 
-    public Task(int load){
-        isDone = false;
-    }
-
     protected static void increaseNumberOfTaskByOne() {
         numberOfTasks++;
+    }
+
+    public static void decreaseNumberOfTaskByOne(){
+        numberOfTasks--;
     }
 
     public Task(){
@@ -43,9 +43,6 @@ public abstract class Task {
         this.isDone = done;
     }
 
-    public static int getNumberOfTasks(){
-        return numberOfTasks;
-    }
 
     @Override
     public abstract String toString();
