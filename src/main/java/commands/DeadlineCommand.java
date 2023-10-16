@@ -1,3 +1,12 @@
+package commands;
+
+import data.TaskList;
+import data.tasks.Deadline;
+import exceptions.DukeException;
+import exceptions.InvalidCommandArgsDukeException;
+import storage.Storage;
+import ui.Ui;
+
 public class DeadlineCommand extends TaskCommand {
     public DeadlineCommand(String args) {
         super(args);

@@ -1,3 +1,7 @@
+package storage;
+
+import exceptions.DukeException;
+
 public class StorageOperationException extends DukeException {
     public StorageOperationException(String errorMessage) {
         super(errorMessage);

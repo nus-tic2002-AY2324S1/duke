@@ -1,3 +1,10 @@
+package commands;
+
+import data.TaskList;
+import exceptions.DukeException;
+import storage.Storage;
+import ui.Ui;
+
 public abstract class Command {
     protected String args;
 
@@ -9,13 +16,5 @@ public abstract class Command {
 
     public boolean isExit() {
         return false;
-    }
-
-    protected static Integer tryParseInt(String s) {
-        try {
-            return Integer.parseInt(s);
-        } catch (Exception e) {
-            return null;
-        }
     }
 }
