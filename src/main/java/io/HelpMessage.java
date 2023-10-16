@@ -37,7 +37,7 @@ public class HelpMessage {
         System.out.println(blank + "9.  find <keyword> - find a task with the keyword");
         System.out.println(blank + "    ╰┈➤e.g. find book");
 
-        System.out.println(blank + "10. sort <type/type1/t/t1/date/d> - sort the list by type or date");
+        System.out.println(blank + "10. sort <type/typerevert/t/tr/date/d> - sort the list by type or date");
         System.out.println(blank + "    Note: type1 or t1 will sort the list by type in revert order");
         System.out.println(blank + "    ╰┈➤e.g. sort t");
 

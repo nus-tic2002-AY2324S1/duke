@@ -175,9 +175,9 @@ public class CrabyMessage {
     }
 
     //Print SortByCommand Message
-    public static void printSortByErrorMessage() {
+    public static void printSortErrorMessage() {
         System.out.println(blank + "Oops!!! Looks like you used the wrong format.");
-        System.out.println(blank + "╰┈➤ Try with: sortby [type/date] e.g: sortby type");
+        System.out.println(blank + "╰┈➤ Try with: sort [type/typerevert/date] e.g: sort type");
         System.out.println(line);
     }
 
@@ -196,7 +196,7 @@ public class CrabyMessage {
 
     public static void printUndoError() {
         System.out.println(blank + "Oops!!! You can only use UNDO when your last entry was to add a task to the list.");
-        System.out.println(blank + "╰┈➤ Try with: delete [integer] - I will help you remove this task ☘");
+        System.out.println(blank + "╰┈➤ Try with: delete [integer] - I will help you remove the task ☘");
         System.out.println(line);
     }
 }

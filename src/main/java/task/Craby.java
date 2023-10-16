@@ -4,8 +4,6 @@ import command.*;
 import exceptions.InputBlankException;
 import io.CrabyMessage;
 import io.TaskStorage;
-import task.Keyword;
-import task.Task;
 
 import java.util.*;
 
@@ -86,7 +84,7 @@ public class Craby extends CrabyMessage {
                 case FIND:
                     handleFindCommand(input, tasks);
                     break;
-                case SORTBY:
+                case SORT:
                     handleSortByCommand(input, tasks);
                     break;
                 case HELP:

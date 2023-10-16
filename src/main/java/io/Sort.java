@@ -19,7 +19,7 @@ public class Sort {
                     return task1.toString().compareTo(task2.toString());
                 }
             });
-        } else if (input.equals("type1") || input.equals("t1")) {
+        } else if (input.equals("typerevert") || input.equals("tr")) {
             System.out.println("   Sorting by type revert order...");
             tasks.sort(new Comparator<Task>() {
                 @Override
@@ -37,12 +37,12 @@ public class Sort {
                     if (task1 instanceof Deadline) {
                         task1Time = ((Deadline) task1).getTime();
                     } else if (task1 instanceof Event) {
-                        task1Time = ((Event) task1).getTime();
+                        task1Time = ((Event) task1).getFromTime();
                     }
                     if (task2 instanceof Deadline) {
                         task2Time = ((Deadline) task2).getTime();
                     } else if (task2 instanceof Event) {
-                        task2Time = ((Event) task2).getTime();
+                        task2Time = ((Event) task2).getFromTime();
                     }
                     if (task1Time == null) {
                         return 1;
