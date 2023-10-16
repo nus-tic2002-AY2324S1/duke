@@ -1,3 +1,14 @@
+package commands;
+
+import commands.Command;
+import common.Utils;
+import data.TaskList;
+import data.tasks.Task;
+import exceptions.DukeException;
+import exceptions.InvalidCommandArgsDukeException;
+import storage.Storage;
+import ui.Ui;
+
 public class MarkCommand extends Command {
     public MarkCommand(String args) {
         super(args);
@@ -9,7 +20,7 @@ public class MarkCommand extends Command {
             throw new InvalidCommandArgsDukeException("The task number to be marked cannot be empty.");
         }
 
-        Integer taskNumber = tryParseInt(args);
+        Integer taskNumber = Utils.tryParseInt(args);
         if (taskNumber == null || taskNumber < 1 || taskNumber > tasks.size()) {
             throw new InvalidCommandArgsDukeException("Invalid task number to be marked.");
         }

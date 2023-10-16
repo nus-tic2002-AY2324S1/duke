@@ -1,3 +1,12 @@
+package commands;
+
+import data.TaskList;
+import data.tasks.Event;
+import exceptions.DukeException;
+import exceptions.InvalidCommandArgsDukeException;
+import storage.Storage;
+import ui.Ui;
+
 public class EventCommand extends TaskCommand {
     public EventCommand(String args) {
         super(args);
