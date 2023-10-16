@@ -16,9 +16,9 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 3. After that, locate the `src/main/java/craby.Duke.java` file, right-click it, and choose `Run craby.Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
    ```
    Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
+  ____                  _      __   __
+ / ___|  _ __    __ _  | |__   \ \ / /
+| |     | '__|  / _` | | '_ \   \ V / 
+| |___  | |    | (_| | | |_) |   | |  
+ \____| |_|     \__,_| |_.__/    |_|  
    ```
