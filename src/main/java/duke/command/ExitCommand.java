@@ -8,7 +8,7 @@ import duke.ui.Ui;
 
 public class ExitCommand extends Command {
     public ExitCommand(){
-        setExit(true);
+        setExit();
     }
 
     @Override

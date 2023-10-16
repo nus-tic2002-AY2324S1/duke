@@ -43,7 +43,6 @@ public abstract class Task {
         this.isDone = done;
     }
 
-
     @Override
     public abstract String toString();
 
@@ -55,5 +54,19 @@ public abstract class Task {
         messages.add(responseNumberOfTasks());
         ui.showResponseToUser(messages);
     }
-
+    public char getAbbreviation() {
+        return abbreviation;
+    }
+    public String getDukeDescription() {
+        return dukeDescription;
+    }
+    public boolean isDone() {
+        return isDone;
+    }
+    public int getDone(){
+        if(isDone){
+            return 1;
+        }
+        return 0;
+    }
 }

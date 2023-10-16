@@ -7,15 +7,15 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 public abstract class Command {
-    private boolean isExit = false;
+    private static boolean isExit = false;
     public abstract void  execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws MissingDescriptionException;
 
-    protected void setExit(boolean isExit){
-        this.isExit = isExit;
+    protected static void setExit(){
+        isExit = true;
     }
 
-    public  boolean isExit(){
+    public static boolean isExit(){
         return isExit;
     }
 }

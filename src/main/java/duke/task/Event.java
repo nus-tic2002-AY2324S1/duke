@@ -2,10 +2,8 @@ package duke.task;
 
 import duke.exception.MissingDescriptionException;
 public class Event extends Task {
-
     protected String from;
     protected String to;
-
     public Event(){}
     public Event(String description) throws MissingDescriptionException {
         setAbbreviation();
@@ -49,5 +47,11 @@ public class Event extends Task {
     @Override
     public String toString(){
         return String.format("[%c][%s] %s (from: %s to: %s)",abbreviation,getStatusIcon(),dukeDescription, from, to);
+    }
+    public String getFrom() {
+        return from;
+    }
+    public String getTo() {
+        return to;
     }
 }

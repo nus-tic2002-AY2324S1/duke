@@ -1,5 +1,6 @@
 package duke;
 
+import duke.command.ExitCommand;
 import duke.data.UserKeywordArgument;
 import duke.exception.MissingDescriptionException;
 import duke.ui.Ui;
@@ -41,23 +42,28 @@ public class Duke {
      */
     private void loopUntilExitCommand() {
         Command command;
-        boolean isExit = false;
         do {
-            try {
-                String userInputCommand = ui.getUserCommand();
-                command = Parser.parse(userInputCommand, keywordArgument);
-                if (command != null) {
-                    command.execute(tasks, ui, storage, keywordArgument);
-                    isExit = command.isExit();
-                }
-            } catch (MissingDescriptionException e) {
-                ui.showResponseToUser(e.getMessage());
-            }
-        }while(!isExit);
+            String userInputCommand = ui.getUserCommand();
+            command = Parser.parse(userInputCommand, keywordArgument);
+            executeCommand(command);
+        }while(!ExitCommand.isExit());
+    }
+
+    private void executeCommand(Command command) {
+        if (command == null) {
+            return;
+        }
+        try {
+            command.execute(tasks, ui, storage, keywordArgument);
+            storage.save(tasks);
+        } catch (MissingDescriptionException e) {
+            ui.showResponseToUser(e.getMessage());
+        }
+
     }
 
     public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+        new Duke("src/main/java/duke/data/duke.txt").run();
     }
 
 

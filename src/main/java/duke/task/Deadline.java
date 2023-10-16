@@ -3,13 +3,11 @@ package duke.task;
 import duke.exception.MissingDescriptionException;
 public class Deadline extends Task {
     protected String by;
-
     public Deadline(){
         isDone = false;
     }
     public Deadline(String description) throws MissingDescriptionException {
         setAbbreviation();
-
         pullDeadlineDate(description);
         increaseNumberOfTaskByOne();
         response();
@@ -37,10 +35,11 @@ public class Deadline extends Task {
         by = input.substring(pos + len).trim();
         dukeDescription = input.substring(0,pos).trim();
     }
-
-
     @Override
     public String toString() {
         return String.format("[%c][%s] %s (by: %s)",abbreviation,getStatusIcon(),dukeDescription, by);
+    }
+    public String getBy() {
+        return by;
     }
 }
