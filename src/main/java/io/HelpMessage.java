@@ -41,8 +41,7 @@ public class HelpMessage {
         System.out.println(blank + "    Note: type1 or t1 will sort the list by type in revert order");
         System.out.println(blank + "    ╰┈➤e.g. sort t");
 
-        System.out.println(blank + "11. undo - undo the last command if it is add task");
-        System.out.println(blank + "    Note: undo will not work with the rest of the commands");
+        System.out.println(blank + "11. undo - undo your previous command (except: list, find, help, blah commands)");
         System.out.println(blank + "    ╰┈➤e.g. undo");
 
         System.out.println(blank + "12. help - show the list of commands");
