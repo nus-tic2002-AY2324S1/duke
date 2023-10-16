@@ -14,7 +14,7 @@ Task to delete
 list
 unmark            3
 Oder FoodPanda for dinner every weekday
-Task to check sort by date - on top after use sortby date/d /by 1993/07/03 0530
+Task to check sort by date - on top after use sort date/d /by 1993/07/03 0530
 TIC2002 quiz /by Monday
 MARK 12
 
@@ -25,20 +25,33 @@ find tic
 find [d]
    blah
 List
-sortby T
+sort T
 mark 12
 mark 6
-sortby type1
+sort type1
 delete                       1
 LisT
 TMA2031 - Final Exam /from 25/11/2023 0900 /to 25/11/2023 1100
 Drink more water
-sortby datE
+sort datE
 mark 99
 LisT
+check undo mark
+check multiple undo
+check undo add task
+undo
+undo
+list
+sort tr
+undo
+list
+mark 14
+undo
+list
 deleteall
-
+list
+undo
+list
+deleteall
 help
 bye CrabY
-
-
