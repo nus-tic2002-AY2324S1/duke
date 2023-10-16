@@ -1,14 +1,13 @@
-[D][ ✓ ] Task to check sort by date - on top after use sort date/d (by: 1993/7/3 0530)
-[E][҉҉҉] Learn front end (from: 2023/10/17 2359 to: 2023/12/31 0000)
-[D][ ✓ ] TIC3901 - Presentation 1 (by: 2023/10/17 2359)
-[D][҉҉҉] Video call with Grandpa (by: 2023/10/22 2359)
-[E][҉҉҉] Chang & Felicia's wedding (from: 2023/11/4 1800 to: 2023/11/4 2200)
+[T][҉҉҉] Drink more water
+[T][ ✓ ] Task to delete
 [E][҉҉҉] TMA2031 - Final Exam (from: 2023/11/25 0900 to: 2023/11/25 1100)
 [E][҉҉҉] TIC2002 - Final Exam (from: 2023/12/4 1300 to: 2023/12/4 1430)
-[D][҉҉҉] TIC3901 - Report 2 (by: 2024/1/28 0000)
+[E][҉҉҉] Learn front end (from: 2023/10/16 2359 to: 2023/12/31 0000)
+[E][҉҉҉] Chang & Felicia's wedding (from: 2023/11/4 1800 to: 2023/11/4 2200)
+[D][҉҉҉] Video call with Grandpa (by: 2023/10/22 2359)
 [D][҉҉҉] TIC3901 - Report 3 (by: 2024/3/17 0000)
+[D][҉҉҉] TIC3901 - Report 2 (by: 2024/1/28 0000)
 [D][҉҉҉] TIC3901 - Presentation 2 (by: 2024/4/14 0000)
-[T][҉҉҉] Oder FoodPanda for dinner every weekday
-[T][ ✓ ] Task to delete
-[T][҉҉҉] Drink more water
-[T][ ✓ ] Check undo mark
+[D][ ✓ ] Task to check sort by date - on top after use sortby date/d (by: 1993/7/3 0530)
+[D][ ✓ ] TIC3901 - Presentation 1 (by: 2023/10/16 2359)
+[D][ ✓ ] TIC2002 quiz (by: 2023/10/23 2359)

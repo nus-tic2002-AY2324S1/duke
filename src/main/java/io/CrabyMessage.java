@@ -188,17 +188,16 @@ public class CrabyMessage {
     }
 
     //Print UndoCommand Message
-    public static void printUndoMessage(String command, String customizeMessage) {
-        System.out.println(blank + "Undo Successful!!!");
-        System.out.println(blank + "╰┈➤I've undo your command:" + customizeMessage + command);
-        System.out.println(line);
+    public static void printUndoMessage(String input, List<Task> tasks) {
+        System.out.println(blank + "OK, I've removed your last input you added to the list.");
+        System.out.println(blank + "  ╰┈➤ remove: " + input);
+        printCountTask(tasks.size());
     }
 
     public static void printUndoError() {
-        System.out.println(blank + "Oops!!! Undo unsuccessful. I already undo all the input you just entered.");
-        System.out.println(blank + "╰┈➤Please try again with another command ☘");
+        System.out.println(blank + "Oops!!! You can only use UNDO when your last entry was to add a task to the list.");
+        System.out.println(blank + "╰┈➤ Try with: delete [integer] - I will help you remove the task ☘");
         System.out.println(line);
     }
-
 }
 

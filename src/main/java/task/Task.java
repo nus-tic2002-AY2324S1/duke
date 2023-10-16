@@ -6,7 +6,8 @@ import java.time.format.DateTimeFormatter;
 public class Task {
     public static final String TIME_OUTPUT_FORMAT = "d MMM yyyy, E - hh:mma";
     protected String description;
-    protected boolean isDone;
+    protected boolean isDone = false;
+
     /**
      * @param description the description of the task
      */
