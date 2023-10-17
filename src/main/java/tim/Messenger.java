@@ -1,5 +1,5 @@
 package tim;
-import tim.tasks.*;
+import tim.tasks.Task;
 import java.util.ArrayList;
 import java.util.Date;
 

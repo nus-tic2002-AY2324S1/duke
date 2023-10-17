@@ -1,5 +1,8 @@
 package tim;
-import tim.tasks.*;
+import tim.tasks.Task;
+import tim.tasks.ToDo;
+import tim.tasks.Event;
+import tim.tasks.Deadline;
 import java.util.ArrayList;
 
 public class ListManager {

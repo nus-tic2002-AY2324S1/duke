@@ -1,7 +1,5 @@
 package tim.tasks;
 
-import tim.tasks.Task;
-
 public class Event extends Task {
     String from;
     String to;
