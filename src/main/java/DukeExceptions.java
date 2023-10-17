@@ -65,3 +65,15 @@ class EmptyListException extends DukeExceptions {
         super("The list is empty. The action you requested cannot be carried out.");
     }
 }
+
+class TaskTypeMissingException extends DukeExceptions { //for editing specific task types
+    public TaskTypeMissingException(){
+        super("The task type you requested for does not exist!");
+    }
+}
+
+class InvalidTaskTypeException extends DukeExceptions {
+    public InvalidTaskTypeException(){
+        super("Please key in a valid task type!");
+    }
+}

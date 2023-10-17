@@ -32,28 +32,6 @@ public class Display {
         System.out.println("Now you have " + totalTasksCount + " tasks in the list.");
     }
 
-    //message to display when want to mark a task that is already completed
-    public static void alreadyCompleted(String taskName){
-        System.out.println(taskName + " is completed!");
-    }
-
-    //message to display when want to unmark a task that hasn't been checked
-    public static void alreadyUnchecked(String taskName){
-        System.out.println(taskName + " has not been checked yet.");
-    }
-
-    //mark if unmarked
-    public static void markAsComplete(ArrayList<Task>userInputTasks, int taskNumber){ //this takes priority over alreadyCompleted method
-        System.out.println("That's some progress! I've marked this task as done:");
-        System.out.println(userInputTasks.get(taskNumber).toString());
-    }
-
-    //unmark if marked
-    public static void markAsNotComplete(ArrayList<Task>userInputTasks, int taskNumber){
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(userInputTasks.get(taskNumber).toString());
-    }
-
     //delete
     public void deletedMessage(Task task){
         System.out.println("Noted. I've removed this task:");
@@ -76,6 +54,19 @@ public class Display {
     public void findMessage(){
         System.out.println("Here are the matching tasks in your list: ");
     }
+
+
+public void notificationForChange(){
+    System.out.println("Alright, this is the task you wish to edit: ");
+    System.out.println(true);
+    System.out.println("Please enter your changes in the console or key 'end' to end this course of action");
+}
+
+public void changesMadeNotification(){
+    System.out.println("Here is the updated task: ");
+    System.out.println(true);
+}
+
 
 }
 

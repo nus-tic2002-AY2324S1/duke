@@ -142,8 +142,12 @@ class Duke {
                     }
                     break;
                 }
-                case "mark", "unmark": {
-                    modifyTask(userInput);
+                case "mark":{
+                    markTasksCompleted(userInput);
+                    break;
+                }
+                case "unmark":{
+                    unmarkTasksCompleted(userInput);
                     break;
                 }
                 case "find": {
@@ -156,6 +160,10 @@ class Duke {
                     }
                     break;
                 }
+                case "edit": {
+                    findRelatedTasksForEdit(arguments);
+                    break;
+                }
                 default:
                     newCheckTask(userInput);
             }
@@ -163,6 +171,52 @@ class Duke {
             System.out.println(e.getMessage());
         }
     }
+
+
+    //method to help mark tasks
+    public void markTasksCompleted(String userInput) throws NumberIndexOutOfBoundsException, InvalidIndexException {
+        String[] input = userInput.split("\\s+");
+        boolean numeric = true;
+        try{
+            int num = Integer.parseInt(input[1]);
+            if(num <= 0 || num>userInputTasks.size()){
+                throw new NumberIndexOutOfBoundsException();
+            }
+        }catch(NumberIndexOutOfBoundsException e){
+            numeric = false;
+        }
+        if(numeric){
+            int indexNumber = Integer.parseInt(input[1]) - 1;
+            System.out.println("That's some progress! I've marked this task as done:");
+            userInputTasks.get(indexNumber).taskCompleted();
+            System.out.println(userInputTasks.get(indexNumber));
+        }else{
+           throw new InvalidIndexException();
+        }
+    }
+
+    //method to help unmark tasks
+    public void unmarkTasksCompleted(String userInput) throws NumberIndexOutOfBoundsException, InvalidIndexException {
+        String[] input = userInput.split("\\s+");
+        boolean numeric = true;
+        try{
+            int num = Integer.parseInt(input[1]);
+            if(num <= 0 || num>userInputTasks.size()){
+                throw new NumberIndexOutOfBoundsException();
+            }
+        }catch(NumberIndexOutOfBoundsException e){
+            numeric = false;
+        }
+        if(numeric){
+            int indexNumber = Integer.parseInt(input[1]) - 1;
+            System.out.println("OK, I've marked this task as not done yet:");
+            userInputTasks.get(indexNumber).taskNotCompleted();
+            System.out.println(userInputTasks.get(indexNumber));
+        }else{
+            throw new InvalidIndexException();
+        }
+    }
+
 
     //method to check for taskType and call other method(s) to create that taskType
 private Task createTask(taskType taskType, String arguments) {
@@ -206,8 +260,109 @@ private void findTask(String input) throws InvalidKeywordException{
     }
 }
 
+//method for listing all tasks of a genre
+    private void findRelatedTasksForEdit(String arguments){
+        boolean check = true;
+        try {
+            String[] inputs = arguments.split("\\s+");
+            if (inputs.length == 0 || arguments.isEmpty()) {
+                throw new InvalidTaskTypeException();
+            }
+            switch (arguments) {
+                case "task": {
+                    for (int k = 0; k < userInputTasks.size(); k++) {
+                        if (userInputTasks.get(k).getTaskType() == 'T') {
+                            listRelevantTasks(check);
+                            check = false;
+                        }
+                    }
+                    break;
+                }
+                case "deadline": {
+                    for (int i = 0; i < userInputTasks.size(); i++) {
+                        if (userInputTasks.get(i).getTaskType() == 'D') {
+                            listRelevantDeadlines(check);
+                            check = false;
+                        }
+                    }
+                    break;
+                }
+                case "event": {
+                    for (int j = 0; j < userInputTasks.size(); j++) {
+                        if (userInputTasks.get(j).getTaskType() == 'E') {
+                            listRelevantEvents(check);
+                            check = false;
+                        }
+                    }
+                    break;
+                }
+                case "fixedduration": {
+                    for (int h = 0; h < userInputTasks.size(); h++) {
+                        if (userInputTasks.get(h).getTaskType() == 'F') {
+                            listRelevantFixedDurations(check);
+                            check = false;
+                        }
+                    }
+                    break;
+                }
+            }
+        }catch(DukeExceptions e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void listRelevantTasks(boolean check){
+        if(check){
+            System.out.println("These are the tasks that you may edit: ");
+            for(int k = 0; k<userInputTasks.size(); k++){
+                if(userInputTasks.get(k).getTaskType() == 'T'){
+                    System.out.println((k+1) + "." + userInputTasks.get(k).toString());
+                }
+            }
+            System.out.println("Please key in 'Change (index number)' of the task you wish to edit");
+        }
+    }
+
+    public void listRelevantDeadlines(boolean check){
+        if(check){
+            System.out.println("These are the tasks that you may edit: ");
+            for(int i = 0; i<userInputTasks.size(); i++){
+                if(userInputTasks.get(i).getTaskType() == 'D'){
+                    System.out.println((i+1) + "." + userInputTasks.get(i).toString());
+                }
+            }
+            System.out.println("Please key in 'Change (index number)' of the task you wish to edit");
+        }
+    }
+
+    public void listRelevantEvents(boolean check){
+        if(check){
+            System.out.println("These are the tasks that you may edit: ");
+            for(int j = 0; j<userInputTasks.size(); j++){
+                if(userInputTasks.get(j).getTaskType() == 'E'){
+                    System.out.println((j+1) + "." + userInputTasks.get(j).toString());
+                }
+            }
+            System.out.println("Please key in 'Change (index number)' of the task you wish to edit");
+        }
+    }
+
+    public void listRelevantFixedDurations(boolean check){
+        if(check){
+            System.out.println("These are the tasks that you may edit: ");
+            for(int h = 0; h<userInputTasks.size(); h++){
+                if(userInputTasks.get(h).getTaskType() == 'F'){
+                    System.out.println((h+1) + "." + userInputTasks.get(h).toString());
+                }
+            }
+            System.out.println("Please key in 'Change (index number)' of the task you wish to edit");
+        }
+    }
+
+
 //method for creating Deadline tasks
 private Task createDeadlineTask(String arguments){
+
         int byIndex = arguments.indexOf("/by");
         String taskName = arguments.substring(0, byIndex).trim();
         String date = arguments.substring(byIndex + 3).trim();
@@ -234,7 +389,6 @@ private Task createEventTask(String arguments) {
     String toTime = toSet[1];
 
     return new Event('E', taskName, fromDate, fromTime, toDate, toTime);
-
 }
 
 //method used in conjunction with checkCommand() for checking if it is a FIXEDDURATION taskType
@@ -252,59 +406,6 @@ private Task createFixedDuration(String userInput){
         return new FixedDuration('F', taskName);
     }
 
-    //method for checking if instructions is for mark, unmark, or delete tasks
-    public void modifyTask(String userInput) throws DukeExceptions {
-        int spaceIndex = userInput.indexOf(' ');
-        String integerPart = userInput.substring(spaceIndex + 1);
-        String commandBeforeSpace = userInput.substring(0, spaceIndex).toLowerCase();
-
-        try {
-            int itemIndex = Integer.parseInt(integerPart) - 1;
-            if (itemIndex < 0 || itemIndex >= Task.getTaskCount()) {
-                // Handle exception case where the item index is out of bounds or does not exist
-                throw new NumberIndexOutOfBoundsException();
-            }
-
-            if (commandBeforeSpace.equals("mark")) {
-                markAsComplete(itemIndex);
-            } else if (commandBeforeSpace.equals("unmark")) {
-                markAsIncomplete(itemIndex);
-            } else if (commandBeforeSpace.equals("delete")) {
-                deleteTask(itemIndex);
-            } else {
-                // Handle exception case where the command is neither mark nor unmark
-                throw new InvalidInputException();
-            }
-        } catch (InvalidInputException e) {
-            //integer portion is not a valid number
-            System.out.printf(e.getMessage()+"\n");
-        } catch (NumberIndexOutOfBoundsException e) {
-            throw new NumberIndexOutOfBoundsException();
-        }
-    }
-
-//method for marking tasks as complete
-    public void markAsComplete(int indexPosition){
-        if (userInputTasks.get(indexPosition).getTaskCompletion() == true) {
-            display.alreadyCompleted(userInputTasks.get(indexPosition).getTaskName());
-        } else {
-            userInputTasks.get(indexPosition).taskCompleted();
-            userInputTasks.set(indexPosition, userInputTasks.get(indexPosition));
-            //.set(int, Task)
-            display.markAsComplete(userInputTasks, indexPosition);
-        }
-    }
-
-    //method for unmarking tasks (incomplete)
-    public void markAsIncomplete(int itemIndex){
-        if (userInputTasks.get(itemIndex).getTaskCompletion() == false) {
-            display.alreadyUnchecked(userInputTasks.get(itemIndex).getTaskName());
-        } else {
-            userInputTasks.get(itemIndex).taskNotCompleted();
-            display.markAsNotComplete(userInputTasks, itemIndex);
-        }
-    }
-
     //method for deleting tasks
     public void deleteTask(int itemIndex) throws InvalidIndexException{
         Task deletedTask = userInputTasks.remove(itemIndex);
@@ -312,127 +413,4 @@ private Task createFixedDuration(String userInput){
         display.deletedMessage(deletedTask);
     }
 
-    /*
-    public static void main(String[] args) {
-        String logo = "__________              .__    .__ \n"
-                + "\\______   \\__ __   ____ |  |__ |__|\n"
-                + " |     ___/  |  \\_/ ___\\|  |  \\|  |\n"
-                + " |    |   |  |  /\\  \\___|   Y  \\  |\n"
-                + " |____|   |____/  \\___  >___|  /__|\n"
-                + "                      \\/     \\/    \n";
-        System.out.println("Hello! I'm \n" + logo);
-        System.out.println("What can I do for you?");
-
-        String echo = "";
-        ArrayList<String> list = new ArrayList<String>();
-        Scanner typed = new Scanner(System.in);
-        String[] instructions;
-        int count = 0;
-        int store = 0; //counter for updates array
-        String from = "";
-        String to = "";
-        String[] by = new String[100];
-        String[] event = new String[100];
-        String[] event2 = new String[100];
-        ArrayList<String> list1 = new ArrayList<String>();
-
-
-        while (!echo.matches("bye(.*)")) {
-                    echo = typed.nextLine();
-                    if (!echo.equals("bye") && !echo.equals("list")) {
-                        if (echo.contains("/from") && echo.contains("/to")) {
-                            event = echo.split("/from");
-                            event2 = event[1].split("/to");
-                            from = event2[0];
-                            to = event2[1];
-                            list.add("[E]" + "[ ] " + event[0] + "(from:" + from + " to:" + to + ")");
-                            //list[i-1][4] change for mark&unmark [X] [ ]
-                            //i is counter for printing 1. 2. 3.
-                            System.out.println("Got it. I've added this task:");
-                            System.out.println(list.get(count));
-                            count++;
-                            System.out.println("Now you have " + count + " tasks in the list.");
-                        } else if (echo.contains("/by")) {
-                            by = echo.split("/by");
-                            list.add("[D][ ] " + by[0] + "(by:" + by[1] + ")");
-                            System.out.println("Got it. I've added this task:");
-                            System.out.println(list.get(count));
-                            count++;
-                            System.out.println("Now you have " + count + " tasks in the list.");
-
-                        }else if(echo.matches("blah") || echo.matches("bleah") || echo.matches("boo") || echo.matches("boom") || echo.matches("bang")){
-                            System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
-                            System.out.println("please be clear");
-                        }else if(echo.matches("to") || echo.matches("do") || echo.matches("todo")){
-                            System.out.println("OOPS!!! The description of a todo cannot be empty.");
-                            System.out.println("please include what to do in a todo");
-                        } else if (!echo.matches("mark(.*)") && !echo.matches("unmark(.*)") && !echo.matches("delete(.*)")) {
-                            list.add("[T][ ] " + echo);
-                            System.out.println("Got it. I've added this task:");
-                            System.out.println(list.get(count));
-                            count++;
-                            System.out.println("Now you have " + count + " tasks in the list.");
-                        } else if (echo.matches("mark(.*)") && echo.contains(" ") && !list.isEmpty()) {
-                            instructions = echo.split(" ");
-                            store = Integer.parseInt(instructions[1]); //position number start from 1
-                            if (list.size() >= store) {
-                                list.set(store-1, (list.get(store-1).substring(0,4) + "X" + list.get(store-1).substring(5))); //.replace
-                                System.out.println("Nice! I've marked this task as done:");
-                                System.out.println(list.get(store-1));
-                            }
-                        } else if (echo.matches("unmark(.*)") && echo.contains(" ") && !list.isEmpty()) {
-                            instructions = echo.split(" ");
-                            store = Integer.parseInt(instructions[1]); //position number start from 1
-                            if (list.size() >= store) {
-                                list.set(store-1, (list.get(store-1).substring(0,4) + " " + list.get(store-1).substring(5)));
-                                System.out.println("OK, I've marked this task as not done yet:");
-                                System.out.println(list.get(store-1));
-                            }
-                        }else if (echo.matches("delete(.*)") && echo.contains(" ") && !list.isEmpty()){
-                            instructions = echo.split(" ");
-                            store = Integer.parseInt(instructions[1]);
-                            if(list.size() >= store){
-                                System.out.println("Noted. I've removed this task:");
-                                System.out.println("    " + list.get(store-1));
-                                list.remove(store-1);
-                                System.out.println("Now you have " + list.size() + " tasks in the list.");
-                            }
-                        }
-
-                    } else if (echo.matches("list")) {
-                        for (int i = 1; i <= list.size(); i++) {
-                            if (list.get(i - 1) != null) {
-                                System.out.println(i + "." + list.get(i - 1));
-                            } else {
-                                break;
-                            }
-                        }
-                    }
-
-                try{
-                    if (echo == "blah" || echo == "bleah" || echo == "boo" || echo == "boom" || echo == "bang") {
-                        throw new InvalidEntryException();
-                    }else if(echo == "to" || echo == "do" || echo == "todo"){
-                        throw new CannotBeEmptyException();
-                    }
-                }catch(InvalidEntryException e){
-                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
-                    System.out.println("please be clear");
-                }catch(CannotBeEmptyException e){
-                    System.out.println("OOPS!!! The description of a todo cannot be empty.");
-                    System.out.println("please include what to do in a todo");
-                }
-
-    }
-        System.out.println("Bye. Hope to see you again soon!");
-    }
-
-    public static class InvalidEntryException extends Exception{ //method to access own error messages
-        //no other code needed
-    }
-
-    public static class CannotBeEmptyException extends Exception{
-        //no other code needed
-    }
-*/
 }

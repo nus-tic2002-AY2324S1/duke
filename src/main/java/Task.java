@@ -10,7 +10,7 @@ public class Task {
     //declare type for task name
     private String taskName;
     //declare type for task completion status
-    private static Boolean taskIsComplete;
+    private Boolean taskIsComplete; //cannot be static type
     //declare type for count of tasks
     public static int taskCount = 0;
 
@@ -43,7 +43,7 @@ public class Task {
     }
 
     //Getter method for task completion status
-    public static Boolean getTaskCompletion() {
+    public Boolean getTaskCompletion() {
         return taskIsComplete;
     }
 
