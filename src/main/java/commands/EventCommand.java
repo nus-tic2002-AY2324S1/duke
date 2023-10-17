@@ -30,6 +30,7 @@ public class EventCommand extends TaskCommand {
 
         Event event = new Event(array[0], fromToArray[0], fromToArray[1]);
         tasks.addTask(event);
+        storage.save(tasks);
         ui.showMessages(getTaskAddedMessages(tasks));
     }
 }

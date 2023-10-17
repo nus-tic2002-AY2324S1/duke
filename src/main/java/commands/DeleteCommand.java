@@ -27,6 +27,7 @@ public class DeleteCommand extends Command {
 
         Task task = tasks.getTask(taskNumber - 1);
         tasks.removeTask(task);
+        storage.save(tasks);
         ui.showMessages(new String[]{
                 "Noted. I've removed this task:",
                 "  " + task.toString(),

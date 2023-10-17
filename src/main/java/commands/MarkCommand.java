@@ -27,6 +27,7 @@ public class MarkCommand extends Command {
 
         Task task = tasks.getTask(taskNumber - 1);
         task.setDone(true);
+        storage.save(tasks);
         ui.showMessages(new String[]{
                 "Nice! I've marked this task as done:",
                 "  " + task.toString()

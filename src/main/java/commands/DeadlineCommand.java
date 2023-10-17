@@ -25,6 +25,7 @@ public class DeadlineCommand extends TaskCommand {
 
         Deadline deadline = new Deadline(array[0], array[1]);
         tasks.addTask(deadline);
+        storage.save(tasks);
         ui.showMessages(getTaskAddedMessages(tasks));
     }
 }

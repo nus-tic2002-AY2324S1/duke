@@ -21,8 +21,10 @@ public class Ui {
         showLine();
     }
 
-    public void showLine() {
-        System.out.println("____________________________________________________________");
+    public void showLoadingError() {
+        showLine();
+        showWithPrefix("Failed to load tasks from the storage file. An empty task list will be used instead.");
+        showLine();
     }
 
     public void showMessages(String... messages) {
@@ -34,9 +36,8 @@ public class Ui {
         showWithPrefix(error);
     }
 
-
-    public void showLoadingError() {
-        showWithPrefix("Failed to load tasks from the storage file. An empty task list will be used instead.");
+    public void showLine() {
+        System.out.println("____________________________________________________________");
     }
 
     private void showWithPrefix(String... messages) {
