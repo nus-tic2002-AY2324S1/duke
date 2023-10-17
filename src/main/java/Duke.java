@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -5,7 +8,7 @@ import java.util.Scanner;
 import Exception.DukeException;
 
 public class Duke {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -69,6 +72,7 @@ public class Duke {
                         printMessage(taskList.get(index - 1).getStatusIcon() + taskList.get(index - 1).description);
                         printLine();
                     }
+                    save(taskList);
                 } else if (split[0].trim().equalsIgnoreCase("unmark")) {
                     int index = 0;
                     try {
@@ -83,6 +87,7 @@ public class Duke {
                         printMessage(taskList.get(index - 1).getStatusIcon() + taskList.get(index - 1).description);
                         printLine();
                     }
+                    save(taskList);
                 }
             }else if(command.toLowerCase().startsWith("todo")){
                 String[] split = command.split(" ");
@@ -100,6 +105,7 @@ public class Duke {
                     System.out.println(todoTask.getStatusIcon()+" "+ desc);
                     System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
                     printLine();
+                    save(taskList);
                 }catch (DukeException e){
                     printLine();
                     printMessage(e.getMessage());
@@ -123,6 +129,7 @@ public class Duke {
                     System.out.println(deadlineTask.getStatusIcon()+" "+ desc);
                     System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
                     printLine();
+                    save(taskList);
                 } catch ( DukeException e ) {
                     printLine();
                     printMessage(e.getMessage());
@@ -146,6 +153,7 @@ public class Duke {
                     System.out.println(eventTask.getStatusIcon()+" "+ desc);
                     System.out.printf("Now you have %d tasks in the list.\n", taskList.size());
                     printLine();
+                    save(taskList);
                 }catch (DukeException e) {
                     printLine();
                     printMessage(e.getMessage());
@@ -169,6 +177,7 @@ public class Duke {
                         // Handle the exception, e.g., by displaying an error message
                         System.err.println("Index out of bounds: " + e.getMessage());
                     }
+                    save(taskList);
                 } catch (DukeException e) {
                     printLine();
                     printMessage(e.getMessage());
@@ -208,6 +217,34 @@ public class Duke {
 
     public static void printMessage(String message){
         System.out.println(message);
+    }
+
+    public static void save(ArrayList<Task> TaskList) throws IOException {
+        String path = "data/duke.txt";
+        File file = new File(path);
+//        if file not exist create
+        if (!file.exists()){
+            try{
+                String folderName=path.split("/")[0];
+                File folder = new File(folderName);
+                if (!folder.exists()){
+                    folder.mkdirs();
+                }
+                file.createNewFile();
+            }catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        FileWriter fw = new FileWriter(file,false);
+        for (Task task : TaskList){
+            String taskType = String.valueOf(task.getTaskType());
+            String status = String.valueOf(task.isDone? 1:0);
+            String description = task.description;
+            String text = taskType + " | " + status + " | "+description + "\n";
+            fw.write(text);
+        }
+        fw.flush();
+        fw.close();
     }
 
 }
