@@ -1,14 +1,11 @@
 package storage;
 
 import data.TaskList;
-import storage.StorageOperationException;
-import storage.TaskListDecoder;
-import storage.TaskListEncoder;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
@@ -33,7 +30,7 @@ public class Storage {
         try {
             List<String> encodedTaskList = Files.readAllLines(path, StandardCharsets.UTF_8);
             return TaskListDecoder.decodeTaskList(encodedTaskList);
-        } catch (FileNotFoundException e) {
+        } catch (NoSuchFileException e) {
             return new TaskList();
         } catch (IOException e) {
             throw new StorageOperationException("Error reading from file: " + path, e);

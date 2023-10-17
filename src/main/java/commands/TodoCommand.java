@@ -21,6 +21,7 @@ public class TodoCommand extends TaskCommand {
 
         Todo toto = new Todo(args);
         tasks.addTask(toto);
+        storage.save(tasks);
         ui.showMessages(getTaskAddedMessages(tasks));
     }
 }
