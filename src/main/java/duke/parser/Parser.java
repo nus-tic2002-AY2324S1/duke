@@ -9,9 +9,7 @@ import duke.ui.Ui;
 public class Parser {
 
     public Parser(){}
-    public static Command parse(String userInput, UserKeywordArgument keywordArgument) {
-        keywordArgument.setKeyword(parseKeyword(userInput));
-        keywordArgument.setArguments(parseArgument(userInput));
+    public static Command parse(UserKeywordArgument keywordArgument) {
         try {
             KeywordTypes key = KeywordTypes.valueOf(keywordArgument.getKeyword().toUpperCase());
             return key.createCommand();
@@ -22,12 +20,23 @@ public class Parser {
         }
     }
 
-    private static String parseKeyword(String userInput){
+    public static Command parse(String keyword){
+        try {
+            KeywordTypes key = KeywordTypes.valueOf(keyword.toUpperCase());
+            return key.createCommand();
+        } catch (IllegalArgumentException e) {
+            Ui ui = new Ui();
+            ui.showResponseToUser(Message.MESSAGE_I_DONT_KNOW);
+            return null;
+        }
+    }
+
+    public static String parseKeyword(String userInput){
         String[] inputs = userInput.split(" ");
         return inputs[0];
     }
 
-    private static String parseArgument(String userInput){
+    public static String parseArgument(String userInput){
         String[] inputs = userInput.split(" ");
 
         StringBuilder sb = new StringBuilder();

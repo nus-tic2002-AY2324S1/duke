@@ -2,6 +2,7 @@ package duke.storage;
 
 import duke.exception.DukeException;
 import duke.task.TaskList;
+import duke.task.Task;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,13 +16,17 @@ public class Storage {
         path = Paths.get(filePath);
     }
 
-    public int load() throws DukeException {
-        return 0;
+    public ArrayList<Task> load() throws DukeException {
+        try {
+            return TaskDecoder.decodeTask(Files.readAllLines(path));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void save(TaskList tasks) {
         try {
-            ArrayList<String> listOfTasks = TaskEncoder.encoderTask(tasks);
+            ArrayList<String> listOfTasks = TaskEncoder.encodeTask(tasks);
             Files.write(path, listOfTasks);
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -8,7 +8,7 @@ import duke.task.Todo;
 import duke.ui.Ui;
 
 public class TodoCommand extends Command {
-
+    public static final String COMMAND_WORD = "TODO";
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws MissingDescriptionException{

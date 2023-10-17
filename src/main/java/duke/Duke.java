@@ -20,7 +20,6 @@ public class Duke {
     public Duke(String filePath){
         ui = new Ui();
         storage = new Storage(filePath);
-        keywordArgument = new UserKeywordArgument();
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
@@ -44,7 +43,8 @@ public class Duke {
         Command command;
         do {
             String userInputCommand = ui.getUserCommand();
-            command = Parser.parse(userInputCommand, keywordArgument);
+            keywordArgument = new UserKeywordArgument(userInputCommand);
+            command = Parser.parse(keywordArgument);
             executeCommand(command);
         }while(!ExitCommand.isExit());
     }

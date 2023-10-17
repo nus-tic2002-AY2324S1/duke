@@ -8,7 +8,7 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 public class DeadlineCommand extends Command {
-
+    public static final String COMMAND_WORD = "DEADLINE";
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument) throws MissingDescriptionException {
         tasks.add(new Deadline(keywordArgument.getArguments()));

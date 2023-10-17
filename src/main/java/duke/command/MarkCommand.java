@@ -1,6 +1,7 @@
 package duke.command;
 
 public class MarkCommand extends IndexBaseCommand {
+    public static final String COMMAND_WORD = "MARK";
     protected boolean isMark;
 
     public MarkCommand(){

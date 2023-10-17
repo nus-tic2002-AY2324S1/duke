@@ -8,7 +8,7 @@ import duke.task.TaskList;
 import java.util.ArrayList;
 
 public class TaskEncoder {
-    public static ArrayList<String> encoderTask(TaskList tasks) {
+    public static ArrayList<String> encodeTask(TaskList tasks) {
         ArrayList<String> listOfResult = new ArrayList<>();
         for (Task t : tasks.getTasks()) {
             listOfResult.add(taskToString(t));
@@ -35,4 +35,5 @@ public class TaskEncoder {
         }
         return taskStringBuilder.toString();
     }
+
 }

@@ -1,9 +1,9 @@
 package duke.command;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import duke.data.UserKeywordArgument;
+import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -14,33 +14,8 @@ public abstract class IndexBaseCommand extends Command {
 
     private Command indexCommand;
 
-    private static final HashMap<String, IIndexCommand> INDEX_COMMANDS = new HashMap<>();
-
-    static{
-        INDEX_COMMANDS.put("mark", new IIndexCommand() {
-            @Override
-            public Command create() {
-                return new MarkCommand();
-            }
-        });
-
-        INDEX_COMMANDS.put("unmark", new IIndexCommand() {
-            @Override
-            public Command create() {
-                return new UnMarkCommand();
-            }
-        });
-
-        INDEX_COMMANDS.put("delete", new IIndexCommand() {
-            @Override
-            public Command create() {
-                return new DeleteCommand();
-            }
-        });
-    }
 
     public IndexBaseCommand(){}
-
 
     private void putIndex(String input){
         index = Integer.parseInt(input);
@@ -51,7 +26,7 @@ public abstract class IndexBaseCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument){
         String keyword = keywordArgument.getKeyword();
         try {
-            indexCommand = INDEX_COMMANDS.get(keyword).create();
+            indexCommand = Parser.parse(keyword);
             putIndex(keywordArgument.getArguments());
             process(taskList, ui);
         } catch (NumberFormatException e) {
@@ -61,8 +36,6 @@ public abstract class IndexBaseCommand extends Command {
             String str = String.format("The \"index number\" of the \"%s\" is out of range :-(", keyword);
             ui.showResponseToUser(str);
         }
-
-
     }
 
     private void process(TaskList taskList, Ui ui) {

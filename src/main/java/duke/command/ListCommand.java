@@ -9,6 +9,7 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 public class ListCommand extends Command {
+    public static final String COMMAND_WORD = "LIST";
     public ListCommand(){}
 
     @Override
