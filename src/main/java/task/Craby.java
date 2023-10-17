@@ -12,6 +12,8 @@ import java.util.*;
  * It will handle the input from the user.
  */
 public class Craby extends CrabyMessage {
+    public static Stack<List<Task>> stackTaskList = new Stack<>();
+    public static Stack<String> stackInput = new Stack<>();
     private static final TaskStorage taskStorage = new TaskStorage("./data/craby.txt");
 
     /**
@@ -26,9 +28,13 @@ public class Craby extends CrabyMessage {
             String input = scanner.nextLine();
             input = input.trim();
             boolean exit = false;
-            List<Task> tmp = new ArrayList<>(tasks);
+
             if(!isPutInStack(input)){
-                stackTaskList.push(tmp);
+                List<Task> cloneTasks = new ArrayList<>();
+                for (Task task : tasks) {
+                    cloneTasks.add(task.clone());
+                }
+                stackTaskList.push(cloneTasks);
                 stackInput.push(input);
             }
             try {
@@ -43,13 +49,12 @@ public class Craby extends CrabyMessage {
 
     }
     protected static boolean isPutInStack(String input){
-        return input.toLowerCase().contains("list") || input.toLowerCase().contains("find")
-                || input.toLowerCase().contains("help") || input.toLowerCase().contains("blah")
-                || input.toLowerCase().contains("undo");
+        String[] inputArr = input.split(" ");
+        input = inputArr[0].trim().toLowerCase();
+        return input.contains("list") || input.contains("find")
+                || input.contains("help") || input.contains("blah")
+                || input.contains("undo");
     }
-    public static Stack<List<Task>> stackTaskList = new Stack<>();
-    public static Stack<String> stackInput = new Stack<>();
-
 
     /**
      * This method will handle the input from the user.

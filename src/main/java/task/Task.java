@@ -73,5 +73,9 @@ public class Task {
     public String toStorageString() {
         return this.toString();
     }
-
+    protected Task clone() {
+        Task cloneTask = new Task(this.description);
+        cloneTask.setIsDone(this.isDone);
+        return cloneTask;
+    }
 }

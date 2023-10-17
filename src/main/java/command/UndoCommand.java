@@ -24,6 +24,7 @@ public class UndoCommand extends CrabyMessage implements CommandInterface {
         List<Task> prevTask = stackTaskList.peek();
         stackTaskList.pop();
         tasks.clear();
+
         tasks.addAll(prevTask);
         printUndoMessage(command, customizeMessage);
         return 0;

@@ -115,4 +115,13 @@ public class Event extends Task {
                 " to: " + toTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
 
     }
+
+    // implement clone function
+    @Override
+    public Event clone() {
+        Event event = new Event(this.description, this.fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")));
+        event.setIsDone(this.isDone);
+        event.toTime = this.toTime;
+        return event;
+    }
 }

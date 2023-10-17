@@ -68,4 +68,11 @@ public class Deadline extends Task {
         return "[D]" + super.toString()
                 + " (by: " + time.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
     }
+
+    //implement the clone function
+    public Task clone() {
+        Deadline clone = new Deadline(this.description, this.time.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")));
+        clone.setIsDone(this.isDone);
+        return clone;
+    }
 }

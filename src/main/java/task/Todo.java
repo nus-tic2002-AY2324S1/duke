@@ -21,4 +21,13 @@ public class Todo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    // implement clone function
+    @Override
+    public Todo clone() {
+        Todo todo = new Todo(this.description);
+        todo.isDone = this.isDone;
+        return todo;
+    }
+
 }
