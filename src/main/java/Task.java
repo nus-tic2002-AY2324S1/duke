@@ -1,12 +1,14 @@
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
+    TaskType taskType;
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    public abstract TaskType getTaskType();
     public String getStatusIcon() {
         return ("[" + (isDone ? "X" : " ")+"]"); // mark done task with X
     }
