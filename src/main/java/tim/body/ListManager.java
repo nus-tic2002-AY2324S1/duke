@@ -1,4 +1,4 @@
-package tim;
+package tim.body;
 import tim.tasks.Task;
 import tim.tasks.ToDo;
 import tim.tasks.Event;

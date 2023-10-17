@@ -1,4 +1,4 @@
-package tim;
+package tim.body;
 import tim.tasks.Task;
 import java.io.IOException;
 import java.util.ArrayList;
