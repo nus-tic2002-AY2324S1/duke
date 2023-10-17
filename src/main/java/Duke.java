@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class Duke {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        Task[] taskList = new Task[100];
+        ArrayList<Task> taskList = new ArrayList<>(100);
         int index = 0;
 
         printMessageWithBorder("Hello! I'm Bott!\n\tWhat can I do for you?");
@@ -24,7 +25,7 @@ public class Duke {
                     return;
                 }
                 case "list" : {
-                    if (taskList[0] == null) {
+                    if (taskList.isEmpty()) {
                         printMessageWithBorder("Your task list is empty.");
                     } else {
                         printTaskList(taskList);
@@ -47,14 +48,14 @@ public class Duke {
 
                     // condition for "mark" command with out-of-bounds number
                     try {
-                        taskList[taskIndex].isDone = true;
-                    } catch (NullPointerException e) {
+                        taskList.get(taskIndex).isDone = true;
+                    } catch (IndexOutOfBoundsException e) {
                         printMessageWithBorder("Please enter a valid number, i.e. within the list.");
                         break;
                     }
 
                     printMessageWithBorder("Nice! I've marked this task as done:\n\t"
-                            + taskList[taskIndex].printItemWithStatus());
+                            + taskList.get(taskIndex).printItemWithStatus());
                     break;
                 }
                 case "unmark" : {
@@ -73,14 +74,14 @@ public class Duke {
 
                     // condition for "mark" command with out-of-bounds number
                     try {
-                        taskList[taskIndex].isDone = false;
-                    } catch (NullPointerException e) {
+                        taskList.get(taskIndex).isDone = false;
+                    } catch (IndexOutOfBoundsException e) {
                         printMessageWithBorder("Please enter a valid number, i.e. within the list.");
                         break;
                     }
 
                     printMessageWithBorder("OK! I've marked this task as not done yet:\n\t"
-                            + taskList[taskIndex].printItemWithStatus());
+                            + taskList.get(taskIndex).printItemWithStatus());
                     break;
                 }
                 case "todo" : {
@@ -94,8 +95,8 @@ public class Duke {
                         break;
                     }
 
-                    taskList[index] = new Todo(description);
-                    printEchoMessage(taskList[index].printItemWithStatus(), (index+1));
+                    taskList.add(index, new Todo(description));
+                    printEchoMessage(taskList.get(index).printItemWithStatus(), (index+1));
                     index++;
                     break;
                 }
@@ -112,8 +113,8 @@ public class Duke {
                         break;
                     }
 
-                    taskList[index] = new Deadline(description, by);
-                    printEchoMessage(taskList[index].printItemWithStatus(), (index + 1));
+                    taskList.add(index, new Deadline(description, by));
+                    printEchoMessage(taskList.get(index).printItemWithStatus(), (index + 1));
                     index++;
                     break;
                 }
@@ -132,9 +133,35 @@ public class Duke {
                         break;
                     }
 
-                    taskList[index] = new Event(description, from, to);
-                    printEchoMessage(taskList[index].printItemWithStatus(), (index+1));
+                    taskList.add(index, new Event(description, from, to));
+                    printEchoMessage(taskList.get(index).printItemWithStatus(), (index+1));
                     index++;
+                    break;
+                }
+                case "delete" : {
+                    int taskIndex;
+
+                    try {
+                        taskIndex = Integer.parseInt(stringArray[1]) - 1;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        printMessageWithBorder("Please include the task number that you'd like to mark as done.");
+                        break;
+                    } catch (NumberFormatException e) {
+                        printMessageWithBorder("Please only input a number.");
+                        break;
+                    }
+
+                    try {
+                        printMessageWithBorder("Noted! I will remove this task:\n\t"
+                                + taskList.get(taskIndex).printItemWithStatus()
+                                + String.format("\n\tNow you have %d task in the list", index-1));
+                        taskList.remove(taskIndex);
+                    } catch (IndexOutOfBoundsException e) {
+                        printMessageWithBorder("Please enter a valid number, i.e. within the list.");
+                        break;
+                    }
+                    
+                    index--;
                     break;
                 }
                 default : {
@@ -156,11 +183,11 @@ public class Duke {
                 + String.format("Now you have %d task in the list", index));
     }
 
-    public static void printTaskList(Task[] taskList) {
+    public static void printTaskList(ArrayList<Task> taskList) {
         System.out.println("\t─────────────────────────────────────────────────────────────────"
                 + "\n\tHere are the tasks in your list:");
-        for (int i = 0; taskList[i] != null; i++) {
-            System.out.println("\t" + (i+1) + ". " + taskList[i].printItemWithStatus());
+        for (int i = 0; i < taskList.size(); i++) {
+            System.out.println("\t" + (i+1) + ". " + taskList.get(i).printItemWithStatus());
         }
         System.out.println("\t─────────────────────────────────────────────────────────────────");
     }
@@ -186,6 +213,7 @@ public class Duke {
                 break;
             }
         }
+
         return input.substring(beginningIndex, endingIndex);
     }
 
