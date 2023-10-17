@@ -5,7 +5,9 @@ import java.util.ArrayList;
 public class TaskList {
     private static ArrayList<Task> tasks = new ArrayList<>();
     public TaskList(){}
-    public TaskList(ArrayList<Task> listOfTasks) {}
+    public TaskList(ArrayList<Task> listOfTasks) {
+        tasks = listOfTasks;
+    }
 
     public int size(){
         return tasks.size();

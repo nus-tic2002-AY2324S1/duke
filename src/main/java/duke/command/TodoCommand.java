@@ -16,8 +16,4 @@ public class TodoCommand extends Command {
         todo.execute();
         tasks.add(todo);
     }
-
-    public void decodeCommand(){
-
-    }
 }

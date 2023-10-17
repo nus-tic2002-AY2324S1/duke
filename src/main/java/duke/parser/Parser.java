@@ -47,4 +47,7 @@ public class Parser {
         return sb.toString().trim();
     }
 
+    public static boolean parseStringToBoolean(String string){
+        return string.equals("1");
+    }
 }

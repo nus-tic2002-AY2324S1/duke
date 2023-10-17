@@ -3,13 +3,22 @@ package duke.task;
 import duke.exception.MissingDescriptionException;
 public class Deadline extends Task {
     protected String by;
-    public Deadline(){
-        isDone = false;
-    }
-    public Deadline(String description) throws MissingDescriptionException {
+
+    public Deadline(String description)  {
+        super(description);
         setAbbreviation();
-        pullDeadlineDate(description);
+        setAbbreviation();
         increaseNumberOfTaskByOne();
+    }
+
+    public Deadline(boolean isDone, String description, String by){
+        super(description);
+        setDone(isDone);
+        this.by = by;
+    }
+
+    public void execute()throws MissingDescriptionException{
+        pullDeadlineDate(dukeDescription);
         response();
     }
 

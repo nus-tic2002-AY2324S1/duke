@@ -4,12 +4,21 @@ import duke.exception.MissingDescriptionException;
 public class Event extends Task {
     protected String from;
     protected String to;
-    public Event(){}
-    public Event(String description) throws MissingDescriptionException {
+    public Event(String description) {
+        super(description);
         setAbbreviation();
-
-        pullEventDateTime(description);
         increaseNumberOfTaskByOne();
+    }
+    public Event(boolean isDone, String description, String from, String to){
+        super(description);
+        setAbbreviation();
+        setDone(isDone);
+        this.from = from;
+        this.to = to;
+    }
+
+    public void execute() throws MissingDescriptionException{
+        pullEventDateTime(dukeDescription);
         response();
     }
 

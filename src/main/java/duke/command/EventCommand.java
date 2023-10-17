@@ -12,6 +12,8 @@ public class EventCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws MissingDescriptionException {
-        tasks.add(new Event(keywordArgument.getArguments()));
+        Event event = new Event(keywordArgument.getArguments());
+        event.execute();
+        tasks.add(event);
     }
 }

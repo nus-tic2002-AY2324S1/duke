@@ -9,6 +9,12 @@ public class Todo extends Task {
         increaseNumberOfTaskByOne();
     }
 
+    public Todo(boolean isDone, String description){
+        super(description);
+        setAbbreviation();
+        setDone(isDone);
+    }
+
     public void execute()throws MissingDescriptionException{
         if(dukeDescription.isEmpty()){
             String message = "OOPS!!! The \"description\" of a \"todo\" cannot be empty :-(";

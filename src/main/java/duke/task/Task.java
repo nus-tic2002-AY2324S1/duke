@@ -69,4 +69,7 @@ public abstract class Task {
         }
         return 0;
     }
+    public void setDone(boolean done){
+        isDone = done;
+    }
 }
