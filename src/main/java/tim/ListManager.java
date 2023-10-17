@@ -6,7 +6,7 @@ import tim.tasks.Deadline;
 import java.util.ArrayList;
 
 public class ListManager {
-    public static void addToDo (String inputEntry, ArrayList<Task> list){
+    static void addToDo (String inputEntry, ArrayList<Task> list){
         list.add(new ToDo(inputEntry));
         System.out.println("Gotcha! Added this task:");
         Messenger.printSingle(list.size(),list);
@@ -14,7 +14,7 @@ public class ListManager {
         Messenger.printDashes();
     }
 
-    public static void addDeadline (String inputEntry, ArrayList<Task> list){
+    static void addDeadline (String inputEntry, ArrayList<Task> list){
         String[] inputTokenized;
         String by;
         try{
@@ -32,7 +32,7 @@ public class ListManager {
 
     }
 
-    public static void addEvent (String inputEntry,ArrayList<Task> list){
+    static void addEvent (String inputEntry,ArrayList<Task> list){
         String[] inputTokenized;
         String from;
         String to;
@@ -52,7 +52,7 @@ public class ListManager {
 
     }
 
-    public static void deleteFromList (int deleteIndex,ArrayList<Task> list){
+    static void deleteFromList (int deleteIndex,ArrayList<Task> list){
         System.out.print("Deleting: ");
         Messenger.printSingle(deleteIndex,list);
         Messenger.printDashes();
@@ -60,7 +60,7 @@ public class ListManager {
         Messenger.printList(list);
     }
 
-    public static void markUnmarkTask(int index, boolean markUnmark, ArrayList<Task> list){
+    static void markUnmarkTask(int index, boolean markUnmark, ArrayList<Task> list){
         Task target = list.get(index-1);
 
         if((target.getIsDone().equals("x")) != markUnmark){

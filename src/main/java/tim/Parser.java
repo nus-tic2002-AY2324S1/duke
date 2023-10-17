@@ -1,9 +1,7 @@
 package tim;
 import tim.tasks.Task;
-import tim.Logic;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 
 public class Parser {
      static void inputParser(ArrayList<Task> list){
@@ -11,7 +9,8 @@ public class Parser {
         int index = -1;
         Scanner in = new Scanner(System.in);
         while(!input.equalsIgnoreCase("bye")) {
-            input = in.nextLine();
+            input = in.nextLine().replaceAll("\\s+", " ");
+            input = input.trim();
             String[] token = input.split(" ", 2);
             String taskName = "";
             String mode = token[0].toLowerCase();

@@ -1,16 +1,14 @@
 package tim.tasks;
 
-import tim.tasks.Task;
-
 public class Deadline extends Task {
-    String by;
+    private String by;
     public Deadline(String description, String by){
         super(description);
-        this.type = 'D';
+        this.setType('D');
         this.by = by;
     }
     @Override
     public String getDescription(){
-        return (description + " (by: " + by + ")");
+        return (super.getDescription() + " (by: " + by + ")");
     }
 }

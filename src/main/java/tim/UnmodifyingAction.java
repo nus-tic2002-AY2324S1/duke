@@ -1,5 +1,5 @@
 package tim;
 
-public enum unmodifyingAction {
+public enum UnmodifyingAction {
     list,date,bye
 }

@@ -5,14 +5,14 @@ import java.util.Date;
 
 public class Messenger {
 
-    public static void printDate(){
+    static void printDate(){
         System.out.println("|| Current Date: ||");
         Date currentDate = new Date();
         System.out.println(currentDate);
         printDashes();
     }
 
-    public static void printLogo(){
+    static void printLogo(){
         String logo =
                 " _______                 \n"
                         +   "|__   __| [ ]  __  __    \n"
@@ -22,17 +22,17 @@ public class Messenger {
         System.out.println("Hello from\n" + logo);
     }
 
-    public static void greetings(){
+    static void greetings(){
         printDashes();
         System.out.println("Hello I'm Tim. \nWhat can I do for you?");
         printDashes();
     }
-    public static void printDashes(){
+    static void printDashes(){
         System.out.println();
         System.out.println("____________________________________________________________");
     }
 
-    public static void printList(ArrayList<Task> list){
+    static void printList(ArrayList<Task> list){
         if (!list.isEmpty()){
             for(int i = 1; i <= list.size() ; i++){
                 printSingle(i,list);
@@ -41,12 +41,12 @@ public class Messenger {
         printDashes();
     }
 
-    public static void printSingle(int index, ArrayList<Task> list){
+    static void printSingle(int index, ArrayList<Task> list){
         Task current = list.get(index-1);
         System.out.println(index + ". [" + current.getType()  + "] [" + current.getIsDone() + "] " + current.getDescription() );
     }
 
-    public static void goodbyeGreet(){
+    static void goodbyeGreet(){
         System.out.println("Bye. Hope to see you again soon!");
         printDashes();
     }

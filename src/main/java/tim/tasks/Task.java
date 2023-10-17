@@ -1,11 +1,10 @@
 package tim.tasks;
-
 import java.io.Serializable;
 
 public abstract class Task implements Serializable {
-    protected String description;
-    protected char type;
-    protected boolean isDone;
+    private String description;
+    private char type;
+    private boolean isDone;
 
     public Task(String description){
         this.description = description;
@@ -13,7 +12,7 @@ public abstract class Task implements Serializable {
         type = '-';
     }
 
-    public abstract String getDescription();
+    public String getDescription() { return this.description;}
 
     public String getIsDone(){
         return isDone ? "x" : " ";
@@ -26,4 +25,6 @@ public abstract class Task implements Serializable {
     public char getType (){
         return type;
     }
+
+    public void setType (char type){ this.type = type; }
 }

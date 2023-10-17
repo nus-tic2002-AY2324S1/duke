@@ -3,7 +3,7 @@ import tim.tasks.Task;
 import java.util.ArrayList;
 public class Logic {
 
-    public static void executeAction (String mode, ArrayList<Task> list, int index, String[] token, String taskName){
+    static void executeAction (String mode, ArrayList<Task> list, int index, String[] token, String taskName){
         switch (mode) {
         case "bye":
             Messenger.goodbyeGreet();

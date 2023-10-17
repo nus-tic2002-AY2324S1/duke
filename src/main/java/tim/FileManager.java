@@ -1,11 +1,16 @@
 package tim;
-import tim.tasks.Task;
 
-import java.io.*;
+import tim.tasks.Task;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.IOException;
+import java.io.File;
 import java.util.ArrayList;
 
 public class FileManager {
-    public static ArrayList<Task> loadList () throws IOException, ClassNotFoundException{
+    static ArrayList<Task> loadList () throws IOException, ClassNotFoundException{
         ArrayList<Task> list = new ArrayList<Task>();
         try{
             File f = new File("./src/main/data/list.data");
@@ -25,7 +30,7 @@ public class FileManager {
         return list;
     }
 
-    public static void saveList(ArrayList<Task> list){
+    static void saveList(ArrayList<Task> list){
         try{
             File f = new File("./src/main/data/list.data");
             f.createNewFile();
