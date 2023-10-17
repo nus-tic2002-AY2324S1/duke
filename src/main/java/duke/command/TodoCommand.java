@@ -12,6 +12,12 @@ public class TodoCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws MissingDescriptionException{
-        tasks.add(new Todo(keywordArgument.getArguments()));
+        Todo todo = new Todo(keywordArgument.getArguments());
+        todo.execute();
+        tasks.add(todo);
+    }
+
+    public void decodeCommand(){
+
     }
 }

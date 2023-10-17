@@ -3,14 +3,17 @@ package duke.task;
 import duke.exception.MissingDescriptionException;
 
 public class Todo extends Task {
-    public Todo(String description) throws MissingDescriptionException {
+    public Todo(String description)  {
         super(description);
         setAbbreviation();
-        if(description.isEmpty()){
+        increaseNumberOfTaskByOne();
+    }
+
+    public void execute()throws MissingDescriptionException{
+        if(dukeDescription.isEmpty()){
             String message = "OOPS!!! The \"description\" of a \"todo\" cannot be empty :-(";
             throw new MissingDescriptionException(message);
         }
-        increaseNumberOfTaskByOne();
         response();
     }
 
