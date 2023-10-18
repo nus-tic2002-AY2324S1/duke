@@ -4,10 +4,10 @@ package wargames;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MyList {
+public class TaskList {
     private ArrayList<Task> tasklist = new ArrayList<>();
 
-    public MyList(){
+    public TaskList(){
 
     }
 

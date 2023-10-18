@@ -1,7 +1,4 @@
 package wargames;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -11,7 +8,7 @@ public class Duke {
         String input;
         Scanner in = new Scanner(System.in);
         JoshuaParser JParser = new JoshuaParser();
-        MyList myList = new MyList();
+        TaskList taskList = new TaskList();
 
         do {
             System.out.print(">> ");
@@ -23,20 +20,20 @@ public class Duke {
             }
             else if (JParser.isListCommand(input)) {
                 Joshua.joshuaSays("Here is your current list:");
-                Joshua.joshuaSays(myList.toString());
+                Joshua.joshuaSays(taskList.toString());
             }
             else if (JParser.isMarkCommand(input)) {
                 int taskNum = JParser.parseTaskNum(input);
-                myList.markTaskAsDone(taskNum);
+                taskList.markTaskAsDone(taskNum);
             }
             else if (JParser.isUnmarkCommand(input)) {
                 int taskNum = JParser.parseTaskNum(input);
-                myList.markTaskAsNotDone(taskNum);
+                taskList.markTaskAsNotDone(taskNum);
             }
             else if (JParser.isToDoCommand(input)) {
                 try {
                     Task todo = JParser.createToDo(input);
-                    myList.addToTaskList(todo);
+                    taskList.addToTaskList(todo);
                     Joshua.joshuaSays("ADDED TASK: " + todo);
                 }
                 catch (InvalidCommandException e) {
@@ -46,7 +43,7 @@ public class Duke {
             else if (JParser.isDeadlineCommand(input)) {
                 try {
                     Task deadline = JParser.createDeadline(input);
-                    myList.addToTaskList(deadline);
+                    taskList.addToTaskList(deadline);
                     Joshua.joshuaSays("ADDED TASK: " + deadline);
                 }
                 catch (InvalidCommandException e) {
@@ -56,7 +53,7 @@ public class Duke {
             else if (JParser.isEventCommand(input)) {
                 try {
                     Task event = JParser.createEvent(input);
-                    myList.addToTaskList(event);
+                    taskList.addToTaskList(event);
                     Joshua.joshuaSays("ADDED TASK: " + event);
                 }
                 catch (InvalidCommandException e) {
