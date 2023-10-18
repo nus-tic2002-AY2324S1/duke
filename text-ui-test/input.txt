@@ -1,5 +1,39 @@
-find BOOK
+Amber
+find test
   list
+Test mark
+test unmark
+Test undo mark
+list
+mark 1
+mark     2
+list
+unmark 2
+mark 3
+list
+undo
+test sort by type /by 2024-01-01 1200
+test sort by date /from 2024-01-01 1300
+test sort by date: this one will on top if system correct /from today
+sort t
+sort d
+sort tr
+undo
+list
+test delete all
+Test undo delete
+Test delete
+list
+find sort
+find [d]
+delete 9
+list
+delete 8
+list
+undo
+list
+delete all
+list
 todo learn front end /from today /to 2023-12-31
 TIC3901 - Presentation 1 /by today
 TIC3901 - Report 2 /by 28/01/2024
@@ -28,8 +62,8 @@ List
 sort T
 mark 12
 mark 6
-sort type1
-delete                       1
+sort tr
+delete                       2
 LisT
 TMA2031 - Final Exam /from 25/11/2023 0900 /to 25/11/2023 1100
 Drink more water
@@ -48,10 +82,10 @@ list
 mark 14
 undo
 list
-deleteall
+delete all
 list
 undo
 list
-deleteall
+     delete        all
 help
 bye CrabY

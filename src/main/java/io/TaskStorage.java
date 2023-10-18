@@ -14,18 +14,21 @@ public class TaskStorage {
     String filePath;
     String directoryPath = "./data";
     File folder = new File(directoryPath);
-    File file = new File("./data/craby.txt");
+    File file;
 
-    public TaskStorage(String filePath) {
 
-        this.filePath = filePath;
+    public TaskStorage(String fileName) {
+        file = new File(directoryPath + "/" + fileName);
+        this.filePath = directoryPath + "/" + fileName;
     }
     /**
      * This method will save the tasks into the file.
      * @param tasks the list of tasks.
      */
     public void save(List<Task> tasks) {
-
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
         try {
             StringBuilder content = new StringBuilder();
             for (Task task : tasks) {
@@ -51,11 +54,10 @@ public class TaskStorage {
                 BufferedReader reader = new BufferedReader(new FileReader(filePath));
                 loadLine(reader, tasks);
                 reader.close();
-            } catch (IOException e) {
+            } catch (IOException e) {;
                 e.printStackTrace();
             }
         } else {
-            folder.mkdir();
             save(tasks);
         }
         return tasks;

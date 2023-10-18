@@ -34,7 +34,7 @@ public class FindCommand extends CrabyMessage implements CommandInterface {
         if (listFound.isEmpty()) {
             printNoMatchingTasks();
         } else {
-            printFindMessage(listFound);
+            printFindMessage(listFound, keyword);
         }
         return 0;
     }

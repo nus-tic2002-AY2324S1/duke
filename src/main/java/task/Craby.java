@@ -2,7 +2,6 @@ package task;
 
 import command.AddTaskCommand;
 import command.UndoCommand;
-import command.DeleteAllCommand;
 import command.DeleteCommand;
 import command.ListCommand;
 import command.MarkCommand;
@@ -18,6 +17,8 @@ import io.CrabyMessage;
 import io.TaskStorage;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class is the main class of the program.
@@ -26,7 +27,8 @@ import java.util.*;
 public class Craby extends CrabyMessage {
     public static Stack<List<Task>> stackTaskList = new Stack<>();
     public static Stack<String> stackInput = new Stack<>();
-    private static final TaskStorage taskStorage = new TaskStorage("./data/craby.txt");
+    private static TaskStorage taskStorage;
+    private static final String REGEX = ".*[^a-zA-Z0-9\\s].*";
 
     /**
      * This method will print out the logo and the hello message.
@@ -35,6 +37,9 @@ public class Craby extends CrabyMessage {
     public static void crabySystem() {
         printHello();
         Scanner scanner = new Scanner(System.in);
+        String name = checkName(scanner);
+        printFirstMessage(name);
+        taskStorage = new TaskStorage( name.toLowerCase() + ".txt");
         List<Task> tasks = taskStorage.load();
         while (true) {
             String input = scanner.nextLine();
@@ -60,6 +65,22 @@ public class Craby extends CrabyMessage {
         }
 
     }
+
+    private static String checkName(Scanner scanner) {
+        String name = scanner.nextLine().trim();
+        while (name.isBlank()) {
+            printEmptyName();
+            name = scanner.nextLine();
+        }
+        Pattern pattern = Pattern.compile(REGEX);
+        Matcher matcher = pattern.matcher(name);
+        while (matcher.find()) {
+            printNameError();
+            name = scanner.nextLine();
+        }
+        return name;
+    }
+
     protected static boolean isPutInStack(String input){
         String[] inputArr = input.split(" ");
         input = inputArr[0].trim().toLowerCase();
@@ -106,9 +127,6 @@ public class Craby extends CrabyMessage {
                     break;
                 case DELETE:
                     handleDeleteCommand(input, tasks);
-                    break;
-                case DELETEALL:
-                    handleDeleteAllCommand(input, tasks);
                     break;
                 case FIND:
                     handleFindCommand(input, tasks);
@@ -162,11 +180,6 @@ public class Craby extends CrabyMessage {
 
     private static void handleDeleteCommand(String input, List<Task> tasks) {
         new DeleteCommand().handleCommand(input, tasks);
-        taskStorage.save(tasks);
-    }
-
-    private static void handleDeleteAllCommand(String input, List<Task> tasks) {
-        new DeleteAllCommand().handleCommand(input, tasks);
         taskStorage.save(tasks);
     }
 

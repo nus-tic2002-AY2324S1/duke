@@ -1,54 +1,58 @@
 package io;
 
-import static io.CrabyMessage.blank;
-import static io.CrabyMessage.line;
+import static io.CrabyMessage.SPACES;
+import static io.CrabyMessage.LINE;
 
 public class HelpMessage {
     public static void printHelpMessage() {
-        System.out.println(blank + "     ❉⊱• Welcome to Craby's help page! •⊰❉");
-        System.out.println(blank + "╚════ ▣ Here are the list of commands: ▣ ════╝");
+        System.out.println(
+                SPACES + "    ❉⊱•  Welcome to Craby's help page! •⊰❉" + System.lineSeparator() +
+                SPACES + "╚════ ▣ Here are the list of commands: ▣ ════╝" + System.lineSeparator() +
 
-        System.out.println(blank + "1.  list - list all the tasks");
-        System.out.println(blank + "    ╰┈➤e.g. list");
+                SPACES + "1.  list - list all the tasks" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. list" + System.lineSeparator() +
 
-        System.out.println(blank + "2.  <task description> - add a todo task");
-        System.out.println(blank + "    ╰┈➤e.g. read book");
+                SPACES + "2.  <task description> - add a todo task" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. read book" + System.lineSeparator() +
 
-        System.out.println(blank + "3.  <task description> /by <dd/mm/yyy hhmm> - add a deadline task");
-        System.out.println(blank + "    Note: you can use /by Mon -> CrabY will automatically fill the date (next Monday) for you");
-        System.out.println(blank + "    ╰┈➤e.g. TIC2002 quiz 8 /by 2/12/2023 1800");
+                SPACES + "3.  <task description> /by <dd/mm/yyy hhmm> - add a deadline task" + System.lineSeparator() +
+                SPACES + "    Note: you can use /by Mon -> CrabY will automatically fill the date (next Monday) for you" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. TIC2002 quiz 8 /by 2/12/2023 1800" + System.lineSeparator() +
 
-        System.out.println(blank + "4.  event <task description> /from <dd/mm/yyy hhmm> /to <dd/mm/yyy hhmm> - add an event task");
-        System.out.println(blank + "    Note: you can use /from Fri -> CrabY will automatically fill the date (next Friday) for you");
-        System.out.println(blank + "    ╰┈➤e.g. project meeting /from 2/12/2023 1800 /to 2/12/2023 2000");
+                SPACES + "4.  event <task description> /from <dd/mm/yyy hhmm> /to <dd/mm/yyy hhmm> - add an event task" + System.lineSeparator() +
+                SPACES + "    Note: you can use /from Fri -> CrabY will automatically fill the date (next Friday) for you" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. project meeting /from 2/12/2023 1800 /to 2/12/2023 2000" + System.lineSeparator() +
 
-        System.out.println(blank + "5.  mark <task number> - mark a task as DONE");
-        System.out.println(blank + "    ╰┈➤e.g. mark 1");
+                SPACES + "5.  mark <task number> - mark a task as DONE" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. mark 1" + System.lineSeparator() +
 
-        System.out.println(blank + "6.  unmark <task number> - mark a task as UNDONE");
-        System.out.println(blank + "    ╰┈➤e.g. unmark 1");
+                SPACES + "6.  unmark <task number> - mark a task as UNDONE" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. unmark 1" + System.lineSeparator() +
 
-        System.out.println(blank + "7.  delete <task number> - delete a task");
-        System.out.println(blank + "    ╰┈➤e.g. delete 1");
+                SPACES + "7.  delete <task number> - delete a task" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. delete 1" + System.lineSeparator() +
 
-        System.out.println(blank + "8.  deleteall - delete all the tasks");
-        System.out.println(blank + "    ╰┈➤e.g. deleteall");
+                SPACES + "8.  delete all - delete all the tasks" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. delete all" + System.lineSeparator() +
 
-        System.out.println(blank + "9.  find <keyword> - find a task with the keyword");
-        System.out.println(blank + "    ╰┈➤e.g. find book");
+                SPACES + "9.  find <keyword> - find a task with the keyword" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. find book" + System.lineSeparator() +
 
-        System.out.println(blank + "10. sort <type/typerevert/t/tr/date/d> - sort the list by type or date");
-        System.out.println(blank + "    Note: type1 or t1 will sort the list by type in revert order");
-        System.out.println(blank + "    ╰┈➤e.g. sort t");
+                SPACES + "10. sort <type/typerevert/t/tr/date/d> - sort the list by type or date" + System.lineSeparator() +
+                SPACES + "    Note: type1 or t1 will sort the list by type in revert order" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. sort t" + System.lineSeparator() +
 
-        System.out.println(blank + "11. undo - undo your previous command (except: list, find, help, blah commands)");
-        System.out.println(blank + "    ╰┈➤e.g. undo");
+                SPACES + "11. undo - undo your previous command (except: list, find, help, blah commands)" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. undo" + System.lineSeparator() +
 
-        System.out.println(blank + "12. help - show the list of commands");
-        System.out.println(blank + "    ╰┈➤e.g. help");
+                SPACES + "12. help - show the list of commands" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. help" + System.lineSeparator() +
 
-        System.out.println(blank + "13. bye - exit the program");
-        System.out.println(blank + "    ╰┈➤e.g. bye");
-        System.out.println(line);
+                SPACES + "13. bye - exit the program" + System.lineSeparator() +
+                SPACES + "    ╰┈➤e.g. bye" + System.lineSeparator() + System.lineSeparator() +
+
+                SPACES + "*** NOTE: if you use the same name that used before" + System.lineSeparator() +
+                SPACES + "╰┈➤CrabY will load the data and you can continue to use the previous list of tasks." + System.lineSeparator() +
+                LINE);
     }
 }
