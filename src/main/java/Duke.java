@@ -26,7 +26,6 @@ public class Duke {
             System.out.println("File not found");
         }
 
-
         for (;;){
             String line = ui.getCommand();
             if (!line.isEmpty()) {
