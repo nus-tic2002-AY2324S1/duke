@@ -1,16 +1,14 @@
 package duke.storage;
 
-import duke.command.Command;
-import duke.command.TodoCommand;
 import duke.parser.Parser;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
-import javax.print.DocFlavor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 public class TaskDecoder {
     public static ArrayList<Task> decodeTask(List<String> strings) {
@@ -23,29 +21,26 @@ public class TaskDecoder {
 
     private static Task decodeTaskFromString(String string) {
         char abbreviation = string.charAt(0);
-        String[] datas = string.split("|");
+        String[] tokens = getTokens(string);
         switch(abbreviation){
         case 'T':
-            return new Todo(Parser.parseStringToBoolean(datas[1]), datas[2]);
+            return new Todo(Parser.parseStringToBoolean(tokens[1]), tokens[2]);
         case 'D':
-            return new Deadline(Parser.parseStringToBoolean(datas[1]),datas[2],datas[3]);
+            return new Deadline(Parser.parseStringToBoolean(tokens[1]),tokens[2],tokens[3]);
         case 'E':
-            return new Event(Parser.parseStringToBoolean(datas[1]),datas[2],datas[3],datas[4]);
+            return new Event(Parser.parseStringToBoolean(tokens[1]),tokens[2],tokens[3],tokens[4]);
         default:
         }
         return new Todo();
     }
 
-    private static ArrayList<String> splitString(String string) {
-        ArrayList<String> strings = new ArrayList<>();
-        for(int i=0; i<string.length(); i++){
-            char c = string.charAt(i);
-            if(c == '|'){
-                continue;
-            }
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(c);
+    private static String[] getTokens (String string) {
+        List<String> tokens = new ArrayList<>();
+        StringTokenizer stringTokenizer = new StringTokenizer(string, "|");
+        while(stringTokenizer.hasMoreTokens()){
+            tokens.add(stringTokenizer.nextToken());
         }
-        return strings;
+        String[] arr = new String[tokens.size()];
+        return tokens.toArray(arr);
     }
 }
