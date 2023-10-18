@@ -1,7 +1,5 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+ENTER THE /FROM PARAMETER FOR YOUR EVENT.
+ENTER A DESCRIPTION FOR YOUR EVENT.
+ENTER THE /FROM PARAMETER FOR YOUR EVENT.
+ENTER THE /TO PARAMETER FOR YOUR EVENT.
+ADDED TASK: [E] [ ] HI (FROM: ME, TO: YOU)
