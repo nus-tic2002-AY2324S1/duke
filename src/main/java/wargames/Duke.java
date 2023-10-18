@@ -30,6 +30,13 @@ public class Duke {
                 int taskNum = JParser.parseTaskNum(input);
                 taskList.markTaskAsNotDone(taskNum);
             }
+            else if (JParser.isDeleteCommand(input)) {
+                int taskIdx = JParser.parseTaskNum(input) - 1;
+                Task task = taskList.getItem(taskIdx);
+                Joshua.joshuaSays("The following task will be deleted:\n\t" + task.toString());
+                taskList.deleteFromTaskList(task);
+                Joshua.joshuaSays("You now have " + taskList.listSize() + " item(s) in your list.");
+            }
             else if (JParser.isToDoCommand(input)) {
                 try {
                     Task todo = JParser.createToDo(input);

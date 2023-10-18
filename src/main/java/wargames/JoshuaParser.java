@@ -32,9 +32,12 @@ public class JoshuaParser {
     public boolean isDeadlineCommand(String command) {
         return command.startsWith("deadline ");
     }
+
     public boolean isEventCommand(String command) {
         return command.startsWith("event ");
     }
+
+    public boolean isDeleteCommand(String command) { return command.startsWith("delete "); }
 
     public int parseTaskNum(String command) {
         List<String> cmdArrayList = stringToArrayList(command);

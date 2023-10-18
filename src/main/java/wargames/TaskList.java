@@ -15,8 +15,8 @@ public class TaskList {
         return tasklist.get(index);
     }
 
-    public ArrayList<Task> getList(){
-        return tasklist;
+    public int listSize() {
+        return tasklist.size();
     }
 
     public void markTaskAsDone(int taskNum){
@@ -45,8 +45,12 @@ public class TaskList {
         tasklist.add(task);
     }
 
-    public void addToList(Task[] arr){
+    public void addToTaskList(Task[] arr){
         tasklist.addAll(Arrays.asList(arr));
+    }
+
+    public void deleteFromTaskList(Task task) {
+        tasklist.remove(task);
     }
 
     @Override
