@@ -10,6 +10,7 @@ import static task.Craby.stackInput;
 import static task.Craby.stackTaskList;
 
 public class UndoCommand extends CrabyMessage implements CommandInterface {
+
     @Override
     public short handleCommand(String input, List<Task> tasks) {
         if (stackTaskList.isEmpty() || stackInput.isEmpty()) {

@@ -14,7 +14,7 @@ class BlahCommandTest {
     void handleCommand() {
         List<Task> tasks = new ArrayList<>();
         BlahCommand blahCommand = new BlahCommand();
-        blahCommand.handleCommand("input", tasks);
+        blahCommand.handleCommand("blah", tasks);
         assertEquals(0, tasks.size());
     }
 }

@@ -6,7 +6,7 @@ import task.Task;
 
 import java.util.List;
 
-public class SortByCommand extends CrabyMessage implements CommandInterface {
+public class SortCommand extends CrabyMessage implements CommandInterface {
 
     @Override
     public short handleCommand(String input, List<Task> tasks) {

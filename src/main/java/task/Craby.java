@@ -1,6 +1,18 @@
 package task;
 
-import command.*;
+import command.AddTaskCommand;
+import command.UndoCommand;
+import command.DeleteAllCommand;
+import command.DeleteCommand;
+import command.ListCommand;
+import command.MarkCommand;
+import command.SortCommand;
+import command.BlahCommand;
+import command.ByeCommand;
+import command.FindCommand;
+import command.HelpCommand;
+import command.UnmarkCommand;
+
 import exceptions.InputBlankException;
 import io.CrabyMessage;
 import io.TaskStorage;
@@ -20,7 +32,7 @@ public class Craby extends CrabyMessage {
      * This method will print out the logo and the hello message.
      * It will also handle the input from the user.
      */
-    public static void crabySysterm() {
+    public static void crabySystem() {
         printHello();
         Scanner scanner = new Scanner(System.in);
         List<Task> tasks = taskStorage.load();
@@ -167,7 +179,7 @@ public class Craby extends CrabyMessage {
     }
 
     private static void handleSortByCommand(String input, List<Task> tasks) {
-        new SortByCommand().handleCommand(input, tasks);
+        new SortCommand().handleCommand(input, tasks);
     }
 
     private static void handleFindCommand(String input, List<Task> tasks) {
