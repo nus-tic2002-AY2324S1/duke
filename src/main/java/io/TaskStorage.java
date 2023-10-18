@@ -5,21 +5,27 @@ import task.Event;
 import task.Task;
 import task.Todo;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
+
 
 public class TaskStorage {
     String filePath;
-    String directoryPath = "./data";
-    File folder = new File(directoryPath);
+    private final String DIRECTORY_PATH = "./data";
+    File folder = new File(DIRECTORY_PATH);
     File file;
 
 
     public TaskStorage(String fileName) {
-        file = new File(directoryPath + "/" + fileName);
-        this.filePath = directoryPath + "/" + fileName;
+        file = new File(DIRECTORY_PATH + "/" + fileName);
+        this.filePath = DIRECTORY_PATH + "/" + fileName;
     }
     /**
      * This method will save the tasks into the file.

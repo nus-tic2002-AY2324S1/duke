@@ -19,7 +19,7 @@ public class Sort {
                     return task1.toString().compareTo(task2.toString());
                 }
             });
-        } else if (input.equals("typerevert") || input.equals("tr")) {
+        } else if (input.equals("type-r") || input.equals("tr")) {
             System.out.println("   Sorting by type revert order...");
             tasks.sort(new Comparator<Task>() {
                 @Override

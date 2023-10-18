@@ -16,17 +16,19 @@ import exceptions.InputBlankException;
 import io.CrabyMessage;
 import io.TaskStorage;
 
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static command.UndoCommand.putInToStack;
 
 /**
  * This class is the main class of the program.
  * It will handle the input from the user.
  */
 public class Craby extends CrabyMessage {
-    public static Stack<List<Task>> stackTaskList = new Stack<>();
-    public static Stack<String> stackInput = new Stack<>();
+
     private static TaskStorage taskStorage;
     private static final String REGEX = ".*[^a-zA-Z0-9\\s].*";
 
@@ -45,15 +47,7 @@ public class Craby extends CrabyMessage {
             String input = scanner.nextLine();
             input = input.trim();
             boolean exit = false;
-
-            if(!isPutInStack(input)){
-                List<Task> cloneTasks = new ArrayList<>();
-                for (Task task : tasks) {
-                    cloneTasks.add(task.clone());
-                }
-                stackTaskList.push(cloneTasks);
-                stackInput.push(input);
-            }
+            putInToStack(input, tasks); // use for undo command
             try {
                 exit = handleInput(input, tasks);
             } catch (InputBlankException e) {
@@ -80,15 +74,6 @@ public class Craby extends CrabyMessage {
         }
         return name;
     }
-
-    protected static boolean isPutInStack(String input){
-        String[] inputArr = input.split(" ");
-        input = inputArr[0].trim().toLowerCase();
-        return input.contains("list") || input.contains("find")
-                || input.contains("help") || input.contains("blah")
-                || input.contains("undo");
-    }
-
     /**
      * This method will handle the input from the user.
      *

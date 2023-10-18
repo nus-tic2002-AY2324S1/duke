@@ -38,8 +38,8 @@ public class HelpMessage {
                 SPACES + "9.  find <keyword> - find a task with the keyword" + System.lineSeparator() +
                 SPACES + "    ╰┈➤e.g. find book" + System.lineSeparator() +
 
-                SPACES + "10. sort <type/typerevert/t/tr/date/d> - sort the list by type or date" + System.lineSeparator() +
-                SPACES + "    Note: type1 or t1 will sort the list by type in revert order" + System.lineSeparator() +
+                SPACES + "10. sort <type/type-r/t/tr/date/d> - sort the list by type or date" + System.lineSeparator() +
+                SPACES + "    Note: type-r or tr will sort the list by type in revert order" + System.lineSeparator() +
                 SPACES + "    ╰┈➤e.g. sort t" + System.lineSeparator() +
 
                 SPACES + "11. undo - undo your previous command (except: list, find, help, blah commands)" + System.lineSeparator() +

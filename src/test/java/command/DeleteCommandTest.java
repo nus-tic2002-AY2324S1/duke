@@ -2,13 +2,11 @@ package command;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import task.Deadline;
 import task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteCommandTest {
 
