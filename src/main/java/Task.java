@@ -10,7 +10,9 @@ public class Task {
     //declare type for task name
     private String taskName;
     //declare type for task completion status
-    private Boolean taskIsComplete; //cannot be static type
+    //static means belong to this entire Task class, a shared property (does not belong to any particular task)
+    //the name of the task: taskName is a property of an instance of Task (as a consequence, different tasks can have different names)
+    private Boolean taskIsComplete;
     //declare type for count of tasks
     public static int taskCount = 0;
 

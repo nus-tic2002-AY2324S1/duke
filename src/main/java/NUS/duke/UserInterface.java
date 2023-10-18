@@ -1,5 +1,5 @@
 //This java file involves using Scanner to get input (from TestCases.txt)
-package duke.userinterface;
+package NUS.duke;
 
 import java.util.Scanner;
 

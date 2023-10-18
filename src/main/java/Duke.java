@@ -14,7 +14,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import duke.userinterface.UserInterface;
+import NUS.duke.UserInterface;
 // %n : new line
 
 class Duke {
@@ -160,10 +160,18 @@ class Duke {
                     }
                     break;
                 }
-                case "edit": {
+                case "clone": { //only works for T & F task types
+                    createClone(arguments);
+                    break;
+                }
+                case "edit": { //only lists down related tasks for edits
                     findRelatedTasksForEdit(arguments);
                     break;
                 }
+//                case "change": {
+//                    changeDatesAndTimes(arguments);
+//                    break;
+//                }
                 default:
                     newCheckTask(userInput);
             }
@@ -359,6 +367,18 @@ private void findTask(String input) throws InvalidKeywordException{
         }
     }
 
+    //method for changing dates and times
+//    public void changeDatesAndTimes(String argument){
+//        String[] inputs = argument.split("\\s+");
+//        int index = Integer.parseInt(inputs[0]);
+//        switch()
+//        String newStartDate = inputs[inputs.indexOf("startdate") + 1];
+//        String newEndDate ;
+//        String newStartTime;
+//        String newEndTime;
+//        String newDueDate;
+//        String newDueTime;
+//    }
 
 //method for creating Deadline tasks
 private Task createDeadlineTask(String arguments){
@@ -390,6 +410,46 @@ private Task createEventTask(String arguments) {
 
     return new Event('E', taskName, fromDate, fromTime, toDate, toTime);
 }
+
+//method to change task details such as date & time
+//    private void changeTaskDetails(){
+//        switch(){
+//            case '':{
+//
+//                break;
+//            }
+//        }
+//    }
+
+    //method to clone a task
+    private void createClone(String arguments) throws NumberIndexOutOfBoundsException, InvalidIndexException {
+        String[] input = arguments.split("\\s+");
+        boolean numeric = true;
+        try{
+            int num = Integer.parseInt(input[0]);
+            if(num<=0 || num>userInputTasks.size()){
+                throw new NumberIndexOutOfBoundsException();
+            }
+        }catch(NumberIndexOutOfBoundsException e){
+            numeric = false;
+        }
+        if(numeric){
+            int indexNumber = Integer.parseInt(input[0]) - 1;
+            Task clone = userInputTasks.get(indexNumber);
+            switch(clone.getTaskType()){
+                case 'T':{
+                    storeTask(taskType.TODO, clone.getTaskName());
+                    break;
+                }
+                case 'F':{
+                    storeTask(taskType.FIXEDDURATION, clone.getTaskName());
+                    break;
+                }
+            }
+        }else{
+            throw new InvalidIndexException();
+        }
+    }
 
 //method used in conjunction with checkCommand() for checking if it is a FIXEDDURATION taskType
 public void newCheckTask(String userInput) throws InvalidInputException{

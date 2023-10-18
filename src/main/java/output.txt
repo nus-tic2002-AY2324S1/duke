@@ -119,4 +119,20 @@ These are the tasks that you may edit:
 5.[D][ ] complete project (by: May 28 2023 11.59pm)
 Please key in 'Change (index number)' of the task you wish to edit
 ***************************************
+That's some progress! I've marked this task as done:
+[F][X] read for at least 1 hour
+***************************************
+Got it. I've added this task:
+[F][ ] read for at least 1 hour
+Now you have 6 tasks in the list.
+***************************************
+***************************************
+List of tasks: 
+1.[D][ ] reach restaurant (by: Nov 15 2023 6pm)
+2.[E][ ] do homework (from: Oct 15 2023 1pm to: Oct 15 2023 4pm)
+3.[T][ ] homework consultation with lecturer
+4.[F][X] read for at least 1 hour
+5.[D][ ] complete project (by: May 28 2023 11.59pm)
+6.[F][ ] read for at least 1 hour
+***************************************
 Bye. Hope to see you again soon!
