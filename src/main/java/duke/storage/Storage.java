@@ -1,6 +1,6 @@
 package duke.storage;
 
-import duke.exception.DukeException;
+import duke.exception.FileStorageException;
 import duke.task.TaskList;
 import duke.task.Task;
 
@@ -16,11 +16,14 @@ public class Storage {
         path = Paths.get(filePath);
     }
 
-    public ArrayList<Task> load() throws DukeException {
+    public ArrayList<Task> load() throws FileStorageException {
         try {
+            if(!Files.exists(path)){
+                throw new FileStorageException("File does not exists error: " + path);
+            }
             return TaskDecoder.decodeTask(Files.readAllLines(path));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new FileStorageException("Error reading storage file: " + path);
         }
     }
 

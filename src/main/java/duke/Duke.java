@@ -8,7 +8,7 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.command.Command;
 import duke.parser.Parser;
-import duke.exception.DukeException;
+import duke.exception.FileStorageException;
 
 public class Duke {
 
@@ -22,8 +22,8 @@ public class Duke {
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
-        } catch (DukeException e) {
-            ui.showLoadingError();
+        } catch (FileStorageException e) {
+            // ui.showLoadingError(e.getMessage());
             tasks = new TaskList();
         }
     }
@@ -63,7 +63,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("src/main/java/duke/data/duke.txt").run();
+        new Duke("src/main/java/duke/data/duke1.txt").run();
     }
 
 

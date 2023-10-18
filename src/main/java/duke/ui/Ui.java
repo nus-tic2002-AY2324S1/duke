@@ -19,7 +19,8 @@ public class Ui {
         in = new Scanner(System.in);
         out = new PrintStream(System.out);
     }
-    public void showLoadingError() {
+    public void showLoadingError(String message) {
+        showResponseToUser(message);
     }
 
     /**
