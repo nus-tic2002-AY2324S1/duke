@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Find extends Task{
     public static final String CMD = "find";
-    public static final String CMD_HELP = "Command [" + CMD + "] || "
+    public static final String CMD_HELP = "[" + CMD + "] \t"
             + "Find tasks with keyword in description ||"
             + "Syntax: e.g. find <text>";
 

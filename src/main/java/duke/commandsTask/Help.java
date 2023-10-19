@@ -2,7 +2,7 @@ package duke.commandsTask;
 
 public class Help extends Task{
     public static final String CMD = "help";
-    public static final String CMD_HELP = "Command [" + CMD + "] || "
+    public static final String CMD_HELP = "[" + CMD + "] \t\t"
             + "Return the list of commands ||"
             + "Type \"help\" to get list of commands";
 
@@ -24,6 +24,7 @@ public class Help extends Task{
                 + "\n" + Unmark.CMD_HELP
                 + "\n............................."
                 + "\n" + ListCMD.CMD_HELP
-                + "\n" + Delete.CMD_HELP;
+                + "\n" + Delete.CMD_HELP
+                + "\n" + Bye.CMD_HELP;
     }
 }

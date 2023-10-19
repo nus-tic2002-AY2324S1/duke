@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Mark extends Task{
     public static final String CMD = "mark";
-    public static final String CMD_HELP = "Command [" + CMD + "] || "
+    public static final String CMD_HELP = "[" + CMD + "] \t\t"
             + "Mark a task as completed ||"
             + "Syntax: e.g. mark <+index>";
 

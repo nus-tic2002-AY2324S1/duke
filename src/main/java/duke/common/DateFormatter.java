@@ -8,9 +8,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DateFormatter {
-    private static Matcher match;
 
     public static String toDate(String input){
+        Matcher match;
         try {
             Pattern DATE_FORMAT = Pattern.compile("(\\d{4})-(\\d{2})-(\\d{2})");
             match = DATE_FORMAT.matcher(input);

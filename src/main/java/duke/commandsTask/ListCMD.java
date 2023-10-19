@@ -3,7 +3,7 @@ import java.util.List;
 
 public class ListCMD extends Task{
     public static final String CMD = "list";
-    public static final String CMD_HELP = "Command [" + CMD + "] || "
+    public static final String CMD_HELP = "[" + CMD + "] \t\t"
             + "Generate a list of tasks ||"
             + "Syntax: e.g. list";
 

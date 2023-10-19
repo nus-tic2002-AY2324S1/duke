@@ -11,6 +11,7 @@ import duke.commandsTask.Help;
 import duke.commandsTask.ListCMD;
 import duke.commandsTask.Mark;
 import duke.commandsTask.Unmark;
+import duke.commandsTask.Bye;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -48,6 +49,8 @@ public class Parser {
                 return prepDeadline(args);
             case Event.CMD:
                 return prepEvent(args);
+            case Bye.CMD:
+                return new Bye();
             case ListCMD.CMD:
                 return new ListCMD(tasklist);
             case Find.CMD:

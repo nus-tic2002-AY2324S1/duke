@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Unmark extends Task{
     public static final String CMD = "unmark";
-    public static final String CMD_HELP = "Command [" + CMD + "] || "
+    public static final String CMD_HELP = "[" + CMD + "] \t"
             + "Unmark a completed task ||"
             + "Syntax: e.g. unmark <+index>";
 
