@@ -1,4 +1,4 @@
-package storage;
+package duke.storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,8 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.List;
-import commandsTask.Task;
-import data.TaskList;
+import duke.commandsTask.Task;
+import duke.data.TaskList;
 
 public class StorageFile {
     private static final String DEFAULT_STORAGE_FILEPATH = "myTaskList.txt";

@@ -1,11 +1,11 @@
-package data;
+package duke.data;
 
-import commandsTask.*;
+import duke.commandsTask.*;
 
 import java.util.List;
 import java.util.ArrayList;
-import parser.Parser;
-import storage.StorageFile;
+import duke.parser.Parser;
+import duke.storage.StorageFile;
 
 public class TaskList {
     private final List<Task> tasklist = new ArrayList<>();
@@ -13,11 +13,11 @@ public class TaskList {
     public TaskList () {}
 
     /**
-     * Returns a string line for UI to present to user and records the command into storage
+     * Returns a string line for UI to present to user and records the command into duke.storage
      *
      * @param line input line from user
-     * @param myStorage storage file user has currently opened
-     * @param toWrite indicator whether the command should be written into storage
+     * @param myStorage duke.storage file user has currently opened
+     * @param toWrite indicator whether the command should be written into duke.storage
      * @return string message to present to user
      */
     public String processTask (String line, StorageFile myStorage, boolean toWrite) {

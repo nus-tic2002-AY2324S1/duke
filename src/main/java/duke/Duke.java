@@ -1,7 +1,8 @@
-import data.TaskList;
-import exception.DukeException;
-import storage.StorageFile;
-import ui.TextUI;
+package duke;
+
+import duke.data.TaskList;
+import duke.storage.StorageFile;
+import duke.ui.TextUI;
 
 import java.io.FileNotFoundException;
 

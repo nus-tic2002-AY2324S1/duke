@@ -1,16 +1,16 @@
-package parser;
+package duke.parser;
 
-import commandsTask.Task;
-import commandsTask.Todo;
-import commandsTask.IncorrectTaskHandler;
-import commandsTask.Deadline;
-import commandsTask.Delete;
-import commandsTask.Event;
-import commandsTask.Find;
-import commandsTask.Help;
-import commandsTask.ListCMD;
-import commandsTask.Mark;
-import commandsTask.Unmark;
+import duke.commandsTask.Task;
+import duke.commandsTask.Todo;
+import duke.commandsTask.IncorrectTaskHandler;
+import duke.commandsTask.Deadline;
+import duke.commandsTask.Delete;
+import duke.commandsTask.Event;
+import duke.commandsTask.Find;
+import duke.commandsTask.Help;
+import duke.commandsTask.ListCMD;
+import duke.commandsTask.Mark;
+import duke.commandsTask.Unmark;
 
 import java.util.List;
 import java.util.regex.Pattern;

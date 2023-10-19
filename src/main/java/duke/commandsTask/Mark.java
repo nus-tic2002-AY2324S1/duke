@@ -1,12 +1,13 @@
-package commandsTask;
+package duke.commandsTask;
 import java.util.List;
 
-public class Unmark extends Task{
-    public static final String CMD = "unmark";
-    public static final String CMD_HELP = "Command [" + CMD + "]\n"
-            + "Syntax: e.g. unmark <+index>";
+public class Mark extends Task{
+    public static final String CMD = "mark";
+    public static final String CMD_HELP = "Command [" + CMD + "] || "
+            + "Mark a task as completed ||"
+            + "Syntax: e.g. mark <+index>";
 
-    public Unmark(int index, List <Task> tasklist){
+    public Mark(int index, List <Task> tasklist){
         this.toRecord = false;
         this.toUpdateList = true;
         this.description = markTask(index, tasklist);
@@ -16,11 +17,11 @@ public class Unmark extends Task{
         String msg;
         try{
             if (tasklist.get(index-1).getIsDone()){
-                tasklist.get(index-1).setIsDone(false);
-                msg = "Ok, I've marked this task as not done yet: "
-                        + tasklist.get(index-1).toString();
+                msg = "The item has already been marked as done!";
             } else {
-                msg = "The item wasn't done";
+                tasklist.get(index-1).setIsDone(true);
+                msg = "Nice! I've marked this task as done: "
+                        + tasklist.get(index-1).toString();
             }
         }
         catch (IndexOutOfBoundsException e){

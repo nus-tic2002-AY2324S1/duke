@@ -1,4 +1,4 @@
-package common;
+package duke.common;
 
 public class Messages {
     public static final String MSG_WELCOME = "Hello I'm Eve!\n"

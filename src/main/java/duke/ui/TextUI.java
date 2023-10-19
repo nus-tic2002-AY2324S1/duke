@@ -1,10 +1,10 @@
-package ui;
+package duke.ui;
 
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
-import static common.Messages.MSG_WELCOME;
-import static common.Messages.MSG_GOODBYE;
+import static duke.common.Messages.MSG_WELCOME;
+import static duke.common.Messages.MSG_GOODBYE;
 
 public class TextUI {
     private final Scanner in;

@@ -1,11 +1,12 @@
-package commandsTask;
+package duke.commandsTask;
 
 import java.util.List;
 
 public class Delete extends Task{
     public static final String CMD = "delete";
-    public static final String CMD_HELP = "Command [" + CMD + "]\n"
-            + "Syntax: e.g. delete <+index>";
+    public static final String CMD_HELP = "Command [" + CMD + "] || "
+            + "Delete the task in the list using the index ||"
+            + "Syntax: e.g. delete <index(+ve)>";
 
     public Delete(int index, List<Task> tasklist){
         this.toRecord = false;

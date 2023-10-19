@@ -1,9 +1,10 @@
-package commandsTask;
+package duke.commandsTask;
 import java.util.List;
 
 public class ListCMD extends Task{
     public static final String CMD = "list";
-    public static final String CMD_HELP = "Command [" + CMD + "]\n"
+    public static final String CMD_HELP = "Command [" + CMD + "] || "
+            + "Generate a list of tasks ||"
             + "Syntax: e.g. list";
 
     public ListCMD( List <Task> tasklist){

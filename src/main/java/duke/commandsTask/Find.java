@@ -1,10 +1,11 @@
-package commandsTask;
+package duke.commandsTask;
 
 import java.util.List;
 
 public class Find extends Task{
     public static final String CMD = "find";
-    public static final String CMD_HELP = "Command [" + CMD + "]\n"
+    public static final String CMD_HELP = "Command [" + CMD + "] || "
+            + "Find tasks with keyword in description ||"
             + "Syntax: e.g. find <text>";
 
     public Find(String textToFind, List<Task> tasklist){

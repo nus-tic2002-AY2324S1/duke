@@ -1,4 +1,4 @@
-package commandsTask;
+package duke.commandsTask;
 
 public class IncorrectTaskHandler extends Task{
     public IncorrectTaskHandler(String desc){
