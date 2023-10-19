@@ -1,6 +1,5 @@
 package commands;
 
-import commands.Command;
 import common.Utils;
 import data.TaskList;
 import data.tasks.Task;
@@ -30,7 +29,7 @@ public class MarkCommand extends Command {
         storage.save(tasks);
         ui.showMessages(new String[]{
                 "Nice! I've marked this task as done:",
-                "  " + task.toString()
+                "  " + task
         });
     }
 }

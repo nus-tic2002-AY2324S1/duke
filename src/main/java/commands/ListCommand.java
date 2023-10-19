@@ -1,6 +1,5 @@
 package commands;
 
-import commands.Command;
 import data.TaskList;
 import data.tasks.Task;
 import exceptions.DukeException;

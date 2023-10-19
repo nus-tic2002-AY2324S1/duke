@@ -22,6 +22,17 @@ public class Storage {
         this.path = Paths.get(filePath);
     }
 
+    private static boolean isValidPath(String filePath) {
+        return filePath.endsWith(".txt");
+    }
+
+    private static void ensureParentPathExists(Path path) throws IOException {
+        Path parentPath = path.getParent();
+        if (parentPath != null) {
+            Files.createDirectories(parentPath);
+        }
+    }
+
     public Path getPath() {
         return this.path;
     }
@@ -44,17 +55,6 @@ public class Storage {
             Files.write(path, encodedTaskList, StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new StorageOperationException("Error writing to file: " + path, e);
-        }
-    }
-
-    private static boolean isValidPath(String filePath) {
-        return filePath.endsWith(".txt");
-    }
-
-    private static void ensureParentPathExists(Path path) throws IOException {
-        Path parentPath = path.getParent();
-        if (parentPath != null) {
-            Files.createDirectories(parentPath);
         }
     }
 }

@@ -13,20 +13,20 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
-    public void setDone(boolean done) {
-        isDone = done;
-    }
-
     public boolean getDone() {
         return isDone;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDone(boolean done) {
+        isDone = done;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatusIcon() {

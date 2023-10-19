@@ -28,41 +28,41 @@ public class TaskListDecoder {
         boolean isDone = decodeIsDoneFromString(fields[1]);
         String description = fields[2];
         switch (type) {
-            case "D": {
-                if (fields.length != 4) {
-                    throw new StorageOperationException("The number of fields for deadline should be 4.");
-                }
-                String deadlineBy = fields[3];
-                return new Deadline(description, deadlineBy, isDone);
+        case "D": {
+            if (fields.length != 4) {
+                throw new StorageOperationException("The number of fields for deadline should be 4.");
             }
-            case "E":
-                if (fields.length != 4) {
-                    throw new StorageOperationException("The number of fields for deadline should be 4.");
-                }
-                String eventFromTo = fields[3];
-                String[] fromToFields = eventFromTo.split("-", -1);
-                if (fromToFields.length != 2) {
-                    throw new StorageOperationException("The from-to field is invalid.");
-                }
-                String eventFrom = fromToFields[0];
-                String eventTo = fromToFields[1];
-                return new Event(description, eventFrom, eventTo, isDone);
-            case "T": {
-                return new Todo(description, isDone);
+            String deadlineBy = fields[3];
+            return new Deadline(description, deadlineBy, isDone);
+        }
+        case "E":
+            if (fields.length != 4) {
+                throw new StorageOperationException("The number of fields for deadline should be 4.");
             }
-            default:
-                throw new StorageOperationException("Unknown task type.");
+            String eventFromTo = fields[3];
+            String[] fromToFields = eventFromTo.split("-", -1);
+            if (fromToFields.length != 2) {
+                throw new StorageOperationException("The from-to field is invalid.");
+            }
+            String eventFrom = fromToFields[0];
+            String eventTo = fromToFields[1];
+            return new Event(description, eventFrom, eventTo, isDone);
+        case "T": {
+            return new Todo(description, isDone);
+        }
+        default:
+            throw new StorageOperationException("Unknown task type.");
         }
     }
 
     private static boolean decodeIsDoneFromString(String value) throws StorageOperationException {
         switch (value) {
-            case "1":
-                return true;
-            case "0":
-                return false;
-            default:
-                throw new StorageOperationException("The isDone field should be 0 or 1.");
+        case "1":
+            return true;
+        case "0":
+            return false;
+        default:
+            throw new StorageOperationException("The isDone field should be 0 or 1.");
         }
     }
 }

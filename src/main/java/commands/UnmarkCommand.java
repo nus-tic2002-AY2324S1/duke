@@ -1,6 +1,5 @@
 package commands;
 
-import commands.Command;
 import common.Utils;
 import data.TaskList;
 import data.tasks.Task;
@@ -30,7 +29,7 @@ public class UnmarkCommand extends Command {
         storage.save(tasks);
         ui.showMessages(new String[]{
                 "OK, I've marked this task as not done yet:",
-                "  " + task.toString()
+                "  " + task
         });
     }
 }

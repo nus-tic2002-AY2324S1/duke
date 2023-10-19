@@ -6,7 +6,7 @@ import storage.Storage;
 import ui.Ui;
 
 public abstract class Command {
-    protected String args;
+    protected final String args;
 
     public Command(String args) {
         this.args = args;
