@@ -17,8 +17,8 @@ public class TodoTest {
         myCode = cmd + " " + desc;
         myString = "[T][ ] " + desc;
         assertAll("returnString",
-                ()->assertEquals(cmd + " " + desc, todo.toCode()),
-                ()->assertEquals(cmd + " " + desc, todo.toString())
+                ()->assertEquals(myCode, todo.toCode()),
+                ()->assertEquals(myString, todo.toString())
         );
     }
 
