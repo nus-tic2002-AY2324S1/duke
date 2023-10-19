@@ -1,15 +1,16 @@
 package parser;
 
-import commandsTask.Deadline;
 import commandsTask.Task;
 import commandsTask.Todo;
-import commandsTask.Event;
 import commandsTask.IncorrectTaskHandler;
+import commandsTask.Deadline;
+import commandsTask.Delete;
+import commandsTask.Event;
+import commandsTask.Find;
+import commandsTask.Help;
 import commandsTask.ListCMD;
 import commandsTask.Mark;
 import commandsTask.Unmark;
-import commandsTask.Delete;
-import commandsTask.Help;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -21,6 +22,7 @@ public class Parser {
     public static final Pattern TODO_FORMAT = Pattern.compile("(?<isdone>(-m-)?)(?<desc>.*)");
     public static final Pattern DEADLINE_FORMAT = Pattern.compile("(?<isdone>(-m-)?)(?<desc>.*)(?<by>/by)(?<date>.*)");
     public static final Pattern EVENT_FORMAT = Pattern.compile("(?<isdone>(-m-)?)(?<desc>.*)(?<from>/from)(?<date1>.*)(?<to>/to)(?<date2>.*)");
+    public static final Pattern FIND_FORMAT = Pattern.compile("(?<desc>\\S+?)");
 
 
     /**
@@ -48,6 +50,8 @@ public class Parser {
                 return prepEvent(args);
             case ListCMD.CMD:
                 return new ListCMD(tasklist);
+            case Find.CMD:
+                return prepFind(args, tasklist);
             case Mark.CMD:
                 return prepMark(args,tasklist, true);
             case Unmark.CMD:
@@ -169,6 +173,24 @@ public class Parser {
                 match.group("desc").trim(),
                 match.group("date1").trim(),
                 match.group("date2").trim()
+        );
+    }
+
+    /**
+     * Prepares arguments provided to match the FIND_FORMAT to pass into Find command
+     *
+     * @param args string of arguments
+     * @param taskList current list of tasks
+     * @return Find task
+     */
+    private static Task prepFind (String args, List <Task> taskList){
+        final Matcher match = FIND_FORMAT.matcher(args.trim());
+        if (!match.matches()){
+            return new IncorrectTaskHandler(Find.CMD_HELP);
+        }
+        return new Find(
+                match.group("desc").trim(),
+                taskList
         );
     }
 

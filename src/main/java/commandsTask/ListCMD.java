@@ -26,4 +26,8 @@ public class ListCMD extends Task{
         return msg;
     }
 
+    @Override
+    public String toString(){
+        return getDescription();
+    }
 }
