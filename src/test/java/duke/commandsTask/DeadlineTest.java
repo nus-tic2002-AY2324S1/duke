@@ -1,4 +1,4 @@
-package duke.common;
+package duke.commandsTask;
 
 public class DeadlineTest {
 }
