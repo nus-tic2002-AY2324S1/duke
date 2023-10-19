@@ -14,6 +14,17 @@ public class TodoTest {
     @Test
     public void todoMark(){
         Task todo = new Todo(true, desc);
+        myCode = cmd + " -m-" + desc;
+        myString = "[T][X] " + desc;
+        assertAll("returnString",
+                ()->assertEquals(myCode, todo.toCode()),
+                ()->assertEquals(myString, todo.toString())
+        );
+    }
+
+    @Test
+    public void todoUnmark(){
+        Task todo = new Todo(false, desc);
         myCode = cmd + " " + desc;
         myString = "[T][ ] " + desc;
         assertAll("returnString",

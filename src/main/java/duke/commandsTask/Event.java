@@ -1,5 +1,7 @@
 package duke.commandsTask;
 
+import duke.common.DateFormatter;
+
 public class Event extends Task {
     public static final String CMD = "event";
     public static final String CMD_HELP = "Command [" + CMD + "] || "
@@ -9,8 +11,8 @@ public class Event extends Task {
     public Event(boolean isDone, String description, String from, String to){
         super(description);
         setIsDone(isDone);
-        this.from = from;
-        this.to = to;
+        this.from = DateFormatter.toDate(from);
+        this.to = DateFormatter.toDate(to);
     }
 
     @Override
