@@ -1,7 +1,5 @@
 package data.tasks;
 
-import data.tasks.Task;
-
 public class Todo extends Task {
     public Todo(String description) {
         this(description, false);

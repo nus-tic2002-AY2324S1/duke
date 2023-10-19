@@ -5,7 +5,7 @@ public abstract class DukeException extends Exception {
         super(errorMessage);
     }
 
-    public DukeException (String errorMessage, Throwable cause) {
+    public DukeException(String errorMessage, Throwable cause) {
         super(errorMessage, cause);
     }
 }

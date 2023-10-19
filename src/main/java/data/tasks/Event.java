@@ -1,8 +1,8 @@
 package data.tasks;
 
 public class Event extends Task {
-    protected String from;
-    protected String to;
+    protected final String from;
+    protected final String to;
 
     public Event(String description, String from, String to) {
         this(description, from, to, false);
