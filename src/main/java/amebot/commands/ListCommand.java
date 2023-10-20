@@ -1,7 +1,7 @@
-package commands;
+package amebot.commands;
 
-import common.Messages;
-import tasks.Task;
+import amebot.common.Messages;
+import amebot.tasks.Task;
 
 public class ListCommand extends Command {
     public ListCommand() {

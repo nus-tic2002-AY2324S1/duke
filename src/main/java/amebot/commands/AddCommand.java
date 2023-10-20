@@ -1,10 +1,10 @@
-package commands;
+package amebot.commands;
 
-import common.Messages;
-import tasks.Task;
-import tasks.ToDo;
-import tasks.Event;
-import tasks.Deadline;
+import amebot.common.Messages;
+import amebot.tasks.Task;
+import amebot.tasks.ToDo;
+import amebot.tasks.Event;
+import amebot.tasks.Deadline;
 
 public class AddCommand extends Command {
     protected Task item;

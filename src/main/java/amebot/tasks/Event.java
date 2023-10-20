@@ -1,4 +1,4 @@
-package tasks;
+package amebot.tasks;
 
 public class Event extends Task {
     protected final String EVENT = "[EVENT] ";

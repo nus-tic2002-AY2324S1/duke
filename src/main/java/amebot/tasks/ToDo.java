@@ -1,4 +1,4 @@
-package tasks;
+package amebot.tasks;
 
 public class ToDo extends Task {
     protected final String TODO = "[TODO] ";

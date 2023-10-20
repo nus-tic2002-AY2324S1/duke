@@ -1,4 +1,4 @@
-package tasks;
+package amebot.tasks;
 
 public class Deadline extends Task {
     protected final String DEADLINE = "[DEADLINE] ";

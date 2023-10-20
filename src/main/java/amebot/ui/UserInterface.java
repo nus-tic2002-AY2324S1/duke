@@ -1,7 +1,7 @@
-package ui;
+package amebot.ui;
 
-import common.Title;
-import common.Messages;
+import amebot.common.Title;
+import amebot.common.Messages;
 
 import java.util.Scanner;
 import java.util.ArrayList;

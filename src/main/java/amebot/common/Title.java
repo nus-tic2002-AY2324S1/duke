@@ -1,4 +1,4 @@
-package common;
+package amebot.common;
 
 public class Title {
     private static final String BORDER = "================================================================================" + System.lineSeparator();

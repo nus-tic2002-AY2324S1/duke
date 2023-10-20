@@ -1,8 +1,8 @@
-package parser;
+package amebot.parser;
 
-import common.Messages;
-import enumerations.Keyword;
-import tasks.Task;
+import amebot.common.Messages;
+import amebot.enumerations.Keyword;
+import amebot.tasks.Task;
 
 import java.util.EnumSet;
 import java.util.ArrayList;
@@ -16,8 +16,8 @@ public class Parser {
     protected final String TO_REGEX = " /to ";
     protected final String DEADLINE_REGEX = "^deadline .+ /due .+$";
     protected final String DUE_REGEX = " /due ";
-    protected final String SELECT_INDEX_REGEX = "^(select|unselect) [1-9][0-9]*$";
-    protected final String REMOVE_INDEX_REGEX = "^(remove) [0-9]+$";
+    protected final String SELECT_INDEX_REGEX = "^(select|unselect) [1-9]\\d*$";
+    protected final String REMOVE_INDEX_REGEX = "^remove [1-9]\\d*$";
     protected final String BYE_REGEX = "^bye$";
 
     public ArrayList<String> parseLoadTask(String task) {
@@ -132,7 +132,7 @@ public class Parser {
             int size = command.length();
             setDescription(command, 5, size);
         } else {
-            System.out.println(Messages.INVALID_COMMAND_FORMAT);
+            System.out.println(Messages.INVALID_DESC);
         }
     }
 
@@ -143,7 +143,7 @@ public class Parser {
             setDescription(command, 6, index);
             setDateTime(command, index);
         } else {
-            System.out.println(Messages.INVALID_COMMAND_FORMAT);
+            System.out.println(Messages.INVALID_DESC_DATE);
         }
     }
 
@@ -154,7 +154,7 @@ public class Parser {
             setDescription(command, 9, index);
             setDateTime(command, index);
         } else {
-            System.out.println(Messages.INVALID_COMMAND_FORMAT);
+            System.out.println(Messages.INVALID_DESC_DATE);
         }
     }
 
@@ -162,8 +162,6 @@ public class Parser {
         if (startIndex < endIndex) {
             String description = command.substring(startIndex, endIndex);
             parsedCommand.add(description);
-        } else {
-            System.out.println(Messages.INVALID_DESC);
         }
     }
 
@@ -173,8 +171,6 @@ public class Parser {
 
         if (isValidDate(dateTime)) {
             splitDateTime(dateTime);
-        } else {
-            System.out.println(Messages.INVALID_DATE);
         }
     }
 
@@ -215,7 +211,7 @@ public class Parser {
             parsedCommand.add(commandName);
             setIndex(words[1]);
         } else {
-            System.out.println(Messages.INVALID_COMMAND_FORMAT);
+            System.out.println(Messages.INVALID_INDEX);
         }
     }
 
@@ -226,7 +222,9 @@ public class Parser {
             parsedCommand.add(index);
         } else {
             parsedCommand.add("-1");
-            System.out.println(Messages.INVALID_INDEX);
+            System.out.println(Messages.INVALID_INDEX_VALUE
+                    + Task.getListSize()
+                    + "!");
         }
     }
 
@@ -237,8 +235,6 @@ public class Parser {
     public void parseDefault(String commandName, String command) {
         if (isValidCommandFormat(command)) {
             parsedCommand.add(commandName);
-        } else {
-            System.out.println(Messages.INVALID_COMMAND_FORMAT);
         }
     }
 

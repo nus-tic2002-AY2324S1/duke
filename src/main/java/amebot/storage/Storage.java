@@ -1,9 +1,9 @@
-package storage;
+package amebot.storage;
 
-import commands.Command;
-import common.Messages;
-import parser.Parser;
-import tasks.Task;
+import amebot.commands.Command;
+import amebot.common.Messages;
+import amebot.parser.Parser;
+import amebot.tasks.Task;
 
 import java.io.File;
 import java.io.FileReader;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Storage {
-    private static final String filePathname = "./data/amebot.txt";
+    private static final String filePathname = "./amebot/data/amebot.txt";
     private File tasksFile = new File(filePathname);
 
     public void loadTasks(Command command) throws IOException {

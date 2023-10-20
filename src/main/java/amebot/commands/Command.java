@@ -1,8 +1,8 @@
-package commands;
+package amebot.commands;
 
-import common.Messages;
-import enumerations.Keyword;
-import tasks.Task;
+import amebot.common.Messages;
+import amebot.enumerations.Keyword;
+import amebot.tasks.Task;
 
 import java.util.ArrayList;
 
