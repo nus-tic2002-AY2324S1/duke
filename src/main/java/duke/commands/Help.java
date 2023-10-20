@@ -1,18 +1,28 @@
-package duke.commandsTask;
+package duke.commands;
 
-public class Help extends Task{
+/**
+ * Help task
+ */
+public class Help extends Task {
     public static final String CMD = "help";
     public static final String CMD_HELP = "[" + CMD + "] \t\t"
             + "Return the list of commands ||"
             + "Type \"help\" to get list of commands";
 
-    public Help(){
+    /**
+     * Help constructor
+     */
+    public Help() {
         this.toRecord = false;
         this.toUpdateList = false;
     }
 
+    /**
+     * String to return to user
+     * @return string
+     */
     @Override
-    public String toString(){
+    public String toString() {
         return "Here are the list of available commands: "
                 + "\n" + Help.CMD_HELP
                 + "\n............................."
@@ -23,7 +33,7 @@ public class Help extends Task{
                 + "\n" + Mark.CMD_HELP
                 + "\n" + Unmark.CMD_HELP
                 + "\n............................."
-                + "\n" + ListCMD.CMD_HELP
+                + "\n" + ListCmd.CMD_HELP
                 + "\n" + Delete.CMD_HELP
                 + "\n" + Bye.CMD_HELP;
     }

@@ -1,4 +1,4 @@
-package duke.commandsTask;
+package duke.commands;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertAll;

@@ -1,5 +1,8 @@
 package duke.common;
 
+/**
+ * Message class. Contains common messages used
+ */
 public class Messages {
     public static final String MSG_WELCOME = "Hello I'm Eve!\n"
             + " ____            ____ \n"

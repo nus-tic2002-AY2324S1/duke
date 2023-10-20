@@ -1,16 +1,22 @@
 package duke.data;
 
-import duke.commandsTask.*;
-
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
+import duke.commands.Task;
 import duke.parser.Parser;
 import duke.storage.StorageFile;
 
+/**
+ * TaskList class. Manages lists of tasks
+ */
 public class TaskList {
     private final List<Task> tasklist = new ArrayList<>();
 
-    public TaskList () {}
+
+    public TaskList() {
+
+    }
 
     /**
      * Returns a string line for UI to present to user and records the command into duke.storage
@@ -20,21 +26,23 @@ public class TaskList {
      * @param toWrite indicator whether the command should be written into duke.storage
      * @return string message to present to user
      */
-    public String processTask (String line, StorageFile myStorage, boolean toWrite) {
+    public String processTask(String line, StorageFile myStorage, boolean toWrite) {
         Task task = Parser.parseCommand(line, tasklist);
         String msg;
         /* if ToRecord is TRUE, add Task and append into storage else pass mesage*/
-        if (task.getToRecord()){
+        if (task.getToRecord()) {
             tasklist.add(task);
             msg = "Got it. I've added this task:\n"
                     + tasklist.get(tasklist.size() - 1).toString() + "\n"
                     + "Now you have " + tasklist.size() + " tasks in the list.";
-            if (toWrite) {myStorage.append(task);}
+            if (toWrite) {
+                myStorage.append(task);
+            }
         } else {
             msg = task.toString();
         }
 
-        if(task.getToUpdateList()) {
+        if (task.getToUpdateList()) {
             myStorage.write(tasklist);
         }
 

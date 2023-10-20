@@ -1,17 +1,24 @@
 package duke.ui;
 
+import static duke.common.Messages.MSG_GOODBYE;
+import static duke.common.Messages.MSG_WELCOME;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
-import static duke.common.Messages.MSG_WELCOME;
-import static duke.common.Messages.MSG_GOODBYE;
 
+/**
+ * TextUI class controls inputs and outputs of user
+ */
 public class TextUI {
+    private static final String DIVIDER = "--------------------------------------------------";
     private final Scanner in;
     private final PrintStream out;
-    private static final String DIVIDER = "--------------------------------------------------";
 
-    public TextUI(){ this (System.in,System.out); }
+
+    public TextUI() {
+        this (System.in, System.out);
+    }
 
     /**
      * Creates a TextUI class that contains one input and one output variables
@@ -27,14 +34,14 @@ public class TextUI {
     /**
      * Prints a welcome message
      */
-    public void printWelcomeMsg(){
+    public void printWelcomeMsg() {
         printMsg(DIVIDER, MSG_WELCOME, DIVIDER);
     }
 
     /**
      * Prints a goodbye message
      */
-    public void printGoodbyeMsg(){
+    public void printGoodbyeMsg() {
         printMsg(DIVIDER, MSG_GOODBYE, DIVIDER);
     }
 
@@ -52,7 +59,7 @@ public class TextUI {
      *
      * @return string input from the user
      */
-    public String getCommand (){
+    public String getCommand() {
         out.print("Your instruction: ");
         String inputLine = in.nextLine();
 
@@ -68,8 +75,8 @@ public class TextUI {
      *
      * @param msg string of arguments
      */
-    private void printMsg(String... msg){
-        for (String m : msg){
+    private void printMsg(String... msg) {
+        for (String m : msg) {
             System.out.println(m);
         }
     }

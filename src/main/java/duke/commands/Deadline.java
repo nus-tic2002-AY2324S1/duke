@@ -1,7 +1,10 @@
-package duke.commandsTask;
+package duke.commands;
 
 import duke.common.DateFormatter;
 
+/**
+ * Deadline Task
+ */
 public class Deadline extends Task {
     public static final String CMD = "deadline";
     public static final String CMD_HELP = "[" + CMD + "] \t"
@@ -9,19 +12,26 @@ public class Deadline extends Task {
             + "Syntax: e.g. deadline <text> /by <date>";
     protected String by;
 
-    public Deadline (boolean isDone, String description, String by){
+    /**
+     * Deadline constructor
+     *
+     * @param isDone boolean to indicate task is complete
+     * @param description string description of task
+     * @param by string or date
+     */
+    public Deadline(boolean isDone, String description, String by) {
         super(description);
         setIsDone(isDone);
         this.by = DateFormatter.toDate(by);
     }
 
     @Override
-    public String toCode(){
-        return CMD + " " + ((isDone) ? "-m-" : "") +  description + " /by " + by;
+    public String toCode() {
+        return CMD + " " + ((isDone) ? "-m-" : "") + description + " /by " + by;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
 }
