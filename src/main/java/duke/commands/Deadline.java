@@ -22,6 +22,14 @@ public class Deadline extends Task {
     public Deadline(boolean isDone, String description, String by) {
         super(description);
         setIsDone(isDone);
+        setBy(by);
+    }
+
+    /**
+     * Changes the deadline date to the string set
+     * @param by String text or date
+     */
+    public void setBy(String by) {
         this.by = DateFormatter.toDate(by);
     }
 

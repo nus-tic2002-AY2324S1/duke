@@ -23,9 +23,26 @@ public class Event extends Task {
     public Event(boolean isDone, String description, String from, String to) {
         super(description);
         setIsDone(isDone);
+        setFrom(from);
+        setTo(to);
+    }
+
+    /**
+     * Changes 'from' to the text inputted
+     * @param from String text or date
+     */
+    public void setFrom(String from) {
         this.from = DateFormatter.toDate(from);
+    }
+
+    /**
+     * Changes 'to' to the text inputted
+     * @param to String text or date
+     */
+    public void setTo(String to) {
         this.to = DateFormatter.toDate(to);
     }
+
 
     /**
      * Code entry for storage

@@ -21,7 +21,7 @@ public abstract class Task {
      * @param description string description of task
      */
     public Task(String description) {
-        this.description = description;
+        setDescription(description);
         this.isDone = false;
         this.toRecord = true;
         this.toUpdateList = false;
@@ -57,6 +57,14 @@ public abstract class Task {
      */
     public void setIsDone(boolean isDone) {
         this.isDone = isDone;
+    }
+
+    /**
+     * Change description of this task
+     * @param description String description of task
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**

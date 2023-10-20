@@ -16,6 +16,7 @@ import duke.commands.Mark;
 import duke.commands.Task;
 import duke.commands.Todo;
 import duke.commands.Unmark;
+import duke.commands.Update;
 
 
 /**
@@ -29,6 +30,7 @@ public class Parser {
     public static final Pattern EVENT_FORMAT =
             Pattern.compile("(?<isdone>(-m-)?)(?<desc>.*)(?<from>/from)(?<date1>.*)(?<to>/to)(?<date2>.*)");
     public static final Pattern FIND_FORMAT = Pattern.compile("(?<desc>\\S+?)");
+    public static final Pattern UPDATE_FORMAT = Pattern.compile("(?<index>\\d+) (?<field>\\S+) (?<newText>.*)");
 
 
     /**
@@ -66,6 +68,8 @@ public class Parser {
             return prepMark(args, tasklist, false);
         case Delete.CMD:
             return prepDelete(args, tasklist);
+        case Update.CMD:
+            return prepUpdate(args, tasklist);
         default:
             return new Help();
         }
@@ -200,6 +204,19 @@ public class Parser {
         }
         return new Find(
                 match.group("desc").trim(),
+                taskList
+        );
+    }
+
+    private static Task prepUpdate(String args, List <Task> taskList) {
+        final Matcher match = UPDATE_FORMAT.matcher(args.trim());
+        if (!match.matches()) {
+            return new IncorrectTaskHandler(Update.CMD_HELP);
+        }
+        return new Update(
+                Integer.parseInt(match.group("index")),
+                match.group("field"),
+                match.group("newText"),
                 taskList
         );
     }
