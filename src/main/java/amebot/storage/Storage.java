@@ -2,7 +2,7 @@ package amebot.storage;
 
 import amebot.commands.Command;
 import amebot.common.Messages;
-import amebot.parser.Parser;
+import amebot.parser.StorageParser;
 import amebot.tasks.Task;
 
 import java.io.File;
@@ -80,7 +80,7 @@ public class Storage {
 
     public void storeTasks(Command command, ArrayList<String> tasksList) {
         for (String task : tasksList) {
-            ArrayList<String> parsedTask = new Parser().parseLoadTask(task);
+            ArrayList<String> parsedTask = new StorageParser().parseLoadTask(task);
             command.executeLoadTaskCommand(parsedTask);
         }
 
@@ -96,7 +96,7 @@ public class Storage {
             BufferedWriter bufferedWriter = new BufferedWriter(tasksFileWriter);
 
             for (Task task : tasksList) {
-                item = new Parser().parseSaveTask(task);
+                item = new StorageParser().parseSaveTask(task);
 
                 bufferedWriter.write(item);
                 bufferedWriter.newLine();
