@@ -8,9 +8,18 @@ import amebot.tasks.Task;
 import java.util.EnumSet;
 import java.util.ArrayList;
 
+/**
+ * Represents a parser that parses the user's input.
+ */
 public class Parser {
     protected ArrayList<String> parsedCommand = new ArrayList<>();
 
+    /**
+     * Parses the user's input and returns the parsed command.
+     *
+     * @param command The user's input.
+     * @return The parsed command.
+     */
     public ArrayList<String> parseCommand(String command) {
         String[] words = command.trim().split(" ");
         String commandName = words[0].toUpperCase();
@@ -46,6 +55,12 @@ public class Parser {
         return parsedCommand;
     }
 
+    /**
+     * Checks if the command type is valid.
+     *
+     * @param commandName The command name.
+     * @return True if the command type is valid, false otherwise.
+     */
     public boolean isValidCommand(String commandName) {
         EnumSet<Keyword> commandList = EnumSet.allOf(Keyword.class);
 
@@ -60,6 +75,12 @@ public class Parser {
         return false;
     }
 
+    /**
+     * Parses the description of the ToDo task.
+     *
+     * @param commandName The command name.
+     * @param command     The user's input.
+     */
     public void parseTodo(String commandName, String command) {
         if (isValidCommandFormat(command)) {
             parsedCommand.add(commandName);
@@ -70,6 +91,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the description and dateTime of the Event task.
+     *
+     * @param commandName The command name.
+     * @param command     The user's input.
+     */
     public void parseEvent(String commandName, String command) {
         if (isValidCommandFormat(command)) {
             parsedCommand.add(commandName);
@@ -82,6 +109,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the description and dateTime of the Deadline task.
+     *
+     * @param commandName The command name.
+     * @param command     The user's input.
+     */
     public void parseDeadline(String commandName, String command) {
         if (isValidCommandFormat(command)) {
             parsedCommand.add(commandName);
@@ -94,6 +127,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Sets the description of the task.
+     *
+     * @param command    The user's input.
+     * @param startIndex The start index of the description.
+     * @param endIndex   The end index of the description.
+     */
     public void setDescription(String command, int startIndex, int endIndex) {
         if (startIndex < endIndex) {
             String description = command.substring(startIndex, endIndex);
@@ -101,6 +141,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the index of the task to be updated.
+     *
+     * @param commandName The command name.
+     * @param command     The user's input.
+     * @param words       The user's input split into an array of words.
+     */
     public void parseUpdate(String commandName, String command, String[] words) {
         if (isValidCommandFormat(command)) {
             parsedCommand.add(commandName);
@@ -110,6 +157,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Sets the index of the task to be updated.
+     *
+     * @param index The index of the task to be updated.
+     */
     public void setIndex(String index) {
         int taskIndex = Integer.parseInt(index);
 
@@ -123,16 +175,34 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if the index of the task to be updated is valid.
+     *
+     * @param taskIndex The index of the task to be updated.
+     * @return True if the index is valid, false otherwise.
+     */
     public boolean isValidIndex(int taskIndex) {
         return taskIndex <= Task.getListSize();
     }
 
+    /**
+     * Parses and sets the command type.
+     *
+     * @param commandName The command name.
+     * @param command     The user's input.
+     */
     public void parseDefault(String commandName, String command) {
         if (isValidCommandFormat(command)) {
             parsedCommand.add(commandName);
         }
     }
 
+    /**
+     * Checks if the command format is valid.
+     *
+     * @param command The user's input.
+     * @return True if the command format is valid, false otherwise.
+     */
     public boolean isValidCommandFormat(String command) {
         return command.matches(Regex.TODO_COMMAND) || command.matches(Regex.EVENT_COMMAND) || command.matches(Regex.DEADLINE_COMMAND) ||
                 command.matches(Regex.SELECT_INDEX_COMMAND) || command.matches(Regex.LIST_COMMAND) ||

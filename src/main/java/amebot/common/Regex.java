@@ -1,5 +1,8 @@
 package amebot.common;
 
+/**
+ * Regex class contains all the regex patterns used in the program.
+ */
 public class Regex {
     public static final String LIST_COMMAND = "^list$";
     public static final String TODO_COMMAND = "^todo(?!\\s*$).+$";

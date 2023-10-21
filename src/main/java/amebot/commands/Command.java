@@ -6,10 +6,22 @@ import amebot.tasks.Task;
 
 import java.util.ArrayList;
 
+/**
+ * Command class
+ *
+ * <p>Parent class for all commands
+ */
+
 public class Command {
     protected static ArrayList<Task> tasks = new ArrayList<>();
     protected static ArrayList<String> logs;
 
+    /**
+     * Executes the command from the loaded file
+     *
+     * @param parsedTask parsed task from the loaded file
+     * @return logs for output
+     */
     public void executeLoadTaskCommand(ArrayList<String> parsedTask) {
         logs = new ArrayList<>();
 
@@ -33,6 +45,12 @@ public class Command {
         }
     }
 
+    /**
+     * Executes the command from the user input
+     *
+     * @param parsedCommand parsed command from the user input
+     * @return logs for output
+     */
     public ArrayList<String> executeCommand(ArrayList<String> parsedCommand) {
         logs = new ArrayList<>();
 
@@ -85,6 +103,11 @@ public class Command {
         return logs;
     }
 
+    /**
+     * Gets the list of tasks
+     *
+     * @return list of tasks
+     */
     public static ArrayList<Task> getTasks() {
         return tasks;
     }

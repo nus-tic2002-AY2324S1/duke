@@ -1,5 +1,8 @@
 package amebot.common;
 
+/**
+ * Messages class contains all the messages that will be displayed to the user.
+ */
 public class Messages {
     public static final String TOP_BORDER = "________________________________________________________________________________";
     public static final String BOTTOM_BORDER = "--------------------------------------------------------------------------------" + System.lineSeparator();

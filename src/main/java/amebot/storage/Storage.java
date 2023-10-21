@@ -13,10 +13,21 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Storage class handles the loading of tasks from the file and
+ * saving of tasks to the file.
+ */
 public class Storage {
     private static final String filePathname = "./amebot/data/amebot.txt";
     private File tasksFile = new File(filePathname);
 
+    /**
+     * Loads tasks from the file if the file exists.
+     * If the file does not exist, a new file will be created.
+     *
+     * @param command Command object that executes the load task command.
+     * @throws IOException If an I/O error occurs.
+     */
     public void loadTasks(Command command) throws IOException {
         if (findTasksFile()) {
             ArrayList<String> tasksList = getTasksFileData();
@@ -26,12 +37,22 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates a new file if the file does not exist.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     public void createNewTasksFile() throws IOException {
         if (tasksFile.createNewFile()) {
             System.out.println(Messages.FILE_CREATED);
         }
     }
 
+    /**
+     * Checks if the file exists.
+     *
+     * @return True if the file exists, false otherwise.
+     */
     public boolean findTasksFile() {
         boolean isFileFound = false;
 
@@ -44,6 +65,11 @@ public class Storage {
         return isFileFound;
     }
 
+    /**
+     * Reads the data from the file and stores it in an ArrayList.
+     *
+     * @return ArrayList of tasks in the file.
+     */
     public ArrayList<String> getTasksFileData() {
         ArrayList<String> tasksList = new ArrayList<>();
 
@@ -67,6 +93,11 @@ public class Storage {
         return tasksList;
     }
 
+    /**
+     * Checks if the file is empty.
+     *
+     * @return True if the file is empty, false otherwise.
+     */
     public boolean isFileEmpty() {
         boolean isFileEmpty = false;
 
@@ -78,6 +109,13 @@ public class Storage {
         return isFileEmpty;
     }
 
+    /**
+     * Get tasks in the file and
+     * execute command to store tasks.
+     *
+     * @param command   Command object that executes the load task command.
+     * @param tasksList ArrayList of tasks in the file.
+     */
     public void storeTasks(Command command, ArrayList<String> tasksList) {
         for (String task : tasksList) {
             ArrayList<String> parsedTask = new StorageParser().parseLoadTask(task);
@@ -87,6 +125,9 @@ public class Storage {
         System.out.println(Messages.SUCCESS_LOAD_TASK);
     }
 
+    /**
+     * Saves tasks to the file.
+     */
     public void saveTasks() {
         ArrayList<Task> tasksList = Command.getTasks();
         String item = "";

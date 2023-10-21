@@ -8,7 +8,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * DateTimeParser class is used to parse the date and time of the task.
+ */
 public class DateTimeParser extends Parser {
+    /**
+     * Parses the date and time of the task.
+     *
+     * @param command The user's input.
+     * @param index   The index of the date and time in the command.
+     * @return An ArrayList of the parsed date and time.
+     */
     public ArrayList<String> parseDateTime(String command, int index) {
         int size = command.length();
         String dateTime = command.substring(index, size);
@@ -22,6 +32,12 @@ public class DateTimeParser extends Parser {
         return parsedCommand;
     }
 
+    /**
+     * Checks if the date and time format of the task is valid.
+     *
+     * @param dateTime The date and time of the task.
+     * @return A boolean value to indicate if the date and time format of the task is valid.
+     */
     public boolean isValidDateTime(String dateTime) {
         boolean isEventDateTime = dateTime.matches(Regex.FROM_PATTERN + Regex.DATE_TIME_PATTERN + Regex.TO_PATTERN + Regex.DATE_TIME_PATTERN);
         boolean isDeadlineDateTime = dateTime.matches(Regex.DUE_PATTERN + Regex.DATE_TIME_PATTERN);
@@ -29,6 +45,11 @@ public class DateTimeParser extends Parser {
         return isEventDateTime || isDeadlineDateTime;
     }
 
+    /**
+     * Splits the date and time of the task into the start date and time and end date and time.
+     *
+     * @param dateTime The date and time of the task.
+     */
     public void splitDateTime(String dateTime) {
         int size = dateTime.length();
 
@@ -57,6 +78,12 @@ public class DateTimeParser extends Parser {
         }
     }
 
+    /**
+     * Parses the date and time of the task.
+     *
+     * @param dateTime The date and time of the task.
+     * @return The parsed date and time of the task.
+     */
     public String parseDateTime(String dateTime) {
         String dateTimeFormat = "";
 
@@ -76,6 +103,13 @@ public class DateTimeParser extends Parser {
         }
     }
 
+    /**
+     * Gets the date and time of the task.
+     *
+     * @param dateTime          The date and time of the task.
+     * @param dateTimeFormatter The date and time formatter.
+     * @return The date and time of the task.
+     */
     public String getDateTime(String dateTime, DateTimeFormatter dateTimeFormatter) {
         String parsedDateTime = "";
         try {
@@ -89,6 +123,13 @@ public class DateTimeParser extends Parser {
         return parsedDateTime;
     }
 
+    /**
+     * Gets the date of the task.
+     *
+     * @param dateTime          The date and time of the task.
+     * @param dateTimeFormatter The date and time formatter.
+     * @return The date of the task.
+     */
     public String getDate(String dateTime, DateTimeFormatter dateTimeFormatter) {
         String parsedDateTime = "";
 

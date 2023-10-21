@@ -5,7 +5,17 @@ import amebot.tasks.Task;
 
 import java.util.ArrayList;
 
+/**
+ * StorageParser class is used to parse the task from the storage file.
+ * It is also used to parse the task to be saved into the storage file.
+ */
 public class StorageParser extends Parser {
+    /**
+     * This method parses the task from the storage file.
+     *
+     * @param task The task to be parsed.
+     * @return An ArrayList of String containing the task details.
+     */
     public ArrayList<String> parseLoadTask(String task) {
         ArrayList<String> item = new ArrayList<>();
         String[] words = task.toLowerCase().split("\\|");
@@ -36,6 +46,12 @@ public class StorageParser extends Parser {
         return item;
     }
 
+    /**
+     * This method parses the task to be saved into the storage file.
+     *
+     * @param task The task to be parsed.
+     * @return A String containing the task details.
+     */
     public String parseSaveTask(Task task) {
         String item = "";
 

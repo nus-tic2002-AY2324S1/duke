@@ -9,15 +9,29 @@ import amebot.commands.ExitCommand;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The main class of the Duke application.
+ */
 public class Amebot {
     private UserInterface userInterface;
     private Storage storage;
 
+    /**
+     * The main method of the Duke application.
+     *
+     * @param args The command line arguments.
+     * @throws IOException If there is an error loading the file.
+     */
     public static void main(String[] args) throws IOException {
         Amebot amebot = new Amebot();
         amebot.launch();
     }
 
+    /**
+     * Launches the Duke application.
+     *
+     * @throws IOException If there is an error loading the file.
+     */
     public void launch() throws IOException {
         this.userInterface = new UserInterface();
         this.userInterface.printWelcome();
@@ -31,6 +45,11 @@ public class Amebot {
         this.storage.saveTasks();
     }
 
+    /**
+     * Renders the Duke application.
+     *
+     * @param command The command to be executed.
+     */
     public void render(Command command) {
         String commandLine;
 
