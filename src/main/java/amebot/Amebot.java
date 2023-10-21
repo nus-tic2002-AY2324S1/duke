@@ -1,18 +1,20 @@
-import storage.Storage;
-import ui.UserInterface;
-import parser.Parser;
-import commands.Command;
-import commands.ExitCommand;
+package amebot;
+
+import amebot.storage.Storage;
+import amebot.ui.UserInterface;
+import amebot.parser.Parser;
+import amebot.commands.Command;
+import amebot.commands.ExitCommand;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Duke {
+public class Amebot {
     private UserInterface userInterface;
     private Storage storage;
 
     public static void main(String[] args) throws IOException {
-        Duke amebot = new Duke();
+        Amebot amebot = new Amebot();
         amebot.launch();
     }
 

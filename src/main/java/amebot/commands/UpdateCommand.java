@@ -1,10 +1,10 @@
-package commands;
+package amebot.commands;
 
-import common.Messages;
+import amebot.common.Messages;
 
 public class UpdateCommand extends Command {
     public UpdateCommand(int index, String commandType) {
-        if (index > -1) {
+        if (index > 0) {
             if (commandType.equalsIgnoreCase("select")) {
                 tasks.get(index - 1).setSelectStatus();
                 logs.add(Messages.STATUS_SELECTED);

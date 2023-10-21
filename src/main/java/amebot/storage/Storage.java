@@ -1,9 +1,9 @@
-package storage;
+package amebot.storage;
 
-import commands.Command;
-import common.Messages;
-import parser.Parser;
-import tasks.Task;
+import amebot.commands.Command;
+import amebot.common.Messages;
+import amebot.parser.StorageParser;
+import amebot.tasks.Task;
 
 import java.io.File;
 import java.io.FileReader;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Storage {
-    private static final String filePathname = "./data/amebot.txt";
+    private static final String filePathname = "./amebot/data/amebot.txt";
     private File tasksFile = new File(filePathname);
 
     public void loadTasks(Command command) throws IOException {
@@ -80,7 +80,7 @@ public class Storage {
 
     public void storeTasks(Command command, ArrayList<String> tasksList) {
         for (String task : tasksList) {
-            ArrayList<String> parsedTask = new Parser().parseLoadTask(task);
+            ArrayList<String> parsedTask = new StorageParser().parseLoadTask(task);
             command.executeLoadTaskCommand(parsedTask);
         }
 
@@ -96,7 +96,7 @@ public class Storage {
             BufferedWriter bufferedWriter = new BufferedWriter(tasksFileWriter);
 
             for (Task task : tasksList) {
-                item = new Parser().parseSaveTask(task);
+                item = new StorageParser().parseSaveTask(task);
 
                 bufferedWriter.write(item);
                 bufferedWriter.newLine();

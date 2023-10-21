@@ -1,4 +1,4 @@
-package commands;
+package amebot.commands;
 
 public class ExitCommand extends Command {
     public static boolean isExit(String command) {

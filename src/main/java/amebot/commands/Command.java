@@ -1,8 +1,8 @@
-package commands;
+package amebot.commands;
 
-import common.Messages;
-import enumerations.Keyword;
-import tasks.Task;
+import amebot.common.Messages;
+import amebot.enumerations.Keyword;
+import amebot.tasks.Task;
 
 import java.util.ArrayList;
 
@@ -49,14 +49,18 @@ public class Command {
                     break;
                 case EVENT:
                     description = parsedCommand.get(1);
-                    String fromDateTime = parsedCommand.get(2);
-                    String toDateTime = parsedCommand.get(3);
-                    new AddCommand(isSelected, description, fromDateTime, toDateTime);
+                    if (parsedCommand.size() == 4) {
+                        String fromDateTime = parsedCommand.get(2);
+                        String toDateTime = parsedCommand.get(3);
+                        new AddCommand(isSelected, description, fromDateTime, toDateTime);
+                    }
                     break;
                 case DEADLINE:
                     description = parsedCommand.get(1);
-                    String dueTime = parsedCommand.get(2);
-                    new AddCommand(isSelected, description, dueTime);
+                    if (parsedCommand.size() == 3) {
+                        String dueTime = parsedCommand.get(2);
+                        new AddCommand(isSelected, description, dueTime);
+                    }
                     break;
                 case SELECT:
                     // Fallthrough

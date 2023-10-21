@@ -1,6 +1,6 @@
-package commands;
+package amebot.commands;
 
-import common.Messages;
+import amebot.common.Messages;
 
 public class DeleteCommand extends Command {
     public DeleteCommand(int index) {

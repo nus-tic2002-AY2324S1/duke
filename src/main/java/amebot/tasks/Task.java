@@ -1,4 +1,4 @@
-package tasks;
+package amebot.tasks;
 
 public abstract class Task {
     protected String type;
