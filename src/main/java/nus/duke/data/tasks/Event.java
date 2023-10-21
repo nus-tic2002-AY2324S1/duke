@@ -14,6 +14,14 @@ public class Event extends Task {
         this.to = to;
     }
 
+    public String getFrom() {
+        return from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
     @Override
     public String encode() {
         return String.format("E | %s | %s | %s-%s", encodeIsDone(), description, from, to);

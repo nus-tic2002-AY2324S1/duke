@@ -12,6 +12,10 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    public String getBy() {
+        return by;
+    }
+
     @Override
     public String encode() {
         return String.format("D | %s | %s | %s", encodeIsDone(), description, by);
