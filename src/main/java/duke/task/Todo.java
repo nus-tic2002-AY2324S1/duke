@@ -6,7 +6,6 @@ public class Todo extends Task {
     public Todo(String description)  {
         super(description);
         setAbbreviation();
-        increaseNumberOfTaskByOne();
     }
 
     public Todo(boolean isDone, String description){

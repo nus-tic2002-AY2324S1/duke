@@ -50,7 +50,6 @@ public abstract class IndexBaseCommand extends Command {
         messages.add(tasks.get(index-1).toString());
         if(indexCommand instanceof DeleteCommand){
             tasks.remove(index-1);
-            Task.decreaseNumberOfTaskByOne();
         }
         ui.showResponseToUser(messages);
     }

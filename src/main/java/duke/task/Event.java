@@ -7,7 +7,6 @@ public class Event extends Task {
     public Event(String description) {
         super(description);
         setAbbreviation();
-        increaseNumberOfTaskByOne();
     }
     public Event(boolean isDone, String description, String from, String to){
         super(description);

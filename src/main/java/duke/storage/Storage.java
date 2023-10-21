@@ -1,5 +1,6 @@
 package duke.storage;
 
+import duke.common.Message;
 import duke.exception.FileStorageException;
 import duke.task.TaskList;
 import duke.task.Task;
@@ -19,7 +20,9 @@ public class Storage {
     public ArrayList<Task> load() throws FileStorageException {
         try {
             if(!Files.exists(path)){
-                throw new FileStorageException("File does not exists error: " + path);
+                String message = Message.concat(Message.MESSAGE_FILE_NOT_EXIST,
+                        Message.MESSAGE_MAKE_NEW_INSTANCE);
+                throw new FileStorageException(message);
             }
             return TaskDecoder.decodeTask(Files.readAllLines(path));
         } catch (IOException e) {

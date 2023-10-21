@@ -6,8 +6,7 @@ public class Deadline extends Task {
 
     public Deadline(String description)  {
         super(description);
-        setAbbreviation();        
-        increaseNumberOfTaskByOne();
+        setAbbreviation();
     }
 
     public Deadline(boolean isDone, String description, String by){

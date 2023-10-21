@@ -9,7 +9,7 @@ public class TaskList {
         tasks = listOfTasks;
     }
 
-    public int size(){
+    public static int size(){
         return tasks.size();
     }
 

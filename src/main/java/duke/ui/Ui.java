@@ -79,7 +79,7 @@ public class Ui {
     public void showResponseToUser(ArrayList<String> message){
         showLine();
         for (String m : message) {
-            out.println(prefixRespString() + m.replace("\n",NEWLINE));
+            out.println(prefixRespString() + m.replace("\n",NEWLINE + prefixRespString()));
         }
         showLine();
     }
@@ -87,7 +87,7 @@ public class Ui {
     public void showResponseToUser(String... message){
         showLine();
         for (String m : message) {
-            out.println(prefixRespString() + m.replace("\n",NEWLINE));
+            out.println(prefixRespString() + m.replace("\n",NEWLINE + prefixRespString()));
         }
         showLine();
     }

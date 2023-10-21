@@ -23,7 +23,7 @@ public class Duke {
         try {
             tasks = new TaskList(storage.load());
         } catch (FileStorageException e) {
-            // ui.showLoadingError(e.getMessage());
+            ui.showLoadingError(e.getMessage());
             tasks = new TaskList();
         }
     }
@@ -63,7 +63,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("src/main/java/duke/data/duke1.txt").run();
+        new Duke("src/main/java/duke/data/duke.txt").run();
     }
 
 

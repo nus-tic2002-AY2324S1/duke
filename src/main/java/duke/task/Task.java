@@ -8,26 +8,19 @@ public abstract class Task {
     protected String dukeDescription;
     protected  boolean isDone;
     protected char abbreviation;
-    private static int numberOfTasks = 0;
 
     public Task(String description){
         this.dukeDescription = description;
         isDone = false;
     }
 
-    protected static void increaseNumberOfTaskByOne() {
-        numberOfTasks++;
-    }
-
-    public static void decreaseNumberOfTaskByOne(){
-        numberOfTasks--;
-    }
 
     public Task(){
         isDone = false;
     }
 
     protected static String responseNumberOfTasks() {
+        int numberOfTasks = TaskList.size() + 1;
         return String.format("Now you have %d %s in the list.",numberOfTasks,numberOfTasks>1?"tasks":"task");
     }
 
@@ -71,5 +64,8 @@ public abstract class Task {
     }
     public void setDone(boolean done){
         isDone = done;
+    }
+    public void setDukeDescription(String description){
+        dukeDescription = description;
     }
 }
