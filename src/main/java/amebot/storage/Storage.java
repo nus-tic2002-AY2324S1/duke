@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * saving of tasks to the file.
  */
 public class Storage {
-    private static final String filePathname = "./src/main/java/amebot/data/amebot.txt";
+    private static final String filePathname = "./src/main/java/data/amebot.txt";
     private File tasksFile = new File(filePathname);
 
     /**
