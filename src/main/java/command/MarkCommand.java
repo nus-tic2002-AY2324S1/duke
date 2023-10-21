@@ -15,6 +15,9 @@ public class MarkCommand extends CrabyMessage implements CommandInterface {
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
+        assert input != null;
+        assert tasks != null;
+
         if (tasks.isEmpty()) {
             printEmptyListForAllCommand(input);
             return;
@@ -22,6 +25,7 @@ public class MarkCommand extends CrabyMessage implements CommandInterface {
         input = input.toLowerCase().trim();
         try {
             int tmp = input.indexOf("k");
+            assert tmp != -1;
             String checkMark = input.substring(tmp + 1).trim();
             int checkNum = (Integer.parseInt(checkMark)) - 1;
             if (checkNum >= tasks.size() || checkNum < 0) {

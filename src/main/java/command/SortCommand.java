@@ -10,6 +10,9 @@ public class SortCommand extends CrabyMessage implements CommandInterface {
 
     @Override
     public void handleCommand(String input, List<Task> tasks) {
+        assert input != null;
+        assert tasks != null;
+
         if (tasks.isEmpty()) {
             printEmptyListForAllCommand(input);
             return;

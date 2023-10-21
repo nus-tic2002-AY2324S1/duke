@@ -25,6 +25,7 @@ public class AddTaskCommand extends CrabyMessage implements CommandInterface {
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
+        assert input != null;
         input = input.trim();
         if (input.contains("/by")) {
             String[] formatDeadline = input.split("/by");

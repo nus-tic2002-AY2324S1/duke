@@ -15,11 +15,14 @@ public class DeleteCommand extends CrabyMessage implements CommandInterface {
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
+        assert input != null;
+        assert tasks != null;
         if (tasks.isEmpty()) {
             printEmptyListForAllCommand(input);
             return;
         }
         input = input.toLowerCase().trim();
+        assert input.length() >= 6;
         String checkDelete = input.substring(6).trim();
         if (checkDelete.equals("all")) {
             printDeleteAllMessage();

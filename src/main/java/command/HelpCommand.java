@@ -17,6 +17,9 @@ public class HelpCommand extends HelpMessage implements CommandInterface {
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
+        assert input != null;
+        assert tasks != null;
+
         printHelpMessage();
     }
 }

@@ -33,6 +33,9 @@ public class UndoCommand extends CrabyMessage implements CommandInterface {
 
     @Override
     public void handleCommand(String input, List<Task> tasks) {
+        assert input != null;
+        assert tasks != null;
+
         if (stackTaskList.isEmpty() || stackInput.isEmpty()) {
             printUndoError();
             return;

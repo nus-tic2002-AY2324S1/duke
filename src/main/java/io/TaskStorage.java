@@ -27,13 +27,16 @@ public class TaskStorage {
         file = new File(DIRECTORY_PATH + "/" + fileName);
         this.filePath = DIRECTORY_PATH + "/" + fileName;
     }
+
     /**
      * This method will save the tasks into the file.
+     *
      * @param tasks the list of tasks.
      */
     public void save(List<Task> tasks) {
         if (!folder.exists()) {
-            folder.mkdir();
+            boolean mkdir = folder.mkdir();
+            assert mkdir;
         }
         try {
             StringBuilder content = new StringBuilder();
@@ -41,6 +44,7 @@ public class TaskStorage {
                 content.append(task.toStorageString());
                 content.append(System.lineSeparator());
             }
+            assert file.exists();
             BufferedWriter writer = new BufferedWriter(new FileWriter(this.filePath));
             writer.write(content.toString());
             writer.close();
@@ -49,8 +53,10 @@ public class TaskStorage {
             e.printStackTrace();
         }
     }
+
     /**
      * This method will load the tasks from the file.
+     *
      * @return the list of tasks.
      */
     public List<Task> load() {
@@ -60,7 +66,8 @@ public class TaskStorage {
                 BufferedReader reader = new BufferedReader(new FileReader(filePath));
                 loadLine(reader, tasks);
                 reader.close();
-            } catch (IOException e) {;
+            } catch (IOException e) {
+                ;
                 e.printStackTrace();
             }
         } else {
@@ -78,11 +85,13 @@ public class TaskStorage {
     }
 
     private static void addByType(List<Task> tasks, String line, boolean isDone) {
+        assert line.length() > 9;
         char checkType = line.charAt(1);
         String content = line.substring(9);
         switch (checkType) {
             case 'D':
                 String[] formatDeadline = content.split(" \\(by:");
+                assert formatDeadline.length > 0;
                 String tmp = formatDeadline[1].substring(0, formatDeadline[1].length() - 1);
                 Deadline deadline = new Deadline(formatDeadline[0], tmp);
                 deadline.setIsDone(isDone);
@@ -90,6 +99,7 @@ public class TaskStorage {
                 break;
             case 'E':
                 String[] formatEvent = content.split(" \\(from:");
+                assert formatEvent.length > 0;
                 String time = formatEvent[1];
                 time = time.substring(0, time.length() - 1);
                 Event event;
@@ -108,8 +118,16 @@ public class TaskStorage {
                 tasks.add(todo);
         }
     }
+
+    /**
+     * This method will check the task is done or not.
+     *
+     * @param line the line of the file.
+     * @return true if the task is done, false otherwise.
+     */
     private static boolean isDone(String line) {
         boolean isDone = false;
+        assert line.length() > 5;
         if (line.charAt(5) == '✓') {
             isDone = true;
         }

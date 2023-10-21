@@ -16,11 +16,15 @@ public class FindCommand extends CrabyMessage implements CommandInterface {
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
+        assert input != null;
+        assert tasks != null;
+
         if (tasks.isEmpty()) {
             printEmptyListForAllCommand(input);
             return;
         }
         String[] inputArr = input.split(" ");
+        assert inputArr.length > 1;
         String keyword = inputArr[1].trim().toLowerCase();
         List<String> listFound = new ArrayList<>();
         for (Task task : tasks) {
