@@ -7,7 +7,6 @@ import duke.ui.Ui;
 
 
 public class Parser {
-
     public Parser(){}
     public static Command parse(UserKeywordArgument keywordArgument) {
         try {
@@ -19,7 +18,6 @@ public class Parser {
             return null;
         }
     }
-
     public static Command parse(String keyword){
         try {
             KeywordTypes key = KeywordTypes.valueOf(keyword.toUpperCase());
@@ -30,12 +28,10 @@ public class Parser {
             return null;
         }
     }
-
     public static String parseKeyword(String userInput){
         String[] inputs = userInput.split(" ");
         return inputs[0];
     }
-
     public static String parseArgument(String userInput){
         String[] inputs = userInput.split(" ");
 
@@ -46,8 +42,15 @@ public class Parser {
         }
         return sb.toString().trim();
     }
-
     public static boolean parseStringToBoolean(String string){
         return string.equals("1");
+    }
+    public static boolean isInteger(String s){
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

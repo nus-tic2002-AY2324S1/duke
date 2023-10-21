@@ -15,10 +15,6 @@ public class Todo extends Task {
     }
 
     public void execute()throws InvalidArgumentException {
-        if(dukeDescription.isEmpty()){
-            String message = "OOPS!!! The \"description\" of a \"todo\" cannot be empty :-(";
-            throw new InvalidArgumentException(message);
-        }
         response();
     }
 

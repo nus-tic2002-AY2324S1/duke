@@ -1,7 +1,6 @@
 package duke.command;
 
 public class MarkCommand extends IndexBaseCommand {
-    public static final String COMMAND_WORD = "MARK";
     protected boolean isMark;
 
     public MarkCommand(){
@@ -11,6 +10,16 @@ public class MarkCommand extends IndexBaseCommand {
     @Override
     public String message() {
         return "Nice! I've marked this task as done:";
+    }
+
+    @Override
+    public String getCommandWord() {
+        return "mark";
+    }
+
+    @Override
+    public String getExampleUsage() {
+        return "mark 1";
     }
 
     public boolean isMark(){

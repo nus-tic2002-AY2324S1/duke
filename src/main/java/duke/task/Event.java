@@ -17,7 +17,7 @@ public class Event extends Task {
     }
 
     public void execute() throws InvalidArgumentException {
-        pullEventDateTime(dukeDescription);
+//        pullEventDateTime(dukeDescription);
         response();
     }
 

@@ -24,4 +24,6 @@ event project meeting
 event project meeting /from Aug 6th 2pm
 delete a
 delete 7
+list abc
+bye a1
 bye

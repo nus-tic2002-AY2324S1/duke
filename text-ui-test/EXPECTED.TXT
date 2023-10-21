@@ -1,4 +1,8 @@
     ================================================================================
+     Oops, there's no duke.txt in the data folder.
+     No worries, I'll just make a new one for you right now.
+    ================================================================================
+    ================================================================================
       _                    
      | |    _   _ _  __     __
      | |   | | | | | __  \/ __ \
@@ -92,34 +96,64 @@
      OOPS!!! I'm sorry, but I'm not sure what you're asking :-(
     ================================================================================
     ================================================================================
-     The "index number" of the "mark" must be an integer :-(
+     The "index number" of the "mark" must be an integer :(
+     Example of usage:
+     mark 1
     ================================================================================
     ================================================================================
-     The "index number" of the "mark" must be an integer :-(
+     OOPS!!! The "description" of a "mark" cannot be empty :(
+     Example of usage:
+     mark 1
     ================================================================================
     ================================================================================
-     OOPS!!! The "description" of a "todo" cannot be empty :-(
+     OOPS!!! The "description" of a "todo" cannot be empty :(
+     Example of usage:
+     todo borrow book
     ================================================================================
     ================================================================================
-     OOPS!!! The "description" of a "deadline" cannot be empty :-(
+     OOPS!!! The "description" of a "deadline" cannot be empty :(
+     Example of usage:
+     deadline return book /by Sunday
     ================================================================================
     ================================================================================
-     OOPS!!! The "/by" of a "deadline" cannot be empty :-(
+     OOPS!!! The "/by" of a "deadline" cannot be empty :(
+     Example of usage:
+     deadline return book /by Sunday
     ================================================================================
     ================================================================================
-     OOPS!!! The "description" of a "event" cannot be empty :-(
+     OOPS!!! The "description" of a "event" cannot be empty :(
+     Example of usage:
+     event project meeting /from Jun 6th 2pm /to Jun 9th 4pm
     ================================================================================
     ================================================================================
-     OOPS!!! The "/from" of a "event" cannot be empty :-(
+     OOPS!!! The "/from & /to" of a "event" cannot be empty :(
+     Example of usage:
+     event project meeting /from Jun 6th 2pm /to Jun 9th 4pm
     ================================================================================
     ================================================================================
-     OOPS!!! The "/to" of a "event" cannot be empty :-(
+     OOPS!!! The "/from & /to" of a "event" cannot be empty :(
+     Example of usage:
+     event project meeting /from Jun 6th 2pm /to Jun 9th 4pm
     ================================================================================
     ================================================================================
-     The "index number" of the "delete" must be an integer :-(
+     The "index number" of the "delete" must be an integer :(
+     Example of usage:
+     delete 1
     ================================================================================
     ================================================================================
-     The "index number" of the "delete" is out of range :-(
+     The "index number" of the "delete" is out of range :(
+     Example of usage:
+     delete 1
+    ================================================================================
+    ================================================================================
+     OOPS!!! If you want to list all the tasks, please leave the description blank.
+     Example of usage:
+     list
+    ================================================================================
+    ================================================================================
+     OOPS!!! If you want to say goodbye, please leave the description blank.
+     Example of usage:
+     bye
     ================================================================================
     ================================================================================
      Bye. Hope to see you again soon!
