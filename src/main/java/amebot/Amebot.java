@@ -6,7 +6,6 @@ import amebot.parser.Parser;
 import amebot.commands.Command;
 import amebot.commands.ExitCommand;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -14,35 +13,31 @@ import java.util.ArrayList;
  */
 public class Amebot {
     private UserInterface userInterface;
-    private Storage storage;
 
     /**
      * The main method of the Duke application.
      *
-     * @param args The command line arguments.
-     * @throws IOException If there is an error loading the file.
+     * @param args The arguments passed in.
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Amebot amebot = new Amebot();
         amebot.launch();
     }
 
     /**
      * Launches the Duke application.
-     *
-     * @throws IOException If there is an error loading the file.
      */
-    public void launch() throws IOException {
+    public void launch() {
         this.userInterface = new UserInterface();
         this.userInterface.printWelcome();
 
         Command command = new Command();
-        this.storage = new Storage();
-        this.storage.loadTasks(command);
+        Storage storage = new Storage();
+        storage.loadTasks(command);
 
         render(command);
 
-        this.storage.saveTasks();
+        storage.saveTasks();
     }
 
     /**

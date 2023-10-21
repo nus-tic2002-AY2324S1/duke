@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * saving of tasks to the file.
  */
 public class Storage {
-    private static final String filePathname = "./amebot/data/amebot.txt";
+    private static final String filePathname = "./src/main/java/amebot/data/amebot.txt";
     private File tasksFile = new File(filePathname);
 
     /**
@@ -26,9 +26,8 @@ public class Storage {
      * If the file does not exist, a new file will be created.
      *
      * @param command Command object that executes the load task command.
-     * @throws IOException If an I/O error occurs.
      */
-    public void loadTasks(Command command) throws IOException {
+    public void loadTasks(Command command) {
         if (findTasksFile()) {
             ArrayList<String> tasksList = getTasksFileData();
             storeTasks(command, tasksList);
@@ -39,12 +38,14 @@ public class Storage {
 
     /**
      * Creates a new file if the file does not exist.
-     *
-     * @throws IOException If an I/O error occurs.
      */
-    public void createNewTasksFile() throws IOException {
-        if (tasksFile.createNewFile()) {
-            System.out.println(Messages.FILE_CREATED);
+    public void createNewTasksFile() {
+        try {
+            if (tasksFile.createNewFile()) {
+                System.out.println(Messages.FILE_CREATED);
+            }
+        } catch (IOException err) {
+            System.out.println((Messages.ERROR_MESSAGE));
         }
     }
 
