@@ -24,9 +24,9 @@ public class TaskList {
         try {
             Task task = getItem(taskIdx);
             task.setIsDone(true);
-            Joshua.joshuaSays("Marked task: " + task);
+            JoshuaUi.joshuaSays("Marked task: " + task);
         } catch (IndexOutOfBoundsException e) {
-            Joshua.joshuaSays("Enter a number from the task list.");
+            JoshuaUi.joshuaSays("Enter a number from the task list.");
         }
     }
 
@@ -35,9 +35,9 @@ public class TaskList {
         try {
             Task task = getItem(taskIdx);
             task.setIsDone(false);
-            Joshua.joshuaSays("Unmarked task: " + task);
+            JoshuaUi.joshuaSays("Unmarked task: " + task);
         } catch (IndexOutOfBoundsException e) {
-            Joshua.joshuaSays("Enter a number from the task list.");
+            JoshuaUi.joshuaSays("Enter a number from the task list.");
         }
     }
 

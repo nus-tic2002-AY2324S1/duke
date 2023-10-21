@@ -1,10 +1,10 @@
-// Joshua.java handles chatbot-related logic
+// JoshuaUi.java handles chatbot-related logic
 
 package wargames;
 
-public class Joshua {
+public class JoshuaUi {
 
-    public Joshua(){
+    public JoshuaUi(){
 
     }
 
