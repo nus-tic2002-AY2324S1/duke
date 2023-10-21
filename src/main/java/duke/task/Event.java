@@ -1,14 +1,23 @@
-public class Event extends Task{
+package duke.task;
 
+import duke.exception.InvalidArgumentException;
+public class Event extends Task {
     protected String from;
     protected String to;
-
-    public Event(){}
-    public Event(String description) throws MissingDescriptionException{
+    public Event(String description) {
+        super(description);
         setAbbreviation();
+    }
+    public Event(boolean isDone, String description, String from, String to){
+        super(description);
+        setAbbreviation();
+        setDone(isDone);
+        this.from = from;
+        this.to = to;
+    }
 
-        pullEventDateTime(description);
-        increaseNumberOfTaskByOne();
+    public void execute() throws InvalidArgumentException {
+//        pullEventDateTime(dukeDescription);
         response();
     }
 
@@ -16,7 +25,7 @@ public class Event extends Task{
         abbreviation = 'E';
     }
 
-    public void pullEventDateTime(String input) throws MissingDescriptionException{
+    public void pullEventDateTime(String input) throws InvalidArgumentException {
         final String FROM = "/from";
         final String TO = "/to";
         int lenOfFrom = FROM.length();
@@ -29,13 +38,13 @@ public class Event extends Task{
 
         if(input.isEmpty()){
             String message = "OOPS!!! The \"description\" of a \"event\" cannot be empty :-(";
-            throw new MissingDescriptionException(message);
+            throw new InvalidArgumentException(message);
         }else if(posOfFrom == -1){
             String message = "OOPS!!! The \"/from\" of a \"event\" cannot be empty :-(";
-            throw new MissingDescriptionException(message);
+            throw new InvalidArgumentException(message);
         }else if(posOfTo == -1){
             String message = "OOPS!!! The \"/to\" of a \"event\" cannot be empty :-(";
-            throw new MissingDescriptionException(message);
+            throw new InvalidArgumentException(message);
         }
 
         from = input.substring(posOfFrom + lenOfFrom, posOfTo).trim();
@@ -46,5 +55,11 @@ public class Event extends Task{
     @Override
     public String toString(){
         return String.format("[%c][%s] %s (from: %s to: %s)",abbreviation,getStatusIcon(),dukeDescription, from, to);
+    }
+    public String getFrom() {
+        return from;
+    }
+    public String getTo() {
+        return to;
     }
 }
