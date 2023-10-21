@@ -2,7 +2,7 @@ package duke;
 
 import duke.command.ExitCommand;
 import duke.data.UserKeywordArgument;
-import duke.exception.MissingDescriptionException;
+import duke.exception.InvalidArgumentException;
 import duke.ui.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
@@ -56,7 +56,7 @@ public class Duke {
         try {
             command.execute(tasks, ui, storage, keywordArgument);
             storage.save(tasks);
-        } catch (MissingDescriptionException e) {
+        } catch (InvalidArgumentException e) {
             ui.showResponseToUser(e.getMessage());
         }
 

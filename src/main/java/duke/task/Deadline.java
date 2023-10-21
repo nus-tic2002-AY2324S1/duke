@@ -1,6 +1,6 @@
 package duke.task;
 
-import duke.exception.MissingDescriptionException;
+import duke.exception.InvalidArgumentException;
 public class Deadline extends Task {
     protected String by;
 
@@ -16,7 +16,7 @@ public class Deadline extends Task {
         this.by = by;
     }
 
-    public void execute()throws MissingDescriptionException{
+    public void execute()throws InvalidArgumentException {
         pullDeadlineDate(dukeDescription);
         response();
     }
@@ -25,7 +25,7 @@ public class Deadline extends Task {
         abbreviation = 'D';
     }
 
-    public  void pullDeadlineDate (String input) throws MissingDescriptionException {
+    public  void pullDeadlineDate (String input) throws InvalidArgumentException {
         final String BY = "/by";
         int len = BY.length();
         int pos = -1;
@@ -34,10 +34,10 @@ public class Deadline extends Task {
 
         if(input.isEmpty()){
             String message = "OOPS!!! The \"description\" of a \"deadline\" cannot be empty :-(";
-            throw new MissingDescriptionException(message);
+            throw new InvalidArgumentException(message);
         } else if(pos == -1){
             String message = "OOPS!!! The \"/by\" of a \"deadline\" cannot be empty :-(";
-            throw new MissingDescriptionException(message);
+            throw new InvalidArgumentException(message);
         }
 
         by = input.substring(pos + len).trim();

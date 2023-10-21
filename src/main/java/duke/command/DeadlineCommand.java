@@ -1,7 +1,7 @@
 package duke.command;
 
 import duke.data.UserKeywordArgument;
-import duke.exception.MissingDescriptionException;
+import duke.exception.InvalidArgumentException;
 import duke.storage.Storage;
 import duke.task.Deadline;
 import duke.task.TaskList;
@@ -11,7 +11,7 @@ public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "DEADLINE";
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
-            throws MissingDescriptionException {
+            throws InvalidArgumentException {
         Deadline deadline = new Deadline(keywordArgument.getArguments());
         deadline.execute();
         tasks.add(deadline);

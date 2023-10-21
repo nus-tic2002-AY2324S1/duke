@@ -1,6 +1,6 @@
 package duke.task;
 
-import duke.exception.MissingDescriptionException;
+import duke.exception.InvalidArgumentException;
 
 public class Todo extends Task {
     public Todo(String description)  {
@@ -14,10 +14,10 @@ public class Todo extends Task {
         setDone(isDone);
     }
 
-    public void execute()throws MissingDescriptionException{
+    public void execute()throws InvalidArgumentException {
         if(dukeDescription.isEmpty()){
             String message = "OOPS!!! The \"description\" of a \"todo\" cannot be empty :-(";
-            throw new MissingDescriptionException(message);
+            throw new InvalidArgumentException(message);
         }
         response();
     }

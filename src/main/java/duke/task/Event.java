@@ -1,6 +1,6 @@
 package duke.task;
 
-import duke.exception.MissingDescriptionException;
+import duke.exception.InvalidArgumentException;
 public class Event extends Task {
     protected String from;
     protected String to;
@@ -16,7 +16,7 @@ public class Event extends Task {
         this.to = to;
     }
 
-    public void execute() throws MissingDescriptionException{
+    public void execute() throws InvalidArgumentException {
         pullEventDateTime(dukeDescription);
         response();
     }
@@ -25,7 +25,7 @@ public class Event extends Task {
         abbreviation = 'E';
     }
 
-    public void pullEventDateTime(String input) throws MissingDescriptionException {
+    public void pullEventDateTime(String input) throws InvalidArgumentException {
         final String FROM = "/from";
         final String TO = "/to";
         int lenOfFrom = FROM.length();
@@ -38,13 +38,13 @@ public class Event extends Task {
 
         if(input.isEmpty()){
             String message = "OOPS!!! The \"description\" of a \"event\" cannot be empty :-(";
-            throw new MissingDescriptionException(message);
+            throw new InvalidArgumentException(message);
         }else if(posOfFrom == -1){
             String message = "OOPS!!! The \"/from\" of a \"event\" cannot be empty :-(";
-            throw new MissingDescriptionException(message);
+            throw new InvalidArgumentException(message);
         }else if(posOfTo == -1){
             String message = "OOPS!!! The \"/to\" of a \"event\" cannot be empty :-(";
-            throw new MissingDescriptionException(message);
+            throw new InvalidArgumentException(message);
         }
 
         from = input.substring(posOfFrom + lenOfFrom, posOfTo).trim();
