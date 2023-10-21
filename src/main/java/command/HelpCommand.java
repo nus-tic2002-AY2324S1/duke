@@ -1,6 +1,5 @@
 package command;
 
-import io.CrabyMessage;
 import io.HelpMessage;
 import task.Task;
 
@@ -15,11 +14,9 @@ public class HelpCommand extends HelpMessage implements CommandInterface {
      *
      * @param input the input from the user.
      * @param tasks the list of tasks.
-     * @return 0.
      */
     @Override
-    public short handleCommand(String input, List<Task> tasks) {
+    public void handleCommand(String input, List<Task> tasks) {
         printHelpMessage();
-        return 0;
     }
 }

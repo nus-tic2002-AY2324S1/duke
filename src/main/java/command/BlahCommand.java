@@ -11,11 +11,9 @@ public class BlahCommand extends CrabyMessage implements CommandInterface{
      *
      * @param input the input from the user.
      * @param tasks the list of tasks.
-     * @return
      */
     @Override
-    public short handleCommand(String input, List<Task> tasks) {
+    public void handleCommand(String input, List<Task> tasks) {
         printBlahMessage();
-        return 0;
     }
 }

@@ -14,7 +14,7 @@ list
 undo
 test sort by type /by 2024-01-01 1200
 test sort by date /from 2024-01-01 1300
-test sort by date: this one will on top if system correct /from today
+test sort by date: this one will on top if system correct /from 2024-04-01 1600
 sort t
 sort d
 sort tr
@@ -34,10 +34,10 @@ undo
 list
 delete all
 list
-todo learn front end /from today /to 2023-12-31
-TIC3901 - Presentation 1 /by today
+todo learn front end /from 04-12-2023 1300 /to 2023-12-31 2300
+TIC3901 - Presentation 1 /by 2024-01-01 1200
 TIC3901 - Report 2 /by 28/01/2024
-Video call with Grandpa /by Sun
+Video call with Grandpa /by 2024-03-01 1200
 Deadline TIC3901 - Report 3 /by 2024/03/17
 TIC3901 - Presentation 2 /by 14-04-2024
 mark 2
@@ -49,7 +49,7 @@ list
 unmark            3
 Oder FoodPanda for dinner every weekday
 Task to check sort by date - on top after use sort date/d /by 1993/07/03 0530
-TIC2002 quiz /by Monday
+TIC2002 quiz /by 2023-11-04 2200
 MARK 12
 
 Event to check undo /from 2/10/2019 0900 /to 2/10/2019 1130

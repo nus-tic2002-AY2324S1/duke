@@ -8,5 +8,5 @@ import java.util.List;
  * It has a method to handle the command.
  */
 public interface CommandInterface {
-    short handleCommand(String input, List<Task> tasks);
+    void handleCommand(String input, List<Task> tasks);
 }

@@ -32,10 +32,10 @@ public class UndoCommand extends CrabyMessage implements CommandInterface {
     }
 
     @Override
-    public short handleCommand(String input, List<Task> tasks) {
+    public void handleCommand(String input, List<Task> tasks) {
         if (stackTaskList.isEmpty() || stackInput.isEmpty()) {
             printUndoError();
-            return 0;
+            return;
         }
         String command = stackInput.pop().toLowerCase();
         String customizeMessage = "add - ";
@@ -47,7 +47,6 @@ public class UndoCommand extends CrabyMessage implements CommandInterface {
         tasks.clear();
         tasks.addAll(prevTask);
         printUndoMessage(command, customizeMessage);
-        return 0;
     }
 }
 

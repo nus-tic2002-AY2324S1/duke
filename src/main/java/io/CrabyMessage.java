@@ -212,6 +212,5 @@ public class CrabyMessage {
         System.out.println(SPACES + "╰┈➤Please try again with another command ☘");
         System.out.println(LINE);
     }
-
 }
 

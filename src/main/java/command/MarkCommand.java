@@ -12,13 +12,12 @@ public class MarkCommand extends CrabyMessage implements CommandInterface {
      *
      * @param input the input from the user.
      * @param tasks the list of tasks.
-     * @return
      */
     @Override
-    public short handleCommand(String input, List<Task> tasks) {
+    public void handleCommand(String input, List<Task> tasks) {
         if (tasks.isEmpty()) {
             printEmptyListForAllCommand(input);
-            return 0;
+            return;
         }
         input = input.toLowerCase().trim();
         try {
@@ -27,14 +26,12 @@ public class MarkCommand extends CrabyMessage implements CommandInterface {
             int checkNum = (Integer.parseInt(checkMark)) - 1;
             if (checkNum >= tasks.size() || checkNum < 0) {
                 printNumOutOfTask(tasks.size());
-                return 0;
+                return;
             }
             tasks.get(checkNum).setIsDone(true);
             printMarkMessage(tasks.get(checkNum).toString());
-            return 0;
         } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
             printMarkNumFormatExceptionMessage();
         }
-        return 0;
     }
 }

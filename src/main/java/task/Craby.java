@@ -40,6 +40,7 @@ public class Craby extends CrabyMessage {
         printHello();
         Scanner scanner = new Scanner(System.in);
         String name = checkName(scanner);
+        assert name != null;
         printFirstMessage(name);
         taskStorage = new TaskStorage( name.toLowerCase() + ".txt");
         List<Task> tasks = taskStorage.load();
@@ -102,7 +103,8 @@ public class Craby extends CrabyMessage {
                     handleBlahCommand(input, tasks);
                     break;
                 case BYE:
-                    exit = handleByeCommand(input, tasks);
+                    handleByeCommand(input, tasks);
+                    exit =true;
                     break;
                 case MARK:
                     handleMarkCommand(input, tasks);

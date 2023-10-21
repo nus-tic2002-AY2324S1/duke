@@ -1,7 +1,10 @@
 package command;
 
 import io.CrabyMessage;
-import task.*;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.Todo;
 
 import java.time.format.DateTimeParseException;
 import java.util.List;
@@ -21,21 +24,20 @@ public class AddTaskCommand extends CrabyMessage implements CommandInterface {
      * @param tasks The list of tasks.
      */
     @Override
-    public short handleCommand(String input, List<Task> tasks) {
+    public void handleCommand(String input, List<Task> tasks) {
         input = input.trim();
         if (input.contains("/by")) {
             String[] formatDeadline = input.split("/by");
             handleBy(input, tasks, formatDeadline);
-            return 0;
+            return;
         }
         if (input.contains("/from")) {
             String[] formatEvent = input.split("/from");
             handleFrom(input, tasks, formatEvent);
-            return 0;
+            return;
         }
         tasks.add(new Todo(input));
         printAddMessage(input, tasks);
-        return 0;
     }
 
     private static void handleFrom(String input, List<Task> tasks, String[] formatEvent) {

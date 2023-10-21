@@ -20,6 +20,6 @@ class UnmarkCommandTest {
         markCommand.handleCommand("mark 1", taskList);
         UnmarkCommand unmarkCommand = new UnmarkCommand();
         unmarkCommand.handleCommand("unmark 1", taskList);
-        assertEquals(false, todo.getIsDone() );
+        assertFalse(todo.getIsDone());
     }
 }
