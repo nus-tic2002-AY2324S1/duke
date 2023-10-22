@@ -2,10 +2,7 @@ package Duke.FileHandler;
 
 import Duke.DukeExceptions.InvalidNumberFormatException;
 import Duke.Parser.Parser;
-import Duke.Task.DeadlineTask;
-import Duke.Task.EventTask;
-import Duke.Task.Task;
-import Duke.Task.TodoTask;
+import Duke.Task.*;
 import Duke.UserInterface.UserInterface;
 
 import java.io.BufferedReader;
@@ -16,9 +13,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
+/**
+ * Represents a `FileRead` class for reading and loading saved tasks from Duke's data file.
+ */
 public class FileRead extends FileHandler {
 
-
+    /**
+     * Reads and loads saved tasks from a file into the task list.
+     *
+     * @param taskList The list of tasks to load the saved tasks into.
+     */
     public void getSavedTask(List<Task> taskList) {
         try {
             // Create a FileReader to open the file

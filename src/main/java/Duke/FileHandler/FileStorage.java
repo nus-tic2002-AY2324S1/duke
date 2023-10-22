@@ -7,7 +7,16 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
+/**
+ * Represents a `FileStorage` class for storing the user's task list as a Duke's data file.
+ */
 public class FileStorage extends FileHandler {
+
+    /**
+     * Stores the list of tasks in a file.
+     *
+     * @param taskList The list of tasks to be stored in the file.
+     */
     public void fileStorage(List<Task> taskList) {
 
         File outputFile = new File(filePath);

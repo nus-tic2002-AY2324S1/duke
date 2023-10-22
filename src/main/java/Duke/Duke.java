@@ -21,7 +21,7 @@ public class Duke {
     private final UserInterface userInterface;
     private final FileRead fileRead;
 
-    // Initializes user interface and message display class, File Read, File Storage and tasklist.
+    // Initializes user interface and message display class, File Read, File Storage, and task list.
     public Duke() {
         userInterface = new UserInterface();
         fileStorage = new FileStorage();
@@ -36,7 +36,7 @@ public class Duke {
     }
 
     /**
-     * Starts the Duke application, greet the user and handle user input.
+     * Starts the Duke application, greets the user, and handles user input.
      */
     public void start() {
 
@@ -57,6 +57,3 @@ public class Duke {
         userInterface.messageDisplay.Goodbye();
     }
 }
-
-
-

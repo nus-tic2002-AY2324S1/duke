@@ -9,13 +9,32 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * The `Parser` class is responsible for parsing user input and converting it into
+ * commands and parameters for execution.
+ */
 public class Parser {
 
     public static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    /**
+     * Parses a date and time string and returns a `LocalDateTime` object.
+     *
+     * @param dateTimeString The date and time string to be parsed.
+     * @return A `LocalDateTime` object representing the parsed date and time.
+     * @throws DateTimeParseException if the string cannot be parsed as a valid date and time.
+     */
     public static LocalDateTime parseDateTime(String dateTimeString) throws DateTimeParseException {
         return LocalDateTime.parse(dateTimeString.replace("T", " "), dateTimeFormatter);
     }
 
+    /**
+     * Parses an integer from a string and returns it.
+     *
+     * @param integer The string containing the integer.
+     * @return The parsed integer.
+     * @throws InvalidNumberFormatException if the string is not a valid integer.
+     */
     public static Integer parseInteger(String integer) throws InvalidNumberFormatException {
         try {
             return Integer.parseInt(integer);
@@ -25,7 +44,7 @@ public class Parser {
     }
 
     /**
-     * Parse the user's input into commands and parameters for execution
+     * Parse the user's input into commands and parameters for execution.
      *
      * @param userInput The user's input string of commands.
      */
@@ -43,10 +62,10 @@ public class Parser {
     }
 
     /**
-     * Execute the user's command
+     * Execute the user's command.
      *
-     * @param command   The parsed user command
-     * @param userInput The user's remaining string of commands excluding command string.
+     * @param command   The parsed user command.
+     * @param userInput The user's remaining string of commands excluding the command string.
      */
     private void executeCommand(String command, String userInput) throws DukeException {
         String arguments = userInput.substring(command.length()).trim();
@@ -74,16 +93,16 @@ public class Parser {
     }
 
     /**
-     * Execute the user's command
+     * Execute the user's "list" command.
      */
     private void executeListCommand() {
         new ListCommand().execute();
     }
 
     /**
-     * Execute the to-do task command
+     * Execute the "todo" task command.
      *
-     * @param taskName Duke.Task.Task name of the to-do task
+     * @param taskName The name of the todo task.
      */
     private void executeTodoCommand(String taskName) throws DukeException {
         if (taskName.isEmpty()) {
@@ -93,9 +112,9 @@ public class Parser {
     }
 
     /**
-     * Execute the deadline task command
+     * Execute the "deadline" task command.
      *
-     * @param arguments User's input string after deadline task command
+     * @param arguments The user's input string after the deadline task command.
      */
     private void executeDeadlineCommand(String arguments) throws DukeException {
         // Check for empty arguments
@@ -131,9 +150,9 @@ public class Parser {
     }
 
     /**
-     * Execute the event task command
+     * Execute the "event" task command.
      *
-     * @param arguments User's input string after event task command
+     * @param arguments The user's input string after the event task command.
      */
     private void executeEventCommand(String arguments) throws DukeException {
         // Check for empty arguments
@@ -171,9 +190,9 @@ public class Parser {
     }
 
     /**
-     * Execute mark, unmark, delete commands that modify a task's status
+     * Execute "mark," "unmark," and "delete" commands that modify a task's status.
      *
-     * @param userInput User's input string after mark, unmark, delete command
+     * @param userInput User's input string after a mark, unmark, or delete command.
      */
     public void modifyTask(String userInput) {
         try {
@@ -212,9 +231,9 @@ public class Parser {
     }
 
     /**
-     * Parse item index from mark, unmark, delete commands that modify a task's status
+     * Extract the item index from mark, unmark, delete commands that modify a task's status.
      *
-     * @param userInput User's input string
+     * @param userInput User's input string.
      */
     private int extractItemIndex(String userInput) throws InvalidNumberFormatException {
         try {

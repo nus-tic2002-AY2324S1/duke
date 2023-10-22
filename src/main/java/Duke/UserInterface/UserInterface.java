@@ -1,10 +1,12 @@
 package Duke.UserInterface;
 
 import Duke.Task.Task;
-
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Represents the user interface for the Duke application.
+ */
 public class UserInterface {
 
     public UserInterface.UserInput userInput;
@@ -15,6 +17,9 @@ public class UserInterface {
         messageDisplay = new UserInterface.MessageDisplay();
     }
 
+    /**
+     * Represents the user input part of the user interface.
+     */
     public static class UserInput {
         private final Scanner scanner;
 
@@ -22,15 +27,26 @@ public class UserInterface {
             scanner = new Scanner(System.in);
         }
 
+        /**
+         * Get user input from the console.
+         *
+         * @return The user's input.
+         */
         public String getUserInput() {
             return scanner.nextLine().trim().toLowerCase();
         }
 
+        /**
+         * Close the scanner when done.
+         */
         public void closeScanner() {
             scanner.close();
         }
     }
 
+    /**
+     * Represents the message display part of the user interface.
+     */
     public static class MessageDisplay {
         public static final String LINE_BREAK = "****************************************";
 
@@ -44,12 +60,20 @@ public class UserInterface {
                         "╱╱╱╱╱╱╱┃┃\n" +
                         "╱╱╱╱╱╱╱╰╯\n";
 
+        /**
+         * Print a message with a line break.
+         *
+         * @param line The message to print.
+         */
         public static void print(String line) {
             System.out.printf("%s\n%s\n", line, LINE_BREAK);
         }
 
         /**
          * Displays a message when a task is added.
+         *
+         * @param userInputList The list of user tasks.
+         * @param itemNumber    The index of the added task.
          */
         public static void addedMessage(List<Task> userInputList, int itemNumber) {
             int totalTasks = Task.getTotalTasks();
@@ -77,7 +101,7 @@ public class UserInterface {
         /**
          * Displays a message when a task is marked as completed.
          *
-         * @param userInputList The array of user tasks.
+         * @param userInputList The list of user tasks.
          * @param itemNumber    The index of the completed task.
          */
         public static void completeMessage(List<Task> userInputList, int itemNumber) {
@@ -87,7 +111,7 @@ public class UserInterface {
         /**
          * Displays a message when a task is unmarked.
          *
-         * @param userInputList The array of user tasks.
+         * @param userInputList The list of user tasks.
          * @param itemNumber    The index of the unmarked task.
          */
         public static void unCompleteMessage(List<Task> userInputList, int itemNumber) {
@@ -97,7 +121,7 @@ public class UserInterface {
         /**
          * Displays a message when a task is deleted.
          *
-         * @param task The deleted tasks.
+         * @param task The deleted task.
          */
         public static void deleteMessage(Task task) {
             System.out.printf("Noted. I've removed this task:\n   %s\nNow you have %s tasks in the list.\n%s\n", task.toString(), Task.getTotalTasks(), LINE_BREAK);
