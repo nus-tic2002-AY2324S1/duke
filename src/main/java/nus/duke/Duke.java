@@ -1,6 +1,6 @@
 package nus.duke;
 
-import nus.duke.commands.Command;
+import nus.duke.commands.AbstractCommand;
 import nus.duke.data.TaskList;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.UnknownCommandDukeException;
@@ -8,11 +8,21 @@ import nus.duke.parser.Parser;
 import nus.duke.storage.Storage;
 import nus.duke.ui.Ui;
 
+/**
+ * The Duke task manager is a command-line application for managing tasks.
+ * It allows users to add, delete, and view tasks, as well as mark tasks as done.
+ * Duke stores tasks in a file for persistence and offers a text-based user interface.
+ */
 public class Duke {
     private final Storage storage;
     private final TaskList tasks;
     private final Ui ui;
 
+    /**
+     * Instantiates a new Duke instance with the specified storage file path.
+     *
+     * @param filePath The file path where Duke stores and loads tasks.
+     */
     public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -26,11 +36,19 @@ public class Duke {
         this.tasks = tasks;
     }
 
+    /**
+     * The entry point of the Duke application.
+     *
+     * @param args The input arguments passed to the main method.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke("./data/duke.txt");
         duke.run();
     }
 
+    /**
+     * Run the Duke task manager, allowing the user to interact with it via the command-line interface.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -38,7 +56,7 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
-                Command c = Parser.parse(fullCommand);
+                AbstractCommand c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {

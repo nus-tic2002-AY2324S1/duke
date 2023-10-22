@@ -20,14 +20,25 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The `StorageTest` class contains JUnit tests for the `Storage` class, focusing on the loading and saving of tasks.
+ */
 class StorageTest {
     private File tempFile;
 
+    /**
+     * Sets up the test environment by creating a temporary storage file.
+     *
+     * @throws IOException if there is an I/O error.
+     */
     @BeforeEach
     void setUp() throws IOException {
         tempFile = File.createTempFile("storage", ".txt");
     }
 
+    /**
+     * Tears down the test environment by deleting the temporary storage file.
+     */
     @AfterEach
     void tearDown() {
         if (tempFile != null && tempFile.exists()) {
@@ -36,6 +47,11 @@ class StorageTest {
         }
     }
 
+    /**
+     * Tests loading a file when the file does not exist. Expects an empty task list to be returned.
+     *
+     * @throws StorageOperationException if there is an issue with storage operations.
+     */
     @Test
     void load_fileNotExists() throws StorageOperationException {
         String absolutePath = tempFile.getAbsolutePath();
@@ -44,6 +60,12 @@ class StorageTest {
         assertEquals(0, new Storage(absolutePath).load().size());
     }
 
+    /**
+     * Tests loading an existing file with an invalid deadline task format. Expects a StorageOperationException to be
+     * thrown.
+     *
+     * @throws IOException if there is an I/O error.
+     */
     @Test
     void load_existingFile_invalidDeadline() throws IOException {
         String content = "D | 0 | return book";
@@ -55,6 +77,12 @@ class StorageTest {
         assertThrows(StorageOperationException.class, () -> new Storage(tempFile.getAbsolutePath()).load());
     }
 
+    /**
+     * Tests loading an existing file with an invalid event task format. Expects a StorageOperationException to be
+     * thrown.
+     *
+     * @throws IOException if there is an I/O error.
+     */
     @Test
     void load_existingFile_invalidEvent() throws IOException {
         String content = "E | 0 | project meeting";
@@ -70,6 +98,12 @@ class StorageTest {
         assertThrows(StorageOperationException.class, () -> new Storage(tempFile.getAbsolutePath()).load());
     }
 
+    /**
+     * Tests loading an existing file with an invalid todo task format. Expects a StorageOperationException to be
+     * thrown.
+     *
+     * @throws IOException if there is an I/O error.
+     */
     @Test
     void load_existingFile_invalidTodo() throws IOException {
         String content = "T | read book";
@@ -77,6 +111,12 @@ class StorageTest {
         assertThrows(StorageOperationException.class, () -> new Storage(tempFile.getAbsolutePath()).load());
     }
 
+    /**
+     * Tests loading an existing file with valid task content. Expects the loaded task list to match the expected tasks.
+     *
+     * @throws IOException               if there is an I/O error.
+     * @throws StorageOperationException if there is an issue with storage operations.
+     */
     @Test
     void load_existingFile_validContent() throws IOException, StorageOperationException {
         Collection<String> lines = Arrays.asList(
@@ -116,6 +156,12 @@ class StorageTest {
         assertEquals("join sports club", task4.getDescription());
     }
 
+    /**
+     * Tests saving tasks to a file. Expects the saved content to match the expected lines.
+     *
+     * @throws StorageOperationException if there is an issue with storage operations.
+     * @throws IOException               if there is an I/O error.
+     */
     @Test
     void save() throws StorageOperationException, IOException {
         Collection<String> expectedLines = Arrays.asList(

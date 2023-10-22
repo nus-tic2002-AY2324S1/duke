@@ -10,7 +10,17 @@ import nus.duke.ui.Ui;
 
 import java.time.LocalDateTime;
 
-public class DeadlineCommand extends TaskCommand {
+/**
+ * The `DeadlineCommand` class represents a command to add a new deadline task.
+ * When executed, it parses user input to create a deadline task with a description
+ * and a specific due date/time, then adds the task to the task list.
+ */
+public class DeadlineCommand extends AbstractTaskCommand {
+    /**
+     * Instantiates a new `DeadlineCommand` with the provided arguments.
+     *
+     * @param args The user input containing the description and the due date/time of the deadline task.
+     */
     public DeadlineCommand(String args) {
         super(args);
     }
