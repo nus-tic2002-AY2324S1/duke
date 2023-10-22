@@ -1,4 +1,7 @@
-event study math /from 13/10/2023 /to 15/10/2023
+event study math /from 2023-11-01 /to 2023-12-01
 todo pay school fee
 todo return books
-deadline pay credit bill /by 13/10/2023
+deadline pay credit bill /by 2023-12-01
+list
+mark 1
+delete 2

@@ -3,6 +3,8 @@ import tim.tasks.Task;
 import tim.tasks.ToDo;
 import tim.tasks.Event;
 import tim.tasks.Deadline;
+
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class ListManager {
@@ -21,13 +23,20 @@ public class ListManager {
             inputTokenized = inputEntry.split("/by ",2);
             by = inputTokenized[1];
             String description = inputTokenized[0];
+            if(description.isBlank()){
+                throw new BlankInputException("missing description");
+            }
             list.add(new Deadline(description,by));
             System.out.println("Gotcha! Added this task:");
             Messenger.printSingle(list.size(),list);
             System.out.println("now there is: "+ list.size() + " item(s)");
             Messenger.printDashes();
-        } catch (Exception e) {
+        } catch (ArrayIndexOutOfBoundsException AIO) {
             System.err.println("you've missed out [/by] !");
+        } catch(DateTimeParseException DTPE ){
+            System.err.println("that's not a valid date, please enter << /by yyyy-mm-dd >>");
+        } catch (BlankInputException e) {
+            System.err.println(e.getLocalizedMessage());
         }
 
     }
