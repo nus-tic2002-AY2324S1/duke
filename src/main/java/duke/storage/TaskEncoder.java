@@ -25,7 +25,7 @@ public class TaskEncoder {
         switch(abbreviation){
         case 'D':
             Deadline deadline = (Deadline)task;
-            taskStringBuilder.append("|").append(deadline.getBy());
+            taskStringBuilder.append("|").append(deadline.getByDateTime("dd/mm/yyyy hhmm"));
             break;
         case 'E':
             Event event = (Event)task;

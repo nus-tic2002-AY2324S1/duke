@@ -3,7 +3,11 @@ package duke.parser;
 import duke.command.Command;
 import duke.common.Message;
 import duke.data.UserKeywordArgument;
+import duke.exception.InvalidArgumentException;
 import duke.ui.Ui;
+
+import java.time.LocalDateTime;
+import java.util.regex.Matcher;
 
 
 public class Parser {
@@ -52,5 +56,13 @@ public class Parser {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+    public static LocalDateTime dateTime(Matcher dateMatcher, Matcher timeMatcher) {
+        final int year = Integer.parseInt(dateMatcher.group("year"));
+        final int month = Integer.parseInt(dateMatcher.group("month"));
+        final int day = Integer.parseInt(dateMatcher.group("day"));
+        final int hour = Integer.parseInt(timeMatcher.group("hour"));
+        final int minute = Integer.parseInt(timeMatcher.group("minute"));
+        return LocalDateTime.of(year,month,day,hour,minute);
     }
 }

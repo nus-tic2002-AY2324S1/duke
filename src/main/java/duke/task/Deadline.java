@@ -1,16 +1,18 @@
 package duke.task;
 
 import duke.exception.InvalidArgumentException;
-public class Deadline extends Task {
-    protected String by;
 
-    public Deadline(boolean isDone, String description, String by){
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Deadline extends Task {
+    protected LocalDateTime byDateTime;
+    public Deadline(boolean isDone, String description, LocalDateTime byDateTime){
         super(description);
         setAbbreviation();
         setDone(isDone);
-        this.by = by;
+        this.byDateTime = byDateTime;
     }
-
     public void execute()throws InvalidArgumentException {
         response();
     }
@@ -21,9 +23,13 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return String.format("[%c][%s] %s (by: %s)",abbreviation,getStatusIcon(),dukeDescription, by);
+        return String.format("[%c][%s] %s (by: %s)",abbreviation,getStatusIcon(),dukeDescription, getByDateTime());
     }
-    public String getBy() {
-        return by;
+    public String getByDateTime() {
+        return byDateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm"));
     }
+    public String getByDateTime(String pattern) {
+        return byDateTime.format(DateTimeFormatter.ofPattern(pattern));
+    }
+
 }

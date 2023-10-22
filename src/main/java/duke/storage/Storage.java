@@ -30,12 +30,12 @@ public class Storage {
         }
     }
 
-    public void save(TaskList tasks) {
+    public void save(TaskList tasks) throws FileStorageException{
         try {
             ArrayList<String> listOfTasks = TaskEncoder.encodeTask(tasks);
             Files.write(path, listOfTasks);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new FileStorageException("Error writing storage file: " + path);
         }
 
     }

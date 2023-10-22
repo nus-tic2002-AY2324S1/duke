@@ -56,7 +56,7 @@ public class Duke {
         try {
             command.execute(tasks, ui, storage, keywordArgument);
             storage.save(tasks);
-        } catch (InvalidArgumentException e) {
+        } catch (FileStorageException | InvalidArgumentException e) {
             ui.showResponseToUser(e.getMessage());
         }
 
