@@ -1,2 +1,6 @@
 D|0|return book|22/02/2023 0202
 D|0|return book|02/12/2023 1212
+E|0|project meeting|22/10/2023 0330|22/10/2023 0400
+D|0|return book|22/10/2023 0342
+E|0|project closing|22/10/2023 0346|22/10/2023 0440
+E|0|project meeting|22/10/2023 1551|22/10/2023 1640

@@ -25,11 +25,12 @@ public class TaskEncoder {
         switch(abbreviation){
         case 'D':
             Deadline deadline = (Deadline)task;
-            taskStringBuilder.append("|").append(deadline.getByDateTime("dd/mm/yyyy hhmm"));
+            taskStringBuilder.append("|").append(deadline.getByDateTime(Task.DATE_TIME_FORMAT_TOFILE));
             break;
         case 'E':
             Event event = (Event)task;
-            taskStringBuilder.append("|").append(event.getFrom()).append("|").append(event.getTo());
+            taskStringBuilder.append("|").append(event.getFromDateTime(Task.DATE_TIME_FORMAT_TOFILE))
+                    .append("|").append(event.getToDateTime(Task.DATE_TIME_FORMAT_TOFILE));
             break;
         default:
         }

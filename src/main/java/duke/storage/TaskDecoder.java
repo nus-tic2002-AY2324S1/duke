@@ -47,7 +47,12 @@ public class TaskDecoder {
             if(tokens.length != 5){
                 break;
             }
-            return new Event(Parser.parseStringToBoolean(tokens[1]),tokens[2],tokens[3],tokens[4]);
+            LocalDateTime fromDateTime = getDateTime(tokens[3]);
+            LocalDateTime toDateTime = getDateTime(tokens[4]);
+            if(fromDateTime == null || toDateTime == null){
+                break;
+            }
+            return new Event(Parser.parseStringToBoolean(tokens[1]),tokens[2],fromDateTime,toDateTime);
         default:
         }
         String message = Message.concat(Message.MESSAGE_FILE_FORMAT_INVALID,

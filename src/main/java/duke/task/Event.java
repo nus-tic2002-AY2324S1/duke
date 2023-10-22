@@ -1,23 +1,26 @@
 package duke.task;
 
 import duke.exception.InvalidArgumentException;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    protected String from;
-    protected String to;
+    protected LocalDateTime fromDateTime;
+    protected LocalDateTime toDateTime;
     public Event(String description) {
         super(description);
         setAbbreviation();
     }
-    public Event(boolean isDone, String description, String from, String to){
+    public Event(boolean isDone, String description, LocalDateTime from, LocalDateTime to){
         super(description);
         setAbbreviation();
         setDone(isDone);
-        this.from = from;
-        this.to = to;
+        this.fromDateTime = from;
+        this.toDateTime = to;
     }
 
     public void execute() throws InvalidArgumentException {
-//        pullEventDateTime(dukeDescription);
         response();
     }
 
@@ -25,41 +28,23 @@ public class Event extends Task {
         abbreviation = 'E';
     }
 
-    public void pullEventDateTime(String input) throws InvalidArgumentException {
-        final String FROM = "/from";
-        final String TO = "/to";
-        int lenOfFrom = FROM.length();
-        int lenOfTo = TO.length();
-        int posOfFrom = -1;
-        int posOfTo = -1;
-
-        posOfFrom = input.indexOf(FROM);
-        posOfTo = input.indexOf(TO);
-
-        if(input.isEmpty()){
-            String message = "OOPS!!! The \"description\" of a \"event\" cannot be empty :-(";
-            throw new InvalidArgumentException(message);
-        }else if(posOfFrom == -1){
-            String message = "OOPS!!! The \"/from\" of a \"event\" cannot be empty :-(";
-            throw new InvalidArgumentException(message);
-        }else if(posOfTo == -1){
-            String message = "OOPS!!! The \"/to\" of a \"event\" cannot be empty :-(";
-            throw new InvalidArgumentException(message);
-        }
-
-        from = input.substring(posOfFrom + lenOfFrom, posOfTo).trim();
-        to = input.substring(posOfTo + lenOfTo).trim();
-        dukeDescription = input.substring(0,posOfFrom).trim();
-    }
 
     @Override
     public String toString(){
-        return String.format("[%c][%s] %s (from: %s to: %s)",abbreviation,getStatusIcon(),dukeDescription, from, to);
+        return String.format("[%c][%s] %s (from: %s to: %s)",abbreviation,getStatusIcon(),dukeDescription, getFromDateTime(), getToDateTime());
     }
-    public String getFrom() {
-        return from;
+    public String getFromDateTime() {
+        return fromDateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_DISPLAY));
     }
-    public String getTo() {
-        return to;
+    public String getToDateTime() {
+        return toDateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_DISPLAY));
+    }
+
+    public String getFromDateTime(String pattern) {
+        return fromDateTime.format(DateTimeFormatter.ofPattern(pattern));
+    }
+
+    public String getToDateTime(String pattern) {
+        return toDateTime.format(DateTimeFormatter.ofPattern(pattern));
     }
 }

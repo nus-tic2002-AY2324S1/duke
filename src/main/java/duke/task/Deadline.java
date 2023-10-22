@@ -26,7 +26,7 @@ public class Deadline extends Task {
         return String.format("[%c][%s] %s (by: %s)",abbreviation,getStatusIcon(),dukeDescription, getByDateTime());
     }
     public String getByDateTime() {
-        return byDateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm"));
+        return byDateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_DISPLAY));
     }
     public String getByDateTime(String pattern) {
         return byDateTime.format(DateTimeFormatter.ofPattern(pattern));

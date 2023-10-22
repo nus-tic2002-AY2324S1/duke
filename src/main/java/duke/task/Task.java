@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import duke.ui.Ui;
 
 public abstract class Task {
+    public static final String DATE_TIME_FORMAT_DISPLAY = "MMM dd yyyy HH:mm";
+    public static final String DATE_TIME_FORMAT_TOFILE = "dd/MM/yyyy HHmm";
     protected String dukeDescription;
     protected  boolean isDone;
     protected char abbreviation;
