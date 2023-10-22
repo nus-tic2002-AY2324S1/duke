@@ -1,27 +1,29 @@
 package Duke.Task;
 
-public class EventTask extends Task {
-    private final String taskFrom;
-    private final String taskTo;
+import java.time.LocalDateTime;
 
-    public EventTask(String taskName, String taskFrom, String taskTo) {
+public class EventTask extends Task {
+    private final LocalDateTime taskFrom;
+    private final LocalDateTime taskTo;
+
+    public EventTask(String taskName, LocalDateTime taskFrom, LocalDateTime taskTo) {
         super('E', taskName);
         this.taskFrom = taskFrom;
         this.taskTo = taskTo;
     }
 
-    public EventTask(String taskName, boolean completed, String taskFrom, String taskTo) {
+    public EventTask(String taskName, boolean completed, LocalDateTime taskFrom, LocalDateTime taskTo) {
         super('E', taskName, completed);
         this.taskFrom = taskFrom;
         this.taskTo = taskTo;
     }
 
-    public String getTaskFrom() {
-        return taskFrom;
+    private String getTaskFrom() {
+        return dateTimetoString(taskFrom);
     }
 
-    public String getTaskTo() {
-        return taskTo;
+    private String getTaskTo() {
+        return dateTimetoString(taskTo);
     }
 
     @Override
@@ -31,6 +33,6 @@ public class EventTask extends Task {
 
     @Override
     public String toFile() {
-        return super.toFile() + " | " + getTaskFrom() + " | " + getTaskTo();
+        return super.toFile() + " | " + taskFrom.toString() + " | " + taskTo.toString();
     }
 }

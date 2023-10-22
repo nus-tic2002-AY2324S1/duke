@@ -1,10 +1,12 @@
 package Duke;
 
-import Duke.FileHandler.*;
+import Duke.FileHandler.FileRead;
+import Duke.FileHandler.FileStorage;
 import Duke.Parser.Parser;
-import Duke.UserInterface.UserInterface;
-import java.util.ArrayList;
 import Duke.Task.Task;
+import Duke.UserInterface.UserInterface;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,7 +50,7 @@ public class Duke {
             if (userInput.equals("bye")) {
                 break;
             } else {
-                parser.parse(userInput);
+                parser.parseUserInput(userInput);
             }
         }
         userInterface.userInput.closeScanner();

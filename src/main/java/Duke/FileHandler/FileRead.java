@@ -1,15 +1,23 @@
 package Duke.FileHandler;
 
-import Duke.Task.*;
+import Duke.DukeExceptions.InvalidNumberFormatException;
+import Duke.Parser.Parser;
+import Duke.Task.DeadlineTask;
+import Duke.Task.EventTask;
+import Duke.Task.Task;
+import Duke.Task.TodoTask;
 import Duke.UserInterface.UserInterface;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class FileRead extends FileHandler {
+
 
     public void getSavedTask(List<Task> taskList) {
         try {
@@ -29,14 +37,16 @@ public class FileRead extends FileHandler {
                 String taskType = input[0];
                 boolean isCompleted;
                 try {
-                    int temp = Integer.parseInt(input[1]);
+                    int temp = Parser.parseInteger(input[1]);
                     isCompleted = temp == 1;
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException | InvalidNumberFormatException e) {
                     throw new FileCorruptedException();
                 }
 
                 String taskName = input[2];
                 Task task;
+
+
                 switch (taskType) {
                     case "T":
                         if (input.length != 3) {
@@ -48,13 +58,24 @@ public class FileRead extends FileHandler {
                         if (input.length != 4) {
                             throw new FileCorruptedException();
                         }
-                        task = new DeadlineTask(taskName, isCompleted, input[3]);
+                        try {
+                            LocalDateTime taskDueDate = Parser.parseDateTime(input[3]);
+                            task = new DeadlineTask(taskName, isCompleted, taskDueDate);
+                        } catch (DateTimeParseException e) {
+                            throw new FileCorruptedException();
+                        }
                         break;
                     case "E":
                         if (input.length != 5) {
                             throw new FileCorruptedException();
                         }
-                        task = new EventTask(taskName, isCompleted, input[3], input[4]);
+                        try {
+                            LocalDateTime taskFrom = Parser.parseDateTime(input[3]);
+                            LocalDateTime taskTo = Parser.parseDateTime(input[4]);
+                            task = new EventTask(taskName, isCompleted, taskFrom, taskTo);
+                        } catch (DateTimeParseException e) {
+                            throw new FileCorruptedException();
+                        }
                         break;
                     default:
                         throw new FileCorruptedException();

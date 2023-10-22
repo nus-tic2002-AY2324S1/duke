@@ -1,5 +1,1 @@
-T | 0 | gym
-D | 0 | homework | june 6th
-E | 0 | project meeting | saturday 2pm | 4pm
-T | 0 | join sports club
-T | 0 | borrow book
+D | 0 | gym | 2023-10-23T20:00

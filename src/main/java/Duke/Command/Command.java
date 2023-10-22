@@ -3,7 +3,7 @@ package Duke.Command;
 import Duke.Duke;
 import Duke.DukeExceptions.DukeException;
 import Duke.Task.Task;
-import Duke.UserInterface.*;
+import Duke.UserInterface.UserInterface;
 import java.util.List;
 
 abstract class Command {

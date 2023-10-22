@@ -1,5 +1,7 @@
 package Duke.Task;
 
+import java.time.LocalDateTime;
+
 public abstract class Task {
     private static int totalTasks = 0;
     private final String taskName;
@@ -73,6 +75,16 @@ public abstract class Task {
         Character taskType = getTaskType();
         char taskComplete = isCompleted() ? 'X' : ' ';
         return "[" + taskType + "]" + "[" + taskComplete + "] " + taskName;
+    }
+
+    public String dateTimetoString(LocalDateTime dateTime){
+        String dayOfWeek = dateTime.getDayOfWeek().toString().substring(0,3);
+        String day = String.valueOf(dateTime.getDayOfMonth());
+        String dayOfMonth = dateTime.getMonth().toString().substring(0,3);
+        String year = String.valueOf(dateTime.getYear());
+        String hour = String.valueOf(dateTime.getHour());
+        String minutes = String.valueOf(dateTime.getMinute());
+        return dayOfWeek + " " + day + " " + dayOfMonth + " " + year + " " + hour + ":" + minutes;
     }
 
     public String toFile() {

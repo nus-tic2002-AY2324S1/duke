@@ -3,10 +3,12 @@ package Duke.Command;
 import Duke.Task.DeadlineTask;
 import Duke.Task.Task;
 
-public class AddDeadLineCommand extends AddTaskCommand {
-    private final String taskDueDate;
+import java.time.LocalDateTime;
 
-    public AddDeadLineCommand(String taskName, String taskDueDate) {
+public class AddDeadLineCommand extends AddTaskCommand {
+    private final LocalDateTime taskDueDate;
+
+    public AddDeadLineCommand(String taskName, LocalDateTime taskDueDate) {
         super(taskName);
         this.taskDueDate = taskDueDate;
     }

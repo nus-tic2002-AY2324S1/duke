@@ -1,20 +1,22 @@
 package Duke.Task;
 
-public class DeadlineTask extends Task {
-    protected String taskDueDate;
+import java.time.LocalDateTime;
 
-    public DeadlineTask(String taskName, String taskDueDate) {
+public class DeadlineTask extends Task {
+    protected LocalDateTime taskDueDate;
+
+    public DeadlineTask(String taskName, LocalDateTime taskDueDate) {
         super('D', taskName);
         this.taskDueDate = taskDueDate;
     }
 
-    public DeadlineTask(String taskName, boolean completed, String taskDueDate) {
+    public DeadlineTask(String taskName, boolean completed, LocalDateTime taskDueDate) {
         super('D', taskName, completed);
         this.taskDueDate = taskDueDate;
     }
 
-    public String getTaskDueDate() {
-        return taskDueDate;
+    private String getTaskDueDate() {
+        return dateTimetoString(taskDueDate);
     }
 
     @Override
@@ -24,7 +26,7 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toFile() {
-        return super.toFile() + " | " + getTaskDueDate();
+        return super.toFile() + " | " + taskDueDate.toString();
     }
 
 }

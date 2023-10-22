@@ -4,15 +4,10 @@ import Duke.Duke;
 import Duke.Task.Task;
 import Duke.UserInterface.UserInterface;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ListCommand extends Command {
-
-    @Override
-    public void execute() {
-        List<Task> taskList = Duke.taskList;
-        printList(taskList);
-    }
 
     /**
      * Displays the list of user tasks.
@@ -31,5 +26,9 @@ public class ListCommand extends Command {
         System.out.println(UserInterface.MessageDisplay.LINE_BREAK);
     }
 
-
+    @Override
+    public void execute() {
+        List<Task> taskList = Duke.taskList;
+        printList(taskList);
+    }
 }
