@@ -25,7 +25,11 @@ public class Shelf {
                         + Text.newline
         );
     }
-    public static void markTask(String[] msg){
+    public static void markTask (String[] msg) throws DukeException {
+        if(msg.length <= 2){
+            throw new DukeException("mark");
+        }
+
         String check = msg[0];
         int idx = Integer.parseInt(msg[1]) - 1;
         if(idx >= shelf.size()){
