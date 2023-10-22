@@ -1,13 +1,23 @@
 package nus.duke.commands;
 
 import nus.duke.data.TaskList;
-import nus.duke.data.tasks.Task;
+import nus.duke.data.tasks.AbstractTask;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.storage.Storage;
 import nus.duke.ui.Ui;
 
-public class ListCommand extends Command {
+/**
+ * The `ListCommand` class represents a command to list all tasks in the task list.
+ * When executed, this command retrieves all tasks and displays them, including their
+ * respective task numbers.
+ */
+public class ListCommand extends AbstractCommand {
+    /**
+     * Instantiates a new `ListCommand`.
+     *
+     * @param args The user input arguments (should be empty for the list command).
+     */
     public ListCommand(String args) {
         super(args);
     }
@@ -20,7 +30,7 @@ public class ListCommand extends Command {
 
         String[] lines = new String[tasks.size()];
         for (int i = 0; i < tasks.size(); i++) {
-            Task task = tasks.getTask(i);
+            AbstractTask task = tasks.getTask(i);
             lines[i] = String.format("%d.%s", i + 1, task.toString());
         }
         ui.showMessages(lines);

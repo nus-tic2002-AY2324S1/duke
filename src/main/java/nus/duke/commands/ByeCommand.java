@@ -6,7 +6,16 @@ import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.storage.Storage;
 import nus.duke.ui.Ui;
 
-public class ByeCommand extends Command {
+/**
+ * The `ByeCommand` class represents a command for exiting the Duke task manager application.
+ * When executed, this command displays a farewell message and signals the application to exit.
+ */
+public class ByeCommand extends AbstractCommand {
+    /**
+     * Instantiates a new `ByeCommand` with the provided arguments.
+     *
+     * @param args The arguments associated with the bye command (should be empty).
+     */
     public ByeCommand(String args) {
         super(args);
     }
