@@ -31,19 +31,13 @@ public class DeadlineCommand extends Command {
         final String byArgument = byMatcher.group("byArgument");
 
         final Matcher dateMatcher = DATE_ARG_FORMAT.matcher(byArgument);
-//        if(!dateMatcher.matches()){
-//            String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "date", COMMAND_WORD);
-//            throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
-//        }
-        throwExceptionDateIsInvalid(dateMatcher, new DeadlineCommand());
+        throwExceptionDateIsInvalid(dateMatcher, new DeadlineCommand(), "");
 
         final String timeArgument = dateMatcher.group("timeArgument");
 
         final Matcher timeMatcher = TIME_ARG_FORMAT.matcher(timeArgument);
-        if(!timeMatcher.matches()){
-            String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "time", COMMAND_WORD);
-            throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
-        }
+        throwExceptionTimeIsInvalid(timeMatcher, new DeadlineCommand(), "");
+
         LocalDateTime by = Parser.dateTime(dateMatcher, timeMatcher);
 
         Deadline deadline = new Deadline(false,description,by);

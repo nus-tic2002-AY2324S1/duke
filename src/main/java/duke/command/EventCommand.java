@@ -35,28 +35,17 @@ public class EventCommand extends Command {
         final String to = matcher.group("to");
 
         final Matcher fromDateMatcher = DATE_ARG_FORMAT.matcher(from);
-        if(!fromDateMatcher.matches()){
-            String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "date", "'from' in " + COMMAND_WORD);
-            throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
-        }
+        throwExceptionDateIsInvalid(fromDateMatcher, new EventCommand(), "'from' in");
 
         final Matcher toDateMatcher = DATE_ARG_FORMAT.matcher(to);
-        if(!toDateMatcher.matches()){
-            String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "date", "'to' in " + COMMAND_WORD);
-            throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
-        }
+        throwExceptionDateIsInvalid(toDateMatcher, new EventCommand(), "'to' in");
 
         final Matcher fromTimeMatcher = TIME_ARG_FORMAT.matcher(fromDateMatcher.group("timeArgument"));
-        if(!fromTimeMatcher.matches()){
-            String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "time", "'from' in " + COMMAND_WORD);
-            throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
-        }
+        throwExceptionTimeIsInvalid(fromTimeMatcher, new EventCommand(), "'from' in");
 
         final Matcher toTimeMatcher = TIME_ARG_FORMAT.matcher(toDateMatcher.group("timeArgument"));
-        if(!toTimeMatcher.matches()){
-            String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "time", "'to' in " + COMMAND_WORD);
-            throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
-        }
+        throwExceptionTimeIsInvalid(toTimeMatcher, new EventCommand(), "'to' in");
+
         LocalDateTime fromDateTime = Parser.dateTime(fromDateMatcher, fromTimeMatcher);
         LocalDateTime toDateTime = Parser.dateTime(toDateMatcher, toTimeMatcher);
         if(fromDateTime.isAfter(toDateTime)){

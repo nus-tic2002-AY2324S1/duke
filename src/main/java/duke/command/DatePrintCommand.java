@@ -29,7 +29,7 @@ public class DatePrintCommand extends Command{
         throwExceptionArgIsEmpty(keywordArgument, new DatePrintCommand());
 
         final Matcher matcher = ARG_FORMAT.matcher(keywordArgument.getArguments());
-        throwExceptionDateIsInvalid(matcher, new DatePrintCommand());
+        throwExceptionDateIsInvalid(matcher, new DatePrintCommand(), "");
 
         date = Parser.dateTime(matcher);
 

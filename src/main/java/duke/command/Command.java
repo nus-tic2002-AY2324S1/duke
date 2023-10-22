@@ -43,9 +43,29 @@ public abstract class Command {
             throw new InvalidArgumentException(Message.concat(errMsg,command.getExampleUsage()));
         }
     }
-    public void throwExceptionDateIsInvalid(Matcher matcher, Command command) throws InvalidArgumentException {
+    public void throwExceptionDateIsInvalid(Matcher matcher, Command command, String addOn) throws InvalidArgumentException {
+        String commandWord;
+        if(addOn.isEmpty()){
+            commandWord = command.getCommandWord();
+        }else{
+            commandWord = addOn + " " + command.getCommandWord();
+        }
+
         if(!matcher.matches()){
-            String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "date", command.getCommandWord());
+            String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "date", commandWord);
+            throw new InvalidArgumentException(Message.concat(errMsg,command.getExampleUsage()));
+        }
+    }
+    public void throwExceptionTimeIsInvalid(Matcher matcher, Command command, String addOn) throws InvalidArgumentException {
+        String commandWord;
+        if(addOn.isEmpty()){
+            commandWord = command.getCommandWord();
+        }else{
+            commandWord = addOn + " " + command.getCommandWord();
+        }
+
+        if(!matcher.matches()){
+            String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "time", commandWord);
             throw new InvalidArgumentException(Message.concat(errMsg,command.getExampleUsage()));
         }
     }
