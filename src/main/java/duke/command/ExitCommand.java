@@ -8,18 +8,26 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 public class ExitCommand extends Command {
-    public static final String ERROR_MESSAGE = "OOPS!!! If you want to say goodbye, please leave the description blank.";
+    public static final String COMMAND_WORD = "bye";
     public static final String EXAMPLE_USAGE = "Example of usage:\nbye";
     public ExitCommand(){}
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
-        if(!keywordArgument.getArguments().isEmpty()){
-            throw new InvalidArgumentException(Message.concat(ERROR_MESSAGE,EXAMPLE_USAGE));
-        }
+        throwExceptionArgIsNotEmpty(keywordArgument, new ExitCommand());
         setExit();
         ui.showResponseToUser(Message.MESSAGE_GOODBYE);
+    }
+
+    @Override
+    public String getExampleUsage() {
+        return EXAMPLE_USAGE;
+    }
+
+    @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
     }
 
 }

@@ -2,7 +2,6 @@ package duke.command;
 
 import java.util.ArrayList;
 
-import duke.common.Message;
 import duke.data.UserKeywordArgument;
 import duke.exception.InvalidArgumentException;
 import duke.storage.Storage;
@@ -11,16 +10,15 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 public class ListCommand extends Command {
-    public static final String ERROR_MESSAGE = "OOPS!!! If you want to list all the tasks, please leave the description blank.";
+    public static final String COMMAND_WORD = "list";
     public static final String EXAMPLE_USAGE = "Example of usage:\nlist";
+
     public ListCommand(){}
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
-        if(!keywordArgument.getArguments().isEmpty()){
-            throw new InvalidArgumentException(Message.concat(ERROR_MESSAGE,EXAMPLE_USAGE));
-        }
+        throwExceptionArgIsNotEmpty(keywordArgument, new ListCommand());
         if(TaskList.size() == 0){
             String str = "Your list is empty. Let's start adding some items! :)";
             ui.showResponseToUser(str);
@@ -33,5 +31,15 @@ public class ListCommand extends Command {
             }
             ui.showResponseToUser(messages);
         }
+    }
+
+    @Override
+    public String getExampleUsage() {
+        return EXAMPLE_USAGE;
+    }
+
+    @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
     }
 }

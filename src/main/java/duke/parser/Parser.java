@@ -66,4 +66,12 @@ public class Parser {
         final int minute = Integer.parseInt(timeMatcher.group("minute"));
         return LocalDateTime.of(year,month,day,hour,minute);
     }
+    public static LocalDateTime dateTime(Matcher dateMatcher){
+        final int year = Integer.parseInt(dateMatcher.group("year"));
+        final int month = Integer.parseInt(dateMatcher.group("month"));
+        final int day = Integer.parseInt(dateMatcher.group("day"));
+        final int hour = 0;
+        final int minute = 0;
+        return LocalDateTime.of(year,month,day,hour,minute);
+    }
 }

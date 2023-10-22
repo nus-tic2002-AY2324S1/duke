@@ -23,10 +23,10 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return String.format("[%c][%s] %s (by: %s)",abbreviation,getStatusIcon(),dukeDescription, getByDateTime());
+        return String.format("[%c][%s] %s (by: %s)",abbreviation,getStatusIcon(),dukeDescription, getByDateTime(DATE_TIME_FORMAT_DISPLAY));
     }
-    public String getByDateTime() {
-        return byDateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_DISPLAY));
+    public LocalDateTime getByDateTime() {
+        return byDateTime;
     }
     public String getByDateTime(String pattern) {
         return byDateTime.format(DateTimeFormatter.ofPattern(pattern));

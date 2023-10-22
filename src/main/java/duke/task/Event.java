@@ -31,13 +31,14 @@ public class Event extends Task {
 
     @Override
     public String toString(){
-        return String.format("[%c][%s] %s (from: %s to: %s)",abbreviation,getStatusIcon(),dukeDescription, getFromDateTime(), getToDateTime());
+        return String.format("[%c][%s] %s (from: %s to: %s)",abbreviation,getStatusIcon(),dukeDescription,
+                getFromDateTime(DATE_TIME_FORMAT_DISPLAY), getToDateTime(DATE_TIME_FORMAT_DISPLAY));
     }
-    public String getFromDateTime() {
-        return fromDateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_DISPLAY));
+    public LocalDateTime getFromDateTime() {
+        return fromDateTime;
     }
-    public String getToDateTime() {
-        return toDateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_DISPLAY));
+    public LocalDateTime getToDateTime() {
+        return toDateTime;
     }
 
     public String getFromDateTime(String pattern) {

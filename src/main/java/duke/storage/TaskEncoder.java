@@ -20,7 +20,7 @@ public class TaskEncoder {
         StringBuilder taskStringBuilder = new StringBuilder();
         char abbreviation = task.getAbbreviation();
         taskStringBuilder.append(abbreviation);
-        taskStringBuilder.append("|").append(task.getDone());
+        taskStringBuilder.append("|").append(task.getDoneToBinary());
         taskStringBuilder.append("|").append(task.getDukeDescription());
         switch(abbreviation){
         case 'D':

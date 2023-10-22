@@ -2,6 +2,8 @@ package duke.command;
 
 
 public class DeleteCommand extends IndexBaseCommand {
+    public static final String COMMAND_WORD = "delete";
+    public static final String EXAMPLE_USAGE = "Example of usage:\ndelete 1";
     public DeleteCommand(){}
 
     @Override
@@ -11,11 +13,11 @@ public class DeleteCommand extends IndexBaseCommand {
 
     @Override
     public String getCommandWord() {
-        return "delete";
+        return COMMAND_WORD;
     }
 
     @Override
     public String getExampleUsage() {
-        return "delete 1";
+        return EXAMPLE_USAGE;
     }
 }

@@ -1,14 +1,6 @@
 package duke.parser;
 
-import duke.command.Command;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnMarkCommand;
-import duke.command.TodoCommand;
-import duke.command.DeadlineCommand;
-import duke.command.EventCommand;
-import duke.command.DeleteCommand;
+import duke.command.*;
 
 public enum KeywordTypes {
     BYE{
@@ -58,6 +50,12 @@ public enum KeywordTypes {
       public Command createCommand(){
           return new DeleteCommand();
       }
+    },
+    DPRINT{
+        @Override
+        public Command createCommand(){
+            return new DatePrintCommand();
+        }
     };
 
     public abstract Command createCommand();

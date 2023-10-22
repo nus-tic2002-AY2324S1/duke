@@ -21,10 +21,7 @@ public class DeadlineCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
-        if(keywordArgument.getArguments().isEmpty()){
-            String errMsg = String.format(DESC_ERR_MESSAGE, COMMAND_WORD);
-            throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
-        }
+        throwExceptionArgIsEmpty(keywordArgument, new DeadlineCommand());
         final Matcher byMatcher = ARGUMENT_FORMAT.matcher(keywordArgument.getArguments());
         if(!byMatcher.matches()){
             String errMsg = String.format(SUB_ARG_ERR_MESSAGE, "/by", COMMAND_WORD);
@@ -32,12 +29,16 @@ public class DeadlineCommand extends Command {
         }
         final String description = byMatcher.group("description");
         final String byArgument = byMatcher.group("byArgument");
+
         final Matcher dateMatcher = DATE_ARG_FORMAT.matcher(byArgument);
-        if(!dateMatcher.matches()){
-            String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "date", COMMAND_WORD);
-            throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
-        }
+//        if(!dateMatcher.matches()){
+//            String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "date", COMMAND_WORD);
+//            throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
+//        }
+        throwExceptionDateIsInvalid(dateMatcher, new DeadlineCommand());
+
         final String timeArgument = dateMatcher.group("timeArgument");
+
         final Matcher timeMatcher = TIME_ARG_FORMAT.matcher(timeArgument);
         if(!timeMatcher.matches()){
             String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "time", COMMAND_WORD);
@@ -48,5 +49,15 @@ public class DeadlineCommand extends Command {
         Deadline deadline = new Deadline(false,description,by);
         deadline.execute();
         tasks.add(deadline);
+    }
+
+    @Override
+    public String getExampleUsage() {
+        return EXAMPLE_USAGE;
+    }
+
+    @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
     }
 }

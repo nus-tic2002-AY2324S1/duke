@@ -7,13 +7,14 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
-import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class Command {
     public static final String DESC_ERR_MESSAGE = "OOPS!!! The \"description\" of a \"%s\" cannot be empty :(";
+    public static final String DESC_NEED_BLANK_ERR_MESSAGE = "OOPS!!! Please leave the description blank for the \"%s\" command.";
     public static final String DATE_TIME_FORMAT_MESSAGE = "Date and Time format: {dd/mm/yyyy hhmm}";
+    public static final String DATE_FORMAT_MESSAGE = "Date format: {dd/mm/yyyy}";
     public static final String SUB_ARG_ERR_MESSAGE = "OOPS!!! The \"%s\" of a \"%s\" cannot be empty :(";
     public static final String DATE_TIME_ERR_MESSAGE = "OOPS!!! The %s format of a \"%s\" is invalid :(";
     public static final Pattern DATE_ARG_FORMAT = Pattern.compile("(?<day>[0-9]+)/" +
@@ -30,5 +31,25 @@ public abstract class Command {
     public static boolean isExit(){
         return isExit;
     }
+    public void throwExceptionArgIsEmpty(UserKeywordArgument keywordArgument, Command command) throws InvalidArgumentException {
+        if(keywordArgument.getArguments().isEmpty()){
+            String errMsg = String.format(DESC_ERR_MESSAGE, command.getCommandWord());
+            throw new InvalidArgumentException(Message.concat(errMsg,command.getExampleUsage()));
+        }
+    }
+    public void throwExceptionArgIsNotEmpty(UserKeywordArgument keywordArgument, Command command) throws InvalidArgumentException {
+        if(!keywordArgument.getArguments().isEmpty()){
+            String errMsg = String.format(DESC_NEED_BLANK_ERR_MESSAGE, command.getCommandWord());
+            throw new InvalidArgumentException(Message.concat(errMsg,command.getExampleUsage()));
+        }
+    }
+    public void throwExceptionDateIsInvalid(Matcher matcher, Command command) throws InvalidArgumentException {
+        if(!matcher.matches()){
+            String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "date", command.getCommandWord());
+            throw new InvalidArgumentException(Message.concat(errMsg,command.getExampleUsage()));
+        }
+    }
+    public abstract String getExampleUsage();
+    public abstract String getCommandWord();
 
 }

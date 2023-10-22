@@ -1,6 +1,8 @@
 package duke.command;
 
 public class UnMarkCommand extends MarkCommand {
+    public static final String COMMAND_WORD = "unmark";
+    public static final String EXAMPLE_USAGE = "Example of usage:\nunmark 1";
     public UnMarkCommand(){
         isMark = false;
     }
@@ -10,11 +12,11 @@ public class UnMarkCommand extends MarkCommand {
     }
     @Override
     public String getCommandWord() {
-        return "unmark";
+        return COMMAND_WORD;
     }
     @Override
     public String getExampleUsage() {
-        return "unmark 1";
+        return EXAMPLE_USAGE;
     }
 
 }

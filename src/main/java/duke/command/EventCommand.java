@@ -22,37 +22,37 @@ public class EventCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
+        throwExceptionArgIsEmpty(keywordArgument, new EventCommand());
+
         final Matcher matcher = ARGUMENT_FORMAT.matcher(keywordArgument.getArguments());
-        if(keywordArgument.getArguments().isEmpty()){
-            String errMsg = String.format(DESC_ERR_MESSAGE, COMMAND_WORD);
-            throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
-        }
         if(!matcher.matches()){
             String errMsg = String.format(SUB_ARG_ERR_MESSAGE, "/from & /to", COMMAND_WORD);
             throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
         }
+
         final String description = matcher.group("description");
         final String from = matcher.group("from");
         final String to = matcher.group("to");
 
         final Matcher fromDateMatcher = DATE_ARG_FORMAT.matcher(from);
-        final Matcher toDateMatcher = DATE_ARG_FORMAT.matcher(to);
-
         if(!fromDateMatcher.matches()){
             String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "date", "'from' in " + COMMAND_WORD);
             throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
         }
+
+        final Matcher toDateMatcher = DATE_ARG_FORMAT.matcher(to);
         if(!toDateMatcher.matches()){
             String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "date", "'to' in " + COMMAND_WORD);
             throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
         }
-        final Matcher fromTimeMatcher = TIME_ARG_FORMAT.matcher(fromDateMatcher.group("timeArgument"));
-        final Matcher toTimeMatcher = TIME_ARG_FORMAT.matcher(toDateMatcher.group("timeArgument"));
 
+        final Matcher fromTimeMatcher = TIME_ARG_FORMAT.matcher(fromDateMatcher.group("timeArgument"));
         if(!fromTimeMatcher.matches()){
             String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "time", "'from' in " + COMMAND_WORD);
             throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
         }
+
+        final Matcher toTimeMatcher = TIME_ARG_FORMAT.matcher(toDateMatcher.group("timeArgument"));
         if(!toTimeMatcher.matches()){
             String errMsg = String.format(DATE_TIME_ERR_MESSAGE, "time", "'to' in " + COMMAND_WORD);
             throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
@@ -67,5 +67,15 @@ public class EventCommand extends Command {
         Event event = new Event(false,description,fromDateTime,toDateTime);
         event.execute();
         tasks.add(event);
+    }
+
+    @Override
+    public String getExampleUsage() {
+        return EXAMPLE_USAGE;
+    }
+
+    @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
     }
 }
