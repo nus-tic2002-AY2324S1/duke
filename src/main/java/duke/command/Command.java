@@ -12,6 +12,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class Command {
+    public static final String DESC_ERR_MESSAGE = "OOPS!!! The \"description\" of a \"%s\" cannot be empty :(";
+    public static final String DATE_TIME_FORMAT_MESSAGE = "Date and Time format: {dd/mm/yyyy hhmm}";
+    public static final String SUB_ARG_ERR_MESSAGE = "OOPS!!! The \"%s\" of a \"%s\" cannot be empty :(";
     public static final String DATE_TIME_ERR_MESSAGE = "OOPS!!! The %s format of a \"%s\" is invalid :(";
     public static final Pattern DATE_ARG_FORMAT = Pattern.compile("(?<day>[0-9]+)/" +
             "(?<month>[0-9]+)/(?<year>[0-9]{4})\\s(?<timeArgument>\\w.*)");
