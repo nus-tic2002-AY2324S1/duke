@@ -5,3 +5,4 @@ deadline pay credit bill /by 2023-12-01
 list
 mark 1
 delete 2
+bye

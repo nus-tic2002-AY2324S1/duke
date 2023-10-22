@@ -35,8 +35,8 @@ public class ListManager {
             System.err.println("you've missed out [/by] !");
         } catch(DateTimeParseException DTPE ){
             System.err.println("that's not a valid date, please enter << /by yyyy-mm-dd >>");
-        } catch (BlankInputException e) {
-            System.err.println(e.getLocalizedMessage());
+        } catch (BlankInputException BIE) {
+            System.err.println("you've missed out the description");
         }
 
     }
@@ -48,15 +48,24 @@ public class ListManager {
         try {
             inputTokenized =  inputEntry.split("/from ",2);
             String description = inputTokenized[0];
-            to = inputTokenized[1].split("/to ", 2)[1];
-            from = inputTokenized[1].split("/to ", 2)[0];
+            if(description.isBlank()){
+                throw new BlankInputException("missing description");
+            }
+            to = inputTokenized[1].split(" /to ", 2)[1];
+            from = inputTokenized[1].split(" /to ", 2)[0];
             list.add(new Event(description,from,to));
             System.out.println("Gotcha! Added this task:");
             Messenger.printSingle(list.size(),list);
             System.out.println("now there is: "+ list.size() + " item(s)");
             Messenger.printDashes();
-        } catch (Exception e) {
-            System.err.println("you've missed out either the description, [/from] or [/to] !");
+        } catch (ArrayIndexOutOfBoundsException AIO) {
+            System.err.println("you've missed out [/from] or [/to] !");
+        } catch(DateTimeParseException DTPE ){
+            System.err.println("that's not a valid date, please enter << /from yyyy-mm-dd /to yyyy-mm-dd>>");
+        } catch (BlankInputException BIE) {
+            System.err.println("you've missed out the description");
+        } catch (DateException DE){
+            System.err.println("/from date shouldn't be later than /to date");
         }
 
     }
