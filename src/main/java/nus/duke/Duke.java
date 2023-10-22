@@ -26,6 +26,11 @@ public class Duke {
         this.tasks = tasks;
     }
 
+    public static void main(String[] args) {
+        Duke duke = new Duke("./data/duke.txt");
+        duke.run();
+    }
+
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -46,10 +51,5 @@ public class Duke {
                 ui.showLine();
             }
         }
-    }
-
-    public static void main(String[] args) {
-        Duke duke = new Duke("./data/duke.txt");
-        duke.run();
     }
 }

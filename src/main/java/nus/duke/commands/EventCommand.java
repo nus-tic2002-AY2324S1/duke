@@ -4,8 +4,11 @@ import nus.duke.data.TaskList;
 import nus.duke.data.tasks.Event;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
+import nus.duke.parser.Parser;
 import nus.duke.storage.Storage;
 import nus.duke.ui.Ui;
+
+import java.time.LocalDateTime;
 
 public class EventCommand extends TaskCommand {
     public EventCommand(String args) {
@@ -28,7 +31,9 @@ public class EventCommand extends TaskCommand {
             throw new InvalidCommandArgsDukeException("The \"/to {date/time}\" of a event is required.");
         }
 
-        Event event = new Event(array[0], fromToArray[0], fromToArray[1]);
+        LocalDateTime from = Parser.parseUserDateTime(fromToArray[0]);
+        LocalDateTime to = Parser.parseUserRelativeDateTime(from, fromToArray[1]);
+        Event event = new Event(array[0], from, to);
         tasks.addTask(event);
         storage.save(tasks);
         ui.showMessages(getTaskAddedMessages(tasks));
