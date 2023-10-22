@@ -1,10 +1,15 @@
 package nus.duke.data;
 
+import nus.duke.data.tasks.Deadline;
+import nus.duke.data.tasks.Event;
 import nus.duke.data.tasks.Task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class TaskList implements Iterable<Task> {
     private final List<Task> tasks;
@@ -23,6 +28,26 @@ public class TaskList implements Iterable<Task> {
 
     public List<Task> getAllTasks() {
         return tasks;
+    }
+
+    public SortedMap<Integer, Task> getTasks(LocalDate date) {
+        SortedMap<Integer, Task> result = new TreeMap<>();
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            if (task instanceof Deadline) {
+                Deadline deadline = (Deadline) task;
+                if (deadline.getBy().toLocalDate().equals(date)) {
+                    result.put(i, task);
+                }
+            } else if (task instanceof Event) {
+                Event event = (Event) task;
+                if (event.getFrom().toLocalDate().minusDays(1).isBefore(date)
+                        && event.getTo().toLocalDate().plusDays(1).isAfter(date)) {
+                    result.put(i, task);
+                }
+            }
+        }
+        return result;
     }
 
     public Task getTask(int index) {

@@ -1,28 +1,33 @@
 package nus.duke.data.tasks;
 
-public class Deadline extends Task {
-    protected final String by;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Deadline(String description, String by) {
+public class Deadline extends Task {
+    protected final LocalDateTime by;
+
+    public Deadline(String description, LocalDateTime by) {
         this(description, by, false);
     }
 
-    public Deadline(String description, String by, boolean isDone) {
+    public Deadline(String description, LocalDateTime by, boolean isDone) {
         super(description, isDone);
         this.by = by;
     }
 
-    public String getBy() {
+    public LocalDateTime getBy() {
         return by;
     }
 
     @Override
     public String encode() {
-        return String.format("D | %s | %s | %s", encodeIsDone(), description, by);
+        String encodedBy = by.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        return String.format("D | %s | %s | %s", encodeIsDone(), description, encodedBy);
     }
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), by);
+        String formattedBy = formatLocalDateTime(by);
+        return String.format("[D]%s (by: %s)", super.toString(), formattedBy);
     }
 }

@@ -32,12 +32,12 @@ ____________________________________________________________
 ____________________________________________________________
 ____________________________________________________________
  Got it. I've added this task:
-   [D][ ] return book (by: Sunday)
+   [D][ ] return book (by: Sep 01 2019 6:30PM)
  Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
  1.[T][ ] borrow book
- 2.[D][ ] return book (by: Sunday)
+ 2.[D][ ] return book (by: Sep 01 2019 6:30PM)
 ____________________________________________________________
 ____________________________________________________________
  OOPS!!! The description of a event cannot be empty.
@@ -56,13 +56,24 @@ ____________________________________________________________
 ____________________________________________________________
 ____________________________________________________________
  Got it. I've added this task:
-   [E][ ] project meeting (from: Mon 2pm to: 4pm)
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
  Now you have 3 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
  1.[T][ ] borrow book
- 2.[D][ ] return book (by: Sunday)
- 3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+ 2.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 3.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ Now you have 4 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 3.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 4.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
 ____________________________________________________________
 ____________________________________________________________
  OOPS!!! The task number to be marked cannot be empty.
@@ -79,26 +90,50 @@ ____________________________________________________________
 ____________________________________________________________
 ____________________________________________________________
  1.[T][X] borrow book
- 2.[D][ ] return book (by: Sunday)
- 3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+ 2.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 3.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 4.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
 ____________________________________________________________
 ____________________________________________________________
  Nice! I've marked this task as done:
-   [D][X] return book (by: Sunday)
+   [D][X] return book (by: Sep 01 2019 6:30PM)
 ____________________________________________________________
 ____________________________________________________________
  1.[T][X] borrow book
- 2.[D][X] return book (by: Sunday)
- 3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+ 2.[D][X] return book (by: Sep 01 2019 6:30PM)
+ 3.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 4.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
 ____________________________________________________________
 ____________________________________________________________
  Nice! I've marked this task as done:
-   [E][X] project meeting (from: Mon 2pm to: 4pm)
+   [E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
 ____________________________________________________________
 ____________________________________________________________
  1.[T][X] borrow book
- 2.[D][X] return book (by: Sunday)
- 3.[E][X] project meeting (from: Mon 2pm to: 4pm)
+ 2.[D][X] return book (by: Sep 01 2019 6:30PM)
+ 3.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 4.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+____________________________________________________________
+____________________________________________________________
+ 2.[D][X] return book (by: Sep 01 2019 6:30PM)
+ 3.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 4.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+____________________________________________________________
+____________________________________________________________
+ 4.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+____________________________________________________________
+____________________________________________________________
+ 4.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+____________________________________________________________
+____________________________________________________________
+ Nice! I've marked this task as done:
+   [E][X] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+____________________________________________________________
+____________________________________________________________
+ 1.[T][X] borrow book
+ 2.[D][X] return book (by: Sep 01 2019 6:30PM)
+ 3.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 4.[E][X] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
 ____________________________________________________________
 ____________________________________________________________
  OOPS!!! The task number to be unmarked cannot be empty.
@@ -115,26 +150,39 @@ ____________________________________________________________
 ____________________________________________________________
 ____________________________________________________________
  1.[T][ ] borrow book
- 2.[D][X] return book (by: Sunday)
- 3.[E][X] project meeting (from: Mon 2pm to: 4pm)
+ 2.[D][X] return book (by: Sep 01 2019 6:30PM)
+ 3.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 4.[E][X] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
 ____________________________________________________________
 ____________________________________________________________
  OK, I've marked this task as not done yet:
-   [D][ ] return book (by: Sunday)
+   [D][ ] return book (by: Sep 01 2019 6:30PM)
 ____________________________________________________________
 ____________________________________________________________
  1.[T][ ] borrow book
- 2.[D][ ] return book (by: Sunday)
- 3.[E][X] project meeting (from: Mon 2pm to: 4pm)
+ 2.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 3.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 4.[E][X] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
 ____________________________________________________________
 ____________________________________________________________
  OK, I've marked this task as not done yet:
-   [E][ ] project meeting (from: Mon 2pm to: 4pm)
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
 ____________________________________________________________
 ____________________________________________________________
  1.[T][ ] borrow book
- 2.[D][ ] return book (by: Sunday)
- 3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+ 2.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 3.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 4.[E][X] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+____________________________________________________________
+____________________________________________________________
+ OK, I've marked this task as not done yet:
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 3.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 4.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
 ____________________________________________________________
 ____________________________________________________________
  OOPS!!! The task number to be deleted cannot be empty.
@@ -147,16 +195,26 @@ ____________________________________________________________
 ____________________________________________________________
 ____________________________________________________________
  Noted. I've removed this task:
-   [E][ ] project meeting (from: Mon 2pm to: 4pm)
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ Now you have 3 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 3.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+____________________________________________________________
+____________________________________________________________
+ Noted. I've removed this task:
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
  Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
  1.[T][ ] borrow book
- 2.[D][ ] return book (by: Sunday)
+ 2.[D][ ] return book (by: Sep 01 2019 6:30PM)
 ____________________________________________________________
 ____________________________________________________________
  Noted. I've removed this task:
-   [D][ ] return book (by: Sunday)
+   [D][ ] return book (by: Sep 01 2019 6:30PM)
  Now you have 1 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
