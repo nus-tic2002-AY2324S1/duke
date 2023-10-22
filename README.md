@@ -18,3 +18,4 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    Hello! I'm DukeBot.
    What can I do for you?
    ```
+4. Duke is released under an MIT license.
