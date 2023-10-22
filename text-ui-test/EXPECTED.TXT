@@ -14,7 +14,7 @@ ____________________________________________________________
 no saved list
 || event ||
 Gotcha! Added this task:
-1. [E] [ ] study math (from: 13/10/2023  to: 15/10/2023)
+1. [E] [ ] study math (from: 2023-11-01  to: 2023-12-01)
 now there is: 1 item(s)
 
 ____________________________________________________________
@@ -32,7 +32,28 @@ now there is: 3 item(s)
 ____________________________________________________________
 || deadline ||
 Gotcha! Added this task:
-4. [D] [ ] pay credit bill  (by: 13/10/2023)
+4. [D] [ ] pay credit bill  (by: Dec 01 2023)
 now there is: 4 item(s)
+
+____________________________________________________________
+|| list ||
+1. [E] [ ] study math (from: 2023-11-01  to: 2023-12-01)
+2. [T] [ ] pay school fee
+3. [T] [ ] return books
+4. [D] [ ] pay credit bill  (by: Dec 01 2023)
+
+____________________________________________________________
+|| mark ||
+Nice! I've marked this task as done:
+1. [E] [x] study math (from: 2023-11-01  to: 2023-12-01)
+
+____________________________________________________________
+|| delete ||
+Deleting: 2. [T] [ ] pay school fee
+
+____________________________________________________________
+1. [E] [x] study math (from: 2023-11-01  to: 2023-12-01)
+2. [T] [ ] return books
+3. [D] [ ] pay credit bill  (by: Dec 01 2023)
 
 ____________________________________________________________
