@@ -39,7 +39,7 @@ public class Todo extends Task {
     }
 
     /**
-     * set abbreviation 'T'
+     * set abbreviation for Todo object.
      */
     public void setAbbreviation() {
         abbreviation = 'T';
