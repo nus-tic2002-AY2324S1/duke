@@ -13,10 +13,18 @@ import java.util.ArrayList;
 
 public class Storage {
     public final Path path;
+    /**
+     * Constructs a Storage object with the specified file path.
+     * @param filePath The file path to be associated with the Storage object.
+     */
     public Storage(String filePath) {
         path = Paths.get(filePath);
     }
-
+    /**
+     * Loads tasks from the storage file and returns them as an ArrayList.
+     * @return An ArrayList containing tasks loaded from the storage file.
+     * @throws FileStorageException If there are issues with file existence or reading.
+     */
     public ArrayList<Task> load() throws FileStorageException {
         try {
             if(!Files.exists(path)){
@@ -29,7 +37,11 @@ public class Storage {
             throw new FileStorageException("Error reading storage file: " + path);
         }
     }
-
+    /**
+     * Saves the provided TaskList to the storage file.
+     * @param tasks The TaskList to be saved to the storage file.
+     * @throws FileStorageException If there are issues with writing to the file.
+     */
     public void save(TaskList tasks) throws FileStorageException{
         try {
             ArrayList<String> listOfTasks = TaskEncoder.encodeTask(tasks);

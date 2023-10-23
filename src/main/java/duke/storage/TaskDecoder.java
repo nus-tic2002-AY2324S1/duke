@@ -3,7 +3,6 @@ package duke.storage;
 import duke.command.Command;
 import duke.common.Message;
 import duke.exception.FileStorageException;
-import duke.exception.InvalidArgumentException;
 import duke.parser.Parser;
 import duke.task.Deadline;
 import duke.task.Event;
