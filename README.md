@@ -8,4 +8,4 @@ Function Menu:
 - event [task name] /from [date] /to [date]
 - mark [task number]: mark task as done 
 - unmark [task number]: unmark task as not done
-
+- delete [task number]: delete task

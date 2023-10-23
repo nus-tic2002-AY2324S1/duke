@@ -131,10 +131,14 @@ public class Duke {
         System.out.println("Hello! I'm TINA. \nHow can I help you?\n");
         //System.out.println("Type your question below. (Type \"bye\" to exit)");
         System.out.println("Function Menu:");
-        System.out.println("1.bye: exit");
-        System.out.println("2.list: list out all tasks");
-        System.out.println("3.mark [task number]: mark task as done");
-        System.out.println("4.unmark [task number]: unmark task as not done");
+        System.out.println("bye: exit");
+        System.out.println("list: list out all tasks");
+        System.out.println("todo [task name]: create a task for todo");
+        System.out.println("deadline [task name] /by [date]");
+        System.out.println("event [task name] /from [date] /to [date]");
+        System.out.println("mark [task number]: mark task as done");
+        System.out.println("unmark [task number]: unmark task as not done");
+        System.out.println("delete [task number]: delete task");
         System.out.println("**************************************************\n");
     }
 }
