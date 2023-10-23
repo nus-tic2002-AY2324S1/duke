@@ -17,7 +17,7 @@ public class TodoTask extends Task {
     /**
      * Constructs a `TodoTask` with the specified task name and completion status.
      *
-     * @param taskName    The name of the todo task.
+     * @param taskName  The name of the todo task.
      * @param completed `true` if the todo task is completed, `false` otherwise.
      */
     public TodoTask(String taskName, boolean completed) {

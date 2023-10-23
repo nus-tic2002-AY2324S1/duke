@@ -2,7 +2,7 @@ package Duke;
 
 import Duke.FileHandler.FileRead;
 import Duke.FileHandler.FileStorage;
-import Duke.Parser.Parser;
+import Duke.Parser.DukeParser;
 import Duke.Task.Task;
 import Duke.UserInterface.UserInterface;
 
@@ -17,7 +17,7 @@ public class Duke {
 
     public static List<Task> taskList;
     public static FileStorage fileStorage;
-    private static Parser parser;
+    private static DukeParser dukeParser;
     private final UserInterface userInterface;
     private final FileRead fileRead;
 
@@ -27,7 +27,7 @@ public class Duke {
         fileStorage = new FileStorage();
         fileRead = new FileRead();
         taskList = new ArrayList<>();
-        parser = new Parser();
+        dukeParser = new DukeParser();
     }
 
     public static void main(String[] args) {
@@ -50,7 +50,7 @@ public class Duke {
             if (userInput.equals("bye")) {
                 break;
             } else {
-                parser.parseUserInput(userInput);
+                dukeParser.parseUserInput(userInput);
             }
         }
         userInterface.userInput.closeScanner();

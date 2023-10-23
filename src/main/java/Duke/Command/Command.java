@@ -5,6 +5,7 @@ import Duke.DukeExceptions.DukeException;
 import Duke.Task.Task;
 import Duke.UserInterface.UserInterface;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -56,4 +57,18 @@ abstract class AddTaskCommand extends Command {
         storeDuke();
         UserInterface.MessageDisplay.addedMessage(Duke.taskList, itemIndex);
     }
+}
+
+/**
+ * Represents a command for checking tasks on a specific date.
+ */
+abstract class CheckTaskCommand {
+
+    /**
+     * Executes the command.
+     *
+     * @param checkedDate The date for which tasks should be checked.
+     * @throws DukeException If an error occurs while executing the command.
+     */
+    public abstract void execute(LocalDate checkedDate) throws DukeException;
 }

@@ -1,5 +1,6 @@
 package Duke.Task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -12,9 +13,9 @@ public class EventTask extends Task {
     /**
      * Constructs an `EventTask` with the specified task name, start date, and end date.
      *
-     * @param taskName     The name of the event task.
-     * @param taskFrom     The start date and time of the event task.
-     * @param taskTo       The end date and time of the event task.
+     * @param taskName The name of the event task.
+     * @param taskFrom The start date and time of the event task.
+     * @param taskTo   The end date and time of the event task.
      */
     public EventTask(String taskName, LocalDateTime taskFrom, LocalDateTime taskTo) {
         super('E', taskName);
@@ -25,10 +26,10 @@ public class EventTask extends Task {
     /**
      * Constructs an `EventTask` with the specified task name, completion status, start date, and end date.
      *
-     * @param taskName     The name of the event task.
-     * @param completed    `true` if the task is completed, `false` otherwise.
-     * @param taskFrom     The start date and time of the event task.
-     * @param taskTo       The end date and time of the event task.
+     * @param taskName  The name of the event task.
+     * @param completed `true` if the task is completed, `false` otherwise.
+     * @param taskFrom  The start date and time of the event task.
+     * @param taskTo    The end date and time of the event task.
      */
     public EventTask(String taskName, boolean completed, LocalDateTime taskFrom, LocalDateTime taskTo) {
         super('E', taskName, completed);
@@ -41,7 +42,7 @@ public class EventTask extends Task {
      *
      * @return The start date and time of the task as a formatted string.
      */
-    private String getTaskFrom() {
+    private String getTaskFromString() {
         return dateTimetoString(taskFrom);
     }
 
@@ -50,8 +51,37 @@ public class EventTask extends Task {
      *
      * @return The end date and time of the task as a formatted string.
      */
-    private String getTaskTo() {
+    private String getTaskToString() {
         return dateTimetoString(taskTo);
+    }
+
+    /**
+     * Gets the start date of the task.
+     *
+     * @return The start date of the task as a LocalDate Object.
+     */
+    private LocalDate getTaskFromDate() {
+        return taskFrom.toLocalDate();
+    }
+
+    /**
+     * Gets the end date of the task.
+     *
+     * @return The end date of the task as a LocalDate Object.
+     */
+    private LocalDate getTaskToDate() {
+        return taskTo.toLocalDate();
+    }
+
+    /**
+     * Checks if a given date matches the start or end date of the task.
+     *
+     * @param checkedDate The date to be checked.
+     * @return `true` if the checked date matches either the start or end date of the task, `false` otherwise.
+     */
+    @Override
+    public boolean checkDate(LocalDate checkedDate) {
+        return checkedDate.equals(getTaskFromDate()) || checkedDate.equals(getTaskToDate());
     }
 
     /**
@@ -61,7 +91,7 @@ public class EventTask extends Task {
      */
     @Override
     public String toString() {
-        return super.toString() + String.format(" (from: %s to: %s)", getTaskFrom(), getTaskTo());
+        return super.toString() + String.format(" (from: %s to: %s)", getTaskFromString(), getTaskToString());
     }
 
     /**

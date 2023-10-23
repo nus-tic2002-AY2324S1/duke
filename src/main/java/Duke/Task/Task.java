@@ -1,5 +1,6 @@
 package Duke.Task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -93,6 +94,10 @@ public abstract class Task {
      */
     public boolean isCompleted() {
         return completed;
+    }
+
+    public boolean checkDate(LocalDate checkedDate) {
+        return false;
     }
 
     /**

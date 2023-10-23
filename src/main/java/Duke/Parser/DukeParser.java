@@ -5,17 +5,26 @@ import Duke.DukeExceptions.*;
 import Duke.Task.Task;
 import Duke.UserInterface.UserInterface;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * The `Parser` class is responsible for parsing user input and converting it into
+ * The `DukeParser` class is responsible for parsing user input and converting it into
  * commands and parameters for execution.
  */
-public class Parser {
+public class DukeParser {
 
+    final static int FROM_KEYWORD_LENGTH = 5;
+
+    final static int TO_KEYWORD_LENGTH = 3;
+
+    final static int BY_KEYWORD_LENGTH = 3;
+
+    // Date and time format for parsing
     public static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     /**
      * Parses a date and time string and returns a `LocalDateTime` object.
@@ -26,6 +35,33 @@ public class Parser {
      */
     public static LocalDateTime parseDateTime(String dateTimeString) throws DateTimeParseException {
         return LocalDateTime.parse(dateTimeString.replace("T", " "), dateTimeFormatter);
+    }
+
+    /**
+     * Parses a date string and returns a `LocalDate` object.
+     *
+     * @param dateString The date string to be parsed.
+     * @return A `LocalDate` object representing the parsed date.
+     * @throws DateTimeParseException if the string cannot be parsed as a valid date.
+     */
+    public static LocalDate parseDate(String dateString) throws DateTimeParseException {
+        return LocalDate.parse(dateString, dateFormatter);
+    }
+
+
+     /**
+     * Parses a date and time string and returns a `LocalDateTime` object.
+     *
+     * @param dateTimeString The date and time string to be parsed.
+     * @return A `LocalDateTime` object representing the parsed date and time.
+     * @throws DateTimeParseException if the string cannot be parsed as a valid date and time.
+     */
+     public static LocalDateTime parseDateTimeOrDate(String dateTimeString) {
+        if (dateTimeString.contains(" ")) {
+            return parseDateTime(dateTimeString);
+        } else {
+            return parseDate(dateTimeString).atStartOfDay();
+        }
     }
 
     /**
@@ -82,6 +118,9 @@ public class Parser {
             case "event":
                 executeEventCommand(arguments);
                 break;
+            case "on":
+                executeOnCommand(arguments);
+                break;
             case "delete":
             case "mark":
             case "unmark":
@@ -131,7 +170,7 @@ public class Parser {
 
         // Extract task name, by date
         String taskName = arguments.substring(0, byIndex).trim();
-        String taskDueDateString = arguments.substring(byIndex + 3).trim();
+        String taskDueDateString = arguments.substring(byIndex + BY_KEYWORD_LENGTH).trim();
 
         // Check if date fields are empty
         if (taskDueDateString.isEmpty()) {
@@ -139,10 +178,10 @@ public class Parser {
         }
 
         try {
-            // Parse date and time
-            LocalDateTime taskDueDate = parseDateTime(taskDueDateString);
-            // Add Deadline Task
+            // Parse date and time & Add Deadline Task
+            LocalDateTime taskDueDate = parseDateTimeOrDate(taskDueDateString);
             new AddDeadLineCommand(taskName, taskDueDate).execute();
+
         } catch (DateTimeParseException e) {
             throw new InvalidTaskFormatException("deadline");
         }
@@ -170,8 +209,8 @@ public class Parser {
 
         // Extract task name, from date, and to date
         String taskName = arguments.substring(0, fromIndex).trim();
-        String taskFromDateString = arguments.substring(fromIndex + 5, toIndex).trim();
-        String taskToDateString = arguments.substring(toIndex + 3).trim();
+        String taskFromDateString = arguments.substring(fromIndex + FROM_KEYWORD_LENGTH, toIndex).trim();
+        String taskToDateString = arguments.substring(toIndex + TO_KEYWORD_LENGTH).trim();
 
         // Check if date fields are empty
         if (taskFromDateString.isEmpty() || taskToDateString.isEmpty()) {
@@ -179,13 +218,36 @@ public class Parser {
         }
 
         try {
-            // Parse date and time
-            LocalDateTime taskFromDate = parseDateTime(taskFromDateString);
-            LocalDateTime taskToDate = parseDateTime(taskToDateString);
-            // Add Event Task
-            new AddEventCommand(taskName, taskFromDate, taskToDate).execute();
+            LocalDateTime taskFromDateTime = parseDateTimeOrDate(taskFromDateString);
+            LocalDateTime taskToDateTime = parseDateTimeOrDate(taskToDateString);
+
+            new AddEventCommand(taskName, taskFromDateTime, taskToDateTime).execute();
         } catch (DateTimeParseException e) {
             throw new InvalidTaskFormatException("event");
+        }
+    }
+
+    /**
+     * Execute the "On" task command.
+     *
+     * @param arguments The user's input string after the On command.
+     */
+    private void executeOnCommand(String arguments) throws DukeException {
+
+        // Extract specified date
+        String dateString = arguments.trim();
+
+        // Check if date fields are empty
+        if (dateString.isEmpty()) {
+            throw new EmptyOnArgumentException();
+        }
+
+        try {
+            // Parse date
+            LocalDate date = parseDate(dateString);
+            new OnCommand().execute(date);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateFormatException();
         }
     }
 

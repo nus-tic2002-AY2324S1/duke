@@ -1,8 +1,11 @@
 package Duke.FileHandler;
 
 import Duke.DukeExceptions.InvalidNumberFormatException;
-import Duke.Parser.Parser;
-import Duke.Task.*;
+import Duke.Parser.DukeParser;
+import Duke.Task.DeadlineTask;
+import Duke.Task.EventTask;
+import Duke.Task.Task;
+import Duke.Task.TodoTask;
 import Duke.UserInterface.UserInterface;
 
 import java.io.BufferedReader;
@@ -41,7 +44,7 @@ public class FileRead extends FileHandler {
                 String taskType = input[0];
                 boolean isCompleted;
                 try {
-                    int temp = Parser.parseInteger(input[1]);
+                    int temp = DukeParser.parseInteger(input[1]);
                     isCompleted = temp == 1;
                 } catch (NumberFormatException | InvalidNumberFormatException e) {
                     throw new FileCorruptedException();
@@ -63,7 +66,7 @@ public class FileRead extends FileHandler {
                             throw new FileCorruptedException();
                         }
                         try {
-                            LocalDateTime taskDueDate = Parser.parseDateTime(input[3]);
+                            LocalDateTime taskDueDate = DukeParser.parseDateTime(input[3]);
                             task = new DeadlineTask(taskName, isCompleted, taskDueDate);
                         } catch (DateTimeParseException e) {
                             throw new FileCorruptedException();
@@ -74,8 +77,8 @@ public class FileRead extends FileHandler {
                             throw new FileCorruptedException();
                         }
                         try {
-                            LocalDateTime taskFrom = Parser.parseDateTime(input[3]);
-                            LocalDateTime taskTo = Parser.parseDateTime(input[4]);
+                            LocalDateTime taskFrom = DukeParser.parseDateTime(input[3]);
+                            LocalDateTime taskTo = DukeParser.parseDateTime(input[4]);
                             task = new EventTask(taskName, isCompleted, taskFrom, taskTo);
                         } catch (DateTimeParseException e) {
                             throw new FileCorruptedException();

@@ -1,5 +1,6 @@
 package Duke.Task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -36,8 +37,28 @@ public class DeadlineTask extends Task {
      *
      * @return The due date of the task as a formatted string.
      */
-    private String getTaskDueDate() {
+    private String getTaskDueDateString() {
         return dateTimetoString(taskDueDate);
+    }
+
+    /**
+     * Gets the due date of the task.
+     *
+     * @return The due date of the task as a LocalDate Object.
+     */
+    public LocalDate getTaskDueDate() {
+        return taskDueDate.toLocalDate();
+    }
+
+    /**
+     * Checks if a given date matches the due date of the task.
+     *
+     * @param checkedDate The date to be checked.
+     * @return `true` if the checked date matches the due date of the task, `false` otherwise.
+     */
+    @Override
+    public boolean checkDate(LocalDate checkedDate) {
+        return checkedDate.equals(getTaskDueDate());
     }
 
     /**
@@ -47,7 +68,7 @@ public class DeadlineTask extends Task {
      */
     @Override
     public String toString() {
-        return super.toString() + String.format(" (by: %s)", getTaskDueDate());
+        return super.toString() + String.format(" (by: %s)", getTaskDueDateString());
     }
 
     /**
