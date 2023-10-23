@@ -7,6 +7,7 @@ public class Message {
             "It seems that some of the content is not in the right format.";
     public static final String MESSAGE_MAKE_NEW_INSTANCE = "No worries, I'll just make a new one for you right now.";
     public static final String MESSAGE_FILE_NOT_EXIST = "Oops, there's no duke.txt in the data folder.";
+    public static final String MESSAGE_GOT_IT = "Got it. I've added this task:";
     public static String concat (String... messages){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(messages[0]);

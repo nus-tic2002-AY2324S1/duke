@@ -35,7 +35,7 @@ public class Todo extends Task {
      * @throws InvalidArgumentException InvalidArgumentException If the task encounters invalid arguments.
      */
     public void execute()throws InvalidArgumentException {
-        response();
+        displayTaskAddedResponse();
     }
 
     /**
