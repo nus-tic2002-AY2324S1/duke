@@ -37,7 +37,7 @@ public class Duke {
     }
 
     /**
-     * Reads the user command and executes it, until user issues the exit command.
+     * Reads the user command and executes it, until user issues the 'bye' exit command.
      */
     private void loopUntilExitCommand() {
         Command command;
@@ -49,6 +49,10 @@ public class Duke {
         }while(!ExitCommand.isExit());
     }
 
+    /**
+     * Executes the user command and saves the data to the "duke.txt" file.
+     * @param command user command
+     */
     private void executeCommand(Command command) {
         if (command == null) {
             return;
