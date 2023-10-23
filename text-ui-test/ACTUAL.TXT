@@ -7,8 +7,8 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-Hello! I am Duke , your chatBot, set a name for me!!
-Please enter a name for your chatBot (press enter to set to default 'Duke'):
+Hello! I am archive.DukeOld , your chatBot, set a name for me!!
+Please enter a name for your chatBot (press enter to set to default 'archive.DukeOld'):
 ----------------------------------------
 Good evening! I am Genebot, Your personal chatBot.
 What can I do for you today?
