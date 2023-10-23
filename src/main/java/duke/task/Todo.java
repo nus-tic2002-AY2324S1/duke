@@ -4,14 +4,14 @@ import duke.exception.InvalidArgumentException;
 
 public class Todo extends Task {
     /**
-     * Construction
+     * Constructor
      */
     public Todo(){
         isDone = false;
     }
 
     /**
-     * Construction of Todo task take in description sets its abbreviation
+     * Constructor of Todo task take in description sets its abbreviation
      * @param description The description for the Todo task.
      */
     public Todo(String description)  {
@@ -20,7 +20,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Construction of Todo task take in description and status of the task sets its abbreviation.
+     * Constructor of Todo task take in description and status of the task sets its abbreviation.
      * @param isDone The status of the task.
      * @param description The description for the Todo task.
      */
