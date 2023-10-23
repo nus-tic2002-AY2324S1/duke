@@ -4,8 +4,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.common.Message;
-
 public class Ui {
 
     private final Scanner in;
@@ -19,6 +17,10 @@ public class Ui {
         in = new Scanner(System.in);
         out = new PrintStream(System.out);
     }
+    /**
+     * Displays an error message related to loading data.
+     * @param message The error message to be display
+     */
     public void showLoadingError(String message) {
         showResponseToUser(message);
     }
@@ -27,15 +29,19 @@ public class Ui {
      * prints the welcome message upon the start of the application.
      */
     public void showWelcome() {
-        showToUser(
-                prefixString(INDENT_LINE) + DIVIDER,
+        displayMessage(
+                generateSpaces(INDENT_LINE) + DIVIDER,
                 logoString(),
-                prefixString(INDENT_LINE) + DIVIDER,
-                prefixString(INDENT_RESPONSE) + "Hello! I'm Luna",
-                prefixString(INDENT_RESPONSE) + "What can I do for you?",
-                prefixString(INDENT_LINE) + DIVIDER);
+                generateSpaces(INDENT_LINE) + DIVIDER,
+                generateSpaces(INDENT_RESPONSE) + "Hello! I'm Luna",
+                generateSpaces(INDENT_RESPONSE) + "What can I do for you?",
+                generateSpaces(INDENT_LINE) + DIVIDER);
     }
 
+    /**
+     * Reads user command
+     * @return user command from the standard input.
+     */
     public String getUserCommand(){
         return in.nextLine();
     }
@@ -44,10 +50,13 @@ public class Ui {
      * print divider line
      */
     public void showLine() {
-        out.println(prefixString(INDENT_LINE) + DIVIDER);
+        out.println(generateSpaces(INDENT_LINE) + DIVIDER);
     }
 
-
+    /**
+     * Returns the logo of the application as a String.
+     * @return A String representing the logo of the application.
+     */
     private static String logoString() {
         String logo;
         logo =    "      _                    \n"
@@ -58,36 +67,63 @@ public class Ui {
         return logo;
     }
 
-    private static String prefixString(int n){
+    /**
+     * Generates a String consisting of a specified number of empty spaces
+     * @param n The number of empty spaces to generate.
+     * @return A String containing n empty spaces.
+     */
+    private static String generateSpaces(int n){
         return(" ".repeat(n));
     }
 
-    public static String prefixRespString(){
-        return prefixString(INDENT_RESPONSE);
+    /**
+     * Returns a prefix space as a string for chatbot responses.
+     * @return A String containing spaces for chatbot response formatting.
+     */
+    public static String getPrefixSpace(){
+        return generateSpaces(INDENT_RESPONSE);
     }
 
-    public static String prefixLineString(){
-        return prefixString(INDENT_LINE);
+    /**
+     * Returns a prefix space as a string for chatbot print a line.
+     * @return A String containing spaces for chatbot print line formatting.
+     */
+    public static String getPrintLinePrefixSpace(){
+        return generateSpaces(INDENT_LINE);
     }
 
-    public void showToUser(String... message){
+    /**
+     * Displays messages to the user.
+     * @param message Messages to be displayed to the user (Varargs)
+     */
+    public void displayMessage(String... message){
         for (String m : message) {
             out.println(m.replace("\n",NEWLINE));
         }
     }
 
+    /**
+     * Displays a list of messages to the user, framed by lines at the top and bottom. 
+     * Newlines in messages are replaced with the system-independent line separator.
+     * @param message List of messages to be displayed to the user.
+     */
     public void showResponseToUser(ArrayList<String> message){
         showLine();
         for (String m : message) {
-            out.println(prefixRespString() + m.replace("\n",NEWLINE + prefixRespString()));
+            out.println(getPrefixSpace() + m.replace("\n",NEWLINE + getPrefixSpace()));
         }
         showLine();
     }
 
+    /**
+     * Displays a list of messages to the user, framed by lines at the top and bottom. 
+     * Newlines in messages are replaced with the system-independent line separator.
+     * @param message messages to be displayed to the user. (Varargs)
+     */
     public void showResponseToUser(String... message){
         showLine();
         for (String m : message) {
-            out.println(prefixRespString() + m.replace("\n",NEWLINE + prefixRespString()));
+            out.println(getPrefixSpace() + m.replace("\n",NEWLINE + getPrefixSpace()));
         }
         showLine();
     }
