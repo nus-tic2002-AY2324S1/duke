@@ -19,74 +19,69 @@ public class Duke {
 
             // format user input
             String[] tokens = userInput.split(" ");
-            Task curTask;
-            String taskName;
-            Task newTask;
+            ArrayList<String> funcStrList = null;
+            try {
+                UserInput input = new UserInput(tokens);
+                funcStrList = input.handleTokens();
+            } catch (DukeException e) {
+                outputln(e.getMessage());
+            }
 
-            switch (tokens[0].toLowerCase()) {
-                case "bye":
-                    isBye = true;
-                    outputln("Bye. Hope to see you again.");
-                    break;
-                case "list":
-                    int count = 1;
-                    for (Task task : taskList) {
-                        outputln(count + "." + task.toString());
-                        count++;
-                    }
-                    break;
-                case "mark" :
-                    try {
-                        curTask = getCurrentTask(tokens);
-                        curTask.setDone(true);
-                        outputln("Nice! I've marked this task as done:");
-                        outputln("[" + curTask.isDone() +"]" + curTask.getName());
-                    } catch (Exception e) {
-                        outputln(e.getMessage());
-                    }
-                    break;
-                case "unmark" :
-                    try {
-                        curTask = getCurrentTask(tokens);
-                        curTask.setDone(false);
-                        outputln("OK, I've marked this task as not done yet:");
-                        outputln("[" + curTask.isDone() +"]" + curTask.getName());
-                    } catch (DukeException e) {
-                        outputln(e.getMessage());
-                    } catch (Exception e) {
-                        outputln("OPPS!!! Please use correct syntax for unmarking: unmark [task number]");
-                    }
-                    break;
-                case "todo":
-                    try {
-                        taskName = userInput.substring(5);
-                        if (taskName.isEmpty()) {
-                            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+            if (funcStrList != null) {
+                Task curTask;
+                String taskName;
+                Task newTask;
+
+                switch (funcStrList.get(0)) {
+                    case "bye":
+                        isBye = true;
+                        outputln("Bye. Hope to see you again.");
+                        break;
+                    case "list":
+                        int count = 1;
+                        for (Task task : taskList) {
+                            outputln(count + "." + task.toString());
+                            count++;
                         }
-                        newTask = new Todo(taskName);
+                        break;
+                    case "mark" :
+                        try {
+                            curTask = getCurrentTask(funcStrList.get(1));
+                            curTask.setDone(true);
+                            outputln("Nice! I've marked this task as done:");
+                            outputln("[" + curTask.isDone() +"]" + curTask.getName());
+                        } catch (DukeException e) {
+                            outputln(e.getMessage());
+                        }
+                        break;
+                    case "unmark" :
+                        try {
+                            curTask = getCurrentTask(funcStrList.get(1));
+                            curTask.setDone(false);
+                            outputln("OK, I've marked this task as not done yet:");
+                            outputln("[" + curTask.isDone() +"]" + curTask.getName());
+                        } catch (DukeException e) {
+                            outputln(e.getMessage());
+                        }
+                        break;
+                    case "todo":
+                        newTask = new Todo(funcStrList.get(1));
                         taskList.add(newTask);
                         outputln(newTask);
-                    } catch (DukeException e) {
-                        outputln(e.getMessage());
-                    }
-                    break;
-                case "deadline":
-                    taskName = userInput.substring(9, userInput.indexOf("/by") - 1);
-                    String by = userInput.substring(userInput.indexOf("/by") + 4);
-                    newTask = new Deadline(taskName, by);
-                    taskList.add(newTask);
-                    outputln(newTask);
-                    break;
-                case "event":
-                    taskName = userInput.substring(6, userInput.indexOf("/from") - 1);
-                    String from = userInput.substring(userInput.indexOf("/from") + 6, userInput.indexOf("/to"));
-                    String to = userInput.substring(userInput.indexOf("/to") + 4);
-                    newTask = new Event(taskName, from, to);
-                    taskList.add(newTask);
-                    outputln(newTask);
-                    break;
-                default:
-                    outputln("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                        break;
+                    case "deadline":
+                        newTask = new Deadline(funcStrList.get(1), funcStrList.get(2));
+                        taskList.add(newTask);
+                        outputln(newTask);
+                        break;
+                    case "event":
+                        newTask = new Event(funcStrList.get(1), funcStrList.get(2), funcStrList.get(3));
+                        taskList.add(newTask);
+                        outputln(newTask);
+                        break;
+                    default:
+                        outputln("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
             }
 
             // end line
@@ -95,19 +90,11 @@ public class Duke {
 
     }
 
-    public static Task getCurrentTask(String[] tokens) throws DukeException {
-        int taskNum;
-        String function = tokens[0];
+    public static Task getCurrentTask(String taskNum) throws DukeException {
         try {
-            taskNum = Integer.parseInt(tokens[1]);
-        } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            String message = "OPPS!!! Please use correct syntax for " + function + "ing: " + function + " [task number]";
-            throw new DukeException(message);
-        }
-        try {
-            return taskList.get(taskNum - 1);
+            return taskList.get(Integer.parseInt(taskNum) - 1);
         } catch (IndexOutOfBoundsException  e) {
-            throw new DukeException("OPPS!!! Cannot " + function + " an empty/invalid task");
+            throw new DukeException("OOPS!!! It is an invalid task");
         }
     }
 
