@@ -32,7 +32,7 @@ public class Storage {
                         Message.MESSAGE_MAKE_NEW_INSTANCE);
                 throw new FileStorageException(message);
             }
-            return TaskDecoder.decodeTask(Files.readAllLines(path));
+            return TaskDecoder.decodeStringsToTaskList(Files.readAllLines(path));
         } catch (IOException e) {
             throw new FileStorageException("Error reading storage file: " + path);
         }
@@ -44,7 +44,7 @@ public class Storage {
      */
     public void save(TaskList tasks) throws FileStorageException{
         try {
-            ArrayList<String> listOfTasks = TaskEncoder.encodeTask(tasks);
+            ArrayList<String> listOfTasks = TaskEncoder.encodeTaskListToStringList(tasks);
             Files.write(path, listOfTasks);
         } catch (IOException e) {
             throw new FileStorageException("Error writing storage file: " + path);

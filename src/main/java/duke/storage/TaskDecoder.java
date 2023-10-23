@@ -22,10 +22,10 @@ public class TaskDecoder {
      * @return An ArrayList containing Task objects decoded from the input strings.
      * @throws FileStorageException If there are issues with decoding the tasks.
      */
-    public static ArrayList<Task> decodeTask(List<String> strings) throws FileStorageException{
+    public static ArrayList<Task> decodeStringsToTaskList(List<String> strings) throws FileStorageException{
         ArrayList<Task> tasks = new ArrayList<>();
         for (String string: strings) {
-            tasks.add(decodeTaskFromString(string));
+            tasks.add(decodeStringToTask(string));
         }
         return tasks;
     }
@@ -35,9 +35,9 @@ public class TaskDecoder {
      * @return The Task object decoded from the input string.
      * @throws FileStorageException If there are issues with the format or parsing of the string.
      */
-    private static Task decodeTaskFromString(String string) throws FileStorageException{
+    private static Task decodeStringToTask(String string) throws FileStorageException{
         char abbreviation = string.charAt(0);
-        String[] tokens = getTokens(string);
+        String[] tokens = splitStringByDelimiter(string);
         switch(abbreviation){
         case 'T':
             if(tokens.length != 3){
@@ -48,7 +48,7 @@ public class TaskDecoder {
             if(tokens.length != 4){
                 break;
             }
-            LocalDateTime dateTime = getDateTime(tokens[3]);
+            LocalDateTime dateTime = parseStringToDateTime(tokens[3]);
             if(dateTime == null){
                 break;
             }
@@ -57,8 +57,8 @@ public class TaskDecoder {
             if(tokens.length != 5){
                 break;
             }
-            LocalDateTime fromDateTime = getDateTime(tokens[3]);
-            LocalDateTime toDateTime = getDateTime(tokens[4]);
+            LocalDateTime fromDateTime = parseStringToDateTime(tokens[3]);
+            LocalDateTime toDateTime = parseStringToDateTime(tokens[4]);
             if(fromDateTime == null || toDateTime == null){
                 break;
             }
@@ -74,7 +74,7 @@ public class TaskDecoder {
      * @param string The input string to be split into tokens.
      * @return An array of strings representing the tokens extracted from the input string.
      */
-    private static String[] getTokens (String string) {
+    private static String[] splitStringByDelimiter(String string) {
         List<String> tokens = new ArrayList<>();
         StringTokenizer stringTokenizer = new StringTokenizer(string, "|");
         while(stringTokenizer.hasMoreTokens()){
@@ -88,7 +88,7 @@ public class TaskDecoder {
      * @param byArgument The string argument representing the date and time.
      * @return The LocalDateTime object parsed from the input string, or null if parsing fails.
      */
-    public static LocalDateTime getDateTime(String byArgument){
+    private static LocalDateTime parseStringToDateTime(String byArgument){
         final Matcher dateMatcher = Command.DATE_ARG_FORMAT.matcher(byArgument);
         if(!dateMatcher.matches()){
             return null;
@@ -98,6 +98,6 @@ public class TaskDecoder {
         if(!timeMatcher.matches()){
             return null;
         }
-        return Parser.dateTime(dateMatcher, timeMatcher);
+        return Parser.constructDateTime(dateMatcher, timeMatcher);
     }
 }

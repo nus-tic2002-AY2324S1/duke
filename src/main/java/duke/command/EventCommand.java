@@ -18,36 +18,40 @@ public class EventCommand extends Command {
     public static final String EXAMPLE_USAGE = "Example of usage:\nevent project meeting /from 2/12/2020 0800 /to 2/12/2020 1000\n" +
             DATE_TIME_FORMAT_MESSAGE;
     public static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<description>\\w.*)\\s+/from\\s+(?<from>\\w.*)\\s+/to\\s+(?<to>\\w.*)");
-
+    /**
+     * Executes the command to create a new event task and adds it to the task list.
+     * @param tasks The TaskList containing the tasks to be managed.
+     * @param ui The user interface for displaying messages to the user.
+     * @param storage The storage object used to store and load tasks.
+     * @param keywordArgument The parsed user input containing the keyword and arguments.
+     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
-        throwExceptionArgIsEmpty(keywordArgument, new EventCommand());
+        validateKeywordArgument(keywordArgument, new EventCommand());
 
         final Matcher matcher = ARGUMENT_FORMAT.matcher(keywordArgument.getArguments());
-        if(!matcher.matches()){
-            String errMsg = String.format(SUB_ARG_ERR_MESSAGE, "/from & /to", COMMAND_WORD);
-            throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
-        }
+        validateArgumentMatcher(matcher,new EventCommand(), "/from & /to");
 
         final String description = matcher.group("description");
         final String from = matcher.group("from");
         final String to = matcher.group("to");
 
         final Matcher fromDateMatcher = DATE_ARG_FORMAT.matcher(from);
-        throwExceptionDateIsInvalid(fromDateMatcher, new EventCommand(), "'from' in");
+        validateDateMatcher(fromDateMatcher, new EventCommand(), "'from' in");
 
         final Matcher toDateMatcher = DATE_ARG_FORMAT.matcher(to);
-        throwExceptionDateIsInvalid(toDateMatcher, new EventCommand(), "'to' in");
+        validateDateMatcher(toDateMatcher, new EventCommand(), "'to' in");
 
         final Matcher fromTimeMatcher = TIME_ARG_FORMAT.matcher(fromDateMatcher.group("timeArgument"));
-        throwExceptionTimeIsInvalid(fromTimeMatcher, new EventCommand(), "'from' in");
+        validateTimeMatcher(fromTimeMatcher, new EventCommand(), "'from' in");
 
         final Matcher toTimeMatcher = TIME_ARG_FORMAT.matcher(toDateMatcher.group("timeArgument"));
-        throwExceptionTimeIsInvalid(toTimeMatcher, new EventCommand(), "'to' in");
+        validateTimeMatcher(toTimeMatcher, new EventCommand(), "'to' in");
 
-        LocalDateTime fromDateTime = Parser.dateTime(fromDateMatcher, fromTimeMatcher);
-        LocalDateTime toDateTime = Parser.dateTime(toDateMatcher, toTimeMatcher);
+        LocalDateTime fromDateTime = Parser.constructDateTime(fromDateMatcher, fromTimeMatcher);
+        LocalDateTime toDateTime = Parser.constructDateTime(toDateMatcher, toTimeMatcher);
         if(fromDateTime.isAfter(toDateTime)){
             String errMsg = "OOPS!!! The 'from: date/time' can not be after the 'to: date/time'";
             throw new InvalidArgumentException(Message.concat(errMsg,EXAMPLE_USAGE));
@@ -57,12 +61,18 @@ public class EventCommand extends Command {
         event.execute();
         tasks.add(event);
     }
-
+    /**
+     * Gets the example usage string for the command.
+     * @return The example usage string demonstrating how to use the command.
+     */
     @Override
     public String getExampleUsage() {
         return EXAMPLE_USAGE;
     }
-
+    /**
+     * Gets the command word associated with the command.
+     * @return The command word representing the keyword for the command.
+     */
     @Override
     public String getCommandWord() {
         return COMMAND_WORD;

@@ -8,6 +8,11 @@ public class Message {
     public static final String MESSAGE_MAKE_NEW_INSTANCE = "No worries, I'll just make a new one for you right now.";
     public static final String MESSAGE_FILE_NOT_EXIST = "Oops, there's no duke.txt in the data folder.";
     public static final String MESSAGE_GOT_IT = "Got it. I've added this task:";
+    /**
+     * Concatenates an array of strings (Varargs) with newline characters separating them.
+     * @param messages The strings to be concatenated.
+     * @return A single string obtained by concatenating input strings, separated by newline characters.
+     */
     public static String concat (String... messages){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(messages[0]);

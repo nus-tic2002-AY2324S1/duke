@@ -44,11 +44,10 @@ public class Duke {
         do {
             String userInputCommand = ui.getUserCommand();
             keywordArgument = new UserKeywordArgument(userInputCommand);
-            command = Parser.parse(keywordArgument);
+            command = Parser.parseKeywordToCommand(keywordArgument);
             executeCommand(command);
         }while(!ExitCommand.isExit());
     }
-
     /**
      * Executes the user command and saves the data to the "duke.txt" file.
      * @param command user command
@@ -65,7 +64,6 @@ public class Duke {
         }
 
     }
-
     public static void main(String[] args) {
         new Duke("src/main/java/duke/data/duke.txt").run();
     }
