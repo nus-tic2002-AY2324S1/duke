@@ -30,6 +30,10 @@ public class Todo extends Task {
         setDone(isDone);
     }
 
+    /**
+     * Executes the task and handles the response.
+     * @throws InvalidArgumentException InvalidArgumentException If the task encounters invalid arguments.
+     */
     public void execute()throws InvalidArgumentException {
         response();
     }
@@ -41,10 +45,8 @@ public class Todo extends Task {
         abbreviation = 'T';
     }
 
-    
-
     /**
-     * Override toString method to print detail relevant to task.
+     * Overrides the toString method to provide task-specific details.
      */
     @Override
     public String toString() {
