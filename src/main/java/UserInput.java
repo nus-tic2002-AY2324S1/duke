@@ -19,7 +19,7 @@ public class UserInput {
                 break;*/
             case "mark":
             case "unmark":
-                //this.function = func;
+            case "delete":
                 try {
                     Integer.parseInt(tokens.get(1));
                     functionStringList.add(tokens.get(1));
@@ -28,7 +28,6 @@ public class UserInput {
                 }
                 break;
             case "todo":
-                //this.function = func;
                 if (tokens.size() == 1) {
                     throw new DukeException("OOPS!!! Please use correct syntax for todo: todo [task name]");
                 }
@@ -36,7 +35,6 @@ public class UserInput {
                 functionStringList.add(String.join(" ", tokens));
                 break;
             case "deadline":
-                //this.function = func;
                 int byIndex = tokens.indexOf("/by");
                 if (tokens.size() == 1 || byIndex == -1 || byIndex == tokens.size() - 1) {
                     throw new DukeException("OOPS!!! Please use correct syntax for todo: deadline [task name] /by [date]");
@@ -47,7 +45,6 @@ public class UserInput {
                 functionStringList.add(by);
                 break;
             case "event":
-                //this.function = func;
                 int fromIndex = tokens.indexOf("/from");
                 int toIndex = tokens.indexOf("/to");
                 if (tokens.size() == 1 || fromIndex == -1 || toIndex == -1 || fromIndex >= toIndex - 1 || toIndex == tokens.size() - 1) {

@@ -64,6 +64,17 @@ public class Duke {
                             outputln(e.getMessage());
                         }
                         break;
+                    case "delete":
+                        try {
+                            curTask = getCurrentTask(funcStrList.get(1));
+                            taskList.remove(curTask);
+                            outputln("Noted. I've removed this task:");
+                            outputln("  " + curTask);
+                            outputln("Now you have " + taskList.size() +" tasks in the list.");
+                        } catch (DukeException e) {
+                            outputln(e.getMessage());
+                        }
+                        break;
                     case "todo":
                         newTask = new Todo(funcStrList.get(1));
                         taskList.add(newTask);
