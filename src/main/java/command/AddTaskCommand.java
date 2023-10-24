@@ -6,6 +6,7 @@ import task.Event;
 import task.Task;
 import task.Todo;
 
+import java.time.DateTimeException;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
@@ -46,13 +47,21 @@ public class AddTaskCommand extends CrabyMessage implements CommandInterface {
             printDateTimeParseExceptionMessage();
             return;
         }
+        try {
+            handleTo(tasks, formatEvent);
+            printAddMessage(input, tasks);
+        } catch (DateTimeException d) {
+            printDateTimeParseExceptionMessage();
+        }
+    }
+
+    private static void handleTo(List<Task> tasks, String[] formatEvent) {
         if (formatEvent[1].contains(("/to"))) {
             String[] timeEvent = formatEvent[1].split("/to");
             tasks.add(new Event(formatEvent[0].trim(), timeEvent[0], timeEvent[1]));
         } else {
             tasks.add(new Event(formatEvent[0].trim(), formatEvent[1]));
         }
-        printAddMessage(input, tasks);
     }
 
     private static void handleBy(String input, List<Task> tasks, String[] formatDeadline) {

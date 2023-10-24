@@ -12,12 +12,13 @@ import command.FindCommand;
 import command.HelpCommand;
 import command.UnmarkCommand;
 
+import exceptions.MyCustomException;
 import exceptions.InputBlankException;
+
 import io.CrabyMessage;
 import io.TaskStorage;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +29,6 @@ import static command.UndoCommand.putInToStack;
  * It will handle the input from the user.
  */
 public class Craby extends CrabyMessage {
-
     private static TaskStorage taskStorage;
     private static final String REGEX = ".*[^a-zA-Z0-9\\s].*";
 
@@ -42,13 +42,12 @@ public class Craby extends CrabyMessage {
         String name = checkName(scanner);
         assert name != null;
         printFirstMessage(name);
-        taskStorage = new TaskStorage( name.toLowerCase() + ".txt");
+        taskStorage = new TaskStorage(name.toLowerCase() + ".txt");
         List<Task> tasks = taskStorage.load();
         while (true) {
             String input = scanner.nextLine();
             input = input.trim();
             boolean exit = false;
-            putInToStack(input, tasks); // use for undo command
             try {
                 exit = handleInput(input, tasks);
             } catch (InputBlankException e) {
@@ -57,8 +56,8 @@ public class Craby extends CrabyMessage {
             if (exit) {
                 break;
             }
+            putInToStack(input, tasks); // use for undo command
         }
-
     }
 
     private static String checkName(Scanner scanner) {
@@ -75,6 +74,7 @@ public class Craby extends CrabyMessage {
         }
         return name;
     }
+
     /**
      * This method will handle the input from the user.
      *
@@ -93,51 +93,66 @@ public class Craby extends CrabyMessage {
             throw new InputBlankException();
         }
         checkInput = checkInput.toUpperCase().trim();
-        try {
-            Keyword keyWords = Keyword.valueOf(checkInput);
-            switch (keyWords) {
-                case LIST:
-                    handleListCommand(input, tasks);
-                    break;
-                case BLAH:
-                    handleBlahCommand(input, tasks);
-                    break;
-                case BYE:
-                    handleByeCommand(input, tasks);
-                    exit =true;
-                    break;
-                case MARK:
-                    handleMarkCommand(input, tasks);
-                    break;
-                case UNMARK:
-                    handleUnmarkCommand(input, tasks);
-                    break;
-                case DELETE:
-                    handleDeleteCommand(input, tasks);
-                    break;
-                case FIND:
-                    handleFindCommand(input, tasks);
-                    break;
-                case SORT:
-                    handleSortByCommand(input, tasks);
-                    break;
-                case HELP:
-                    handleHelpCommand(input, tasks);
-                    break;
-                case UNDO:
-                    handleUndoCommand(input, tasks);
-                    break;
-                case TODO:
-                case DEADLINE:
-                case EVENT:
-                    input = input.substring(checkInput.length());
-                    addTaskCommand(input, tasks);
-                    break;
-            }
-        } catch (IllegalArgumentException ie) {
+        if (isBlankDescription(checkInput, exit)) {
+            return exit;
+        }
+        try{
+        Keyword keyWords = Keyword.valueOf(checkInput);
+        switch (keyWords) {
+        case LIST:
+            handleListCommand(input, tasks);
+            break;
+        case BLAH:
+            handleBlahCommand(input, tasks);
+            break;
+        case BYE:
+            handleByeCommand(input, tasks);
+            exit = true;
+            break;
+        case MARK:
+            handleMarkCommand(input, tasks);
+            break;
+        case UNMARK:
+            handleUnmarkCommand(input, tasks);
+            break;
+        case DELETE:
+            handleDeleteCommand(input, tasks);
+            break;
+        case FIND:
+            handleFindCommand(input, tasks);
+            break;
+        case SORT:
+            handleSortByCommand(input, tasks);
+            break;
+        case HELP:
+            handleHelpCommand(input, tasks);
+            break;
+        case UNDO:
+            handleUndoCommand(input, tasks);
+            break;
+        case TODO:
+        case DEADLINE:
+        case EVENT:
+        default:
+            input = input.substring(checkInput.length());
+            addTaskCommand(input, tasks);
+            break;
+        }} catch (IllegalArgumentException e) {
             addTaskCommand(input, tasks);
         }
         return exit;
+    }
+
+    private static boolean isBlankDescription(String checkInput, boolean exit) {
+        try {
+            if (checkInput.equals("/FROM") || checkInput.equals("/BY") || checkInput.equals("/TO")) {
+                throw new MyCustomException();
+            }
+        } catch (MyCustomException e) {
+            printInputBlankExceptionMessage();
+            return true;
+        }
+        return false;
     }
 
     private static void handleUndoCommand(String input, List<Task> tasks) {
@@ -186,8 +201,7 @@ public class Craby extends CrabyMessage {
         new FindCommand().handleCommand(input, tasks);
     }
 
-    private static boolean handleByeCommand(String input, List<Task> tasks) {
+    private static void handleByeCommand(String input, List<Task> tasks) {
         new ByeCommand().handleCommand(input, tasks);
-        return true;
     }
 }

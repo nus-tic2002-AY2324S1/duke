@@ -1,12 +1,16 @@
 package task;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import static io.CrabyMessage.printDateTimeParseExceptionMessage;
 
 public class Task {
     public static final String TIME_OUTPUT_FORMAT = "d MMM yyyy, E - hh:mma";
     protected String description;
     protected boolean isDone;
+
     /**
      * @param description the description of the task
      */
@@ -38,22 +42,22 @@ public class Task {
     protected LocalDateTime handleDateTime(String time) {
         // check the format of the time user input
         DateTimeFormatter formatter;
-        if (time.contains("/")) {
-            String[] checkFormat = time.split("/");
-            if (checkFormat[0].length() <= 2) {
-                formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+            if (time.contains("/")) {
+                String[] checkFormat = time.split("/");
+                if (checkFormat[0].length() <= 2) {
+                    formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+                } else {
+                    formatter = DateTimeFormatter.ofPattern("yyyy/M/d HHmm");
+                }
             } else {
-                formatter = DateTimeFormatter.ofPattern("yyyy/M/d HHmm");
+                String[] checkFormat = time.split("-");
+                if (checkFormat[0].length() > 2) {
+                    formatter = DateTimeFormatter.ofPattern("yyyy-M-d HHmm");
+                } else {
+                    formatter = DateTimeFormatter.ofPattern("d-M-yyyy HHmm");
+                }
             }
-        } else {
-            String[] checkFormat = time.split("-");
-            if (checkFormat[0].length() > 2) {
-                formatter = DateTimeFormatter.ofPattern("yyyy-M-d HHmm");
-            } else {
-                formatter = DateTimeFormatter.ofPattern("d-M-yyyy HHmm");
-            }
-        }
-        return LocalDateTime.parse(time, formatter);
+            return LocalDateTime.parse(time, formatter);
     }
 
     /**
@@ -73,6 +77,7 @@ public class Task {
     public String toStorageString() {
         return this.toString();
     }
+
     public Task clone() {
         Task cloneTask = new Task(this.description);
         cloneTask.setIsDone(this.isDone);
