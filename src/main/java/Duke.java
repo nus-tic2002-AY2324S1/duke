@@ -7,7 +7,9 @@ public class Duke {
         //Echo();
         //List();
         //MarkDone();
+        System.out.println("testing phase");
         TED();
+
 
     }
     public static void Logo(){
