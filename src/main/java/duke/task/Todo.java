@@ -6,25 +6,27 @@ public class Todo extends Task {
     /**
      * Constructor
      */
-    public Todo(){
+    public Todo() {
         isDone = false;
     }
 
     /**
      * Constructor of Todo task take in description sets its abbreviation
+     *
      * @param description The description for the Todo task.
      */
-    public Todo(String description)  {
+    public Todo(String description) {
         super(description);
         setAbbreviation();
     }
 
     /**
      * Constructor of Todo task take in description and status of the task sets its abbreviation.
-     * @param isDone The status of the task.
+     *
+     * @param isDone      The status of the task.
      * @param description The description for the Todo task.
      */
-    public Todo(boolean isDone, String description){
+    public Todo(boolean isDone, String description) {
         super(description);
         setAbbreviation();
         setDone(isDone);
@@ -32,9 +34,10 @@ public class Todo extends Task {
 
     /**
      * Executes the task and handles the response.
+     *
      * @throws InvalidArgumentException InvalidArgumentException If the task encounters invalid arguments.
      */
-    public void execute()throws InvalidArgumentException {
+    public void execute() throws InvalidArgumentException {
         displayTaskAddedResponse();
     }
 
@@ -50,7 +53,7 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[%c][%s] %s",abbreviation,getStatusIcon(),dukeDescription);
+        return String.format("[%c][%s] %s", abbreviation, getStatusIcon(), dukeDescription);
     }
 
 }

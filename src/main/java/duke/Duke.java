@@ -17,7 +17,7 @@ public class Duke {
     private TaskList tasks;
     private UserKeywordArgument keywordArgument;
 
-    public Duke(String filePath){
+    public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
@@ -31,7 +31,7 @@ public class Duke {
     /**
      * Run the program and print the welcome message
      */
-    public void run(){
+    public void run() {
         ui.showWelcome();
         loopUntilExitCommand();
     }
@@ -46,10 +46,12 @@ public class Duke {
             keywordArgument = new UserKeywordArgument(userInputCommand);
             command = Parser.parseKeywordToCommand(keywordArgument);
             executeCommand(command);
-        }while(!ExitCommand.isExit());
+        } while (!ExitCommand.isExit());
     }
+
     /**
      * Executes the user command and saves the data to the "duke.txt" file.
+     *
      * @param command user command
      */
     private void executeCommand(Command command) {
@@ -64,6 +66,7 @@ public class Duke {
         }
 
     }
+
     public static void main(String[] args) {
         new Duke("src/main/java/duke/data/duke.txt").run();
     }
