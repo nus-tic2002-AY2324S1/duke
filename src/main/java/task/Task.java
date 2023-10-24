@@ -42,22 +42,22 @@ public class Task {
     protected LocalDateTime handleDateTime(String time) {
         // check the format of the time user input
         DateTimeFormatter formatter;
-            if (time.contains("/")) {
-                String[] checkFormat = time.split("/");
-                if (checkFormat[0].length() <= 2) {
-                    formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
-                } else {
-                    formatter = DateTimeFormatter.ofPattern("yyyy/M/d HHmm");
-                }
+        if (time.contains("/")) {
+            String[] checkFormat = time.split("/");
+            if (checkFormat[0].length() <= 2) {
+                formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
             } else {
-                String[] checkFormat = time.split("-");
-                if (checkFormat[0].length() > 2) {
-                    formatter = DateTimeFormatter.ofPattern("yyyy-M-d HHmm");
-                } else {
-                    formatter = DateTimeFormatter.ofPattern("d-M-yyyy HHmm");
-                }
+                formatter = DateTimeFormatter.ofPattern("yyyy/M/d HHmm");
             }
-            return LocalDateTime.parse(time, formatter);
+        } else {
+            String[] checkFormat = time.split("-");
+            if (checkFormat[0].length() > 2) {
+                formatter = DateTimeFormatter.ofPattern("yyyy-M-d HHmm");
+            } else {
+                formatter = DateTimeFormatter.ofPattern("d-M-yyyy HHmm");
+            }
+        }
+        return LocalDateTime.parse(time, formatter);
     }
 
     /**
@@ -66,8 +66,7 @@ public class Task {
     @Override
     public String toString() {
         // Capitalize the first letter of the description
-        this.description = this.description.substring(0, 1).toUpperCase()
-                + this.description.substring(1);
+        this.description = this.description.substring(0, 1).toUpperCase() + this.description.substring(1);
         return "[" + getStatusIcon() + "] " + this.description;
     }
 
@@ -78,6 +77,12 @@ public class Task {
         return this.toString();
     }
 
+    /**
+     * This method is to clone the task.
+     * It will use for the undo command.
+     *
+     * @return the clone task.
+     */
     public Task clone() {
         Task cloneTask = new Task(this.description);
         cloneTask.setIsDone(this.isDone);

@@ -4,6 +4,7 @@ import io.CrabyMessage;
 import task.Task;
 
 import java.util.List;
+
 /**
  * ByeCommand class is a class that handle the bye command.
  * It implements the CommandInterface.

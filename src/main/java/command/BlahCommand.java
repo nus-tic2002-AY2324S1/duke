@@ -5,7 +5,7 @@ import task.Task;
 
 import java.util.List;
 
-public class BlahCommand extends CrabyMessage implements CommandInterface{
+public class BlahCommand extends CrabyMessage implements CommandInterface {
     /**
      * This method will print out the blah message.
      *

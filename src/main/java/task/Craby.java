@@ -48,6 +48,7 @@ public class Craby extends CrabyMessage {
             String input = scanner.nextLine();
             input = input.trim();
             boolean exit = false;
+            putInToStack(input, tasks); // use for undo command
             try {
                 exit = handleInput(input, tasks);
             } catch (InputBlankException e) {
@@ -56,7 +57,7 @@ public class Craby extends CrabyMessage {
             if (exit) {
                 break;
             }
-            putInToStack(input, tasks); // use for undo command
+
         }
     }
 

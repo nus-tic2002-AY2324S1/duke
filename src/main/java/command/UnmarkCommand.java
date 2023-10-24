@@ -27,12 +27,8 @@ public class UnmarkCommand extends CrabyMessage implements CommandInterface {
         }
         input = input.toLowerCase().trim();
         try {
-            int tmp = input.indexOf("k");
-            assert tmp != -1;
-            String checkMark = input.substring(tmp + 1).trim();
-            int checkNum = (Integer.parseInt(checkMark)) - 1;
-            if (checkNum >= tasks.size() || checkNum < 0) {
-                printNumOutOfTask(tasks.size());
+            Integer checkNum = getInteger(input, tasks);
+            if (checkNum == null) {
                 return;
             }
             tasks.get(checkNum).setIsDone(false);
@@ -40,5 +36,17 @@ public class UnmarkCommand extends CrabyMessage implements CommandInterface {
         } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
             printUnmarkNumFormatExceptionMessage();
         }
+    }
+
+    private static Integer getInteger(String input, List<Task> tasks) {
+        int tmp = input.indexOf("k");
+        assert tmp != -1;
+        String checkMark = input.substring(tmp + 1).trim();
+        int checkNum = (Integer.parseInt(checkMark)) - 1;
+        if (checkNum >= tasks.size() || checkNum < 0) {
+            printNumOutOfTask(tasks.size());
+            return null;
+        }
+        return checkNum;
     }
 }

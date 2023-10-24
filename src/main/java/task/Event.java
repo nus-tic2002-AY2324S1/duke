@@ -41,7 +41,7 @@ public class Event extends Task {
     private void formatTimeString(String timeString) {
         timeString = timeString.trim();
         LocalDateTime dateTime = DateTimeUtils.parseNextDay(timeString);
-        if (dateTime !=null){
+        if (dateTime != null) {
             this.fromTime = dateTime;
             return;
         }
@@ -54,18 +54,17 @@ public class Event extends Task {
     }
 
     /**
-     * This class represents a event task that user input have /from and /to
+     * This class represents an event task that user input have /from and /to
+     * It will format the time string to the correct format.
+     * It will use for the sort date function.
      *
-     * @param description
-     * @param timeString
-     * @param timeStringTo
      */
     public Event(String description, String timeString, String timeStringTo) {
         super(description);
         formatTimeString(timeString);
         timeStringTo = timeStringTo.trim();
         LocalDateTime dateTime = DateTimeUtils.parseNextDay(timeStringTo);
-        if (dateTime !=null){
+        if (dateTime != null) {
             this.toTime = dateTime;
             return;
         }
@@ -79,6 +78,7 @@ public class Event extends Task {
 
     /**
      * This method is to handle the date and time.
+     * It will use for the sort date function.
      *
      * @return The LocalDateTime object to the format requirement.
      */
@@ -86,37 +86,35 @@ public class Event extends Task {
     public String toString() {
         String timeString = this.fromTime.format(DateTimeFormatter.ofPattern(TIME_OUTPUT_FORMAT));
         if (this.toTime == null) {
-            return "[E]" + super.toString()
-                    + " (from: " + timeString + ")";
+            return "[E]" + super.toString() + " (from: " + timeString + ")";
         }
-        boolean isSameDay = this.fromTime.format(DateTimeFormatter.ofPattern("d MMM yyyy"))
-                .equals(this.toTime.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
+        boolean isSameDay = this.fromTime.format(DateTimeFormatter.ofPattern("d MMM yyyy")).equals(this.toTime.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
         String timeString1;
         if (isSameDay) {
             timeString1 = this.toTime.format(DateTimeFormatter.ofPattern("hh:mma"));
         } else {
             timeString1 = this.toTime.format(DateTimeFormatter.ofPattern(TIME_OUTPUT_FORMAT));
         }
-        return "[E]" + super.toString()
-                + " (from: " + timeString + " ➞ to: " + timeString1 + ")";
+        return "[E]" + super.toString() + " (from: " + timeString + " ➞ to: " + timeString1 + ")";
     }
 
     /**
      * This method is to save the data to the local file
+     * It will use for the save function.
      */
     @Override
     public String toStorageString() {
         if (this.toTime == null) {
-            return "[E]" + super.toString()
-                    + " (from: " + fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
+            return "[E]" + super.toString() + " (from: " + fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
         }
-        return "[E]" + super.toString()
-                + " (from: " + fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) +
-                " to: " + toTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
+        return "[E]" + super.toString() + " (from: " + fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + " to: " + toTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
 
     }
 
-    // implement clone function
+    /**
+     * This method is to clone the event object.
+     * It will use for the undo function.
+     */
     @Override
     public Event clone() {
         Event event = new Event(this.description, this.fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")));

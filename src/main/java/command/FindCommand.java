@@ -29,8 +29,8 @@ public class FindCommand extends CrabyMessage implements CommandInterface {
         List<String> listFound = new ArrayList<>();
         for (Task task : tasks) {
             String tmpAdd = task.toString();
-            String tmpCheck = tmpAdd.toLowerCase();
-            if (tmpCheck.contains(keyword)) {
+            boolean isContain = tmpAdd.toLowerCase().contains(keyword);
+            if (isContain) {
                 listFound.add(tmpAdd);
             }
         }

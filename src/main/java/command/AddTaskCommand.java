@@ -13,13 +13,17 @@ import java.util.List;
 /**
  * AddTaskCommand class is a class that handle the add command.
  * It implements the CommandInterface.
- * It has a method to handle the add command.
+ * It has a method to handle the deadline format.
+ * It has a method to handle the event format.
+ * It has a method to handle the todo format.
  */
 public class AddTaskCommand extends CrabyMessage implements CommandInterface {
 
     /**
      * This method is to handle the add command.
      * It will add the task to the list.
+     * It will print out the add message.
+     * It will print out the date time parse exception message.
      *
      * @param input The input from the user.
      * @param tasks The list of tasks.

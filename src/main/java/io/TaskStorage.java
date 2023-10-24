@@ -30,7 +30,8 @@ public class TaskStorage {
 
     /**
      * This method will save the tasks into the file.
-     *
+     * If the file does not exist, it will create a new file.
+     * If the file is empty, it will delete the file.
      * @param tasks the list of tasks.
      */
     public void save(List<Task> tasks) {
@@ -52,10 +53,15 @@ public class TaskStorage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // delete the file if it is empty
+        if (file.exists() && file.length() == 0) {
+            file.delete();
+        }
     }
 
     /**
-     * This method will load the tasks from the file.
+     * This method will load the tasks from the file same name as the username.
+     * If the file does not exist, it will create a new file.
      *
      * @return the list of tasks.
      */
@@ -90,26 +96,11 @@ public class TaskStorage {
         String content = line.substring(9);
         switch (checkType) {
             case 'D':
-                String[] formatDeadline = content.split(" \\(by:");
-                assert formatDeadline.length > 0;
-                String tmp = formatDeadline[1].substring(0, formatDeadline[1].length() - 1);
-                Deadline deadline = new Deadline(formatDeadline[0], tmp);
-                deadline.setIsDone(isDone);
+                Deadline deadline = getDeadline(isDone, content);
                 tasks.add(deadline);
                 break;
             case 'E':
-                String[] formatEvent = content.split(" \\(from:");
-                assert formatEvent.length > 0;
-                String time = formatEvent[1];
-                time = time.substring(0, time.length() - 1);
-                Event event;
-                if (time.contains("to:")) {
-                    String[] tmp1 = time.split(" to: ");
-                    event = new Event(formatEvent[0], tmp1[0], tmp1[1]);
-                } else {
-                    event = new Event(formatEvent[0], time);
-                }
-                event.setIsDone(isDone);
+                Event event = getEvent(isDone, content);
                 tasks.add(event);
                 break;
             default:
@@ -119,12 +110,31 @@ public class TaskStorage {
         }
     }
 
-    /**
-     * This method will check the task is done or not.
-     *
-     * @param line the line of the file.
-     * @return true if the task is done, false otherwise.
-     */
+    private static Deadline getDeadline(boolean isDone, String content) {
+        String[] formatDeadline = content.split(" \\(by:");
+        assert formatDeadline.length > 0;
+        String tmp = formatDeadline[1].substring(0, formatDeadline[1].length() - 1);
+        Deadline deadline = new Deadline(formatDeadline[0], tmp);
+        deadline.setIsDone(isDone);
+        return deadline;
+    }
+
+    private static Event getEvent(boolean isDone, String content) {
+        String[] formatEvent = content.split(" \\(from:");
+        assert formatEvent.length > 0;
+        String time = formatEvent[1];
+        time = time.substring(0, time.length() - 1);
+        Event event;
+        if (time.contains("to:")) {
+            String[] tmp1 = time.split(" to: ");
+            event = new Event(formatEvent[0], tmp1[0], tmp1[1]);
+        } else {
+            event = new Event(formatEvent[0], time);
+        }
+        event.setIsDone(isDone);
+        return event;
+    }
+
     private static boolean isDone(String line) {
         boolean isDone = false;
         assert line.length() > 5;
