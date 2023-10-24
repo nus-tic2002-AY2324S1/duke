@@ -14,24 +14,21 @@ public class Sort {
         if (input.equals("type") || input.equals("t")) {
             System.out.println("   Sorting by type...");
             tasks.sort(new Comparator<Task>() {
-                @Override
-                public int compare(Task task1, Task task2) {
+                @Override public int compare(Task task1, Task task2) {
                     return task1.toString().compareTo(task2.toString());
                 }
             });
         } else if (input.equals("type-r") || input.equals("tr")) {
             System.out.println("   Sorting by type revert order...");
             tasks.sort(new Comparator<Task>() {
-                @Override
-                public int compare(Task task1, Task task2) {
+                @Override public int compare(Task task1, Task task2) {
                     return task2.toString().compareTo(task1.toString());
                 }
             });
         } else {
             System.out.println("   Sorting by date...");
             tasks.sort(new Comparator<Task>() {
-                @Override
-                public int compare(Task task1, Task task2) {
+                @Override public int compare(Task task1, Task task2) {
                     LocalDateTime task1Time = null;
                     LocalDateTime task2Time = null;
                     if (task1 instanceof Deadline) {

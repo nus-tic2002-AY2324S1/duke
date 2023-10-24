@@ -13,11 +13,12 @@ class MarkCommandTest {
 
     @Test
     void handleCommand() {
+
         Todo todo = new Todo("test description");
         List<Task> taskList = new ArrayList<>();
         taskList.add(todo);
         MarkCommand markCommand = new MarkCommand();
-        markCommand.handleCommand("1", taskList);
+        markCommand.handleCommand("mark 1", taskList);
         assertTrue(todo.getIsDone());
     }
 }

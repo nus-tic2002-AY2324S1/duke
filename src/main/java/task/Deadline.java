@@ -2,11 +2,8 @@ package task;
 
 import utils.DateTimeUtils;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 /**
  * This class represents a deadline task.
@@ -55,21 +52,24 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         String timeString = this.time.format(DateTimeFormatter.ofPattern(TIME_OUTPUT_FORMAT));
-        return "[D]" + super.toString()
-                + " (before: " + timeString.trim() + ")";
+        return "[D]" + super.toString() + " (before: " + timeString.trim() + ")";
     }
 
     /**
      * This method is to save the data to the local file
      */
     @Override
-
     public String toStorageString() {
-        return "[D]" + super.toString()
-                + " (by: " + time.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
+        return "[D]" + super.toString() + " (by: " + time.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
     }
 
-    //implement the clone function
+    /**
+     * This method will clone the task.
+     * It will use for the undo function.
+     *
+     * @return The LocalDateTime object to the format requirement.
+     */
+    @Override
     public Task clone() {
         Deadline clone = new Deadline(this.description, this.time.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")));
         clone.setIsDone(this.isDone);

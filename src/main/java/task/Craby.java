@@ -23,6 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static command.UndoCommand.putInToStack;
+import java.util.stream.*;
 
 /**
  * This class is the main class of the program.
@@ -57,7 +58,6 @@ public class Craby extends CrabyMessage {
             if (exit) {
                 break;
             }
-
         }
     }
 
@@ -73,7 +73,18 @@ public class Craby extends CrabyMessage {
             printNameError();
             name = scanner.nextLine();
         }
+        boolean isKeyword = isKeyword(name);
+        while (isKeyword) {
+            printNameSameWithKeyWord();
+            name = scanner.nextLine();
+            isKeyword = isKeyword(name);
+        }
         return name;
+    }
+
+    private static boolean isKeyword(String name) {
+        return Stream.of("list", "blah", "bye", "mark", "unmark", "delete", "find", "sort", "help", "undo")
+                .anyMatch(name.toLowerCase()::equalsIgnoreCase);
     }
 
     /**
@@ -85,7 +96,9 @@ public class Craby extends CrabyMessage {
      * @throws InputBlankException if the input is blank.
      */
     private static boolean handleInput(String input, List<Task> tasks) throws InputBlankException {
-        if (input.isBlank()) throw new InputBlankException();
+        if (input.isBlank()) {
+            throw new InputBlankException();
+        }
         boolean exit = false;
         String checkInput;
         try {
@@ -97,48 +110,49 @@ public class Craby extends CrabyMessage {
         if (isBlankDescription(checkInput, exit)) {
             return exit;
         }
-        try{
-        Keyword keyWords = Keyword.valueOf(checkInput);
-        switch (keyWords) {
-        case LIST:
-            handleListCommand(input, tasks);
-            break;
-        case BLAH:
-            handleBlahCommand(input, tasks);
-            break;
-        case BYE:
-            handleByeCommand(input, tasks);
-            exit = true;
-            break;
-        case MARK:
-            handleMarkCommand(input, tasks);
-            break;
-        case UNMARK:
-            handleUnmarkCommand(input, tasks);
-            break;
-        case DELETE:
-            handleDeleteCommand(input, tasks);
-            break;
-        case FIND:
-            handleFindCommand(input, tasks);
-            break;
-        case SORT:
-            handleSortByCommand(input, tasks);
-            break;
-        case HELP:
-            handleHelpCommand(input, tasks);
-            break;
-        case UNDO:
-            handleUndoCommand(input, tasks);
-            break;
-        case TODO:
-        case DEADLINE:
-        case EVENT:
-        default:
-            input = input.substring(checkInput.length());
-            addTaskCommand(input, tasks);
-            break;
-        }} catch (IllegalArgumentException e) {
+        try {
+            Keyword keyWords = Keyword.valueOf(checkInput);
+            switch (keyWords) {
+            case LIST:
+                handleListCommand(input, tasks);
+                break;
+            case BLAH:
+                handleBlahCommand(input, tasks);
+                break;
+            case BYE:
+                handleByeCommand(input, tasks);
+                exit = true;
+                break;
+            case MARK:
+                handleMarkCommand(input, tasks);
+                break;
+            case UNMARK:
+                handleUnmarkCommand(input, tasks);
+                break;
+            case DELETE:
+                handleDeleteCommand(input, tasks);
+                break;
+            case FIND:
+                handleFindCommand(input, tasks);
+                break;
+            case SORT:
+                handleSortByCommand(input, tasks);
+                break;
+            case HELP:
+                handleHelpCommand(input, tasks);
+                break;
+            case UNDO:
+                handleUndoCommand(input, tasks);
+                break;
+            case TODO:
+            case DEADLINE:
+            case EVENT:
+            default:
+                input = input.substring(checkInput.length());
+                addTaskCommand(input, tasks);
+                break;
+            }
+        } catch (IllegalArgumentException e) {
             addTaskCommand(input, tasks);
         }
         return exit;

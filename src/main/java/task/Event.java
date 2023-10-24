@@ -10,7 +10,6 @@ public class Event extends Task {
     public LocalDateTime fromTime;
     protected LocalDateTime toTime;
 
-
     /**
      * This method is to handle the date and time.
      * It will use for the sort function.
@@ -22,7 +21,7 @@ public class Event extends Task {
     }
 
     /**
-     * This class represents a event task that user input only have /from
+     * This class represents an event task that user input only have /from
      *
      * @param description
      * @param timeString
@@ -57,7 +56,6 @@ public class Event extends Task {
      * This class represents an event task that user input have /from and /to
      * It will format the time string to the correct format.
      * It will use for the sort date function.
-     *
      */
     public Event(String description, String timeString, String timeStringTo) {
         super(description);
@@ -88,7 +86,8 @@ public class Event extends Task {
         if (this.toTime == null) {
             return "[E]" + super.toString() + " (from: " + timeString + ")";
         }
-        boolean isSameDay = this.fromTime.format(DateTimeFormatter.ofPattern("d MMM yyyy")).equals(this.toTime.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
+        boolean isSameDay = this.fromTime.format(DateTimeFormatter.ofPattern("d MMM yyyy"))
+                .equals(this.toTime.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
         String timeString1;
         if (isSameDay) {
             timeString1 = this.toTime.format(DateTimeFormatter.ofPattern("hh:mma"));
@@ -105,10 +104,11 @@ public class Event extends Task {
     @Override
     public String toStorageString() {
         if (this.toTime == null) {
-            return "[E]" + super.toString() + " (from: " + fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
+            return "[E]" + super.toString() + " (from: " +
+                    fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
         }
-        return "[E]" + super.toString() + " (from: " + fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + " to: " + toTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
-
+        return "[E]" + super.toString() + " (from: " + fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) +
+                " to: " + toTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
     }
 
     /**

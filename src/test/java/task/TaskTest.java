@@ -12,18 +12,18 @@ class TaskTest {
     }
 
     @Test
-    void setDone(boolean b) {
-         Task task = new Task("test description");
-         task.setIsDone(true);
-         assertEquals(true, task.getIsDone());
-         task.setIsDone(false);
-         assertEquals(false, task.getIsDone());
+    void setDone() {
+        Task task = new Task("test description");
+        task.setIsDone(true);
+        assertTrue(task.getIsDone());
+        task.setIsDone(false);
+        assertFalse(task.getIsDone());
     }
 
     @Test
     void getIsDone() {
         Task task = new Task("test description");
-        assertEquals(false, task.getIsDone());
+        assertFalse(task.getIsDone());
     }
 
     @Test

@@ -12,13 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TaskStorageTest {
 
-    @Test
-    void save() {
+    @Test void save() {
 
         File f = new File("./data/craby.txt");
         List<Task> tasks = new ArrayList<>();
         tasks.add(new Deadline("test", "12/12/2020 1200"));
-        TaskStorage taskStorage = new TaskStorage(  "./data/craby.txt");
+        TaskStorage taskStorage = new TaskStorage("craby.txt");
         taskStorage.save(tasks);
         assertTrue(f.exists());
         assertTrue(f.length() > 0);
@@ -26,13 +25,12 @@ class TaskStorageTest {
         f.delete();
     }
 
-    @Test
-    void load() {
+    @Test void load() {
 
         File f = new File("./data/craby.txt");
         List<Task> tasks = new ArrayList<>();
         tasks.add(new Deadline("test", "12/12/2020 1200"));
-        TaskStorage taskStorage = new TaskStorage("./data/craby.txt");
+        TaskStorage taskStorage = new TaskStorage("craby.txt");
         taskStorage.save(tasks);
         List<Task> tasks1 = taskStorage.load();
         assertEquals(1, tasks1.size());

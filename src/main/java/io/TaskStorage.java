@@ -45,7 +45,7 @@ public class TaskStorage {
                 content.append(task.toStorageString());
                 content.append(System.lineSeparator());
             }
-            assert file.exists();
+            //assert file.exists();
             BufferedWriter writer = new BufferedWriter(new FileWriter(this.filePath));
             writer.write(content.toString());
             writer.close();

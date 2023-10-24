@@ -12,7 +12,7 @@ public class DeadlineTest {
     @Test
     public void testToString() {
         Deadline deadline = new Deadline("test description", "2023/10/20 2359");
-        Assertions.assertEquals("[D][҉҉҉] Test description (by: 20 Oct 2023, 11PM - Friday)", deadline.toString());
+        Assertions.assertEquals("[D][҉҉҉] Test description (before: 20 Oct 2023, Fri - 11:59PM)", deadline.toString());
     }
 
     @Test

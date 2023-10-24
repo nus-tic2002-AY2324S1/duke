@@ -16,7 +16,7 @@ public class SortCommand extends CrabyMessage implements CommandInterface {
             printEmptyListForAllCommand(input);
             return;
         }
-        List <String> allowedSort = List.of("type", "t", "type-r", "tr", "date", "d");
+        List<String> allowedSort = List.of("type", "t", "type-r", "tr", "date", "d");
         String checkSort = input.substring(4).trim().toLowerCase();
         if (allowedSort.contains(checkSort)) {
             Sort sort = new Sort();

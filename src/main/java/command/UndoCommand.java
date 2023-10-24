@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
-
 public class UndoCommand extends CrabyMessage implements CommandInterface {
     public static Stack<List<Task>> stackTaskList = new Stack<>();
     public static Stack<String> stackInput = new Stack<>();

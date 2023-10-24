@@ -15,6 +15,7 @@ public class DateTimeUtils {
         LocalDateTime now = LocalDateTime.now();
         now = now.withHour(23);
         now = now.withMinute(59);
+        now = now.withSecond(59);
         if(dateStr.toLowerCase().contains("today")){
             return now;
         }

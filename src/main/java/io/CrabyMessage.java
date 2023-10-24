@@ -41,6 +41,12 @@ public class CrabyMessage {
         System.out.println(SPACES + "╰┈➤You can continue to use the previous list of tasks.");
         System.out.println(LINE);
     }
+    public static void printNameSameWithKeyWord() {
+        System.out.println(SPACES + "Oops!!! Before you start, pls give me your name. (your input cannot same with the keyword)");
+        System.out.println(SPACES + "NOTE: if you use the same name that used before");
+        System.out.println(SPACES + "╰┈➤You can continue to use the previous list of tasks.");
+        System.out.println(LINE);
+    }
 
     public static void printFirstMessage(String name) {
         System.out.println(SPACES + "Hi " + name + " ♡, How can I help you today?");
