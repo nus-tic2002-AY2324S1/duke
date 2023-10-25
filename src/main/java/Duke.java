@@ -16,32 +16,36 @@ public class Duke {
             String[] input = InputParser(echo); //input[0] = first word, input[1] = rest of sentence
             try {
                 switch (input[0]) {
-                    case "bye":
-                        Text.printMessage(Text.Message.BYE);
-                        return;
-                    case "list":
-                        tasklist.listShelf();
-                        break;
-                    case "mark":
-                        tasklist.markTask(input);
-                        break;
-                    case "unmark":
-                        tasklist.markTask(input);
-                        break;
-                    case "todo":
-                        tasklist.addSpecialTask(input[1], input[0]);
-                        break;
-                    case "deadline":
-                        tasklist.addSpecialTask(input[1], input[0]);
-                        break;
-                    case "event":
-                        tasklist.addSpecialTask(input[1], input[0]);
-                        break;
+                case "bye":
+                    Text.printMessage(Text.Message.BYE);
+                    return;
+                case "list":
+                    tasklist.listShelf();
+                    break;
+                case "mark":
+                    tasklist.markTask(input);
+                    break;
+                case "unmark":
+                    tasklist.markTask(input);
+                    break;
+                case "todo":
+                    tasklist.addSpecialTask(input[1], input[0]);
+                    break;
+                case "deadline":
+                    tasklist.addSpecialTask(input[1], input[0]);
+                    break;
+                case "event":
+                    tasklist.addSpecialTask(input[1], input[0]);
+                    break;
+                case "delete":
+                    tasklist.deleteTask(input[1]);
+                    break;
+
                     default:
-                        tasklist.addItem(input[0]);
+                    tasklist.addItem(input[0]);
                 }
             } catch (IndexOutOfBoundsException e){
-                System.out.println("OOPS!!! The description of a special event cannot be empty.");
+                System.out.println("OOPS!!! You must have done something wrong xxx.");
             }
         }
 

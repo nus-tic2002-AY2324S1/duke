@@ -1,0 +1,15 @@
+VISION
+A tool to record, categorised tasks for users who likes messaging UI
+
+Must have USER STORY
+- As a forgetful user, i want to store my daily task so that i can remember when to finish them
+- As user, i want to delet or mark the task that i have completed
+
+FEATURE
+add deadline
+delete item
+
+GLOSSARY
+    Event: an item that has a start time and an end time
+    
+UI PROTOTYPE

@@ -25,18 +25,24 @@ public class Shelf {
                         + Text.newline
         );
     }
+    public static void deleteTask(String num){
+        int idx = Integer.parseInt(num) - 1;
+        SpecialTask t = shelf.get(idx);
+        shelf.remove(idx);
+        System.out.println("Noted. I've removed this task:");
+        System.out.print("[" + t.getTypeIcon() + "]" + "[" + t.getStatusIcon() +"] " + t.getDescription() + "\n" + Text.newline);
+        System.out.println("Now you have "+ shelf.size() +" tasks in the list.");
+    }
     public static void markTask (String[] msg) throws DukeException {
-        if(msg.length <= 2){
-            throw new DukeException("mark");
-        }
-
+//        if(msg.length <= 2){
+//            throw new DukeException("mark");
+//        }
         String check = msg[0];
         int idx = Integer.parseInt(msg[1]) - 1;
         if(idx >= shelf.size()){
             System.out.println("You have selected an invalid task");
             return;
         }
-
         System.out.print(Text.newline);
         if (check.equals("mark")){
             Task.setMarked(shelf.get(idx));

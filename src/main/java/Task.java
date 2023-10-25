@@ -8,6 +8,9 @@ public class Task {
     public String getStatusIcon(){
         return (this.marked ? "X" : " ");
     }
+    public String getDescription(){
+        return description;
+    }
     public static void setMarked(Task task){
         task.marked = true;
     }
