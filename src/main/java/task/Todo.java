@@ -24,7 +24,12 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
-    // implement clone function
+    /**
+     * This method is to clone the task.
+     * It will use for the undo command.
+     *
+     * @return the clone task.
+     */
     @Override
     public Todo clone() {
         Todo todo = new Todo(this.description);

@@ -1,5 +1,4 @@
 package task;
-
 import command.AddTaskCommand;
 import command.UndoCommand;
 import command.DeleteCommand;
@@ -11,20 +10,15 @@ import command.ByeCommand;
 import command.FindCommand;
 import command.HelpCommand;
 import command.UnmarkCommand;
-
 import exceptions.MyCustomException;
 import exceptions.InputBlankException;
-
 import io.CrabyMessage;
 import io.TaskStorage;
-
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import static command.UndoCommand.putInToStack;
 import java.util.stream.*;
-
 /**
  * This class is the main class of the program.
  * It will handle the input from the user.
@@ -32,7 +26,6 @@ import java.util.stream.*;
 public class Craby extends CrabyMessage {
     private static TaskStorage taskStorage;
     private static final String REGEX = ".*[^a-zA-Z0-9\\s].*";
-
     /**
      * This method will print out the logo and the hello message.
      * It will also handle the input from the user.
@@ -60,7 +53,6 @@ public class Craby extends CrabyMessage {
             }
         }
     }
-
     private static String checkName(Scanner scanner) {
         String name = scanner.nextLine().trim();
         while (name.isBlank()) {
@@ -81,12 +73,10 @@ public class Craby extends CrabyMessage {
         }
         return name;
     }
-
     private static boolean isKeyword(String name) {
         return Stream.of("list", "blah", "bye", "mark", "unmark", "delete", "find", "sort", "help", "undo")
                 .anyMatch(name.toLowerCase()::equalsIgnoreCase);
     }
-
     /**
      * This method will handle the input from the user.
      *
@@ -157,7 +147,6 @@ public class Craby extends CrabyMessage {
         }
         return exit;
     }
-
     private static boolean isBlankDescription(String checkInput, boolean exit) {
         try {
             if (checkInput.equals("/FROM") || checkInput.equals("/BY") || checkInput.equals("/TO")) {
@@ -169,53 +158,41 @@ public class Craby extends CrabyMessage {
         }
         return false;
     }
-
     private static void handleUndoCommand(String input, List<Task> tasks) {
         new UndoCommand().handleCommand(input, tasks);
         taskStorage.save(tasks);
     }
-
     private static void handleHelpCommand(String input, List<Task> tasks) {
         new HelpCommand().handleCommand(input, tasks);
     }
-
-
     private static void addTaskCommand(String input, List<Task> tasks) {
         new AddTaskCommand().handleCommand(input, tasks);
         taskStorage.save(tasks);
     }
-
     private static void handleUnmarkCommand(String input, List<Task> tasks) {
         new UnmarkCommand().handleCommand(input, tasks);
         taskStorage.save(tasks);
     }
-
     private static void handleMarkCommand(String input, List<Task> tasks) {
         new MarkCommand().handleCommand(input, tasks);
         taskStorage.save(tasks);
     }
-
     private static void handleDeleteCommand(String input, List<Task> tasks) {
         new DeleteCommand().handleCommand(input, tasks);
         taskStorage.save(tasks);
     }
-
     private static void handleBlahCommand(String input, List<Task> tasks) {
         new BlahCommand().handleCommand(input, tasks);
     }
-
     private static void handleListCommand(String input, List<Task> tasks) {
         new ListCommand().handleCommand(input, tasks);
     }
-
     private static void handleSortByCommand(String input, List<Task> tasks) {
         new SortCommand().handleCommand(input, tasks);
     }
-
     private static void handleFindCommand(String input, List<Task> tasks) {
         new FindCommand().handleCommand(input, tasks);
     }
-
     private static void handleByeCommand(String input, List<Task> tasks) {
         new ByeCommand().handleCommand(input, tasks);
     }
