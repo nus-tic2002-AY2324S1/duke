@@ -27,8 +27,13 @@ deadline complete project /by 2023-05-28 11.59pm
 list
 Find
 nnn
-edit deadline
+update deadline
 mark 4
 clone 4
-clone 2
+edit deadline
+edit event
+edit fixedduration
+edit task
+change 1 starttime 8pm endtime 11pm
 list
+bye

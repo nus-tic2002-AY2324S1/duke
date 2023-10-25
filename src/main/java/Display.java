@@ -19,6 +19,7 @@ public class Display {
         System.out.println("What can I do for you?");
         System.out.println("***************************************");
     }
+
     //bye
     public static void goodbye() {
         System.out.println("Bye. Hope to see you again soon!");
@@ -50,23 +51,27 @@ public class Display {
         }
     }
 
+    //mark
+    public void mark(ArrayList<Task>userInputTasks, int indexNumber){
+        System.out.println("That's some progress! I've marked this task as done:");
+        userInputTasks.get(indexNumber).taskCompleted();
+    }
+
+    //unmark
+public void unmark(ArrayList<Task>userInputTasks, int indexNumber){
+    System.out.println("OK, I've marked this task as not done yet:");
+    userInputTasks.get(indexNumber).taskNotCompleted();
+}
+
     //find 
     public void findMessage(){
         System.out.println("Here are the matching tasks in your list: ");
     }
 
-
-public void notificationForChange(){
-    System.out.println("Alright, this is the task you wish to edit: ");
-    System.out.println(true);
-    System.out.println("Please enter your changes in the console or key 'end' to end this course of action");
-}
-
 public void changesMadeNotification(){
     System.out.println("Here is the updated task: ");
     System.out.println(true);
-}
-
+    }
 
 }
 

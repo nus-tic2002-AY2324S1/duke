@@ -3,7 +3,7 @@
 //Filetype: Java Source file
 //Author: Peh Qing Wen
 //Created on: 13/10/2023 17:51
-//Last Modified On:
+//Last Modified On: xx/10/2023 xx:xx
 //Copy Rights: me!
 //Description: My own code were added after referencing from others' codes from the open source Project Code Dashboard
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,18 +16,31 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import NUS.duke.UserInterface;
 // %n : new line
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
-class Duke {
+class Duke extends Application {
 
-    private static ArrayList<Task>userInputTasks = new ArrayList<>();
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
+    }
+
+    private static final ArrayList<Task>userInputTasks = new ArrayList<>();
 
     public enum taskType{
         TODO, DEADLINE, EVENT, FIXEDDURATION
     }
 
-    private UserInterface userInterface;
+    private final UserInterface userInterface;
 
-    private Display display;
+    private final Display display;
 
     //constructor Duke to initialise classes Display & UserInterface
     public Duke(){
@@ -160,18 +173,18 @@ class Duke {
                     }
                     break;
                 }
-                case "clone": { //only works for T & F task types
+                case "clone": { //only works for T & F task types (individual feature 2)
                     createClone(arguments);
                     break;
                 }
-                case "edit": { //only lists down related tasks for edits
-                    findRelatedTasksForEdit(arguments);
+                case "update": { //only lists down related tasks for updating (individual feature 2)
+                    findRelatedTasksForUpdate(arguments);
                     break;
                 }
-//                case "change": {
-//                    changeDatesAndTimes(arguments);
-//                    break;
-//                }
+                case "change": { //individual feature 2
+                    changeDateOrTime(arguments);
+                    break;
+                }
                 default:
                     newCheckTask(userInput);
             }
@@ -195,8 +208,7 @@ class Duke {
         }
         if(numeric){
             int indexNumber = Integer.parseInt(input[1]) - 1;
-            System.out.println("That's some progress! I've marked this task as done:");
-            userInputTasks.get(indexNumber).taskCompleted();
+            display.mark(userInputTasks, indexNumber);
             System.out.println(userInputTasks.get(indexNumber));
         }else{
            throw new InvalidIndexException();
@@ -217,8 +229,7 @@ class Duke {
         }
         if(numeric){
             int indexNumber = Integer.parseInt(input[1]) - 1;
-            System.out.println("OK, I've marked this task as not done yet:");
-            userInputTasks.get(indexNumber).taskNotCompleted();
+            display.unmark(userInputTasks, indexNumber);
             System.out.println(userInputTasks.get(indexNumber));
         }else{
             throw new InvalidIndexException();
@@ -246,6 +257,7 @@ private Task createTask(taskType taskType, String arguments) {
         return task;
 }
 
+
 //method for finding specific tasks with a particular keyword (input) provided
 private void findTask(String input) throws InvalidKeywordException{
         //arguments (input) should be a single word
@@ -269,7 +281,7 @@ private void findTask(String input) throws InvalidKeywordException{
 }
 
 //method for listing all tasks of a genre
-    private void findRelatedTasksForEdit(String arguments){
+    private void findRelatedTasksForUpdate(String arguments){
         boolean check = true;
         try {
             String[] inputs = arguments.split("\\s+");
@@ -321,64 +333,167 @@ private void findTask(String input) throws InvalidKeywordException{
 
     public void listRelevantTasks(boolean check){
         if(check){
-            System.out.println("These are the tasks that you may edit: ");
+            System.out.println("These are the tasks that you may update: ");
             for(int k = 0; k<userInputTasks.size(); k++){
                 if(userInputTasks.get(k).getTaskType() == 'T'){
                     System.out.println((k+1) + "." + userInputTasks.get(k).toString());
                 }
             }
-            System.out.println("Please key in 'Change (index number)' of the task you wish to edit");
+            System.out.println("Please key in 'Change (index number)' of the task you wish to update");
         }
     }
 
     public void listRelevantDeadlines(boolean check){
         if(check){
-            System.out.println("These are the tasks that you may edit: ");
+            System.out.println("These are the deadlines that you may update: ");
             for(int i = 0; i<userInputTasks.size(); i++){
                 if(userInputTasks.get(i).getTaskType() == 'D'){
                     System.out.println((i+1) + "." + userInputTasks.get(i).toString());
                 }
             }
-            System.out.println("Please key in 'Change (index number)' of the task you wish to edit");
+            System.out.println("Please key in 'Change (index number)' of the deadline you wish to update");
         }
     }
 
     public void listRelevantEvents(boolean check){
         if(check){
-            System.out.println("These are the tasks that you may edit: ");
+            System.out.println("These are the events that you may update: ");
             for(int j = 0; j<userInputTasks.size(); j++){
                 if(userInputTasks.get(j).getTaskType() == 'E'){
                     System.out.println((j+1) + "." + userInputTasks.get(j).toString());
                 }
             }
-            System.out.println("Please key in 'Change (index number)' of the task you wish to edit");
+            System.out.println("Please key in 'Change (index number)' of the event you wish to update");
         }
     }
 
     public void listRelevantFixedDurations(boolean check){
         if(check){
-            System.out.println("These are the tasks that you may edit: ");
+            System.out.println("These are the fixed duration tasks that you may update: ");
             for(int h = 0; h<userInputTasks.size(); h++){
                 if(userInputTasks.get(h).getTaskType() == 'F'){
                     System.out.println((h+1) + "." + userInputTasks.get(h).toString());
                 }
             }
-            System.out.println("Please key in 'Change (index number)' of the task you wish to edit");
+            System.out.println("Please key in 'Change (index number)' of the fixed duration task you wish to update");
         }
     }
 
     //method for changing dates and times
-//    public void changeDatesAndTimes(String argument){
-//        String[] inputs = argument.split("\\s+");
-//        int index = Integer.parseInt(inputs[0]);
-//        switch()
-//        String newStartDate = inputs[inputs.indexOf("startdate") + 1];
-//        String newEndDate ;
-//        String newStartTime;
-//        String newEndTime;
-//        String newDueDate;
-//        String newDueTime;
-//    }
+    private void changeDateOrTime(String argument) throws InvalidInputException{
+        String[] inputs = argument.split("\\s+");
+        int index = Integer.parseInt(inputs[0]);
+        String newstarttime = null;
+        String newendtime = null;
+        String newstartdate = null;
+        String newenddate = null;
+        try{
+            int check = 0;
+            String[] keywords = new String[inputs.length];
+            for(int i = 1; i<inputs.length; i++){
+                if(inputs[i].equals("starttime") || inputs[i].equals("endtime") || inputs[i].equals("startdate") || inputs[i].equals("enddate")){
+                    keywords[check] = inputs[i];
+                    check++;
+                }
+            }
+            if(check > 0){
+                for(int j = 0; j<check; j++){
+                    switch(keywords[j]){
+                        case "starttime": {
+                            int index1 = argument.indexOf("starttime") + 1;
+                            newstarttime = inputs[index1];
+                            break;
+                        }
+                        case "startdate": {
+                            int index2 = argument.indexOf("startdate") + 1;
+                            newstartdate = inputs[index2];
+                            break;
+                        }
+                        case "endtime": {
+                            int index3 = argument.indexOf("endtime") + 1;
+                            newendtime = inputs[index3];
+                            break;
+                        }
+                        case "enddate": {
+                            int index4 = argument.indexOf("enddate") + 1;
+                            newenddate = inputs[index4];
+                            break;
+                        }
+                    }
+                }
+            }
+
+            String input = userInputTasks.get(index).toString();
+            Character type = userInputTasks.get(index).getTaskType();
+            String name = userInputTasks.get(index).getTaskName();
+
+            if(type == 'D'){
+                    if (newenddate == null) {
+                        String[] inputSplit = input.split("\\s+");
+                        for (int j = 0; j < inputSplit.length; j++) {
+                            if (inputSplit[j].equals("(by:")) {
+                                newenddate = inputSplit[j + 1];
+                            }
+                        }
+                    }
+
+                if(newendtime == null){
+                    String[] inputSplit1 = input.split("\\s+");
+                    for(int k = 0; k < inputSplit1.length; k++){
+                        if(inputSplit1[k].equals("(from:")){
+                            newendtime = inputSplit1[k+2];
+                        }
+                    }
+                }
+                Deadline newDeadline = new Deadline(type, name, newenddate, newendtime); // Create a new Deadline object
+                userInputTasks.set(index, newDeadline);
+
+            }else if(type == 'E'){
+
+                if(newstartdate == null){
+                    String[] inputSplit2 = input.split("\\s+");
+                    for(int i = 0; i < inputSplit2.length; i++){
+                        if(inputSplit2[i].equals("(from:")){
+                            newstartdate = inputSplit2[i+1];
+                        }
+                    }
+                }
+
+                if(newstarttime == null){
+                    String[] inputSplit3 = input.split("\\s+");
+                    for(int h = 0; h < inputSplit3.length; h++){
+                        if(inputSplit3[h].equals("(from:")){
+                            newstarttime = inputSplit3[h+2];
+                        }
+                    }
+                }
+
+                if(newenddate == null){
+                    String[] inputSplit4 = input.split("\\s+");
+                    for(int u = 0; u < inputSplit4.length; u++){
+                        if(inputSplit4[u].equals("to:")){
+                            newenddate = inputSplit4[u+1];
+                        }
+                    }
+                }
+
+                if(newendtime == null){
+                    String[] inputSplit5 = input.split("\\s+");
+                    for(int v = 0; v < inputSplit5.length; v++){
+                        if(inputSplit5[v].equals("to:")){
+                            newendtime = inputSplit5[v+2];
+                        }
+                    }
+                }
+                Event newEvent = new Event(type, name, newstartdate, newstarttime, newenddate, newendtime); // Create a new Event object
+                userInputTasks.set(index, newEvent); // Replace the old task with the new one
+            }else{
+                throw new InvalidInputException();
+            }
+        }catch(InvalidInputException e){
+            throw new InvalidInputException();
+        }
+    }
 
 //method for creating Deadline tasks
 private Task createDeadlineTask(String arguments){
@@ -411,17 +526,7 @@ private Task createEventTask(String arguments) {
     return new Event('E', taskName, fromDate, fromTime, toDate, toTime);
 }
 
-//method to change task details such as date & time
-//    private void changeTaskDetails(){
-//        switch(){
-//            case '':{
-//
-//                break;
-//            }
-//        }
-//    }
-
-    //method to clone a task
+    //method to clone a task (only T & F types)
     private void createClone(String arguments) throws NumberIndexOutOfBoundsException, InvalidIndexException {
         String[] input = arguments.split("\\s+");
         boolean numeric = true;
@@ -460,10 +565,9 @@ public void newCheckTask(String userInput) throws InvalidInputException{
         }
 }
 
-//method for creating a FIXEDDURATION taskType
+//method for creating a FIXEDDURATION taskType (individual feature 1)
 private Task createFixedDuration(String userInput){
-        String taskName = userInput;
-        return new FixedDuration('F', taskName);
+        return new FixedDuration('F', userInput);
     }
 
     //method for deleting tasks

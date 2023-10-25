@@ -66,12 +66,6 @@ class EmptyListException extends DukeExceptions {
     }
 }
 
-class TaskTypeMissingException extends DukeExceptions { //for editing specific task types
-    public TaskTypeMissingException(){
-        super("The task type you requested for does not exist!");
-    }
-}
-
 class InvalidTaskTypeException extends DukeExceptions {
     public InvalidTaskTypeException(){
         super("Please key in a valid task type!");
