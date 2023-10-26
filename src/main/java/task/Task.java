@@ -26,10 +26,16 @@ public class Task {
         return (isDone ? " ✓ " : "҉҉҉");
     }
 
+    /**
+     * This method is to set the task is done or not.
+     */
     public void setIsDone(boolean done) {
         isDone = done;
     }
 
+    /**
+     * This method is to get the task is done or not.
+     */
     public boolean getIsDone() {
         return isDone;
     }

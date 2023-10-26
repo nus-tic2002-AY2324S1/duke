@@ -32,6 +32,7 @@ public class TaskStorage {
      * This method will save the tasks into the file.
      * If the file does not exist, it will create a new file.
      * If the file is empty, it will delete the file.
+     *
      * @param tasks the list of tasks.
      */
     public void save(List<Task> tasks) {
@@ -93,18 +94,18 @@ public class TaskStorage {
         char checkType = line.charAt(1);
         String content = line.substring(9);
         switch (checkType) {
-            case 'D':
-                Deadline deadline = getDeadline(isDone, content);
-                tasks.add(deadline);
-                break;
-            case 'E':
-                Event event = getEvent(isDone, content);
-                tasks.add(event);
-                break;
-            default:
-                Todo todo = new Todo(content);
-                todo.setIsDone(isDone);
-                tasks.add(todo);
+        case 'D':
+            Deadline deadline = getDeadline(isDone, content);
+            tasks.add(deadline);
+            break;
+        case 'E':
+            Event event = getEvent(isDone, content);
+            tasks.add(event);
+            break;
+        default:
+            Todo todo = new Todo(content);
+            todo.setIsDone(isDone);
+            tasks.add(todo);
         }
     }
 

@@ -6,8 +6,19 @@ import task.Task;
 
 import java.util.List;
 
+/**
+ * SortCommand class is a class that handle the sort command.
+ * It implements the CommandInterface.
+ * It has a method to handle the sort command.
+ */
 public class SortCommand extends CrabyMessage implements CommandInterface {
 
+    /**
+     * This method will print out all the tasks in the list after sort.
+     *
+     * @param input the input from the user.
+     * @param tasks the list of tasks.
+     */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
         assert input != null;

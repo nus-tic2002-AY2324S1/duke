@@ -37,7 +37,6 @@ public class MarkCommand extends CrabyMessage implements CommandInterface {
 
     private static Integer getInteger(String input, List<Task> tasks) {
         input = input.trim();
-
         String checkMark = input.substring(4).trim();
         int checkNum = (Integer.parseInt(checkMark)) - 1;
         if (checkNum >= tasks.size() || checkNum < 0) {

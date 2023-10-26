@@ -8,7 +8,8 @@ import task.Todo;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ListCommandTest {
 
@@ -21,9 +22,9 @@ class ListCommandTest {
         taskList.add(event);
         ListCommand listCommand = new ListCommand();
         listCommand.handleCommand("list", taskList);
-        assertAll("list",
-                () -> assertEquals(2, taskList.size()),
+        assertAll("list", () -> assertEquals(2, taskList.size()),
                 () -> assertEquals("[T][҉҉҉] Test description", taskList.get(0).toString()),
-                () -> assertEquals("[E][҉҉҉] Test description (from: 20 Oct 2023, 11PM - Friday)", taskList.get(1).toString()));
+                () -> assertEquals("[E][҉҉҉] Test description (from: 20 Oct 2023, 11PM - Friday)",
+                        taskList.get(1).toString()));
     }
 }

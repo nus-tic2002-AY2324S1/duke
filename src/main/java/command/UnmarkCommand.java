@@ -6,7 +6,7 @@ import task.Task;
 import java.util.List;
 
 /**
- * This class represents a unmark command.
+ * This class represents an unmark command.
  */
 public class UnmarkCommand extends CrabyMessage implements CommandInterface {
 
@@ -39,9 +39,8 @@ public class UnmarkCommand extends CrabyMessage implements CommandInterface {
     }
 
     private static Integer getInteger(String input, List<Task> tasks) {
-        int tmp = input.indexOf("k");
-        assert tmp != -1;
-        String checkMark = input.substring(tmp + 1).trim();
+        input = input.trim();
+        String checkMark = input.substring(6).trim();
         int checkNum = (Integer.parseInt(checkMark)) - 1;
         if (checkNum >= tasks.size() || checkNum < 0) {
             printNumOutOfTask(tasks.size());

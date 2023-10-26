@@ -5,6 +5,11 @@ import task.Task;
 
 import java.util.List;
 
+/**
+ * DeleteCommand class is a class that handle the delete command.
+ * It implements the CommandInterface.
+ * It has a method to handle the delete command.
+ */
 public class DeleteCommand extends CrabyMessage implements CommandInterface {
 
     /**

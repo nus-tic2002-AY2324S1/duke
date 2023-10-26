@@ -116,49 +116,49 @@ public class Craby extends CrabyMessage {
         try {
             Keyword keyWords = Keyword.valueOf(checkInput);
             switch (keyWords) {
-                case LIST:
-                    handleListCommand(input, tasks);
-                    break;
-                case BLAH:
-                    handleBlahCommand(input, tasks);
-                    break;
-                case BYE:
-                    handleByeCommand(input, tasks);
-                    exit = true;
-                    break;
-                case MARK:
-                    handleMarkCommand(input, tasks);
-                    break;
-                case UNMARK:
-                    handleUnmarkCommand(input, tasks);
-                    break;
-                case DELETE:
-                    handleDeleteCommand(input, tasks);
-                    break;
-                case FIND:
-                    handleFindCommand(input, tasks);
-                    break;
-                case SORT:
-                    handleSortByCommand(input, tasks);
-                    break;
-                case HELP:
-                    handleHelpCommand(input, tasks);
-                    break;
-                case UNDO:
-                    handleUndoCommand(input, tasks);
-                    break;
-                case SWITCH:
-                    handleSwitchCommand(input, tasks);
-                    exit = true;
-                    break;
-                case ADD:
-                case TODO:
-                case DEADLINE:
-                case EVENT:
-                default:
-                    input = input.substring(checkInput.length());
-                    addTaskCommand(input, tasks);
-                    break;
+            case LIST:
+                handleListCommand(input, tasks);
+                break;
+            case BLAH:
+                handleBlahCommand(input, tasks);
+                break;
+            case BYE:
+                handleByeCommand(input, tasks);
+                exit = true;
+                break;
+            case MARK:
+                handleMarkCommand(input, tasks);
+                break;
+            case UNMARK:
+                handleUnmarkCommand(input, tasks);
+                break;
+            case DELETE:
+                handleDeleteCommand(input, tasks);
+                break;
+            case FIND:
+                handleFindCommand(input, tasks);
+                break;
+            case SORT:
+                handleSortByCommand(input, tasks);
+                break;
+            case HELP:
+                handleHelpCommand(input, tasks);
+                break;
+            case UNDO:
+                handleUndoCommand(input, tasks);
+                break;
+            case SWITCH:
+                handleSwitchCommand(input, tasks);
+                exit = true;
+                break;
+            case ADD:
+            case TODO:
+            case DEADLINE:
+            case EVENT:
+            default:
+                input = input.substring(checkInput.length());
+                addTaskCommand(input, tasks);
+                break;
             }
         } catch (IllegalArgumentException e) {
             addTaskCommand(input, tasks);

@@ -7,7 +7,6 @@ import task.Task;
 import java.util.ArrayList;
 import java.util.List;
 
-
 class DeleteCommandTest {
 
     @Test

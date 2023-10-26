@@ -105,10 +105,10 @@ public class Event extends Task {
     public String toStorageString() {
         if (this.toTime == null) {
             return "[E]" + super.toString() + " (from: " +
-                    fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
+                   fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
         }
         return "[E]" + super.toString() + " (from: " + fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) +
-                " to: " + toTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
+               " to: " + toTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
     }
 
     /**
