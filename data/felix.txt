@@ -1,7 +1,0 @@
-[E][҉҉҉] Test sort by date: this one will on top if system correct (from: 2023/10/19 2359)
-[D][҉҉҉] Test sort by type (by: 2024/1/1 1200)
-[E][҉҉҉] Test sort by date (from: 2024/1/1 1300)
-[T][ ✓ ] Test mark
-[T][҉҉҉] Test undo mark
-[T][҉҉҉] Test unmark
-[T][҉҉҉] Test undo delete

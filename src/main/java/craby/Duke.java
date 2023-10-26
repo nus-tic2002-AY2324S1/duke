@@ -8,6 +8,6 @@ public class Duke {
      * @param args the input from the user.
      */
     public static void main(String[] args) {
-        Craby.crabySystem();
+        Craby.crabySystem(true);
     }
 }

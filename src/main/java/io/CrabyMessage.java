@@ -26,7 +26,7 @@ public class CrabyMessage {
                 + System.lineSeparator() +
                 "   What type of thing you wanna do right now? ˃ᴗ˂");
         System.out.println(LINE);
-        System.out.println(SPACES + "╰┈➤Typing: \"School\" | \"Work\" | \"Personal\" | [name-of-list] if you wanna creat a new type.");
+        System.out.println(SPACES + "╰┈➤You can typing: \"School\" | \"Work\" | \"Personal\" | [name-of-list] if you wanna creat a new list.");
         System.out.println(LINE);
     }
     public static void printEmptyTypeName() {
@@ -199,5 +199,12 @@ public class CrabyMessage {
         System.out.println(SPACES + "╰┈➤Please try again with another command ☘");
         System.out.println(LINE);
     }
+    //Print Switch Message
+    public static void printSwitchMessage() {
+        System.out.println(SPACES + "Which list do you want to switch to? •ᴗ•");
+        System.out.println(SPACES + "╰┈➤You can typing: \"School\" | \"Work\" | \"Personal\" | [name-of-list] if you wanna creat a new list.");
+        System.out.println(LINE);
+    }
+
 }
 
