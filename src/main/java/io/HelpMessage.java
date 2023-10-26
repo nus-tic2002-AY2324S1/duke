@@ -51,7 +51,7 @@ public class HelpMessage {
                 SPACES + "13. bye - exit the program" + System.lineSeparator() +
                 SPACES + "    ╰┈➤e.g. bye" + System.lineSeparator() + System.lineSeparator() +
 
-                SPACES + "*** NOTE: if you use the same name that used before" + System.lineSeparator() +
+                SPACES + "*** NOTE: if you use the same [List-name] that used before" + System.lineSeparator() +
                 SPACES + "╰┈➤CrabY will load the data and you can continue to use the previous list of tasks." + System.lineSeparator() +
                 LINE);
     }

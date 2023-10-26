@@ -33,10 +33,10 @@ public class Craby extends CrabyMessage {
     public static void crabySystem() {
         printHello();
         Scanner scanner = new Scanner(System.in);
-        String name = checkName(scanner);
-        assert name != null;
-        printFirstMessage(name);
-        taskStorage = new TaskStorage(name.toLowerCase() + ".txt");
+        String nameOfList = checkName(scanner);
+        assert nameOfList != null;
+        printFirstMessage(nameOfList);
+        taskStorage = new TaskStorage(nameOfList.toLowerCase() + ".txt");
         List<Task> tasks = taskStorage.load();
         while (true) {
             String input = scanner.nextLine();
@@ -56,13 +56,13 @@ public class Craby extends CrabyMessage {
     private static String checkName(Scanner scanner) {
         String name = scanner.nextLine().trim();
         while (name.isBlank()) {
-            printEmptyName();
+            printEmptyTypeName();
             name = scanner.nextLine();
         }
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(name);
         while (matcher.find()) {
-            printNameError();
+            printTypeNameError();
             name = scanner.nextLine();
         }
         boolean isKeyword = isKeyword(name);

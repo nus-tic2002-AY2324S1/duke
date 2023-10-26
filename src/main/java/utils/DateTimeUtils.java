@@ -8,7 +8,8 @@ public class DateTimeUtils {
 
     public static LocalDateTime parseNextDay(String dateStr) {
         if (!Arrays.asList("mon", "tue", "wed", "thu", "fri", "sat", "sun",
-                        "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "today")
+                        "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
+                        "today", "tmr", "tomorrow")
                 .contains(dateStr.toLowerCase())) {
             return null;
         }
@@ -18,6 +19,9 @@ public class DateTimeUtils {
         now = now.withSecond(59);
         if(dateStr.toLowerCase().contains("today")){
             return now;
+        }
+        if(dateStr.toLowerCase().contains("tomorrow") || dateStr.toLowerCase().contains("tmr")){
+            return now.plusDays(1);
         }
         List<DayOfWeek> dayOfWeeks = Arrays.asList(DayOfWeek.values());
         int dayIndex = dayOfWeeks.indexOf(DayOfWeek.valueOf(dateStr.toUpperCase()));

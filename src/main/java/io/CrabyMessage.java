@@ -22,31 +22,35 @@ public class CrabyMessage {
                 "  \\____| |_|     \\__,_| |_.__/    |_|" + System.lineSeparator() +
                 System.lineSeparator() + LINE);
 
-        System.out.println(SPACES + "Hello! I'm CrabY 🦀, what's your name? ˃ᴗ˂");
+        System.out.println("   Hi Amber ♡, CrabY 🦀 here!"
+                + System.lineSeparator() +
+                "   What type of thing you wanna do right now? ˃ᴗ˂");
+        System.out.println(LINE);
+        System.out.println(SPACES + "╰┈➤Typing: \"School\" | \"Work\" | \"Personal\" | [name-of-list] if you wanna creat a new type.");
         System.out.println(LINE);
     }
-    public static void printEmptyName() {
-        System.out.println(SPACES + "Oops!!! The name cannot be empty.");
-        System.out.println(SPACES + "NOTE: if you use the same name that used before");
+    public static void printEmptyTypeName() {
+        System.out.println(SPACES + "Oops!!! The [name-of-list] cannot be empty.");
+        System.out.println(SPACES + "NOTE: if you use the same [name-of-list] that used before");
         System.out.println(SPACES + "╰┈➤You can continue to use the previous list of tasks.");
         System.out.println(LINE);
     }
-    public static void printNameError() {
-        System.out.println(SPACES + "Oops!!! The name cannot contain special character.");
-        System.out.println(SPACES + "NOTE: if you use the same name that used before");
+    public static void printTypeNameError() {
+        System.out.println(SPACES + "Oops!!! The [name-of-list] cannot contain special character.");
+        System.out.println(SPACES + "NOTE: if you use the same [name-of-list] that used before");
         System.out.println(SPACES + "╰┈➤You can continue to use the previous list of tasks.");
         System.out.println(LINE);
     }
     public static void printNameSameWithKeyWord() {
-        System.out.println(SPACES + "Oops!!! Before you start, pls give me your name. (your input cannot same with the keyword)");
-        System.out.println(SPACES + "NOTE: if you use the same name that used before");
+        System.out.println(SPACES + "Oops!!! Before you start, pls give me [name-of-list]. (your input cannot same with my keyword)");
+        System.out.println(SPACES + "NOTE: if you use the same [name-of-list] that used before");
         System.out.println(SPACES + "╰┈➤You can continue to use the previous list of tasks.");
         System.out.println(LINE);
     }
-    public static void printFirstMessage(String name) {
-        System.out.println(SPACES + "Hi " + name + " ♡, How can I help you today?");
-        System.out.println(SPACES + "╰┈➤Type \"help\" if you sure how to work with CrabY ☘"
-                + System.lineSeparator() + LINE);
+    public static void printFirstMessage(String input){
+        System.out.println(SPACES + "Ok I got it! Let start with your ➞ " + input + " list.");
+        System.out.println(SPACES + "╰┈➤Type \"help\" if you need to see what I can do for you" + System.lineSeparator() + LINE);
+
     }
     public static void printByeMessage() {
         System.out.println(SPACES + "Bye Amber ♡, hope to see you again soon!");
