@@ -2,13 +2,13 @@ lisq
 invalidcmd
  list 
 todo
-todo toomany / arguments
+todo toomany | arguments
 todo homework1 
 deadline
 deadline toolittle
-deadline toomany / 2 / 3
-deadline    homework2/  today 
-event homework3   /  tmr    /  tmrtmr  
+deadline toomany | 2 | 3
+deadline    homework2|  today 
+event homework3   |  tmr    |  tmrtmr  
 list 
 mark 2
 list

@@ -1,20 +1,21 @@
 package seedu.duke.task;
 
 import seedu.duke.commands.Command;
+import seedu.duke.commands.WonkyDateTime;
 
 public class Event extends Task {
 
-    protected String from;
-    protected String to;
+    protected WonkyDateTime from;
+    protected WonkyDateTime to;
 
-    public Event(String description, String from, String to) {
+    public Event(String description, WonkyDateTime from, WonkyDateTime to) {
         super(Command.EVENT, "E", description);
-        this.from = from.trim();
-        this.to = to.trim();
+        this.from = from;
+        this.to = to;
     }
 
     @Override
     public String getStatusMsg(int idx) {
-        return super.getStatusMsg(idx) + " | from: " + from + " | to: "  + to;
+        return super.getStatusMsg(idx) + " | from: " + from.getStyledDateTimeStr() + " | to: "  + to.getStyledDateTimeStr();
     }
 }

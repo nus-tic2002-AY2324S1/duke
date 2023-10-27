@@ -26,17 +26,21 @@ public class CommandArgument {
     }
 
     public List<String> getArgList() {
-        return Arrays.asList(arguments.split("/"));
+        return Arrays.asList(arguments.split("\\|"));
     }
 
     public int getArgCount() {
         if (arguments.isEmpty()) {
             return 0;
         }
-        int count = Arrays.asList(arguments.split("/")).size();
-        if (arguments.charAt(arguments.length() - 1) == '/') {
+        int count = Arrays.asList(arguments.split("\\|")).size();
+        if (arguments.charAt(arguments.length() - 1) == '|') {
             count += 1;
         }
         return count;
+    }
+
+    public void setArg(String newArg) {
+        arguments = newArg;
     }
 }

@@ -17,9 +17,10 @@ public class Duke {
             initialise(mode);
         } catch (DukeException e) {
             throw e;
-        } catch (Exception e) {
-            throw new DukeUnhandledException(e.getMessage());
         }
+        // catch (Exception e) {
+        //     throw new DukeUnhandledException(e.getMessage());
+        // }
         System.exit(0);
     }
 

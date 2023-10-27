@@ -74,9 +74,13 @@ public class WonkyScanner {
                 WonkyLogger.mismatchArgs(INPUT_CMD);
                 WonkyLogger.suggestCommand(typoSuggestion(INPUT_CMD));
             }
-        } catch (Exception e) {
-            throw new DukeScannerException(e.getMessage());
-        }
+        } catch (DukeException e) {
+            throw e;
+        } 
+        // catch (Exception e) {
+        //     System.out.println(e);
+        //     throw new DukeScannerException(e.getMessage());
+        // }
         return true;
     }
 

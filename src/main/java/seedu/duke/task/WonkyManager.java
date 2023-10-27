@@ -1,10 +1,16 @@
 package seedu.duke.task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandArgument;
+import seedu.duke.commands.WonkyDateTime;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeManagerException;
 import seedu.duke.io.WonkyLogger;
@@ -25,7 +31,7 @@ public class WonkyManager {
     private final static int DESC_IDX = 0;
     private final static int BY_IDX = 1;
     private final static int FROM_IDX = 1;
-    private final static int TO_IDX = 0;
+    private final static int TO_IDX = 2;
 
     private static List<CommandArgument> cmdArgs = new ArrayList<CommandArgument>();
     private static List<Task> tasks = new ArrayList<Task>();
@@ -102,10 +108,12 @@ public class WonkyManager {
             break;
         case DEADLINE:
             if (validateArgs(cmdArg, DEADLINE_ARGS)) {
+                System.out.println("printing");
+                System.out.println(argList.get(BY_IDX));
                 addTask(
                     new Deadline(
                         argList.get(DESC_IDX),
-                        argList.get(BY_IDX)
+                        parseToDate(argList.get(BY_IDX).trim())
                     )
                 );
             }
@@ -115,8 +123,8 @@ public class WonkyManager {
                 addTask(
                     new Event(
                         argList.get(DESC_IDX),
-                        argList.get(FROM_IDX),
-                        argList.get(TO_IDX)
+                        parseToDate(argList.get(FROM_IDX).trim()),
+                        parseToDate(argList.get(TO_IDX).trim())
                     )
                 );
             }
@@ -135,6 +143,10 @@ public class WonkyManager {
     private static boolean validateArgs(CommandArgument cmdArg, int expectedSize) throws DukeException {
         List<String> argList = cmdArg.getArgList();
         int argCount = cmdArg.getArgCount();
+        if(WonkyLogger.isLoading) {
+            cmdArgs.add(cmdArg);
+            WonkyStorage.save(cmdArgs);
+        }
         if (argCount == expectedSize && expectedSize == ZERO_ARGS) {
             cmdArgs.add(cmdArg);
             WonkyStorage.save(cmdArgs);
@@ -149,9 +161,52 @@ public class WonkyManager {
                 return false;
             }
         }
-        cmdArgs.add(cmdArg);
-        WonkyStorage.save(cmdArgs);
+        if (Command.EVENT.equals(cmdArg.getCmd()) || Command.DEADLINE.equals(cmdArg.getCmd())) {
+            String newCmdArgStr = cmdArg.getArgList().get(0);
+            for (int i = 1; i < cmdArg.getArgCount(); i += 1) {
+                String currArg = cmdArg.getArgList().get(i);
+                if (!isValidDateOrDateTime(currArg)) {
+                    return false;
+                } else {
+                    newCmdArgStr += "|" + parseToDate(currArg).getDateTimeStr();
+                }
+            }
+            cmdArg.setArg(newCmdArgStr);
+        }
+        if (!WonkyLogger.isLoading) {
+            cmdArgs.add(cmdArg);
+            WonkyStorage.save(cmdArgs);
+        }
         return true;
+    }
+
+    private static boolean isValidDateOrDateTime(String str) throws DukeException {
+        str = str.trim();
+        try {
+            LocalDateTime.parse(str, WonkyDateTime.getDtf());
+        } catch (DateTimeParseException e) {
+            if (Objects.nonNull(WonkyDateTime.getMappedDateTimeStr(str))) {
+                return true;
+            }
+            WonkyLogger.expectedDateOrDateTime(str);
+            return false;
+        }
+        return true;
+    }
+
+    private static WonkyDateTime parseToDate(String str) throws DukeException {
+        str = str.trim();
+        try {
+            return new WonkyDateTime(LocalDateTime.parse(str, WonkyDateTime.getDtf()));
+        } catch (DateTimeParseException e) {
+            System.out.println((str));
+            if (Objects.nonNull(WonkyDateTime.getMappedDateTimeStr(str))) {
+                return new WonkyDateTime(WonkyDateTime.getMappedDateTimeStr(str));
+            }
+            throw new DukeManagerException("Invalid date value.");
+        } catch (Exception e) {
+            throw new DukeManagerException(e.getMessage());
+        }
     }
 
     private static Command getLastCmd() {

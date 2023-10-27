@@ -45,7 +45,7 @@ public class WonkyLogger {
     );
 
     private static final String EXPECTED_ARG_MSG = "Did you input the wrong argument(s)? Expected [%d] argument(s) for the command.";
-    private static final String EXPECTED_INT_MSG = "There is mistake with the argument. Expected an integer instead of [%s].";
+    private static final String EXPECTED_TYPE_MSG = "There is mistake with the argument. Expected [%s] instead of [%s].";
 
     private static final String ADD_TO_LIST_MSG = "I have added %s task [%s] to our list!";
 
@@ -161,7 +161,11 @@ public class WonkyLogger {
     }
 
     public static void expectedInteger(String val) throws DukeLoggerException {
-        printWarnWithWonky(String.format(EXPECTED_INT_MSG, val));
+        printWarnWithWonky(String.format(EXPECTED_TYPE_MSG, "Integer", val));
+    }
+
+    public static void expectedDateOrDateTime(String val) throws DukeLoggerException {
+        printWarnWithWonky(String.format(EXPECTED_TYPE_MSG, "yyyy-MM-dd HH:mm", val));
     }
 
     public static void suggestCommand(String cmd) throws DukeLoggerException {

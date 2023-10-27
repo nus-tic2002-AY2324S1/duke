@@ -35,6 +35,7 @@ public class WonkyStorage {
                     WonkyLogger.setIsLoading(false);
                 }
             } catch (Exception e) {
+                System.out.println(e);
                 throw new DukeStorageException(e.getMessage());
             }
         }
