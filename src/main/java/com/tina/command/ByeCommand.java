@@ -7,7 +7,6 @@ public class ByeCommand extends Command {
     public ByeCommand() {
         super(CommandEnum.BYE);
         this.isBye = true;
-        this.syntax = "bye";
     }
 
     @Override

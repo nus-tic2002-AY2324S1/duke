@@ -2,18 +2,20 @@ package com.tina;
 
 import com.tina.command.*;
 import com.tina.exception.DukeException;
+import com.tina.exception.InvalidDateFormatException;
 import com.tina.exception.InvalidFileFormatException;
 import com.tina.exception.InvalidParameterException;
 import com.tina.task.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Parser {
 
-    public static Command parseInputToCommand(String userInput) throws DukeException {
+    public static Command parseInputToCommand(String userInput) throws InvalidParameterException, InvalidDateFormatException {
         List<String> list = Arrays.asList(userInput.split(" "));
         ArrayList<String> tokens = new ArrayList<>(list);
         String firstToken = tokens.get(0).toUpperCase();
@@ -66,7 +68,7 @@ public class Parser {
                     }
                     taskName = String.join(" ", tokens.subList(1, byIndex));
                     String by = String.join(" ", tokens.subList(byIndex + 1, tokens.size()));
-                    LocalDateTime byDateTime = LocalDateTime.parse(by);
+                    LocalDate byDateTime = LocalDate.parse(by);
                     command = new DeadlineCommand(taskName, byDateTime);
                     break;
                 case EVENT:
@@ -78,9 +80,21 @@ public class Parser {
                     taskName = String.join(" ", tokens.subList(1, fromIndex));
                     String from = String.join(" ", tokens.subList(fromIndex + 1, toIndex));
                     String to = String.join(" ", tokens.subList(toIndex + 1, tokens.size()));
-                    LocalDateTime fromDateTime = LocalDateTime.parse(from);
-                    LocalDateTime toDateTime = LocalDateTime.parse(to);
+                    LocalDate fromDateTime = LocalDate.parse(from);
+                    LocalDate toDateTime = LocalDate.parse(to);
                     command = new EventCommand(taskName, fromDateTime, toDateTime);
+                    break;
+                case SCHEDULE:
+                    if (tokens.size() == 1) {
+                        throw new InvalidParameterException(CommandEnum.SCHEDULE);
+                    }
+                    tokens.remove(0);
+                    try {
+                        LocalDate date = LocalDate.parse(String.join(" ", tokens));
+                        command = new ScheduleCommand(date);
+                    } catch (DateTimeParseException e) {
+                        throw new InvalidDateFormatException();
+                    }
                     break;
                 default:
             }
@@ -113,9 +127,9 @@ public class Parser {
             case "T":
                 return new TodoTask(parts[2], isDone);
             case "D":
-                return new DeadlineTask(parts[2], isDone, LocalDateTime.parse(parts[3]));
+                return new DeadlineTask(parts[2], isDone, LocalDate.parse(parts[3]));
             case "E":
-                return new EventTask(parts[2], isDone, LocalDateTime.parse(parts[3]), LocalDateTime.parse(parts[4]));
+                return new EventTask(parts[2], isDone, LocalDate.parse(parts[3]), LocalDate.parse(parts[4]));
             default:
                 throw new InvalidFileFormatException();
         }
@@ -129,7 +143,7 @@ public class Parser {
         return taskArray;
     }
 
-    public static int validateTaskNumber(ArrayList<String> tokens, CommandEnum command) throws DukeException {
+    public static int validateTaskNumber(ArrayList<String> tokens, CommandEnum command) throws InvalidParameterException {
         int taskNumber;
         try {
             taskNumber = Integer.parseInt(tokens.get(1));
@@ -139,7 +153,7 @@ public class Parser {
         return taskNumber;
     }
 
-    public static void validateSingleCommand(ArrayList<String> tokens, CommandEnum command) throws DukeException {
+    public static void validateSingleCommand(ArrayList<String> tokens, CommandEnum command) throws InvalidParameterException {
         if (tokens.size() > 1) {
             throw new InvalidParameterException(command);
         }

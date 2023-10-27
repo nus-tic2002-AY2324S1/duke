@@ -7,7 +7,6 @@ import com.tina.task.TaskList;
 public abstract class Command {
     private final CommandEnum commandType;
     boolean isBye = false;
-    String syntax;
 
     public Command(CommandEnum commandType) {
         this.commandType = commandType;
@@ -23,7 +22,4 @@ public abstract class Command {
         return isBye;
     }
 
-    public String getSyntax() {
-        return syntax;
-    }
 }

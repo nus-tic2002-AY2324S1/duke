@@ -1,18 +1,22 @@
 package com.tina.task;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class DeadlineTask extends Task {
-    LocalDateTime by;
-    public DeadlineTask(String taskName, LocalDateTime by) {
+    LocalDate by;
+    public DeadlineTask(String taskName, LocalDate by) {
         super(TaskEnum.DEADLINE, taskName);
         this.by = by;
     }
 
-    public DeadlineTask(String taskName, boolean isDone, LocalDateTime by) {
+    public DeadlineTask(String taskName, boolean isDone, LocalDate by) {
         super(TaskEnum.DEADLINE, taskName);
         this.by = by;
         this.setDone(isDone);
+    }
+
+    public LocalDate getBy() {
+        return by;
     }
 
     public String toString() {

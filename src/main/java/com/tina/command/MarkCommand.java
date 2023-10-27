@@ -11,7 +11,6 @@ public class MarkCommand extends Command {
     public MarkCommand(int taskNumber) {
         super(CommandEnum.MARK);
         this.taskNumber = taskNumber;
-        this.syntax = "mark [task number]";
     }
 
     @Override

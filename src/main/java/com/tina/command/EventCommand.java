@@ -6,30 +6,29 @@ import com.tina.task.EventTask;
 import com.tina.task.Task;
 import com.tina.task.TaskList;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class EventCommand extends Command {
     private final String taskName;
-    private final LocalDateTime from;
-    private final LocalDateTime to;
+    private final LocalDate from;
+    private final LocalDate to;
 
-    public EventCommand(String taskName, LocalDateTime from, LocalDateTime to) {
+    public EventCommand(String taskName, LocalDate from, LocalDate to) {
         super(CommandEnum.EVENT);
         this.taskName = taskName;
         this.from = from;
         this.to = to;
-        this.syntax = "event [task name] /from [date] /to [date]";
     }
 
     public String getTaskName() {
         return taskName;
     }
 
-    public LocalDateTime getFrom() {
+    public LocalDate getFrom() {
         return from;
     }
 
-    public LocalDateTime getTo() {
+    public LocalDate getTo() {
         return to;
     }
 

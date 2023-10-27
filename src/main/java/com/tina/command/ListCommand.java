@@ -6,7 +6,6 @@ import com.tina.task.TaskList;
 public class ListCommand extends Command{
     public ListCommand() {
         super(CommandEnum.LIST);
-        this.syntax = "list";
     }
 
     @Override

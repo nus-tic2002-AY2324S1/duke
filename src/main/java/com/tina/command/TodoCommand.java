@@ -12,7 +12,6 @@ public class TodoCommand extends Command {
     public TodoCommand(String taskName) {
         super(CommandEnum.TODO);
         this.taskName = taskName;
-        this.syntax = "todo [task name]";
     }
 
     @Override

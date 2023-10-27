@@ -12,7 +12,6 @@ public class DeleteCommand extends Command {
     public DeleteCommand(int taskNumber) {
         super(CommandEnum.DELETE);
         this.taskNumber = taskNumber;
-        this.syntax = "delete [task number]";
     }
 
     @Override

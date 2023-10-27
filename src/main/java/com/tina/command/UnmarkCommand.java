@@ -11,7 +11,6 @@ public class UnmarkCommand extends Command {
     public UnmarkCommand(int taskNumber) {
         super(CommandEnum.UNMARK);
         this.taskNumber = taskNumber;
-        this.syntax = "unmark [task number]";
     }
 
     public void execute(TaskList taskList, Ui ui) throws InvalidTaskNumberException {

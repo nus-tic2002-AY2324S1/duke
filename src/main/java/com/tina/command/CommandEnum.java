@@ -11,6 +11,7 @@ public enum CommandEnum {
     MARK("mark [task number]"),
     UNMARK("unmark [task number"),
     DELETE("delete [task number"),
+    SCHEDULE("schedule [date]"),
     UNKNOWN();
 
     private String syntax;
