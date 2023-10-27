@@ -2,8 +2,9 @@ package com.tina;
 
 import com.tina.command.*;
 import com.tina.exception.DukeException;
-import com.tina.exception.IncorrectParameterException;
-import com.tina.task.TaskList;
+import com.tina.exception.InvalidFileFormatException;
+import com.tina.exception.InvalidParameterException;
+import com.tina.task.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,7 +52,7 @@ public class Parser {
                     break;
                 case TODO:
                     if (tokens.size() == 1) {
-                        throw new IncorrectParameterException(CommandEnum.TODO);
+                        throw new InvalidParameterException(CommandEnum.TODO);
                     }
                     tokens.remove(0);
                     taskName = String.join(" ", tokens);
@@ -60,7 +61,7 @@ public class Parser {
                 case DEADLINE:
                     int byIndex = tokens.indexOf("/by");
                     if (tokens.size() == 1 || byIndex == -1 || byIndex == tokens.size() - 1 ) {
-                        throw new IncorrectParameterException(CommandEnum.DEADLINE);
+                        throw new InvalidParameterException(CommandEnum.DEADLINE);
                     }
                     taskName = String.join(" ", tokens.subList(1, byIndex));
                     String by = String.join(" ", tokens.subList(byIndex + 1, tokens.size()));
@@ -70,7 +71,7 @@ public class Parser {
                     int fromIndex = tokens.indexOf("/from");
                     int toIndex = tokens.indexOf("/to");
                     if (tokens.size() == 1 || fromIndex == -1 || toIndex == -1 || fromIndex >= toIndex - 1 || toIndex == tokens.size() - 1) {
-                        throw new IncorrectParameterException(CommandEnum.EVENT);
+                        throw new InvalidParameterException(CommandEnum.EVENT);
                     }
                     taskName = String.join(" ", tokens.subList(1, fromIndex));
                     String from = String.join(" ", tokens.subList(fromIndex + 1, toIndex));
@@ -92,19 +93,51 @@ public class Parser {
         return command;
     }
 
+    /**
+     * Storage file format:
+     * T | 1 | read book
+     * D | 0 | return book | June 6th
+     * E | 0 | project meeting | Aug 6th 2-4pm
+     * T | 1 | join sports club
+     * @param line
+     * @return
+     */
+    public static Task parseStorageToTask(String line) throws InvalidFileFormatException {
+        String[] parts = line.split("\\s*\\|\\s*");
+        boolean isDone = parts[1].equals("X");
+        switch (parts[0]) {
+            case "T":
+                return new TodoTask(parts[2], isDone);
+            case "D":
+                return new DeadlineTask(parts[2], isDone, parts[3]);
+            case "E":
+                return new EventTask(parts[2], isDone, parts[3], parts[4]);
+            default:
+                throw new InvalidFileFormatException();
+        }
+    }
+
+    public static ArrayList<String> parseTasksToStorage(TaskList tasks) {
+        ArrayList<String> taskArray = new ArrayList<>();
+        for (Task task : tasks.getTaskList()) {
+            taskArray.add(task.toStorage());
+        }
+        return taskArray;
+    }
+
     public static int validateTaskNumber(ArrayList<String> tokens, CommandEnum command) throws DukeException {
         int taskNumber;
         try {
             taskNumber = Integer.parseInt(tokens.get(1));
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            throw new IncorrectParameterException(command);
+            throw new InvalidParameterException(command);
         }
         return taskNumber;
     }
 
     public static void validateSingleCommand(ArrayList<String> tokens, CommandEnum command) throws DukeException {
         if (tokens.size() > 1) {
-            throw new IncorrectParameterException(command);
+            throw new InvalidParameterException(command);
         }
     }
 }

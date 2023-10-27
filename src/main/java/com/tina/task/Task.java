@@ -1,11 +1,13 @@
 package com.tina.task;
 
 public abstract class Task {
-    private String name;
+    private final TaskEnum taskType;
+    private final String taskName;
     private boolean isDone = false;
 
-    public Task(String name) {
-        this.name = name;
+    public Task(TaskEnum taskType, String taskName) {
+        this.taskType = taskType;
+        this.taskName = taskName;
     }
 
     public String isDone() {
@@ -16,12 +18,16 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
-    public String getName() {
-        return name;
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public TaskEnum getTaskType() {
+        return taskType;
     }
 
     @Override
-    public String toString() {
-        return "[" + isDone() + "] " + this.name;
-    }
+    public abstract String toString();
+
+    public abstract String toStorage();
 }

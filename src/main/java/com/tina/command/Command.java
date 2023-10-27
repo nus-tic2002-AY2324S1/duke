@@ -5,16 +5,16 @@ import com.tina.exception.DukeException;
 import com.tina.task.TaskList;
 
 public abstract class Command {
-    private final CommandEnum commandName;
+    private final CommandEnum commandType;
     boolean isBye = false;
     String syntax;
 
-    public Command(CommandEnum commandName) {
-        this.commandName = commandName;
+    public Command(CommandEnum commandType) {
+        this.commandType = commandType;
     }
 
-    public CommandEnum getCommandName() {
-        return commandName;
+    public CommandEnum getCommandType() {
+        return commandType;
     }
 
     public abstract void execute(TaskList taskList, Ui ui) throws DukeException;

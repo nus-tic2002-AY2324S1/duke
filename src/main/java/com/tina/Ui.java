@@ -1,7 +1,5 @@
 package com.tina;
 
-import com.tina.command.Command;
-import com.tina.command.CommandEnum;
 import com.tina.task.Task;
 import com.tina.task.TaskList;
 
@@ -45,7 +43,7 @@ public class Ui {
     public void printMark(Task task, boolean isMark) {
         String str = isMark ? "" : "not ";
         printLine("Nice! I've marked this Tina.task as " + str +"done:");
-        printLine("[" + task.isDone() +"]" + task.getName());
+        printLine("[" + task.isDone() +"]" + task.getTaskName());
     }
 
     public void printDividerLine() {
@@ -61,6 +59,10 @@ public class Ui {
         printLine("OOPS!!! I'm sorry, but I don't know what that means :-(");
         printDividerLine();
         printCommandList();
+    }
+
+    public void printLoadingError() {
+        printLine("Failed to load task list due to missing or invalid file.");
     }
 
     public void printBye() {
