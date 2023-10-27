@@ -38,9 +38,8 @@ public class Event extends Task {
     /**
      * Executes the task by displaying a response indicating that the task has been added.
      *
-     * @throws InvalidArgumentException If the task encounters invalid arguments.
      */
-    public void execute() throws InvalidArgumentException {
+    public void execute() {
         displayTaskAddedResponse();
     }
 

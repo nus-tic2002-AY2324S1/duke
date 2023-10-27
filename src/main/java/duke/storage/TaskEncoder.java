@@ -14,9 +14,9 @@ public class TaskEncoder {
      * @param tasks The TaskList to be encoded.
      * @return An ArrayList containing string representations of tasks from the input TaskList.
      */
-    public static ArrayList<String> encodeTaskListToStringList(TaskList tasks) {
+    public static ArrayList<String> encodeTaskListToStringList(ArrayList<Task> tasks) {
         ArrayList<String> listOfResult = new ArrayList<>();
-        for (Task t : tasks.getTasks()) {
+        for (Task t : tasks) {
             listOfResult.add(convertTaskToString(t));
         }
         return listOfResult;

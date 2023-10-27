@@ -35,9 +35,8 @@ public class Todo extends Task {
     /**
      * Executes the task and handles the response.
      *
-     * @throws InvalidArgumentException InvalidArgumentException If the task encounters invalid arguments.
      */
-    public void execute() throws InvalidArgumentException {
+    public void execute() {
         displayTaskAddedResponse();
     }
 

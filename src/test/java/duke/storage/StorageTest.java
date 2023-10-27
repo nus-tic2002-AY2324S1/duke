@@ -13,10 +13,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StorageTest {
     @TempDir
@@ -26,11 +26,11 @@ public class StorageTest {
 
     @Test
     public void save_validTask_success() throws Exception {
-        TaskList tasks = getTestTasks();
+        ArrayList<Task> tasks = getTestTasks();
         Storage storage = getTempStorage();
         storage.save(tasks);
 
-        assertStorageFileEqual(storage, getStorageObject("test.txt"));
+        assertStorageFileEqual(storage, getStorageObject("validData.txt"));
     }
 
     @Test
@@ -46,19 +46,18 @@ public class StorageTest {
         assertThrows(FileStorageException.class, () -> storage.load());
     }
 
-    // Todo: Unable to test together with another method in one go
-//    @Test
-//    public void load_validFormat_success() throws Exception {
-//        TaskList actualTasks = new TaskList(getStorageObject("validData.txt").load());
-//        TaskList expectedTasks = getTestTasks();
-//        assertEquals(expectedTasks.getTasks(), actualTasks.getTasks());
-//    }
+    @Test
+    public void load_validFormat_success() throws Exception {
+        ArrayList<Task> actualTasks = getStorageObject("validData.txt").load();
+        ArrayList<Task> expectedTasks = getTestTasks();
+        assertEquals(actualTasks.toString(), expectedTasks.toString());
+    }
 
-//    @Test
-//    public void load_nonExistantFile_exceptionThrown() throws Exception {
-//        Storage storage = getTempStorage();
-//        assertThrows(FileStorageException.class, () -> storage.load());
-//    }
+    @Test
+    public void load_nonExistantFile_exceptionThrown() throws Exception {
+        Storage storage = getTempStorage();
+        assertThrows(FileStorageException.class, () -> storage.load());
+    }
 
     @Test
     public void save_nonTask_exceptionThrown() throws Exception {
@@ -76,8 +75,8 @@ public class StorageTest {
         assertEquals(String.join("\n", file1), String.join("\n", file2));
     }
 
-    private TaskList getTestTasks() {
-        TaskList tasks = new TaskList();
+    private ArrayList<Task> getTestTasks() {
+        ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(new Todo(true, "return book"));
         LocalDateTime datetime = LocalDateTime.of(2023, 12, 2, 0, 0);
         tasks.add(new Deadline(false, "return book", datetime));

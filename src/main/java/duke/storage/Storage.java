@@ -48,7 +48,7 @@ public class Storage {
      * @param tasks The TaskList to be saved to the storage file.
      * @throws FileStorageException If there are issues with writing to the file.
      */
-    public void save(TaskList tasks) throws FileStorageException {
+    public void save(ArrayList<Task> tasks) throws FileStorageException {
         try {
             ArrayList<String> listOfTasks = TaskEncoder.encodeTaskListToStringList(tasks);
             Files.write(path, listOfTasks);
