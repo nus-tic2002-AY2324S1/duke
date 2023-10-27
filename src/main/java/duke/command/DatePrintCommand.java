@@ -20,6 +20,7 @@ public class DatePrintCommand extends Command {
     public static final String COMMAND_WORD = "dprint";
     public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " 22/10/2023\n" +
             DATE_FORMAT_MESSAGE;
+    public static final String TASKS_IN_THE_LIST = "Here are the tasks in your date filter list:";
     public static final Pattern ARG_FORMAT = Pattern.compile("(?<day>[0-9]+)/" +
             "(?<month>[0-9]+)/(?<year>[0-9]{4})");
 
@@ -34,7 +35,7 @@ public class DatePrintCommand extends Command {
      * message.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
         validateKeywordArgument(keywordArgument, new DatePrintCommand());
 
@@ -45,7 +46,7 @@ public class DatePrintCommand extends Command {
 
         ArrayList<Task> tasks = taskList.getTasks();
         ArrayList<String> messages = new ArrayList<>();
-        messages.add("Here are the tasks in your date filter list:");
+        messages.add(TASKS_IN_THE_LIST);
         for (int i = 0; i <= tasks.size() - 1; i++) {
             Task task = tasks.get(i);
             if (task instanceof Deadline) {

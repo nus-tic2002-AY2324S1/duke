@@ -41,8 +41,25 @@ public abstract class IndexBaseCommand extends Command {
      * @throws InvalidArgumentException If the command arguments are invalid or out of range, an exception is thrown
      * with an error message.
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
+        validation(keywordArgument);
+        setIndex(keywordArgument.getArguments());
+        if (index < 1 || index > TaskList.size()) {
+            String errorMessage = String.format(OUT_OF_RANGE_ERR_MESSAGE, getCommandWord());
+            throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
+        }
+        indexCommand = Parser.parseKeywordToCommand(keywordArgument);
+        process(taskList, ui);
+    }
+
+    /**
+     * Validates the command arguments to ensure they are non-empty and represent valid integers.
+     * Throws an InvalidArgumentException if the arguments are invalid.
+     * @param keywordArgument The parsed user input containing the keyword and arguments.
+     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
+     */
+    private void validation(UserKeywordArgument keywordArgument) throws InvalidArgumentException {
         if (keywordArgument.getArguments().isEmpty()) {
             String errorMessage = String.format(DESC_ERR_MESSAGE, getCommandWord());
             throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
@@ -51,14 +68,6 @@ public abstract class IndexBaseCommand extends Command {
             String errorMessage = String.format(INDEX_INT_ERR_MESSAGE, getCommandWord());
             throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
         }
-        setIndex(keywordArgument.getArguments());
-        if (index < 1 || index > TaskList.size()) {
-            String errorMessage = String.format(OUT_OF_RANGE_ERR_MESSAGE, getCommandWord());
-            throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
-        }
-        String keyword = keywordArgument.getKeyword();
-        indexCommand = Parser.parseKeywordToCommand(keyword);
-        process(taskList, ui);
     }
 
     /**

@@ -1,7 +1,5 @@
 package duke.task;
 
-import duke.exception.InvalidArgumentException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -24,9 +22,8 @@ public class Deadline extends Task {
 
     /**
      * Executes the task by displaying a response indicating that the task has been added.
-     *
      */
-    public void execute(){
+    public void execute() {
         displayTaskAddedResponse();
     }
 

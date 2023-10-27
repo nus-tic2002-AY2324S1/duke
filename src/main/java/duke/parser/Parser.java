@@ -28,23 +28,6 @@ public class Parser {
     }
 
     /**
-     * Parses a string keyword and returns the corresponding Command object.
-     *
-     * @param keyword The string keyword to be parsed.
-     * @return The Command object corresponding to the parsed keyword, or null if parsing fails.
-     */
-    public static Command parseKeywordToCommand(String keyword) {
-        try {
-            KeywordTypes key = KeywordTypes.valueOf(keyword.toUpperCase());
-            return key.createCommand();
-        } catch (IllegalArgumentException e) {
-            Ui ui = new Ui();
-            ui.showResponseToUser(Message.MESSAGE_I_DONT_KNOW);
-            return null;
-        }
-    }
-
-    /**
      * Parses a user input string and returns the first word as the parsed keyword.
      *
      * @param userInput The user input string to be parsed.

@@ -25,7 +25,7 @@ public abstract class Command {
     public static final Pattern TIME_ARG_FORMAT = Pattern.compile("(?<hour>[0-9]{2})(?<minute>[0-9]{2})");
     private static boolean isExit = false;
 
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public abstract void executeCommand(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException;
 
     /**

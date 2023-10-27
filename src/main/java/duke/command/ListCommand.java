@@ -33,20 +33,20 @@ public class ListCommand extends Command {
      * message.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
         validateNonEmptyKeywordArgument(keywordArgument, new ListCommand());
         if (TaskList.size() == 0) {
             ui.showResponseToUser(MESSAGE_LIST_IS_EMPTY);
-        } else {
-            ArrayList<Task> tasks = taskList.getTasks();
-            ArrayList<String> messages = new ArrayList<>();
-            messages.add(TASKS_IN_THE_LIST);
-            for (int i = 0; i <= tasks.size() - 1; i++) {
-                messages.add(String.format("%d.%s", i + 1, tasks.get(i).toString()));
-            }
-            ui.showResponseToUser(messages);
+            return;
         }
+        ArrayList<Task> tasks = taskList.getTasks();
+        ArrayList<String> messages = new ArrayList<>();
+        messages.add(TASKS_IN_THE_LIST);
+        for (int i = 0; i <= tasks.size() - 1; i++) {
+            messages.add(String.format("%d.%s", i + 1, tasks.get(i).toString()));
+        }
+        ui.showResponseToUser(messages);
     }
 
     /**

@@ -34,7 +34,20 @@ public class EventCommand extends Command {
      *                                  message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
+    public void executeCommand(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
+        Event event = processDetail(keywordArgument);
+        event.execute();
+        tasks.add(event);
+    }
+
+    /**
+     * Processes the details provided in the UserKeywordArgument object for creating an Event task.
+     * Validates the command arguments, extracts necessary details, and constructs an Event object.
+     * @param keywordArgument The parsed user input containing the keyword and task details.
+     * @return An Event object created based on the processed details.
+     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
+     */
+    private Event processDetail(UserKeywordArgument keywordArgument) throws InvalidArgumentException{
         validateKeywordArgument(keywordArgument, new EventCommand());
 
         final Matcher matcher = ARGUMENT_FORMAT.matcher(keywordArgument.getArguments());
@@ -62,9 +75,7 @@ public class EventCommand extends Command {
             throw new InvalidArgumentException(Message.concat(DATE_TIME_ERROR_MESSAGE, EXAMPLE_USAGE));
         }
 
-        Event event = new Event(false, description, fromDateTime, toDateTime);
-        event.execute();
-        tasks.add(event);
+        return new Event(false, description, fromDateTime, toDateTime);
     }
 
     /**

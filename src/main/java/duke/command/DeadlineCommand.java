@@ -29,7 +29,20 @@ public class DeadlineCommand extends Command {
      *                                  message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
+    public void executeCommand(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
+        Deadline deadline = processDetail(keywordArgument);
+        deadline.execute();
+        tasks.add(deadline);
+    }
+
+    /**
+     * Processes the details provided in the UserKeywordArgument object for creating a Deadline task.
+     * Validates the command arguments, extracts necessary details, and constructs a Deadline object.
+     * @param keywordArgument The parsed user input containing the keyword and task details.
+     * @return A Deadline object created based on the processed details.
+     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
+     */
+    private Deadline processDetail(UserKeywordArgument keywordArgument) throws InvalidArgumentException{
         validateKeywordArgument(keywordArgument, new DeadlineCommand());
         final Matcher byMatcher = ARGUMENT_FORMAT.matcher(keywordArgument.getArguments());
         validateArgumentMatcher(byMatcher, new DeadlineCommand(), "/by");
@@ -39,14 +52,8 @@ public class DeadlineCommand extends Command {
         final Matcher dateMatcher = DATE_ARG_FORMAT.matcher(byArgument);
         validateDateMatcher(dateMatcher, new DeadlineCommand(), "");
 
-//        final String timeArgument = dateMatcher.group("timeArgument");
-//        final Matcher timeMatcher = TIME_ARG_FORMAT.matcher(timeArgument);
-//        validateTimeMatcher(timeMatcher, new DeadlineCommand(), "");
-
-        LocalDateTime by = Parser.constructDateTime(dateMatcher);
-        Deadline deadline = new Deadline(false, description, by);
-        deadline.execute();
-        tasks.add(deadline);
+        LocalDateTime by =  Parser.constructDateTime(dateMatcher);
+        return new Deadline(false, description, by);
     }
 
     /**

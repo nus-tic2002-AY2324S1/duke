@@ -28,7 +28,7 @@ public class ExitCommand extends Command {
      * message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public void executeCommand(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
         validateNonEmptyKeywordArgument(keywordArgument, new ExitCommand());
         setExit();

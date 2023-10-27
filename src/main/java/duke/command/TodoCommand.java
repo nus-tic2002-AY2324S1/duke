@@ -23,7 +23,7 @@ public class TodoCommand extends Command {
      * message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public void executeCommand(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
         validateKeywordArgument(keywordArgument, new TodoCommand());
         Todo todo = new Todo(keywordArgument.getArguments());

@@ -1,7 +1,5 @@
 package duke.task;
 
-import duke.exception.InvalidArgumentException;
-
 public class Todo extends Task {
     /**
      * Constructor
