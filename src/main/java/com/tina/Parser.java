@@ -6,6 +6,7 @@ import com.tina.exception.InvalidFileFormatException;
 import com.tina.exception.InvalidParameterException;
 import com.tina.task.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -65,7 +66,8 @@ public class Parser {
                     }
                     taskName = String.join(" ", tokens.subList(1, byIndex));
                     String by = String.join(" ", tokens.subList(byIndex + 1, tokens.size()));
-                    command = new DeadlineCommand(taskName, by);
+                    LocalDateTime byDateTime = LocalDateTime.parse(by);
+                    command = new DeadlineCommand(taskName, byDateTime);
                     break;
                 case EVENT:
                     int fromIndex = tokens.indexOf("/from");
@@ -76,7 +78,9 @@ public class Parser {
                     taskName = String.join(" ", tokens.subList(1, fromIndex));
                     String from = String.join(" ", tokens.subList(fromIndex + 1, toIndex));
                     String to = String.join(" ", tokens.subList(toIndex + 1, tokens.size()));
-                    command = new EventCommand(taskName, from, to);
+                    LocalDateTime fromDateTime = LocalDateTime.parse(from);
+                    LocalDateTime toDateTime = LocalDateTime.parse(to);
+                    command = new EventCommand(taskName, fromDateTime, toDateTime);
                     break;
                 default:
             }
@@ -109,9 +113,9 @@ public class Parser {
             case "T":
                 return new TodoTask(parts[2], isDone);
             case "D":
-                return new DeadlineTask(parts[2], isDone, parts[3]);
+                return new DeadlineTask(parts[2], isDone, LocalDateTime.parse(parts[3]));
             case "E":
-                return new EventTask(parts[2], isDone, parts[3], parts[4]);
+                return new EventTask(parts[2], isDone, LocalDateTime.parse(parts[3]), LocalDateTime.parse(parts[4]));
             default:
                 throw new InvalidFileFormatException();
         }

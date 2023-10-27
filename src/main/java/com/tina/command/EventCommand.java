@@ -6,12 +6,14 @@ import com.tina.task.EventTask;
 import com.tina.task.Task;
 import com.tina.task.TaskList;
 
+import java.time.LocalDateTime;
+
 public class EventCommand extends Command {
     private final String taskName;
-    private final String from;
-    private final String to;
+    private final LocalDateTime from;
+    private final LocalDateTime to;
 
-    public EventCommand(String taskName, String from, String to) {
+    public EventCommand(String taskName, LocalDateTime from, LocalDateTime to) {
         super(CommandEnum.EVENT);
         this.taskName = taskName;
         this.from = from;
@@ -23,11 +25,11 @@ public class EventCommand extends Command {
         return taskName;
     }
 
-    public String getFrom() {
+    public LocalDateTime getFrom() {
         return from;
     }
 
-    public String getTo() {
+    public LocalDateTime getTo() {
         return to;
     }
 

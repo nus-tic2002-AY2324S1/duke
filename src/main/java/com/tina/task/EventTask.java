@@ -1,16 +1,18 @@
 package com.tina.task;
 
-public class EventTask extends Task {
-    private String from;
-    private String to;
+import java.time.LocalDateTime;
 
-    public EventTask(String taskName, String from, String to) {
+public class EventTask extends Task {
+    private LocalDateTime from;
+    private LocalDateTime to;
+
+    public EventTask(String taskName, LocalDateTime from, LocalDateTime to) {
         super(TaskEnum.EVENT, taskName);
         this.from = from;
         this.to = to;
     }
 
-    public EventTask(String taskName, boolean isDone, String from, String to) {
+    public EventTask(String taskName, boolean isDone, LocalDateTime from, LocalDateTime to) {
         super(TaskEnum.EVENT, taskName);
         this.from = from;
         this.to = to;
