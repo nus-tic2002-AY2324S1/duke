@@ -1,0 +1,27 @@
+Test
+List
+Todo
+Deadline
+Deadline project submission
+deadline homework /by
+Event
+Event CCA
+event project meeting /from 2pm /to
+Mark test
+Mark 0
+Unmark test
+Unmark 0
+Delete test
+Delete 0
+todo gym
+deadline homework /by June 6th
+event project meeting /from saturday 2pm /to 4pm
+todo join sports club
+todo borrow book
+Unmark 1
+mark 1
+mark 4
+Delete 5
+Delete 1
+List
+Bye
