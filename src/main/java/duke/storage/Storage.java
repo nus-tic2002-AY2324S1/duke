@@ -55,6 +55,13 @@ public class Storage {
         } catch (IOException e) {
             throw new FileStorageException("Error writing storage file: " + path);
         }
+    }
 
+    /**
+     * Retrieves the file path as a string.
+     * @return A string representing the file path.
+     */
+    public String getPath(){
+        return path.toString();
     }
 }

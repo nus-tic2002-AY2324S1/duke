@@ -30,7 +30,7 @@ public class Event extends Task {
     public Event(boolean isDone, String description, LocalDateTime from, LocalDateTime to) {
         super(description);
         setAbbreviation();
-        setDone(isDone);
+        markAsDone(isDone);
         this.fromDateTime = from;
         this.toDateTime = to;
     }

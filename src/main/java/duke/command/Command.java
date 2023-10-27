@@ -18,8 +18,10 @@ public abstract class Command {
     public static final String DATE_FORMAT_MESSAGE = "Date format: {dd/mm/yyyy}";
     public static final String SUB_ARG_ERR_MESSAGE = "OOPS!!! The \"%s\" of a \"%s\" cannot be empty :(";
     public static final String DATE_TIME_ERR_MESSAGE = "OOPS!!! The %s format of a \"%s\" is invalid :(";
-    public static final Pattern DATE_ARG_FORMAT = Pattern.compile("(?<day>[0-9]+)/" +
+    public static final Pattern DATE_TIME_ARG_FORMAT = Pattern.compile("(?<day>[0-9]+)/" +
             "(?<month>[0-9]+)/(?<year>[0-9]{4})\\s(?<timeArgument>\\w.*)");
+    public static final Pattern DATE_ARG_FORMAT = Pattern.compile("(?<day>[0-9]+)/" +
+            "(?<month>[0-9]+)/(?<year>[0-9]{4})");
     public static final Pattern TIME_ARG_FORMAT = Pattern.compile("(?<hour>[0-9]{2})(?<minute>[0-9]{2})");
     private static boolean isExit = false;
 
@@ -70,7 +72,7 @@ public abstract class Command {
      * @param command The Command associated with the pattern being checked.
      * @param addOn   Additional information to be included in the error message (can be empty).
      * @throws InvalidArgumentException If the Matcher does not match the pattern, an exception is thrown with an
-     * error message.
+     *                                  error message.
      */
     public void validateDateMatcher(Matcher matcher, Command command, String addOn)
             throws InvalidArgumentException {
@@ -94,7 +96,7 @@ public abstract class Command {
      * @param command The Command associated with the pattern being checked.
      * @param addOn   Additional information to be included in the error message (can be empty).
      * @throws InvalidArgumentException If the Matcher does not match the time pattern, an exception is thrown with
-     * an error message.
+     *                                  an error message.
      */
     public void validateTimeMatcher(Matcher matcher, Command command, String addOn) throws InvalidArgumentException {
         String commandWord;
@@ -117,7 +119,7 @@ public abstract class Command {
      * @param command The Command associated with the pattern being checked.
      * @param addOn   Additional information to be included in the error message.
      * @throws InvalidArgumentException If the Matcher does not match the pattern, an exception is thrown with an
-     * error message.
+     *                                  error message.
      */
     public void validateArgumentMatcher(Matcher matcher, Command command, String addOn)
             throws InvalidArgumentException {

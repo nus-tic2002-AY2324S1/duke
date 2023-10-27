@@ -14,8 +14,8 @@ import java.util.regex.Pattern;
 
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
-    public static final String EXAMPLE_USAGE = "Example of usage:\ndeadline return book /by 2/12/2019 1800\n" +
-            DATE_TIME_FORMAT_MESSAGE;
+    public static final String EXAMPLE_USAGE = "Example of usage:\ndeadline return book /by 2/12/2019\n" +
+            DATE_FORMAT_MESSAGE;
     public static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<description>\\w.*)\\s/by\\s(?<byArgument>\\w.*)");
 
     /**
@@ -39,11 +39,11 @@ public class DeadlineCommand extends Command {
         final Matcher dateMatcher = DATE_ARG_FORMAT.matcher(byArgument);
         validateDateMatcher(dateMatcher, new DeadlineCommand(), "");
 
-        final String timeArgument = dateMatcher.group("timeArgument");
-        final Matcher timeMatcher = TIME_ARG_FORMAT.matcher(timeArgument);
-        validateTimeMatcher(timeMatcher, new DeadlineCommand(), "");
+//        final String timeArgument = dateMatcher.group("timeArgument");
+//        final Matcher timeMatcher = TIME_ARG_FORMAT.matcher(timeArgument);
+//        validateTimeMatcher(timeMatcher, new DeadlineCommand(), "");
 
-        LocalDateTime by = Parser.constructDateTime(dateMatcher, timeMatcher);
+        LocalDateTime by = Parser.constructDateTime(dateMatcher);
         Deadline deadline = new Deadline(false, description, by);
         deadline.execute();
         tasks.add(deadline);

@@ -7,7 +7,9 @@ import duke.ui.Ui;
 
 public abstract class Task {
     public static final String DATE_TIME_FORMAT_DISPLAY = "MMM dd yyyy HH:mm";
+    public static final String DATE_FORMAT_DISPLAY = "MMM dd yyyy";
     public static final String DATE_TIME_FORMAT_TOFILE = "dd/MM/yyyy HHmm";
+    public static final String DATE_FORMAT_TOFILE = "dd/MM/yyyy";
     protected String dukeDescription;
     protected boolean isDone;
     protected char abbreviation;
@@ -118,15 +120,6 @@ public abstract class Task {
             return 1;
         }
         return 0;
-    }
-
-    /**
-     * Sets the task's "isDone" status.
-     *
-     * @param done A boolean value indicating whether the task is done (true) or not done (false).
-     */
-    public void setDone(boolean done) {
-        isDone = done;
     }
 
     /**

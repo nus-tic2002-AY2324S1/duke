@@ -29,7 +29,7 @@ public class Todo extends Task {
     public Todo(boolean isDone, String description) {
         super(description);
         setAbbreviation();
-        setDone(isDone);
+        markAsDone(isDone);
     }
 
     /**

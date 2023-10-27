@@ -52,9 +52,6 @@ public class TaskDecoder {
                 break;
             }
             LocalDateTime dateTime = parseStringToDateTime(tokens[3]);
-            if (dateTime == null) {
-                break;
-            }
             return new Deadline(Parser.parseStringToBoolean(tokens[1]), tokens[2], dateTime);
         case 'E':
             if (tokens.length != 5) {
@@ -96,7 +93,7 @@ public class TaskDecoder {
      * @return The LocalDateTime object parsed from the input string, or null if parsing fails.
      */
     private static LocalDateTime parseStringToDateTime(String byArgument) {
-        final Matcher dateMatcher = Command.DATE_ARG_FORMAT.matcher(byArgument);
+        final Matcher dateMatcher = Command.DATE_TIME_ARG_FORMAT.matcher(byArgument);
         if (!dateMatcher.matches()) {
             return null;
         }

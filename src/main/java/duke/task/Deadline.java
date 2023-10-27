@@ -18,7 +18,7 @@ public class Deadline extends Task {
     public Deadline(boolean isDone, String description, LocalDateTime byDateTime) {
         super(description);
         setAbbreviation();
-        setDone(isDone);
+        markAsDone(isDone);
         this.byDateTime = byDateTime;
     }
 
@@ -44,7 +44,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format("[%c][%s] %s (by: %s)", abbreviation, getStatusIcon(), dukeDescription,
-                getByDateTime(DATE_TIME_FORMAT_DISPLAY));
+                getByDateTime(DATE_FORMAT_DISPLAY));
     }
 
     /**

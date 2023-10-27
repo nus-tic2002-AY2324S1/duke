@@ -44,10 +44,10 @@ public class EventCommand extends Command {
         final String from = matcher.group("from");
         final String to = matcher.group("to");
 
-        final Matcher fromDateMatcher = DATE_ARG_FORMAT.matcher(from);
+        final Matcher fromDateMatcher = DATE_TIME_ARG_FORMAT.matcher(from);
         validateDateMatcher(fromDateMatcher, new EventCommand(), "'from' in");
 
-        final Matcher toDateMatcher = DATE_ARG_FORMAT.matcher(to);
+        final Matcher toDateMatcher = DATE_TIME_ARG_FORMAT.matcher(to);
         validateDateMatcher(toDateMatcher, new EventCommand(), "'to' in");
 
         final Matcher fromTimeMatcher = TIME_ARG_FORMAT.matcher(fromDateMatcher.group("timeArgument"));

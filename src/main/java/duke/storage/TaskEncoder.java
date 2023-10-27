@@ -37,7 +37,7 @@ public class TaskEncoder {
         switch (abbreviation) {
         case 'D':
             Deadline deadline = (Deadline) task;
-            taskStringBuilder.append("|").append(deadline.getByDateTime(Task.DATE_TIME_FORMAT_TOFILE));
+            taskStringBuilder.append("|").append(deadline.getByDateTime(Task.DATE_FORMAT_TOFILE));
             break;
         case 'E':
             Event event = (Event) task;
