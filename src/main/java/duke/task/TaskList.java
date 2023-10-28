@@ -1,27 +1,120 @@
 package duke.task;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class TaskList {
     private static ArrayList<Task> tasks = new ArrayList<>();
-    public TaskList(){}
+
+    /**
+     * Constructor
+     */
+    public TaskList() {
+    }
+
+    /**
+     * The Tasklist Constructor
+     *
+     * @param listOfTasks An ArrayList containing tasks to initialize the TaskList.
+     */
     public TaskList(ArrayList<Task> listOfTasks) {
         tasks = listOfTasks;
     }
 
-    public static int size(){
+    /**
+     * Returns the number of tasks in the TaskList.
+     *
+     * @return The number of tasks in the TaskList.
+     */
+    public static int size() {
         return tasks.size();
     }
 
-    public Task get(int i){
+    /**
+     * Retrieves the task at the specified index in the TaskList.
+     *
+     * @param i The index of the task to retrieve.
+     * @return The task at the specified index in the TaskList.
+     */
+    public Task get(int i) {
         return tasks.get(i);
     }
 
-    public void add(Task task){
+    /**
+     * Adds a task to the TaskList.
+     *
+     * @param task The task to be added to the TaskList.
+     */
+    public void add(Task task) {
         tasks.add(task);
     }
 
-    public ArrayList<Task> getTasks(){
+    /**
+     * Retrieves the list of tasks from the TaskList.
+     *
+     * @return An ArrayList containing tasks in the TaskList.
+     */
+    public ArrayList<Task> getTasks() {
         return tasks;
+    }
+
+    /**
+     * Retrieves tasks from the TaskList where the specified date matches the task's date.
+     *
+     * @param date The date to match tasks against.
+     * @return ArrayList of tasks with the specified date.
+     */
+    public ArrayList<Task> getTasksByDate(LocalDateTime date) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (isDateFound(date, task)) {
+                foundTasks.add(task);
+            }
+        }
+        return foundTasks;
+    }
+
+    /**
+     * Checks if the specified date matches the date of the given task.
+     *
+     * @param date The date to match against the task's date.
+     * @param task The task to check for a matching date.
+     * @return True if the specified date matches the task's date, false otherwise.
+     */
+    private boolean isDateFound(LocalDateTime date, Task task) {
+        boolean isDeadline = task instanceof Deadline;
+        boolean isEvent = task instanceof Event;
+        if (!isDeadline && !isEvent) {
+            return false;
+        }
+        if (isDeadline) {
+            Deadline deadline = (Deadline) task;
+            if (areDatesEqual(date, deadline.getByDateTime())) {
+                return true;
+            }
+        } else if (isEvent) {
+            Event event = (Event) task;
+            if (areDatesEqual(date, event.getFromDateTime()) || areDatesEqual(date, event.getToDateTime())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Compares two LocalDateTime objects to check if they have the same year, month, and day.
+     *
+     * @param d1 The first LocalDateTime object to be compared.
+     * @param d2 The second LocalDateTime object to be compared.
+     * @return true if the year, month, and day are equal; false otherwise.
+     */
+    public boolean areDatesEqual(LocalDateTime d1, LocalDateTime d2) {
+        if (d1.getYear() != d2.getYear()) {
+            return false;
+        } else if (d1.getMonth() != d2.getMonth()) {
+            return false;
+        } else {
+            return d1.getDayOfMonth() == d2.getDayOfMonth();
+        }
     }
 }

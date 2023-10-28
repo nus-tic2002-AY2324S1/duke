@@ -17,12 +17,12 @@ public class Duke {
     private TaskList tasks;
     private UserKeywordArgument keywordArgument;
 
-    public Duke(String filePath){
+    public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
-        } catch (FileStorageException e) {
+        } catch (FileStorageException | InvalidArgumentException e) {
             ui.showLoadingError(e.getMessage());
             tasks = new TaskList();
         }
@@ -31,32 +31,37 @@ public class Duke {
     /**
      * Run the program and print the welcome message
      */
-    public void run(){
+    public void run() {
         ui.showWelcome();
         loopUntilExitCommand();
     }
 
     /**
-     * Reads the user command and executes it, until user issues the exit command.
+     * Reads the user command and executes it, until user issues the 'bye' exit command.
      */
     private void loopUntilExitCommand() {
         Command command;
         do {
             String userInputCommand = ui.getUserCommand();
             keywordArgument = new UserKeywordArgument(userInputCommand);
-            command = Parser.parse(keywordArgument);
+            command = Parser.parseKeywordToCommand(keywordArgument);
             executeCommand(command);
-        }while(!ExitCommand.isExit());
+        } while (!ExitCommand.isExit());
     }
 
+    /**
+     * Executes the user command and saves the data to the "duke.txt" file.
+     *
+     * @param command user command
+     */
     private void executeCommand(Command command) {
         if (command == null) {
             return;
         }
         try {
-            command.execute(tasks, ui, storage, keywordArgument);
-            storage.save(tasks);
-        } catch (InvalidArgumentException e) {
+            command.executeCommand(tasks, ui, storage, keywordArgument);
+            storage.save(tasks.getTasks());
+        } catch (FileStorageException | InvalidArgumentException e) {
             ui.showResponseToUser(e.getMessage());
         }
 

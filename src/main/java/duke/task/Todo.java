@@ -1,34 +1,56 @@
 package duke.task;
 
-import duke.exception.InvalidArgumentException;
-
 public class Todo extends Task {
-    public Todo(String description)  {
+    /**
+     * Constructor
+     */
+    public Todo() {
+        isDone = false;
+    }
+
+    /**
+     * Constructor of Todo task take in description sets its abbreviation
+     *
+     * @param description The description for the Todo task.
+     */
+    public Todo(String description) {
         super(description);
         setAbbreviation();
     }
 
-    public Todo(boolean isDone, String description){
+    /**
+     * Constructor of Todo task take in description and status of the task sets its abbreviation.
+     *
+     * @param isDone      The status of the task.
+     * @param description The description for the Todo task.
+     */
+    public Todo(boolean isDone, String description) {
         super(description);
         setAbbreviation();
-        setDone(isDone);
+        markAsDone(isDone);
     }
 
-    public void execute()throws InvalidArgumentException {
-        response();
+    /**
+     * Executes the task and handles the response.
+     *
+     */
+    public void execute() {
+        displayTaskAddedResponse();
     }
 
+    /**
+     * set abbreviation for Todo object.
+     */
     public void setAbbreviation() {
         abbreviation = 'T';
     }
 
-    public Todo(){
-        isDone = false;
-    }
-
+    /**
+     * Overrides the toString method to provide task-specific details.
+     */
     @Override
     public String toString() {
-        return String.format("[%c][%s] %s",abbreviation,getStatusIcon(),dukeDescription);
+        return String.format("[%c][%s] %s", abbreviation, getStatusIcon(), dukeDescription);
     }
 
 }

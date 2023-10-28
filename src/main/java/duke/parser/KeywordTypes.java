@@ -1,63 +1,61 @@
 package duke.parser;
 
-import duke.command.Command;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnMarkCommand;
-import duke.command.TodoCommand;
-import duke.command.DeadlineCommand;
-import duke.command.EventCommand;
-import duke.command.DeleteCommand;
+import duke.command.*;
 
 public enum KeywordTypes {
-    BYE{
+    BYE {
         @Override
-        public Command createCommand(){
+        public Command createCommand() {
             return new ExitCommand();
         }
     },
-    LIST{
+    LIST {
         @Override
-        public Command createCommand(){
+        public Command createCommand() {
             return new ListCommand();
         }
     },
-    MARK{
+    MARK {
         @Override
-        public Command createCommand(){
+        public Command createCommand() {
             return new MarkCommand();
         }
     },
-    UNMARK{
+    UNMARK {
         @Override
-        public Command createCommand(){
+        public Command createCommand() {
             return new UnMarkCommand();
         }
     },
-    TODO{
+    TODO {
         @Override
-        public Command createCommand(){
+        public Command createCommand() {
             return new TodoCommand();
         }
     },
-    DEADLINE{
+    DEADLINE {
         @Override
-        public Command createCommand(){
+        public Command createCommand() {
             return new DeadlineCommand();
         }
     },
-    EVENT{
+    EVENT {
         @Override
-        public Command createCommand(){
+        public Command createCommand() {
             return new EventCommand();
         }
     },
-    DELETE{
-      @Override
-      public Command createCommand(){
-          return new DeleteCommand();
-      }
+    DELETE {
+        @Override
+        public Command createCommand() {
+            return new DeleteCommand();
+        }
+    },
+    DPRINT {
+        @Override
+        public Command createCommand() {
+            return new DatePrintCommand();
+        }
     };
 
     public abstract Command createCommand();

@@ -8,28 +8,41 @@ import duke.task.TaskList;
 import java.util.ArrayList;
 
 public class TaskEncoder {
-    public static ArrayList<String> encodeTask(TaskList tasks) {
+    /**
+     * Encodes a TaskList into a list of strings.
+     *
+     * @param tasks The TaskList to be encoded.
+     * @return An ArrayList containing string representations of tasks from the input TaskList.
+     */
+    public static ArrayList<String> encodeTaskListToStringList(ArrayList<Task> tasks) {
         ArrayList<String> listOfResult = new ArrayList<>();
-        for (Task t : tasks.getTasks()) {
-            listOfResult.add(taskToString(t));
+        for (Task t : tasks) {
+            listOfResult.add(convertTaskToString(t));
         }
         return listOfResult;
     }
 
-    private static String taskToString(Task task) {
+    /**
+     * Converts a Task object into a string representation with specific delimiters.
+     *
+     * @param task The Task object to be converted into a string.
+     * @return A string representation of the input Task object.
+     */
+    private static String convertTaskToString(Task task) {
         StringBuilder taskStringBuilder = new StringBuilder();
         char abbreviation = task.getAbbreviation();
         taskStringBuilder.append(abbreviation);
-        taskStringBuilder.append("|").append(task.getDone());
+        taskStringBuilder.append("|").append(task.convertTaskStatusToBinary());
         taskStringBuilder.append("|").append(task.getDukeDescription());
-        switch(abbreviation){
+        switch (abbreviation) {
         case 'D':
-            Deadline deadline = (Deadline)task;
-            taskStringBuilder.append("|").append(deadline.getBy());
+            Deadline deadline = (Deadline) task;
+            taskStringBuilder.append("|").append(deadline.getByDateTime(Task.DATE_FORMAT_TOFILE));
             break;
         case 'E':
-            Event event = (Event)task;
-            taskStringBuilder.append("|").append(event.getFrom()).append("|").append(event.getTo());
+            Event event = (Event) task;
+            taskStringBuilder.append("|").append(event.getFromDateTime(Task.DATE_TIME_FORMAT_TOFILE))
+                    .append("|").append(event.getToDateTime(Task.DATE_TIME_FORMAT_TOFILE));
             break;
         default:
         }

@@ -16,6 +16,9 @@ bin/
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
 
+# duke data file
+src/main/data/duke.txt
+
 # BINARY FILE
 *.class
 *.jar

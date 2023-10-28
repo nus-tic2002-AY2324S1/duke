@@ -1,65 +1,97 @@
 package duke.task;
 
-import duke.exception.InvalidArgumentException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    protected String from;
-    protected String to;
+    protected LocalDateTime fromDateTime;
+    protected LocalDateTime toDateTime;
+
+    /**
+     * Constructor of Event task take in description sets its abbreviation
+     *
+     * @param description The description for the Todo task.
+     */
     public Event(String description) {
         super(description);
         setAbbreviation();
     }
-    public Event(boolean isDone, String description, String from, String to){
+
+    /**
+     * Constructs an Event object with the given parameters.
+     *
+     * @param isDone      A boolean value indicating whether the event is done (true) or not done (false).
+     * @param description The description of the event.
+     * @param from        The starting date and time of the event (in LocalDateTime format).
+     * @param to          The ending date and time of the event (in LocalDateTime format).
+     */
+    public Event(boolean isDone, String description, LocalDateTime from, LocalDateTime to) {
         super(description);
         setAbbreviation();
-        setDone(isDone);
-        this.from = from;
-        this.to = to;
+        markAsDone(isDone);
+        this.fromDateTime = from;
+        this.toDateTime = to;
     }
 
-    public void execute() throws InvalidArgumentException {
-//        pullEventDateTime(dukeDescription);
-        response();
+    /**
+     * Executes the task by displaying a response indicating that the task has been added.
+     *
+     */
+    public void execute() {
+        displayTaskAddedResponse();
     }
 
+    /**
+     * Sets the abbreviation for the Event object.
+     */
     public void setAbbreviation() {
         abbreviation = 'E';
     }
 
-    public void pullEventDateTime(String input) throws InvalidArgumentException {
-        final String FROM = "/from";
-        final String TO = "/to";
-        int lenOfFrom = FROM.length();
-        int lenOfTo = TO.length();
-        int posOfFrom = -1;
-        int posOfTo = -1;
-
-        posOfFrom = input.indexOf(FROM);
-        posOfTo = input.indexOf(TO);
-
-        if(input.isEmpty()){
-            String message = "OOPS!!! The \"description\" of a \"event\" cannot be empty :-(";
-            throw new InvalidArgumentException(message);
-        }else if(posOfFrom == -1){
-            String message = "OOPS!!! The \"/from\" of a \"event\" cannot be empty :-(";
-            throw new InvalidArgumentException(message);
-        }else if(posOfTo == -1){
-            String message = "OOPS!!! The \"/to\" of a \"event\" cannot be empty :-(";
-            throw new InvalidArgumentException(message);
-        }
-
-        from = input.substring(posOfFrom + lenOfFrom, posOfTo).trim();
-        to = input.substring(posOfTo + lenOfTo).trim();
-        dukeDescription = input.substring(0,posOfFrom).trim();
-    }
-
+    /**
+     * Overrides the toString method to provide task-specific details.
+     */
     @Override
-    public String toString(){
-        return String.format("[%c][%s] %s (from: %s to: %s)",abbreviation,getStatusIcon(),dukeDescription, from, to);
+    public String toString() {
+        return String.format("[%c][%s] %s (from: %s to: %s)", abbreviation, getStatusIcon(), dukeDescription,
+                getFromDateTime(DATE_TIME_FORMAT_DISPLAY), getToDateTime(DATE_TIME_FORMAT_DISPLAY));
     }
-    public String getFrom() {
-        return from;
+
+    /**
+     * Retrieves the starting date and time of the Event object.
+     *
+     * @return The starting date and time of the Event (in LocalDateTime format).
+     */
+    public LocalDateTime getFromDateTime() {
+        return fromDateTime;
     }
-    public String getTo() {
-        return to;
+
+    /**
+     * Retrieves the ending date and time of the Event object.
+     *
+     * @return The ending date and time of the Event (in LocalDateTime format).
+     */
+    public LocalDateTime getToDateTime() {
+        return toDateTime;
+    }
+
+    /**
+     * Retrieves the formatted starting date and time of the Event object based on the specified pattern.
+     *
+     * @param pattern The pattern to format the date and time (e.g., "yyyy-MM-dd HH:mm").
+     * @return The formatted starting date and time of the Event (as a String).
+     */
+    public String getFromDateTime(String pattern) {
+        return fromDateTime.format(DateTimeFormatter.ofPattern(pattern));
+    }
+
+    /**
+     * Retrieves the formatted ending date and time of the Event object based on the specified pattern.
+     *
+     * @param pattern The pattern to format the date and time (e.g., "yyyy-MM-dd HH:mm").
+     * @return The formatted ending date and time of the Event (as a String).
+     */
+    public String getToDateTime(String pattern) {
+        return toDateTime.format(DateTimeFormatter.ofPattern(pattern));
     }
 }

@@ -6,20 +6,31 @@ public class UserKeywordArgument {
     private String keyword;
     private String arguments;
 
-    public UserKeywordArgument(String userInput){
+    /**
+     * Constructor for the UserKeywordArgument class.
+     *
+     * @param userInput The user input string containing keyword and arguments.
+     */
+    public UserKeywordArgument(String userInput) {
         this.keyword = Parser.parseKeyword(userInput);
         this.arguments = Parser.parseArgument(userInput);
     }
-    public String getKeyword(){
+
+    /**
+     * Gets the keyword associated with the user input.
+     *
+     * @return The keyword extracted from the user input.
+     */
+    public String getKeyword() {
         return keyword;
     }
-    public String getArguments(){
+
+    /**
+     * Gets the arguments associated with the user input.
+     *
+     * @return The arguments extracted from the user input.
+     */
+    public String getArguments() {
         return arguments;
-    }
-    public void setKeyword(String value){
-        keyword = value;
-    }
-    public void setArguments(String value){
-        arguments = value;
     }
 }
