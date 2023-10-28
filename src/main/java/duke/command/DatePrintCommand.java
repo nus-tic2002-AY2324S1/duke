@@ -32,7 +32,7 @@ public class DatePrintCommand extends Command {
      * @param storage         The storage object used to store and load tasks.
      * @param keywordArgument The parsed user input containing the keyword and arguments.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
-     * message.
+     *                                  message.
      */
     @Override
     public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
@@ -43,46 +43,21 @@ public class DatePrintCommand extends Command {
         validateDateMatcher(dateMatcher, new DatePrintCommand(), "");
 
         date = Parser.constructDateTime(dateMatcher);
+        ArrayList<Task> foundTasks = taskList.getTasksByDate(date);
+        if (foundTasks.isEmpty()) {
+            ui.showResponseToUser(ListCommand.MESSAGE_LIST_IS_EMPTY);
+            return;
+        }
 
-        ArrayList<Task> tasks = taskList.getTasks();
         ArrayList<String> messages = new ArrayList<>();
-        messages.add(ListCommand.MESSAGE_LIST_IS_EMPTY);
-//        for (int i = 0; i <= tasks.size() - 1; i++) {
-//            Task task = tasks.get(i);
-//            if(!(task instanceof Deadline) && !(task instanceof Event)){
-//                continue;
-//            }
-//            if (task instanceof Deadline) {
-//                Deadline deadline = (Deadline) task;
-//                if (areDatesEqual(date, deadline.getByDateTime())) {
-//                    messages.add(String.format("%d.%s", i + 1, tasks.get(i).toString()));
-//                }
-//            } else if (task instanceof Event) {
-//                Event event = (Event) task;
-//                if (areDatesEqual(date, event.getFromDateTime()) || areDatesEqual(date, event.getToDateTime())) {
-//                    messages.add(String.format("%d.%s", i + 1, tasks.get(i).toString()));
-//                }
-//            }
-//        }
+        messages.add(TASKS_IN_THE_LIST);
+        for (int i = 0; i < foundTasks.size(); i++) {
+            Task task = foundTasks.get(i);
+            messages.add(i+1 + "." + task.toString());
+        }
         ui.showResponseToUser(messages);
     }
 
-//    /**
-//     * Compares two LocalDateTime objects to check if they have the same year, month, and day.
-//     *
-//     * @param d1 The first LocalDateTime object to be compared.
-//     * @param d2 The second LocalDateTime object to be compared.
-//     * @return true if the year, month, and day are equal; false otherwise.
-//     */
-//    public boolean areDatesEqual(LocalDateTime d1, LocalDateTime d2) {
-//        if (d1.getYear() != d2.getYear()) {
-//            return false;
-//        } else if (d1.getMonth() != d2.getMonth()) {
-//            return false;
-//        } else {
-//            return d1.getDayOfMonth() == d2.getDayOfMonth();
-//        }
-//    }
 
     /**
      * Gets the example usage string for the command.

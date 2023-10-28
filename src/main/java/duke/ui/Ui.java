@@ -9,7 +9,7 @@ public class Ui {
     private final Scanner in;
     private final PrintStream out;
     public static final String DIVIDER = "=".repeat(80);
-    private static final String NEWLINE = System.lineSeparator();
+    public static final String NEWLINE = System.lineSeparator();
     private final static int INDENT_RESPONSE = 5;
     private final static int INDENT_LINE = 4;
     private final static String HELLO_I_AM_LUNA = "Hello! I'm Luna";

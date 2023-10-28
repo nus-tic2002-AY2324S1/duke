@@ -1,13 +1,8 @@
 package duke.command;
 
-import duke.common.Message;
 import duke.data.UserKeywordArgument;
 import duke.storage.Storage;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
 import duke.task.TaskList;
-import duke.task.Todo;
 import duke.ui.Ui;
 import duke.util.TestUtil;
 import org.junit.jupiter.api.AfterAll;
@@ -20,43 +15,50 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class DatePrintCommandTest {
     @TempDir
     static Path testFolder;
     private static final PrintStream standardOut = System.out;
     private static final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
     @BeforeAll
     public static void setUp() {
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 
     @Test
-    public void shouldPrintTheCorrectString() {
-        System.out.print("hello");
-        assertEquals("hello", outputStreamCaptor.toString().trim());
-    }
-
-    @Test
-    public void executeCommand_foundDate_success() throws Exception {
+    public void executeCommand_availableDate_foundDate() throws Exception {
         TaskList tasks = new TaskList(TestUtil.getTestTasks());
         Ui ui = new Ui();
         Storage storage = getTempStorage();
         DatePrintCommand dPrint = new DatePrintCommand();
         dPrint.executeCommand(tasks, ui, storage, new UserKeywordArgument("dprint 2/12/2023"));
-        assertEquals(getSuccessString(tasks, ui), outputStreamCaptor.toString().trim());
+        assertEquals(getSuccessString(tasks, ui), outputStreamCaptor.toString());
     }
 
+//    @Test
+//    public void executeCommand_notAvailableDate_noDateFound() throws Exception {
+//        TaskList tasks = new TaskList(TestUtil.getTestTasks());
+//        Ui ui = new Ui();
+//        Storage storage = getTempStorage();
+//        DatePrintCommand dPrint = new DatePrintCommand();
+//        dPrint.executeCommand(tasks, ui, storage, new UserKeywordArgument("dprint 2/6/2023"));
+//        assertEquals(getNotSuccessString(tasks, ui), outputStreamCaptor.toString());
+//    }
+
     private String getSuccessString(TaskList taskList, Ui ui) {
-        String out = Message.concat(
-        Ui.getPrintLinePrefixSpace() + Ui.DIVIDER,
-                Ui.getPrefixSpace() + DatePrintCommand.TASKS_IN_THE_LIST,
-                Ui.getPrefixSpace() + "1." + taskList.get(1).toString(),
-                Ui.getPrefixSpace() + "2." + taskList.get(2).toString(),
-                Ui.getPrintLinePrefixSpace() + Ui.DIVIDER);
-        return out;
+        return Ui.getPrintLinePrefixSpace() + Ui.DIVIDER + Ui.NEWLINE +
+                Ui.getPrefixSpace() + DatePrintCommand.TASKS_IN_THE_LIST + Ui.NEWLINE +
+                Ui.getPrefixSpace() + "1." + taskList.get(1).toString() + Ui.NEWLINE +
+                Ui.getPrefixSpace() + "2." + taskList.get(2).toString() + Ui.NEWLINE +
+                Ui.getPrintLinePrefixSpace() + Ui.DIVIDER + Ui.NEWLINE;
+    }
+
+    private String getNotSuccessString(TaskList taskList, Ui ui) {
+        return Ui.getPrintLinePrefixSpace() + Ui.DIVIDER + Ui.NEWLINE +
+                Ui.getPrefixSpace() + ListCommand.MESSAGE_LIST_IS_EMPTY + Ui.NEWLINE +
+                Ui.getPrintLinePrefixSpace() + Ui.DIVIDER + Ui.NEWLINE;
     }
 
     @AfterAll
