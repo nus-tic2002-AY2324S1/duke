@@ -12,48 +12,48 @@ import java.util.List;
 public class CrabyMessage {
     public static final String LINE = "  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈";
     public static final String SPACES = "   ";
+    public static String checkListName;
 
     public static void printHello() {
         System.out.println(LINE + System.lineSeparator() +
 
-                           "   ____                  _      __   __" + System.lineSeparator() +
-                           "  / ___|  _ __    __ _  | |__   \\ \\ / /" + System.lineSeparator() +
-                           " | |     | '__|  / _` | | '_ \\   \\ V /" + System.lineSeparator() +
-                           " | |___  | |    | (_| | | |_) |   | |" + System.lineSeparator() +
-                           "  \\____| |_|     \\__,_| |_.__/    |_|" + System.lineSeparator() + System.lineSeparator() +
-                           LINE);
+                "   ____                  _      __   __" + System.lineSeparator() +
+                "  / ___|  _ __    __ _  | |__   \\ \\ / /" + System.lineSeparator() +
+                " | |     | '__|  / _` | | '_ \\   \\ V /" + System.lineSeparator() +
+                " | |___  | |    | (_| | | |_) |   | |" + System.lineSeparator() +
+                "  \\____| |_|     \\__,_| |_.__/    |_|" + System.lineSeparator() + System.lineSeparator() + LINE);
 
-        System.out.println("   Hi Amber ♡, CrabY 🦀 here!" + System.lineSeparator() +
-                           "   What type of thing you wanna do right now? ˃ᴗ˂");
-        System.out.println(LINE);
-        System.out.println(SPACES +
-                           "╰┈➤You can typing: \"School\" | \"Work\" | \"Personal\" | [name-of-list] if you wanna creat a new list.");
+        System.out.println(SPACES + "Hi Amber ♡, CrabY 🦀 here!");
+        System.out.println(SPACES + "Which checklist do you want to work on today? (｡◕‿◕｡)");
+        System.out.println(SPACES + "╰┈➤You can typing: \"School\" | \"Work\" | \"Personal\" |");
+        System.out.println(SPACES + "               or  [checklist-name] if you wanna creat a new list.");
         System.out.println(LINE);
     }
 
     public static void printEmptyTypeName() {
-        System.out.println(SPACES + "Oops!!! The [name-of-list] cannot be empty.");
-        System.out.println(SPACES + "NOTE: if you use the same [name-of-list] that used before");
+        System.out.println(SPACES + "Oops!!! The [checklist-name] cannot be empty.");
+        System.out.println(SPACES + "NOTE: if you use the same [checklist-name] that used before");
         System.out.println(SPACES + "╰┈➤You can continue to use the previous list of tasks.");
         System.out.println(LINE);
     }
 
     public static void printTypeNameError() {
-        System.out.println(SPACES + "Oops!!! The [name-of-list] cannot contain special character.");
-        System.out.println(SPACES + "NOTE: if you use the same [name-of-list] that used before");
+        System.out.println(SPACES + "Oops!!! The [checklist-name] cannot contain special character.");
+        System.out.println(SPACES + "NOTE: if you use the same [checklist-name] that used before");
         System.out.println(SPACES + "╰┈➤You can continue to use the previous list of tasks.");
         System.out.println(LINE);
     }
 
     public static void printNameSameWithKeyWord() {
-        System.out.println(SPACES +
-                           "Oops!!! Before you start, pls give me [name-of-list]. (your input cannot same with my keyword)");
-        System.out.println(SPACES + "NOTE: if you use the same [name-of-list] that used before");
+        System.out.println(SPACES + "Oops!!! Before you start, pls give me [checklist-name].");
+        System.out.println(SPACES + "╰┈➤Your input cannot same with my keyword");
+        System.out.println(SPACES + "NOTE: if you use the same [checklist-name] that used before");
         System.out.println(SPACES + "╰┈➤You can continue to use the previous list of tasks.");
         System.out.println(LINE);
     }
 
     public static void printFirstMessage(String input) {
+        checkListName = input;
         System.out.println(SPACES + "Ok I got it! Let start with your ➞ " + input + " list.");
         System.out.println(
                 SPACES + "╰┈➤Type \"help\" if you need to see what I can do for you" + System.lineSeparator() + LINE);
@@ -61,14 +61,13 @@ public class CrabyMessage {
     }
 
     public static void printByeMessage() {
-        System.out.println(SPACES + "Bye Amber ♡, hope to see you again soon!");
+        System.out.println(SPACES + "Bye Amber ♡, hope to see you again soon! •ᴗ•");
         System.out.println(LINE);
         System.out.println("               __   ♡   __" + System.lineSeparator() + "              /           \\" +
-                           System.lineSeparator() + "             (  / @   @ \\  )" + System.lineSeparator() +
-                           "              \\(_ _\\_/_ _)/" + System.lineSeparator() +
-                           "            (\\ `-/     \\-' /)" + System.lineSeparator() +
-                           "             \"===\\     /===\"" + System.lineSeparator() + "              .==')___(`==." +
-                           System.lineSeparator() + "               .='     `=.");
+                System.lineSeparator() + "             (  / @   @ \\  )" + System.lineSeparator() +
+                "              \\(_ _\\_/_ _)/" + System.lineSeparator() + "            (\\ `-/     \\-' /)" +
+                System.lineSeparator() + "             \"===\\     /===\"" + System.lineSeparator() +
+                "              .==')___(`==." + System.lineSeparator() + "               .='     `=.");
     }
 
     public static void printInputBlankExceptionMessage() {
@@ -131,20 +130,20 @@ public class CrabyMessage {
     }
 
     //Print ListCommand Message
-    public static final String PRINT_END_OF_LIST = SPACES + " ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦";
-    public static final String PRINT_START_OF_LIST = SPACES + " ╭─────────────────────────────────╮";
+    public static final String PRINT_END_OF_LIST = SPACES + " ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦";
+    public static final String PRINT_START_OF_LIST = SPACES + " ╭─────────────────────────────────────╮";
 
     public static void printEmptyList() {
         System.out.println(PRINT_START_OF_LIST);
-        System.out.println(SPACES + "    ░░░░ Your list is empty! ░░░░");
-        System.out.println(SPACES + "     Let's start a new checklist");
+        System.out.println(SPACES + "    ░░░░ Your " + checkListName.toUpperCase() + " list is empty! ░░░░");
+        System.out.println(SPACES + "        Let's start a new checklist");
         System.out.println(PRINT_END_OF_LIST);
         System.out.println(LINE);
     }
 
     public static void printListMessage(List<Task> tasks) {
         System.out.println(PRINT_START_OF_LIST);
-        System.out.println(SPACES + "  Here are the tasks in your list:");
+        System.out.println(SPACES + "  Here are the tasks in your " + checkListName.toUpperCase() + " list:");
         for (int i = 1; i < tasks.size() + 1; i++) {
             if (i <= 9) {
                 System.out.println("   " + i + ".  " + tasks.get(i - 1));
@@ -227,9 +226,9 @@ public class CrabyMessage {
 
     //Print Switch Message
     public static void printSwitchMessage() {
-        System.out.println(SPACES + "Which list do you want to switch to? •ᴗ•");
-        System.out.println(SPACES +
-                           "╰┈➤You can typing: \"School\" | \"Work\" | \"Personal\" | [name-of-list] if you wanna creat a new list.");
+        System.out.println(SPACES + "Which checklist do you want to switch to? (｡◕‿◕｡)");
+        System.out.println(SPACES + "╰┈➤You can typing: \"School\" | \"Work\" | \"Personal\" |");
+        System.out.println(SPACES + "               or  [checklist-name] if you want to creat a new list.");
         System.out.println(LINE);
     }
 
