@@ -18,10 +18,10 @@ public abstract class Command {
     public static final String DATE_FORMAT_MESSAGE = "Date format: {dd/mm/yyyy}";
     public static final String SUB_ARG_ERR_MESSAGE = "OOPS!!! The \"%s\" of a \"%s\" cannot be empty :(";
     public static final String DATE_TIME_ERR_MESSAGE = "OOPS!!! The %s format of a \"%s\" is invalid :(";
-    public static final Pattern DATE_TIME_ARG_FORMAT = Pattern.compile("(?<day>[0-9]+)/" +
-            "(?<month>[0-9]+)/(?<year>[0-9]{4})\\s(?<timeArgument>\\w.*)");
-    public static final Pattern DATE_ARG_FORMAT = Pattern.compile("(?<day>[0-9]+)/" +
-            "(?<month>[0-9]+)/(?<year>[0-9]{4})");
+    public static final Pattern DATE_TIME_ARG_FORMAT = Pattern.compile("(?<day>0[1-9]|1[0-9]|2[0-9]|3[0-1])/" +
+            "(?<month>0[1-9]|1[0-2])/(?<year>[0-9]{4})\\s(?<timeArgument>\\w.*)");
+    public static final Pattern DATE_ARG_FORMAT = Pattern.compile("(?<day>0[1-9]|1[0-9]|2[0-9]|3[0-1])/" +
+            "(?<month>0[1-9]|1[0-2])/(?<year>[0-9]{4})");
     public static final Pattern TIME_ARG_FORMAT = Pattern.compile("(?<hour>[0-9]{2})(?<minute>[0-9]{2})");
     private static boolean isExit = false;
 

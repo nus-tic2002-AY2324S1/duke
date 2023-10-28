@@ -2,6 +2,7 @@ package duke.storage;
 
 import duke.common.Message;
 import duke.exception.FileStorageException;
+import duke.exception.InvalidArgumentException;
 import duke.task.TaskList;
 import duke.task.Task;
 
@@ -28,8 +29,9 @@ public class Storage {
      *
      * @return An ArrayList containing tasks loaded from the storage file.
      * @throws FileStorageException If there are issues with file existence or reading.
+     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
      */
-    public ArrayList<Task> load() throws FileStorageException {
+    public ArrayList<Task> load() throws FileStorageException, InvalidArgumentException {
         try {
             if (!Files.exists(path)) {
                 String message = Message.concat(Message.MESSAGE_FILE_NOT_EXIST,
@@ -39,6 +41,8 @@ public class Storage {
             return TaskDecoder.decodeStringsToTaskList(Files.readAllLines(path));
         } catch (IOException e) {
             throw new FileStorageException("Error reading storage file: " + path);
+        } catch (InvalidArgumentException e) {
+            throw new InvalidArgumentException(e.getMessage());
         }
     }
 

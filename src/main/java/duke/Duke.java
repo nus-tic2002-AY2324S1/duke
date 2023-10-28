@@ -22,7 +22,7 @@ public class Duke {
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
-        } catch (FileStorageException e) {
+        } catch (FileStorageException | InvalidArgumentException e) {
             ui.showLoadingError(e.getMessage());
             tasks = new TaskList();
         }

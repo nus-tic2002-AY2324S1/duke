@@ -1,3 +1,7 @@
-T|1|return book
+D|1|return book|22/02/2023
 D|0|return book|02/12/2023
-E|1|project meeting|02/12/2023 0330|02/12/2023 0400
+E|1|project meeting|22/10/2023 0330|22/10/2023 0400
+D|0|return book|22/10/2023
+E|1|project closing|22/10/2023 0346|22/10/2023 0440
+E|1|project meeting|22/10/2023 1551|22/10/2023 1640
+D|0|return book|27/10/2018

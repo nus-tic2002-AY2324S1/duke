@@ -4,8 +4,6 @@ import duke.data.UserKeywordArgument;
 import duke.exception.InvalidArgumentException;
 import duke.parser.Parser;
 import duke.storage.Storage;
-import duke.task.Deadline;
-import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
@@ -13,7 +11,6 @@ import duke.ui.Ui;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class DatePrintCommand extends Command {
     LocalDateTime date;
@@ -21,8 +18,8 @@ public class DatePrintCommand extends Command {
     public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " 22/10/2023\n" +
             DATE_FORMAT_MESSAGE;
     public static final String TASKS_IN_THE_LIST = "Here are the tasks in your date filter list:";
-//    public static final Pattern ARG_FORMAT = Pattern.compile("(?<day>[0-9]+)/" +
-//            "(?<month>[0-9]+)/(?<year>[0-9]{4})");
+    public static final String MESSAGE_LIST_IS_EMPTY = "There are no items in the filter list for the given date!";
+
 
     /**
      * Executes the command to display tasks within a specific date filter.
@@ -45,7 +42,7 @@ public class DatePrintCommand extends Command {
         date = Parser.constructDateTime(dateMatcher);
         ArrayList<Task> foundTasks = taskList.getTasksByDate(date);
         if (foundTasks.isEmpty()) {
-            ui.showResponseToUser(ListCommand.MESSAGE_LIST_IS_EMPTY);
+            ui.showResponseToUser(MESSAGE_LIST_IS_EMPTY);
             return;
         }
 
@@ -53,7 +50,7 @@ public class DatePrintCommand extends Command {
         messages.add(TASKS_IN_THE_LIST);
         for (int i = 0; i < foundTasks.size(); i++) {
             Task task = foundTasks.get(i);
-            messages.add(i+1 + "." + task.toString());
+            messages.add(i + 1 + "." + task.toString());
         }
         ui.showResponseToUser(messages);
     }

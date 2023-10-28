@@ -33,7 +33,7 @@ public class DatePrintCommandTest {
         Ui ui = new Ui();
         Storage storage = getTempStorage();
         DatePrintCommand dPrint = new DatePrintCommand();
-        dPrint.executeCommand(tasks, ui, storage, new UserKeywordArgument("dprint 2/12/2023"));
+        dPrint.executeCommand(tasks, ui, storage, new UserKeywordArgument("dprint 02/12/2023"));
         assertEquals(getSuccessString(tasks, ui), outputStreamCaptor.toString());
     }
 
@@ -57,7 +57,7 @@ public class DatePrintCommandTest {
 
     private String getNotSuccessString(TaskList taskList, Ui ui) {
         return Ui.getPrintLinePrefixSpace() + Ui.DIVIDER + Ui.NEWLINE +
-                Ui.getPrefixSpace() + ListCommand.MESSAGE_LIST_IS_EMPTY + Ui.NEWLINE +
+                Ui.getPrefixSpace() + DatePrintCommand.MESSAGE_LIST_IS_EMPTY + Ui.NEWLINE +
                 Ui.getPrintLinePrefixSpace() + Ui.DIVIDER + Ui.NEWLINE;
     }
 

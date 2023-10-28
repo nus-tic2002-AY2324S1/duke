@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
-    public static final String EXAMPLE_USAGE = "Example of usage:\ndeadline return book /by 2/12/2019\n" +
+    public static final String EXAMPLE_USAGE = "Example of usage:\ndeadline return book /by 02/12/2019\n" +
             DATE_FORMAT_MESSAGE;
     public static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<description>\\w.*)\\s/by\\s(?<byArgument>\\w.*)");
 
@@ -38,11 +38,13 @@ public class DeadlineCommand extends Command {
     /**
      * Processes the details provided in the UserKeywordArgument object for creating a Deadline task.
      * Validates the command arguments, extracts necessary details, and constructs a Deadline object.
+     *
      * @param keywordArgument The parsed user input containing the keyword and task details.
      * @return A Deadline object created based on the processed details.
-     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
+     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
+     * message.
      */
-    private Deadline processDetail(UserKeywordArgument keywordArgument) throws InvalidArgumentException{
+    private Deadline processDetail(UserKeywordArgument keywordArgument) throws InvalidArgumentException {
         validateKeywordArgument(keywordArgument, new DeadlineCommand());
         final Matcher byMatcher = ARGUMENT_FORMAT.matcher(keywordArgument.getArguments());
         validateArgumentMatcher(byMatcher, new DeadlineCommand(), "/by");
@@ -52,7 +54,7 @@ public class DeadlineCommand extends Command {
         final Matcher dateMatcher = DATE_ARG_FORMAT.matcher(byArgument);
         validateDateMatcher(dateMatcher, new DeadlineCommand(), "");
 
-        LocalDateTime by =  Parser.constructDateTime(dateMatcher);
+        LocalDateTime by = Parser.constructDateTime(dateMatcher);
         return new Deadline(false, description, by);
     }
 
