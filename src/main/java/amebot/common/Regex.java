@@ -12,7 +12,11 @@ public class Regex {
     public static final String DEADLINE_COMMAND = "^deadline .+ /due .+$";
     public static final String DUE_PATTERN = " /due ";
     public static final String DATE_TIME_PATTERN = "(\\d{4}-\\d{2}-\\d{2}|\\d{2}/\\d{2}/\\d{4})(?: \\d{4})?";
-    public static final String SELECT_INDEX_COMMAND = "^(select|unselect) [1-9]\\d*$";
+    public static final String UPDATE_INDEX_COMMAND = "^update [1-9]\\d* (?!\\s*$).+$";
+    public static final String UPDATE_FROM_PATTERN = " (FROM: ";
+    public static final String UPDATE_TO_PATTERN = " TO: ";
+    public static final String UPDATE_DUE_PATTERN = " (DUE: ";
+    public static final String MARK_INDEX_COMMAND = "^(mark|unmark) [1-9]\\d*$";
     public static final String REMOVE_INDEX_COMMAND = "^remove [1-9]\\d*$";
     public static final String BYE_COMMAND = "^bye$";
 }
