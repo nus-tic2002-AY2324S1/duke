@@ -1,3 +1,5 @@
-T | 1 | todo borrow book
-D | 1 | deadline return book /by Sunday(by: return book)
-D | 0 | deadline do homework /by no idea :-p(by: do homework)
+T | 0 | todo borrow book
+D | 1 | return book (by: Sunday)
+D | 0 | do homework (by: no idea :-p)
+E | 0 | orientation week (from: Oct 04 2019 to: Oct 11 2019)
+D | 0 | return book (by: Dec 02 2019, 6pm)

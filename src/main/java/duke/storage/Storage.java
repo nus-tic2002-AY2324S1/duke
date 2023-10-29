@@ -29,7 +29,10 @@ public class Storage {
             File file = new File(filePath);
             Scanner s = new Scanner(file);
             while (s.hasNextLine()){
+                UI.showLine();
                 String fullCommand = s.nextLine().trim();
+                UI.showMessage(fullCommand);
+                UI.showLine();
                 Command command = Parser.parse(fullCommand);
                 command.execute(taskList, ui, storage);
             }
