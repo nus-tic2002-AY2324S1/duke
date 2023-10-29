@@ -1,6 +1,8 @@
 // MyList.java manages the list of tasks
 
 package wargames;
+import task.Task;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -41,7 +43,7 @@ public class TaskList {
         }
     }
 
-    public void addToTaskList(Task task){
+    public void addToTaskList(Task task) {
         tasklist.add(task);
     }
 

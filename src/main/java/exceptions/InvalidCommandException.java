@@ -1,7 +1,7 @@
-package wargames;
+package exceptions;
 
 public class InvalidCommandException extends Exception{
-    // TODO: rename class to JoshuaException or DukeException
+
     public InvalidCommandException() {
         super("This command is invalid.");
     }

@@ -1,4 +1,4 @@
-package wargames;
+package task;
 
 public class Task {
     private String desc;
@@ -7,6 +7,11 @@ public class Task {
     public Task(String desc){
         this.desc = desc;
         this.isDone = false;
+    }
+
+    public Task(String desc, boolean isDone){
+        this.desc = desc;
+        this.isDone = isDone;
     }
 
     public String getDesc() {

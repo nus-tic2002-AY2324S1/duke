@@ -1,5 +1,8 @@
 package wargames;
 
+import exceptions.InvalidCommandException;
+import task.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -56,7 +59,7 @@ public class JoshuaParser {
         }
     }
 
-    public ToDo createToDo(String command) throws InvalidCommandException {
+    public Task createToDo(String command) throws InvalidCommandException {
         List<String> inputArrayList = stringToArrayList(command);
         List<String> descArrayList = inputArrayList.subList(1, inputArrayList.size());
 
@@ -66,10 +69,10 @@ public class JoshuaParser {
 
         String desc = String.join(" ", descArrayList);
 
-        return new ToDo(desc);
+        return TaskFactory.createTask("todo", false, desc, null, null);
     }
 
-    public Deadline createDeadline(String command) throws InvalidCommandException {
+    public Task createDeadline(String command) throws InvalidCommandException {
         // Get "desc" and "by" from input
         List<String> inputArrayList = stringToArrayList(command);
         int byMarker = inputArrayList.indexOf("/by");
@@ -87,10 +90,10 @@ public class JoshuaParser {
         List<String> byArrayList = inputArrayList.subList(byMarker+1, inputArrayList.size());
         String by = String.join(" ", byArrayList);
 
-        return new Deadline(desc, by);
+        return TaskFactory.createTask("deadline", false, desc, by, null);
     }
 
-    public Event createEvent(String command) throws InvalidCommandException {
+    public Task createEvent(String command) throws InvalidCommandException {
         // TODO: currently only supports /from /to in that order.
         // Get "from" and "to" from the input
         List<String> inputArrayList = stringToArrayList(command);
@@ -116,10 +119,10 @@ public class JoshuaParser {
         List<String> toArrayList = inputArrayList.subList(toMarker + 1, inputArrayList.size());
         String to = String.join(" ", toArrayList);
 
-        return new Event(desc, from, to);
+        return TaskFactory.createTask("event", false, desc, from, to);
     }
 
-    public static ArrayList<String> stringToArrayList(String str) {
+    private static ArrayList<String> stringToArrayList(String str) {
         String[] strArray = str.split("\\s+"); // Split on any number of whitespaces
         List<String> strList = new ArrayList<>(Arrays.asList(strArray));
         return new ArrayList<>(strList);

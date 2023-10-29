@@ -1,14 +1,30 @@
 package wargames;
+import exceptions.IllegalStorageFormat;
+import exceptions.InvalidCommandException;
+import task.Task;
+import storage.Storage;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
+
     public static void main(String[] args) {
         JoshuaUi.printGreetings();
 
         String input;
         Scanner in = new Scanner(System.in);
         JoshuaParser JParser = new JoshuaParser();
-        TaskList taskList = new TaskList();
+        TaskList taskList;
+        Storage storage = new Storage();
+        try {
+            taskList = storage.load();
+        }
+        catch (FileNotFoundException | IllegalStorageFormat e) {
+            JoshuaUi.printLoadingError();
+            taskList = new TaskList();
+        }
 
         do {
             System.out.print(">> ");
@@ -19,7 +35,7 @@ public class Duke {
 
             }
             else if (JParser.isListCommand(input)) {
-                JoshuaUi.joshuaSays("Here is your current list:");
+                JoshuaUi.joshuaSays("Your list has " + taskList.listSize() + " item(s):");
                 JoshuaUi.joshuaSays(taskList.toString());
             }
             else if (JParser.isMarkCommand(input)) {
@@ -72,7 +88,14 @@ public class Duke {
             }
         } while (!input.equals("bye"));
 
-        JoshuaUi.joshuaSays("\nGOODBYE.");
+        try {
+            storage.save(taskList);
+            JoshuaUi.printSaveMessage();
+        }
+        catch (IOException e) {
+            JoshuaUi.joshuaSays(e.getMessage());
+        }
+        JoshuaUi.printExitMessage();
     }
 
     public static int parseTaskNumber(String input, int beginIndex) {
