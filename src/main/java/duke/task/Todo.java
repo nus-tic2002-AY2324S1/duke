@@ -1,5 +1,9 @@
 package duke.task;
 
+/**
+ * The Todo class represents a task that need to be done.
+ * It extends the Task class and adds specific behavior for tasks
+ */
 public class Todo extends Task {
     /**
      * Constructor

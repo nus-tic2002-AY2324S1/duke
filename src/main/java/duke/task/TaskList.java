@@ -3,6 +3,10 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * The TaskList class is responsible for managing a list of tasks.
+ * It provides methods for adding, removing, and retrieving tasks
+ */
 public class TaskList {
     private static ArrayList<Task> tasks = new ArrayList<>();
 
@@ -116,5 +120,13 @@ public class TaskList {
         } else {
             return d1.getDayOfMonth() == d2.getDayOfMonth();
         }
+    }
+
+    /**
+     * Removes the task at the specified index from the list of tasks.
+     * @param index The index of the task to be removed.
+     */
+    public void remove(int index){
+        tasks.remove(index);
     }
 }

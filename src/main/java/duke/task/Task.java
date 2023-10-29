@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import duke.common.Message;
 import duke.ui.Ui;
 
+/**
+ * The Task class serves as the base for all task-related classes.
+ */
 public abstract class Task {
     public static final String DATE_TIME_FORMAT_DISPLAY = "MMM dd yyyy HH:mm";
     public static final String DATE_FORMAT_DISPLAY = "MMM dd yyyy";
@@ -46,7 +49,7 @@ public abstract class Task {
      *
      * @return A response message confirming the addition of a task.
      */
-    final static String taskAddedSuccessfullyResponse() {
+    static String taskAddedSuccessfullyResponse() {
         return Message.MESSAGE_GOT_IT;
     }
 
