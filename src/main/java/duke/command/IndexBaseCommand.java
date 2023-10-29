@@ -130,7 +130,31 @@ public abstract class IndexBaseCommand extends Command {
         Task task = taskList.get(index - 1);
         ArrayList<String> messages = new ArrayList<>();
         IndexBaseCommand indexBaseCommand = (IndexBaseCommand) indexCommand;
+        processTaskCommand(taskList, task);
+        messages.add(indexBaseCommand.getMessage());
+        messages.add(task.toString());
+        removeTaskIfIsDeleteCommand(taskList);
+        ui.showResponseToUser(messages);
+    }
 
+    /**
+     * Removes a task from the task list if the current command is a DeleteCommand.
+     * @param taskList The task list from which the task will be removed.
+     */
+    private void removeTaskIfIsDeleteCommand(TaskList taskList) {
+        if (indexCommand instanceof DeleteCommand) {
+            taskList.remove(index - 1);
+        }
+    }
+
+    /**
+     * Processes a specific command for a given task.
+     * If the command is a MarkCommand, marks the task as done or undone based on the command.
+     * If the command is a RecurCommand, recurs the task (applicable for Event tasks).
+     * @param taskList The task list containing the task to be processed.
+     * @param task The task to be processed.
+     */
+    private void processTaskCommand(TaskList taskList, Task task) {
         if (indexCommand instanceof MarkCommand) {
             MarkCommand markCommand = (MarkCommand) indexCommand;
             task.markAsDone(markCommand.isMark());
@@ -139,14 +163,5 @@ public abstract class IndexBaseCommand extends Command {
             assert task instanceof Event : "the tasks must be Event!";
             recurCommand.recur(task, taskList);
         }
-
-        messages.add(indexBaseCommand.getMessage());
-        messages.add(task.toString());
-
-        if (indexCommand instanceof DeleteCommand) {
-            taskList.remove(index - 1);
-        }
-
-        ui.showResponseToUser(messages);
     }
 }

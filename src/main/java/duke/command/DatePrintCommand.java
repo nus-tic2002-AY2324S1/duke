@@ -44,18 +44,13 @@ public class DatePrintCommand extends Command {
 
         date = Parser.constructDateTime(dateMatcher);
         ArrayList<Task> foundTasks = taskList.getTasksByDate(date);
+
         if (foundTasks.isEmpty()) {
             ui.showResponseToUser(MESSAGE_LIST_IS_EMPTY);
             return;
         }
 
-        ArrayList<String> messages = new ArrayList<>();
-        messages.add(TASKS_IN_THE_LIST);
-        for (int i = 0; i < foundTasks.size(); i++) {
-            Task task = foundTasks.get(i);
-            messages.add(i + 1 + "." + task.toString());
-        }
-        ui.showResponseToUser(messages);
+        processResponseMessage(ui, foundTasks, TASKS_IN_THE_LIST);
     }
 
 

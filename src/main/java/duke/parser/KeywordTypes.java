@@ -62,6 +62,12 @@ public enum KeywordTypes {
         public Command createCommand() {
             return new RecurCommand();
         }
+    },
+    FIND{
+        @Override
+        public Command createCommand() {
+            return new FindCommand();
+        }
     };
 
     public abstract Command createCommand();

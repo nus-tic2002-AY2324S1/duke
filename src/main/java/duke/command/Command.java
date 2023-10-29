@@ -4,9 +4,11 @@ import duke.common.Message;
 import duke.data.UserKeywordArgument;
 import duke.exception.InvalidArgumentException;
 import duke.storage.Storage;
+import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +30,7 @@ public abstract class Command {
     public static final Pattern TIME_ARG_FORMAT = Pattern.compile("(?<hour>[0-9]{2})(?<minute>[0-9]{2})");
     private static boolean isExit = false;
 
-    public abstract void executeCommand(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public abstract void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException;
 
     /**
@@ -139,6 +141,22 @@ public abstract class Command {
      */
     public static boolean isExit() {
         return isExit;
+    }
+
+    /**
+     * Processes and displays the list of found tasks
+     *
+     * @param ui         The user interface object used to display the response.
+     * @param foundTasks The list of tasks found based on a search criterion
+     */
+    public void processResponseMessage(Ui ui, ArrayList<Task> foundTasks, String respMessage) {
+        ArrayList<String> messages = new ArrayList<>();
+        messages.add(respMessage);
+        for (int i = 0; i < foundTasks.size(); i++) {
+            Task task = foundTasks.get(i);
+            messages.add(i + 1 + "." + task.toString());
+        }
+        ui.showResponseToUser(messages);
     }
 
     public abstract String getExampleUsage();
