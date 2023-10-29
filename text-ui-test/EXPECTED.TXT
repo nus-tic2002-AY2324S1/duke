@@ -153,6 +153,20 @@ Successfully removed from list!
 12 item(s) in list~
 --------------------------------------------------------------------------------
 
+________________________________________________________________________________
+Matching item(s) in current list:
+List is empty!
+Keyword does not match any item(s) in current list!
+--------------------------------------------------------------------------------
+
+________________________________________________________________________________
+Matching item(s) in current list:
+4. [TODO] [✓] VISIT AN ARCADE
+7. [TODO] [✓] VISIT AN IZAKAYA
+10. [TODO] [ ] VISIT BAMBOO FOREST
+12. [TODO] [ ] VISIT AN ONSEN
+--------------------------------------------------------------------------------
+
 You've entered an invalid command!
 
 You've entered an invalid command!
@@ -160,6 +174,12 @@ You've entered an invalid command!
 You've entered an invalid command format!
 
 You've entered an invalid command format!
+
+Index is invalid!
+
+Index is invalid or description and dateTime are invalid format!
+
+Keyword is empty!
 ________________________________________________________________________________
 Item(s) in current list:
 1. [TODO] [ ] RIDE A SHINKANSEN

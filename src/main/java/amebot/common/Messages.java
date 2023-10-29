@@ -14,6 +14,9 @@ public class Messages {
     public static final String EMPTY_FILE = "File content is empty!";
     public static final String EMPTY_LINE = "Current line is empty!";
     public static final String INVALID_COMMAND = "You've entered an invalid command!";
+    public static final String INVALID_FIND_KEYWORD = "Keyword is empty!";
+    public static final String MATCHING_ITEMS = "Matching item(s) in current list:";
+    public static final String NO_MATCHING_ITEMS = "Keyword does not match any item(s) in current list!";
     public static final String INVALID_UPDATE = "Index is invalid or description and dateTime are invalid format!";
     public static final String DESCRIPTION_UPDATED = "Description updated successfully!";
     public static final String DATETIME_UPDATED = "DateTime updated successfully!";

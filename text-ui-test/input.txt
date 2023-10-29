@@ -20,9 +20,14 @@ mark 11
 unmark 11
 update 13 Test update method
 remove 13
+find _
+find visit
 
 abc
 todo
 mark
+remove
+update
+find
 list
 bye
