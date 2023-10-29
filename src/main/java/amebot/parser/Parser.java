@@ -36,6 +36,9 @@ public class Parser {
             Keyword commandType = Keyword.valueOf(commandName);
 
             switch (commandType) {
+                case FIND:
+                    parseFind(commandName, command, endIndex);
+                    break;
                 case TODO:
                     parseTodo(commandName, command, endIndex);
                     break;
@@ -84,6 +87,25 @@ public class Parser {
         }
 
         return false;
+    }
+
+    /**
+     * Parses the keyword to find matching tasks.
+     *
+     * @param commandName The command name.
+     * @param command     The user's input.
+     * @param endIndex    The end index of the command.
+     */
+    public void parseFind(String commandName, String command, int endIndex) {
+        boolean isFind = command.matches(Regex.FIND_COMMAND);
+
+        if (!isFind) {
+            System.out.println(Messages.INVALID_FIND_KEYWORD);
+            return;
+        }
+
+        parsedCommand.add(commandName);
+        setDescription(command, START_INDEX_OF_TODO, endIndex);
     }
 
     /**

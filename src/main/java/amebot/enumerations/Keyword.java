@@ -8,5 +8,5 @@ package amebot.enumerations;
  * </p>
  */
 public enum Keyword {
-    TODO, EVENT, DEADLINE, UPDATE, MARK, UNMARK, REMOVE, LIST, BYE
+    FIND, TODO, EVENT, DEADLINE, UPDATE, MARK, UNMARK, REMOVE, LIST, BYE
 }

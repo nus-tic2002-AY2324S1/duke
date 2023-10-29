@@ -26,12 +26,17 @@ public class Command {
         logs = new ArrayList<>();
 
         if (!parsedCommand.isEmpty()) {
-            Keyword commandType = Keyword.valueOf(parsedCommand.get(0));
+            String commandName = parsedCommand.get(0);
+            Keyword commandType = Keyword.valueOf(commandName);
             boolean isMarked = false;
             String description;
             int index;
 
             switch (commandType) {
+                case FIND:
+                    String keyword = parsedCommand.get(1).toUpperCase();
+                    new FindCommand(keyword);
+                    break;
                 case TODO:
                     description = parsedCommand.get(1);
                     new AddCommand(isMarked, description);

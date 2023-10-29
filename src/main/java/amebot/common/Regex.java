@@ -6,6 +6,7 @@ package amebot.common;
 public class Regex {
     public static final String LIST_COMMAND = "^list$";
     public static final String TODO_COMMAND = "^todo(?!\\s*$).+$";
+    public static final String FIND_COMMAND = "^find(?!\\s*$).+$";
     public static final String EVENT_COMMAND = "^event .+ /from .+ /to .+$";
     public static final String FROM_PATTERN = " /from ";
     public static final String TO_PATTERN = " /to ";
