@@ -1,10 +1,9 @@
 package duke.command;
 
-import duke.Duke;
 import duke.task.Task;
 
 import java.util.List;
-
+import duke.userinterface.UserInterface.MessageDisplay;
 /**
  * Represents a `ListCommand` to list and display user's tasks.
  */
@@ -15,10 +14,10 @@ public class ListCommand extends Command {
    *
    * @param taskList The list of user tasks.
    */
-  public static void printList(List<Task> taskList) {
+  public static void printList(MessageDisplay display,List<Task> taskList) {
 
     if (Task.getTotalTasks() == 0) {
-      duke.userinterface.UserInterface.MessageDisplay.print("There's nothing in your list");
+      display.print("There's nothing in your list");
       return;
     }
     System.out.println("Here are the tasks in your list:");
@@ -32,11 +31,9 @@ public class ListCommand extends Command {
    * Executes the command by displaying the list of user tasks.
    */
   @Override
-  public void execute() {
-    // Get the list of user tasks from Duke
-    List<Task> taskList = Duke.taskList;
+  public void execute(MessageDisplay display, List<Task> taskList) {
     // Call the printList method to display the tasks
-    printList(taskList);
+    printList(display,taskList);
   }
 
 }

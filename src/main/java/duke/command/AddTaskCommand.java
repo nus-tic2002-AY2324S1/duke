@@ -1,7 +1,9 @@
 package duke.command;
 
-import duke.Duke;
 import duke.task.Task;
+import duke.userinterface.UserInterface.MessageDisplay;
+
+import java.util.List;
 
 /**
  * Represents an `AddTaskCommand` that adds tasks to the Duke application.
@@ -26,12 +28,12 @@ abstract class AddTaskCommand extends Command {
    *
    * @param task The task to be added.
    */
-  protected void addTask(Task task) {
+  protected void addTask(MessageDisplay display, List<Task> taskList, Task task) {
 
-    Duke.taskList.add(task);
+    taskList.add(task);
     int itemIndex = Task.getTotalTasks() - 1;
-    storeDuke();
-    duke.userinterface.UserInterface.MessageDisplay.addedMessage(Duke.taskList, itemIndex);
+    storeDuke(taskList);
+    display.addedMessage(taskList, itemIndex);
   }
 
 }

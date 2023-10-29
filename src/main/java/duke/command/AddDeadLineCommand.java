@@ -4,7 +4,8 @@ import duke.task.DeadlineTask;
 import duke.task.Task;
 
 import java.time.LocalDateTime;
-
+import java.util.List;
+import duke.userinterface.UserInterface.MessageDisplay;
 /**
  * Represents a command to add a Deadline task to the task list.
  */
@@ -29,11 +30,11 @@ public class AddDeadLineCommand extends AddTaskCommand {
    * Executes the command by creating a `DeadlineTask` and adding it to the task list.
    */
   @Override
-  public void execute() {
+  public void execute(MessageDisplay display, List<Task> taskList) {
     // Create a `DeadlineTask` with the specified task name and task due date
     Task task = new DeadlineTask(taskName, taskDueDate);
     // Add the created `DeadlineTask` to the task list
-    addTask(task);
+    addTask(display, taskList, task);
   }
 
 }

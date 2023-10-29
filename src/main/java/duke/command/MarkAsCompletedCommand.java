@@ -1,7 +1,9 @@
 package duke.command;
 
-import duke.Duke;
 import duke.task.Task;
+import duke.userinterface.UserInterface.MessageDisplay;
+
+import java.util.List;
 
 /**
  * Represents a `MarkAsCompletedCommand` to mark a task as completed.
@@ -25,16 +27,16 @@ public class MarkAsCompletedCommand extends Command {
    * Executes the command by marking the specified task as completed.
    */
   @Override
-  public void execute() {
+  public void execute(MessageDisplay display,List<Task> taskList) {
     // Get the task to mark as completed from the task list
-    Task task = Duke.taskList.get(itemIndex);
+    Task task = taskList.get(itemIndex);
     if (task.isCompleted()) {
       // If the task is already completed, prompt the user
-      duke.userinterface.UserInterface.MessageDisplay.alreadyMark(task.getTaskName());
+      display.alreadyMark(task.getTaskName());
     } else {
       // Mark the task as completed and display a completion message
       task.markAsCompleted();
-      duke.userinterface.UserInterface.MessageDisplay.completeMessage(Duke.taskList, itemIndex);
+      display.completeMessage(taskList, itemIndex);
     }
   }
 

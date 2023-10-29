@@ -4,6 +4,7 @@ import duke.filehandler.FileRead;
 import duke.filehandler.FileStorage;
 import duke.parser.DukeParser;
 import duke.task.Task;
+import duke.userinterface.UserInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,19 +15,18 @@ import java.util.List;
  */
 public class Duke {
 
-  public static List<Task> taskList;
   public static FileStorage fileStorage;
   private static DukeParser dukeParser;
-  private final duke.userinterface.UserInterface userInterface;
+  private final UserInterface userInterface;
   private final FileRead fileRead;
+  public List<Task> taskList;
 
   /**
    * Initializes the Duke application by creating instances of the user interface,
    * file storage, file reader, task list, and parser.
    */
   public Duke() {
-
-    userInterface = new duke.userinterface.UserInterface();  // Initialize the user interface
+    userInterface = new UserInterface();  // Initialize the user interface
     fileStorage = new FileStorage();       // Initialize the file storage
     fileRead = new FileRead();             // Initialize the file reader
     taskList = new ArrayList<>();          // Initialize the task list
@@ -40,7 +40,6 @@ public class Duke {
    * @param args Command-line arguments (not used in this application).
    */
   public static void main(String[] args) {
-
     Duke duke = new Duke();
     duke.start();
   }
@@ -55,11 +54,11 @@ public class Duke {
     userInterface.messageDisplay.hello();
     while (true) {
       String userInput = this.userInterface.userInput.getUserInput();
-      System.out.println(duke.userinterface.UserInterface.MessageDisplay.LINE_BREAK);
+      System.out.println(UserInterface.MessageDisplay.LINE_BREAK);
       if (userInput.equals("bye")) {
         break;
       } else {
-        dukeParser.parseUserInput(userInput);
+        dukeParser.parseUserInput(userInterface.messageDisplay, taskList, userInput);
       }
     }
     userInterface.userInput.closeScanner();

@@ -1,7 +1,7 @@
 package duke.command;
 
-import duke.Duke;
 import duke.task.Task;
+import duke.userinterface.UserInterface.MessageDisplay;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,10 +17,10 @@ public class OnCommand extends CheckTaskCommand {
    * @param taskList  The list of user tasks to be checked.
    * @param checkDate The specific date for which tasks should be displayed.
    */
-  public static void checkTasks(List<Task> taskList, LocalDate checkDate) {
+  public static void checkTasks(MessageDisplay display,List<Task> taskList, LocalDate checkDate) {
     // Check if there are no tasks in the list
     if (Task.getTotalTasks() == 0) {
-      duke.userinterface.UserInterface.MessageDisplay.print("There's nothing in your list");
+      display.print("There's nothing in your list");
       return;
     }
     // Display the date and the tasks as of that date
@@ -31,7 +31,7 @@ public class OnCommand extends CheckTaskCommand {
         System.out.println((i + 1) + "." + taskList.get(i).toString());
       }
     }
-    System.out.println(duke.userinterface.UserInterface.MessageDisplay.LINE_BREAK);
+    System.out.println(MessageDisplay.LINE_BREAK);
   }
 
   /**
@@ -40,11 +40,9 @@ public class OnCommand extends CheckTaskCommand {
    * @param checkedDate The specific date for which tasks should be displayed.
    */
   @Override
-  public void execute(LocalDate checkedDate) {
-    // Get the list of user tasks from Duke
-    List<Task> taskList = Duke.taskList;
+  public void execute(MessageDisplay display,List<Task> taskList, LocalDate checkedDate) {
     // Call the checkTasks method to display the tasks as of the specified date
-    checkTasks(taskList, checkedDate);
+    checkTasks(display,taskList, checkedDate);
   }
 
 }

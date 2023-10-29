@@ -1,7 +1,9 @@
 package duke.command;
 
-import duke.Duke;
 import duke.task.Task;
+import duke.userinterface.UserInterface.MessageDisplay;
+
+import java.util.List;
 
 /**
  * Represents a `MarkAsInCompletedCommand` to mark a task as incomplete.
@@ -25,16 +27,16 @@ public class MarkAsInCompletedCommand extends Command {
    * Executes the command by marking the specified task as incomplete.
    */
   @Override
-  public void execute() {
+  public void execute(MessageDisplay display,List<Task> taskList) {
     // Get the task to mark as incomplete from the task list using the index.
-    Task task = Duke.taskList.get(taskIndex);
+    Task task = taskList.get(taskIndex);
     if (!task.isCompleted()) {
       // If the task is not completed, display a message
-      duke.userinterface.UserInterface.MessageDisplay.notMark(task.getTaskName());
+      display.notMark(task.getTaskName());
     } else {
       // Mark the task as not completed and display a message to prompt the user.
       task.markAsNotCompleted();
-      duke.userinterface.UserInterface.MessageDisplay.unCompleteMessage(Duke.taskList, taskIndex);
+      display.unCompleteMessage(taskList, taskIndex);
     }
   }
 

@@ -76,7 +76,7 @@ public class UserInterface {
      *
      * @param line The message to print.
      */
-    public static void print(String line) {
+    public void print(String line) {
 
       System.out.printf("%s\n%s\n", line, LINE_BREAK);
     }
@@ -87,7 +87,7 @@ public class UserInterface {
      * @param userInputList The list of user tasks.
      * @param itemNumber    The index of the added task.
      */
-    public static void addedMessage(List<Task> userInputList, int itemNumber) {
+    public void addedMessage(List<Task> userInputList, int itemNumber) {
 
       int totalTasks = Task.getTotalTasks();
       System.out.printf("Got it. I've added this task:\n"
@@ -100,7 +100,7 @@ public class UserInterface {
      *
      * @param taskName The name of the task.
      */
-    public static void alreadyMark(String taskName) {
+    public void alreadyMark(String taskName) {
 
       print(taskName + " is already marked!");
     }
@@ -110,7 +110,7 @@ public class UserInterface {
      *
      * @param taskName The name of the task.
      */
-    public static void notMark(String taskName) {
+    public void notMark(String taskName) {
 
       print("You did not complete " + taskName + " before!");
     }
@@ -121,7 +121,7 @@ public class UserInterface {
      * @param userInputList The list of user tasks.
      * @param itemNumber    The index of the completed task.
      */
-    public static void completeMessage(List<Task> userInputList, int itemNumber) {
+    public void completeMessage(List<Task> userInputList, int itemNumber) {
 
       System.out.printf("That's some progress! I've marked this task as done:\n   %s\n%s\n",
           userInputList.get(itemNumber).toString(), LINE_BREAK);
@@ -133,7 +133,7 @@ public class UserInterface {
      * @param userInputList The list of user tasks.
      * @param itemNumber    The index of the unmarked task.
      */
-    public static void unCompleteMessage(List<Task> userInputList, int itemNumber) {
+    public void unCompleteMessage(List<Task> userInputList, int itemNumber) {
 
       System.out.printf("Okay, you can do it at a later time:\n   %s\n%s\n",
           userInputList.get(itemNumber).toString(), LINE_BREAK);
@@ -144,7 +144,7 @@ public class UserInterface {
      *
      * @param task The deleted task.
      */
-    public static void deleteMessage(Task task) {
+    public void deleteMessage(Task task) {
 
       System.out.printf("Noted. I've removed this task:\n   %s\n"
               + "Now you have %s tasks in the list.\n%s\n",

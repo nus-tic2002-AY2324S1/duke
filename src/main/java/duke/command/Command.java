@@ -5,7 +5,7 @@ import duke.dukeexceptions.DukeException;
 import duke.task.Task;
 
 import java.util.List;
-
+import duke.userinterface.UserInterface.MessageDisplay;
 /**
  * Represents a base command in the Duke application.
  */
@@ -16,14 +16,13 @@ abstract class Command {
    *
    * @throws DukeException If an error occurs while executing the command.
    */
-  public abstract void execute() throws DukeException;
+  public abstract void execute(MessageDisplay display, List<Task> taskList) throws DukeException;
 
   /**
    * Stores the task list for future loading of tasks.
    */
-  public void storeDuke() {
+  public void storeDuke(List<Task> taskList) {
 
-    List<Task> taskList = Duke.taskList;
     Duke.fileStorage.fileStorage(taskList);
   }
 

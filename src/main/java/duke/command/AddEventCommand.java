@@ -2,8 +2,9 @@ package duke.command;
 
 import duke.task.EventTask;
 import duke.task.Task;
-
+import java.util.List;
 import java.time.LocalDateTime;
+import duke.userinterface.UserInterface.MessageDisplay;
 
 /**
  * Represents a command to add an event task to the task list.
@@ -33,11 +34,11 @@ public class AddEventCommand extends AddTaskCommand {
    * Executes the command by creating an `EventTask` and adding it to the task list.
    */
   @Override
-  public void execute() {
+  public void execute(MessageDisplay display, List<Task> tasklist) {
     // Create an `EventTask` with the specified name, start date, and end date
     Task task = new EventTask(taskName, taskFromDate, taskToDate);
     // Add the created `EventTask` to the task list
-    addTask(task);
+    addTask(display,tasklist, task);
   }
 
 }
