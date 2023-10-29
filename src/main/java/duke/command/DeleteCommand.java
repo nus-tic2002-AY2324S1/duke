@@ -1,6 +1,8 @@
 package duke.command;
 
-
+/**
+ * The DeleteCommand class represents a command that deletes a task from the task list.
+ */
 public class DeleteCommand extends IndexBaseCommand {
     public static final String COMMAND_WORD = "delete";
     public static final String EXAMPLE_USAGE = "Example of usage:\ndelete 1";

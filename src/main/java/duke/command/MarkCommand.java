@@ -1,5 +1,8 @@
 package duke.command;
 
+/**
+ * The MarkCommand class represents a command that marks a task at a specific index as done.
+ */
 public class MarkCommand extends IndexBaseCommand {
     public static final String COMMAND_WORD = "mark";
     public static final String EXAMPLE_USAGE = "Example of usage:\nmark 1";

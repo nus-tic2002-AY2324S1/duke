@@ -3,7 +3,6 @@ package duke.storage;
 import duke.common.Message;
 import duke.exception.FileStorageException;
 import duke.exception.InvalidArgumentException;
-import duke.task.TaskList;
 import duke.task.Task;
 
 import java.io.IOException;
@@ -12,6 +11,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * The Storage class is responsible for managing the data storage of the application.
+ * It provides methods for loading data from a file into the application and saving data from the application to a file.
+ */
 public class Storage {
     public final Path path;
 
@@ -28,8 +31,9 @@ public class Storage {
      * Loads tasks from the storage file and returns them as an ArrayList.
      *
      * @return An ArrayList containing tasks loaded from the storage file.
-     * @throws FileStorageException If there are issues with file existence or reading.
-     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
+     * @throws FileStorageException     If there are issues with file existence or reading.
+     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
+     * message.
      */
     public ArrayList<Task> load() throws FileStorageException, InvalidArgumentException {
         try {
@@ -63,9 +67,10 @@ public class Storage {
 
     /**
      * Retrieves the file path as a string.
+     *
      * @return A string representing the file path.
      */
-    public String getPath(){
+    public String getPath() {
         return path.toString();
     }
 }

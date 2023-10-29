@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The DeadlineCommand class represents a command that handles deadline tasks.
+ */
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
     public static final String EXAMPLE_USAGE = "Example of usage:\ndeadline return book /by 02/12/2019\n" +

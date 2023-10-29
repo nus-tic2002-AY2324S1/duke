@@ -7,10 +7,12 @@ import duke.data.UserKeywordArgument;
 import duke.exception.InvalidArgumentException;
 import duke.parser.Parser;
 import duke.storage.Storage;
-import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * The IndexBaseCommand class serves as the base for all index-based command classes.
+ */
 public abstract class IndexBaseCommand extends Command {
     public static final String DESC_ERR_MESSAGE = "OOPS!!! The \"description\" of a \"%s\" cannot be empty :(";
     public static final String INDEX_INT_ERR_MESSAGE = "The \"index number\" of the \"%s\" must be an integer :(";
@@ -43,14 +45,14 @@ public abstract class IndexBaseCommand extends Command {
      */
     public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
-        validation(keywordArgument);
+        validateNonEmptyAndValidIntegers(keywordArgument);
         setIndex(keywordArgument.getArguments());
         if (index < 1 || index > TaskList.size()) {
             String errorMessage = String.format(OUT_OF_RANGE_ERR_MESSAGE, getCommandWord());
             throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
         }
         indexCommand = Parser.parseKeywordToCommand(keywordArgument);
-        process(taskList, ui);
+        processCommand(taskList, ui);
     }
 
     /**
@@ -59,7 +61,7 @@ public abstract class IndexBaseCommand extends Command {
      * @param keywordArgument The parsed user input containing the keyword and arguments.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
      */
-    private void validation(UserKeywordArgument keywordArgument) throws InvalidArgumentException {
+    private void validateNonEmptyAndValidIntegers(UserKeywordArgument keywordArgument) throws InvalidArgumentException {
         if (keywordArgument.getArguments().isEmpty()) {
             String errorMessage = String.format(DESC_ERR_MESSAGE, getCommandWord());
             throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
@@ -86,18 +88,17 @@ public abstract class IndexBaseCommand extends Command {
      * @param taskList The TaskList containing the tasks to be managed.
      * @param ui       The user interface for displaying messages to the user.
      */
-    private void process(TaskList taskList, Ui ui) {
-        ArrayList<Task> tasks = taskList.getTasks();
+    private void processCommand(TaskList taskList, Ui ui) {
         ArrayList<String> messages = new ArrayList<>();
         IndexBaseCommand indexBaseCommand = (IndexBaseCommand) indexCommand;
         messages.add(indexBaseCommand.getMessage());
         if (indexCommand instanceof MarkCommand) {
             MarkCommand markCommand = (MarkCommand) indexCommand;
-            tasks.get(index - 1).markAsDone(markCommand.isMark());
+            taskList.get(index - 1).markAsDone(markCommand.isMark());
         }
-        messages.add(tasks.get(index - 1).toString());
+        messages.add(taskList.get(index - 1).toString());
         if (indexCommand instanceof DeleteCommand) {
-            tasks.remove(index - 1);
+            taskList.remove(index - 1);
         }
         ui.showResponseToUser(messages);
     }

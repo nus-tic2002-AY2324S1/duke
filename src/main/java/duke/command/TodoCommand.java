@@ -7,6 +7,9 @@ import duke.task.TaskList;
 import duke.task.Todo;
 import duke.ui.Ui;
 
+/**
+ * The TodoCommand class represents a command that handles to-do tasks.
+ */
 public class TodoCommand extends Command {
     public static final String COMMAND_WORD = "todo";
     public static final String EXAMPLE_USAGE = "Example of usage:\ntodo borrow book";

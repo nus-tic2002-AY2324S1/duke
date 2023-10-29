@@ -10,6 +10,9 @@ import duke.ui.Ui;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * This is the abstract Command class that serves as the base for all command classes.
+ */
 public abstract class Command {
     public static final String DESC_ERR_MESSAGE = "OOPS!!! The \"description\" of a \"%s\" cannot be empty :(";
     public static final String DESC_NEED_BLANK_ERR_MESSAGE = "OOPS!!! Please leave the description blank for the " +

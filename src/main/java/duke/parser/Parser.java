@@ -10,7 +10,10 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.regex.Matcher;
 
-
+/**
+ * The Parser class is responsible for interpreting user input.
+ * It provides methods for parsing user input into commands, tasks, or other data structures used by the application.
+ */
 public class Parser {
     public static String MESSAGE_INCORRECT_MONTH = "You've entered the incorrect month value by mistake!";
     public static String MESSAGE_INCORRECT_DAY = "You've entered the incorrect day value by mistake!";

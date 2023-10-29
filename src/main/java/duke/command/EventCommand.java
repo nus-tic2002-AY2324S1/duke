@@ -13,11 +13,13 @@ import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The EventCommand class represents a command that handles event tasks.
+ */
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
     public static final String EXAMPLE_USAGE = "Example of usage:\nevent project meeting /from 02/12/2020 0800 /to " +
-            "02/12/2020 1000\n" +
-            DATE_TIME_FORMAT_MESSAGE;
+            "02/12/2020 1000\n" + DATE_TIME_FORMAT_MESSAGE;
     public static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<description>\\w.*)\\s+/from\\s+(?<from>\\w.*)" +
             "\\s+/to\\s+(?<to>\\w.*)");
     public static final String DATE_TIME_ERROR_MESSAGE = "OOPS!!! The 'from: date/time' can not be after the 'to: " +

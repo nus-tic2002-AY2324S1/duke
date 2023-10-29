@@ -7,6 +7,10 @@ import duke.task.TaskList;
 
 import java.util.ArrayList;
 
+/**
+ * The TaskEncoder class is responsible for encoding tasks into a specific format.
+ * It provides methods for converting Task objects from the application into a format that can be stored persistently.
+ */
 public class TaskEncoder {
     /**
      * Encodes a TaskList into a list of strings.

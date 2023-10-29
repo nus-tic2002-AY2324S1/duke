@@ -10,6 +10,10 @@ import duke.command.Command;
 import duke.parser.Parser;
 import duke.exception.FileStorageException;
 
+/**
+ * Duke is the main entry point of the Luna chat-bot application
+ * Initializes the applications and starts the interaction with the user
+ */
 public class Duke {
 
     private Ui ui;

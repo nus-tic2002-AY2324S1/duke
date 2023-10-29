@@ -2,6 +2,9 @@ package duke.data;
 
 import duke.parser.Parser;
 
+/**
+ * Responsible for managing user-provided keyword arguments.
+ */
 public class UserKeywordArgument {
     private String keyword;
     private String arguments;

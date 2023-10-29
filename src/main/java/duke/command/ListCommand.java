@@ -9,6 +9,9 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * The ListCommand class represents a command that lists all tasks.
+ */
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String EXAMPLE_USAGE = "Example of usage:\nlist";

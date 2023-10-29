@@ -4,8 +4,10 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The Ui class is responsible for managing all user interface affairs.
+ */
 public class Ui {
-
     private final Scanner in;
     private final PrintStream out;
     public static final String DIVIDER = "=".repeat(80);
