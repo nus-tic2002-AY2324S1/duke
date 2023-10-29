@@ -1,5 +1,8 @@
 package duke.command;
 
+/**
+ * The UnMarkCommand class represents a command that unmarks a previously marked task.
+ */
 public class UnMarkCommand extends MarkCommand {
     public static final String COMMAND_WORD = "unmark";
     public static final String EXAMPLE_USAGE = "Example of usage:\nunmark 1";

@@ -7,6 +7,9 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * The ExitCommand class represents a command that terminates the application.
+ */
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
     public static final String EXAMPLE_USAGE = "Example of usage:\nbye";

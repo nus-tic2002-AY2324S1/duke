@@ -1,5 +1,8 @@
 package duke.command;
 
+/**
+ * The RecurCommand class represents a command that sets a task at a specific index as recurring.
+ */
 public class RecurCommand extends IndexBaseCommand{
     public static final String COMMAND_WORD = "recur";
     public static final String EXAMPLE_USAGE = "Example of usage:\nrecur 1";

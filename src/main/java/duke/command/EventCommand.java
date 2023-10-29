@@ -13,6 +13,9 @@ import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The EventCommand class represents a command that handles event tasks.
+ */
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
     public static final String EXAMPLE_USAGE = "Example of usage:\nevent project meeting /from 02/12/2020 0800 /to " +
