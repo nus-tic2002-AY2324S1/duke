@@ -94,40 +94,65 @@ public class Main {
             String[] inputParts = userInput.split(" ", 2);
 
             if (inputParts.length < 2) {
-                System.out.println("Invalid task format. Use 'todo', 'deadline', or 'event' for task creation.");
-                return;
+                if (!inputParts[0].equals("todo") && !inputParts[0].equals("deadline") && !inputParts[0].equals("event")) {
+                    try {
+                        throw new UnknownCommandException();
+                    } catch (UnknownCommandException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    return;
+                }
+
+                try {
+                    throw new EmptyDescriptionException();
+                } catch (EmptyDescriptionException e) {
+                    System.out.println(e.getMessage());
+                    return;
+                }
             }
 
             String taskType = inputParts[0].toLowerCase();
             String description = inputParts[1].trim();
 
-            Task task = null;
+            try {
+                Task task = null;
 
-            switch (taskType) {
-                case "todo":
-                    task = new ToDo(description);
-                    break;
-                case "deadline":
-                    String by = extractBy(description);
-                    String actualDescriptionDeadline = extractDescription(description);
-                    task = new Deadline(actualDescriptionDeadline, by);
-                    break;
-                case "event":
-                    String from = extractFrom(description);
-                    String to = extractTo(description);
-                    String actualDescriptionEvent = extractDescription(description);
-                    task = new Event(actualDescriptionEvent, from, to);
-                    break;
-                default:
-                    System.out.println("Invalid task format. Use 'todo', 'deadline', or 'event' for task creation.");
-                    return;
+                switch (taskType) {
+                    case "todo":
+                        if (description.isEmpty()) {
+                            throw new EmptyDescriptionException();
+                        }
+                        task = new ToDo(description);
+                        break;
+                    case "deadline":
+                        String by = extractBy(description);
+                        String actualDescriptionDeadline = extractDescription(description);
+                        if (by.isEmpty() || actualDescriptionDeadline.isEmpty()) {
+                            throw new IncompleteDataException(); // Handle incomplete data
+                        }
+                        task = new Deadline(actualDescriptionDeadline, by);
+                        break;
+                    case "event":
+                        String from = extractFrom(description);
+                        String to = extractTo(description);
+                        String actualDescriptionEvent = extractDescription(description);
+                        if (from.isEmpty() || to.isEmpty() || actualDescriptionEvent.isEmpty()) {
+                            throw new IncompleteDataException(); // Handle incomplete data
+                        }
+                        task = new Event(actualDescriptionEvent, from, to);
+                        break;
+                    default:
+                        throw new UnknownCommandException();
+                }
+
+                tasks[taskCounter] = task;
+                taskCounter++;
+                System.out.println("Got it. I've added this task:");
+                System.out.println("  " + task.toString());
+                System.out.println("Now you have " + taskCounter + " tasks in the list.");
+            } catch (DupeException e) {
+                System.out.println(e.getMessage());
             }
-
-            tasks[taskCounter] = task;
-            taskCounter++;
-            System.out.println("Got it. I've added this task:");
-            System.out.println("  " + task.toString());
-            System.out.println("Now you have " + taskCounter + " tasks in the list.");
         } else {
             System.out.println("Sorry, your task list is full.");
         }
