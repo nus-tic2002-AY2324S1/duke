@@ -34,6 +34,8 @@ public class Main {
                 markTaskAsDone(userInput);
             } else if (userInput.startsWith("unmark ")) {
                 unmarkTask(userInput);
+            } else if(userInput.startsWith("delete")){
+                deleteTask(userInput);
             } else {
                 addTask(userInput);
             }
@@ -94,6 +96,7 @@ public class Main {
             String[] inputParts = userInput.split(" ", 2);
 
             if (inputParts.length < 2) {
+                //throw error if the input is not the following
                 if (!inputParts[0].equals("todo") && !inputParts[0].equals("deadline") && !inputParts[0].equals("event")) {
                     try {
                         throw new UnknownCommandException();
@@ -102,7 +105,7 @@ public class Main {
                     }
                     return;
                 }
-
+                //else throw error if there's no description
                 try {
                     throw new EmptyDescriptionException();
                 } catch (EmptyDescriptionException e) {
@@ -193,6 +196,40 @@ public class Main {
             return splitDescription[0];
         }
         return description; // Return an empty string if no "/to" information is found
+    }
+    private static void deleteTask(String userInput) {
+        if (taskCounter == 0) {
+            System.out.println("The task list is currently empty. Nothing to delete.");
+            return;
+        }
+
+        // Parse the user input to extract the task index to delete
+        String[] inputParts = userInput.split(" ");
+        if (inputParts.length != 2) {
+            System.out.println("Invalid delete command. Use 'delete [task index]'.");
+            return;
+        }
+
+        try {
+            int taskIndex = Integer.parseInt(inputParts[1]);
+            if (taskIndex < 1 || taskIndex > taskCounter) {
+                System.out.println("Task index is out of range.");
+            } else {
+                // Remove the task from the list
+                Task deletedTask = tasks[taskIndex - 1];
+                for (int i = taskIndex - 1; i < taskCounter - 1; i++) {
+                    tasks[i] = tasks[i + 1];
+                }
+                tasks[taskCounter - 1] = null;
+                taskCounter--;
+
+                System.out.println("Noted. I've removed this task:");
+                System.out.println("  " + deletedTask.toString());
+                System.out.println("Now you have " + taskCounter + " tasks in the list.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid task index. Please enter a valid number.");
+        }
     }
 
 }
