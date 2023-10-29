@@ -27,7 +27,8 @@ public class Main {
             if (userInput.equalsIgnoreCase("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
-            } else if (userInput.equalsIgnoreCase("list")) {
+            }
+            else if (userInput.equalsIgnoreCase("list")) {
                 displayTasks();
             } else if (userInput.startsWith("mark ")) {
                 markTaskAsDone(userInput);
@@ -45,9 +46,9 @@ public class Main {
         if (taskCounter == 0) {
             System.out.println("The task list is currently empty");
         } else {
+            System.out.println("Here are the tasks in your list:");
             for (int i = 0; i < taskCounter; i++) {
-                Task task = tasks[i];
-                System.out.println((i + 1) + " " + task.getStatusIcon() + " " + task.getDescription());
+                System.out.println((i + 1) + ". " + tasks[i].toString());
             }
         }
     }
@@ -88,15 +89,86 @@ public class Main {
         return -1; // Invalid input
     }
 
-    private static void addTask(String description) {
+    private static void addTask(String userInput) {
         if (taskCounter < MAX_TASKS) {
-            Task task = new Task(description);
+            String[] inputParts = userInput.split(" ", 2);
+
+            if (inputParts.length < 2) {
+                System.out.println("Invalid task format. Use 'todo', 'deadline', or 'event' for task creation.");
+                return;
+            }
+
+            String taskType = inputParts[0].toLowerCase();
+            String description = inputParts[1].trim();
+
+            Task task = null;
+
+            switch (taskType) {
+                case "todo":
+                    task = new ToDo(description);
+                    break;
+                case "deadline":
+                    String by = extractBy(description);
+                    String actualDescriptionDeadline = extractDescription(description);
+                    task = new Deadline(actualDescriptionDeadline, by);
+                    break;
+                case "event":
+                    String from = extractFrom(description);
+                    String to = extractTo(description);
+                    String actualDescriptionEvent = extractDescription(description);
+                    task = new Event(actualDescriptionEvent, from, to);
+                    break;
+                default:
+                    System.out.println("Invalid task format. Use 'todo', 'deadline', or 'event' for task creation.");
+                    return;
+            }
+
             tasks[taskCounter] = task;
             taskCounter++;
-            System.out.println("Added: " + description);
+            System.out.println("Got it. I've added this task:");
+            System.out.println("  " + task.toString());
+            System.out.println("Now you have " + taskCounter + " tasks in the list.");
         } else {
             System.out.println("Sorry, your task list is full.");
         }
     }
+
+    private static String extractBy(String description) {
+        //extract string after /by
+        int byIndex = description.indexOf("/by");
+        if (byIndex != -1) {
+            return description.substring(byIndex + 3).trim();
+        }
+        return ""; // Return an empty string if no "/by" information is found
+    }
+
+    private static String extractFrom(String description) {
+        //extract string after /from
+        int fromIndex = description.indexOf("/from");
+        if (fromIndex != -1) {
+            return description.substring(fromIndex + 5, description.indexOf("/to")).trim();
+        }
+        return ""; // Return an empty string if no "/from" information is found
+    }
+
+    private static String extractTo(String description) {
+        //extract string after /to
+        int toIndex = description.indexOf("/to");
+        if (toIndex != -1) {
+            return description.substring(toIndex + 3).trim();
+        }
+        return ""; // Return an empty string if no "/to" information is found
+    }
+
+    private static String extractDescription(String description) {
+        //extract description for userinputs that have more fields
+        int toIndex = description.indexOf("/");
+        if (toIndex != -1) {
+            String[] splitDescription = description.split("/", 2);
+            return splitDescription[0];
+        }
+        return description; // Return an empty string if no "/to" information is found
+    }
+
 }
 
