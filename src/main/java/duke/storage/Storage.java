@@ -33,7 +33,7 @@ public class Storage {
      * @return An ArrayList containing tasks loaded from the storage file.
      * @throws FileStorageException     If there are issues with file existence or reading.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
-     * message.
+     *                                  message.
      */
     public ArrayList<Task> load() throws FileStorageException, InvalidArgumentException {
         try {

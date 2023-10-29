@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 /**
  * The Event class represents a task that is scheduled for a specific data and time
  * It extends the Task class and adds specific behavior for tasks
- *
  */
 public class Event extends Task {
     protected LocalDateTime fromDateTime;
@@ -40,7 +39,6 @@ public class Event extends Task {
 
     /**
      * Executes the task by displaying a response indicating that the task has been added.
-     *
      */
     public void execute() {
         displayTaskAddedResponse();

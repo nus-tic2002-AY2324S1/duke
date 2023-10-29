@@ -56,6 +56,12 @@ public enum KeywordTypes {
         public Command createCommand() {
             return new DatePrintCommand();
         }
+    },
+    RECUR{
+        @Override
+        public Command createCommand() {
+            return new RecurCommand();
+        }
     };
 
     public abstract Command createCommand();

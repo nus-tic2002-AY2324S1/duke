@@ -124,9 +124,10 @@ public class TaskList {
 
     /**
      * Removes the task at the specified index from the list of tasks.
+     *
      * @param index The index of the task to be removed.
      */
-    public void remove(int index){
+    public void remove(int index) {
         tasks.remove(index);
     }
 }
