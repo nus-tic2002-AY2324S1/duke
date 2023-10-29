@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
+/**
+ * The DatePrintCommand class represents a command that prints deadlines or events occurring on a specific date.
+ */
 public class DatePrintCommand extends Command {
     LocalDateTime date;
     public static final String COMMAND_WORD = "dprint";

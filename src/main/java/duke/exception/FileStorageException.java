@@ -1,5 +1,8 @@
 package duke.exception;
 
+/**
+ * The FileStorageException class represents exceptions specific to file storage operations.
+ */
 public class FileStorageException extends Exception {
     /**
      * Constructor for the FileStorageException class.

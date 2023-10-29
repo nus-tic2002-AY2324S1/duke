@@ -16,6 +16,10 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 
+/**
+ * The TaskDecoder class is responsible for decoding tasks from a specific format.
+ * It provides methods for converting tasks from a stored format into Task objects that can be used by the application.
+ */
 public class TaskDecoder {
     /**
      * Decodes a list of strings into Task objects and returns them as an ArrayList.
