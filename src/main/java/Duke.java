@@ -1,5 +1,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.lang.*;
+
+
 
 public class Duke {
     public static void main(String[] args) {
@@ -18,7 +21,7 @@ public class Duke {
         String userCommand;
 
         //Declaring an array to store the commands;
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<Task> list = new ArrayList<Task>();
 
             do {
                 System.out.print("Enter your command: ");
@@ -29,21 +32,38 @@ public class Duke {
                     break;
                 }
 
+                if (userCommand.startsWith("mark ")) {
+                    int taskNo = Integer.parseInt(userCommand.substring(5));
+                    Task t = list.get(taskNo-1);
+                    t.setTaskDone();
+                    System.out.println("Nice! I've marked this task as done:");
+                    System.out.println(t.getStatusIcon() + " " + t.getDescription());
+
+
+                } else if (userCommand.startsWith("unmark ")) {
+                    int taskNo = Integer.parseInt(userCommand.substring(7));
+                    Task t = list.get(taskNo-1);
+                    t.setTaskNotDone();
+                    System.out.println("OK, I've marked this task as not done yet:");
+                    System.out.println(t.getStatusIcon() + " " + t.getDescription());
+
                 // list all added items if user command is "list"
-                int x=1;
-                if(userCommand.equalsIgnoreCase("list")){
+                } else if(userCommand.equalsIgnoreCase("list")){
                     System.out.println ("--------------------------------------------------------");
-                    for (String i : list) {
-                        System.out.println( x + ". " + i);
-                        x++;
+                    System.out.println ("Here are the tasks in your list:");
+                    for (int i = 0; i < list.size(); i++) {
+                        Task t = list.get(i);
+                        System.out.println((i + 1) + " " + t.getStatusIcon() + " " + t.getDescription());
                     }
                     System.out.println ("--------------------------------------------------------");
                     continue;
-                }
 
-                System.out.println("added: " + userCommand);
-                System.out.println ("--------------------------------------------------------");
-                list.add(userCommand);
+                } else {
+                    Task newTask = new Task(userCommand);
+                    list.add(newTask);
+                    System.out.println("added: " + newTask.getDescription());
+
+                }
 
             }while(!userCommand.equalsIgnoreCase("bye"));
 
