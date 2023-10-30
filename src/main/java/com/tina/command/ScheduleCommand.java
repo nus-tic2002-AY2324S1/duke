@@ -10,15 +10,33 @@ import com.tina.task.TaskList;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * The type Schedule command.
+ * Show all the tasks related to the given date.
+ */
 public class ScheduleCommand extends Command {
     private final LocalDate date;
+
+    /**
+     * Instantiates a new Schedule command.
+     *
+     * @param date the date
+     */
     public ScheduleCommand(LocalDate date) {
         super(CommandEnum.SCHEDULE);
         this.date = date;
     }
 
+    /**
+     * Iterate the task list and find the task that related to the given date.
+     * Add these found tasks to a new task list.
+     * Call method from ui to print the new task list.
+     *
+     * @param taskList the task list
+     * @param ui       the ui
+     */
     @Override
-    public void execute(TaskList taskList, Ui ui) throws DukeException {
+    public void execute(TaskList taskList, Ui ui) {
         TaskList tasks = new TaskList();
         for (Task task : taskList.getTaskList()) {
             if (task instanceof DeadlineTask) {

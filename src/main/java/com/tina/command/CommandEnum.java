@@ -2,6 +2,9 @@ package com.tina.command;
 
 import java.util.Map;
 
+/**
+ * The enumeration class contains all command type and its corresponding syntax.
+ */
 public enum CommandEnum {
     BYE("bye"),
     LIST("list"),
@@ -21,6 +24,11 @@ public enum CommandEnum {
     }
     CommandEnum(){}
 
+    /**
+     * Gets syntax of current command type.
+     *
+     * @return the syntax
+     */
     public String getSyntax() {
         return syntax;
     }
