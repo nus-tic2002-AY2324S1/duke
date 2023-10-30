@@ -25,9 +25,12 @@ public class MarkAsCompletedCommand extends Command {
 
   /**
    * Executes the command by marking the specified task as completed.
+   *
+   * @param display  The message display interface to show messages to the user.
+   * @param taskList The list of tasks in which the task will be marked as completed.
    */
   @Override
-  public void execute(MessageDisplay display,List<Task> taskList) {
+  public void execute(MessageDisplay display, List<Task> taskList) {
     // Get the task to mark as completed from the task list
     Task task = taskList.get(itemIndex);
     if (task.isCompleted()) {

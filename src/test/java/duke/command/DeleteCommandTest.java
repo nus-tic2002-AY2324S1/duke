@@ -1,35 +1,43 @@
 package duke.command;
 
+import duke.Duke;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.List;
-import java.util.ArrayList;
-import duke.task.Task;
-import duke.userinterface.UserInterface.MessageDisplay;
-import org.junit.jupiter.api.BeforeEach;
+
 public class DeleteCommandTest {
 
-  List<Task> taskList;
-  MessageDisplay display;
+  Duke duke;
+  AddTodoCommand add1;
+  AddTodoCommand add2;
+  DeleteCommand command;
+  int taskIndex;
+
   @BeforeEach
   public void setUp() {
-    new duke.Duke();
-    taskList = new ArrayList<>(); // Reset the taskList before each test
-    display = new MessageDisplay();
+
+    duke = new duke.Duke();
+    taskIndex = 1;
+    add1 = new AddTodoCommand("Test Event 1");
+    add2 = new AddTodoCommand("Test Event 2");
+    command = new DeleteCommand(taskIndex);
   }
 
+  @org.junit.jupiter.api.AfterEach
+  public void tearDown() {
+
+    duke = null;
+  }
 
   @Test
   public void testExecute() {
-    AddTodoCommand add1 = new AddTodoCommand("Test Event 1");
-    AddTodoCommand add2 = new AddTodoCommand("Test Event 2");
-    int taskIndex = 1;
-    DeleteCommand command = new DeleteCommand(taskIndex);
-    add1.execute(display,taskList);
-    add2.execute(display,taskList);
-    assertEquals(taskList.size(),2);
-    command.execute(display,taskList);
-    assertEquals(taskList.size(),1);
+
+    add1.execute(duke.userInterface.messageDisplay, duke.taskList);
+    add2.execute(duke.userInterface.messageDisplay, duke.taskList);
+    assertEquals(duke.taskList.size(), 2);
+    command.execute(duke.userInterface.messageDisplay, duke.taskList);
+    assertEquals(duke.taskList.size(), 1);
   }
+
 }

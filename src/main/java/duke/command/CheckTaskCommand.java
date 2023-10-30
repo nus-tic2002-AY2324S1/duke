@@ -3,6 +3,7 @@ package duke.command;
 import duke.dukeexceptions.DukeException;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,8 +13,10 @@ import java.util.List;
 abstract class CheckTaskCommand {
 
   /**
-   * Executes the command.
+   * Executes the command to check tasks on the specified date.
    *
+   * @param display     The message display interface to show messages to the user.
+   * @param taskList    The list of tasks to check for the specified date.
    * @param checkedDate The date for which tasks should be checked.
    * @throws DukeException If an error occurs while executing the command.
    */

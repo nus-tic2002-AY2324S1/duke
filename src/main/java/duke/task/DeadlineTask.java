@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
  */
 public class DeadlineTask extends Task {
 
-  protected LocalDateTime taskDueDate;
+  private final LocalDateTime taskDueDate;
 
   /**
    * Constructs a `DeadlineTask` with the specified task name and due date.
@@ -50,7 +50,7 @@ public class DeadlineTask extends Task {
    *
    * @return The due date of the task as a LocalDate Object.
    */
-  public LocalDate getTaskDueDate() {
+  private LocalDate getTaskDueDate() {
 
     return taskDueDate.toLocalDate();
   }

@@ -17,7 +17,7 @@ public class Duke {
 
   public static FileStorage fileStorage;
   private static DukeParser dukeParser;
-  private final UserInterface userInterface;
+  public final UserInterface userInterface;
   private final FileRead fileRead;
   public List<Task> taskList;
 
@@ -26,6 +26,7 @@ public class Duke {
    * file storage, file reader, task list, and parser.
    */
   public Duke() {
+
     userInterface = new UserInterface();  // Initialize the user interface
     fileStorage = new FileStorage();       // Initialize the file storage
     fileRead = new FileRead();             // Initialize the file reader
@@ -40,6 +41,7 @@ public class Duke {
    * @param args Command-line arguments (not used in this application).
    */
   public static void main(String[] args) {
+
     Duke duke = new Duke();
     duke.start();
   }

@@ -11,7 +11,7 @@ public abstract class Task {
   private static int totalTasks = 0;
   private final String taskName;
   private final Character taskType;
-  boolean completed;
+  private boolean completed;
 
   /**
    * Constructs a `Task` with the specified task type and name, initializing it as not completed.
@@ -106,9 +106,15 @@ public abstract class Task {
     return completed;
   }
 
+  /**
+   * Checks if the task matches a specific date.
+   *
+   * @param checkedDate The date to compare with the task's date (if applicable).
+   * @return `true` if the task matches the date, `false` otherwise.
+   */
   public boolean checkDate(LocalDate checkedDate) {
 
-    return false;
+    return false; // Override this method in subclasses if the task has a date.
   }
 
   /**

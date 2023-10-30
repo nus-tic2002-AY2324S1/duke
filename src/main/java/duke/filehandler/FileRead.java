@@ -61,7 +61,7 @@ public class FileRead extends FileHandler {
               throw new FileCorruptedException();
             }
             try {
-              LocalDateTime taskDueDate = DukeParser.parseDateTime(input[3]);
+              LocalDateTime taskDueDate = DukeParser.parseDateTimeOrDate(input[3]);
               task = new DeadlineTask(taskName, isCompleted, taskDueDate);
             } catch (DateTimeParseException e) {
               throw new FileCorruptedException();
@@ -72,8 +72,8 @@ public class FileRead extends FileHandler {
               throw new FileCorruptedException();
             }
             try {
-              LocalDateTime taskFrom = DukeParser.parseDateTime(input[3]);
-              LocalDateTime taskTo = DukeParser.parseDateTime(input[4]);
+              LocalDateTime taskFrom = DukeParser.parseDateTimeOrDate(input[3]);
+              LocalDateTime taskTo = DukeParser.parseDateTimeOrDate(input[4]);
               task = new EventTask(taskName, isCompleted, taskFrom, taskTo);
             } catch (DateTimeParseException e) {
               throw new FileCorruptedException();

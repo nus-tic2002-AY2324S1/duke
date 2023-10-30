@@ -1,42 +1,54 @@
 package duke.command;
 
-import org.junit.jupiter.api.Test;
-import java.time.LocalDateTime;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.List;
-import java.util.ArrayList;
-import duke.task.Task;
+import duke.Duke;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import duke.userinterface.UserInterface.MessageDisplay;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class AddEventCommandTest {
 
-  List<Task> taskList;
-  MessageDisplay display;
+  Duke duke;
+  String taskName;
+  LocalDateTime taskFromDate;
+  LocalDateTime taskToDate;
+  AddEventCommand command;
+
   @BeforeEach
   public void setUp() {
-    new duke.Duke();
-    taskList = new ArrayList<>(); // Reset the taskList before each test
-    display = new MessageDisplay();
+
+    duke = new duke.Duke();
+    taskName = "Test Event";
+    taskFromDate = LocalDateTime.now();
+    taskToDate = LocalDateTime.now();
+    command = new AddEventCommand(taskName, taskFromDate, taskToDate);
+  }
+
+  @AfterEach
+  public void tearDown() {
+
+    duke = null;
+    taskName = null;
+    taskFromDate = null;
+    taskToDate = null;
+    command = null;
+
   }
 
   @Test
   public void testConstructor() {
-    String taskName = "Test Event";
-    LocalDateTime taskFromDate = LocalDateTime.now();
-    LocalDateTime taskToDate = LocalDateTime.now();
-    AddEventCommand command = new AddEventCommand(taskName, taskFromDate,taskToDate);
+
     assertEquals(taskName, command.taskName);
   }
+
   @Test
   public void testExecute() {
-    new duke.Duke();
-    List<Task> taskList = new ArrayList<>();
-    String taskName = "Test Event";
-    LocalDateTime taskFromDate = LocalDateTime.now();
-    LocalDateTime taskToDate = LocalDateTime.now();
-    AddEventCommand command = new AddEventCommand(taskName, taskFromDate,taskToDate);
-    command.execute(display,taskList);
-    assertEquals(taskName, taskList.get(0).getTaskName());
+
+    command.execute(duke.userInterface.messageDisplay, duke.taskList);
+    assertEquals(taskName, duke.taskList.get(0).getTaskName());
   }
 
 }

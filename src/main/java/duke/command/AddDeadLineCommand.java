@@ -2,10 +2,11 @@ package duke.command;
 
 import duke.task.DeadlineTask;
 import duke.task.Task;
+import duke.userinterface.UserInterface.MessageDisplay;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import duke.userinterface.UserInterface.MessageDisplay;
+
 /**
  * Represents a command to add a Deadline task to the task list.
  */
@@ -28,6 +29,9 @@ public class AddDeadLineCommand extends AddTaskCommand {
 
   /**
    * Executes the command by creating a `DeadlineTask` and adding it to the task list.
+   *
+   * @param display  The message display interface to show messages to the user.
+   * @param taskList The list of tasks to which the new Deadline task will be added.
    */
   @Override
   public void execute(MessageDisplay display, List<Task> taskList) {

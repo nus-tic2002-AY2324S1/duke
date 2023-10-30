@@ -25,9 +25,12 @@ public class MarkAsInCompletedCommand extends Command {
 
   /**
    * Executes the command by marking the specified task as incomplete.
+   *
+   * @param display  The message display interface to show messages to the user.
+   * @param taskList The list of tasks in which the task will be marked as incomplete.
    */
   @Override
-  public void execute(MessageDisplay display,List<Task> taskList) {
+  public void execute(MessageDisplay display, List<Task> taskList) {
     // Get the task to mark as incomplete from the task list using the index.
     Task task = taskList.get(taskIndex);
     if (!task.isCompleted()) {

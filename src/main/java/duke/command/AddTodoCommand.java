@@ -3,6 +3,7 @@ package duke.command;
 import duke.task.Task;
 import duke.task.TodoTask;
 import duke.userinterface.UserInterface.MessageDisplay;
+
 import java.util.List;
 
 /**
@@ -22,6 +23,9 @@ public class AddTodoCommand extends AddTaskCommand {
 
   /**
    * Executes the command by creating a `TodoTask` and adding it to the task list.
+   *
+   * @param display  The message display interface to show messages to the user.
+   * @param taskList The list of tasks to which the new todo task will be added.
    */
   @Override
   public void execute(MessageDisplay display, List<Task> taskList) {

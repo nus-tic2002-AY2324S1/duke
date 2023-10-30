@@ -26,7 +26,9 @@ abstract class AddTaskCommand extends Command {
   /**
    * Adds a task to the task list and prompts the user with a successfully added message.
    *
-   * @param task The task to be added.
+   * @param display  The message display interface to show messages to the user.
+   * @param taskList The list of tasks to which the new task will be added.
+   * @param task     The task to be added.
    */
   protected void addTask(MessageDisplay display, List<Task> taskList, Task task) {
 

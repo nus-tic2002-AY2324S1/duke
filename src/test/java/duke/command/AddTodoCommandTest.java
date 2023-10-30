@@ -1,37 +1,45 @@
 package duke.command;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.ArrayList;
-import java.util.List;
-import duke.task.Task;
+import duke.Duke;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import duke.userinterface.UserInterface.MessageDisplay;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class AddTodoCommandTest {
 
-  List<Task> taskList;
-  MessageDisplay display;
+  Duke duke;
+  String taskName;
+  AddTodoCommand command;
 
   @BeforeEach
   public void setUp() {
-    new duke.Duke();
-    taskList = new ArrayList<>(); // Reset the taskList before each test
-    display = new MessageDisplay();
+
+    duke = new duke.Duke();
+    taskName = "Test Event";
+    command = new AddTodoCommand(taskName);
+  }
+
+  @AfterEach
+  public void tearDown() {
+
+    duke = null;
+    command = null;
+    taskName = null;
   }
 
   @Test
   public void testConstructor() {
-    String taskName = "Test Event";
-    AddTodoCommand command = new AddTodoCommand(taskName);
-    assertEquals(taskName, command.taskName);
 
+    assertEquals(taskName, command.taskName);
   }
+
   @Test
   public void testExecute() {
-    String taskName = "Test Event";
-    AddTodoCommand command = new AddTodoCommand(taskName);
-    command.execute(display,taskList);
-    assertEquals(taskName, taskList.get(0).getTaskName());
+
+    command.execute(duke.userInterface.messageDisplay, duke.taskList);
+    assertEquals(taskName, duke.taskList.get(0).getTaskName());
   }
 
 }

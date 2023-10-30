@@ -34,8 +34,7 @@ public class EventTask extends Task {
    * @param taskFrom  The start date and time of the event task.
    * @param taskTo    The end date and time of the event task.
    */
-  public EventTask(String taskName, boolean completed,
-                   LocalDateTime taskFrom, LocalDateTime taskTo) {
+  public EventTask(String taskName, boolean completed, LocalDateTime taskFrom, LocalDateTime taskTo) {
 
     super('E', taskName, completed);
     this.taskFrom = taskFrom;
@@ -103,8 +102,7 @@ public class EventTask extends Task {
   @Override
   public String toString() {
 
-    return super.toString()
-        + String.format(" (from: %s to: %s)", getTaskFromString(), getTaskToString());
+    return super.toString() + String.format(" (from: %s to: %s)", getTaskFromString(), getTaskToString());
   }
 
   /**

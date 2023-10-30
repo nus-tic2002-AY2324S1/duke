@@ -1,9 +1,10 @@
 package duke.command;
 
 import duke.task.Task;
+import duke.userinterface.UserInterface.MessageDisplay;
 
 import java.util.List;
-import duke.userinterface.UserInterface.MessageDisplay;
+
 /**
  * Represents a `DeleteCommand` to delete a task from the task list.
  */
@@ -24,6 +25,9 @@ public class DeleteCommand extends Command {
 
   /**
    * Executes the command by removing the specified task from the task list.
+   *
+   * @param display  The message display interface to show messages to the user.
+   * @param taskList The list of tasks from which the task will be deleted.
    */
   @Override
   public void execute(MessageDisplay display, List<Task> taskList) {
