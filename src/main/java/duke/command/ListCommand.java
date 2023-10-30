@@ -18,7 +18,7 @@ public class ListCommand extends Command {
    */
   public static void printList(MessageDisplay display, List<Task> taskList) {
 
-    if (Task.getTotalTasks() == 0) {
+    if (taskList.isEmpty()) {
       display.print("There's nothing in your list");
       return;
     }
@@ -26,7 +26,11 @@ public class ListCommand extends Command {
     for (int i = 0; i < Task.getTotalTasks(); i++) {
       display.print((i + 1) + "." + taskList.get(i).toString());
     }
+<<<<<<< Updated upstream
     display.print(MessageDisplay.LINE_BREAK);
+=======
+    System.out.println(display.LINE_BREAK);
+>>>>>>> Stashed changes
   }
 
   /**

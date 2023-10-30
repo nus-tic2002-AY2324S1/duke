@@ -9,10 +9,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AddTodoCommandTest {
 
+<<<<<<< Updated upstream
   Duke duke;
   String taskName;
   AddTodoCommand command;
 
+=======
+  private List<Task> taskList;
+  private MessageDisplay display;
+>>>>>>> Stashed changes
   @BeforeEach
   public void setUp() {
 
@@ -27,6 +32,10 @@ public class AddTodoCommandTest {
     duke = null;
     command = null;
     taskName = null;
+  }
+  @org.junit.jupiter.api.AfterEach
+  public void tearDown() {
+    taskList.clear(); // Clear the taskList after each test
   }
 
   @Test
