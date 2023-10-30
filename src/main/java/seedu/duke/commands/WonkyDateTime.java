@@ -37,7 +37,6 @@ public class WonkyDateTime {
     private static DateTimeFormatter defaultFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public WonkyDateTime(LocalDateTime dateTime) {
-        System.out.println(dateTime);
         this.dateTime = dateTime;
     }
 

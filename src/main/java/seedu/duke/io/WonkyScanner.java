@@ -77,10 +77,9 @@ public class WonkyScanner {
         } catch (DukeException e) {
             throw e;
         } 
-        // catch (Exception e) {
-        //     System.out.println(e);
-        //     throw new DukeScannerException(e.getMessage());
-        // }
+        catch (Exception e) {
+            throw new DukeScannerException(e);
+        }
         return true;
     }
 

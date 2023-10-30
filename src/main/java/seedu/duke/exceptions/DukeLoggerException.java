@@ -1,7 +1,7 @@
 package seedu.duke.exceptions;
 
 public class DukeLoggerException extends DukeException {
-    public DukeLoggerException(String err) {
+    public DukeLoggerException(Exception err) {
         super(err);
     }
 }

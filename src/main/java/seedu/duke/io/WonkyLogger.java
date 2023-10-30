@@ -81,7 +81,7 @@ public class WonkyLogger {
         try {
             System.out.println("\t" + toPrint);
         } catch (Exception e) {
-            throw new DukeLoggerException(e.getMessage());
+            throw new DukeLoggerException(e);
         }
     }
 

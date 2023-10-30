@@ -1,7 +1,11 @@
 package seedu.duke.exceptions;
 
 public class DukeManagerException extends DukeException {
-    public DukeManagerException(String err) {
+    public DukeManagerException(Exception err) {
         super(err);
+    }
+
+    public DukeManagerException(String err) {
+        super(new Exception(err));
     }
 }

@@ -1,7 +1,7 @@
 package seedu.duke.exceptions;
 
 public class DukeUnhandledException extends DukeException {
-    public DukeUnhandledException(String err) {
+    public DukeUnhandledException(Exception err) {
         super(err);
     }
 }

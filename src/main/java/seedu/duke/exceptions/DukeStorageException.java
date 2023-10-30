@@ -1,7 +1,7 @@
 package seedu.duke.exceptions;
 
 public class DukeStorageException extends DukeException {
-    public DukeStorageException(String err) {
+    public DukeStorageException(Exception err) {
         super(err);
     }
 }

@@ -108,8 +108,6 @@ public class WonkyManager {
             break;
         case DEADLINE:
             if (validateArgs(cmdArg, DEADLINE_ARGS)) {
-                System.out.println("printing");
-                System.out.println(argList.get(BY_IDX));
                 addTask(
                     new Deadline(
                         argList.get(DESC_IDX),
@@ -199,13 +197,12 @@ public class WonkyManager {
         try {
             return new WonkyDateTime(LocalDateTime.parse(str, WonkyDateTime.getDtf()));
         } catch (DateTimeParseException e) {
-            System.out.println((str));
             if (Objects.nonNull(WonkyDateTime.getMappedDateTimeStr(str))) {
                 return new WonkyDateTime(WonkyDateTime.getMappedDateTimeStr(str));
             }
             throw new DukeManagerException("Invalid date value.");
         } catch (Exception e) {
-            throw new DukeManagerException(e.getMessage());
+            throw new DukeManagerException(e);
         }
     }
 
