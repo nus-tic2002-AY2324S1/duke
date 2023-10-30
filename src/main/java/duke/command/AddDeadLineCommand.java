@@ -3,7 +3,7 @@ package duke.command;
 import duke.task.DeadlineTask;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-
+import duke.filehandler.FileStorage;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,11 +34,11 @@ public class AddDeadLineCommand extends AddTaskCommand {
    * @param taskList The list of tasks to which the new Deadline task will be added.
    */
   @Override
-  public void execute(MessageDisplay display, List<Task> taskList) {
+  public void execute(FileStorage fileStorage,MessageDisplay display, List<Task> taskList) {
     // Create a `DeadlineTask` with the specified task name and task due date
     Task task = new DeadlineTask(taskName, taskDueDate);
     // Add the created `DeadlineTask` to the task list
-    addTask(display, taskList, task);
+    addTask(fileStorage,display, taskList, task);
   }
 
 }

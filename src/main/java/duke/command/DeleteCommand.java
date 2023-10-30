@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-
+import duke.filehandler.FileStorage;
 import java.util.List;
 
 /**
@@ -30,7 +30,7 @@ public class DeleteCommand extends Command {
    * @param taskList The list of tasks from which the task will be deleted.
    */
   @Override
-  public void execute(MessageDisplay display, List<Task> taskList) {
+  public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
     // Reduce the size of the task list.
     Task.removeTask();
     // Remove the task from the task list

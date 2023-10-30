@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-
+import duke.filehandler.FileStorage;
 import java.util.List;
 
 /**
@@ -30,11 +30,11 @@ abstract class AddTaskCommand extends Command {
    * @param taskList The list of tasks to which the new task will be added.
    * @param task     The task to be added.
    */
-  protected void addTask(MessageDisplay display, List<Task> taskList, Task task) {
+  protected void addTask(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, Task task) {
 
     taskList.add(task);
     int itemIndex = Task.getTotalTasks() - 1;
-    storeDuke(taskList);
+    storeDuke(fileStorage, taskList);
     display.addedMessage(taskList, itemIndex);
   }
 

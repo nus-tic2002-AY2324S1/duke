@@ -17,7 +17,7 @@ public class FileStorage extends FileHandler {
    *
    * @param taskList The list of tasks to be stored in the file.
    */
-  public void fileStorage(List<Task> taskList) {
+  public void store(List<Task> taskList) {
 
     File outputFile = new File(filePath);
     try {

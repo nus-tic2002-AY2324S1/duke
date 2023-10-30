@@ -29,10 +29,10 @@ public class OnCommand extends CheckTaskCommand {
     for (int i = 0; i < Task.getTotalTasks(); i++) {
       // Check if the task should be displayed based on the date
       if (taskList.get(i).checkDate(checkDate)) {
-        display.print((i + 1) + "." + taskList.get(i).toString());
+        System.out.println((i + 1) + "." + taskList.get(i).toString());
       }
     }
-    display.print(MessageDisplay.LINE_BREAK);
+    System.out.println(display.LINE_BREAK);
   }
 
   /**
@@ -46,6 +46,14 @@ public class OnCommand extends CheckTaskCommand {
   public void execute(MessageDisplay display, List<Task> taskList, LocalDate checkedDate) {
     // Call the checkTasks method to display the tasks as of the specified date
     checkTasks(display, taskList, checkedDate);
+  }
+
+  /**
+   * @param display
+   * @param taskList
+   */
+  @Override
+  public void execute(MessageDisplay display, List<Task> taskList) {
   }
 
 }

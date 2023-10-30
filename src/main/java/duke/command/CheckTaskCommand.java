@@ -22,4 +22,5 @@ abstract class CheckTaskCommand {
    */
   public abstract void execute(MessageDisplay display, List<Task> taskList, LocalDate checkedDate) throws DukeException;
 
+  public abstract void execute(MessageDisplay display, List<Task> taskList);
 }

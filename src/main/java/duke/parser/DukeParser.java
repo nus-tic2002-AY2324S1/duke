@@ -11,7 +11,7 @@ import duke.command.OnCommand;
 import duke.dukeexceptions.*;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-
+import duke.filehandler.FileStorage;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -46,7 +46,7 @@ public class DukeParser {
    */
   private static LocalDateTime parseDateTime(String dateTimeString) throws DateTimeParseException {
 
-    return LocalDateTime.parse(dateTimeString.replace("T", " "), dateTimeFormatter);
+    return LocalDateTime.parse(dateTimeString, dateTimeFormatter);
   }
 
   /**
@@ -69,9 +69,8 @@ public class DukeParser {
    * @throws DateTimeParseException if the string cannot be parsed as a valid date and time.
    */
   public static LocalDateTime parseDateTimeOrDate(String dateTimeString) {
-
-    if (dateTimeString.contains(" ")) {
-      return parseDateTime(dateTimeString);
+    if (dateTimeString.contains("T")) {
+      return parseDateTime(dateTimeString.replaceAll("T"," "));
     } else {
       return parseDate(dateTimeString).atStartOfDay();
     }
@@ -100,7 +99,7 @@ public class DukeParser {
    * @param taskList  The list of tasks to operate on.
    * @param userInput The user's input string of commands.
    */
-  public void parseUserInput(MessageDisplay display, List<Task> taskList, String userInput) {
+  public void parseUserInput(FileStorage fileStorage,MessageDisplay display, List<Task> taskList, String userInput) {
 
     try {
       String[] inputs = userInput.split("\\s+");
@@ -108,7 +107,7 @@ public class DukeParser {
         throw new EmptyCommandException();
       }
       String command = inputs[0];
-      executeCommand(display, taskList, command, userInput);
+      executeCommand(fileStorage,display, taskList, command, userInput);
     } catch (DukeException e) {
       System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
     }
@@ -122,7 +121,7 @@ public class DukeParser {
    * @param command   The parsed user command.
    * @param userInput The user's remaining string of commands excluding the command string.
    */
-  private void executeCommand(MessageDisplay display, List<Task> taskList, String command, String userInput) throws DukeException {
+  private void executeCommand(FileStorage fileStorage,MessageDisplay display, List<Task> taskList, String command, String userInput) throws DukeException {
 
     String arguments = userInput.substring(command.length()).trim();
     switch (command) {
@@ -130,13 +129,13 @@ public class DukeParser {
         executeListCommand(display, taskList);
         break;
       case "todo":
-        executeTodoCommand(display, taskList, arguments);
+        executeTodoCommand(fileStorage,display, taskList, arguments);
         break;
       case "deadline":
-        executeDeadlineCommand(display, taskList, arguments);
+        executeDeadlineCommand(fileStorage,display, taskList, arguments);
         break;
       case "event":
-        executeEventCommand(display, taskList, arguments);
+        executeEventCommand(fileStorage,display, taskList, arguments);
         break;
       case "on":
         executeOnCommand(display, taskList, arguments);
@@ -144,7 +143,7 @@ public class DukeParser {
       case "delete":
       case "mark":
       case "unmark":
-        modifyTask(display, taskList, userInput);
+        modifyTask(fileStorage,display, taskList, userInput);
         break;
       default:
         throw new InvalidCommandException();
@@ -170,12 +169,12 @@ public class DukeParser {
    * @param taskName The name of the todo task.
    * @throws DukeException if there's an issue with the command or input.
    */
-  private void executeTodoCommand(MessageDisplay display, List<Task> taskList, String taskName) throws DukeException {
+  private void executeTodoCommand(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, String taskName) throws DukeException {
 
     if (taskName.isEmpty()) {
       throw new EmptyTodoArgumentException();
     }
-    new AddTodoCommand(taskName).execute(display, taskList);
+    new AddTodoCommand(taskName).execute(fileStorage,display, taskList);
   }
 
   /**
@@ -186,7 +185,7 @@ public class DukeParser {
    * @param arguments The user's input string after the deadline task command.
    * @throws DukeException if there's an issue with the command or input.
    */
-  private void executeDeadlineCommand(MessageDisplay display, List<Task> taskList, String arguments) throws DukeException {
+  private void executeDeadlineCommand(FileStorage fileStorage,MessageDisplay display, List<Task> taskList, String arguments) throws DukeException {
     // Check for empty arguments
     if (arguments.isEmpty()) {
       throw new EmptyDeadlineArgumentException();
@@ -207,7 +206,7 @@ public class DukeParser {
     try {
       // Parse date and time & Add Deadline Task
       LocalDateTime taskDueDate = parseDateTimeOrDate(taskDueDateString);
-      new AddDeadLineCommand(taskName, taskDueDate).execute(display, taskList);
+      new AddDeadLineCommand(taskName, taskDueDate).execute(fileStorage,display, taskList);
     } catch (DateTimeParseException e) {
       throw new InvalidTaskFormatException("deadline");
     }
@@ -221,7 +220,7 @@ public class DukeParser {
    * @param arguments The user's input string after the event task command.
    * @throws DukeException if there's an issue with the command or input.
    */
-  private void executeEventCommand(MessageDisplay display, List<Task> taskList, String arguments) throws DukeException {
+  private void executeEventCommand(FileStorage fileStorage,MessageDisplay display, List<Task> taskList, String arguments) throws DukeException {
     // Check for empty arguments
     if (arguments.isEmpty()) {
       throw new EmptyEventArgumentException();
@@ -247,7 +246,7 @@ public class DukeParser {
     try {
       LocalDateTime taskFromDateTime = parseDateTimeOrDate(taskFromDateString);
       LocalDateTime taskToDateTime = parseDateTimeOrDate(taskToDateString);
-      new AddEventCommand(taskName, taskFromDateTime, taskToDateTime).execute(display, taskList);
+      new AddEventCommand(taskName, taskFromDateTime, taskToDateTime).execute(fileStorage,display, taskList);
     } catch (DateTimeParseException e) {
       throw new InvalidTaskFormatException("event");
     }
@@ -284,7 +283,7 @@ public class DukeParser {
    * @param taskList  The list of tasks to operate on.
    * @param userInput User's input string after a mark, unmark, or delete command.
    */
-  public void modifyTask(MessageDisplay display, List<Task> taskList, String userInput) {
+  public void modifyTask(FileStorage fileStorage,MessageDisplay display, List<Task> taskList, String userInput) {
 
     try {
       int itemIndex = extractItemIndex(userInput);
@@ -293,13 +292,13 @@ public class DukeParser {
       }
       switch (parseCommandFromInput(userInput)) {
         case "mark":
-          new MarkAsCompletedCommand(itemIndex).execute(display, taskList);
+          new MarkAsCompletedCommand(itemIndex).execute(fileStorage,display, taskList);
           break;
         case "unmark":
-          new MarkAsInCompletedCommand(itemIndex).execute(display, taskList);
+          new MarkAsInCompletedCommand(itemIndex).execute(fileStorage,display, taskList);
           break;
         case "delete":
-          new DeleteCommand(itemIndex).execute(display, taskList);
+          new DeleteCommand(itemIndex).execute(fileStorage,display, taskList);
           break;
         default:
           // Handle exception case where the command is neither mark nor unmark

@@ -2,16 +2,13 @@ package duke.command;
 
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-
+import duke.filehandler.FileStorage;
 import java.util.List;
 
 /**
  * Represents a `MarkAsCompletedCommand` to mark a task as completed.
  */
-public class MarkAsCompletedCommand extends Command {
-
-  // The index of the task to be marked as completed.
-  private final int itemIndex;
+public class MarkAsCompletedCommand extends ModifyTaskCommand {
 
   /**
    * Constructs a `MarkAsCompletedCommand` with the specified item index.
@@ -19,8 +16,7 @@ public class MarkAsCompletedCommand extends Command {
    * @param itemIndex The index of the task to mark as completed.
    */
   public MarkAsCompletedCommand(int itemIndex) {
-
-    this.itemIndex = itemIndex;
+    super(itemIndex);
   }
 
   /**
@@ -30,7 +26,7 @@ public class MarkAsCompletedCommand extends Command {
    * @param taskList The list of tasks in which the task will be marked as completed.
    */
   @Override
-  public void execute(MessageDisplay display, List<Task> taskList) {
+  public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
     // Get the task to mark as completed from the task list
     Task task = taskList.get(itemIndex);
     if (task.isCompleted()) {
@@ -39,6 +35,7 @@ public class MarkAsCompletedCommand extends Command {
     } else {
       // Mark the task as completed and display a completion message
       task.markAsCompleted();
+      storeDuke(fileStorage, taskList);
       display.completeMessage(taskList, itemIndex);
     }
   }
