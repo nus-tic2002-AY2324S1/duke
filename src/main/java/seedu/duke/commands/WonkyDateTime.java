@@ -17,7 +17,7 @@ public class WonkyDateTime {
     /**
      * A mapping of strings to LocalDateTime objects. The strings are used to represent specific dates and times.
      */
-    final static private Map<String, LocalDateTime> STR_TO_DATE_TIME_MAPPING = new HashMap<String, LocalDateTime>() {
+    private static final Map<String, LocalDateTime> STR_TO_DATE_TIME_MAPPING = new HashMap<String, LocalDateTime>() {
         {
             put("today", LocalDateTime.now());
             put("tomorrow", LocalDateTime.now().plusDays(1));
@@ -39,9 +39,10 @@ public class WonkyDateTime {
         }
     };
 
-    private LocalDateTime dateTime;
     private static FormatStyle formatStyle = FormatStyle.MEDIUM;
     private static DateTimeFormatter defaultFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    private LocalDateTime dateTime;
 
     /**
      * Constructs a WonkyDateTime object with the specified LocalDateTime.
@@ -92,8 +93,7 @@ public class WonkyDateTime {
      * Returns a string representation of the LocalDateTime object used by the WonkyDateTime object, formatted
      * according to the format style set by the setFormatStyle() method.
      *
-     * @return a string representation of the LocalDateTime object used by the WonkyDateTime object, formatted
-     * according to the format style set by the setFormatStyle() method.
+     * @return a string representation of the LocalDateTime object used by the WonkyDateTime object
      */
     public String getStyledDateTimeStr() {
         return dateTime.format(DateTimeFormatter.ofLocalizedDateTime(formatStyle));
@@ -103,8 +103,7 @@ public class WonkyDateTime {
      * Returns a string representation of the LocalDateTime object used by the WonkyDateTime object, formatted
      * according to the default format "yyyy-MM-dd HH:mm".
      *
-     * @return a string representation of the LocalDateTime object used by the WonkyDateTime object, formatted
-     * according to the default format "yyyy-MM-dd HH:mm".
+     * @return a string representation of the LocalDateTime object used by the WonkyDateTime object
      */
     public String getDateTimeStr() {
         return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));

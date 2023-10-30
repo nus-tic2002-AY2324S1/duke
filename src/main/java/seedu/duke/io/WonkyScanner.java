@@ -41,7 +41,7 @@ public class WonkyScanner {
      * @throws DukeException If there is an error with the logger or scanner.
      */
     public static void bye() throws DukeException {
-        if (WonkyLogger.isLoading) {
+        if (WonkyLogger.getLoading()) {
             WonkyLogger.byeInStorage();
         } else {
             isActive = false;
@@ -102,8 +102,7 @@ public class WonkyScanner {
             }
         } catch (DukeException e) {
             throw e;
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new DukeScannerException(e);
         }
         return true;

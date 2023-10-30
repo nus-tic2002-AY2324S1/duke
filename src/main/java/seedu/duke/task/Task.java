@@ -11,12 +11,6 @@ import seedu.duke.io.WonkyLogger;
 public abstract class Task {
 
     /**
-     * The message format for the status of the task.
-     * Contains the index, letter, completion status and description of the task.
-     */
-    private final String STATUS_MSG = "%s. [%s][%s] %s";
-
-    /**
      * The command associated with the task.
      */
     protected Command command;
@@ -35,6 +29,12 @@ public abstract class Task {
      * The letter associated with the task.
      */
     protected String letter;
+
+    /**
+     * The message format for the status of the task.
+     * Contains the index, letter, completion status and description of the task.
+     */
+    private final String STATUS_MSG = "%s. [%s][%s] %s";
 
     /**
      * Constructs a new task with the given command, letter and description.

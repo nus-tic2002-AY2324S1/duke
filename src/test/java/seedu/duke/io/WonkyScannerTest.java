@@ -1,15 +1,13 @@
 package seedu.duke.io;
 
-import org.junit.jupiter.api.Test;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.CommandArgument;
-import seedu.duke.exceptions.DukeException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import seedu.duke.exceptions.DukeException;
 
 public class WonkyScannerTest {
 
@@ -38,7 +36,7 @@ public class WonkyScannerTest {
 
     @Test
     public void bye_notLoading_closesScanner() throws DukeException {
-        WonkyLogger.isLoading = false;
+        WonkyLogger.setIsLoading(false);
         WonkyScanner.bye();
         assertEquals(false, WonkyScanner.getActive());
     }

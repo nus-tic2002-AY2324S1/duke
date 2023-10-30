@@ -31,6 +31,8 @@ public class Event extends Task {
      */
     @Override
     public String getStatusMsg(int idx) {
-        return super.getStatusMsg(idx) + " | from: " + from.getStyledDateTimeStr() + " | to: "  + to.getStyledDateTimeStr();
+        return super.getStatusMsg(idx)
+            + " | from: " + from.getStyledDateTimeStr()
+            + " | to: " + to.getStyledDateTimeStr();
     }
 }
