@@ -10,6 +10,11 @@ import seedu.duke.commands.WonkyMode;
 import seedu.duke.exceptions.DukeLoggerException;
 import seedu.duke.task.Task;
 
+/**
+ * The WonkyLogger class provides logging and printing functionality for the Wonky Bot application.
+ * It includes methods for logging errors and warnings, printing lists of tasks, and initializing the application.
+ * The class also includes constants for error and warning messages, and a logo for the application.
+ */
 public class WonkyLogger {
 
     private static final String LOGO =
@@ -164,7 +169,7 @@ public class WonkyLogger {
         printWarnWithWonky(String.format(EXPECTED_TYPE_MSG, "Integer", val));
     }
 
-    public static void expectedDateOrDateTime(String val) throws DukeLoggerException {
+    public static void expectedDateTime(String val) throws DukeLoggerException {
         printWarnWithWonky(String.format(EXPECTED_TYPE_MSG, "yyyy-MM-dd HH:mm", val));
     }
 

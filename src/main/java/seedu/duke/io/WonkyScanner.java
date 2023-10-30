@@ -11,12 +11,20 @@ import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeScannerException;
 import seedu.duke.task.WonkyManager;
 
+/**
+ * This class is responsible for scanning user input and processing it into commands to be executed by the program.
+ */
 public class WonkyScanner {
 
     private static Command currCommand;
     private static Scanner in;
     private static boolean isActive = true;
 
+    /**
+     * Initializes the scanner and processes user input until the program is exited.
+     *
+     * @throws DukeException If there is an error with the scanner or executing a command.
+     */
     public static void startUp() throws DukeException {
         if (Objects.isNull(in)) {
             in = new Scanner(System.in);
@@ -27,6 +35,11 @@ public class WonkyScanner {
         }
     }
 
+    /**
+     * Exits the program.
+     *
+     * @throws DukeException If there is an error with the logger or scanner.
+     */
     public static void bye() throws DukeException {
         if (WonkyLogger.isLoading) {
             WonkyLogger.byeInStorage();
@@ -36,6 +49,12 @@ public class WonkyScanner {
         }
     }
 
+    /**
+     * Returns a suggested command based on a user's input with a typo.
+     *
+     * @param invalidCmd The user's input with a typo.
+     * @return The suggested command, or null if there is no suggestion.
+     */
     public static String typoSuggestion(String invalidCmd) {
         for (Command cmd : Command.values()) {
             String cmdStr = cmd.getLitr();
@@ -54,6 +73,13 @@ public class WonkyScanner {
         return null;
     }
 
+    /**
+     * Processes a user's input into a command to be executed.
+     *
+     * @param nextLine The user's input.
+     * @return True if the input was successfully processed, false otherwise.
+     * @throws DukeException If there is an error with the logger, scanner, or executing a command.
+     */
     public static boolean processNextLine(String nextLine) throws DukeException {
         try {
             final List<String> SPLIT_LN = Arrays.asList(nextLine.split(" ", 2));
@@ -83,6 +109,11 @@ public class WonkyScanner {
         return true;
     }
 
+    /**
+     * Closes the scanner and logs a goodbye message.
+     *
+     * @throws DukeException If there is an error with the logger or scanner.
+     */
     private static void shutdown() throws DukeException {
         WonkyLogger.bye();
         if (Objects.nonNull(in)) {
