@@ -8,6 +8,13 @@ public class Deadlines extends Task {
         this.deadline = items[1];
     }
 
+    public Deadlines(String description, boolean isDone, String deadline) {
+        super("", false);
+        this.description = description;
+        this.deadline = deadline;
+        this.isDone = isDone;
+    }
+
     private String[] derive(String instruction) {
         String[] result = instruction.split("/");
         if (result.length != 2) {
@@ -22,6 +29,11 @@ public class Deadlines extends Task {
     @Override
     public String getType() {
         return "D";
+    }
+    
+    @Override
+    public String toFileString() {
+        return getType() + " | " + (isDone ? "1" : "0") + " | " + description + " | " + deadline;
     }
 
     @Override

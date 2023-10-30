@@ -10,6 +10,14 @@ public class Events extends Task {
         this.to = items[2];
     }
 
+    public Events(String description, boolean isDone, String from, String to) {
+        super("", false);
+        this.description = description;
+        this.from = from;
+        this.to = to;
+        this.isDone = isDone;
+    }
+
     private String[] derive(String instruction) {
         String[] result = instruction.split("/");
         if (result.length != 3) {
@@ -27,6 +35,11 @@ public class Events extends Task {
     @Override
     public String getType() {
         return "E";
+    }
+
+    @Override
+    public String toFileString() {
+        return getType() + " | " + (isDone ? "1" : "0") + " | " + description + " | " + from + " | " + to;
     }
 
     @Override
