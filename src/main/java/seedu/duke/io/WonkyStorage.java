@@ -17,8 +17,8 @@ import seedu.duke.exceptions.DukeStorageException;
  */
 public class WonkyStorage {
 
-    final static String STORAGE_PATH = "./storage.txt";
-    final static File STORAGE_FILE = new File(STORAGE_PATH);
+    private static final String STORAGE_PATH = "./storage.txt";
+    private static final File STORAGE_FILE = new File(STORAGE_PATH);
 
     /**
      * Initializes the storage file and loads previous commands if in normal mode.
@@ -56,14 +56,14 @@ public class WonkyStorage {
      * @throws DukeException if there is an error saving the command arguments to the storage file
      */
     public static void save(List<CommandArgument> cmdArgs) throws DukeException {
-        if (WonkyMode.NORMAL.equals(WonkyLogger.mode)) {
+        if (WonkyMode.NORMAL.equals(WonkyLogger.getMode())) {
             try (
                 BufferedWriter writer = new BufferedWriter(new FileWriter(STORAGE_FILE, false));
             ) {
                 for (CommandArgument cmdArg : cmdArgs) {
                     if (
-                        !Command.BYE.equals(cmdArg.getCmd()) &&
-                        !Command.LIST.equals(cmdArg.getCmd())
+                        !Command.BYE.equals(cmdArg.getCmd())
+                            && !Command.LIST.equals(cmdArg.getCmd())
                     ) {
                         writer.write(cmdArg.getCmdLitr() + " " + cmdArg.getArgStr());
                         writer.newLine();

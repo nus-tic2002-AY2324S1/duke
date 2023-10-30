@@ -19,27 +19,21 @@ import seedu.duke.io.WonkyStorage;
  * The WonkyManager class is responsible for managing the tasks in the Duke application.
  * It contains methods for executing commands, modifying tasks, and parsing commands into tasks.
  */
-/**
- * This class represents a manager for tasks in the Duke application. It contains methods for executing commands,
- * modifying tasks, parsing command arguments into tasks, adding tasks to a list, and validating command arguments.
- * The class also contains constants for command argument validation and indices, as well as lists for storing command
- * arguments and tasks. The class is designed to be used in conjunction with other classes in the Duke application.
- */
 public class WonkyManager {
 
     // Constants for command argument validation
-    private final static String EMPTY_LITR = "";
-    private final static int ZERO_ARGS = 0;
-    private final static int ONE_ARGS = 1;
-    private final static int TODO_ARGS = 1;
-    private final static int DEADLINE_ARGS = 2;
-    private final static int EVENT_ARGS = 3;
+    private static final String EMPTY_LITR = "";
+    private static final int ZERO_ARGS = 0;
+    private static final int ONE_ARGS = 1;
+    private static final int TODO_ARGS = 1;
+    private static final int DEADLINE_ARGS = 2;
+    private static final int EVENT_ARGS = 3;
 
     // Constants for command argument indices
-    private final static int DESC_IDX = 0;
-    private final static int BY_IDX = 1;
-    private final static int FROM_IDX = 1;
-    private final static int TO_IDX = 2;
+    private static final int DESC_IDX = 0;
+    private static final int BY_IDX = 1;
+    private static final int FROM_IDX = 1;
+    private static final int TO_IDX = 2;
 
     // Lists for storing command arguments and tasks
     private static List<CommandArgument> cmdArgs = new ArrayList<CommandArgument>();
@@ -182,7 +176,7 @@ public class WonkyManager {
     private static boolean validateArgs(CommandArgument cmdArg, int expectedSize) throws DukeException {
         List<String> argList = cmdArg.getArgList();
         int argCount = cmdArg.getArgCount();
-        if(WonkyLogger.isLoading) {
+        if (WonkyLogger.getLoading()) {
             cmdArgs.add(cmdArg);
             WonkyStorage.save(cmdArgs);
         }
@@ -212,7 +206,7 @@ public class WonkyManager {
             }
             cmdArg.setArg(newCmdArgStr);
         }
-        if (!WonkyLogger.isLoading) {
+        if (!WonkyLogger.getLoading()) {
             // Save the command argument to storage if it is not being loaded from storage
             cmdArgs.add(cmdArg);
             WonkyStorage.save(cmdArgs);
@@ -233,7 +227,8 @@ public class WonkyManager {
      * Checks if a given string is a valid date and time in the format specified by {@link WonkyDateTime#getDtf()}.
      * If the string is not a valid date and time, it checks if it is a valid date in the format specified by
      * {@link WonkyDateTime#getMappedDateTimeStr(String)}.
-     * If the string is not a valid date or date and time, it logs an error message using {@link WonkyLogger#expectedDateTime(String)}.
+     * If the string is not a valid date or date and time,
+     * it logs an error message using {@link WonkyLogger#expectedDateTime(String)}.
      *
      * @param str the string to be checked
      * @return true if the string is a valid date or date and time, false otherwise
@@ -285,7 +280,6 @@ public class WonkyManager {
 
     /**
      * Resets the task list by creating a new empty ArrayList of tasks.
-     * @return void
      */
     public static void resetTaskList() {
         tasks = new ArrayList<Task>();

@@ -1,19 +1,16 @@
 package seedu.duke.task;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.duke.commands.CommandArgument;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.WonkyDateTime;
-import seedu.duke.exceptions.DukeException;
-
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.duke.commands.Command;
+import seedu.duke.commands.CommandArgument;
+import seedu.duke.commands.WonkyDateTime;
+import seedu.duke.exceptions.DukeException;
 
 public class WonkyManagerTest {
 
@@ -24,7 +21,8 @@ public class WonkyManagerTest {
         WonkyManager.executeCommand(todoCmd);
         CommandArgument deadlineCmd = new CommandArgument(Command.DEADLINE, "test task 1 | 2022-12-31 23:59");
         WonkyManager.executeCommand(deadlineCmd);
-        CommandArgument eventCmd = new CommandArgument(Command.EVENT, "test task 1 | 2022-12-31 23:59 | 2023-01-01 00:01");
+        CommandArgument eventCmd =
+            new CommandArgument(Command.EVENT, "test task 1 | 2022-12-31 23:59 | 2023-01-01 00:01");
         WonkyManager.executeCommand(eventCmd);
     }
 
