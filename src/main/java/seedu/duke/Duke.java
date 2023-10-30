@@ -37,7 +37,7 @@ public class Duke {
      * @param mode The mode in which the application should operate.
      * @throws DukeException If there is an error during startup.
      */
-    private static void initialise(WonkyMode mode) throws DukeException {
+    public static void initialise(WonkyMode mode) throws DukeException {
         WonkyStorage.startUp(mode);
         WonkyLogger.startUp(mode);
         WonkyScanner.startUp();
@@ -47,7 +47,7 @@ public class Duke {
      * Checks the mode to start the Wonky chatbot application based on the input args
      * @param args The command line arguments.
      */
-    private static WonkyMode checkMode(String[] args) {
+    public static WonkyMode checkMode(String[] args) {
         List<String> argList = Arrays.asList(args);
         if (argList.size() > 0) {
             try {

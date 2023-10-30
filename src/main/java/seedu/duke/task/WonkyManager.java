@@ -90,7 +90,7 @@ public class WonkyManager {
      * @param cmdArg the command argument specifying the task to modify
      * @throws DukeException if there is an error modifying the task
      */
-    private static void modifyTask(CommandArgument cmdArg) throws DukeException {
+    public static void modifyTask(CommandArgument cmdArg) throws DukeException {
         List<String> argList = cmdArg.getArgList();
         try {
             int taskIdx = Integer.parseInt(argList.get(0)) - 1;
@@ -272,5 +272,22 @@ public class WonkyManager {
         } catch (Exception e) {
             throw new DukeManagerException(e);
         }
+    }
+
+    /**
+     * Returns a list of all tasks.
+     *
+     * @return a list of all tasks
+     */
+    public static List<Task> getTasks() {
+        return tasks;
+    }
+
+    /**
+     * Resets the task list by creating a new empty ArrayList of tasks.
+     * @return void
+     */
+    public static void resetTaskList() {
+        tasks = new ArrayList<Task>();
     }
 }

@@ -29,7 +29,7 @@ public class WonkyScanner {
         if (Objects.isNull(in)) {
             in = new Scanner(System.in);
         }
-        while (isActive) {
+        while (isActive && in.hasNextLine()) {
             String nextLine = in.nextLine().trim();
             processNextLine(nextLine);
         }
@@ -114,10 +114,28 @@ public class WonkyScanner {
      *
      * @throws DukeException If there is an error with the logger or scanner.
      */
-    private static void shutdown() throws DukeException {
+    public static void shutdown() throws DukeException {
         WonkyLogger.bye();
         if (Objects.nonNull(in)) {
             in.close();
         }
+    }
+
+    /**
+     * Returns the isActive boolean used by this WonkyScanner.
+     *
+     * @return the isActive boolean used by this WonkyScanner
+     */
+    public static boolean getActive() {
+        return isActive;
+    }
+
+    /**
+     * Returns the Scanner object used by this WonkyScanner.
+     *
+     * @return the Scanner object used by this WonkyScanner
+     */
+    public static Scanner getScanner() {
+        return in;
     }
 }

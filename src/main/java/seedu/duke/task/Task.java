@@ -84,4 +84,22 @@ public abstract class Task {
             isDone = toSet;
         }
     }
+
+    /**
+     * Returns the description of the task.
+     *
+     * @return the description of the task
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Returns the isDone of the task.
+     *
+     * @return the isDone of the task
+     */
+    public boolean getDone() {
+        return isDone;
+    }
 }
