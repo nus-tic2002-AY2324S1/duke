@@ -18,7 +18,6 @@ public class FileStorage extends FileHandler {
    * @param taskList The list of tasks to be stored in the file.
    */
   public void store(List<Task> taskList) {
-
     File outputFile = new File(filePath);
     try {
       // Check if the file exists, and create it if it doesn't
@@ -38,5 +37,4 @@ public class FileStorage extends FileHandler {
       e.printStackTrace();
     }
   }
-
 }

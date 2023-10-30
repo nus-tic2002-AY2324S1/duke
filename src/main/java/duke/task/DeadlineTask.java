@@ -17,7 +17,6 @@ public class DeadlineTask extends Task {
    * @param taskDueDate The due date and time of the deadline task.
    */
   public DeadlineTask(String taskName, LocalDateTime taskDueDate) {
-
     super('D', taskName);
     this.taskDueDate = taskDueDate;
   }
@@ -30,7 +29,6 @@ public class DeadlineTask extends Task {
    * @param taskDueDate The due date and time of the deadline task.
    */
   public DeadlineTask(String taskName, boolean completed, LocalDateTime taskDueDate) {
-
     super('D', taskName, completed);
     this.taskDueDate = taskDueDate;
   }
@@ -40,18 +38,16 @@ public class DeadlineTask extends Task {
    *
    * @return The due date of the task as a formatted string.
    */
-  private String getTaskDueDateString() {
-
+  String getTaskDueDateString() {
     return dateTimetoString(taskDueDate);
   }
 
   /**
    * Gets the due date of the task.
    *
-   * @return The due date of the task as a LocalDate Object.
+   * @return The due date of the task as a LocalDate object.
    */
   private LocalDate getTaskDueDate() {
-
     return taskDueDate.toLocalDate();
   }
 
@@ -63,7 +59,6 @@ public class DeadlineTask extends Task {
    */
   @Override
   public boolean checkDate(LocalDate checkedDate) {
-
     return checkedDate.equals(getTaskDueDate());
   }
 
@@ -74,7 +69,6 @@ public class DeadlineTask extends Task {
    */
   @Override
   public String toString() {
-
     return super.toString() + String.format(" (by: %s)", getTaskDueDateString());
   }
 
@@ -85,8 +79,6 @@ public class DeadlineTask extends Task {
    */
   @Override
   public String toFile() {
-
-    return super.toFile() + " | " + taskDueDate.toString();
+    return super.toFile() + " | " + taskDueDate.toString().replace("T", " ");
   }
-
 }

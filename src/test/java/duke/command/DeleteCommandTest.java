@@ -1,43 +1,51 @@
 package duke.command;
 
-import duke.Duke;
+import duke.filehandler.FileStorage;
+import duke.task.Task;
+import duke.task.TodoTask;
+import duke.userinterface.UserInterface.MessageDisplay;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteCommandTest {
 
-  Duke duke;
-  AddTodoCommand add1;
-  AddTodoCommand add2;
-  DeleteCommand command;
-  int taskIndex;
+  private DeleteCommand deleteCommand;
+  private List<Task> taskList;
 
   @BeforeEach
   public void setUp() {
 
-    duke = new duke.Duke();
-    taskIndex = 1;
-    add1 = new AddTodoCommand("Test Event 1");
-    add2 = new AddTodoCommand("Test Event 2");
-    command = new DeleteCommand(taskIndex);
+    taskList = new ArrayList<>();
+    deleteCommand = new DeleteCommand(1);
   }
 
-  @org.junit.jupiter.api.AfterEach
+  @AfterEach
   public void tearDown() {
 
-    duke = null;
+    taskList.clear();
   }
 
   @Test
-  public void testExecute() {
+  public void testDeleteTask() {
 
-    add1.execute(duke.userInterface.messageDisplay, duke.taskList);
-    add2.execute(duke.userInterface.messageDisplay, duke.taskList);
-    assertEquals(duke.taskList.size(), 2);
-    command.execute(duke.userInterface.messageDisplay, duke.taskList);
-    assertEquals(duke.taskList.size(), 1);
+    Task task1 = new TodoTask("Task 1");
+    Task task2 = new TodoTask("Task 2");
+    taskList.add(task1);
+    taskList.add(task2);
+
+    int initialSize = taskList.size();
+
+    deleteCommand.execute(new FileStorage(), new MessageDisplay(), taskList);
+
+    assertEquals(initialSize - 1, taskList.size());
+
+    assertEquals(task1.getTaskName(), taskList.get(0).getTaskName());
   }
 
 }

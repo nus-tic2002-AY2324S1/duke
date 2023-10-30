@@ -14,19 +14,20 @@ abstract class Command {
   /**
    * Executes the command.
    *
-   * @param display  The message display interface to show messages to the user.
-   * @param taskList The list of tasks that the command will operate on.
+   * @param fileStorage The file storage handler for saving tasks to a file.
+   * @param display     The message display interface to show messages to the user.
+   * @param taskList    The list of tasks that the command will operate on.
    * @throws DukeException If an error occurs while executing the command.
    */
-  public abstract void execute(FileStorage fileStorage,MessageDisplay display, List<Task> taskList) throws DukeException;
+  public abstract void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) throws DukeException;
 
   /**
    * Stores the task list for future loading of tasks.
    *
-   * @param taskList The list of tasks to be stored.
+   * @param fileStorage The file storage handler for saving tasks to a file.
+   * @param taskList    The list of tasks to be stored.
    */
   public void storeDuke(FileStorage fileStorage, List<Task> taskList) {
     fileStorage.store(taskList);
   }
-
 }

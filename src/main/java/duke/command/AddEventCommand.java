@@ -25,7 +25,6 @@ public class AddEventCommand extends AddTaskCommand {
    * @param taskToDate   The end date and time of the event task.
    */
   public AddEventCommand(String taskName, LocalDateTime taskFromDate, LocalDateTime taskToDate) {
-
     super(taskName);
     this.taskFromDate = taskFromDate;
     this.taskToDate = taskToDate;
@@ -34,15 +33,15 @@ public class AddEventCommand extends AddTaskCommand {
   /**
    * Executes the command by creating an `EventTask` and adding it to the task list.
    *
-   * @param display  The message display interface to show messages to the user.
-   * @param taskList The list of tasks to which the new Event task will be added.
+   * @param fileStorage The file storage handler for saving tasks to a file.
+   * @param display     The message display interface to show messages to the user.
+   * @param taskList    The list of tasks to which the new Event task will be added.
    */
   @Override
   public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
     // Create an `EventTask` with the specified name, start date, and end date
     Task task = new EventTask(taskName, taskFromDate, taskToDate);
     // Add the created `EventTask` to the task list
-    addTask(fileStorage,display, taskList, task);
+    addTask(fileStorage, display, taskList, task);
   }
-
 }

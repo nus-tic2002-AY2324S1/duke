@@ -1,54 +1,44 @@
 package duke.command;
 
-import duke.Duke;
+import duke.filehandler.FileStorage;
+import duke.task.EventTask;
+import duke.task.Task;
+import duke.userinterface.UserInterface.MessageDisplay;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AddEventCommandTest {
 
-  Duke duke;
-  String taskName;
-  LocalDateTime taskFromDate;
-  LocalDateTime taskToDate;
-  AddEventCommand command;
+  private AddEventCommand addEventCommand;
+  private List<Task> taskList;
 
   @BeforeEach
   public void setUp() {
 
-    duke = new duke.Duke();
-    taskName = "Test Event";
-    taskFromDate = LocalDateTime.now();
-    taskToDate = LocalDateTime.now();
-    command = new AddEventCommand(taskName, taskFromDate, taskToDate);
+    taskList = new ArrayList<>();
+    addEventCommand = new AddEventCommand("Test Event", LocalDateTime.now(), LocalDateTime.now().plusHours(2));
   }
 
   @AfterEach
   public void tearDown() {
-
-    duke = null;
-    taskName = null;
-    taskFromDate = null;
-    taskToDate = null;
-    command = null;
-
+    taskList.clear();
   }
 
   @Test
-  public void testConstructor() {
+  public void TestAddsEventTaskToTaskList() {
 
-    assertEquals(taskName, command.taskName);
-  }
-
-  @Test
-  public void testExecute() {
-
-    command.execute(duke.userInterface.messageDisplay, duke.taskList);
-    assertEquals(taskName, duke.taskList.get(0).getTaskName());
+    addEventCommand.execute(new FileStorage(), new MessageDisplay(), taskList);
+    assertEquals(1, taskList.size());
+    assertTrue(taskList.get(0) instanceof EventTask);
+    assertEquals("Test Event", taskList.get(0).getTaskName());
   }
 
 }

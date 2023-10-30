@@ -19,24 +19,22 @@ public class DeleteCommand extends Command {
    * @param itemIndex The index of the task to be deleted.
    */
   public DeleteCommand(int itemIndex) {
-
     this.itemIndex = itemIndex;
   }
 
   /**
    * Executes the command by removing the specified task from the task list.
    *
-   * @param display  The message display interface to show messages to the user.
-   * @param taskList The list of tasks from which the task will be deleted.
+   * @param fileStorage The file storage handler for saving tasks to a file.
+   * @param display     The message display interface to show messages to the user.
+   * @param taskList    The list of tasks from which the task will be deleted.
    */
   @Override
   public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
-    // Reduce the size of the task list.
-    Task.removeTask();
     // Remove the task from the task list
     Task deletedTask = taskList.remove(itemIndex);
+    storeDuke(fileStorage, taskList);
     // Display a message indicating the deleted task
-    display.deleteMessage(deletedTask);
+    display.deleteMessage(taskList, deletedTask);
   }
-
 }
