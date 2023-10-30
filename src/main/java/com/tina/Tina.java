@@ -3,6 +3,9 @@ package com.tina;
 import com.tina.command.Command;
 import com.tina.exception.DukeException;
 import com.tina.exception.InvalidFilePathException;
+import com.tina.service.Parser;
+import com.tina.service.Storage;
+import com.tina.service.Ui;
 import com.tina.task.*;
 
 import java.nio.file.Path;

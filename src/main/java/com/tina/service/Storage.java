@@ -1,4 +1,4 @@
-package com.tina;
+package com.tina.service;
 
 import com.tina.exception.InvalidFileFormatException;
 import com.tina.exception.InvalidFilePathException;

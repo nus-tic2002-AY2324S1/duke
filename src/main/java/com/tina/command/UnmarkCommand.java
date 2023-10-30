@@ -1,6 +1,6 @@
 package com.tina.command;
 
-import com.tina.Ui;
+import com.tina.service.Ui;
 import com.tina.exception.InvalidTaskNumberException;
 import com.tina.task.Task;
 import com.tina.task.TaskList;

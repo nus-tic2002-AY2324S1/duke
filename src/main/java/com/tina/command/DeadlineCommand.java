@@ -1,12 +1,10 @@
 package com.tina.command;
 
-import com.tina.Ui;
-import com.tina.exception.DukeException;
+import com.tina.service.Ui;
 import com.tina.task.DeadlineTask;
 import com.tina.task.Task;
 import com.tina.task.TaskList;
 
-import java.time.LocalDate;
 import java.time.LocalDate;
 
 

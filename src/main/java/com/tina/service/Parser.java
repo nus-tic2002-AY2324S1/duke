@@ -1,10 +1,7 @@
-package com.tina;
+package com.tina.service;
 
 import com.tina.command.*;
-import com.tina.exception.DukeException;
-import com.tina.exception.InvalidDateFormatException;
-import com.tina.exception.InvalidFileFormatException;
-import com.tina.exception.InvalidParameterException;
+import com.tina.exception.*;
 import com.tina.task.*;
 
 import java.time.LocalDate;
@@ -13,8 +10,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The type Parser.
+ */
 public class Parser {
 
+    /**
+     * Parse input to command command.
+     *
+     * @param userInput the user input
+     * @return the command
+     * @throws InvalidParameterException  the invalid parameter exception
+     * @throws InvalidDateFormatException the invalid date format exception
+     */
     public static Command parseInputToCommand(String userInput) throws InvalidParameterException, InvalidDateFormatException {
         List<String> list = Arrays.asList(userInput.split(" "));
         ArrayList<String> tokens = new ArrayList<>(list);
@@ -102,7 +110,7 @@ public class Parser {
         else {
             command = new Command(CommandEnum.UNKNOWN) {
                 @Override
-                public void execute(TaskList taskList, Ui ui) throws DukeException {
+                public void execute(TaskList taskList, Ui ui) throws InvalidTaskNumberException {
                     ui.printError();
                 }
             };
@@ -117,8 +125,10 @@ public class Parser {
      * D | 0 | return book | June 6th
      * E | 0 | project meeting | Aug 6th 2-4pm
      * T | 1 | join sports club
-     * @param line
-     * @return
+     *
+     * @param line the line
+     * @return task
+     * @throws InvalidFileFormatException the invalid file format exception
      */
     public static Task parseStorageToTask(String line) throws InvalidFileFormatException {
         String[] parts = line.split("\\s*\\|\\s*");
@@ -135,6 +145,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parse tasks to storage array list.
+     *
+     * @param tasks the tasks
+     * @return the array list
+     */
     public static ArrayList<String> parseTasksToStorage(TaskList tasks) {
         ArrayList<String> taskArray = new ArrayList<>();
         for (Task task : tasks.getTaskList()) {
@@ -143,6 +159,14 @@ public class Parser {
         return taskArray;
     }
 
+    /**
+     * Validate task number int.
+     *
+     * @param tokens  the tokens
+     * @param command the command
+     * @return the int
+     * @throws InvalidParameterException the invalid parameter exception
+     */
     public static int validateTaskNumber(ArrayList<String> tokens, CommandEnum command) throws InvalidParameterException {
         int taskNumber;
         try {
@@ -153,6 +177,13 @@ public class Parser {
         return taskNumber;
     }
 
+    /**
+     * Validate single command.
+     *
+     * @param tokens  the tokens
+     * @param command the command
+     * @throws InvalidParameterException the invalid parameter exception
+     */
     public static void validateSingleCommand(ArrayList<String> tokens, CommandEnum command) throws InvalidParameterException {
         if (tokens.size() > 1) {
             throw new InvalidParameterException(command);
