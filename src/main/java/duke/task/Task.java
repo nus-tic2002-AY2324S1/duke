@@ -2,13 +2,13 @@ package duke.task;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents an abstract `Task` class for tasks in Duke.
  */
 public abstract class Task {
 
-  private static int totalTasks = 0;
   private final String taskName;
   private final Character taskType;
   private boolean completed;
@@ -24,7 +24,6 @@ public abstract class Task {
     this.taskType = taskType;
     this.taskName = taskName;
     this.completed = false;
-    totalTasks++;
   }
 
   /**
@@ -39,25 +38,6 @@ public abstract class Task {
     this.taskType = taskType;
     this.taskName = taskName;
     this.completed = isCompleted;
-    totalTasks++;
-  }
-
-  /**
-   * Gets the total number of tasks.
-   *
-   * @return The total number of tasks.
-   */
-  public static int getTotalTasks() {
-
-    return totalTasks;
-  }
-
-  /**
-   * Reduces the total count of tasks to represent removing a task.
-   */
-  public static void removeTask() {
-
-    totalTasks--;
   }
 
   /**
@@ -137,14 +117,8 @@ public abstract class Task {
    * @return The formatted date and time as a string.
    */
   public String dateTimetoString(LocalDateTime dateTime) {
-
-    String dayOfWeek = dateTime.getDayOfWeek().toString().substring(0, 3);
-    String day = String.valueOf(dateTime.getDayOfMonth());
-    String dayOfMonth = dateTime.getMonth().toString().substring(0, 3);
-    String year = String.valueOf(dateTime.getYear());
-    String hour = String.valueOf(dateTime.getHour());
-    String minutes = String.valueOf(dateTime.getMinute());
-    return dayOfWeek + " " + day + " " + dayOfMonth + " " + year + " " + hour + ":" + minutes;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E dd MMM yyyy HH:mm");
+    return dateTime.format(formatter);
   }
 
   /**

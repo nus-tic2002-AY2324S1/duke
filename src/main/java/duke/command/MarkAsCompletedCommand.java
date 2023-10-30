@@ -22,8 +22,9 @@ public class MarkAsCompletedCommand extends ModifyTaskCommand {
   /**
    * Executes the command by marking the specified task as completed.
    *
-   * @param display  The message display interface to show messages to the user.
-   * @param taskList The list of tasks in which the task will be marked as completed.
+   * @param fileStorage The file storage handler for saving tasks to a file.
+   * @param display     The message display interface to show messages to the user.
+   * @param taskList    The list of tasks in which the task will be marked as completed.
    */
   @Override
   public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
@@ -39,5 +40,4 @@ public class MarkAsCompletedCommand extends ModifyTaskCommand {
       display.completeMessage(taskList, itemIndex);
     }
   }
-
 }

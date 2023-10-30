@@ -16,23 +16,33 @@ public class OnCommand extends CheckTaskCommand {
    *
    * @param display   The message display interface to show messages to the user.
    * @param taskList  The list of user tasks to be checked.
-   * @param checkDate The specific date for which tasks should be displayed.
+   * @param date      The specific date for which tasks should be displayed.
    */
-  public static void checkTasks(MessageDisplay display, List<Task> taskList, LocalDate checkDate) {
+  public void checkTasks(MessageDisplay display, List<Task> taskList, LocalDate date) {
     // Check if there are no tasks in the list
-    if (Task.getTotalTasks() == 0) {
-      display.print("There's nothing in your list");
+    if (taskList.isEmpty()) {
+      display.print("There's nothing on " + date);
       return;
     }
+    boolean headerPrinted = false;
     // Display the date and the tasks as of that date
-    display.print(String.format("Here are the tasks in your list as of %s", checkDate.toString()));
-    for (int i = 0; i < Task.getTotalTasks(); i++) {
+    for (int i = 0; i < taskList.size(); i++) {
+      Task task = taskList.get(i);
       // Check if the task should be displayed based on the date
-      if (taskList.get(i).checkDate(checkDate)) {
-        System.out.println((i + 1) + "." + taskList.get(i).toString());
+      if (task.checkDate(date)) {
+        if (!headerPrinted) {
+          display.print("Here are the tasks in your list as of " + date);
+          headerPrinted = true;
+        }
+        display.print((i + 1) + "." + task);
+        if (i == taskList.size() - 1) {
+          display.print(MessageDisplay.LINE_BREAK);
+        }
       }
     }
-    System.out.println(display.LINE_BREAK);
+    if (!headerPrinted) {
+      display.print(String.format("There's nothing on %s", date.toString()));
+    }
   }
 
   /**
@@ -49,11 +59,13 @@ public class OnCommand extends CheckTaskCommand {
   }
 
   /**
-   * @param display
-   * @param taskList
+   * Executes the command without specifying a date. This method is not used in the OnCommand.
+   *
+   * @param display  The message display interface to show messages to the user.
+   * @param taskList The list of user tasks.
    */
   @Override
   public void execute(MessageDisplay display, List<Task> taskList) {
+    // This method is not used in the OnCommand.
   }
-
 }

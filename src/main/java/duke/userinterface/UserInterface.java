@@ -87,12 +87,11 @@ public class UserInterface {
      * @param userInputList The list of user tasks.
      * @param itemNumber    The index of the added task.
      */
-    public void addedMessage(List<Task> userInputList, int itemNumber) {
+    public void addedMessage(List<Task> taskList) {
 
-      int totalTasks = Task.getTotalTasks();
       System.out.printf("Got it. I've added this task:\n"
               + "   %s\nNow you have %d tasks in the list.\n%s%n",
-          userInputList.get(itemNumber).toString(), totalTasks, LINE_BREAK);
+          taskList.get(taskList.size()-1).toString(), taskList.size(), LINE_BREAK);
     }
 
     /**
@@ -144,11 +143,11 @@ public class UserInterface {
      *
      * @param task The deleted task.
      */
-    public void deleteMessage(Task task) {
+    public void deleteMessage(List<Task> taskList,Task task) {
 
       System.out.printf("Noted. I've removed this task:\n   %s\n"
               + "Now you have %s tasks in the list.\n%s\n",
-          task.toString(), Task.getTotalTasks(), LINE_BREAK);
+          task.toString(), taskList.size(), LINE_BREAK);
     }
 
     /**
