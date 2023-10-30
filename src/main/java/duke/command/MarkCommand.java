@@ -8,24 +8,44 @@ import duke.ui.UI;
 
 import java.io.IOException;
 
+/**
+ * Represents a command to mark a task as done by its index.
+ */
 public class MarkCommand extends Command{
     private int index;
 
+    /**
+     * Constructs a MarkCommand with the given index.
+     *
+     * @param index The index of the task to mark as done.
+     */
     public MarkCommand(int index){
         this.index = index;
     }
 
+    /**
+     * Executes the mark command, marking a specified task as done and displaying a confirmation message.
+     *
+     * @param taskList The task list containing the tasks.
+     * @param ui       The user interface for input and output.
+     * @param storage  The storage for reading and writing data (not used in this command).
+     */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         try{
-            taskList.getTaskList().get(index).markAsDone();
             Task markAsDOneTask = taskList.markTaskAsDone(index);
+            storage.save(taskList);
             UI.showTaskMarkedAsDone(markAsDOneTask);
         } catch (DukeException | IOException e) {
             UI.showError(e.getMessage());
         }
     }
 
+    /**
+     * Indicates whether this command is an exit command.
+     *
+     * @return Always returns false, as marking a task as done does not exit the application.
+     */
     @Override
     public boolean isExit() {
         return false;

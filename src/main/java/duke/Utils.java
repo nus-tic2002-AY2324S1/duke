@@ -24,6 +24,12 @@ public class Utils {
     public static final String TIME_OF_BEGINNING_OF_AN_DAY = " 0000";
 
 
+    /**
+     * Create a new Todo task base on the provided command.
+     * @param fullCommand full user command for creating a Todo task.
+     * @return A new Todo task.
+     * @throws DukeException if the command format is invalid.
+     */
     public static Todos newTodoTask(String fullCommand) throws DukeException {
         Matcher todoMatcher = todoRegex.matcher(fullCommand);
         if(!todoMatcher.matches()){
@@ -32,6 +38,12 @@ public class Utils {
         return new Todos(todoMatcher.group(0));
     }
 
+    /**
+     * Create a new Deadline task base on the provided command.
+     * @param fullCommand full user command for creating a Todo task.
+     * @return A new Deadline task.
+     * @throws DukeException If the command format is invalid.
+     */
     public static Deadlines newDeadlineTask(String fullCommand) throws DukeException {
         Matcher deadlineMatcher = deadlineRegex.matcher(fullCommand);
         if(!deadlineMatcher.matches()){
@@ -47,6 +59,12 @@ public class Utils {
         return new Deadlines(desc);
     }
 
+    /**
+     * Create a new Event task base on provided command.
+     * @param fullCommand full user command for creating a Event task
+     * @return A new Event task
+     * @throws DukeException if the command format is invalid
+     */
     public static Events newEventTask(String fullCommand) throws DukeException {
         Matcher eventMatcher = eventRegex.matcher(fullCommand);
         if(!eventMatcher.matches()){
@@ -66,6 +84,11 @@ public class Utils {
         return new Events(desc);
     }
 
+    /**
+     * Parse a date and time string to a LocalDateTime object.
+     * @param dateTimeString date and time string to be parsed.
+     * @return A LocalDateTime object representing the parsed date and time.
+     */
     public static LocalDateTime parseDateTime(String dateTimeString) {
         String[]dateTimePatterns = {
                 "dd/MM/yyyy HHmm",
@@ -90,6 +113,11 @@ public class Utils {
         }
     }
 
+    /**
+     * Checks if a string is a valid date format (dd/MM/yyyy).
+     * @param dateString the string to be checked
+     * @return true if the string is a valid date format; otherwise, false
+     */
     public static boolean isDate(String dateString){
         Pattern datePattern = Pattern.compile("^\\d{1,2}/\\d{1,2}/\\d{4}$");
         Matcher matcher = datePattern.matcher(dateString);

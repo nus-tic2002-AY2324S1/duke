@@ -4,8 +4,20 @@ package duke.parser;
 import duke.command.*;
 import duke.exception.DukeException;
 
+
+/**
+ * The `Parser` class is responsible for parsing user input and converting it into executable commands.
+ * It determines the type of command and creates the appropriate `Command` object for execution.
+ */
 public class Parser {
 
+    /**
+     * Parses the user's input and returns the corresponding `Command` object.
+     *
+     * @param fullCommand The full command entered by the user.
+     * @return A concrete `Command` object based on the user's input.
+     * @throws DukeException If an error occurs during command parsing or execution.
+     */
     public static Command parse (String fullCommand) throws DukeException {
         String[] parts = fullCommand.split(" ");
         String command = parts[0].toLowerCase();
@@ -37,23 +49,12 @@ public class Parser {
                     throw new DukeException("OOPS!!! Please input item number you want to unmark");
                 }
             case "todo":
-                try{
-                    return new NewTaskCommand(fullCommand);
-                } catch (Exception e) {
-                    throw new DukeException("OOPS!!! Please input valid todo task command");
-                }
             case "deadline":
-                try{
-
-                    return new NewTaskCommand(fullCommand);
-                } catch (Exception e) {
-                    throw new DukeException("OOPS!!! Please input valid deadline task command");
-                }
             case "event":
                 try{
                     return new NewTaskCommand(fullCommand);
                 } catch (Exception e) {
-                    throw new DukeException("OOPS!!! Please input valid event task command");
+                    throw new DukeException("OOPS!!! Please input valid todo task command");
                 }
             default:
                 throw new DukeException("OOPS!!! Please input valid  command");

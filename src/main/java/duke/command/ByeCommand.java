@@ -10,6 +10,11 @@ public class ByeCommand extends Command{
         UI.showBye();
     }
 
+    /**
+     * Indicates whether this command is an exit command.
+     *
+     * @return Always returns true, as bye a task to exit the application.
+     */
     @Override
     public boolean isExit() {
         return true;
