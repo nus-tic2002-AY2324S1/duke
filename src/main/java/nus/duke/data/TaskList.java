@@ -30,6 +30,8 @@ public class TaskList implements Iterable<AbstractTask> {
      * @param tasks The list of tasks to initialize the `TaskList`.
      */
     public TaskList(List<AbstractTask> tasks) {
+        assert tasks != null;
+
         this.tasks = tasks;
     }
 
@@ -39,6 +41,8 @@ public class TaskList implements Iterable<AbstractTask> {
      * @param task The task to add to the list.
      */
     public void addTask(AbstractTask task) {
+        assert task != null;
+
         tasks.add(task);
     }
 
@@ -58,6 +62,8 @@ public class TaskList implements Iterable<AbstractTask> {
      * @return A sorted map of task indices and corresponding tasks scheduled for the specified date.
      */
     public SortedMap<Integer, AbstractTask> getTasks(LocalDate date) {
+        assert date != null;
+
         SortedMap<Integer, AbstractTask> result = new TreeMap<>();
         for (int i = 0; i < tasks.size(); i++) {
             AbstractTask task = tasks.get(i);
@@ -97,12 +103,15 @@ public class TaskList implements Iterable<AbstractTask> {
     }
 
     /**
-     * Removes a specified task from the list.
+     * Removes a task at the specified index from the list.
      *
-     * @param task The task to remove from the list.
+     * @param index The index of the task to remove.
      */
-    public void removeTask(AbstractTask task) {
-        tasks.remove(task);
+    public void removeTask(int index) {
+        assert index >= 0 && index < tasks.size();
+
+        onRemoveTask(index);
+        tasks.remove(index);
     }
 
     /**
@@ -117,5 +126,22 @@ public class TaskList implements Iterable<AbstractTask> {
     @Override
     public Iterator<AbstractTask> iterator() {
         return tasks.iterator();
+    }
+
+    /**
+     * Handles the adjustments needed when a task is removed from the list.
+     *
+     * @param taskIndex The index of the removed task.
+     */
+    private void onRemoveTask(int taskIndex) {
+        for (int i = taskIndex + 1; i < tasks.size(); i++) {
+            AbstractTask task = getTask(i);
+            TaskAfterOption taskAfterOption = task.getAfterOption();
+            if (taskAfterOption != null
+                    && taskAfterOption.isAfterTask()
+                    && taskAfterOption.getTaskNumber() > taskIndex + 1) {
+                task.setAfterOption(new TaskAfterOption(taskAfterOption.getTaskNumber() - 1));
+            }
+        }
     }
 }

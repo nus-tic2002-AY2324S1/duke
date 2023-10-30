@@ -4,10 +4,20 @@ list
 todo
 todo borrow book
 list
+todo read book /after 2
+todo read book /after 1
+list
+todo review book /after 2019-9-1 0930
+list
 deadline
 deadline return book
 deadline return book /by
 deadline return book /by 2019-9-1 1830
+list
+deadline return book /by 2019-9-1 1830 /after 5
+deadline save notes /by 2019-9-1 1830 /after 4
+list
+deadline call library /by 2019-9-1 1830 /after 2019-9-1 0930
 list
 event
 event project meeting /from
@@ -18,41 +28,47 @@ event project meeting /from 2019-9-1 1430 /to 1630
 list
 event project meeting /from 2019-9-1 1430 /to 2019-10-15 1630
 list
+event project meeting /from 2019-9-1 1430 /to 1630 /after 9
+event project meeting /from 2019-9-1 1430 /to 1630 /after 8
+list
+event project meeting /from 2019-9-1 1430 /to 1630 /after 2019-9-1 0930
+event project meeting /from 2019-9-1 1430 /to 1630 /after 2019-9-1 1530
+list
+event project meeting /from 2019-9-1 1430 /to 2019-10-15 1630 /after 11
+event project meeting /from 2019-9-1 1430 /to 2019-10-15 1630 /after 10
+list
+event project meeting /from 2019-9-1 1430 /to 1630 /after 2019-9-1 0930
+event project meeting /from 2019-9-1 1430 /to 1630 /after 2019-9-1 1530
+list
 mark
 mark 0
-mark 9
+mark 99
 mark 1
 list
-mark 2
+mark 4
 list
-mark 3
+mark 7
 list
 date 2019-9-1
 date 2019-9-2
 date 2019-10-15
-mark 4
-list
 unmark
 unmark 0
-unmark 9
-unmark 1
-list
+unmark 99
 unmark 2
-list
-unmark 3
 list
 unmark 4
 list
+unmark 6
+list
 delete
 delete 0
-delete 9
-delete 4
+delete 99
+delete 12
+list
+delete 5
 list
 delete 3
-list
-delete 2
-list
-delete 1
 list
 bye 1
 bye

@@ -19,6 +19,8 @@ public class TaskListEncoder {
      * @return A collection of encoded task representations as strings.
      */
     public static Collection<String> encodeTaskList(TaskList taskList) {
+        assert taskList != null;
+
         ArrayList<String> encodedTaskList = new ArrayList<>();
         List<AbstractTask> tasks = taskList.getAllTasks();
         for (AbstractTask task : tasks) {
@@ -28,6 +30,8 @@ public class TaskListEncoder {
     }
 
     private static String encodeTaskToString(AbstractTask task) {
+        assert task != null;
+
         return task.encode();
     }
 }

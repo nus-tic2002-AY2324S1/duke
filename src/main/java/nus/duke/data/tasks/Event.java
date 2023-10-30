@@ -1,7 +1,10 @@
 package nus.duke.data.tasks;
 
+import nus.duke.data.TaskOptionKey;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 /**
  * The `Event` class represents an event task with a specified start and end time in Duke.
@@ -39,8 +42,19 @@ public class Event extends AbstractTask {
      */
     public Event(String description, LocalDateTime from, LocalDateTime to, boolean isDone) {
         super(description, isDone);
+
+        assert from != null;
+        assert to != null;
+
         this.from = from;
         this.to = to;
+        addAttribute(0, TaskOptionKey.FROM, () -> Optional.of(formatLocalDateTime(from)));
+        addAttribute(1, TaskOptionKey.TO, () -> Optional.of(formatRelativeLocalDateTime(from, to)));
+    }
+
+    @Override
+    public String getType() {
+        return "E";
     }
 
     /**
@@ -65,13 +79,6 @@ public class Event extends AbstractTask {
     public String encode() {
         String encodedFrom = from.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         String encodedTo = to.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        return String.format("E | %s | %s | %s -> %s", encodeIsDone(), description, encodedFrom, encodedTo);
-    }
-
-    @Override
-    public String toString() {
-        String formattedFrom = formatLocalDateTime(from);
-        String formattedTo = formatRelativeLocalDateTime(from, to);
-        return String.format("[E]%s (from: %s to: %s)", super.toString(), formattedFrom, formattedTo);
+        return String.format("%s | %s | %s | %s -> %s", getType(), encodeIsDone(), description, encodedFrom, encodedTo);
     }
 }

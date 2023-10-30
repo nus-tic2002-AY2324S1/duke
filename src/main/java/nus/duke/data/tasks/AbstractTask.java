@@ -1,8 +1,15 @@
 package nus.duke.data.tasks;
 
+import nus.duke.data.TaskAfterOption;
+import nus.duke.data.TaskOptionKey;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * The `AbstractTask` class is an abstract base class for tasks in Duke.
@@ -24,6 +31,10 @@ public abstract class AbstractTask {
      */
     protected boolean isDone;
 
+    protected TaskAfterOption afterOption;
+
+    protected ArrayList<Map.Entry<TaskOptionKey, AttributeValueGetter>> attributes = new ArrayList<>();
+
     /**
      * Instantiates a new `AbstractTask` with the provided description.
      *
@@ -40,8 +51,11 @@ public abstract class AbstractTask {
      * @param isDone      The completion status of the task.
      */
     protected AbstractTask(String description, boolean isDone) {
+        assert description != null;
+
         this.description = description;
         this.isDone = isDone;
+        addAttribute(TaskOptionKey.AFTER, this::getAfterOptionString);
     }
 
     /**
@@ -51,6 +65,8 @@ public abstract class AbstractTask {
      * @return The formatted date and time string.
      */
     protected static String formatLocalDateTime(LocalDateTime input) {
+        assert input != null;
+
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATETIME_PATTERN_OUTPUT, Locale.ROOT);
         return input.format(dateTimeFormatter);
     }
@@ -63,11 +79,47 @@ public abstract class AbstractTask {
      * @return The formatted date and time string.
      */
     protected static String formatRelativeLocalDateTime(LocalDateTime referenceTime, LocalDateTime input) {
+        assert referenceTime != null;
+        assert input != null;
+
         String pattern = referenceTime.toLocalDate().equals(input.toLocalDate())
                 ? TIME_PATTERN_OUTPUT
                 : DATETIME_PATTERN_OUTPUT;
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern, Locale.ROOT);
         return input.format(dateTimeFormatter);
+    }
+
+    protected static String formatAfterOption(TaskAfterOption afterOption) {
+        assert afterOption != null;
+
+        if (afterOption.isAfterTask()) {
+            return String.valueOf(afterOption.getTaskNumber());
+        } else if (afterOption.isAfterTime()) {
+            return formatLocalDateTime(afterOption.getDateTime());
+        }
+        throw new IllegalArgumentException("Invalid task after option.");
+    }
+
+    public abstract String getType();
+
+    /**
+     * Gets the description of the task.
+     *
+     * @return The description of the task.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Sets the description of the task.
+     *
+     * @param description The new description for the task.
+     */
+    public void setDescription(String description) {
+        assert description != null;
+
+        this.description = description;
     }
 
     /**
@@ -88,22 +140,12 @@ public abstract class AbstractTask {
         isDone = done;
     }
 
-    /**
-     * Gets the description of the task.
-     *
-     * @return The description of the task.
-     */
-    public String getDescription() {
-        return description;
+    public TaskAfterOption getAfterOption() {
+        return afterOption;
     }
 
-    /**
-     * Sets the description of the task.
-     *
-     * @param description The new description for the task.
-     */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAfterOption(TaskAfterOption afterOption) {
+        this.afterOption = afterOption;
     }
 
     /**
@@ -115,6 +157,27 @@ public abstract class AbstractTask {
         return isDone ? "X" : " ";
     }
 
+    public Optional<String> getAfterOptionString() {
+        if (afterOption == null) {
+            return Optional.empty();
+        }
+        if (afterOption.isAfterTask()) {
+            return Optional.of(String.valueOf(afterOption.getTaskNumber()));
+        }
+        if (afterOption.isAfterTime()) {
+            return Optional.of(formatLocalDateTime(afterOption.getDateTime()));
+        }
+        throw new IllegalStateException("Invalid task after option.");
+    }
+
+    protected void addAttribute(TaskOptionKey attributeKey, AttributeValueGetter attributeValueGetter) {
+        this.attributes.add(new AbstractMap.SimpleEntry<>(attributeKey, attributeValueGetter));
+    }
+
+    protected void addAttribute(int index, TaskOptionKey attributeKey, AttributeValueGetter attributeValueGetter) {
+        this.attributes.add(index, new AbstractMap.SimpleEntry<>(attributeKey, attributeValueGetter));
+    }
+
     /**
      * Encodes the task as a string for storage.
      *
@@ -124,7 +187,23 @@ public abstract class AbstractTask {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", getStatusIcon(), getDescription());
+        StringBuilder attributesBuilder = new StringBuilder();
+        if (!attributes.isEmpty()) {
+            attributes.forEach(entry -> {
+                TaskOptionKey attributeKey = entry.getKey();
+                AttributeValueGetter attributeValueGetter = entry.getValue();
+                Optional<String> optionalAttributeValue = attributeValueGetter.get();
+                if (optionalAttributeValue.isEmpty()) {
+                    return;
+                }
+                if (attributesBuilder.length() != 0) {
+                    attributesBuilder.append(" ");
+                }
+                attributesBuilder.append(String.format("%s: %s", attributeKey, optionalAttributeValue.get()));
+            });
+        }
+        String base = String.format("[%s][%s] %s", getType(), getStatusIcon(), getDescription());
+        return attributesBuilder.length() > 0 ? String.format("%s (%s)", base, attributesBuilder) : base;
     }
 
     /**
@@ -134,5 +213,10 @@ public abstract class AbstractTask {
      */
     protected String encodeIsDone() {
         return isDone ? "1" : "0";
+    }
+
+    @FunctionalInterface
+    protected interface AttributeValueGetter {
+        Optional<String> get();
     }
 }

@@ -24,6 +24,8 @@ public class TaskListDecoder {
      * @throws StorageOperationException If there's an issue with decoding or parsing the data.
      */
     public static TaskList decodeTaskList(Collection<String> encodedTaskList) throws StorageOperationException {
+        assert encodedTaskList != null;
+
         ArrayList<AbstractTask> decodedTasks = new ArrayList<>();
         for (String encodedTask : encodedTaskList) {
             decodedTasks.add(decodeTaskFromString(encodedTask));
@@ -32,6 +34,8 @@ public class TaskListDecoder {
     }
 
     private static AbstractTask decodeTaskFromString(String encodedTask) throws StorageOperationException {
+        assert encodedTask != null;
+
         String[] fields = encodedTask.split("\\s*\\|\\s*", -1);
         if (fields.length < 3) {
             throw new StorageOperationException("The number of fields should be greater than 3.");
@@ -48,9 +52,9 @@ public class TaskListDecoder {
             LocalDateTime deadlineBy = decodeDateTime(fields[3]);
             return new Deadline(description, deadlineBy, isDone);
         }
-        case "E":
+        case "E": {
             if (fields.length != 4) {
-                throw new StorageOperationException("The number of fields for event should be 4.");
+                throw new StorageOperationException("The number of fields for an event should be 4.");
             }
             String eventFromTo = fields[3];
             String[] fromToFields = eventFromTo.split(" -> ", -1);
@@ -60,6 +64,7 @@ public class TaskListDecoder {
             LocalDateTime eventFrom = decodeDateTime(fromToFields[0]);
             LocalDateTime eventTo = decodeDateTime(fromToFields[1]);
             return new Event(description, eventFrom, eventTo, isDone);
+        }
         case "T": {
             return new Todo(description, isDone);
         }
@@ -69,6 +74,8 @@ public class TaskListDecoder {
     }
 
     private static boolean decodeIsDoneFromString(String value) throws StorageOperationException {
+        assert value != null;
+
         switch (value) {
         case "1":
             return true;
@@ -80,6 +87,8 @@ public class TaskListDecoder {
     }
 
     private static LocalDateTime decodeDateTime(String text) throws StorageOperationException {
+        assert text != null;
+
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
         try {
             return LocalDateTime.parse(text, dateTimeFormatter);

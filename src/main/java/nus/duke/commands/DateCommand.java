@@ -28,6 +28,10 @@ public class DateCommand extends AbstractCommand {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        assert tasks != null;
+        assert ui != null;
+        assert storage != null;
+
         if (args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The due date cannot be empty.");
         }

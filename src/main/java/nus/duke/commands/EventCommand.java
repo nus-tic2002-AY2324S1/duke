@@ -1,6 +1,9 @@
 package nus.duke.commands;
 
+import nus.duke.data.TaskAfterOption;
 import nus.duke.data.TaskList;
+import nus.duke.data.TaskOptionKey;
+import nus.duke.data.TaskSource;
 import nus.duke.data.tasks.Event;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
@@ -9,6 +12,7 @@ import nus.duke.storage.Storage;
 import nus.duke.ui.Ui;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * The `EventCommand` class represents a command to add a new event task.
@@ -27,23 +31,43 @@ public class EventCommand extends AbstractTaskCommand {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        assert tasks != null;
+        assert ui != null;
+        assert storage != null;
+
         if (args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The description of an event cannot be empty.");
         }
 
-        String[] array = args.split(" /from ", -1);
-        if (array.length != 2) {
-            throw new InvalidCommandArgsDukeException("The \"/from {date/time}\" of an event is required.");
+        TaskSource taskSource = Parser.parseTaskSource(args);
+        Optional<String> fromOption = taskSource.getOptionValue(TaskOptionKey.FROM);
+        Optional<String> toOption = taskSource.getOptionValue(TaskOptionKey.TO);
+        if (fromOption.isEmpty()) {
+            throw new InvalidCommandArgsDukeException(
+                    String.format("The \"/%s {date/time}\" of an event is required.", TaskOptionKey.FROM));
+        }
+        if (toOption.isEmpty()) {
+            throw new InvalidCommandArgsDukeException(
+                    String.format("The \"/%s {date/time}\" of an event is required.", TaskOptionKey.TO));
         }
 
-        String[] fromToArray = array[1].split(" /to ", -1);
-        if (fromToArray.length != 2) {
-            throw new InvalidCommandArgsDukeException("The \"/to {date/time}\" of an event is required.");
+        Optional<TaskAfterOption> optionalAfterOption = getAfterOption(tasks, taskSource);
+        LocalDateTime from = Parser.parseUserDateTime(fromOption.get());
+        LocalDateTime to = Parser.parseUserRelativeDateTime(from, toOption.get());
+        Event event = new Event(taskSource.getDescription(), from, to);
+        if (optionalAfterOption.isPresent()) {
+            TaskAfterOption afterOption = optionalAfterOption.get();
+            if (afterOption.isAfterTime()
+                    && (!afterOption.getDateTime().isAfter(from) || !afterOption.getDateTime().isBefore(to))) {
+                throw new InvalidCommandArgsDukeException(
+                        String.format(
+                                "The time of \"/%s\" is not between \"/%s\" and \"/%s\".",
+                                TaskOptionKey.AFTER,
+                                TaskOptionKey.FROM,
+                                TaskOptionKey.TO));
+            }
+            event.setAfterOption(optionalAfterOption.get());
         }
-
-        LocalDateTime from = Parser.parseUserDateTime(fromToArray[0]);
-        LocalDateTime to = Parser.parseUserRelativeDateTime(from, fromToArray[1]);
-        Event event = new Event(array[0], from, to);
         tasks.addTask(event);
         storage.save(tasks);
         ui.showMessages(getTaskAddedMessages(tasks));
