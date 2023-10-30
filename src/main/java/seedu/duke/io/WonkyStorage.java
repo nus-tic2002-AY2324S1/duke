@@ -12,11 +12,20 @@ import seedu.duke.commands.WonkyMode;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeStorageException;
 
+/**
+ * Handles the storage of user input commands.
+ */
 public class WonkyStorage {
 
     final static String STORAGE_PATH = "./storage.txt";
     final static File STORAGE_FILE = new File(STORAGE_PATH);
-    
+
+    /**
+     * Initializes the storage file and loads previous commands if in normal mode.
+     *
+     * @param mode the current mode of the program
+     * @throws DukeException if there is an error initializing the storage file or loading previous commands
+     */
     public static void startUp(WonkyMode mode) throws DukeException {
         if (WonkyMode.NORMAL.equals(mode)) {
             try {
@@ -35,11 +44,17 @@ public class WonkyStorage {
                     WonkyLogger.setIsLoading(false);
                 }
             } catch (Exception e) {
-                throw new DukeStorageException(e.getMessage());
+                throw new DukeStorageException(e);
             }
         }
     }
 
+    /**
+     * Saves the given list of command arguments to the storage file.
+     *
+     * @param cmdArgs the list of command arguments to save
+     * @throws DukeException if there is an error saving the command arguments to the storage file
+     */
     public static void save(List<CommandArgument> cmdArgs) throws DukeException {
         if (WonkyMode.NORMAL.equals(WonkyLogger.mode)) {
             try (
@@ -55,7 +70,7 @@ public class WonkyStorage {
                     }
                 }
             } catch (Exception e) {
-                throw new DukeStorageException(e.getMessage());
+                throw new DukeStorageException(e);
             }
         }
     }
