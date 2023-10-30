@@ -1,6 +1,11 @@
+package duke.storage;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.parser.Parser;
+import duke.task.Task;
 
 public class Storage {
     private static final String FILE_PATH = "./data/duke.txt";

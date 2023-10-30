@@ -1,3 +1,5 @@
+package duke.error;
+
 public enum ErrorType {
     ERR_EMPTY_DESCRIPTION, 
     ERR_POSSIBLE_TYPO,

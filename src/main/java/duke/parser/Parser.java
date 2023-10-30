@@ -1,3 +1,11 @@
+package duke.parser;
+
+import duke.command.TaskType;
+import duke.task.Deadlines;
+import duke.task.Events;
+import duke.task.Task;
+import duke.task.ToDos;
+
 public class Parser {
     public static Task createTask(TaskType taskType, String taskDescription) {
         switch (taskType) {

@@ -1,6 +1,12 @@
+package duke.ui;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import duke.command.TaskType;
+import duke.error.ErrorType;
+import duke.task.Task;
 
 public class UI {
     public final Map<TaskType, String> TASK_KEYWORDS = new HashMap<>();

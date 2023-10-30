@@ -1,6 +1,19 @@
+package duke;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import duke.command.TaskType; 
+import duke.error.ErrorType;
+import duke.ui.UI;
+import duke.storage.Storage;
+import duke.tasklist.TaskList;
+
+import duke.task.Events;
+import duke.task.Deadlines;
+import duke.task.ToDos;
+import duke.task.Task;
 
 public class Duke {
     private UI ui;
