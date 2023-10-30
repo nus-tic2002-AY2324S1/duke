@@ -10,6 +10,10 @@ import com.tina.task.*;
 
 import java.nio.file.Path;
 
+/**
+ * The main program Tina, a chatbot, allows to schedule tasks with flexible functions.
+ *
+ */
 public class Tina {
 
     private final Ui ui;
@@ -18,6 +22,11 @@ public class Tina {
 
     private static final String PATH = "data/Tina.txt";
 
+    /**
+     * Instantiates a new Tina program.
+     *
+     * @param path the path where task list to be loaded or saved
+     */
     public Tina(Path path) {
         this.ui = new Ui();
         storage = new Storage(path);
@@ -29,6 +38,12 @@ public class Tina {
         }
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws InvalidFilePathException the invalid file path exception
+     */
     public static void main(String[] args) throws InvalidFilePathException {
         String dir = System.getProperty("user.dir");
         java.nio.file.Path path = java.nio.file.Paths.get(dir, Tina.PATH);
@@ -36,6 +51,11 @@ public class Tina {
         new Tina(path).run();
     }
 
+    /**
+     * Invoke the main logic of the Tina program.
+     *
+     * @throws InvalidFilePathException the invalid file path exception
+     */
     public void run() throws InvalidFilePathException {
         ui.showWelcome();
         boolean isBye = false;

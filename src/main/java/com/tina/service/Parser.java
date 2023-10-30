@@ -11,17 +11,19 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * The type Parser.
+ * The Parser class.
+ * Parse input to a desired object, such as command object or task object.
+ * Valid the input and throw exception if there is an error.
  */
 public class Parser {
 
     /**
-     * Parse input to command command.
+     * Parse user input to command object.
      *
      * @param userInput the user input
-     * @return the command
-     * @throws InvalidParameterException  the invalid parameter exception
-     * @throws InvalidDateFormatException the invalid date format exception
+     * @return the parsed command object
+     * @throws InvalidParameterException  if input parameter is invalid
+     * @throws InvalidDateFormatException if the date format is invalid
      */
     public static Command parseInputToCommand(String userInput) throws InvalidParameterException, InvalidDateFormatException {
         List<String> list = Arrays.asList(userInput.split(" "));
@@ -120,15 +122,16 @@ public class Parser {
     }
 
     /**
+     * Parse one line read from storage file to a task object
      * Storage file format:
      * T | 1 | read book
      * D | 0 | return book | June 6th
      * E | 0 | project meeting | Aug 6th 2-4pm
      * T | 1 | join sports club
      *
-     * @param line the line
-     * @return task
-     * @throws InvalidFileFormatException the invalid file format exception
+     * @param line the line read from storage file
+     * @return task parsed task object
+     * @throws InvalidFileFormatException if file format is invalid
      */
     public static Task parseStorageToTask(String line) throws InvalidFileFormatException {
         String[] parts = line.split("\\s*\\|\\s*");
@@ -146,9 +149,9 @@ public class Parser {
     }
 
     /**
-     * Parse tasks to storage array list.
+     * Parse task list to storage file format and store in an array list.
      *
-     * @param tasks the tasks
+     * @param tasks the task list
      * @return the array list
      */
     public static ArrayList<String> parseTasksToStorage(TaskList tasks) {
@@ -160,12 +163,13 @@ public class Parser {
     }
 
     /**
-     * Validate task number int.
+     * Validate task number.
+     * Throws exception if task number is missing or task number is not in integer format.
      *
-     * @param tokens  the tokens
-     * @param command the command
+     * @param tokens  the parameters from user input
+     * @param command the command type
      * @return the int
-     * @throws InvalidParameterException the invalid parameter exception
+     * @throws InvalidParameterException if task number is missing or invalid
      */
     public static int validateTaskNumber(ArrayList<String> tokens, CommandEnum command) throws InvalidParameterException {
         int taskNumber;
@@ -178,11 +182,12 @@ public class Parser {
     }
 
     /**
-     * Validate single command.
+     * Validate single command, such as bye, list.
+     * Throw exception if extra parameters are given.
      *
-     * @param tokens  the tokens
-     * @param command the command
-     * @throws InvalidParameterException the invalid parameter exception
+     * @param tokens  the parameters from user input
+     * @param command the command type
+     * @throws InvalidParameterException if extra parameters are given
      */
     public static void validateSingleCommand(ArrayList<String> tokens, CommandEnum command) throws InvalidParameterException {
         if (tokens.size() > 1) {
