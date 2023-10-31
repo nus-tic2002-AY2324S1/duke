@@ -70,5 +70,6 @@ delete 5
 list
 delete 3
 list
+find Meeting
 bye 1
 bye
