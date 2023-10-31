@@ -1,10 +1,5 @@
 package nus.duke.data;
 
-import nus.duke.data.tasks.AbstractTask;
-import nus.duke.data.tasks.Deadline;
-import nus.duke.data.tasks.Event;
-import nus.duke.exceptions.InvalidCommandArgsDukeException;
-
 import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,6 +7,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import nus.duke.data.tasks.AbstractTask;
+import nus.duke.data.tasks.Deadline;
+import nus.duke.data.tasks.Event;
+import nus.duke.exceptions.InvalidCommandArgsDukeException;
 
 /**
  * The `TaskList` class represents a list of tasks in Duke.
@@ -77,7 +76,7 @@ public class TaskList implements Iterable<AbstractTask> {
             } else if (task instanceof Event) {
                 Event event = (Event) task;
                 if (event.getFrom().toLocalDate().minusDays(1).isBefore(date)
-                        && event.getTo().toLocalDate().plusDays(1).isAfter(date)) {
+                    && event.getTo().toLocalDate().plusDays(1).isAfter(date)) {
                     result.put(i, task);
                 }
             }
@@ -145,10 +144,10 @@ public class TaskList implements Iterable<AbstractTask> {
             if (taskAfterOption != null && taskAfterOption.isAfterTask()) {
                 if (taskAfterOption.getTaskNumber() == taskIndex + 1) {
                     throw new InvalidCommandArgsDukeException(
-                            MessageFormat.format(
-                                    "The task #{0} depends on the task #{1}, please delete the task #{0} first.",
-                                    i + 1,
-                                    deletingTaskNumber));
+                        MessageFormat.format(
+                            "The task #{0} depends on the task #{1}, please delete the task #{0} first.",
+                            i + 1,
+                            deletingTaskNumber));
                 }
                 if (taskAfterOption.getTaskNumber() > taskIndex + 1) {
                     task.setAfterOption(new TaskAfterOption(taskAfterOption.getTaskNumber() - 1));

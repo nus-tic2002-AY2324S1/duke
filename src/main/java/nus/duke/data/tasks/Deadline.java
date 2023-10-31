@@ -1,10 +1,9 @@
 package nus.duke.data.tasks;
 
-import nus.duke.data.TaskOptionKey;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import nus.duke.data.TaskOptionKey;
 
 /**
  * The `Deadline` class represents a task with a deadline in Duke.

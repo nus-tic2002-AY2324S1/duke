@@ -1,10 +1,9 @@
 package nus.duke.data.tasks;
 
-import nus.duke.data.TaskOptionKey;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import nus.duke.data.TaskOptionKey;
 
 /**
  * The `Event` class represents an event task with a specified start and end time in Duke.
@@ -81,12 +80,12 @@ public class Event extends AbstractTask {
         String encodedTo = to.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         String encodedAfter = encodeAfterOption();
         return String.format(
-                "%s | %s | %s | %s -> %s | %s",
-                getType(),
-                encodeIsDone(),
-                description,
-                encodedFrom,
-                encodedTo,
-                encodedAfter);
+            "%s | %s | %s | %s -> %s | %s",
+            getType(),
+            encodeIsDone(),
+            description,
+            encodedFrom,
+            encodedTo,
+            encodedAfter);
     }
 }

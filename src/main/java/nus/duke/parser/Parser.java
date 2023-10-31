@@ -1,5 +1,12 @@
 package nus.duke.parser;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.HashMap;
+import java.util.Locale;
 import nus.duke.commands.AbstractCommand;
 import nus.duke.commands.ByeCommand;
 import nus.duke.commands.DateCommand;
@@ -15,14 +22,6 @@ import nus.duke.data.TaskSource;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.exceptions.UnknownCommandDukeException;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.HashMap;
-import java.util.Locale;
 
 /**
  * The `Parser` class is responsible for parsing user input and converting it into executable commands.
@@ -83,8 +82,8 @@ public class Parser {
     public static TaskSource parseTaskSource(String taskArgs) throws InvalidCommandArgsDukeException {
         assert taskArgs != null;
 
-        String regex_option = "(?=/[a-zA-z0-9-]+ )|(?<=/[a-zA-z0-9-]+ )";
-        String[] array = taskArgs.split(regex_option, -1);
+        String regexOption = "(?=/[a-zA-z0-9-]+ )|(?<=/[a-zA-z0-9-]+ )";
+        String[] array = taskArgs.split(regexOption, -1);
 
         String taskDescription = array[0].trim();
         HashMap<String, String> taskOptions = new HashMap<>();
@@ -92,7 +91,7 @@ public class Parser {
             String optionKey = array[i].substring(1).trim();
             if (i + 1 >= array.length) {
                 throw new InvalidCommandArgsDukeException(
-                        String.format("The value for \"/%s\" is missing.", optionKey));
+                    String.format("The value for \"/%s\" is missing.", optionKey));
             }
 
             String optionValue = array[i + 1].trim();

@@ -1,11 +1,10 @@
 package nus.duke.storage;
 
-import nus.duke.data.TaskList;
-import nus.duke.data.tasks.AbstractTask;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import nus.duke.data.TaskList;
+import nus.duke.data.tasks.AbstractTask;
 
 /**
  * The `TaskListEncoder` class is responsible for encoding a `TaskList` into a collection of string representations

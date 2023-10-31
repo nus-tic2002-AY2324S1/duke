@@ -25,9 +25,9 @@ public class Ui {
      */
     public void showWelcome() {
         showLine();
-        showWithPrefix(new String[]{
-                "Hello! I'm DukeBot.",
-                "What can I do for you?"
+        showWithPrefix(new String[] {
+            "Hello! I'm DukeBot.",
+            "What can I do for you?"
         });
         showLine();
     }

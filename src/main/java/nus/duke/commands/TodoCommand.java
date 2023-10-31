@@ -1,5 +1,6 @@
 package nus.duke.commands;
 
+import java.util.Optional;
 import nus.duke.data.TaskAfterOption;
 import nus.duke.data.TaskList;
 import nus.duke.data.TaskSource;
@@ -9,8 +10,6 @@ import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.parser.Parser;
 import nus.duke.storage.Storage;
 import nus.duke.ui.Ui;
-
-import java.util.Optional;
 
 /**
  * The `TodoCommand` class represents a command to add a new "todo" task.

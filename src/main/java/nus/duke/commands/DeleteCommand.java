@@ -41,10 +41,10 @@ public class DeleteCommand extends AbstractCommand {
         AbstractTask task = tasks.getTask(taskNumber - 1);
         tasks.removeTask(taskNumber - 1);
         storage.save(tasks);
-        ui.showMessages(new String[]{
-                "Noted. I've removed this task:",
-                "  " + task.toString(),
-                String.format("Now you have %d tasks in the list.", tasks.size())
+        ui.showMessages(new String[] {
+            "Noted. I've removed this task:",
+            "  " + task.toString(),
+            String.format("Now you have %d tasks in the list.", tasks.size())
         });
     }
 }

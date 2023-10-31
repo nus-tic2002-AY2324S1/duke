@@ -1,5 +1,7 @@
 package nus.duke.commands;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
 import nus.duke.data.TaskAfterOption;
 import nus.duke.data.TaskList;
 import nus.duke.data.TaskOptionKey;
@@ -7,9 +9,6 @@ import nus.duke.data.TaskSource;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.parser.Parser;
 import nus.duke.util.IntegerUtils;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 /**
  * The `AbstractTaskCommand` class serves as the base class for commands that create tasks.
@@ -33,10 +32,10 @@ public abstract class AbstractTaskCommand extends AbstractCommand {
     protected static String[] getTaskAddedMessages(TaskList tasks) {
         assert tasks != null;
 
-        return new String[]{
-                "Got it. I've added this task:",
-                "  " + tasks.getLastTask(),
-                String.format("Now you have %d tasks in the list.", tasks.size())
+        return new String[] {
+            "Got it. I've added this task:",
+            "  " + tasks.getLastTask(),
+            String.format("Now you have %d tasks in the list.", tasks.size())
         };
     }
 
@@ -48,7 +47,8 @@ public abstract class AbstractTaskCommand extends AbstractCommand {
      * @return An optional `TaskAfterOption` representing the task after option, or empty if not provided.
      * @throws InvalidCommandArgsDukeException If the task after option is invalid.
      */
-    protected static Optional<TaskAfterOption> getAfterOption(TaskList tasks, TaskSource taskSource) throws InvalidCommandArgsDukeException {
+    protected static Optional<TaskAfterOption> getAfterOption(TaskList tasks, TaskSource taskSource)
+        throws InvalidCommandArgsDukeException {
         assert tasks != null;
         assert taskSource != null;
 
@@ -62,7 +62,7 @@ public abstract class AbstractTaskCommand extends AbstractCommand {
         if (afterTaskNumber != null) {
             if (afterTaskNumber < 1 || afterTaskNumber > tasks.size()) {
                 throw new InvalidCommandArgsDukeException(
-                        String.format("The task number of \"/%s\" is invalid.", TaskOptionKey.AFTER));
+                    String.format("The task number of \"/%s\" is invalid.", TaskOptionKey.AFTER));
             }
             return Optional.of(new TaskAfterOption(afterTaskNumber));
         }

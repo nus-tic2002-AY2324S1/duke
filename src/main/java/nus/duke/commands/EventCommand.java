@@ -1,5 +1,7 @@
 package nus.duke.commands;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
 import nus.duke.data.TaskAfterOption;
 import nus.duke.data.TaskList;
 import nus.duke.data.TaskOptionKey;
@@ -10,9 +12,6 @@ import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.parser.Parser;
 import nus.duke.storage.Storage;
 import nus.duke.ui.Ui;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 /**
  * The `EventCommand` class represents a command to add a new event task.
@@ -44,11 +43,11 @@ public class EventCommand extends AbstractTaskCommand {
         Optional<String> toOption = taskSource.getOptionValue(TaskOptionKey.TO);
         if (fromOption.isEmpty()) {
             throw new InvalidCommandArgsDukeException(
-                    String.format("The \"/%s {date/time}\" of an event is required.", TaskOptionKey.FROM));
+                String.format("The \"/%s {date/time}\" of an event is required.", TaskOptionKey.FROM));
         }
         if (toOption.isEmpty()) {
             throw new InvalidCommandArgsDukeException(
-                    String.format("The \"/%s {date/time}\" of an event is required.", TaskOptionKey.TO));
+                String.format("The \"/%s {date/time}\" of an event is required.", TaskOptionKey.TO));
         }
 
         Optional<TaskAfterOption> optionalAfterOption = getAfterOption(tasks, taskSource);
@@ -58,13 +57,13 @@ public class EventCommand extends AbstractTaskCommand {
         if (optionalAfterOption.isPresent()) {
             TaskAfterOption afterOption = optionalAfterOption.get();
             if (afterOption.isAfterTime()
-                    && (!afterOption.getDateTime().isAfter(from) || !afterOption.getDateTime().isBefore(to))) {
+                && (!afterOption.getDateTime().isAfter(from) || !afterOption.getDateTime().isBefore(to))) {
                 throw new InvalidCommandArgsDukeException(
-                        String.format(
-                                "The time of \"/%s\" is not between \"/%s\" and \"/%s\".",
-                                TaskOptionKey.AFTER,
-                                TaskOptionKey.FROM,
-                                TaskOptionKey.TO));
+                    String.format(
+                        "The time of \"/%s\" is not between \"/%s\" and \"/%s\".",
+                        TaskOptionKey.AFTER,
+                        TaskOptionKey.FROM,
+                        TaskOptionKey.TO));
             }
             event.setAfterOption(optionalAfterOption.get());
         }

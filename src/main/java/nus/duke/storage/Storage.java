@@ -1,7 +1,5 @@
 package nus.duke.storage;
 
-import nus.duke.data.TaskList;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -10,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
+import nus.duke.data.TaskList;
 
 /**
  * The `Storage` class is responsible for loading and saving the task list to a file.

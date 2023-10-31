@@ -1,8 +1,5 @@
 package nus.duke.data.tasks;
 
-import nus.duke.data.TaskAfterOption;
-import nus.duke.data.TaskOptionKey;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.AbstractMap;
@@ -10,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import nus.duke.data.TaskAfterOption;
+import nus.duke.data.TaskOptionKey;
 
 /**
  * The `AbstractTask` class is an abstract base class for tasks in Duke.
@@ -31,8 +30,15 @@ public abstract class AbstractTask {
      */
     protected boolean isDone;
 
+    /**
+     * The task after option, indicating what this task should be scheduled after.
+     */
     protected TaskAfterOption afterOption;
 
+    /**
+     * An array list to store attributes associated with the task, each represented as a key-value pair.
+     * The attributes provide additional information or metadata about the task.
+     */
     protected ArrayList<Map.Entry<TaskOptionKey, AttributeValueGetter>> attributes = new ArrayList<>();
 
     /**
@@ -83,12 +89,19 @@ public abstract class AbstractTask {
         assert input != null;
 
         String pattern = referenceTime.toLocalDate().equals(input.toLocalDate())
-                ? TIME_PATTERN_OUTPUT
-                : DATETIME_PATTERN_OUTPUT;
+            ? TIME_PATTERN_OUTPUT
+            : DATETIME_PATTERN_OUTPUT;
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern, Locale.ROOT);
         return input.format(dateTimeFormatter);
     }
 
+    /**
+     * Formats the task after option as a string representation.
+     *
+     * @param afterOption The task after option to be formatted.
+     * @return A string representation of the after option, which could be a task number or a date and time.
+     * @throws IllegalArgumentException if the task after option is invalid or unsupported.
+     */
     protected static String formatAfterOption(TaskAfterOption afterOption) {
         assert afterOption != null;
 
@@ -100,6 +113,11 @@ public abstract class AbstractTask {
         throw new IllegalArgumentException("Invalid task after option.");
     }
 
+    /**
+     * Gets the type of the task.
+     *
+     * @return A string representing the type of the task.
+     */
     public abstract String getType();
 
     /**
@@ -140,10 +158,21 @@ public abstract class AbstractTask {
         isDone = done;
     }
 
+    /**
+     * Gets the task after option associated with this task.
+     *
+     * @return The task after option.
+     */
     public TaskAfterOption getAfterOption() {
         return afterOption;
     }
 
+    /**
+     * Sets the task after option for this task.
+     *
+     * @param afterOption The task after option to be set, specifying when this task should be scheduled in relation
+     *                    to another task or a specific time.
+     */
     public void setAfterOption(TaskAfterOption afterOption) {
         this.afterOption = afterOption;
     }
@@ -157,6 +186,12 @@ public abstract class AbstractTask {
         return isDone ? "X" : " ";
     }
 
+    /**
+     * Retrieves a string representation of the task after option, if available.
+     *
+     * @return An optional string representing the task after option.
+     * @throws IllegalStateException if the task after option is invalid or unsupported.
+     */
     public Optional<String> getAfterOptionString() {
         if (afterOption == null) {
             return Optional.empty();
@@ -170,10 +205,24 @@ public abstract class AbstractTask {
         throw new IllegalStateException("Invalid task after option.");
     }
 
+    /**
+     * Adds a new attribute to the task, represented as a key-value pair, to provide additional information or metadata.
+     *
+     * @param attributeKey         The key for the attribute.
+     * @param attributeValueGetter The function to get the attribute value.
+     */
     protected void addAttribute(TaskOptionKey attributeKey, AttributeValueGetter attributeValueGetter) {
         this.attributes.add(new AbstractMap.SimpleEntry<>(attributeKey, attributeValueGetter));
     }
 
+    /**
+     * Adds a new attribute to the task at a specified index, represented as a key-value pair, to provide additional
+     * information or metadata.
+     *
+     * @param index                The index at which to add the attribute.
+     * @param attributeKey         The key for the attribute.
+     * @param attributeValueGetter The function to get the attribute value.
+     */
     protected void addAttribute(int index, TaskOptionKey attributeKey, AttributeValueGetter attributeValueGetter) {
         this.attributes.add(index, new AbstractMap.SimpleEntry<>(attributeKey, attributeValueGetter));
     }
@@ -218,6 +267,12 @@ public abstract class AbstractTask {
         return isDone ? "1" : "0";
     }
 
+    /**
+     * Encodes the task after option as a string for storage.
+     *
+     * @return A string representation of the task after option.
+     * @throws RuntimeException if the task after option is invalid or unsupported.
+     */
     protected String encodeAfterOption() {
         if (afterOption == null) {
             return "";
@@ -231,8 +286,16 @@ public abstract class AbstractTask {
         throw new RuntimeException("Invalid task after option.");
     }
 
+    /**
+     * A functional interface to get an attribute's value as an optional string.
+     */
     @FunctionalInterface
     protected interface AttributeValueGetter {
+        /**
+         * Get the attribute value as an optional string.
+         *
+         * @return An optional string representing the attribute value.
+         */
         Optional<String> get();
     }
 }
