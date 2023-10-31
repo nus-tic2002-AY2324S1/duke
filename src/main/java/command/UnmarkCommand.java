@@ -31,7 +31,7 @@ public class UnmarkCommand extends CrabyMessage implements CommandInterface {
             if (checkNum == null) {
                 return;
             }
-            tasks.get(checkNum).setIsDone(false);
+            tasks.get(checkNum).setDone(false);
             printUnmarkMessage(tasks.get(checkNum).toString());
         } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
             printUnmarkErrorMessage();

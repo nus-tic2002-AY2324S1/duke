@@ -26,14 +26,14 @@ public class Task {
     /**
      * This method is to set the task is done or not.
      */
-    public void setIsDone(boolean done) {
+    public void setDone(boolean done) {
         isDone = done;
     }
 
     /**
      * This method is to get the task is done or not.
      */
-    public boolean getIsDone() {
+    public boolean getDone() {
         return isDone;
     }
 
@@ -90,7 +90,9 @@ public class Task {
      * This method is to save the data to the local file
      */
     public String toStorageString() {
-        return this.toString();
+        String status = isDone ? "1" : "0" ;
+        String description = this.description;
+        return status + " || " + description;
     }
 
     /**
@@ -101,7 +103,7 @@ public class Task {
      */
     public Task clone() {
         Task cloneTask = new Task(this.description);
-        cloneTask.setIsDone(this.isDone);
+        cloneTask.setDone(this.isDone);
         return cloneTask;
     }
 }

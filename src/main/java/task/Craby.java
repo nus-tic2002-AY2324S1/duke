@@ -52,6 +52,7 @@ public class Craby extends HelloAndByeMessage {
         while (true) {
             String input = scanner.nextLine();
             input = input.trim();
+            input = input.replaceAll("\\|\\|", "|");
             boolean exit = false;
             putInToStack(input, tasks); // use for undo command
             try {

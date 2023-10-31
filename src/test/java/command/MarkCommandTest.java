@@ -19,6 +19,6 @@ class MarkCommandTest {
         taskList.add(todo);
         MarkCommand markCommand = new MarkCommand();
         markCommand.handleCommand("mark 1", taskList);
-        assertTrue(todo.getIsDone());
+        assertTrue(todo.getDone());
     }
 }

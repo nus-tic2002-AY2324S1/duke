@@ -103,12 +103,15 @@ public class Event extends Task {
      */
     @Override
     public String toStorageString() {
+        String type = "E";
+        String status = isDone ? "1" : "0";
+        String description = this.description;
+        String time = this.fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm"));
         if (this.toTime == null) {
-            return "[E]" + super.toString() + " (from: " +
-                   fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
+            return type + " || " + status + " || " + description + " || " + time;
         }
-        return "[E]" + super.toString() + " (from: " + fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) +
-               " to: " + toTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
+        String timeOfTo = this.toTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm"));
+        return type + " || " + status + " || " + description + " || " + time + " || " + timeOfTo;
     }
 
     /**
@@ -118,7 +121,7 @@ public class Event extends Task {
     @Override
     public Event clone() {
         Event event = new Event(this.description, this.fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")));
-        event.setIsDone(this.isDone);
+        event.setDone(this.isDone);
         event.toTime = this.toTime;
         return event;
     }

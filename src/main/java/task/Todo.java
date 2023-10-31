@@ -1,5 +1,7 @@
 package task;
 
+import java.time.format.*;
+
 /**
  * This class represents a todo task.
  */
@@ -22,6 +24,12 @@ public class Todo extends Task {
     @Override
     public String toString() {
         return "[T]" + super.toString();
+    }
+
+    @Override
+    public String toStorageString() {
+        String type = "T";
+        return type + " || " + super.toStorageString();
     }
 
     /**

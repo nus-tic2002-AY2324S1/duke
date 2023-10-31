@@ -15,13 +15,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TaskStorage {
     String filePath;
     private final String DIRECTORY_PATH = "./data";
     File folder = new File(DIRECTORY_PATH);
     File file;
-
 
     public TaskStorage(String fileName) {
         file = new File(DIRECTORY_PATH + "/" + fileName);
@@ -81,65 +79,49 @@ public class TaskStorage {
         return tasks;
     }
 
+    /**
+     * load the line from the file
+     * line format: type || status || description || time (optional) || time (optional)
+     * type: T, D, E
+     * status: 0, 1
+     * description: String
+     * time: yyyy/MM/dd HHmm
+     *
+     * @param reader the reader to read the file
+     *               the list of tasks
+     *               the line from the file
+     */
     private static void loadLine(BufferedReader reader, List<Task> tasks) throws IOException {
         String line;
         while ((line = reader.readLine()) != null) {
-            boolean isDone = isDone(line);
-            addByType(tasks, line, isDone);
+            String[] split = line.split("\\|\\|");
+            String type = split[0].trim();
+            String status = split[1].trim();
+            String description = split[2].trim();
+            switch (type) {
+            case "T":
+                tasks.add(new Todo(description));
+                break;
+            case "D":
+                String time = split[3].trim();
+                tasks.add(new Deadline(description, time));
+                break;
+            case "E":
+                String startTime = split[3].trim();
+                if (split.length == 5) {
+                    String endTime = split[4].trim();
+                    tasks.add(new Event(description, startTime, endTime));
+                    break;
+                }
+                tasks.add(new Event(description, startTime));
+                break;
+            default:
+                break;
+            }
+            if (status.equals("1")) {
+                tasks.get(tasks.size() - 1).setDone(true);
+            }
         }
     }
 
-    private static void addByType(List<Task> tasks, String line, boolean isDone) {
-        assert line.length() > 9;
-        char checkType = line.charAt(1);
-        String content = line.substring(9);
-        switch (checkType) {
-        case 'D':
-            Deadline deadline = getDeadline(isDone, content);
-            tasks.add(deadline);
-            break;
-        case 'E':
-            Event event = getEvent(isDone, content);
-            tasks.add(event);
-            break;
-        default:
-            Todo todo = new Todo(content);
-            todo.setIsDone(isDone);
-            tasks.add(todo);
-        }
-    }
-
-    private static Deadline getDeadline(boolean isDone, String content) {
-        String[] formatDeadline = content.split(" \\(by:");
-        assert formatDeadline.length > 0;
-        String tmp = formatDeadline[1].substring(0, formatDeadline[1].length() - 1);
-        Deadline deadline = new Deadline(formatDeadline[0], tmp);
-        deadline.setIsDone(isDone);
-        return deadline;
-    }
-
-    private static Event getEvent(boolean isDone, String content) {
-        String[] formatEvent = content.split(" \\(from:");
-        assert formatEvent.length > 0;
-        String time = formatEvent[1];
-        time = time.substring(0, time.length() - 1);
-        Event event;
-        if (time.contains("to:")) {
-            String[] tmp1 = time.split(" to: ");
-            event = new Event(formatEvent[0], tmp1[0], tmp1[1]);
-        } else {
-            event = new Event(formatEvent[0], time);
-        }
-        event.setIsDone(isDone);
-        return event;
-    }
-
-    private static boolean isDone(String line) {
-        boolean isDone = false;
-        assert line.length() > 5;
-        if (line.charAt(5) == '✓') {
-            isDone = true;
-        }
-        return isDone;
-    }
 }

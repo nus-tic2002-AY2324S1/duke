@@ -60,7 +60,11 @@ public class Deadline extends Task {
      */
     @Override
     public String toStorageString() {
-        return "[D]" + super.toString() + " (by: " + time.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")) + ")";
+        String type = "D";
+        String status = isDone ? "1" : "0";
+        String description = this.description;
+        String time = this.time.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm"));
+        return type + " || " + status + " || " + description + " || " + time;
     }
 
     /**
@@ -72,7 +76,7 @@ public class Deadline extends Task {
     @Override
     public Task clone() {
         Deadline clone = new Deadline(this.description, this.time.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")));
-        clone.setIsDone(this.isDone);
+        clone.setDone(this.isDone);
         return clone;
     }
 }
