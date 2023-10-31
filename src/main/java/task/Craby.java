@@ -1,25 +1,13 @@
 package task;
 
-import command.ByeCommand;
-import command.ListCommand;
 import command.AddTaskCommand;
-import command.BlahCommand;
-import command.DeleteCommand;
-import command.FindCommand;
-import command.HelpCommand;
-import command.MarkCommand;
-import command.SortCommand;
-import command.SwitchCommand;
-import command.UnmarkCommand;
-import command.UndoCommand;
 
 import exceptions.MyCustomException;
 import exceptions.InputBlankException;
 import io.HelloAndByeMessage;
 import io.TaskStorage;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,14 +41,14 @@ public class Craby extends HelloAndByeMessage {
             String input = scanner.nextLine();
             input = input.trim();
             input = input.replaceAll("\\|\\|", "|");
-            boolean exit = false;
+            boolean isExit = false;
             putInToStack(input, tasks); // use for undo command
             try {
-                exit = handleInput(input, tasks);
+                isExit = handleInput(input, tasks);
             } catch (InputBlankException e) {
                 printInputBlankExceptionMessage();
             }
-            if (exit) {
+            if (isExit) {
                 break;
             }
         }
@@ -104,7 +92,6 @@ public class Craby extends HelloAndByeMessage {
         if (input.isBlank()) {
             throw new InputBlankException();
         }
-        boolean exit = false;
         String checkInput;
         try {
             checkInput = input.split(" ")[0];
@@ -112,125 +99,50 @@ public class Craby extends HelloAndByeMessage {
             throw new InputBlankException();
         }
         checkInput = checkInput.toUpperCase().trim();
-        if (isBlankDescription(checkInput, exit)) {
-            return exit;
-        }
+
         try {
-            Keyword keyWords = Keyword.valueOf(checkInput);
-            switch (keyWords) {
-            case LIST:
-                handleListCommand(input, tasks);
-                break;
-            case BLAH:
-                handleBlahCommand(input, tasks);
-                break;
-            case BYE:
-                handleByeCommand(input, tasks);
-                exit = true;
-                break;
-            case MARK:
-                handleMarkCommand(input, tasks);
-                break;
-            case UNMARK:
-                handleUnmarkCommand(input, tasks);
-                break;
-            case DELETE:
-                handleDeleteCommand(input, tasks);
-                break;
-            case FIND:
-                handleFindCommand(input, tasks);
-                break;
-            case SORT:
-                handleSortByCommand(input, tasks);
-                break;
-            case HELP:
-                handleHelpCommand(input, tasks);
-                break;
-            case UNDO:
-                handleUndoCommand(input, tasks);
-                break;
-            case SWITCH:
-                handleSwitchCommand(input, tasks);
-                exit = true;
-                break;
-            case ADD:
-            case TODO:
-            case DEADLINE:
-            case EVENT:
-            default:
+            // check if the input is blank
+            checkBlankDescription(checkInput);
+
+            // handle the input
+            Keyword keyWords = getKeyword(checkInput);
+
+            if (Arrays.asList(Keyword.ADD, Keyword.TODO, Keyword.DEADLINE, Keyword.EVENT).contains(keyWords)) {
                 input = input.substring(checkInput.length());
-                addTaskCommand(input, tasks);
-                break;
             }
-        } catch (IllegalArgumentException e) {
-            addTaskCommand(input, tasks);
-        }
-        return exit;
-    }
-
-
-    private static boolean isBlankDescription(String checkInput, boolean exit) {
-        try {
-            if (checkInput.equals("/FROM") || checkInput.equals("/BY") || checkInput.equals("/TO")) {
-                throw new MyCustomException();
+            if (input.isBlank()) {
+                throw new InputBlankException();
             }
+            new CommandCreator().create(keyWords).handleCommand(input, tasks);
+            boolean isExit = keyWords == Keyword.BYE || keyWords == Keyword.SWITCH;
+            if (isExit) {
+                return true;
+            }
+            taskStorage.save(tasks);
+
         } catch (MyCustomException e) {
             printInputBlankExceptionMessage();
-            return true;
+            return false;
         }
         return false;
     }
 
-    private static void handleUndoCommand(String input, List<Task> tasks) {
-        new UndoCommand().handleCommand(input, tasks);
-        taskStorage.save(tasks);
+    private static Keyword getKeyword(String checkInput) {
+        try {
+            Keyword kw = Keyword.valueOf(checkInput);
+            return kw;
+        } catch (IllegalArgumentException e) {
+            // if the input is not a keyword
+            // it will be a task
+            return Keyword.DEFAULT;
+        }
     }
 
-    private static void handleHelpCommand(String input, List<Task> tasks) {
-        new HelpCommand().handleCommand(input, tasks);
+    private static void checkBlankDescription(String checkInput) throws MyCustomException {
+        boolean isBlank = checkInput.equals("/FROM") || checkInput.equals("/BY") || checkInput.equals("/TO");
+        if (isBlank) {
+            throw new MyCustomException();
+        }
     }
 
-    private static void addTaskCommand(String input, List<Task> tasks) {
-        new AddTaskCommand().handleCommand(input, tasks);
-        taskStorage.save(tasks);
-    }
-
-    private static void handleUnmarkCommand(String input, List<Task> tasks) {
-        new UnmarkCommand().handleCommand(input, tasks);
-        taskStorage.save(tasks);
-    }
-
-    private static void handleMarkCommand(String input, List<Task> tasks) {
-        new MarkCommand().handleCommand(input, tasks);
-        taskStorage.save(tasks);
-    }
-
-    private static void handleDeleteCommand(String input, List<Task> tasks) {
-        new DeleteCommand().handleCommand(input, tasks);
-        taskStorage.save(tasks);
-    }
-
-    private static void handleBlahCommand(String input, List<Task> tasks) {
-        new BlahCommand().handleCommand(input, tasks);
-    }
-
-    private static void handleListCommand(String input, List<Task> tasks) {
-        new ListCommand().handleCommand(input, tasks);
-    }
-
-    private static void handleSortByCommand(String input, List<Task> tasks) {
-        new SortCommand().handleCommand(input, tasks);
-    }
-
-    private static void handleFindCommand(String input, List<Task> tasks) {
-        new FindCommand().handleCommand(input, tasks);
-    }
-
-    private static void handleByeCommand(String input, List<Task> tasks) {
-        new ByeCommand().handleCommand(input, tasks);
-    }
-
-    private static void handleSwitchCommand(String input, List<Task> tasks) {
-        new SwitchCommand().handleCommand(input, tasks);
-    }
 }

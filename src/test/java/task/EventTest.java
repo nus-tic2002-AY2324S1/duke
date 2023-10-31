@@ -15,6 +15,6 @@ class EventTest {
     @Test
     void toStorageString() {
         Event event = new Event("test description", "2023/10/20 2359");
-        assertEquals("[E][҉҉҉] Test description (from: 2023/10/20 2359)", event.toStorageString());
+        assertEquals("E || 0 || test description || 2023/10/20 2359", event.toStorageString());
     }
 }

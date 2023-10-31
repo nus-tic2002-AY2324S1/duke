@@ -14,6 +14,6 @@ public class DeadlineTest {
     @Test
     public void toStorageString() {
         Deadline deadline = new Deadline("test description", "2023/10/20 2359");
-        Assertions.assertEquals("[D][҉҉҉] Test description (by: 2023/10/20 2359)", deadline.toStorageString());
+        Assertions.assertEquals("D || 0 || test description || 2023/10/20 2359", deadline.toStorageString());
     }
 }

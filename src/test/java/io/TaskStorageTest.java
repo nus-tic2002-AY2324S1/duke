@@ -29,7 +29,6 @@ class TaskStorageTest {
 
     @Test void load() {
 
-        File f = new File("./data/craby.txt");
         List<Task> tasks = new ArrayList<>();
         tasks.add(new Deadline("test", "12/12/2020 1200"));
         TaskStorage taskStorage = new TaskStorage("craby.txt");

@@ -42,7 +42,7 @@ class TaskTest {
     @Test
     void toStorageString() {
         Task task = new Task("test description");
-        assertEquals("[҉҉҉] Test description", task.toStorageString());
+        assertEquals("0 || test description", task.toStorageString());
 
     }
 }

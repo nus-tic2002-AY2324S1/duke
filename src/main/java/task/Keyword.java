@@ -5,5 +5,5 @@ package task;
  */
 public enum Keyword {
     LIST, BLAH, BYE, MARK, UNMARK, DELETE, FIND, HELP, SORT, UNDO, SWITCH,
-    TODO, DEADLINE, EVENT, ADD
+    TODO, DEADLINE, EVENT, ADD, DEFAULT
 }
