@@ -38,9 +38,8 @@ public class FileSaver {
         String shelfData = "";
         try {
             Path filePath = Paths.get(getSavefilePath() + "\\" + fileName + ".txt");
-            System.out.println(filePath);
             if (java.nio.file.Files.exists(filePath)) {
-                System.out.println("File loaded, Welcome Back!");
+                System.out.println("Loading file from: " + filePath);
                 shelfData = Files.readString(filePath);
             } else {
                 System.out.println("File not found, please create a new one");
