@@ -9,7 +9,16 @@ import java.io.IOException;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * This class handles the saving and loading of the list of tasks.
+ */
 public class FileManager {
+    /**
+     * This method loads the list of tasks from the file.
+     * @return the list of tasks
+     * @throws IOException if the file is not found
+     * @throws ClassNotFoundException if the file is corrupted
+     */
     static ArrayList<Task> loadList () throws IOException, ClassNotFoundException{
         ArrayList<Task> list = new ArrayList<Task>();
         try{
@@ -30,6 +39,11 @@ public class FileManager {
         return list;
     }
 
+    /**
+     * This method saves the list of tasks to the file.
+     * @location ./src/main/data/list.data
+     * @param list the list of tasks
+     */
     static void saveList(ArrayList<Task> list){
         try{
             File f = new File("./src/main/data/list.data");

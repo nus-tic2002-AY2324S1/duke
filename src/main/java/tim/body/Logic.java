@@ -1,9 +1,24 @@
 package tim.body;
 import tim.tasks.Task;
 import java.util.ArrayList;
+
+/**
+ * This class is the logic of the program.
+ * It executes the actions based on the parsed user input from the parser.
+ *
+ */
 public class Logic {
 
-    static void executeAction (String mode, ArrayList<Task> list, int index, String[] token, String taskName){
+    /**
+     * This method executes the action based on the parsed user input from the parser.
+     *
+     * @param mode  the action to be executed
+     * @param list  the list of tasks
+     * @param token the user input split into an array of strings
+     */
+    static void executeAction (String mode, ArrayList<Task> list, String[] token){
+        int index;
+        String taskName;
         switch (mode) {
         case "bye":
             Messenger.goodbyeGreet();

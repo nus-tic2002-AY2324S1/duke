@@ -3,6 +3,9 @@ import tim.tasks.Task;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * This class is responsible for printing messages and task list to the user.
+ */
 public class Messenger {
 
     static void printDate(){
@@ -32,6 +35,11 @@ public class Messenger {
         System.out.println("____________________________________________________________");
     }
 
+    /**
+     * This method prints the entire list of tasks.
+     *
+     * @param list the list of tasks
+     */
     static void printList(ArrayList<Task> list){
         if (!list.isEmpty()){
             for(int i = 1; i <= list.size() ; i++){
@@ -41,6 +49,12 @@ public class Messenger {
         printDashes();
     }
 
+    /**
+     * This method prints a single task at the given index of the list.
+     *
+     * @param index the index of the task in the list
+     * @param list the list of tasks
+     */
     static void printSingle(int index, ArrayList<Task> list){
         Task current = list.get(index-1);
         System.out.println(index + ". [" + current.getType()  + "] [" + current.getIsDone() + "] " + current.getDescription() );
