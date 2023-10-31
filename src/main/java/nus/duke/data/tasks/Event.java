@@ -79,6 +79,14 @@ public class Event extends AbstractTask {
     public String encode() {
         String encodedFrom = from.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         String encodedTo = to.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        return String.format("%s | %s | %s | %s -> %s", getType(), encodeIsDone(), description, encodedFrom, encodedTo);
+        String encodedAfter = encodeAfterOption();
+        return String.format(
+                "%s | %s | %s | %s -> %s | %s",
+                getType(),
+                encodeIsDone(),
+                description,
+                encodedFrom,
+                encodedTo,
+                encodedAfter);
     }
 }

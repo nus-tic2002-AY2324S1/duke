@@ -28,9 +28,4 @@ public class Todo extends AbstractTask {
     public String getType() {
         return "T";
     }
-
-    @Override
-    public String encode() {
-        return String.format("%s | %s | %s", getType(), encodeIsDone(), description);
-    }
 }

@@ -3,7 +3,9 @@ package nus.duke.data;
 import nus.duke.data.tasks.AbstractTask;
 import nus.duke.data.tasks.Deadline;
 import nus.duke.data.tasks.Event;
+import nus.duke.exceptions.InvalidCommandArgsDukeException;
 
+import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -106,8 +108,9 @@ public class TaskList implements Iterable<AbstractTask> {
      * Removes a task at the specified index from the list.
      *
      * @param index The index of the task to remove.
+     * @throws InvalidCommandArgsDukeException if the provided index is out of range.
      */
-    public void removeTask(int index) {
+    public void removeTask(int index) throws InvalidCommandArgsDukeException {
         assert index >= 0 && index < tasks.size();
 
         onRemoveTask(index);
@@ -129,18 +132,27 @@ public class TaskList implements Iterable<AbstractTask> {
     }
 
     /**
-     * Handles the adjustments needed when a task is removed from the list.
+     * Handles the adjustments needed when a task is to be removed from the list.
      *
-     * @param taskIndex The index of the removed task.
+     * @param taskIndex The index of the task to be removed.
+     * @throws InvalidCommandArgsDukeException if a task depends on the task to be removed.
      */
-    private void onRemoveTask(int taskIndex) {
+    private void onRemoveTask(int taskIndex) throws InvalidCommandArgsDukeException {
+        int deletingTaskNumber = taskIndex + 1;
         for (int i = taskIndex + 1; i < tasks.size(); i++) {
             AbstractTask task = getTask(i);
             TaskAfterOption taskAfterOption = task.getAfterOption();
-            if (taskAfterOption != null
-                    && taskAfterOption.isAfterTask()
-                    && taskAfterOption.getTaskNumber() > taskIndex + 1) {
-                task.setAfterOption(new TaskAfterOption(taskAfterOption.getTaskNumber() - 1));
+            if (taskAfterOption != null && taskAfterOption.isAfterTask()) {
+                if (taskAfterOption.getTaskNumber() == taskIndex + 1) {
+                    throw new InvalidCommandArgsDukeException(
+                            MessageFormat.format(
+                                    "The task #{0} depends on the task #{1}, please delete the task #{0} first.",
+                                    i + 1,
+                                    deletingTaskNumber));
+                }
+                if (taskAfterOption.getTaskNumber() > taskIndex + 1) {
+                    task.setAfterOption(new TaskAfterOption(taskAfterOption.getTaskNumber() - 1));
+                }
             }
         }
     }

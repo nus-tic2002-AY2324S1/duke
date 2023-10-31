@@ -183,7 +183,10 @@ public abstract class AbstractTask {
      *
      * @return The encoded representation of the task.
      */
-    public abstract String encode();
+    public String encode() {
+        String encodedAfter = encodeAfterOption();
+        return String.format("%s | %s | %s | %s", getType(), encodeIsDone(), description, encodedAfter);
+    }
 
     @Override
     public String toString() {
@@ -213,6 +216,19 @@ public abstract class AbstractTask {
      */
     protected String encodeIsDone() {
         return isDone ? "1" : "0";
+    }
+
+    protected String encodeAfterOption() {
+        if (afterOption == null) {
+            return "";
+        }
+        if (afterOption.isAfterTask()) {
+            return String.valueOf(afterOption.getTaskNumber());
+        }
+        if (afterOption.isAfterTime()) {
+            return afterOption.getDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        }
+        throw new RuntimeException("Invalid task after option.");
     }
 
     @FunctionalInterface

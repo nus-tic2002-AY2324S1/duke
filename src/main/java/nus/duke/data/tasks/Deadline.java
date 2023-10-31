@@ -59,6 +59,7 @@ public class Deadline extends AbstractTask {
     @Override
     public String encode() {
         String encodedBy = by.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        return String.format("%s | %s | %s | %s", getType(), encodeIsDone(), description, encodedBy);
+        String encodedAfter = encodeAfterOption();
+        return String.format("%s | %s | %s | %s | %s", getType(), encodeIsDone(), description, encodedBy, encodedAfter);
     }
 }
