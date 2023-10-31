@@ -6,6 +6,7 @@ import nus.duke.commands.DateCommand;
 import nus.duke.commands.DeadlineCommand;
 import nus.duke.commands.DeleteCommand;
 import nus.duke.commands.EventCommand;
+import nus.duke.commands.FindCommand;
 import nus.duke.commands.ListCommand;
 import nus.duke.commands.MarkCommand;
 import nus.duke.commands.TodoCommand;
@@ -56,6 +57,8 @@ public class Parser {
             return new DeleteCommand(commandArgs);
         case "event":
             return new EventCommand(commandArgs);
+        case "find":
+            return new FindCommand(commandArgs);
         case "list":
             return new ListCommand(commandArgs);
         case "mark":
