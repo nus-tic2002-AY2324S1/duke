@@ -1,15 +1,35 @@
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
+    private static Storage storage;
+    private static ListTask listofitems;
     public static void main(String[] args) {
-        Logo();
-        Greeter();
+        Parser parse;
+        storage = new Storage();
         //Echo();
         //List();
         //MarkDone();
-        TED();
-
-
+        //TED();
+       try {
+            listofitems = storage.load();
+        } catch (FileNotFoundException e) {
+            listofitems = new ListTask();
+        }
+/*
+        Task t = new Todo("fly kite");
+        listofitems.AddTask(t);
+        t = new Deadline("return kite","june 2023");
+        listofitems.AddTask(t);
+        listofitems.ListAll(Keyword.LIST);
+        try{
+        storage.save(listofitems);}
+        catch (IOException e) {
+           System.out.println("error save");
+        } */
+        listofitems.ListAll(Keyword.LIST);
     }
     public static void Logo(){
         String logo = " _ _ _              _ \n"
@@ -127,15 +147,13 @@ public class Duke {
     public static void Response(Keyword input,ArrayList<Task> Storage){
         switch (input){
             case DELETE:
+            case LIST:
                 ListTask(input,Storage);
                 break;
             case BYE:
                 Separator();
                 System.out.println("Goodbye , See you next time '~'");
                 Separator();
-                break;
-            case LIST:
-                ListTask(input,Storage);
                 break;
             case MARK:
                 Separator();
@@ -201,6 +219,8 @@ public class Duke {
     }
 
     public static void TED(){
+        Duke.Logo();
+        Duke.Greeter();
         ArrayList<Task> Storage = new ArrayList<>();
         Task Selector;
         boolean Power=true;

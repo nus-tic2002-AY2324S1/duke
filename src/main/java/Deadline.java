@@ -15,7 +15,7 @@ public class Deadline extends Todo {
     }
     @Override
     public String toString() {
-        return "[D][" + getStatusIcon() + "] " + getDescription() + "(by: " + getBy() + ")";
+        return "[D][" + getStatusIcon() + "] " + getDescription() + "(by:" + getBy() + ")";
     }
 }
 

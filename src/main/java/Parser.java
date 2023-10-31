@@ -6,6 +6,8 @@ public class Parser{
         public boolean getNoError(){
             return NoError;
         }
+
+        public Parser(){}
         public Parser(Keyword k,String line,ArrayList<Task> Storage){
                 this.NoError=true;
         String[] words = line.split(" ");
