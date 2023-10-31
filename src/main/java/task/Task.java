@@ -1,10 +1,7 @@
 package task;
 
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import static io.CrabyMessage.printDateTimeParseExceptionMessage;
 
 public class Task {
     public static final String TIME_OUTPUT_FORMAT = "d MMM yyyy, E - hh:mma";
@@ -42,6 +39,7 @@ public class Task {
 
     /**
      * This method is to handle the date and time.
+     * It will cover 4 different format of the date and time.
      *
      * @return The LocalDateTime object to the format requirement.
      */
@@ -49,21 +47,33 @@ public class Task {
         // check the format of the time user input
         DateTimeFormatter formatter;
         if (time.contains("/")) {
-            String[] checkFormat = time.split("/");
-            if (checkFormat[0].length() <= 2) {
-                formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
-            } else {
-                formatter = DateTimeFormatter.ofPattern("yyyy/M/d HHmm");
-            }
+            formatter = getDateTimeSlashFormatter(time);
         } else {
-            String[] checkFormat = time.split("-");
-            if (checkFormat[0].length() > 2) {
-                formatter = DateTimeFormatter.ofPattern("yyyy-M-d HHmm");
-            } else {
-                formatter = DateTimeFormatter.ofPattern("d-M-yyyy HHmm");
-            }
+            formatter = getDateTimeDashFormatter(time);
         }
         return LocalDateTime.parse(time, formatter);
+    }
+
+    private static DateTimeFormatter getDateTimeDashFormatter(String time) {
+        DateTimeFormatter formatter;
+        String[] checkFormat = time.split("-");
+        if (checkFormat[0].length() > 2) {
+            formatter = DateTimeFormatter.ofPattern("yyyy-M-d HHmm");
+        } else {
+            formatter = DateTimeFormatter.ofPattern("d-M-yyyy HHmm");
+        }
+        return formatter;
+    }
+
+    private static DateTimeFormatter getDateTimeSlashFormatter(String time) {
+        DateTimeFormatter formatter;
+        String[] checkFormat = time.split("/");
+        if (checkFormat[0].length() <= 2) {
+            formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+        } else {
+            formatter = DateTimeFormatter.ofPattern("yyyy/M/d HHmm");
+        }
+        return formatter;
     }
 
     /**

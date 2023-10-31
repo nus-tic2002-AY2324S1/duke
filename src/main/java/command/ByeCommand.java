@@ -1,6 +1,6 @@
 package command;
 
-import io.CrabyMessage;
+import io.HelloAndByeMessage;
 import task.Task;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  * It implements the CommandInterface.
  * It has a method to handle the bye command.
  */
-public class ByeCommand extends CrabyMessage implements CommandInterface {
+public class ByeCommand extends HelloAndByeMessage implements CommandInterface {
     /**
      * This method will print out the bye message.
      *

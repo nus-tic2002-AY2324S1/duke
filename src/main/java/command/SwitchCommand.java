@@ -18,7 +18,7 @@ public class SwitchCommand extends CrabyMessage implements CommandInterface {
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
-        // switch to another list
+        // switch to another checklist
         printSwitchMessage();
         task.Craby.crabySystem(false);
     }

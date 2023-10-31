@@ -3,6 +3,10 @@ package io;
 import static io.CrabyMessage.SPACES;
 import static io.CrabyMessage.LINE;
 
+/**
+ * HelpMessage class is a class that handle the help message.
+ * It has a method to print out the list of commands that what CrabY can do.
+ */
 public class HelpMessage {
     public static void printHelpMessage() {
         System.out.println(SPACES + "    ❉⊱•  Welcome to Craby's help page! •⊰❉");

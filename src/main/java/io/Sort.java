@@ -52,7 +52,6 @@ public class Sort {
                 } else if (task1 instanceof Event) {
                     task1Time = ((Event) task1).getFromTime();
                 }
-
                 if (task2 instanceof Deadline) {
                     task2Time = ((Deadline) task2).getTime();
                 } else if (task2 instanceof Event) {

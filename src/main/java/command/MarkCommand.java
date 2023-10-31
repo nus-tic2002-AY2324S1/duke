@@ -31,7 +31,7 @@ public class MarkCommand extends CrabyMessage implements CommandInterface {
             tasks.get(checkNum).setIsDone(true);
             printMarkMessage(tasks.get(checkNum).toString());
         } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
-            printMarkNumFormatExceptionMessage();
+            printMarkErrorMessage();
         }
     }
 

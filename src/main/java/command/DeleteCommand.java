@@ -36,7 +36,8 @@ public class DeleteCommand extends CrabyMessage implements CommandInterface {
         }
         try {
             int checkNum = (Integer.parseInt(checkDelete)) - 1;
-            if (checkNum >= tasks.size() || checkNum < 0) {
+            boolean isNumOutOfTask = checkNum >= tasks.size() || checkNum < 0;
+            if (isNumOutOfTask) {
                 printNumOutOfTask(tasks.size());
                 return;
             }

@@ -6,69 +6,13 @@ import java.util.List;
 
 /**
  * CrabyMessage class is a class that store all the messages that CrabY will use.
- * because the file quite long, I separate the help message into another file.
+ * because the file quite long, I separate the help, hello and bye messages into another file.
  * It has a method to handle the command.
  */
 public class CrabyMessage {
     public static final String LINE = "  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈";
     public static final String SPACES = "   ";
     public static String checkListName;
-
-    public static void printHello() {
-        System.out.println(LINE + System.lineSeparator() +
-
-                "   ____                  _      __   __" + System.lineSeparator() +
-                "  / ___|  _ __    __ _  | |__   \\ \\ / /" + System.lineSeparator() +
-                " | |     | '__|  / _` | | '_ \\   \\ V /" + System.lineSeparator() +
-                " | |___  | |    | (_| | | |_) |   | |" + System.lineSeparator() +
-                "  \\____| |_|     \\__,_| |_.__/    |_|" + System.lineSeparator() + System.lineSeparator() + LINE);
-
-        System.out.println(SPACES + "Hi Amber ♡, CrabY 🦀 here!");
-        System.out.println(SPACES + "Which checklist do you want to work on today? (｡◕‿◕｡)");
-        System.out.println(SPACES + "╰┈➤You can typing: \"School\" | \"Work\" | \"Personal\" |");
-        System.out.println(SPACES + "               or  [checklist-name] if you wanna creat a new list.");
-        System.out.println(LINE);
-    }
-
-    public static void printEmptyTypeName() {
-        System.out.println(SPACES + "Oops!!! The [checklist-name] cannot be empty.");
-        System.out.println(SPACES + "NOTE: if you use the same [checklist-name] that used before");
-        System.out.println(SPACES + "╰┈➤You can continue to use the previous list of tasks.");
-        System.out.println(LINE);
-    }
-
-    public static void printTypeNameError() {
-        System.out.println(SPACES + "Oops!!! The [checklist-name] cannot contain special character.");
-        System.out.println(SPACES + "NOTE: if you use the same [checklist-name] that used before");
-        System.out.println(SPACES + "╰┈➤You can continue to use the previous list of tasks.");
-        System.out.println(LINE);
-    }
-
-    public static void printNameSameWithKeyWord() {
-        System.out.println(SPACES + "Oops!!! Before you start, pls give me [checklist-name].");
-        System.out.println(SPACES + "╰┈➤Your input cannot same with my keyword");
-        System.out.println(SPACES + "NOTE: if you use the same [checklist-name] that used before");
-        System.out.println(SPACES + "╰┈➤You can continue to use the previous list of tasks.");
-        System.out.println(LINE);
-    }
-
-    public static void printFirstMessage(String input) {
-        checkListName = input;
-        System.out.println(SPACES + "Ok I got it! Let start with your ➞ " + input + " list.");
-        System.out.println(
-                SPACES + "╰┈➤Type \"help\" if you need to see what I can do for you" + System.lineSeparator() + LINE);
-
-    }
-
-    public static void printByeMessage() {
-        System.out.println(SPACES + "Bye Amber ♡, hope to see you again soon! •ᴗ•");
-        System.out.println(LINE);
-        System.out.println("               __   ♡   __" + System.lineSeparator() + "              /           \\" +
-                System.lineSeparator() + "             (  / @   @ \\  )" + System.lineSeparator() +
-                "              \\(_ _\\_/_ _)/" + System.lineSeparator() + "            (\\ `-/     \\-' /)" +
-                System.lineSeparator() + "             \"===\\     /===\"" + System.lineSeparator() +
-                "              .==')___(`==." + System.lineSeparator() + "               .='     `=.");
-    }
 
     public static void printInputBlankExceptionMessage() {
         System.out.println(SPACES + "Oops!!! The description cannot be empty.");
@@ -164,7 +108,7 @@ public class CrabyMessage {
         System.out.println(LINE);
     }
 
-    public static void printMarkNumFormatExceptionMessage() {
+    public static void printMarkErrorMessage() {
         System.out.println(SPACES + "Oops!!! Looks like you used the wrong format.");
         System.out.println(SPACES + "╰┈➤ Try with: mark [integer] e.g: mark 1");
         System.out.println(LINE);
@@ -177,7 +121,7 @@ public class CrabyMessage {
         System.out.println(LINE);
     }
 
-    public static void printUnmarkNumFormatExceptionMessage() {
+    public static void printUnmarkErrorMessage() {
         System.out.println(SPACES + "Oops!!! Looks like you used the wrong format.");
         System.out.println(SPACES + "╰┈➤ Try with: unmark [integer] e.g: unmark 1");
         System.out.println(LINE);
@@ -185,15 +129,15 @@ public class CrabyMessage {
 
     //Print FindCommand Message
     public static void printFindMessage(List<String> listFound, String keyword) {
-        System.out.println(SPACES + "⌖ Here are the list task matching with \"" + keyword + "\":");
+        System.out.println(SPACES + "⌖ Here are the list tasks matching with \"" + keyword + "\":");
         for (String s : listFound) {
             System.out.println(SPACES + s);
         }
         System.out.println(LINE);
     }
 
-    public static void printNoMatchingTasks() {
-        System.out.println(SPACES + "✘ No matching tasks in your list.");
+    public static void printNoMatchingTasks(String keyword) {
+        System.out.println(SPACES + "✘ No tasks matching with \"" + keyword + "\" in your list.");
         System.out.println(SPACES + "╰┈➤ Please try with another keyword ☘");
         System.out.println(LINE);
     }
@@ -212,7 +156,12 @@ public class CrabyMessage {
     }
 
     //Print UndoCommand Message
-    public static void printUndoMessage(String command, String customizeMessage) {
+    public static void printUndoMessage(String command) {
+        String customizeMessage = "add - ";
+        boolean isCustomize = command.contains("delete") || command.contains("mark") || command.contains("sort");
+        if (isCustomize) {
+            customizeMessage = " ";
+        }
         System.out.println(SPACES + "Undo Successful!!!");
         System.out.println(SPACES + "╰┈➤I've undo your command:" + customizeMessage + command);
         System.out.println(LINE);

@@ -6,6 +6,13 @@ import java.util.List;
 
 public class DateTimeUtils {
 
+    /**
+     * This method will handle the date and time.
+     * Use will input the date and time in natural language.
+     * It will return the date and time in the correct format.
+     *
+     * @return The LocalDateTime object
+     */
     public static LocalDateTime parseNextDay(String dateStr) {
         if (!Arrays.asList("mon", "tue", "wed", "thu", "fri", "sat", "sun",
                         "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
@@ -20,7 +27,8 @@ public class DateTimeUtils {
         if(dateStr.toLowerCase().contains("today")){
             return now;
         }
-        if(dateStr.toLowerCase().contains("tomorrow") || dateStr.toLowerCase().contains("tmr")){
+        boolean isTomorrow = dateStr.toLowerCase().contains("tomorrow") || dateStr.toLowerCase().contains("tmr");
+        if(isTomorrow){
             return now.plusDays(1);
         }
         List<DayOfWeek> dayOfWeeks = Arrays.asList(DayOfWeek.values());

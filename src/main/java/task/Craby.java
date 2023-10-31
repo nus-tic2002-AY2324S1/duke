@@ -15,22 +15,23 @@ import command.UndoCommand;
 
 import exceptions.MyCustomException;
 import exceptions.InputBlankException;
-import io.CrabyMessage;
+import io.HelloAndByeMessage;
 import io.TaskStorage;
 
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static command.UndoCommand.putInToStack;
 
-import java.util.stream.*;
+import java.util.stream.Stream;
 
 /**
  * This class is the main class of the program.
  * It will handle the input from the user.
  */
-public class Craby extends CrabyMessage {
+public class Craby extends HelloAndByeMessage {
     private static TaskStorage taskStorage;
     private static final String REGEX = ".*[^a-zA-Z0-9\\s].*";
 
@@ -43,7 +44,7 @@ public class Craby extends CrabyMessage {
             printHello();
         }
         Scanner scanner = new Scanner(System.in);
-        String nameOfList = checkName(scanner);
+        String nameOfList = checkListName(scanner);
         assert nameOfList != null;
         printFirstMessage(nameOfList);
         taskStorage = new TaskStorage(nameOfList.toLowerCase() + ".txt");
@@ -64,25 +65,25 @@ public class Craby extends CrabyMessage {
         }
     }
 
-    private static String checkName(Scanner scanner) {
-        String name = scanner.nextLine().trim();
-        while (name.isBlank()) {
+    private static String checkListName(Scanner scanner) {
+        String listName = scanner.nextLine().trim();
+        while (listName.isBlank()) {
             printEmptyTypeName();
-            name = scanner.nextLine();
+            listName = scanner.nextLine();
         }
         Pattern pattern = Pattern.compile(REGEX);
-        Matcher matcher = pattern.matcher(name);
+        Matcher matcher = pattern.matcher(listName);
         while (matcher.find()) {
             printTypeNameError();
-            name = scanner.nextLine();
+            listName = scanner.nextLine();
         }
-        boolean isKeyword = isKeyword(name);
+        boolean isKeyword = isKeyword(listName);
         while (isKeyword) {
             printNameSameWithKeyWord();
-            name = scanner.nextLine();
-            isKeyword = isKeyword(name);
+            listName = scanner.nextLine();
+            isKeyword = isKeyword(listName);
         }
-        return name;
+        return listName;
     }
 
     private static boolean isKeyword(String name) {

@@ -61,15 +61,11 @@ public class UndoCommand extends CrabyMessage implements CommandInterface {
             return;
         }
         String command = stackInput.pop().toLowerCase();
-        String customizeMessage = "add - ";
-        if (command.contains("delete") || command.contains("mark") || command.contains("sort")) {
-            customizeMessage = " ";
-        }
         List<Task> prevTask = stackTaskList.peek();
         stackTaskList.pop();
         tasks.clear();
         tasks.addAll(prevTask);
-        printUndoMessage(command, customizeMessage);
+        printUndoMessage(command);
     }
 }
 
