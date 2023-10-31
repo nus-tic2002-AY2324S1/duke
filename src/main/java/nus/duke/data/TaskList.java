@@ -3,7 +3,9 @@ package nus.duke.data;
 import nus.duke.data.tasks.AbstractTask;
 import nus.duke.data.tasks.Deadline;
 import nus.duke.data.tasks.Event;
+import nus.duke.exceptions.InvalidCommandArgsDukeException;
 
+import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -30,6 +32,8 @@ public class TaskList implements Iterable<AbstractTask> {
      * @param tasks The list of tasks to initialize the `TaskList`.
      */
     public TaskList(List<AbstractTask> tasks) {
+        assert tasks != null;
+
         this.tasks = tasks;
     }
 
@@ -39,6 +43,8 @@ public class TaskList implements Iterable<AbstractTask> {
      * @param task The task to add to the list.
      */
     public void addTask(AbstractTask task) {
+        assert task != null;
+
         tasks.add(task);
     }
 
@@ -58,6 +64,8 @@ public class TaskList implements Iterable<AbstractTask> {
      * @return A sorted map of task indices and corresponding tasks scheduled for the specified date.
      */
     public SortedMap<Integer, AbstractTask> getTasks(LocalDate date) {
+        assert date != null;
+
         SortedMap<Integer, AbstractTask> result = new TreeMap<>();
         for (int i = 0; i < tasks.size(); i++) {
             AbstractTask task = tasks.get(i);
@@ -97,12 +105,16 @@ public class TaskList implements Iterable<AbstractTask> {
     }
 
     /**
-     * Removes a specified task from the list.
+     * Removes a task at the specified index from the list.
      *
-     * @param task The task to remove from the list.
+     * @param index The index of the task to remove.
+     * @throws InvalidCommandArgsDukeException if the provided index is out of range.
      */
-    public void removeTask(AbstractTask task) {
-        tasks.remove(task);
+    public void removeTask(int index) throws InvalidCommandArgsDukeException {
+        assert index >= 0 && index < tasks.size();
+
+        onRemoveTask(index);
+        tasks.remove(index);
     }
 
     /**
@@ -117,5 +129,31 @@ public class TaskList implements Iterable<AbstractTask> {
     @Override
     public Iterator<AbstractTask> iterator() {
         return tasks.iterator();
+    }
+
+    /**
+     * Handles the adjustments needed when a task is to be removed from the list.
+     *
+     * @param taskIndex The index of the task to be removed.
+     * @throws InvalidCommandArgsDukeException if a task depends on the task to be removed.
+     */
+    private void onRemoveTask(int taskIndex) throws InvalidCommandArgsDukeException {
+        int deletingTaskNumber = taskIndex + 1;
+        for (int i = taskIndex + 1; i < tasks.size(); i++) {
+            AbstractTask task = getTask(i);
+            TaskAfterOption taskAfterOption = task.getAfterOption();
+            if (taskAfterOption != null && taskAfterOption.isAfterTask()) {
+                if (taskAfterOption.getTaskNumber() == taskIndex + 1) {
+                    throw new InvalidCommandArgsDukeException(
+                            MessageFormat.format(
+                                    "The task #{0} depends on the task #{1}, please delete the task #{0} first.",
+                                    i + 1,
+                                    deletingTaskNumber));
+                }
+                if (taskAfterOption.getTaskNumber() > taskIndex + 1) {
+                    task.setAfterOption(new TaskAfterOption(taskAfterOption.getTaskNumber() - 1));
+                }
+            }
+        }
     }
 }

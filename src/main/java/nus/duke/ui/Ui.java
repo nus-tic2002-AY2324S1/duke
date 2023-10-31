@@ -47,6 +47,8 @@ public class Ui {
      * @param messages The messages to be displayed.
      */
     public void showMessages(String... messages) {
+        assert messages != null;
+
         showWithPrefix(messages);
     }
 
@@ -56,6 +58,8 @@ public class Ui {
      * @param error The error message to be displayed.
      */
     public void showError(String error) {
+        assert error != null;
+
         showWithPrefix(error);
     }
 
@@ -67,6 +71,8 @@ public class Ui {
     }
 
     private void showWithPrefix(String... messages) {
+        assert messages != null;
+
         for (String message : messages) {
             System.out.println(LINE_PREFIX + message.replaceAll("\\R", LS + LINE_PREFIX));
         }

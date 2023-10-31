@@ -25,6 +25,8 @@ public class Storage {
      * @throws IllegalArgumentException If the provided file path does not end with '.txt'.
      */
     public Storage(String filePath) {
+        assert filePath != null;
+
         if (!isValidPath(filePath)) {
             throw new IllegalArgumentException("Storage file should end with '.txt'");
         }
@@ -33,10 +35,14 @@ public class Storage {
     }
 
     private static boolean isValidPath(String filePath) {
+        assert filePath != null;
+
         return filePath.endsWith(".txt");
     }
 
     private static void ensureParentPathExists(Path path) throws IOException {
+        assert path != null;
+
         Path parentPath = path.getParent();
         if (parentPath != null) {
             Files.createDirectories(parentPath);
@@ -76,6 +82,8 @@ public class Storage {
      * @throws StorageOperationException If an error occurs while writing to the file.
      */
     public void save(TaskList taskList) throws StorageOperationException {
+        assert taskList != null;
+
         Collection<String> encodedTaskList = TaskListEncoder.encodeTaskList(taskList);
         try {
             ensureParentPathExists(path);

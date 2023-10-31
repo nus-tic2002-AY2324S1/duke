@@ -1,7 +1,10 @@
 package nus.duke.data.tasks;
 
+import nus.duke.data.TaskOptionKey;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 /**
  * The `Deadline` class represents a task with a deadline in Duke.
@@ -32,7 +35,16 @@ public class Deadline extends AbstractTask {
      */
     public Deadline(String description, LocalDateTime by, boolean isDone) {
         super(description, isDone);
+
+        assert by != null;
+
         this.by = by;
+        addAttribute(0, TaskOptionKey.BY, () -> Optional.of(formatLocalDateTime(by)));
+    }
+
+    @Override
+    public String getType() {
+        return "D";
     }
 
     /**
@@ -47,12 +59,7 @@ public class Deadline extends AbstractTask {
     @Override
     public String encode() {
         String encodedBy = by.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        return String.format("D | %s | %s | %s", encodeIsDone(), description, encodedBy);
-    }
-
-    @Override
-    public String toString() {
-        String formattedBy = formatLocalDateTime(by);
-        return String.format("[D]%s (by: %s)", super.toString(), formattedBy);
+        String encodedAfter = encodeAfterOption();
+        return String.format("%s | %s | %s | %s | %s", getType(), encodeIsDone(), description, encodedBy, encodedAfter);
     }
 }

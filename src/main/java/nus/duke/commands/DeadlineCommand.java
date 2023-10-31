@@ -1,6 +1,9 @@
 package nus.duke.commands;
 
+import nus.duke.data.TaskAfterOption;
 import nus.duke.data.TaskList;
+import nus.duke.data.TaskOptionKey;
+import nus.duke.data.TaskSource;
 import nus.duke.data.tasks.Deadline;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
@@ -9,6 +12,7 @@ import nus.duke.storage.Storage;
 import nus.duke.ui.Ui;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * The `DeadlineCommand` class represents a command to add a new deadline task.
@@ -27,17 +31,25 @@ public class DeadlineCommand extends AbstractTaskCommand {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        assert tasks != null;
+        assert ui != null;
+        assert storage != null;
+
         if (args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The description of a deadline cannot be empty.");
         }
 
-        String[] array = args.split(" /by ", -1);
-        if (array.length != 2) {
-            throw new InvalidCommandArgsDukeException("The \"/by {date/time}\" of a deadline is required.");
+        TaskSource taskSource = Parser.parseTaskSource(args);
+        Optional<String> byOption = taskSource.getOptionValue(TaskOptionKey.BY);
+        if (byOption.isEmpty()) {
+            throw new InvalidCommandArgsDukeException(
+                    String.format("The \"/%s {date/time}\" of a deadline is required.", TaskOptionKey.BY));
         }
 
-        LocalDateTime by = Parser.parseUserDateTime(array[1]);
-        Deadline deadline = new Deadline(array[0], by);
+        Optional<TaskAfterOption> optionalAfterOption = getAfterOption(tasks, taskSource);
+        LocalDateTime by = Parser.parseUserDateTime(byOption.get());
+        Deadline deadline = new Deadline(taskSource.getDescription(), by);
+        optionalAfterOption.ifPresent(deadline::setAfterOption);
         tasks.addTask(deadline);
         storage.save(tasks);
         ui.showMessages(getTaskAddedMessages(tasks));

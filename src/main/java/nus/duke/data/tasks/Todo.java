@@ -25,12 +25,7 @@ public class Todo extends AbstractTask {
     }
 
     @Override
-    public String encode() {
-        return String.format("T | %s | %s", encodeIsDone(), description);
-    }
-
-    @Override
-    public String toString() {
-        return "[T]" + super.toString();
+    public String getType() {
+        return "T";
     }
 }
