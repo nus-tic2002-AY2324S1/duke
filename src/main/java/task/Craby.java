@@ -40,7 +40,10 @@ public class Craby extends HelloAndByeMessage {
         while (true) {
             String input = scanner.nextLine();
             input = input.trim();
+
+            // the data store in the file slip by || so replace it to | to not make the data wrong
             input = input.replaceAll("\\|\\|", "|");
+
             boolean isExit = false;
             putInToStack(input, tasks); // use for undo command
             try {
@@ -99,20 +102,20 @@ public class Craby extends HelloAndByeMessage {
             throw new InputBlankException();
         }
         checkInput = checkInput.toUpperCase().trim();
-
         try {
             // check if the input is blank
             checkBlankDescription(checkInput);
 
-            // handle the input
             Keyword keyWords = getKeyword(checkInput);
 
+            // check if the description is blank
             if (Arrays.asList(Keyword.ADD, Keyword.TODO, Keyword.DEADLINE, Keyword.EVENT).contains(keyWords)) {
                 input = input.substring(checkInput.length());
             }
             if (input.isBlank()) {
                 throw new InputBlankException();
             }
+            // handle the input
             new CommandCreator().create(keyWords).handleCommand(input, tasks);
             boolean isExit = keyWords == Keyword.BYE || keyWords == Keyword.SWITCH;
             if (isExit) {
@@ -129,8 +132,7 @@ public class Craby extends HelloAndByeMessage {
 
     private static Keyword getKeyword(String checkInput) {
         try {
-            Keyword kw = Keyword.valueOf(checkInput);
-            return kw;
+            return Keyword.valueOf(checkInput);
         } catch (IllegalArgumentException e) {
             // if the input is not a keyword
             // it will be a task

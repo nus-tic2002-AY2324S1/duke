@@ -49,7 +49,6 @@ public class CommandCreator {
         case DEFAULT:
         default:
             return new AddTaskCommand();
-
         }
     }
 }

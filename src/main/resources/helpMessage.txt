@@ -1,0 +1,34 @@
+       ❉⊱•  Welcome to Craby's help page! •⊰❉
+   ╚════ ▣ Here are the list of commands: ▣ ════╝
+   1.  list - list all the tasks
+       ╰┈➤e.g. list
+   2.  <task description> - add a todo task
+       ╰┈➤e.g. read book
+   3.  <task description> /by <dd/mm/yyy hhmm> - add a deadline task
+       Note: you can use /by Mon -> CrabY will automatically fill the date (next Monday)
+       ╰┈➤e.g. TIC2002 quiz 8 /by 2/12/2023 1800
+   4.  event <task description> /from <dd/mm/yyy hhmm> /to <dd/mm/yyy hhmm> - add an event task
+       Note: you can use /from Fri -> CrabY will automatically fill the date (next Friday)
+       ╰┈➤e.g. project meeting /from 2/12/2023 1800 /to 2/12/2023 2000
+   5.  mark <task number> - mark a task as DONE
+       ╰┈➤e.g. mark 1
+   6.  unmark <task number> - mark a task as NOT DONE YET
+       ╰┈➤e.g. unmark 1
+   7.  delete <task number> - delete a task
+       ╰┈➤e.g. delete 1
+   8.  delete all - delete all the tasks
+       ╰┈➤e.g. delete all
+   9.  find <keyword> - find a task with the keyword
+       ╰┈➤e.g. find book
+   10. sort <type/type-r/t/tr/date/d> - sort the list by type or date
+       Note: type-r or tr will sort the list by type in revert order
+       ╰┈➤e.g. sort t
+   11. undo - undo your previous command (except: list, find, help, blah commands)
+       ╰┈➤e.g. undo
+   12. switch - switch to another list
+       ╰┈➤after that CarbY will ask you to enter the name of the list that you want to switch to
+   13. help - show the list of commands
+       ╰┈➤e.g. help
+   14. bye - exit the program
+       ╰┈➤e.g. bye
+   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
