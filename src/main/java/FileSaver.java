@@ -9,7 +9,6 @@ public class FileSaver {
         String home = System.getProperty("user.dir");
         return Paths.get(home, "save");
     }
-
     public static void CreateFile(String fileData) {
         try {
             Path filePath = Paths.get(getSavefilePath() + "\\data.txt");
