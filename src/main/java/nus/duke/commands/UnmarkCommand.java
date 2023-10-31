@@ -41,9 +41,9 @@ public class UnmarkCommand extends AbstractCommand {
         AbstractTask task = tasks.getTask(taskNumber - 1);
         task.setDone(false);
         storage.save(tasks);
-        ui.showMessages(new String[]{
-                "OK, I've marked this task as not done yet:",
-                "  " + task
+        ui.showMessages(new String[] {
+            "OK, I've marked this task as not done yet:",
+            "  " + task
         });
     }
 }

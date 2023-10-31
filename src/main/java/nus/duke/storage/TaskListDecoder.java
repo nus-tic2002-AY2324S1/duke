@@ -1,5 +1,9 @@
 package nus.duke.storage;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collection;
 import nus.duke.data.TaskAfterOption;
 import nus.duke.data.TaskList;
 import nus.duke.data.tasks.AbstractTask;
@@ -7,11 +11,6 @@ import nus.duke.data.tasks.Deadline;
 import nus.duke.data.tasks.Event;
 import nus.duke.data.tasks.Todo;
 import nus.duke.util.IntegerUtils;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * The `TaskListDecoder` class is responsible for decoding a collection of encoded task representations

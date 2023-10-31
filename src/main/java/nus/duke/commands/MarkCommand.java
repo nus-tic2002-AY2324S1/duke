@@ -41,9 +41,9 @@ public class MarkCommand extends AbstractCommand {
         AbstractTask task = tasks.getTask(taskNumber - 1);
         task.setDone(true);
         storage.save(tasks);
-        ui.showMessages(new String[]{
-                "Nice! I've marked this task as done:",
-                "  " + task
+        ui.showMessages(new String[] {
+            "Nice! I've marked this task as done:",
+            "  " + task
         });
     }
 }

@@ -1,5 +1,7 @@
 package nus.duke.commands;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
 import nus.duke.data.TaskAfterOption;
 import nus.duke.data.TaskList;
 import nus.duke.data.TaskOptionKey;
@@ -10,9 +12,6 @@ import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.parser.Parser;
 import nus.duke.storage.Storage;
 import nus.duke.ui.Ui;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 /**
  * The `DeadlineCommand` class represents a command to add a new deadline task.
@@ -43,7 +42,7 @@ public class DeadlineCommand extends AbstractTaskCommand {
         Optional<String> byOption = taskSource.getOptionValue(TaskOptionKey.BY);
         if (byOption.isEmpty()) {
             throw new InvalidCommandArgsDukeException(
-                    String.format("The \"/%s {date/time}\" of a deadline is required.", TaskOptionKey.BY));
+                String.format("The \"/%s {date/time}\" of a deadline is required.", TaskOptionKey.BY));
         }
 
         Optional<TaskAfterOption> optionalAfterOption = getAfterOption(tasks, taskSource);

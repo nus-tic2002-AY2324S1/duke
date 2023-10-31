@@ -1,5 +1,21 @@
 package nus.duke.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import nus.duke.data.TaskAfterOption;
 import nus.duke.data.TaskList;
 import nus.duke.data.tasks.AbstractTask;
@@ -10,17 +26,6 @@ import nus.duke.parser.Parser;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The `StorageTest` class contains JUnit tests for the `Storage` class, focusing on the loading and saving of tasks.
@@ -146,16 +151,16 @@ class StorageTest {
     @Test
     void load_existingFile_validContent() throws IOException, StorageOperationException {
         Collection<String> lines = Arrays.asList(
-                "D | 0 | return book | 2019-09-01T18:30:00 | ",
-                "D | 0 | return book | 2019-09-01T18:30:00 | 1",
-                "D | 0 | return book | 2019-09-01T18:30:00 | 2019-09-01T09:30:00",
-                "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-09-01T16:30:00 | ",
-                "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-10-15T16:30:00 | ",
-                "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-10-15T16:30:00 | 5",
-                "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-10-15T16:30:00 | 2019-09-01T15:30:00",
-                "T | 1 | join sports club | ",
-                "T | 1 | join sports club | 8",
-                "T | 1 | join sports club | 2019-09-01T09:30:00"
+            "D | 0 | return book | 2019-09-01T18:30:00 | ",
+            "D | 0 | return book | 2019-09-01T18:30:00 | 1",
+            "D | 0 | return book | 2019-09-01T18:30:00 | 2019-09-01T09:30:00",
+            "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-09-01T16:30:00 | ",
+            "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-10-15T16:30:00 | ",
+            "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-10-15T16:30:00 | 5",
+            "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-10-15T16:30:00 | 2019-09-01T15:30:00",
+            "T | 1 | join sports club | ",
+            "T | 1 | join sports club | 8",
+            "T | 1 | join sports club | 2019-09-01T09:30:00"
         );
         Files.write(tempFile.toPath(), lines, StandardCharsets.UTF_8);
         Storage storage = new Storage(tempFile.getAbsolutePath());
@@ -260,17 +265,17 @@ class StorageTest {
      */
     @Test
     void save() throws StorageOperationException, IOException {
-        Collection<String> expectedLines = Arrays.asList(
-                "D | 0 | return book | 2019-09-01T18:30:00 | ",
-                "D | 0 | return book | 2019-09-01T18:30:00 | 1",
-                "D | 0 | return book | 2019-09-01T18:30:00 | 2019-09-01T09:30:00",
-                "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-09-01T16:30:00 | ",
-                "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-10-15T16:30:00 | ",
-                "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-10-15T16:30:00 | 5",
-                "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-10-15T16:30:00 | 2019-09-01T15:30:00",
-                "T | 1 | join sports club | ",
-                "T | 1 | join sports club | 8",
-                "T | 1 | join sports club | 2019-09-01T09:30:00"
+        final Collection<String> expectedLines = Arrays.asList(
+            "D | 0 | return book | 2019-09-01T18:30:00 | ",
+            "D | 0 | return book | 2019-09-01T18:30:00 | 1",
+            "D | 0 | return book | 2019-09-01T18:30:00 | 2019-09-01T09:30:00",
+            "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-09-01T16:30:00 | ",
+            "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-10-15T16:30:00 | ",
+            "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-10-15T16:30:00 | 5",
+            "E | 0 | project meeting | 2019-09-01T14:30:00 -> 2019-10-15T16:30:00 | 2019-09-01T15:30:00",
+            "T | 1 | join sports club | ",
+            "T | 1 | join sports club | 8",
+            "T | 1 | join sports club | 2019-09-01T09:30:00"
         );
 
         TaskList taskList = new TaskList();
@@ -291,31 +296,31 @@ class StorageTest {
 
         // Task 4
         AbstractTask task4 = new Event(
-                "project meeting",
-                Parser.parseUserDateTime("2019-9-1 1430"),
-                Parser.parseUserDateTime("2019-9-1 1630"));
+            "project meeting",
+            Parser.parseUserDateTime("2019-9-1 1430"),
+            Parser.parseUserDateTime("2019-9-1 1630"));
         taskList.addTask(task4);
 
         // Task 5
         AbstractTask task5 = new Event(
-                "project meeting",
-                Parser.parseUserDateTime("2019-9-1 1430"),
-                Parser.parseUserDateTime("2019-10-15 1630"));
+            "project meeting",
+            Parser.parseUserDateTime("2019-9-1 1430"),
+            Parser.parseUserDateTime("2019-10-15 1630"));
         taskList.addTask(task5);
 
         // Task 6
         AbstractTask task6 = new Event(
-                "project meeting",
-                Parser.parseUserDateTime("2019-9-1 1430"),
-                Parser.parseUserDateTime("2019-10-15 1630"));
+            "project meeting",
+            Parser.parseUserDateTime("2019-9-1 1430"),
+            Parser.parseUserDateTime("2019-10-15 1630"));
         task6.setAfterOption(new TaskAfterOption(5));
         taskList.addTask(task6);
 
         // Task 7
         AbstractTask task7 = new Event(
-                "project meeting",
-                Parser.parseUserDateTime("2019-9-1 1430"),
-                Parser.parseUserDateTime("2019-10-15 1630"));
+            "project meeting",
+            Parser.parseUserDateTime("2019-9-1 1430"),
+            Parser.parseUserDateTime("2019-10-15 1630"));
         task7.setAfterOption(new TaskAfterOption(Parser.parseUserDateTime("2019-9-1 1530")));
         taskList.addTask(task7);
 

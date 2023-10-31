@@ -1,13 +1,12 @@
 package nus.duke.commands;
 
+import java.util.ArrayList;
 import nus.duke.data.TaskList;
 import nus.duke.data.tasks.AbstractTask;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.storage.Storage;
 import nus.duke.ui.Ui;
-
-import java.util.ArrayList;
 
 /**
  * Represents a command to search for tasks based on a given criteria.

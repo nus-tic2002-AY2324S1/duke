@@ -63,8 +63,8 @@ public class TaskSource {
         assert optionKey != null;
 
         return options.containsKey(optionKey)
-                ? Optional.of(options.get(optionKey))
-                : Optional.empty();
+            ? Optional.of(options.get(optionKey))
+            : Optional.empty();
     }
 
     /**
