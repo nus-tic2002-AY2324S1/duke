@@ -28,6 +28,27 @@ public class EventCommand extends AbstractTaskCommand {
         super(args);
     }
 
+    private static void setEventAfterOption(Event event, TaskAfterOption afterOption)
+        throws InvalidCommandArgsDukeException {
+        assert event != null;
+
+        if (afterOption == null) {
+            return;
+        }
+
+        if (afterOption.isAfterTime()
+            && (!afterOption.getDateTime().isAfter(event.getFrom())
+            || !afterOption.getDateTime().isBefore(event.getTo()))) {
+            throw new InvalidCommandArgsDukeException(
+                String.format(
+                    "The time of \"/%s\" is not between \"/%s\" and \"/%s\".",
+                    TaskOptionKey.AFTER,
+                    TaskOptionKey.FROM,
+                    TaskOptionKey.TO));
+        }
+        event.setAfterOption(afterOption);
+    }
+
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         assert tasks != null;
@@ -54,19 +75,7 @@ public class EventCommand extends AbstractTaskCommand {
         LocalDateTime from = Parser.parseUserDateTime(fromOption.get());
         LocalDateTime to = Parser.parseUserRelativeDateTime(from, toOption.get());
         Event event = new Event(taskSource.getDescription(), from, to);
-        if (optionalAfterOption.isPresent()) {
-            TaskAfterOption afterOption = optionalAfterOption.get();
-            if (afterOption.isAfterTime()
-                && (!afterOption.getDateTime().isAfter(from) || !afterOption.getDateTime().isBefore(to))) {
-                throw new InvalidCommandArgsDukeException(
-                    String.format(
-                        "The time of \"/%s\" is not between \"/%s\" and \"/%s\".",
-                        TaskOptionKey.AFTER,
-                        TaskOptionKey.FROM,
-                        TaskOptionKey.TO));
-            }
-            event.setAfterOption(optionalAfterOption.get());
-        }
+        setEventAfterOption(event, optionalAfterOption.orElse(null));
         tasks.addTask(event);
         storage.save(tasks);
         ui.showMessages(getTaskAddedMessages(tasks));

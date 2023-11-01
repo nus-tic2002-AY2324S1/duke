@@ -37,9 +37,9 @@ public class Duke {
     }
 
     /**
-     * The entry point of the Duke application.
+     * Runs the application.
      *
-     * @param args The input arguments passed to the main method.
+     * @param args The input arguments passed to the application.
      */
     public static void main(String[] args) {
         Duke duke = new Duke("./data/duke.txt");
@@ -47,7 +47,7 @@ public class Duke {
     }
 
     /**
-     * Run the Duke task manager, allowing the user to interact with it via the command-line interface.
+     * Runs the Duke application.
      */
     public void run() {
         ui.showWelcome();
