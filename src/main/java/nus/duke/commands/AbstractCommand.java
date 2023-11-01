@@ -27,7 +27,7 @@ public abstract class AbstractCommand {
     }
 
     /**
-     * Execute the command, carrying out the specific action associated with the command.
+     * Executes the command.
      *
      * @param tasks   The task list containing tasks to be operated upon.
      * @param ui      The user interface for displaying information to the user.
