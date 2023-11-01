@@ -1,20 +1,20 @@
 public class Task {
     protected String description;
-    protected Boolean marked;
+    protected Boolean isMarked;
     public Task(String description){
         this.description = description;
-        marked = false;
+        isMarked = false;
     }
     public String getStatusIcon(){
-        return (this.marked ? "X" : " ");
+        return (this.isMarked ? "X" : " ");
     }
     public String getDescription(){
         return description;
     }
     public static void setMarked(Task task){
-        task.marked = true;
+        task.isMarked = true;
     }
     public static void setUnmarked(Task task){
-        task.marked = false;
+        task.isMarked = false;
     }
 }

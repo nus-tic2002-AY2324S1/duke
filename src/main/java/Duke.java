@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
@@ -45,12 +43,12 @@ public class Duke {
                 case "save":
                     FileSaver.CreateFile(tasklist.ShelftoString());
                     break;
-                case "parse":
+                case "load":
                     tasklist = FileParser(FileSaver.loadFile("data"));
                     break;
 
-                    default:
-                    tasklist.addItem(input[0]);
+                default:
+                tasklist.addItem(input[0]);
                 }
             } catch (IndexOutOfBoundsException e){
                 System.out.println("OOPS!!! You must have done something wrong xxx.");

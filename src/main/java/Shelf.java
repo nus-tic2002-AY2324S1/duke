@@ -3,12 +3,13 @@ import java.util.ArrayList;
 public class Shelf {
     private static ArrayList<SpecialTask> shelf;
     public Shelf(){
-        this.shelf = new ArrayList<>();
+        shelf = new ArrayList<>();
     }
 
     public static void listShelf(){
         if(shelf.isEmpty()){
             Text.printMessage(Text.Message.NOITEM);
+            return;
         }
         // listing sequence
         System.out.print(Text.newline);
@@ -36,20 +37,18 @@ public class Shelf {
         System.out.println("Now you have "+ shelf.size() +" tasks in the list.");
     }
     public static void markTask (String[] msg) throws DukeException {
-//        if(msg.length <= 2){
-//            throw new DukeException("mark");
-//        }
-        String check = msg[0];
+
+        String markingIndication = msg[0];
         int idx = Integer.parseInt(msg[1]) - 1;
         if(idx >= shelf.size()){
             System.out.println("You have selected an invalid task");
             return;
         }
         System.out.print(Text.newline);
-        if (check.equals("mark")){
+        if (markingIndication.equals("mark")){
             Task.setMarked(shelf.get(idx));
             System.out.println("Nice! I've marked this task as done:");
-        } else if(check.equals("unmark")){
+        } else if(markingIndication.equals("unmark")){
             Task.setUnmarked(shelf.get(idx));
             System.out.println("OK, I've marked this task as not done yet:");
         }
@@ -64,8 +63,8 @@ public class Shelf {
     }
     public static String ShelftoString(){
         String save = "";
-        for(int i = 0; i < shelf.size(); i++){
-            save += shelf.get(i).getTypeIcon() + "|"  + shelf.get(i).getStatusIcon() + "|" + shelf.get(i).description + "\n";
+        for (SpecialTask specialTask : shelf) {
+            save += specialTask.getTypeIcon() + "|" + specialTask.getStatusIcon() + "|" + specialTask.description + "\n";
         }
         return save;
     }
