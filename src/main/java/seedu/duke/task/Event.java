@@ -14,7 +14,7 @@ public class Event extends Task {
 
     /**
      * Constructs the Event class.
-     * 
+     *
      * @param description Description of the event task.
      * @param from Start time of the event task.
      * @param to End time of the event task.
@@ -27,7 +27,7 @@ public class Event extends Task {
 
     /**
      * Returns the status message of the event task.
-     * 
+     *
      * @param idx Index of the event task.
      * @return Status message of the event task.
      */

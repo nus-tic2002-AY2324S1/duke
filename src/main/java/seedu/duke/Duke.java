@@ -16,7 +16,7 @@ import seedu.duke.io.WonkyStorage;
 public class Duke {
     /**
      * The main method that starts the Wonky chatbot application.
-     * 
+     *
      * @param args The command line arguments.
      */
     public static void main(String[] args) throws DukeException {
@@ -45,7 +45,7 @@ public class Duke {
 
     /**
      * Checks the mode to start the Wonky chatbot application based on the input args.
-     * 
+     *
      * @param args The command line arguments.
      */
     public static WonkyMode checkMode(String[] args) {

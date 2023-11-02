@@ -13,7 +13,7 @@ public class Deadline extends Task {
 
     /**
      * Constructs the Deadline class.
-     * 
+     *
      * @param description The description of the task.
      * @param by The deadline of the task.
      */
@@ -24,7 +24,7 @@ public class Deadline extends Task {
 
     /**
      * Returns the status message of the task.
-     * 
+     *
      * Overrides the getStatusMsg method in the Task class.
      * @param idx The index of the task in the task list.
      * @return The status message of the task.

@@ -29,6 +29,7 @@ public class WonkyScanner {
         if (Objects.isNull(in)) {
             in = new Scanner(System.in);
         }
+        assert in != null : "Scanner should be initialized";
         while (isActive && in.hasNextLine()) {
             String nextLine = in.nextLine().trim();
             processNextLine(nextLine);
@@ -41,6 +42,7 @@ public class WonkyScanner {
      * @throws DukeException If there is an error with the logger or scanner.
      */
     public static void bye() throws DukeException {
+        assert isActive : "Program should be active when bye is called";
         if (WonkyLogger.getLoading()) {
             WonkyLogger.byeInStorage();
         } else {
@@ -82,23 +84,23 @@ public class WonkyScanner {
      */
     public static boolean processNextLine(String nextLine) throws DukeException {
         try {
-            final List<String> SPLIT_LN = Arrays.asList(nextLine.split(" ", 2));
-            final String INPUT_CMD = SPLIT_LN.get(0);
+            final List<String> splitLn = Arrays.asList(nextLine.split(" ", 2));
+            final String inputCmd = splitLn.get(0);
             try {
-                currCommand = Command.getEnum(INPUT_CMD);
+                currCommand = Command.getEnum(inputCmd);
                 String currArgument = "";
-                if (SPLIT_LN.size() == 2) {
-                    currArgument = SPLIT_LN.get(1);
+                if (splitLn.size() == 2) {
+                    currArgument = splitLn.get(1);
                 }
                 if (Objects.nonNull(currCommand)) {
                     WonkyManager.executeCommand(new CommandArgument(currCommand, currArgument));
                 }
             } catch (IllegalArgumentException e) {
-                WonkyLogger.unknownCommand(INPUT_CMD);
-                WonkyLogger.suggestCommand(typoSuggestion(INPUT_CMD));
+                WonkyLogger.unknownCommand(inputCmd);
+                WonkyLogger.suggestCommand(typoSuggestion(inputCmd));
             } catch (IndexOutOfBoundsException e) {
-                WonkyLogger.mismatchArgs(INPUT_CMD);
-                WonkyLogger.suggestCommand(typoSuggestion(INPUT_CMD));
+                WonkyLogger.mismatchArgs(inputCmd);
+                WonkyLogger.suggestCommand(typoSuggestion(inputCmd));
             }
         } catch (DukeException e) {
             throw e;

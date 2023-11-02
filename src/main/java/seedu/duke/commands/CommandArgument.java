@@ -16,7 +16,7 @@ public class CommandArgument {
 
     /**
      * Constructs the CommandArgument class.
-     * 
+     *
      * @param command the command to be executed.
      * @param arguments the arguments for the command.
      */
@@ -27,7 +27,7 @@ public class CommandArgument {
 
     /**
      * Returns the command to be executed.
-     * 
+     *
      * @return the command to be executed
      */
     public Command getCmd() {
@@ -36,7 +36,7 @@ public class CommandArgument {
 
     /**
      * Returns the string representation of the command to be executed.
-     * 
+     *
      * @return the string representation of the command to be executed.
      */
     public String getCmdLitr() {
@@ -45,7 +45,7 @@ public class CommandArgument {
 
     /**
      * Returns the string representation of the arguments for the command.
-     * 
+     *
      * @return the string representation of the arguments for the command.
      */
     public String getArgStr() {
@@ -54,7 +54,7 @@ public class CommandArgument {
 
     /**
      * Returns a list of the arguments for the command.
-     * 
+     *
      * @return a list of the arguments for the command.
      */
     public List<String> getArgList() {
@@ -63,7 +63,7 @@ public class CommandArgument {
 
     /**
      * Returns the number of arguments for the command.
-     * 
+     *
      * @return the number of arguments for the command.
      */
     public int getArgCount() {
@@ -79,7 +79,7 @@ public class CommandArgument {
 
     /**
      * Sets the arguments for the command.
-     * 
+     *
      * @param newArg the new arguments for the command.
      */
     public void setArg(String newArg) {

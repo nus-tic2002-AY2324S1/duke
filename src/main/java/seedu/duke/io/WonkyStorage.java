@@ -64,6 +64,8 @@ public class WonkyStorage {
      * @throws DukeException if there is an error saving the command arguments to the storage file.
      */
     public static void save(List<CommandArgument> cmdArgs, File fileToStore) throws DukeException {
+        assert cmdArgs != null : "Command arguments list should not be null";
+        assert fileToStore != null : "Storage file should not be null";
         if (WonkyMode.NORMAL.equals(WonkyLogger.getMode())) {
             try (
                 BufferedWriter writer = new BufferedWriter(new FileWriter(fileToStore, false));
@@ -71,10 +73,10 @@ public class WonkyStorage {
                 for (CommandArgument cmdArg : cmdArgs) {
                     if (
                         !Command.BYE.equals(cmdArg.getCmd())
-                        && !Command.LIST.equals(cmdArg.getCmd())
-                        && !Command.FIND.equals(cmdArg.getCmd())
-                        && !Command.STASH.equals(cmdArg.getCmd())
-                        && !Command.HELP.equals(cmdArg.getCmd())
+                            && !Command.LIST.equals(cmdArg.getCmd())
+                            && !Command.FIND.equals(cmdArg.getCmd())
+                            && !Command.STASH.equals(cmdArg.getCmd())
+                            && !Command.HELP.equals(cmdArg.getCmd())
                     ) {
                         writer.write(cmdArg.getCmdLitr() + " " + cmdArg.getArgStr());
                         writer.newLine();
@@ -93,6 +95,9 @@ public class WonkyStorage {
         return Arrays.asList();
     }
 
+    /**
+     * Clears the all the stashed files.
+     */
     public static void clearStash() {
         if (STASH_FOLDER.exists() && STASH_FOLDER.isDirectory()) {
             for (File file : STASH_FOLDER.listFiles()) {
@@ -101,6 +106,12 @@ public class WonkyStorage {
         }
     }
 
+    /**
+     * Pops the given stash file and executes the commands in it.
+     *
+     * @param stashName
+     * @throws DukeException
+     */
     public static void popStash(String stashName) throws DukeException {
         if (STASH_FOLDER.exists() && STASH_FOLDER.isDirectory()) {
             File stashFile = new File(STASH_FOLDER, stashName);
@@ -123,6 +134,13 @@ public class WonkyStorage {
         }
     }
 
+    /**
+     * Adds the given list of command arguments to the given stash file.
+     *
+     * @param stashName
+     * @param cmdArgs
+     * @throws DukeException
+     */
     public static void addStash(String stashName, List<CommandArgument> cmdArgs) throws DukeException {
         if (!STASH_FOLDER.exists()) {
             STASH_FOLDER.mkdir();
