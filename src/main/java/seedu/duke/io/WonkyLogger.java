@@ -384,4 +384,41 @@ public class WonkyLogger {
     public static void noTasksFound(String searchStr) throws DukeLoggerException {
         printFindTitle(0, searchStr);
     }
+
+    /**
+     * Prints log message for a list of stashed tasks.
+     * 
+     * @param stashList
+     * @throws DukeLoggerException
+     */
+    public static void printStashList(List<String> stashList) throws DukeLoggerException {
+        if (stashList.size() > 0) {
+            printlnWithWonky("Below are the list of stashes you have!");
+            for (int i = 0; i < stashList.size(); i += 1) {
+                println("\t" + (i + 1) + ". " + stashList.get(i));
+            }
+        } else {
+            printlnWithWonky("You do not have any stashes!");
+        }
+    }
+
+    public static void stashCleared() throws DukeLoggerException {
+        printlnWithWonky("Your stashes have been cleared!");
+    }
+
+    public static void invalidStashCommand(String string) throws DukeLoggerException {
+        printlnWithWonky("You have entered an invalid stash command [" + string + "]!");
+    }
+
+    public static void invalidStashName(String stashName) throws DukeLoggerException {
+        printlnWithWonky("You have entered an invalid stash name [" + stashName + "]!");
+    }
+
+    public static void stashPopped(String stashName) throws DukeLoggerException {
+        printlnWithWonky("I have popped this stash [" + stashName + "]!");
+    }
+
+    public static void stashAdded(String stashName) throws DukeLoggerException {
+        printlnWithWonky("I have added [" + stashName + "] to your stashes!");
+    }
 }

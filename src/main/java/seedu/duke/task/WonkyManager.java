@@ -1,5 +1,6 @@
 package seedu.duke.task;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class WonkyManager {
     private static final String EMPTY_LITR = "";
     private static final int ZERO_ARGS = 0;
     private static final int ONE_ARGS = 1;
+    private static final int TWO_ARGS = 2;
+
     private static final int TODO_ARGS = 1;
     private static final int DEADLINE_ARGS = 2;
     private static final int EVENT_ARGS = 3;
@@ -36,6 +39,9 @@ public class WonkyManager {
     private static final int FROM_IDX = 1;
     private static final int TO_IDX = 2;
 
+    private static final int ZERO_IDX = 0;
+    private static final int ONE_IDX = 1;
+
     // Lists for storing command arguments and tasks.
     private static List<CommandArgument> cmdArgs = new ArrayList<CommandArgument>();
     private static List<Task> tasks = new ArrayList<Task>();
@@ -45,6 +51,7 @@ public class WonkyManager {
      *
      * @param cmdArg the command argument to execute.
      * @throws DukeException if there is an error executing the command.
+     * @throws IOException
      */
     public static void executeCommand(CommandArgument cmdArg) throws DukeException {
         switch (cmdArg.getCmd()) {
@@ -61,6 +68,36 @@ public class WonkyManager {
         case FIND:
             if (validateArgs(cmdArg, ONE_ARGS)) {
                 findTasks(cmdArg);
+            }
+            break;
+        case STASH:
+            List<String> cmdList = cmdArg.getArgList();
+            List<String> stashList = WonkyStorage.getStashList();
+            if (validateArgs(cmdArg, ONE_ARGS, false)) {
+                String firstArg = cmdList.get(ZERO_IDX).trim();
+                if (firstArg.equals("list")) {
+                    WonkyLogger.printStashList(stashList);
+                } else if (firstArg.equals("clear")) {
+                    WonkyStorage.clearStash();
+                    WonkyLogger.stashCleared();
+                } else {
+                    WonkyLogger.invalidStashCommand(firstArg);
+                }
+            } else if (validateArgs(cmdArg, TWO_ARGS, false)) {
+                String firstArg = cmdList.get(ZERO_IDX).trim();
+                String stashName = cmdList.get(ONE_IDX).trim();
+                if (firstArg.equals("add")) {
+                    WonkyStorage.addStash(stashName, cmdArgs);
+                    WonkyLogger.stashAdded(stashName);
+                } else if (!stashList.contains(stashName)) {
+                    WonkyLogger.invalidStashName(stashName);
+                    break;
+                } else if (firstArg.equals("pop")) {
+                    WonkyStorage.popStash(stashName);
+                    WonkyLogger.stashPopped(stashName);
+                } else {
+                    WonkyLogger.invalidStashCommand(firstArg);
+                }
             }
             break;
         case DELETE:
@@ -201,6 +238,18 @@ public class WonkyManager {
      * @throws DukeException if there is an error validating the command argument.
      */
     private static boolean validateArgs(CommandArgument cmdArg, int expectedSize) throws DukeException {
+        return validateArgs(cmdArg, expectedSize, true);
+    }
+
+    /**
+     * Validates that the given command argument has the expected number of arguments.
+     *
+     * @param cmdArg the command argument to validate.
+     * @param expectedSize the expected number of arguments.
+     * @return true if the command argument is valid, false otherwise.
+     * @throws DukeException if there is an error validating the command argument.
+     */
+    private static boolean validateArgs(CommandArgument cmdArg, int expectedSize, boolean logError) throws DukeException {
         List<String> argList = cmdArg.getArgList();
         int argCount = cmdArg.getArgCount();
         if (WonkyLogger.getLoading()) {
@@ -213,7 +262,9 @@ public class WonkyManager {
             return true;
         }
         if (argCount != expectedSize || (argList.get(0).trim().isEmpty())) {
-            WonkyLogger.mismatchArgs(getLastCmd().getLitr(), expectedSize);
+            if (logError) {
+                WonkyLogger.mismatchArgs(getLastCmd().getLitr(), expectedSize);
+            }
             return false;
         }
         for (String arg : argList) {
@@ -310,5 +361,9 @@ public class WonkyManager {
      */
     public static void resetTaskList() {
         tasks = new ArrayList<Task>();
+    }
+
+    public static void resetCmdArgs() {
+        cmdArgs = new ArrayList<CommandArgument>();
     }
 }
