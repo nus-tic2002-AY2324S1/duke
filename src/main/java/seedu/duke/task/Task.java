@@ -34,7 +34,7 @@ public abstract class Task {
      * The message format for the status of the task.
      * Contains the index, letter, completion status and description of the task.
      */
-    private final String STATUS_MSG = "%s. [%s][%s] %s";
+    private final String statusMsg = "%s. [%s][%s] %s";
 
     /**
      * Constructs a new task with the given command, letter and description.
@@ -57,7 +57,7 @@ public abstract class Task {
      * @return The status message of the task.
      */
     public String getStatusMsg(int idx) {
-        return String.format(STATUS_MSG, String.valueOf(idx), letter, isDone ? "X" : " ", description);
+        return String.format(statusMsg, String.valueOf(idx), letter, isDone ? "X" : " ", description);
     }
 
     /**

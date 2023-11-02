@@ -10,7 +10,7 @@ public class Todo extends Task {
 
     /**
      * Constructs the Todo class.
-     * 
+     *
      * @param description Description of the Todo task.
      */
     public Todo(String description) {
@@ -19,7 +19,7 @@ public class Todo extends Task {
 
     /**
      * Returns the status message of the Todo task.
-     * 
+     *
      * @param idx Index of the Todo task.
      * @return Status message of the Todo task.
      */
