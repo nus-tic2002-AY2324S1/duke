@@ -18,14 +18,19 @@ import java.util.stream.Stream;
 /**
  * This class is the main class of the program.
  * It will handle the input from the user.
+ * It will print out the message to the user.
+ * It will save the data to the file.
+ * It will load the data from the file.
  */
 public class Craby extends HelloAndByeMessage {
     private static TaskStorage taskStorage;
     private static final String REGEX = ".*[^a-zA-Z0-9\\s].*";
 
     /**
+     * Sends a greeting to the user if it is the first time the user run the program.
      * This method will print out the logo and the hello message.
-     * It will also handle the input from the user.
+     *
+     * @param is1stTime the arguments from the command line.
      */
     public static void crabySystem(boolean is1stTime) {
         if (is1stTime) {
@@ -83,14 +88,6 @@ public class Craby extends HelloAndByeMessage {
                 .anyMatch(name.toLowerCase()::equalsIgnoreCase);
     }
 
-    /**
-     * This method will handle the input from the user.
-     *
-     * @param input the input from the user.
-     * @param tasks the list of tasks.
-     * @return true if the user input bye.
-     * @throws InputBlankException if the input is blank.
-     */
     private static boolean handleInput(String input, List<Task> tasks) throws InputBlankException {
         if (input.isBlank()) {
             throw new InputBlankException();

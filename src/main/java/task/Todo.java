@@ -4,10 +4,12 @@ import java.time.format.*;
 
 /**
  * This class represents a todo task.
+ * Todo is a subclass of Task.
  */
 public class Todo extends Task {
 
     /**
+     * Returns a todo task.
      * This is the constructor of the todo task.
      *
      * @param description the description of the todo task.
@@ -17,15 +19,16 @@ public class Todo extends Task {
     }
 
     /**
-     * This method returns the string representation of the todo task.
-     *
-     * @return the string representation of the todo task.
+     * @inheritDoc
      */
     @Override
     public String toString() {
         return "[T]" + super.toString();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String toStorageString() {
         String type = "T";
@@ -33,10 +36,7 @@ public class Todo extends Task {
     }
 
     /**
-     * This method is to clone the task.
-     * It will use for the undo command.
-     *
-     * @return the clone task.
+     * @inheritDoc
      */
     @Override
     public Todo clone() {

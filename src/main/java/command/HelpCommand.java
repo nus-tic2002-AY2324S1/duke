@@ -11,10 +11,8 @@ import java.util.List;
 public class HelpCommand extends HelpMessage implements CommandInterface {
 
     /**
-     * This method will print out all the tasks in the list.
-     *
-     * @param input the input from the user.
-     * @param tasks the list of tasks.
+     * Sends the help message to the user.
+     * @inheritDoc
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {

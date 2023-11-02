@@ -10,6 +10,11 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Sort {
+    /**
+     * Returns the sorted list of tasks according to the input.
+     * @param input The input from the user.
+     * @param tasks The list of tasks.
+     */
     public void sort(String input, List<Task> tasks) {
         if (input.equals("type") || input.equals("t")) {
             sortByType(tasks);

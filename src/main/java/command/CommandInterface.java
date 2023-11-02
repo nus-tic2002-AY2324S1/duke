@@ -10,5 +10,13 @@ import java.util.List;
  *
  */
 public interface CommandInterface {
+
+    /**
+     * Sends the input command to the handleCommand method.
+     * This method is to handle any command from the user.
+     *
+     * @param input The input from the user.
+     * @param tasks The list of tasks.
+     */
     void handleCommand(String input, List<Task> tasks);
 }

@@ -27,6 +27,7 @@ public class TaskStorage {
     }
 
     /**
+     * Sends the list of tasks as input and save the tasks into the file.
      * This method will save the tasks into the file.
      * If the file does not exist, it will create a new file.
      * If the file is empty, it will delete the file.
@@ -80,6 +81,7 @@ public class TaskStorage {
     }
 
     /**
+     * Returns the list of tasks loaded from the file.
      * load the line from the file
      * line format: type || status || description || time (optional) || time (optional)
      * type: T, D, E
@@ -90,6 +92,7 @@ public class TaskStorage {
      * @param reader the reader to read the file
      *               the list of tasks
      *               the line from the file
+     * @param tasks  the list of tasks to store the tasks
      */
     private static void loadLine(BufferedReader reader, List<Task> tasks) throws IOException {
         String line;

@@ -12,10 +12,8 @@ import java.util.List;
  */
 public class ByeCommand extends HelloAndByeMessage implements CommandInterface {
     /**
-     * This method will print out the bye message.
-     *
-     * @param input the input from the user.
-     * @param tasks the list of tasks.
+     * Sends bye message to the user.
+     * @inheritDoc
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {

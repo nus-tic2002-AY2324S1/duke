@@ -8,6 +8,9 @@ import java.util.*;
  * It has a method to print out the list of commands that what CrabY can do.
  */
 public class HelpMessage extends CrabyMessage{
+    /**
+     * Sends the help message to the user.
+     */
     public static void printHelpMessage() {
         try {
             String fileName = "helpMessage.txt";

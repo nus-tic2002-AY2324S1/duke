@@ -8,10 +8,8 @@ import java.util.List;
 public class MarkCommand extends CrabyMessage implements CommandInterface {
 
     /**
-     * This method will mark the task as done.
-     *
-     * @param input the input from the user.
-     * @param tasks the list of tasks.
+     * Sends mark message to the user and mark the task as done.
+     * @inheritDoc
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {

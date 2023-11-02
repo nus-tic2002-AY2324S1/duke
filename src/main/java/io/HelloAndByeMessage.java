@@ -6,6 +6,9 @@ package io;
  *
  */
 public class HelloAndByeMessage extends CrabyMessage {
+    /**
+     * Sends the hello message to the user.
+     */
     public static void printHello() {
         System.out.println(LINE + System.lineSeparator() +
 
@@ -22,6 +25,9 @@ public class HelloAndByeMessage extends CrabyMessage {
         System.out.println(LINE);
     }
 
+    /**
+     * Sends the empty type name message to the user.
+     */
     public static void printEmptyTypeName() {
         System.out.println(SPACES + "Oops!!! The [checklist-name] cannot be empty.");
         System.out.println(SPACES + "NOTE: if you use the same [checklist-name] that used before");
@@ -29,6 +35,9 @@ public class HelloAndByeMessage extends CrabyMessage {
         System.out.println(LINE);
     }
 
+    /**
+     * Sends the type name error message to the user.
+     */
     public static void printTypeNameError() {
         System.out.println(SPACES + "Oops!!! The [checklist-name] cannot contain special character.");
         System.out.println(SPACES + "NOTE: if you use the same [checklist-name] that used before");
@@ -36,6 +45,9 @@ public class HelloAndByeMessage extends CrabyMessage {
         System.out.println(LINE);
     }
 
+    /**
+     * Sends the name same with keyword message to the user.
+     */
     public static void printNameSameWithKeyWord() {
         System.out.println(SPACES + "Oops!!! Before you start, pls give me [checklist-name].");
         System.out.println(SPACES + "╰┈➤Your input cannot same with my keyword");
@@ -44,6 +56,11 @@ public class HelloAndByeMessage extends CrabyMessage {
         System.out.println(LINE);
     }
 
+    /**
+     * Sends the first message to the user.
+     *
+     * @param input the input from the user.
+     */
     public static void printFirstMessage(String input) {
         checkListName = input;
         System.out.println(SPACES + "Ok I got it! Let start with your ➞ " + input + " list.");
@@ -51,6 +68,9 @@ public class HelloAndByeMessage extends CrabyMessage {
                 SPACES + "╰┈➤Type \"help\" if you need to see what I can do for you" + System.lineSeparator() + LINE);
     }
 
+    /**
+     * Sends the bye message to the user.
+     */
     public static void printByeMessage() {
         System.out.println(SPACES + "Bye Amber ♡, hope to see you again soon! •ᴗ•");
         System.out.println(LINE);

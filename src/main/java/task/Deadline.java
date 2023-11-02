@@ -7,15 +7,17 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * This class represents a deadline task.
+ * It extends from the Task class.
  */
 public class Deadline extends Task {
     protected LocalDateTime time;
 
     /**
+     * Returns the LocalDateTime object.
      * This method is to handle the date and time.
      * It will use for the sort function.
      *
-     * @return The LocalDateTime object
+     * @return The LocalDateTime object.
      */
     public LocalDateTime getTime() {
         return time;
@@ -45,9 +47,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * This method is to handle the date and time.
-     *
-     * @return The LocalDateTime object to the format requirement.
+     * @inheritDoc
      */
     @Override
     public String toString() {
@@ -56,7 +56,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * This method is to save the data to the local file
+     * @inheritDoc
      */
     @Override
     public String toStorageString() {
@@ -68,10 +68,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * This method will clone the task.
-     * It will use for the undo function.
-     *
-     * @return The LocalDateTime object to the format requirement.
+     * @inheritDoc
      */
     @Override
     public Task clone() {

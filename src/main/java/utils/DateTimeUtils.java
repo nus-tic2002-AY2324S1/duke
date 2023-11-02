@@ -7,6 +7,7 @@ import java.util.List;
 public class DateTimeUtils {
 
     /**
+     * Returns the DateTimeFormatter object.
      * This method will handle the date and time.
      * Use will input the date and time in natural language.
      * It will return the date and time in the correct format.

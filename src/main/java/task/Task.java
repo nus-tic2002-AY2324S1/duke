@@ -3,12 +3,16 @@ package task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * This class represents a task.
+ */
 public class Task {
     public static final String TIME_OUTPUT_FORMAT = "d MMM yyyy, E - hh:mma";
     protected String description;
     protected boolean isDone;
 
     /**
+     * Returns a task.
      * @param description the description of the task
      */
     public Task(String description) {
@@ -17,6 +21,8 @@ public class Task {
     }
 
     /**
+     * Returns the status icon of the task.
+     *
      * @return the status icon of the task
      */
     public String getStatusIcon() {
@@ -24,6 +30,7 @@ public class Task {
     }
 
     /**
+     * Sends new status to the task.
      * This method is to set the task is done or not.
      */
     public void setDone(boolean done) {
@@ -31,6 +38,7 @@ public class Task {
     }
 
     /**
+     * Returns the task is done or not.
      * This method is to get the task is done or not.
      */
     public boolean getDone() {
@@ -77,6 +85,8 @@ public class Task {
     }
 
     /**
+     * Returns task in string format.
+     *
      * @return the type, description, status of the task
      */
     @Override
@@ -87,7 +97,8 @@ public class Task {
     }
 
     /**
-     * This method is to save the data to the local file
+     * Returns task in string format.
+     * This method is to save the data to the local file.
      */
     public String toStorageString() {
         String status = isDone ? "1" : "0" ;
@@ -96,6 +107,7 @@ public class Task {
     }
 
     /**
+     * Returns a clone of the task.
      * This method is to clone the task.
      * It will use for the undo command.
      *

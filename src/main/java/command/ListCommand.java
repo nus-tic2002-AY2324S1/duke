@@ -8,10 +8,8 @@ import java.util.List;
 public class ListCommand extends CrabyMessage implements CommandInterface {
 
     /**
-     * This method will print out all the tasks in the list.
-     *
-     * @param input the input from the user.
-     * @param tasks the list of tasks.
+     * Sends the list task message to the user.
+     * @inheritDoc
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {

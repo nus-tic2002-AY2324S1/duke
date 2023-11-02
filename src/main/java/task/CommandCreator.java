@@ -1,7 +1,5 @@
 package task;
 
-//import command.*;
-
 import command.ByeCommand;
 import command.ListCommand;
 import command.AddTaskCommand;
@@ -16,8 +14,18 @@ import command.UnmarkCommand;
 import command.UndoCommand;
 import command.CommandInterface;
 
+/**
+ * CommandCreator class is a class that create the command.
+ * It has a method to create the command.
+ */
 public class CommandCreator {
 
+    /**
+     * Returns the command based on the keyword.
+     *
+     * @param keyword The keyword of the command.
+     * @return The command.
+     */
     public CommandInterface create(Keyword keyword) {
         switch (keyword) {
         case LIST:

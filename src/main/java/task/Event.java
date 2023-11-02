@@ -5,12 +5,17 @@ import utils.DateTimeUtils;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Event is a task that have a description and a time.
+ * It is a subclass of Task.
+ */
 public class Event extends Task {
 
-    public LocalDateTime fromTime;
+    protected LocalDateTime fromTime;
     protected LocalDateTime toTime;
 
     /**
+     * Returns fromTime.
      * This method is to handle the date and time.
      * It will use for the sort function.
      *
@@ -21,10 +26,11 @@ public class Event extends Task {
     }
 
     /**
+     * Returns an event task that user input have /from and /to
      * This class represents an event task that user input only have /from
      *
-     * @param description
-     * @param timeString
+     * @param description the description of the event task.
+     * @param timeString the time string from the user.
      */
     public Event(String description, String timeString) {
         super(description);
@@ -53,9 +59,14 @@ public class Event extends Task {
     }
 
     /**
+     * Returns an event task that user input have /from and /to
      * This class represents an event task that user input have /from and /to
      * It will format the time string to the correct format.
      * It will use for the sort date function.
+     *
+     * @param description the description of the event task.
+     * @param timeString  the time string from the user.
+     * @param timeStringTo the time string from the user.
      */
     public Event(String description, String timeString, String timeStringTo) {
         super(description);
@@ -75,10 +86,7 @@ public class Event extends Task {
     }
 
     /**
-     * This method is to handle the date and time.
-     * It will use for the sort date function.
-     *
-     * @return The LocalDateTime object to the format requirement.
+     * @inheritDoc
      */
     @Override
     public String toString() {
@@ -98,8 +106,7 @@ public class Event extends Task {
     }
 
     /**
-     * This method is to save the data to the local file
-     * It will use for the save function.
+     * @inheritDoc
      */
     @Override
     public String toStorageString() {
@@ -115,8 +122,7 @@ public class Event extends Task {
     }
 
     /**
-     * This method is to clone the event object.
-     * It will use for the undo function.
+     * @inheritDoc
      */
     @Override
     public Event clone() {

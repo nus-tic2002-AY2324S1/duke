@@ -14,10 +14,8 @@ import java.util.List;
 public class SortCommand extends CrabyMessage implements CommandInterface {
 
     /**
-     * This method will print out all the tasks in the list after sort.
-     *
-     * @param input the input from the user.
-     * @param tasks the list of tasks.
+     * Sends the sorted list task message to the user and sort the list.
+     * @inheritDoc
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {

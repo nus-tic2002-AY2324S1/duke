@@ -14,12 +14,20 @@ public class CrabyMessage {
     public static final String SPACES = "   ";
     public static String checkListName;
 
+    /**
+     * Sends the blank input message to the user.
+     */
     public static void printInputBlankExceptionMessage() {
         System.out.println(SPACES + "Oops!!! The description cannot be empty.");
         System.out.println(
                 SPACES + "╰┈➤Type \"help\" if you need to see the list of command" + System.lineSeparator() + LINE);
     }
 
+    /**
+     * Sends the hello message to the user.
+     *
+     * @param input the input from the user.
+     */
     public static void printEmptyListForAllCommand(String input) {
         String[] inputArr = input.split(" ");
         System.out.println(SPACES + "Oops!!! your list are empty.");
@@ -27,6 +35,11 @@ public class CrabyMessage {
         System.out.println(LINE);
     }
 
+    /**
+     * Sends the invalid number message to the user.
+     *
+     * @param input the input from the user.
+     */
     public static void printNumOutOfTask(int input) {
         System.out.print(SPACES + "Oops!!! Something wrong! Your list only have 1 ➞ ");
         System.out.println(input + " tasks.");
@@ -34,17 +47,31 @@ public class CrabyMessage {
         System.out.println(LINE);
     }
 
+    /**
+     * Sends the task added message to the user.
+     *
+     * @param input the input from the user.
+     * @param tasks the list of tasks.
+     */
     public static void printAddMessage(String input, List<Task> tasks) {
         System.out.println(SPACES + "✎ added:");
         System.out.println(SPACES + "╰┈➤ " + input + " - to your list");
         printCountTask(tasks.size());
     }
 
+    /**
+     * Sends the task count message to the user.
+     *
+     * @param input the input from the user.
+     */
     public static void printCountTask(int input) {
         System.out.println(SPACES + "Now you have: " + input + " tasks in your list \uD83D\uDDCE.");
         System.out.println(LINE);
     }
 
+    /**
+     * Sends the wrong date format message to the user.
+     */
     public static void printDateTimeParseExceptionMessage() {
         System.out.println(SPACES + "Oops!!! Looks like you used the wrong format.");
         System.out.println(SPACES + "Please enter in this format after used /by or /from and /to");
@@ -53,19 +80,27 @@ public class CrabyMessage {
         System.out.println(LINE);
     }
 
-    //Print Delete all Message
+
+    /**
+     * Sends the delete all message to the user.
+     */
     public static void printDeleteAllMessage() {
         System.out.println(SPACES + "✂ Ok, I clean up all your tasks");
         System.out.println(SPACES + "╰┈➤ Let's start a new checklist");
         System.out.println(LINE);
     }
 
-    // Print DeleteCommand Message
+    /**
+     * Sends the delete message to the user.
+     */
     public static void printDeleteMessage(String input) {
         System.out.println(SPACES + "✂ Noted. I've removed this task:");
         System.out.println(SPACES + "╰┈➤ " + input + " - in your list");
     }
 
+    /**
+     * Sends the delete error message to the user.
+     */
     public static void printDeleteErrorMessage() {
         System.out.println(SPACES + "Oops!!! Looks like you used the wrong format.");
         System.out.println(SPACES + "╰┈➤ Try with: delete [integer] e.g: delete 1");
@@ -73,10 +108,12 @@ public class CrabyMessage {
         System.out.println(LINE);
     }
 
-    //Print ListCommand Message
-    public static final String PRINT_END_OF_LIST = SPACES + " ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦";
-    public static final String PRINT_START_OF_LIST = SPACES + " ╭─────────────────────────────────────╮";
+    private static final String PRINT_END_OF_LIST = SPACES + " ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦";
+    private static final String PRINT_START_OF_LIST = SPACES + " ╭─────────────────────────────────────╮";
 
+    /**
+     * Sends the list empty message to the user.
+     */
     public static void printEmptyList() {
         System.out.println(PRINT_START_OF_LIST);
         System.out.println(SPACES + "    ░░░░ Your " + checkListName.toUpperCase() + " list is empty! ░░░░");
@@ -85,6 +122,10 @@ public class CrabyMessage {
         System.out.println(LINE);
     }
 
+    /**
+     * Sends the list tasks message to the user.
+     * @param tasks the list of tasks.
+     */
     public static void printListMessage(List<Task> tasks) {
         System.out.println(PRINT_START_OF_LIST);
         System.out.println(SPACES + "  Here are the tasks in your " + checkListName.toUpperCase() + " list:");
@@ -101,33 +142,52 @@ public class CrabyMessage {
         System.out.println(LINE);
     }
 
-    //Print MarkCommand Message
+    /**
+     * Sends the mark message to the user.
+     *
+     * @param input the input from the user.
+     */
     public static void printMarkMessage(String input) {
         System.out.println(SPACES + "Nice! I've marked this task as DONE ツ:");
         System.out.println(SPACES + "╰┈➤ " + input);
         System.out.println(LINE);
     }
 
+    /**
+     * Sends the mark error message to the user.
+     */
     public static void printMarkErrorMessage() {
         System.out.println(SPACES + "Oops!!! Looks like you used the wrong format.");
         System.out.println(SPACES + "╰┈➤ Try with: mark [integer] e.g: mark 1");
         System.out.println(LINE);
     }
 
-    //Print UnmarkCommand Message
+    /**
+     * Sends the unmark message to the user.
+     *
+     * @param input the input from the user.
+     */
     public static void printUnmarkMessage(String input) {
         System.out.println(SPACES + "OK, I've marked this task as ☉⌓☉ NOT DONE yet:");
         System.out.println(SPACES + "╰┈➤ " + input);
         System.out.println(LINE);
     }
 
+    /**
+     * Sends the unmark error message to the user.
+     */
     public static void printUnmarkErrorMessage() {
         System.out.println(SPACES + "Oops!!! Looks like you used the wrong format.");
         System.out.println(SPACES + "╰┈➤ Try with: unmark [integer] e.g: unmark 1");
         System.out.println(LINE);
     }
 
-    //Print FindCommand Message
+    /**
+     * Sends the find error message to the user.
+     *
+     * @param listFound the list of tasks that match with the keyword.
+     * @param keyword  the keyword that user want to find.
+     */
     public static void printFindMessage(List<String> listFound, String keyword) {
         System.out.println(SPACES + "⌖ Here are the list tasks matching with \"" + keyword + "\":");
         for (String s : listFound) {
@@ -136,26 +196,39 @@ public class CrabyMessage {
         System.out.println(LINE);
     }
 
+    /**
+     * Sends no match message to the user.
+     *
+     * @param keyword the keyword that user want to find.
+     */
     public static void printNoMatchingTasks(String keyword) {
         System.out.println(SPACES + "✘ No tasks matching with \"" + keyword + "\" in your list.");
         System.out.println(SPACES + "╰┈➤ Please try with another keyword ☘");
         System.out.println(LINE);
     }
 
-    //Print SortByCommand Message
+    /**
+     * Sends the sort message to the user.
+     */
     public static void printSortErrorMessage() {
         System.out.println(SPACES + "Oops!!! Looks like you used the wrong format.");
         System.out.println(SPACES + "╰┈➤ Try with: sort [type/typerevert/date] e.g: sort type");
         System.out.println(LINE);
     }
 
-    //Print BlahCommand Message
+    /**
+     * Sends the blah message to the user.
+     */
     public static void printBlahMessage() {
         System.out.println(SPACES + "Oops!!! I'm sorry, but I don't know what that means ☘");
         System.out.println(LINE);
     }
 
-    //Print UndoCommand Message
+    /**
+     * Sends the undo message to the user.
+     *
+     * @param command the command that user want to undo.
+     */
     public static void printUndoMessage(String command) {
         String customizeMessage = "add - ";
         boolean isCustomize = command.contains("delete") || command.contains("mark") || command.contains("sort");
@@ -167,13 +240,18 @@ public class CrabyMessage {
         System.out.println(LINE);
     }
 
+    /**
+     * Sends the undo error message to the user.
+     */
     public static void printUndoError() {
         System.out.println(SPACES + "Oops!!! Undo unsuccessful. I already undo all the input you just entered.");
         System.out.println(SPACES + "╰┈➤Please try again with another command ☘");
         System.out.println(LINE);
     }
 
-    //Print Switch Message
+    /**
+     * Sends the switch message to the user.
+     */
     public static void printSwitchMessage() {
         System.out.println(SPACES + "Which checklist do you want to switch to? (｡◕‿◕｡)");
         System.out.println(SPACES + "╰┈➤You can typing: \"School\" | \"Work\" | \"Personal\" |");
