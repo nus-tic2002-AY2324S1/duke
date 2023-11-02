@@ -64,6 +64,8 @@ public class WonkyStorage {
      * @throws DukeException if there is an error saving the command arguments to the storage file.
      */
     public static void save(List<CommandArgument> cmdArgs, File fileToStore) throws DukeException {
+        assert cmdArgs != null : "Command arguments list should not be null";
+        assert fileToStore != null : "Storage file should not be null";
         if (WonkyMode.NORMAL.equals(WonkyLogger.getMode())) {
             try (
                 BufferedWriter writer = new BufferedWriter(new FileWriter(fileToStore, false));

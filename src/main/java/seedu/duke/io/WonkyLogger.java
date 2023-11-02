@@ -107,12 +107,14 @@ public class WonkyLogger {
     private static boolean isLoading = false;
 
     private static void printlnWithWonky(String toPrint) throws DukeLoggerException {
+        assert toPrint != null : "String to print should not be null";
         if (!isLoading) {
             println("Wonky: " + toPrint);
         }
     }
 
     private static void printWarnWithWonky(String toPrint) throws DukeLoggerException {
+        assert toPrint != null : "String to print should not be null";
         hasError = true;
         if (isLoading) {
             println("Wonky: Uhoh seems like there was an issue when loading the storage. " + toPrint);
@@ -130,6 +132,7 @@ public class WonkyLogger {
     }
 
     private static void printListTitle(int size) throws DukeLoggerException {
+        assert size >= 0 : "Size should not be negative";
         if (size == 0) {
             printlnWithWonky("Hooray you have no pending tasks!");
         } else {
@@ -138,6 +141,7 @@ public class WonkyLogger {
     }
 
     private static void printFindTitle(int size, String searchStr) throws DukeLoggerException {
+        assert size >= 0 : "Size should not be negative";
         if (size == 0) {
             printlnWithWonky("No tasks containing [" + searchStr + "] found!");
         } else {

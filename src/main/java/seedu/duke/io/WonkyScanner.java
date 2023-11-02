@@ -29,6 +29,7 @@ public class WonkyScanner {
         if (Objects.isNull(in)) {
             in = new Scanner(System.in);
         }
+        assert in != null : "Scanner should be initialized";
         while (isActive && in.hasNextLine()) {
             String nextLine = in.nextLine().trim();
             processNextLine(nextLine);
@@ -41,6 +42,7 @@ public class WonkyScanner {
      * @throws DukeException If there is an error with the logger or scanner.
      */
     public static void bye() throws DukeException {
+        assert isActive : "Program should be active when bye is called";
         if (WonkyLogger.getLoading()) {
             WonkyLogger.byeInStorage();
         } else {

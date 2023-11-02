@@ -160,6 +160,8 @@ public class WonkyManager {
         List<String> argList = cmdArg.getArgList();
         try {
             int taskIdx = Integer.parseInt(argList.get(0)) - 1;
+            assert taskIdx >= 0 : "taskIdx cannot be negative!";
+            assert taskIdx < tasks.size() : "taskIdx cannot be larger than tasks size!";
             switch (cmdArg.getCmd()) {
             case MARK:
                 tasks.get(taskIdx).setDone(true);
