@@ -69,6 +69,37 @@ public class WonkyLogger {
     private static final String TASK_DELETED_MSG =
         "Your task [%s] is deleted!";
 
+    private static final String HELP_TEXT =
+        "Below are the list of commands you can use!\n\n" +
+        "\tlist\n" +
+        "\t\tLists all the tasks.\n\n" +
+        "\thelp\n" +
+        "\t\tPrints the list of commands you can use!\n\n" +
+        "\tbye\n" +
+        "\t\tExits the application.\n\n" +
+        "\ttodo {desc}\n" +
+        "\t\tAdds a todo task to the list.\n\n" +
+        "\tdeadline {desc}|{by}\n" +
+        "\t\tAdds a deadline task to the list.\n\n" +
+        "\tevent {desc}|{from}|{to}\n" +
+        "\t\tAdds an event task to the list.\n\n" +
+        "\tmark {taskNo}\n" +
+        "\t\tMarks a task as done.\n\n" +
+        "\tunmark {taskNo}\n" +
+        "\t\tUnmarks a task as done.\n\n" +
+        "\tdelete {taskNo}\n" +
+        "\t\tDeletes a task from the list.\n\n" +
+        "\tfind {desc}\n" +
+        "\t\tFinds tasks containing the given description.\n\n" +
+        "\tstash list\n" +
+        "\t\tShows the list of current stashes.\n\n" +
+        "\tstash clear\n" +
+        "\t\tClears all of current stashes.\n\n" +
+        "\tstash add {stashName}\n" +
+        "\t\tAdds the current lists of tasks to a stash.\n\n" +
+        "\tstash pop {stashName}\n" +
+        "\t\tPops the stash to the current list of tasks.\n\n";
+
     private static final Random RND = new Random();
 
     private static boolean hasError = false;
@@ -420,5 +451,9 @@ public class WonkyLogger {
 
     public static void stashAdded(String stashName) throws DukeLoggerException {
         printlnWithWonky("I have added [" + stashName + "] to your stashes!");
+    }
+
+    public static void printHelpCommand() throws DukeLoggerException {
+        printlnWithWonky(HELP_TEXT);
     }
 }

@@ -65,40 +65,18 @@ public class WonkyManager {
                 WonkyLogger.printListCommand(tasks);
             }
             break;
+        case HELP:
+            if (validateArgs(cmdArg, ZERO_ARGS)) {
+                WonkyLogger.printHelpCommand();
+            }
+            break;
         case FIND:
             if (validateArgs(cmdArg, ONE_ARGS)) {
                 findTasks(cmdArg);
             }
             break;
         case STASH:
-            List<String> cmdList = cmdArg.getArgList();
-            List<String> stashList = WonkyStorage.getStashList();
-            if (validateArgs(cmdArg, ONE_ARGS, false)) {
-                String firstArg = cmdList.get(ZERO_IDX).trim();
-                if (firstArg.equals("list")) {
-                    WonkyLogger.printStashList(stashList);
-                } else if (firstArg.equals("clear")) {
-                    WonkyStorage.clearStash();
-                    WonkyLogger.stashCleared();
-                } else {
-                    WonkyLogger.invalidStashCommand(firstArg);
-                }
-            } else if (validateArgs(cmdArg, TWO_ARGS, false)) {
-                String firstArg = cmdList.get(ZERO_IDX).trim();
-                String stashName = cmdList.get(ONE_IDX).trim();
-                if (firstArg.equals("add")) {
-                    WonkyStorage.addStash(stashName, cmdArgs);
-                    WonkyLogger.stashAdded(stashName);
-                } else if (!stashList.contains(stashName)) {
-                    WonkyLogger.invalidStashName(stashName);
-                    break;
-                } else if (firstArg.equals("pop")) {
-                    WonkyStorage.popStash(stashName);
-                    WonkyLogger.stashPopped(stashName);
-                } else {
-                    WonkyLogger.invalidStashCommand(firstArg);
-                }
-            }
+            validateAndExecuteStash(cmdArg);
             break;
         case DELETE:
             //Fallthrough
@@ -119,6 +97,36 @@ public class WonkyManager {
         default:
             throw new DukeManagerException("Unhandled command to be added: " + cmdArg.getCmdLitr());
         }
+    }
+
+    private static void validateAndExecuteStash(CommandArgument cmdArg) throws DukeException {
+        List<String> cmdList = cmdArg.getArgList();
+            List<String> stashList = WonkyStorage.getStashList();
+            if (validateArgs(cmdArg, ONE_ARGS, false)) {
+                String firstArg = cmdList.get(ZERO_IDX).trim();
+                if (firstArg.equals("list")) {
+                    WonkyLogger.printStashList(stashList);
+                } else if (firstArg.equals("clear")) {
+                    WonkyStorage.clearStash();
+                    WonkyLogger.stashCleared();
+                } else {
+                    WonkyLogger.invalidStashCommand(firstArg);
+                }
+            } else if (validateArgs(cmdArg, TWO_ARGS, false)) {
+                String firstArg = cmdList.get(ZERO_IDX).trim();
+                String stashName = cmdList.get(ONE_IDX).trim();
+                if (firstArg.equals("add")) {
+                    WonkyStorage.addStash(stashName, cmdArgs);
+                    WonkyLogger.stashAdded(stashName);
+                } else if (!stashList.contains(stashName)) {
+                    WonkyLogger.invalidStashName(stashName);
+                } else if (firstArg.equals("pop")) {
+                    WonkyStorage.popStash(stashName);
+                    WonkyLogger.stashPopped(stashName);
+                } else {
+                    WonkyLogger.invalidStashCommand(firstArg);
+                }
+            }
     }
 
     /**

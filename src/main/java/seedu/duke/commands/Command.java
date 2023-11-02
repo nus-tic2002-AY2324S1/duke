@@ -13,7 +13,8 @@ public enum Command {
     MARK("mark"),
     UNMARK("unmark"),
     FIND("find"),
-    STASH("stash");
+    STASH("stash"),
+    HELP("help");
 
     private String command;
 
