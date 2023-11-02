@@ -9,8 +9,8 @@ import java.util.List;
 public class FindCommand extends CrabyMessage implements CommandInterface {
 
     /**
-     * Sends the list of tasks that contain the keyword to the user.
      * @inheritDoc
+     * Sends the list of tasks that contain the keyword to the user.
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {

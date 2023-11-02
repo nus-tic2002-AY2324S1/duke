@@ -13,8 +13,8 @@ import java.util.List;
 public class SwitchCommand extends CrabyMessage implements CommandInterface {
 
     /**
-     * Sends switch message to the user and switch to another checklist.
      * @inheritDoc
+     * Sends switch message to the user and switch to another checklist.
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {

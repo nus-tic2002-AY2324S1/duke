@@ -19,8 +19,8 @@ public class UndoCommand extends CrabyMessage implements CommandInterface {
     private static final List<String> NOT_ALLOWED_UNDO = Arrays.asList("list", "find", "help", "undo", "blah");
 
     /**
-     * Sends the undo message to the user and undo the previous command.
      * @inheritDoc
+     * Sends the undo message to the user and undo the previous command.
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {

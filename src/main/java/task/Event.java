@@ -41,7 +41,6 @@ public class Event extends Task {
      * This method will format the time string to the correct format.
      *
      * @param timeString the time string from the user.
-     *                   if user never put the time, it will set the time to 0000.
      */
     private void formatTimeString(String timeString) {
         timeString = timeString.trim();

@@ -17,9 +17,9 @@ import java.util.List;
 public class AddTaskCommand extends CrabyMessage implements CommandInterface {
 
     /**
+     * @inheritDoc
      * Adds the task to the list.
      * It will print out the message to the user.
-     * @inheritDoc
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
