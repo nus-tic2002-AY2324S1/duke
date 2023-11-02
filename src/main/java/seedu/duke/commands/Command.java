@@ -16,9 +16,9 @@ public enum Command {
     private String command;
 
     /**
-     * Constructor for Command enum.
+     * Constructs the Command enum.
      *
-     * @param command the string representation of the command
+     * @param command the string representation of the command.
      */
     Command(String command) {
         this.command = command;
@@ -27,7 +27,7 @@ public enum Command {
     /**
      * Returns the string representation of the command.
      *
-     * @return the string representation of the command
+     * @return the string representation of the command.
      */
     public String getLitr() {
         return command;
@@ -36,8 +36,8 @@ public enum Command {
     /**
      * Returns the Command enum value of the given string.
      *
-     * @param cmd the string representation of the command
-     * @return the Command enum value of the given string
+     * @param cmd the string representation of the command.
+     * @return the Command enum value of the given string.
      */
     public static Command getEnum(String cmd) {
         return Command.valueOf(cmd.toUpperCase());

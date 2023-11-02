@@ -122,7 +122,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for the start of the application.
+     * Prints log message for the start of the application.
+     * 
      * @param modeToSet
      * @throws DukeLoggerException
      */
@@ -141,7 +142,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for the initialisation of the storage.
+     * Prints log message for the initialisation of the storage.
+     * 
      * @param isNew
      * @throws DukeLoggerException
      */
@@ -155,7 +157,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for a task.
+     * Prints log message for a task.
+     * 
      * @param task
      * @throws DukeLoggerException
      */
@@ -164,7 +167,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for a task added to the list.
+     * Prints log message for a task added to the list.
+     * 
      * @param task
      * @param desc
      * @throws DukeLoggerException
@@ -174,7 +178,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for the bye command.
+     * Prints log message for the bye command.
+     * 
      * @throws DukeLoggerException
      */
     public static void bye() throws DukeLoggerException {
@@ -182,7 +187,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for an unknown command.
+     * Prints log message for an unknown command.
+     * 
      * @param cmd
      * @throws DukeLoggerException
      */
@@ -196,7 +202,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for a mismatched argument.
+     * Prints log message for a mismatched argument.
+     * 
      * @param cmd
      * @throws DukeLoggerException
      */
@@ -210,7 +217,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for a mismatched argument with the expected argument count.
+     * Prints log message for a mismatched argument with the expected argument count.
+     * 
      * @param cmd
      * @param expectedArgCount
      * @throws DukeLoggerException
@@ -221,7 +229,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for an expected integer argument type.
+     * Prints log message for an expected integer argument type.
+     * 
      * @param val
      * @throws DukeLoggerException
      */
@@ -230,7 +239,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for an expected date argument type.
+     * Prints log message for an expected date argument type.
+     * 
      * @param val
      * @throws DukeLoggerException
      */
@@ -239,7 +249,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message to suggest a command.
+     * Prints log message to suggest a command.
+     * 
      * @param cmd
      * @throws DukeLoggerException
      */
@@ -255,7 +266,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for a typo in marking a task.
+     * Prints log message for a typo in marking a task.
+     * 
      * @param desc
      * @param isDoneLitr
      * @throws DukeLoggerException
@@ -265,7 +277,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for marking a task.
+     * Prints log message for marking a task.
+     * 
      * @param desc
      * @param isDoneLitr
      * @throws DukeLoggerException
@@ -275,7 +288,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for a typo in deleting a task.
+     * Prints log message for a typo in deleting a task.
+     * 
      * @param idx
      * @throws DukeLoggerException
      */
@@ -288,7 +302,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for deleting a task.
+     * Prints log message for deleting a task.
+     * 
      * @param desc
      * @throws DukeLoggerException
      */
@@ -297,7 +312,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Returns isLoading
+     * Returns isLoading.
+     * 
      * @param bool
      */
     public static void setIsLoading(boolean bool) {
@@ -305,7 +321,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for the bye command not supposed to be in storage.
+     * Prints log message for the bye command not supposed to be in storage.
+     * 
      * @throws DukeLoggerException
      */
     public static void byeInStorage() throws DukeLoggerException {
@@ -313,7 +330,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Returns mode
+     * Returns mode.
+     * 
      * @return
      */
     public static WonkyMode getMode() {
@@ -321,7 +339,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Returns isLoading
+     * Returns isLoading.
+     * 
      * @return
      */
     public static boolean getLoading() {

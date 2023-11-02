@@ -123,7 +123,7 @@ public class WonkyScanner {
     /**
      * Returns the isActive boolean used by this WonkyScanner.
      *
-     * @return the isActive boolean used by this WonkyScanner
+     * @return the isActive boolean used by this WonkyScanner.
      */
     public static boolean getActive() {
         return isActive;
@@ -132,7 +132,7 @@ public class WonkyScanner {
     /**
      * Returns the Scanner object used by this WonkyScanner.
      *
-     * @return the Scanner object used by this WonkyScanner
+     * @return the Scanner object used by this WonkyScanner.
      */
     public static Scanner getScanner() {
         return in;
