@@ -1,5 +1,6 @@
 package seedu.duke.task;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandArgument;
 import seedu.duke.commands.WonkyDateTime;
 import seedu.duke.exceptions.DukeException;
+import seedu.duke.exceptions.DukeLoggerException;
 import seedu.duke.exceptions.DukeManagerException;
 import seedu.duke.io.WonkyLogger;
 import seedu.duke.io.WonkyScanner;
@@ -21,29 +23,35 @@ import seedu.duke.io.WonkyStorage;
  */
 public class WonkyManager {
 
-    // Constants for command argument validation
+    // Constants for command argument validation.
     private static final String EMPTY_LITR = "";
     private static final int ZERO_ARGS = 0;
     private static final int ONE_ARGS = 1;
+    private static final int TWO_ARGS = 2;
+
     private static final int TODO_ARGS = 1;
     private static final int DEADLINE_ARGS = 2;
     private static final int EVENT_ARGS = 3;
 
-    // Constants for command argument indices
+    // Constants for command argument indices.
     private static final int DESC_IDX = 0;
     private static final int BY_IDX = 1;
     private static final int FROM_IDX = 1;
     private static final int TO_IDX = 2;
 
-    // Lists for storing command arguments and tasks
+    private static final int ZERO_IDX = 0;
+    private static final int ONE_IDX = 1;
+
+    // Lists for storing command arguments and tasks.
     private static List<CommandArgument> cmdArgs = new ArrayList<CommandArgument>();
     private static List<Task> tasks = new ArrayList<Task>();
 
     /**
      * Executes the given command argument.
      *
-     * @param cmdArg the command argument to execute
-     * @throws DukeException if there is an error executing the command
+     * @param cmdArg the command argument to execute.
+     * @throws DukeException if there is an error executing the command.
+     * @throws IOException
      */
     public static void executeCommand(CommandArgument cmdArg) throws DukeException {
         switch (cmdArg.getCmd()) {
@@ -56,6 +64,19 @@ public class WonkyManager {
             if (validateArgs(cmdArg, ZERO_ARGS)) {
                 WonkyLogger.printListCommand(tasks);
             }
+            break;
+        case HELP:
+            if (validateArgs(cmdArg, ZERO_ARGS)) {
+                WonkyLogger.printHelpCommand();
+            }
+            break;
+        case FIND:
+            if (validateArgs(cmdArg, ONE_ARGS)) {
+                findTasks(cmdArg);
+            }
+            break;
+        case STASH:
+            validateAndExecuteStash(cmdArg);
             break;
         case DELETE:
             //Fallthrough
@@ -78,11 +99,62 @@ public class WonkyManager {
         }
     }
 
+    private static void validateAndExecuteStash(CommandArgument cmdArg) throws DukeException {
+        List<String> cmdList = cmdArg.getArgList();
+            List<String> stashList = WonkyStorage.getStashList();
+            if (validateArgs(cmdArg, ONE_ARGS, false)) {
+                String firstArg = cmdList.get(ZERO_IDX).trim();
+                if (firstArg.equals("list")) {
+                    WonkyLogger.printStashList(stashList);
+                } else if (firstArg.equals("clear")) {
+                    WonkyStorage.clearStash();
+                    WonkyLogger.stashCleared();
+                } else {
+                    WonkyLogger.invalidStashCommand(firstArg);
+                }
+            } else if (validateArgs(cmdArg, TWO_ARGS, false)) {
+                String firstArg = cmdList.get(ZERO_IDX).trim();
+                String stashName = cmdList.get(ONE_IDX).trim();
+                if (firstArg.equals("add")) {
+                    WonkyStorage.addStash(stashName, cmdArgs);
+                    WonkyLogger.stashAdded(stashName);
+                } else if (!stashList.contains(stashName)) {
+                    WonkyLogger.invalidStashName(stashName);
+                } else if (firstArg.equals("pop")) {
+                    WonkyStorage.popStash(stashName);
+                    WonkyLogger.stashPopped(stashName);
+                } else {
+                    WonkyLogger.invalidStashCommand(firstArg);
+                }
+            }
+    }
+
+    /**
+     * Finds tasks that contain the given string in their description.
+     *
+     * @param cmdArg the command argument specifying the string to find.
+     * @throws DukeLoggerException
+     */
+    private static void findTasks(CommandArgument cmdArg) throws DukeLoggerException {
+        List<Task> foundTasks = new ArrayList<Task>();
+        String searchStr = cmdArg.getArgList().get(0);
+        for (Task task : tasks) {
+            if (task.description.contains(searchStr)) {
+                foundTasks.add(task);
+            }
+        }
+        if (foundTasks.size() > 0) {
+            WonkyLogger.printFoundTasks(foundTasks, searchStr);
+        } else {
+            WonkyLogger.noTasksFound(searchStr);
+        }
+    }
+
     /**
      * Modifies the task specified in the given command argument.
      *
-     * @param cmdArg the command argument specifying the task to modify
-     * @throws DukeException if there is an error modifying the task
+     * @param cmdArg the command argument specifying the task to modify.
+     * @throws DukeException if there is an error modifying the task.
      */
     public static void modifyTask(CommandArgument cmdArg) throws DukeException {
         List<String> argList = cmdArg.getArgList();
@@ -116,8 +188,8 @@ public class WonkyManager {
     /**
      * Parses the given command argument into a task and adds it to the task list.
      *
-     * @param cmdArg the command argument to parse
-     * @throws DukeException if there is an error parsing the command or adding the task
+     * @param cmdArg the command argument to parse.
+     * @throws DukeException if there is an error parsing the command or adding the task.
      */
     private static void parseCmdToTask(CommandArgument cmdArg) throws DukeException {
         List<String> argList = cmdArg.getArgList();
@@ -157,8 +229,8 @@ public class WonkyManager {
     /**
      * Adds the given task to the task list.
      *
-     * @param toAdd the task to add
-     * @throws DukeException if there is an error adding the task
+     * @param toAdd the task to add.
+     * @throws DukeException if there is an error adding the task.
      */
     private static void addTask(Task toAdd) throws DukeException {
         tasks.add(toAdd);
@@ -168,12 +240,24 @@ public class WonkyManager {
     /**
      * Validates that the given command argument has the expected number of arguments.
      *
-     * @param cmdArg the command argument to validate
-     * @param expectedSize the expected number of arguments
-     * @return true if the command argument is valid, false otherwise
-     * @throws DukeException if there is an error validating the command argument
+     * @param cmdArg the command argument to validate.
+     * @param expectedSize the expected number of arguments.
+     * @return true if the command argument is valid, false otherwise.
+     * @throws DukeException if there is an error validating the command argument.
      */
     private static boolean validateArgs(CommandArgument cmdArg, int expectedSize) throws DukeException {
+        return validateArgs(cmdArg, expectedSize, true);
+    }
+
+    /**
+     * Validates that the given command argument has the expected number of arguments.
+     *
+     * @param cmdArg the command argument to validate.
+     * @param expectedSize the expected number of arguments.
+     * @return true if the command argument is valid, false otherwise.
+     * @throws DukeException if there is an error validating the command argument.
+     */
+    private static boolean validateArgs(CommandArgument cmdArg, int expectedSize, boolean logError) throws DukeException {
         List<String> argList = cmdArg.getArgList();
         int argCount = cmdArg.getArgCount();
         if (WonkyLogger.getLoading()) {
@@ -186,7 +270,9 @@ public class WonkyManager {
             return true;
         }
         if (argCount != expectedSize || (argList.get(0).trim().isEmpty())) {
-            WonkyLogger.mismatchArgs(getLastCmd().getLitr(), expectedSize);
+            if (logError) {
+                WonkyLogger.mismatchArgs(getLastCmd().getLitr(), expectedSize);
+            }
             return false;
         }
         for (String arg : argList) {
@@ -217,7 +303,7 @@ public class WonkyManager {
     /**
      * Returns the last command argument in the command argument list.
      *
-     * @return the last command argument in the list
+     * @return the last command argument in the list.
      */
     private static Command getLastCmd() {
         return cmdArgs.get(cmdArgs.size() - 1).getCmd();
@@ -230,9 +316,9 @@ public class WonkyManager {
      * If the string is not a valid date or date and time,
      * it logs an error message using {@link WonkyLogger#expectedDateTime(String)}.
      *
-     * @param str the string to be checked
-     * @return true if the string is a valid date or date and time, false otherwise
-     * @throws DukeException if there is an error parsing the string as a date or date and time
+     * @param str the string to be checked.
+     * @return true if the string is a valid date or date and time, false otherwise.
+     * @throws DukeException if there is an error parsing the string as a date or date and time.
      */
     private static boolean isValidDateTime(String str) throws DukeException {
         str = str.trim();
@@ -251,9 +337,9 @@ public class WonkyManager {
     /**
      * Parses a string to a WonkyDateTime object.
      *
-     * @param str the string to be parsed
-     * @return a WonkyDateTime object representing the parsed date and time
-     * @throws DukeException if the string cannot be parsed into a valid date and time
+     * @param str the string to be parsed.
+     * @return a WonkyDateTime object representing the parsed date and time.
+     * @throws DukeException if the string cannot be parsed into a valid date and time.
      */
     private static WonkyDateTime parseToDate(String str) throws DukeException {
         str = str.trim();
@@ -272,7 +358,7 @@ public class WonkyManager {
     /**
      * Returns a list of all tasks.
      *
-     * @return a list of all tasks
+     * @return a list of all tasks.
      */
     public static List<Task> getTasks() {
         return tasks;
@@ -283,5 +369,9 @@ public class WonkyManager {
      */
     public static void resetTaskList() {
         tasks = new ArrayList<Task>();
+    }
+
+    public static void resetCmdArgs() {
+        cmdArgs = new ArrayList<CommandArgument>();
     }
 }

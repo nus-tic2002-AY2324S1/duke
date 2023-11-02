@@ -9,8 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A class that maps strings to LocalDateTime objects and provides various methods to manipulate and format
- * LocalDateTime objects.
+ * A class that maps strings to LocalDateTime objects.
  */
 public class WonkyDateTime {
 
@@ -93,7 +92,7 @@ public class WonkyDateTime {
      * Returns a string representation of the LocalDateTime object used by the WonkyDateTime object, formatted
      * according to the format style set by the setFormatStyle() method.
      *
-     * @return a string representation of the LocalDateTime object used by the WonkyDateTime object
+     * @return a string representation of the LocalDateTime object used by the WonkyDateTime object.
      */
     public String getStyledDateTimeStr() {
         return dateTime.format(DateTimeFormatter.ofLocalizedDateTime(formatStyle));
@@ -103,7 +102,7 @@ public class WonkyDateTime {
      * Returns a string representation of the LocalDateTime object used by the WonkyDateTime object, formatted
      * according to the default format "yyyy-MM-dd HH:mm".
      *
-     * @return a string representation of the LocalDateTime object used by the WonkyDateTime object
+     * @return a string representation of the LocalDateTime object used by the WonkyDateTime object.
      */
     public String getDateTimeStr() {
         return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));

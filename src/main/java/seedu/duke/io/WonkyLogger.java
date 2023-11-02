@@ -69,6 +69,37 @@ public class WonkyLogger {
     private static final String TASK_DELETED_MSG =
         "Your task [%s] is deleted!";
 
+    private static final String HELP_TEXT =
+        "Below are the list of commands you can use!\n\n" +
+        "\tlist\n" +
+        "\t\tLists all the tasks.\n\n" +
+        "\thelp\n" +
+        "\t\tPrints the list of commands you can use!\n\n" +
+        "\tbye\n" +
+        "\t\tExits the application.\n\n" +
+        "\ttodo {desc}\n" +
+        "\t\tAdds a todo task to the list.\n\n" +
+        "\tdeadline {desc}|{by}\n" +
+        "\t\tAdds a deadline task to the list.\n\n" +
+        "\tevent {desc}|{from}|{to}\n" +
+        "\t\tAdds an event task to the list.\n\n" +
+        "\tmark {taskNo}\n" +
+        "\t\tMarks a task as done.\n\n" +
+        "\tunmark {taskNo}\n" +
+        "\t\tUnmarks a task as done.\n\n" +
+        "\tdelete {taskNo}\n" +
+        "\t\tDeletes a task from the list.\n\n" +
+        "\tfind {desc}\n" +
+        "\t\tFinds tasks containing the given description.\n\n" +
+        "\tstash list\n" +
+        "\t\tShows the list of current stashes.\n\n" +
+        "\tstash clear\n" +
+        "\t\tClears all of current stashes.\n\n" +
+        "\tstash add {stashName}\n" +
+        "\t\tAdds the current lists of tasks to a stash.\n\n" +
+        "\tstash pop {stashName}\n" +
+        "\t\tPops the stash to the current list of tasks.\n\n";
+
     private static final Random RND = new Random();
 
     private static boolean hasError = false;
@@ -106,6 +137,14 @@ public class WonkyLogger {
         }
     }
 
+    private static void printFindTitle(int size, String searchStr) throws DukeLoggerException {
+        if (size == 0) {
+            printlnWithWonky("No tasks containing [" + searchStr + "] found!");
+        } else {
+            printlnWithWonky("Below are the list of tasks containing [" + searchStr + "] found!");
+        }
+    }
+
     /**
      * Prints the list of tasks.
      *
@@ -116,13 +155,14 @@ public class WonkyLogger {
         printListTitle(tasks.size());
         if (!isLoading) {
             for (int i = 0; i < tasks.size(); i += 1) {
-                WonkyLogger.task(tasks.get(i).getStatusMsg(i + 1));
+                task(tasks.get(i).getStatusMsg(i + 1));
             }
         }
     }
 
     /**
-     * Print log message for the start of the application.
+     * Prints log message for the start of the application.
+     * 
      * @param modeToSet
      * @throws DukeLoggerException
      */
@@ -141,7 +181,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for the initialisation of the storage.
+     * Prints log message for the initialisation of the storage.
+     * 
      * @param isNew
      * @throws DukeLoggerException
      */
@@ -155,16 +196,18 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for a task.
+     * Prints log message for a task.
+     * 
      * @param task
      * @throws DukeLoggerException
      */
-    public static void task(String task) throws DukeLoggerException {
+    private static void task(String task) throws DukeLoggerException {
         println("\t" + task);
     }
 
     /**
-     * Print log message for a task added to the list.
+     * Prints log message for a task added to the list.
+     * 
      * @param task
      * @param desc
      * @throws DukeLoggerException
@@ -174,7 +217,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for the bye command.
+     * Prints log message for the bye command.
+     * 
      * @throws DukeLoggerException
      */
     public static void bye() throws DukeLoggerException {
@@ -182,7 +226,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for an unknown command.
+     * Prints log message for an unknown command.
+     * 
      * @param cmd
      * @throws DukeLoggerException
      */
@@ -196,7 +241,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for a mismatched argument.
+     * Prints log message for a mismatched argument.
+     * 
      * @param cmd
      * @throws DukeLoggerException
      */
@@ -210,7 +256,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for a mismatched argument with the expected argument count.
+     * Prints log message for a mismatched argument with the expected argument count.
+     * 
      * @param cmd
      * @param expectedArgCount
      * @throws DukeLoggerException
@@ -221,7 +268,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for an expected integer argument type.
+     * Prints log message for an expected integer argument type.
+     * 
      * @param val
      * @throws DukeLoggerException
      */
@@ -230,7 +278,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for an expected date argument type.
+     * Prints log message for an expected date argument type.
+     * 
      * @param val
      * @throws DukeLoggerException
      */
@@ -239,7 +288,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message to suggest a command.
+     * Prints log message to suggest a command.
+     * 
      * @param cmd
      * @throws DukeLoggerException
      */
@@ -255,7 +305,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for a typo in marking a task.
+     * Prints log message for a typo in marking a task.
+     * 
      * @param desc
      * @param isDoneLitr
      * @throws DukeLoggerException
@@ -265,7 +316,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for marking a task.
+     * Prints log message for marking a task.
+     * 
      * @param desc
      * @param isDoneLitr
      * @throws DukeLoggerException
@@ -275,7 +327,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for a typo in deleting a task.
+     * Prints log message for a typo in deleting a task.
+     * 
      * @param idx
      * @throws DukeLoggerException
      */
@@ -288,7 +341,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for deleting a task.
+     * Prints log message for deleting a task.
+     * 
      * @param desc
      * @throws DukeLoggerException
      */
@@ -297,7 +351,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Returns isLoading
+     * Returns isLoading.
+     * 
      * @param bool
      */
     public static void setIsLoading(boolean bool) {
@@ -305,7 +360,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Print log message for the bye command not supposed to be in storage.
+     * Prints log message for the bye command not supposed to be in storage.
+     * 
      * @throws DukeLoggerException
      */
     public static void byeInStorage() throws DukeLoggerException {
@@ -313,7 +369,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Returns mode
+     * Returns mode.
+     * 
      * @return
      */
     public static WonkyMode getMode() {
@@ -321,7 +378,8 @@ public class WonkyLogger {
     }
 
     /**
-     * Returns isLoading
+     * Returns isLoading.
+     * 
      * @return
      */
     public static boolean getLoading() {
@@ -333,5 +391,69 @@ public class WonkyLogger {
             return choices.get(0);
         }
         return choices.get(RND.nextInt(choices.size()));
+    }
+
+    /**
+     * Prints log message for a list of tasks.
+     * 
+     * @param foundTasks
+     * @throws DukeLoggerException
+     */
+    public static void printFoundTasks(List<Task> foundTasks, String searchStr) throws DukeLoggerException {
+        printFindTitle(foundTasks.size(), searchStr);
+        for (int i = 0; i < foundTasks.size(); i += 1) {
+            task(foundTasks.get(i).getStatusMsg(i + 1));
+        }
+    }
+
+    /**
+     * Prints log message for no tasks found.
+     * 
+     * @param string
+     * @throws DukeLoggerException
+     */
+    public static void noTasksFound(String searchStr) throws DukeLoggerException {
+        printFindTitle(0, searchStr);
+    }
+
+    /**
+     * Prints log message for a list of stashed tasks.
+     * 
+     * @param stashList
+     * @throws DukeLoggerException
+     */
+    public static void printStashList(List<String> stashList) throws DukeLoggerException {
+        if (stashList.size() > 0) {
+            printlnWithWonky("Below are the list of stashes you have!");
+            for (int i = 0; i < stashList.size(); i += 1) {
+                println("\t" + (i + 1) + ". " + stashList.get(i));
+            }
+        } else {
+            printlnWithWonky("You do not have any stashes!");
+        }
+    }
+
+    public static void stashCleared() throws DukeLoggerException {
+        printlnWithWonky("Your stashes have been cleared!");
+    }
+
+    public static void invalidStashCommand(String string) throws DukeLoggerException {
+        printlnWithWonky("You have entered an invalid stash command [" + string + "]!");
+    }
+
+    public static void invalidStashName(String stashName) throws DukeLoggerException {
+        printlnWithWonky("You have entered an invalid stash name [" + stashName + "]!");
+    }
+
+    public static void stashPopped(String stashName) throws DukeLoggerException {
+        printlnWithWonky("I have popped this stash [" + stashName + "]!");
+    }
+
+    public static void stashAdded(String stashName) throws DukeLoggerException {
+        printlnWithWonky("I have added [" + stashName + "] to your stashes!");
+    }
+
+    public static void printHelpCommand() throws DukeLoggerException {
+        printlnWithWonky(HELP_TEXT);
     }
 }
