@@ -63,7 +63,8 @@ public class WonkyStorage {
                 for (CommandArgument cmdArg : cmdArgs) {
                     if (
                         !Command.BYE.equals(cmdArg.getCmd())
-                            && !Command.LIST.equals(cmdArg.getCmd())
+                        && !Command.LIST.equals(cmdArg.getCmd())
+                        && !Command.FIND.equals(cmdArg.getCmd())
                     ) {
                         writer.write(cmdArg.getCmdLitr() + " " + cmdArg.getArgStr());
                         writer.newLine();

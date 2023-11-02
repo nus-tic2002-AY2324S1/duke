@@ -11,7 +11,8 @@ public enum Command {
     LIST("list"),
     TODO("todo"),
     MARK("mark"),
-    UNMARK("unmark");
+    UNMARK("unmark"),
+    FIND("find");
 
     private String command;
 

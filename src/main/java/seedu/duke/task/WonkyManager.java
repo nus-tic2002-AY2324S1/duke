@@ -10,6 +10,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandArgument;
 import seedu.duke.commands.WonkyDateTime;
 import seedu.duke.exceptions.DukeException;
+import seedu.duke.exceptions.DukeLoggerException;
 import seedu.duke.exceptions.DukeManagerException;
 import seedu.duke.io.WonkyLogger;
 import seedu.duke.io.WonkyScanner;
@@ -57,6 +58,11 @@ public class WonkyManager {
                 WonkyLogger.printListCommand(tasks);
             }
             break;
+        case FIND:
+            if (validateArgs(cmdArg, ONE_ARGS)) {
+                findTasks(cmdArg);
+            }
+            break;
         case DELETE:
             //Fallthrough
         case MARK:
@@ -75,6 +81,27 @@ public class WonkyManager {
             break;
         default:
             throw new DukeManagerException("Unhandled command to be added: " + cmdArg.getCmdLitr());
+        }
+    }
+
+    /**
+     * Finds tasks that contain the given string in their description.
+     *
+     * @param cmdArg the command argument specifying the string to find.
+     * @throws DukeLoggerException
+     */
+    private static void findTasks(CommandArgument cmdArg) throws DukeLoggerException {
+        List<Task> foundTasks = new ArrayList<Task>();
+        String searchStr = cmdArg.getArgList().get(0);
+        for (Task task : tasks) {
+            if (task.description.contains(searchStr)) {
+                foundTasks.add(task);
+            }
+        }
+        if (foundTasks.size() > 0) {
+            WonkyLogger.printFoundTasks(foundTasks, searchStr);
+        } else {
+            WonkyLogger.noTasksFound(searchStr);
         }
     }
 

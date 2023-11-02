@@ -106,6 +106,14 @@ public class WonkyLogger {
         }
     }
 
+    private static void printFindTitle(int size, String searchStr) throws DukeLoggerException {
+        if (size == 0) {
+            printlnWithWonky("No tasks containing [" + searchStr + "] found!");
+        } else {
+            printlnWithWonky("Below are the list of tasks containing [" + searchStr + "] found!");
+        }
+    }
+
     /**
      * Prints the list of tasks.
      *
@@ -116,7 +124,7 @@ public class WonkyLogger {
         printListTitle(tasks.size());
         if (!isLoading) {
             for (int i = 0; i < tasks.size(); i += 1) {
-                WonkyLogger.task(tasks.get(i).getStatusMsg(i + 1));
+                task(tasks.get(i).getStatusMsg(i + 1));
             }
         }
     }
@@ -162,7 +170,7 @@ public class WonkyLogger {
      * @param task
      * @throws DukeLoggerException
      */
-    public static void task(String task) throws DukeLoggerException {
+    private static void task(String task) throws DukeLoggerException {
         println("\t" + task);
     }
 
@@ -352,5 +360,28 @@ public class WonkyLogger {
             return choices.get(0);
         }
         return choices.get(RND.nextInt(choices.size()));
+    }
+
+    /**
+     * Prints log message for a list of tasks.
+     * 
+     * @param foundTasks
+     * @throws DukeLoggerException
+     */
+    public static void printFoundTasks(List<Task> foundTasks, String searchStr) throws DukeLoggerException {
+        printFindTitle(foundTasks.size(), searchStr);
+        for (int i = 0; i < foundTasks.size(); i += 1) {
+            task(foundTasks.get(i).getStatusMsg(i + 1));
+        }
+    }
+
+    /**
+     * Prints log message for no tasks found.
+     * 
+     * @param string
+     * @throws DukeLoggerException
+     */
+    public static void noTasksFound(String searchStr) throws DukeLoggerException {
+        printFindTitle(0, searchStr);
     }
 }

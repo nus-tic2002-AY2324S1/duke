@@ -31,9 +31,9 @@ public class DukeTest {
     }
 
     @Test
-    public void initialise_normalMode_success() {
+    public void initialise_testMode_success() {
         try {
-            Duke.initialise(WonkyMode.NORMAL);
+            Duke.initialise(WonkyMode.TEST);
         } catch (DukeException e) {
             fail("Unexpected DukeException thrown");
         }
