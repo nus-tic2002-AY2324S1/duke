@@ -12,7 +12,9 @@ public class ListTask {
     public boolean isEmpty(){
         return List.isEmpty();
     }
-
+    public static void Separator(){
+        System.out.println("__________________________");
+    }
     public void add(Task T){
         List.add(T);
     }
@@ -28,7 +30,7 @@ public class ListTask {
             if(i != number)
                 StorageUpdate.add(List.get(i));
             else {
-                Duke.Separator();
+                Separator();
                 System.out.println("Cate has deleted this Task:");
                 System.out.println(List.get(i));
             }
@@ -36,7 +38,7 @@ public class ListTask {
         List = StorageUpdate;
     }
     public void listAll(Keyword k){
-        Duke.Separator();
+        Separator();
         System.out.println("Here is your list of Tasks");
         for (int i = 0; i < List.size(); i++) {
             System.out.println(i + 1 + "." + List.get(i));
@@ -47,7 +49,7 @@ public class ListTask {
             System.out.println("Work harder, there is " + List.size() + " more task now");
         else if (k==Keyword.DELETE)
             System.out.println("Great! there is only " + List.size() + " task in the List now");
-        Duke.Separator();
+        Separator();
     }
     public void findTask(String line) {
         ArrayList<Task> Found = new ArrayList<>();
@@ -56,7 +58,7 @@ public class ListTask {
                 Found.add(List.get(i));
             }
         }
-        Duke.Separator();
+        Separator();
         if (Found.isEmpty()) {
             System.out.println("Oops , Cate did not find any matching Tasks");
         } else {
@@ -65,6 +67,6 @@ public class ListTask {
                 System.out.println(i + 1 + "." + Found.get(i));
             }
         }
-        Duke.Separator();
+        Separator();
     }
 }

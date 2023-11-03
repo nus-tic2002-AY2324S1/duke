@@ -10,6 +10,9 @@ public class Parser{
         public Parser(){
                 NoError=true;
         }
+        public static void Separator(){
+                System.out.println("__________________________");
+        }
         public void checkError(Keyword k,String line,ListTask Storage){
                 this.NoError=true;
         String[] words = line.split(" ");
@@ -79,10 +82,9 @@ public class Parser{
         }
         } catch (MissingArgumentException e){
                 this.NoError=false;
-        Duke.Separator();
+        Separator();
         System.out.println(e);
-        Duke.Separator();
-
+        Separator();
         }
         }
 
