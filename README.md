@@ -1,5 +1,5 @@
 
-# Welcome to Wonky Bot <img src="./src/main/resources/images/misc/leaf.png" alt="Maple leaf" width="30" height="30">
+#  <img src="./src/main/resources/images/misc/leaf.png" alt="Maple leaf" width="30" height="30"> Welcome to Wonky Bot
 
 Wonky Bot is a friendly and helpful chatbot designed to assist you with your daily tasks. It can help you manage your to-do list, set deadlines, plan events, and much more. With a simple and intuitive interface, Wonky Bot makes it easy to stay organised and productive.
 
