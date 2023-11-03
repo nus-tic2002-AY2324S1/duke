@@ -18,14 +18,14 @@ import seedu.duke.task.Task;
 public class WonkyLogger {
 
     private static final String LOGO =
-        "\t__          __         _            ____        _   \n"
-        + "\t\\ \\        / /        | |          |  _ \\      | |  \n"
-        + "\t \\ \\  /\\  / /__  _ __ | | ___   _  | |_) | ___ | |_ \n"
-        + "\t  \\ \\/  \\/ / _ \\| '_ \\| |/ / | | | |  _ < / _ \\| __|\n"
-        + "\t   \\  /\\  / (_) | | | |   <| |_| | | |_) | (_) | |_ \n"
-        + "\t    \\/  \\/ \\___/|_| |_|_|\\_\\\\__, | |____/ \\___/ \\__|\n"
-        + "\t                             __/ |                  \n"
-        + "\t                            |___/                  \n";
+        "\t__          __         _            ____        _   " + System.lineSeparator()
+        + "\t\\ \\        / /        | |          |  _ \\      | |  " + System.lineSeparator()
+        + "\t \\ \\  /\\  / /__  _ __ | | ___   _  | |_) | ___ | |_ " + System.lineSeparator()
+        + "\t  \\ \\/  \\/ / _ \\| '_ \\| |/ / | | | |  _ < / _ \\| __|" + System.lineSeparator()
+        + "\t   \\  /\\  / (_) | | | |   <| |_| | | |_) | (_) | |_ " + System.lineSeparator()
+        + "\t    \\/  \\/ \\___/|_| |_|_|\\_\\\\__, | |____/ \\___/ \\__|" + System.lineSeparator()
+        + "\t                             __/ |                  " + System.lineSeparator()
+        + "\t                            |___/                  " + System.lineSeparator();
 
     private static final List<String> UNKNOWN_CMD_MSGS = new ArrayList<>(
         Arrays.asList(
@@ -72,35 +72,35 @@ public class WonkyLogger {
         "The task [%d] does not exist!";
 
     private static final String HELP_TEXT =
-        "Below are the list of commands you can use!\n\n"
-        + "\tlist\n"
-        + "\t\tLists all the tasks.\n\n"
-        + "\thelp\n"
-        + "\t\tPrints the list of commands you can use!\n\n"
-        + "\tbye\n"
-        + "\t\tExits the application.\n\n"
-        + "\ttodo {desc}\n"
-        + "\t\tAdds a todo task to the list.\n\n"
-        + "\tdeadline {desc} | {by}\n"
-        + "\t\tAdds a deadline task to the list.\n\n"
-        + "\tevent {desc} | {from} | {to}\n"
-        + "\t\tAdds an event task to the list.\n\n"
-        + "\tmark {taskNo}\n"
-        + "\t\tMarks a task as done.\n\n"
-        + "\tunmark {taskNo}\n"
-        + "\t\tUnmarks a task as done.\n\n"
-        + "\tdelete {taskNo}\n"
-        + "\t\tDeletes a task from the list.\n\n"
-        + "\tfind {desc}\n"
-        + "\t\tFinds tasks containing the given description.\n\n"
-        + "\tstash list\n"
-        + "\t\tShows the list of current stashes.\n\n"
-        + "\tstash clear\n"
-        + "\t\tClears all of current stashes.\n\n"
-        + "\tstash add | {stashName}\n"
-        + "\t\tAdds the current lists of tasks to a stash.\n\n"
-        + "\tstash pop | {stashName}\n"
-        + "\t\tPops the stash to the current list of tasks.\n\n";
+        "Below are the list of commands you can use!" + System.lineSeparator() + System.lineSeparator()
+        + "\tlist" + System.lineSeparator()
+        + "\t\tLists all the tasks." + System.lineSeparator() + System.lineSeparator()
+        + "\thelp" + System.lineSeparator()
+        + "\t\tPrints the list of commands you can use!" + System.lineSeparator() + System.lineSeparator()
+        + "\tbye" + System.lineSeparator()
+        + "\t\tExits the application." + System.lineSeparator() + System.lineSeparator()
+        + "\ttodo {desc}" + System.lineSeparator()
+        + "\t\tAdds a todo task to the list." + System.lineSeparator() + System.lineSeparator()
+        + "\tdeadline {desc} | {by}" + System.lineSeparator()
+        + "\t\tAdds a deadline task to the list." + System.lineSeparator() + System.lineSeparator()
+        + "\tevent {desc} | {from} | {to}" + System.lineSeparator()
+        + "\t\tAdds an event task to the list." + System.lineSeparator() + System.lineSeparator()
+        + "\tmark {taskNo}" + System.lineSeparator()
+        + "\t\tMarks a task as done." + System.lineSeparator() + System.lineSeparator()
+        + "\tunmark {taskNo}" + System.lineSeparator()
+        + "\t\tUnmarks a task as done." + System.lineSeparator() + System.lineSeparator()
+        + "\tdelete {taskNo}" + System.lineSeparator()
+        + "\t\tDeletes a task from the list." + System.lineSeparator() + System.lineSeparator()
+        + "\tfind {desc}" + System.lineSeparator()
+        + "\t\tFinds tasks containing the given description." + System.lineSeparator() + System.lineSeparator()
+        + "\tstash list" + System.lineSeparator()
+        + "\t\tShows the list of current stashes." + System.lineSeparator() + System.lineSeparator()
+        + "\tstash clear" + System.lineSeparator()
+        + "\t\tClears all of current stashes." + System.lineSeparator() + System.lineSeparator()
+        + "\tstash add | {stashName}" + System.lineSeparator()
+        + "\t\tAdds the current lists of tasks to a stash." + System.lineSeparator() + System.lineSeparator()
+        + "\tstash pop | {stashName}" + System.lineSeparator()
+        + "\t\tPops the stash to the current list of tasks." + System.lineSeparator() + System.lineSeparator();
 
     private static final Random RND = new Random();
 
@@ -129,7 +129,7 @@ public class WonkyLogger {
 
     private static void println(String toPrint) throws DukeLoggerException {
         try {
-            response = response + "\n" + toPrint;
+            response = response + System.lineSeparator() + toPrint;
         } catch (Exception e) {
             throw new DukeLoggerException(e);
         }
@@ -183,9 +183,9 @@ public class WonkyLogger {
             printlnWithWonky("Initialisation completed successfully.");
         }
         println("");
-        printlnWithWonky("Hello from\n" + LOGO);
-        printlnWithWonky("I'm Wonky the Fairy.\n");
-        printlnWithWonky("What can I do for you?\n");
+        printlnWithWonky("Hello from" + System.lineSeparator() + LOGO);
+        printlnWithWonky("I'm Wonky the Fairy." + System.lineSeparator());
+        printlnWithWonky("What can I do for you?" + System.lineSeparator());
     }
 
     /**
