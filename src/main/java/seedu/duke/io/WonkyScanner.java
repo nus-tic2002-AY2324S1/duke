@@ -61,7 +61,6 @@ public class WonkyScanner {
      * Processes a user's input into a command to be executed.
      *
      * @param nextLine The user's input.
-     * @return True if the input was successfully processed, false otherwise.
      * @throws DukeException If there is an error with the logger, scanner, or executing a command.
      */
     public static void processNextLine(String nextLine) throws DukeException {
@@ -101,7 +100,7 @@ public class WonkyScanner {
      */
     public static void shutdown() throws DukeException {
         WonkyLogger.bye();
-        
+
         // Create a Timer
         Timer timer = new Timer();
 
@@ -111,7 +110,7 @@ public class WonkyScanner {
             public void run() {
                 System.exit(0);
             }
-        }, 1000);  // Delay in milliseconds
+        }, 1000); // Delay in milliseconds
     }
 
     public static boolean isActive() {

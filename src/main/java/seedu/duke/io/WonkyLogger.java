@@ -465,6 +465,11 @@ public class WonkyLogger {
         printlnWithWonky(HELP_TEXT);
     }
 
+    /**
+     * Flushes all the responses.
+     *
+     * @return returns the flushed response.
+     */
     public static String flushResponse() {
         String toFlush = response;
         response = "";

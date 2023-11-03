@@ -59,7 +59,7 @@ checkstyle {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    mainClass.set("seedu.duke.gui.Launcher")
 }
 
 shadowJar {

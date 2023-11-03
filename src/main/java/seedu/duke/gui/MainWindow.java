@@ -54,6 +54,11 @@ public class MainWindow extends AnchorPane {
         }
     }
 
+    /**
+     * Creates a dialog box containing Wonky's welcome message.
+     *
+     * @throws DukeException
+     */
     public void startUp() throws DukeException {
         String response = WonkyLogger.flushResponse();
         dialogContainer.getChildren().addAll(
