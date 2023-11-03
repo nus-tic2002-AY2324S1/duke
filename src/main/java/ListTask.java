@@ -46,5 +46,22 @@ public class ListTask {
             System.out.println("Great! there is only " + List.size() + " task in the List now");
         Duke.Separator();
     }
-
+    public void findTask(String line) {
+        ArrayList<Task> Found = new ArrayList<>();
+        for (int i = 0; i < List.size(); i++) {
+            if (List.get(i).toString().contains(line)) {
+                Found.add(List.get(i));
+            }
+        }
+        Duke.Separator();
+        if (Found.isEmpty()) {
+            System.out.println("Oops , Cate did not find any matching Tasks");
+        } else {
+            System.out.println("Here are the matching Tasks");
+            for (int i = 0; i < Found.size(); i++) {
+                System.out.println(i + 1 + "." + Found.get(i));
+            }
+        }
+        Duke.Separator();
+    }
 }
