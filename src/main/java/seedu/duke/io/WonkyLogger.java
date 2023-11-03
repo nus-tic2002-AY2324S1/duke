@@ -11,7 +11,7 @@ import seedu.duke.exceptions.DukeLoggerException;
 import seedu.duke.task.Task;
 
 /**
- * The WonkyLogger class provides logging and printing functionality for the Wonky Bot application.
+ * Provides logging and printing functionality for the Wonky Bot application.
  * It includes methods for logging errors and warnings, printing lists of tasks, and initializing the application.
  * The class also includes constants for error and warning messages, and a logo for the application.
  */

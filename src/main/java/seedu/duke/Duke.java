@@ -10,12 +10,12 @@ import seedu.duke.io.WonkyLogger;
 import seedu.duke.io.WonkyStorage;
 
 /**
- * The main class for the Wonky chatbot application.
+ * Controls the flow of the Wonky chatbot application.
  */
 public class Duke {
 
     /**
-     * The main method that starts the Wonky chatbot application.
+     * Starts the Wonky chatbot application.
      *
      * @param args The command line arguments.
      */

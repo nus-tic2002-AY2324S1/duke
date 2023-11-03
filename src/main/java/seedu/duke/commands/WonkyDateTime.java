@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A class that maps strings to LocalDateTime objects.
+ * Converts strings to LocalDateTime objects.
  */
 public class WonkyDateTime {
 
     /**
-     * A mapping of strings to LocalDateTime objects. The strings are used to represent specific dates and times.
+     * Stores a mapping of strings to LocalDateTime objects. The strings are used to represent specific dates and times.
      */
     private static final Map<String, LocalDateTime> STR_TO_DATE_TIME_MAPPING = new HashMap<String, LocalDateTime>() {
         {

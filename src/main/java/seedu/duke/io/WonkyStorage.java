@@ -25,7 +25,7 @@ public class WonkyStorage {
     private static final File STASH_FOLDER = new File("./stash/");
 
     /**
-     * Initializes the storage file and loads previous commands if in normal mode.
+     * Initialises the storage file and loads previous commands if in normal mode.
      *
      * @param mode the current mode of the program.
      * @throws DukeException if there is an error initializing the storage file or loading previous commands.

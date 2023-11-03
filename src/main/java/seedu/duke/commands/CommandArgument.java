@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * The CommandArgument class represents a command with its arguments.
+ * Represents a command along with its arguments.
  * It contains methods to get the command, its string representation, the arguments as a string,
  * the arguments as a list, and the number of arguments.
  * It also contains a method to set the arguments for the command.

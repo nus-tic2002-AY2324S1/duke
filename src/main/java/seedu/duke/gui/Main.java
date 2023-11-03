@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import seedu.duke.Duke;
 
 /**
- * A GUI for Duke using FXML.
+ * Manages the GUI for Duke using FXML.
  */
 public class Main extends Application {
 

@@ -18,7 +18,7 @@ import seedu.duke.io.WonkyScanner;
 import seedu.duke.io.WonkyStorage;
 
 /**
- * The WonkyManager class is responsible for managing the tasks in the Duke application.
+ * Manages the tasks in the Duke application.
  * It contains methods for executing commands, modifying tasks, and parsing commands into tasks.
  */
 public class WonkyManager {

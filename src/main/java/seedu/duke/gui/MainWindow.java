@@ -13,7 +13,7 @@ import seedu.duke.io.WonkyLogger;
 import seedu.duke.io.WonkyScanner;
 
 /**
- * Controller for MainWindow. Provides the layout for the other controls.
+ * Controls the MainWindow and provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
     @FXML

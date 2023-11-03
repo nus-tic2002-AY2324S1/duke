@@ -13,7 +13,7 @@ import seedu.duke.exceptions.DukeScannerException;
 import seedu.duke.task.WonkyManager;
 
 /**
- * This class is responsible for scanning user input and processing it into commands to be executed by the program.
+ * Handles reading user input and processing it into commands to be executed by the program.
  */
 public class WonkyScanner {
 
@@ -58,7 +58,7 @@ public class WonkyScanner {
     }
 
     /**
-     * Processes a user's input into a command to be executed.
+     * Converts a user's input into a command to be executed.
      *
      * @param nextLine The user's input.
      * @throws DukeException If there is an error with the logger, scanner, or executing a command.
