@@ -4,10 +4,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
+ * Represents as a Parser object.
  * This class is responsible for parsing the user input
  * before passing it to the Logic class to execute the action.
  */
 public class Parser {
+
+    /**
+     * Parses the user input and passes it to the Logic class to execute the action.
+     *
+     * @param list List of tasks.
+     */
      static void inputParser(ArrayList<Task> list){
         String input = "init" ;
         Scanner in = new Scanner(System.in);

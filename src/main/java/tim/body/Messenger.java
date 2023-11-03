@@ -4,17 +4,24 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
+ * Represents as a Messenger object.
  * This class is responsible for printing messages and task list to the user.
  */
 public class Messenger {
 
+    /**
+     * Prints the current date.
+     */
     static void printDate(){
         System.out.println("|| Current Date: ||");
         Date currentDate = new Date();
         System.out.println(currentDate);
-        printDashes();
+        printDash();
     }
 
+    /**
+     * Prints the Tim's logo.
+     */
     static void printLogo(){
         String logo =
                 " _______                 \n"
@@ -25,20 +32,27 @@ public class Messenger {
         System.out.println("Hello from\n" + logo);
     }
 
+    /**
+     * Prints Tim's greeting.
+     */
     static void greetings(){
-        printDashes();
+        printDash();
         System.out.println("Hello I'm Tim. \nWhat can I do for you?");
-        printDashes();
+        printDash();
     }
-    static void printDashes(){
+
+    /**
+     * Prints a dash.
+     */
+    static void printDash(){
         System.out.println();
         System.out.println("____________________________________________________________");
     }
 
     /**
-     * This method prints the entire list of tasks.
+     * Prints the entire list of tasks.
      *
-     * @param list the list of tasks
+     * @param list List of tasks.
      */
     static void printList(ArrayList<Task> list){
         if (!list.isEmpty()){
@@ -46,22 +60,25 @@ public class Messenger {
                 printSingle(i,list);
             }
         }
-        printDashes();
+        printDash();
     }
 
     /**
-     * This method prints a single task at the given index of the list.
+     * Prints the task at the given index of the list.
      *
-     * @param index the index of the task in the list
-     * @param list the list of tasks
+     * @param index Index of the task in the list.
+     * @param list List of tasks.
      */
     static void printSingle(int index, ArrayList<Task> list){
         Task current = list.get(index-1);
         System.out.println(index + ". [" + current.getType()  + "] [" + current.getIsDone() + "] " + current.getDescription() );
     }
 
+    /**
+     * Prints the goodbye message.
+     */
     static void goodbyeGreet(){
         System.out.println("Bye. Hope to see you again soon!");
-        printDashes();
+        printDash();
     }
 }

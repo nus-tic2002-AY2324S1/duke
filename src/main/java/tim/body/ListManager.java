@@ -7,28 +7,31 @@ import tim.tasks.Deadline;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * Represents as a ListManager object.
+ * The object manages the list of tasks.
+ */
 public class ListManager {
     /**
-     * This method adds a task to the back of the list.
-     * inputEntry is parsed into description.
-     * 
-     * @param inputEntry the input string from the user
-     * @param list the list of tasks
+     * Adds a task to the back of the list.
+     *
+     * @param inputEntry The input string from the user.
+     * @param list List of tasks.
      */
     static void addToDo (String inputEntry, ArrayList<Task> list){
         list.add(new ToDo(inputEntry));
         System.out.println("Gotcha! Added this task:");
         Messenger.printSingle(list.size(),list);
         System.out.println("now there is: "+ list.size() + " item(s)");
-        Messenger.printDashes();
+        Messenger.printDash();
     }
 
     /**
-     * This method adds a deadline to the back of the list.
+     * Adds a deadline to the back of the list.
      * inputEntry is parsed into description and byDate.
      * 
-     * @param inputEntry the input string from the user
-     * @param list the list of tasks
+     * @param inputEntry Input string from the user.
+     * @param list List of tasks.
      */
     static void addDeadline (String inputEntry, ArrayList<Task> list){
         String[] inputTokenized;
@@ -44,7 +47,7 @@ public class ListManager {
             System.out.println("Gotcha! Added this task:");
             Messenger.printSingle(list.size(),list);
             System.out.println("now there is: "+ list.size() + " item(s)");
-            Messenger.printDashes();
+            Messenger.printDash();
         } catch (ArrayIndexOutOfBoundsException AIO) {
             System.err.println("you've missed out [/by] !");
         } catch(DateTimeParseException DTPE ){
@@ -56,11 +59,11 @@ public class ListManager {
     }
     
     /** 
-     * This method adds an event to the back of the list.
+     * Adds an event to the back of the list.
      * inputEntry is parsed into description, fromDate and toDate.
      * 
-     * @param inputEntry the input string from the user
-     * @param list the list of tasks
+     * @param inputEntry Input string from the user.
+     * @param list list of tasks.
      */
     static void addEvent (String inputEntry,ArrayList<Task> list){
         String[] inputTokenized;
@@ -78,7 +81,7 @@ public class ListManager {
             System.out.println("Gotcha! Added this task:");
             Messenger.printSingle(list.size(),list);
             System.out.println("now there is: "+ list.size() + " item(s)");
-            Messenger.printDashes();
+            Messenger.printDash();
         } catch (ArrayIndexOutOfBoundsException AIO) {
             System.err.println("you've missed out [/fromDate] or [/toDate] !");
         } catch(DateTimeParseException DTPE ){
@@ -92,25 +95,25 @@ public class ListManager {
     }
 
     /**
-     * This method deletes the task at the given index from the list.
+     * Deletes the task at the given index from the list.
      *
-     * @param deleteIndex the index of the task to be deleted
-     * @param list the list of tasks
+     * @param deleteIndex Index of the task to be deleted.
+     * @param list List of tasks.
      */
     static void deleteFromList (int deleteIndex,ArrayList<Task> list){
         System.out.print("Deleting: ");
         Messenger.printSingle(deleteIndex,list);
-        Messenger.printDashes();
+        Messenger.printDash();
         list.remove(deleteIndex-1);
         Messenger.printList(list);
     }
 
     /**
-     * This method marks or unmarks the task at the given index from the list.
+     * Marks or unmarks the task at the given index from the list.
      *
-     * @param index the index of the task to be marked or unmarked
-     * @param markUnmark true if the task is to be marked, false if the task is to be unmarked
-     * @param list the list of tasks
+     * @param index Index of the task to be marked or unmarked.
+     * @param markUnmark True if the task is to be marked, false if the task is to be unmarked.
+     * @param list List of tasks.
      */
     static void markUnmarkTask(int index, boolean markUnmark, ArrayList<Task> list){
         Task target = list.get(index-1);
@@ -127,7 +130,7 @@ public class ListManager {
             System.out.print("Task is already " + (markUnmark ? "marked" : "unmarked") + ".");
 
         }
-        Messenger.printDashes();
+        Messenger.printDash();
 
     }
 }

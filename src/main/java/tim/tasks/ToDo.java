@@ -1,17 +1,27 @@
 package tim.tasks;
 
 /**
+ * Represents as a ToDo object.
  * This class is a subclass of Task.
- * It is used to create a ToDo object.
  * It has a description.
- *
- * @param description the description of the task
  */
 public class ToDo extends Task {
+
+    /**
+     * Creates a ToDo object.
+     *
+     * @param description the description of the task
+     */
     public ToDo (String description){
         super(description);
         this.setType('T');
     }
+
+    /**
+     * @inheritDoc
+     *
+     * @return description of the task.
+     */
     @Override
     public String getDescription(){
         return super.getDescription() ;

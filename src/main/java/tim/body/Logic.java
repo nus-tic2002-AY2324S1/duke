@@ -3,18 +3,18 @@ import tim.tasks.Task;
 import java.util.ArrayList;
 
 /**
+ * Represents as a Logic object.
  * This class is the logic of the program.
  * It executes the actions based on the parsed user input from the parser.
- *
  */
 public class Logic {
 
     /**
-     * This method executes the action based on the parsed user input from the parser.
+     * Executes the action based on the parsed user input from the parser.
      *
-     * @param mode  the action to be executed
-     * @param list  the list of tasks
-     * @param token the user input split into an array of strings
+     * @param mode  Action to be executed.
+     * @param list  List of tasks.
+     * @param token User input split into an array of strings.
      */
     static void executeAction (String mode, ArrayList<Task> list, String[] token){
         int index;
