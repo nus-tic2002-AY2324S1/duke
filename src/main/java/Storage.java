@@ -25,7 +25,7 @@ public class Storage {
 
         while (scanner.hasNext()) {
             Task task = decodeTaskFromStorage(scanner.nextLine());
-            list.AddTask(task);
+            list.add(task);
         }
 
         return list;
@@ -36,8 +36,8 @@ public class Storage {
 
     public void save(ListTask tasklist) throws IOException {
         FileWriter fw = new FileWriter(FILEPATH);
-        for (int i = 0; i < tasklist.Size(); i++) {
-            Task task = tasklist.getTask(i);
+        for (int i = 0; i < tasklist.size(); i++) {
+            Task task = tasklist.get(i);
             String encodedTask = encodeTaskForStorage(task);
             fw.write(encodedTask);
         }

@@ -9,17 +9,20 @@ public class ListTask {
     public ListTask(ArrayList<Task> AL){
         List = AL;
     }
+    public boolean isEmpty(){
+        return List.isEmpty();
+    }
 
-    public void AddTask(Task T){
+    public void add(Task T){
         List.add(T);
     }
-    public Integer Size(){
+    public Integer size(){
         return List.size();
     }
-    public Task getTask(Integer i){
+    public Task get(Integer i){
         return List.get(i);
     }
-    public void RemoveTask(int number){
+    public void removeTask(int number){
         ArrayList<Task> StorageUpdate = new ArrayList<>();
         for(int i=0;i< List.size();i++){
             if(i != number)
@@ -32,7 +35,7 @@ public class ListTask {
         }
         List = StorageUpdate;
     }
-    public void ListAll(Keyword k){
+    public void listAll(Keyword k){
         Duke.Separator();
         System.out.println("Here is your list of Tasks");
         for (int i = 0; i < List.size(); i++) {

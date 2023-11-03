@@ -7,8 +7,10 @@ public class Parser{
             return NoError;
         }
 
-        public Parser(){}
-        public Parser(Keyword k,String line,ArrayList<Task> Storage){
+        public Parser(){
+                NoError=true;
+        }
+        public void checkError(Keyword k,String line,ListTask Storage){
                 this.NoError=true;
         String[] words = line.split(" ");
         try{

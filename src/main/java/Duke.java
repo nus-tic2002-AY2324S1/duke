@@ -6,13 +6,12 @@ import java.util.Scanner;
 public class Duke {
     private static Storage storage;
     private static ListTask listofitems;
+    private static UI ui;
+    private static Parser parse;
     public static void main(String[] args) {
-        Parser parse;
+
         storage = new Storage();
-        //Echo();
-        //List();
-        //MarkDone();
-        //TED();
+        ui.Run(listofitems,parse);
        try {
             listofitems = storage.load();
         } catch (FileNotFoundException e) {
@@ -20,16 +19,16 @@ public class Duke {
         }
 /*
         Task t = new Todo("fly kite");
-        listofitems.AddTask(t);
+        listofitems.addTask(t);
         t = new Deadline("return kite","june 2023");
-        listofitems.AddTask(t);
-        listofitems.ListAll(Keyword.LIST);
+        listofitems.addTask(t);
+        listofitems.listAll(Keyword.LIST);
         try{
         storage.save(listofitems);}
         catch (IOException e) {
            System.out.println("error save");
         } */
-        listofitems.ListAll(Keyword.LIST);
+        listofitems.listAll(Keyword.LIST);
     }
     public static void Logo(){
         String logo = " _ _ _              _ \n"
@@ -219,8 +218,8 @@ public class Duke {
     }
 
     public static void TED(){
-        Duke.Logo();
-        Duke.Greeter();
+        Logo();
+        Greeter();
         ArrayList<Task> Storage = new ArrayList<>();
         Task Selector;
         boolean Power=true;
@@ -268,6 +267,8 @@ public class Duke {
                         Storage.add(Selector);
                         Response(key,Storage);
                         break;
+                    case FIND:
+
                     default:
                         throw new IllegalArgumentException();
                 }
