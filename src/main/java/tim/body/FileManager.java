@@ -23,7 +23,7 @@ public class FileManager {
      * @throws ClassNotFoundException If the file is corrupted.
      */
     static ArrayList<Task> loadList () throws IOException, ClassNotFoundException{
-        ArrayList<Task> list = new ArrayList<Task>();
+        ArrayList<Task> list = new ArrayList<>();
         try{
             File f = new File("./src/main/data/list.data");
             if(f.exists()) {
