@@ -2,14 +2,11 @@ package seedu.duke.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.LocalDateTime;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandArgument;
-import seedu.duke.commands.WonkyDateTime;
 import seedu.duke.exceptions.DukeException;
 
 public class WonkyManagerTest {
@@ -39,9 +36,5 @@ public class WonkyManagerTest {
         CommandArgument cmdArg = new CommandArgument(Command.MARK, "1");
         WonkyManager.executeCommand(cmdArg);
         assertEquals(true, WonkyManager.getTasks().get(0).getDone());
-    }
-
-    private WonkyDateTime getWonkyDateTime(String dateTime) {
-        return new WonkyDateTime(LocalDateTime.parse(dateTime, WonkyDateTime.getDtf()));
     }
 }
