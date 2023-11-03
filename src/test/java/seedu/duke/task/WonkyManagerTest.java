@@ -40,8 +40,4 @@ public class WonkyManagerTest {
         WonkyManager.executeCommand(cmdArg);
         assertEquals(true, WonkyManager.getTasks().get(0).getDone());
     }
-
-    private WonkyDateTime getWonkyDateTime(String dateTime) {
-        return new WonkyDateTime(LocalDateTime.parse(dateTime, WonkyDateTime.getDtf()));
-    }
 }

@@ -83,9 +83,7 @@ public class WonkyManager {
         case MARK:
             //Fallthrough
         case UNMARK:
-            if (validateArgs(cmdArg, ONE_ARGS)) {
-                modifyTask(cmdArg);
-            }
+            modifyTask(cmdArg);
             break;
         case TODO:
             //Fallthrough
@@ -162,25 +160,27 @@ public class WonkyManager {
             int taskIdx = Integer.parseInt(argList.get(0)) - 1;
             assert taskIdx >= 0 : "taskIdx cannot be negative!";
             assert taskIdx < tasks.size() : "taskIdx cannot be larger than tasks size!";
-            switch (cmdArg.getCmd()) {
-            case MARK:
-                tasks.get(taskIdx).setDone(true);
-                break;
-            case UNMARK:
-                tasks.get(taskIdx).setDone(false);
-                break;
-            case DELETE:
-                try {
-                    Task taskToDelete = tasks.get(taskIdx);
-                    tasks.remove(taskIdx);
-                    WonkyLogger.taskDeleted(taskToDelete.description);
-                } catch (IndexOutOfBoundsException e) {
-                    WonkyLogger.deleteTypo(taskIdx + 1);
+            if (isValidTaskIdx(taskIdx) && validateArgs(cmdArg, ONE_ARGS)) {
+                switch (cmdArg.getCmd()) {
+                case MARK:
+                    tasks.get(taskIdx).setDone(true);
                     break;
+                case UNMARK:
+                    tasks.get(taskIdx).setDone(false);
+                    break;
+                case DELETE:
+                    try {
+                        Task taskToDelete = tasks.get(taskIdx);
+                        tasks.remove(taskIdx);
+                        WonkyLogger.taskDeleted(taskToDelete.description);
+                    } catch (IndexOutOfBoundsException e) {
+                        WonkyLogger.deleteTypo(taskIdx + 1);
+                        break;
+                    }
+                    break;
+                default:
+                    throw new DukeManagerException("Unhandled modify task operation: " + cmdArg.getCmdLitr());
                 }
-                break;
-            default:
-                throw new DukeManagerException("Unhandled modify task operation: " + cmdArg.getCmdLitr());
             }
         } catch (NumberFormatException e) {
             WonkyLogger.expectedInteger(argList.get(0));
@@ -237,6 +237,15 @@ public class WonkyManager {
     private static void addTask(Task toAdd) throws DukeException {
         tasks.add(toAdd);
         WonkyLogger.addedToList(toAdd.command.getLitr(), toAdd.description);
+    }
+
+    private static boolean isValidTaskIdx(int taskIdx) throws DukeLoggerException {
+        if (taskIdx >= 0 && taskIdx < tasks.size()) {
+            return true;
+        } else {
+            WonkyLogger.invalidTaskIdx(taskIdx + 1);
+            return false;
+        }
     }
 
     /**

@@ -3,7 +3,8 @@ package seedu.duke.io;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandArgument;
@@ -17,24 +18,7 @@ import seedu.duke.task.WonkyManager;
 public class WonkyScanner {
 
     private static Command currCommand;
-    private static Scanner in;
     private static boolean isActive = true;
-
-    /**
-     * Initializes the scanner and processes user input until the program is exited.
-     *
-     * @throws DukeException If there is an error with the scanner or executing a command.
-     */
-    public static void startUp() throws DukeException {
-        if (Objects.isNull(in)) {
-            in = new Scanner(System.in);
-        }
-        assert in != null : "Scanner should be initialized";
-        while (isActive && in.hasNextLine()) {
-            String nextLine = in.nextLine().trim();
-            processNextLine(nextLine);
-        }
-    }
 
     /**
      * Exits the program.
@@ -42,11 +26,9 @@ public class WonkyScanner {
      * @throws DukeException If there is an error with the logger or scanner.
      */
     public static void bye() throws DukeException {
-        assert isActive : "Program should be active when bye is called";
         if (WonkyLogger.getLoading()) {
             WonkyLogger.byeInStorage();
         } else {
-            isActive = false;
             shutdown();
         }
     }
@@ -82,7 +64,10 @@ public class WonkyScanner {
      * @return True if the input was successfully processed, false otherwise.
      * @throws DukeException If there is an error with the logger, scanner, or executing a command.
      */
-    public static boolean processNextLine(String nextLine) throws DukeException {
+    public static void processNextLine(String nextLine) throws DukeException {
+        if (!isActive) {
+            return;
+        }
         try {
             final List<String> splitLn = Arrays.asList(nextLine.split(" ", 2));
             final String inputCmd = splitLn.get(0);
@@ -107,36 +92,33 @@ public class WonkyScanner {
         } catch (Exception e) {
             throw new DukeScannerException(e);
         }
-        return true;
     }
 
     /**
-     * Closes the scanner and logs a goodbye message.
+     * Logs a goodbye message.
      *
      * @throws DukeException If there is an error with the logger or scanner.
      */
     public static void shutdown() throws DukeException {
         WonkyLogger.bye();
-        if (Objects.nonNull(in)) {
-            in.close();
-        }
+        
+        // Create a Timer
+        Timer timer = new Timer();
+
+        // Schedule a TimerTask to call System.exit(0) after 5 seconds
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        }, 1000);  // Delay in milliseconds
     }
 
-    /**
-     * Returns the isActive boolean used by this WonkyScanner.
-     *
-     * @return the isActive boolean used by this WonkyScanner.
-     */
-    public static boolean getActive() {
+    public static boolean isActive() {
         return isActive;
     }
 
-    /**
-     * Returns the Scanner object used by this WonkyScanner.
-     *
-     * @return the Scanner object used by this WonkyScanner.
-     */
-    public static Scanner getScanner() {
-        return in;
+    public static void setActive(boolean bool) {
+        isActive = bool;
     }
 }

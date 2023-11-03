@@ -7,13 +7,13 @@ import seedu.duke.commands.WonkyMode;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeUnhandledException;
 import seedu.duke.io.WonkyLogger;
-import seedu.duke.io.WonkyScanner;
 import seedu.duke.io.WonkyStorage;
 
 /**
  * The main class for the Wonky chatbot application.
  */
 public class Duke {
+
     /**
      * The main method that starts the Wonky chatbot application.
      *
@@ -28,7 +28,6 @@ public class Duke {
         } catch (Exception e) {
             throw new DukeUnhandledException(e);
         }
-        System.exit(0);
     }
 
     /**
@@ -40,7 +39,6 @@ public class Duke {
     public static void initialise(WonkyMode mode) throws DukeException {
         WonkyStorage.startUp(mode);
         WonkyLogger.startUp(mode);
-        WonkyScanner.startUp();
     }
 
     /**

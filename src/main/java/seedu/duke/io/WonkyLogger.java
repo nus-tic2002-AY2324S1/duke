@@ -68,6 +68,8 @@ public class WonkyLogger {
         "Did you want to delete the wrong task? There is no task no. [%d].";
     private static final String TASK_DELETED_MSG =
         "Your task [%s] is deleted!";
+    private static final String TASK_NOT_EXIST_MSG =
+        "The task [%d] does not exist!";
 
     private static final String HELP_TEXT =
         "Below are the list of commands you can use!\n\n"
@@ -79,9 +81,9 @@ public class WonkyLogger {
         + "\t\tExits the application.\n\n"
         + "\ttodo {desc}\n"
         + "\t\tAdds a todo task to the list.\n\n"
-        + "\tdeadline {desc}|{by}\n"
+        + "\tdeadline {desc} | {by}\n"
         + "\t\tAdds a deadline task to the list.\n\n"
-        + "\tevent {desc}|{from}|{to}\n"
+        + "\tevent {desc} | {from} | {to}\n"
         + "\t\tAdds an event task to the list.\n\n"
         + "\tmark {taskNo}\n"
         + "\t\tMarks a task as done.\n\n"
@@ -95,9 +97,9 @@ public class WonkyLogger {
         + "\t\tShows the list of current stashes.\n\n"
         + "\tstash clear\n"
         + "\t\tClears all of current stashes.\n\n"
-        + "\tstash add {stashName}\n"
+        + "\tstash add | {stashName}\n"
         + "\t\tAdds the current lists of tasks to a stash.\n\n"
-        + "\tstash pop {stashName}\n"
+        + "\tstash pop | {stashName}\n"
         + "\t\tPops the stash to the current list of tasks.\n\n";
 
     private static final Random RND = new Random();
@@ -105,6 +107,8 @@ public class WonkyLogger {
     private static boolean hasError = false;
     private static WonkyMode mode = WonkyMode.NORMAL;
     private static boolean isLoading = false;
+
+    private static String response = "";
 
     private static void printlnWithWonky(String toPrint) throws DukeLoggerException {
         assert toPrint != null : "String to print should not be null";
@@ -125,7 +129,7 @@ public class WonkyLogger {
 
     private static void println(String toPrint) throws DukeLoggerException {
         try {
-            System.out.println("\t" + toPrint);
+            response = response + "\n" + toPrint;
         } catch (Exception e) {
             throw new DukeLoggerException(e);
         }
@@ -180,8 +184,8 @@ public class WonkyLogger {
         }
         println("");
         printlnWithWonky("Hello from\n" + LOGO);
-        printlnWithWonky("I'm Wonky the Fairy.");
-        printlnWithWonky("What can I do for you?");
+        printlnWithWonky("I'm Wonky the Fairy.\n");
+        printlnWithWonky("What can I do for you?\n");
     }
 
     /**
@@ -192,9 +196,9 @@ public class WonkyLogger {
      */
     public static void initialiseStorage(boolean isNew) throws DukeLoggerException {
         if (isNew) {
-            println("Wonky: Initialising...");
+            printlnWithWonky("Initialising...");
         } else {
-            println("Wonky: Initialising and loading data from storage...");
+            printlnWithWonky("Initialising and loading data from storage...");
             println(" ");
         }
     }
@@ -459,5 +463,15 @@ public class WonkyLogger {
 
     public static void printHelpCommand() throws DukeLoggerException {
         printlnWithWonky(HELP_TEXT);
+    }
+
+    public static String flushResponse() {
+        String toFlush = response;
+        response = "";
+        return toFlush;
+    }
+
+    public static void invalidTaskIdx(int i) throws DukeLoggerException {
+        printWarnWithWonky(String.format(TASK_NOT_EXIST_MSG, i));
     }
 }
