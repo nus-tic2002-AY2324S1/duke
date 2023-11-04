@@ -1,11 +1,11 @@
 package duke.parser;
 
+import duke.dukeexceptions.ChangeTodoDateException;
 import duke.dukeexceptions.DukeException;
 import duke.dukeexceptions.EmptyCommandException;
 import duke.dukeexceptions.InvalidNumberFormatException;
-import duke.dukeexceptions.TaskNotFoundException;
 import duke.dukeexceptions.InvalidTaskFormatException;
-import duke.dukeexceptions.ChangeTodoDateException;
+import duke.dukeexceptions.TaskNotFoundException;
 import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
@@ -25,13 +25,6 @@ public class DukeParser {
   private static final int BY_KEYWORD_LENGTH = 3;
   private static final int FROM_KEYWORD_LENGTH = 5;
   private static final int TO_KEYWORD_LENGTH = 3;
-
-  private final CommandExecutor commandExecutor;
-
-  public DukeParser() {
-    this.commandExecutor = new CommandExecutor();
-  }
-
   private static final String DATE_FORMAT = "yyyy-MM-dd";
   private static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm";
   // Date and time format for parsing
@@ -43,6 +36,13 @@ public class DukeParser {
     dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
   }
 
+  private final CommandExecutor commandExecutor;
+
+  public DukeParser() {
+
+    this.commandExecutor = new CommandExecutor();
+  }
+
   /**
    * Parses a date and time string and returns a `LocalDateTime` object.
    *
@@ -51,6 +51,7 @@ public class DukeParser {
    * @throws DateTimeParseException if the string cannot be parsed as a valid date and time.
    */
   static LocalDateTime parseDateTime(String dateTimeString) throws DateTimeParseException {
+
     return LocalDateTime.parse(dateTimeString, dateTimeFormatter);
   }
 
@@ -62,6 +63,7 @@ public class DukeParser {
    * @throws DateTimeParseException if the string cannot be parsed as a valid date.
    */
   static LocalDate parseDate(String dateString) throws DateTimeParseException {
+
     return LocalDate.parse(dateString, dateFormatter);
   }
 
@@ -73,6 +75,7 @@ public class DukeParser {
    * @throws DateTimeParseException if the string cannot be parsed as a valid date and time.
    */
   public static LocalDateTime parseDateTimeOrDate(String dateTimeString) {
+
     if (dateTimeString.contains(" ")) {
       return parseDateTime(dateTimeString);
     } else {
@@ -88,42 +91,11 @@ public class DukeParser {
    * @throws InvalidNumberFormatException if the string is not a valid integer.
    */
   public static Integer parseInteger(String integer) throws InvalidNumberFormatException {
+
     try {
       return Integer.parseInt(integer);
     } catch (NumberFormatException e) {
       throw new InvalidNumberFormatException(e.getMessage());
-    }
-  }
-
-  /**
-   * Parse the user's input into commands and parameters for execution.
-   *
-   * @param fileStorage The file storage to manage tasks.
-   * @param display     The message display for showing output.
-   * @param taskList    The list of tasks to operate on.
-   * @param userInput   The user's input string of commands.
-   */
-  public void parseUserInput(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, String userInput) {
-    try {
-      String[] inputs = userInput.split("\\s+");
-      if (inputs.length == 0 || userInput.isEmpty()) {
-        throw new EmptyCommandException();
-      }
-      String command = inputs[0];
-      commandExecutor.executeCommand(fileStorage, display, taskList, command, userInput);
-    } catch (InvalidNumberFormatException e) {
-      // Handle the case where the task is not found by index
-      System.out.printf("%s\n", e.getMessage());
-      MessageDisplay.printLineBreak();
-    }catch(DateTimeParseException e){
-      System.out.printf("%s\n", e.getMessage());
-      MessageDisplay.printLineBreak();
-    }catch(ChangeTodoDateException e){
-      System.out.printf("%s\n", e.getMessage());
-      MessageDisplay.printLineBreak();
-    }catch (DukeException e) {
-      System.out.printf("%s\n", e.getMessage());
-      MessageDisplay.printLineBreak();
     }
   }
 
@@ -134,6 +106,7 @@ public class DukeParser {
    * @return The parsed command from the input.
    */
   protected static String parseCommandFromInput(String userInput) {
+
     int spaceIndex = userInput.indexOf(' ');
     return userInput.substring(0, spaceIndex);
   }
@@ -146,7 +119,8 @@ public class DukeParser {
    * @return The extracted item index.
    * @throws InvalidNumberFormatException if the input format is incorrect.
    */
-  static int extractItemIndex(List<Task> taskList, String userInput) throws DukeException{
+  static int extractItemIndex(List<Task> taskList, String userInput) throws DukeException {
+
     try {
       int spaceIndex = userInput.indexOf(' ');
       String integerPart = userInput.substring(spaceIndex + 1).trim();
@@ -165,10 +139,12 @@ public class DukeParser {
   }
 
   static String extractTaskName(String arguments, int firstIndex) throws DukeException {
+
     return arguments.substring(0, firstIndex).trim();
   }
 
   static String extractDeadlineDueDateString(String arguments) throws DukeException {
+
     String taskDueDateString = arguments.substring(extractDeadlineByIndex(arguments) + BY_KEYWORD_LENGTH).trim();
     if (taskDueDateString.isEmpty()) {
       throw new InvalidTaskFormatException("deadline");
@@ -177,8 +153,9 @@ public class DukeParser {
   }
 
   static String extractEventFromDateString(String arguments) throws DukeException {
+
     int fromIndex = extractEventFromIndex(arguments);
-    String taskFromDateString = arguments.substring(fromIndex + FROM_KEYWORD_LENGTH,extractEventToIndex(arguments)).trim();
+    String taskFromDateString = arguments.substring(fromIndex + FROM_KEYWORD_LENGTH, extractEventToIndex(arguments)).trim();
     if (taskFromDateString.isEmpty()) {
       throw new InvalidTaskFormatException("event");
     }
@@ -186,6 +163,7 @@ public class DukeParser {
   }
 
   static String extractEventToDateString(String arguments) throws DukeException {
+
     int toindex = extractEventToIndex(arguments);
     String taskToDateString = arguments.substring(toindex + TO_KEYWORD_LENGTH).trim();
     if (taskToDateString.isEmpty()) {
@@ -222,6 +200,39 @@ public class DukeParser {
       throw new InvalidTaskFormatException("event");
     }
     return toIndex;
+  }
+
+  /**
+   * Parse the user's input into commands and parameters for execution.
+   *
+   * @param fileStorage The file storage to manage tasks.
+   * @param display     The message display for showing output.
+   * @param taskList    The list of tasks to operate on.
+   * @param userInput   The user's input string of commands.
+   */
+  public void parseUserInput(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, String userInput) {
+
+    try {
+      String[] inputs = userInput.split("\\s+");
+      if (inputs.length == 0 || userInput.isEmpty()) {
+        throw new EmptyCommandException();
+      }
+      String command = inputs[0];
+      commandExecutor.executeCommand(fileStorage, display, taskList, command, userInput);
+    } catch (InvalidNumberFormatException e) {
+      // Handle the case where the task is not found by index
+      System.out.printf("%s\n", e.getMessage());
+      MessageDisplay.printLineBreak();
+    } catch (DateTimeParseException e) {
+      System.out.printf("%s\n", e.getMessage());
+      MessageDisplay.printLineBreak();
+    } catch (ChangeTodoDateException e) {
+      System.out.printf("%s\n", e.getMessage());
+      MessageDisplay.printLineBreak();
+    } catch (DukeException e) {
+      System.out.printf("%s\n", e.getMessage());
+      MessageDisplay.printLineBreak();
+    }
   }
 
 }

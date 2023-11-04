@@ -39,6 +39,7 @@ public class ListCommandTest {
    */
   @AfterEach
   public void tearDown() {
+
     taskList.clear();
   }
 
@@ -49,7 +50,7 @@ public class ListCommandTest {
   void testPrintListWithEmptyTaskList() {
 
     System.setOut(new PrintStream(outputStream));
-    listCommand.printList( taskList);
+    listCommand.printList(taskList);
     String expectedOutput = "There's nothing in your list" + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator();
     assertEquals(expectedOutput, outputStream.toString());
     System.setOut(System.out);
@@ -65,7 +66,7 @@ public class ListCommandTest {
     taskList.add(new TodoTask("Test Task 2"));
 
     System.setOut(new PrintStream(outputStream));
-    listCommand.printList( taskList);
+    listCommand.printList(taskList);
 
     String expectedOutput = "Here are the tasks in your list:" + System.lineSeparator()
         + MessageDisplay.LINE_BREAK + System.lineSeparator()

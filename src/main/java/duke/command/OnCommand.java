@@ -25,7 +25,7 @@ public class OnCommand extends CheckTaskCommand {
    * @param taskList The list of user tasks to be checked.
    * @param date     The specific date for which tasks should be displayed.
    */
-  public void checkTasks( List<Task> taskList, LocalDate date) {
+  public void checkTasks(List<Task> taskList, LocalDate date) {
     // Check if there are no tasks in the list
     if (taskList.isEmpty()) {
       System.out.println("There's nothing on " + date);
@@ -35,9 +35,9 @@ public class OnCommand extends CheckTaskCommand {
     boolean headerPrinted = false;
     int index = 1;
     // Display the date and the tasks as of that date
-    for(Task task:taskList){
+    for (Task task : taskList) {
       // Check if the task should be displayed based on the date
-      if(task.checkDate(date)){
+      if (task.checkDate(date)) {
         if (!headerPrinted) {
           System.out.println("Here are the tasks in your list as of " + date);
           MessageDisplay.printLineBreak();
@@ -46,7 +46,7 @@ public class OnCommand extends CheckTaskCommand {
         System.out.println(index + "." + task);
         index++;
       }
-      if(index-1 == taskList.size()){
+      if (index - 1 == taskList.size()) {
         MessageDisplay.printLineBreak();
       }
     }

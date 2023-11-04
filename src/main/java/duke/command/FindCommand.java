@@ -38,10 +38,10 @@ public class FindCommand extends CheckTaskCommand {
     }
     System.out.println("Here are the matching tasks in your list:");
     int index = 1;
-    for(Task task:taskList){
+    for (Task task : taskList) {
       // Solution below used fuzzy string search from https://central.sonatype.com/artifact/me.xdrop/fuzzywuzzy?smo=true
       if (FuzzySearch.ratio(task.getTaskName(), keyword) >= 55) {
-        System.out.println(index + "." + task.toString());
+        System.out.println(index + "." + task);
         index++;
       }
     }

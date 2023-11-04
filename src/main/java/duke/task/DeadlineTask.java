@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.dukeexceptions.DeadlineDateException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -61,9 +63,14 @@ public class DeadlineTask extends Task {
    * @param taskDueDate The new end date for the task.
    */
   @Override
-  public void changeEndDate(LocalDateTime taskDueDate) {
+  public void changeEndDate(LocalDateTime taskDueDate) throws DeadlineDateException {
 
-    this.taskDueDate = taskDueDate;
+    try {
+      assert taskDueDate.isAfter(LocalDateTime.now());
+      this.taskDueDate = taskDueDate;
+    } catch (AssertionError e) {
+      throw new DeadlineDateException();
+    }
   }
 
   /**

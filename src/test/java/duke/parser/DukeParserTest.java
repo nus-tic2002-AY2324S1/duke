@@ -74,7 +74,7 @@ public class DukeParserTest {
   @Test
   public void testParseCommandFromInput() {
 
-    String command = dukeParser.parseCommandFromInput("delete 1");
+    String command = DukeParser.parseCommandFromInput("delete 1");
     assertEquals(command, "delete");
   }
 

@@ -25,8 +25,8 @@ public class ListCommand extends CheckTaskCommand {
     System.out.println("Here are the tasks in your list:");
     MessageDisplay.printLineBreak();
     int index = 1;
-    for(Task task:taskList){
-      System.out.println(index+ "."+task.toString());
+    for (Task task : taskList) {
+      System.out.println(index + "." + task.toString());
       index++;
     }
     MessageDisplay.printLineBreak();

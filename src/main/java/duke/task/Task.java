@@ -1,5 +1,8 @@
 package duke.task;
 
+import duke.dukeexceptions.DeadlineDateException;
+import duke.dukeexceptions.EventDateException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -102,7 +105,7 @@ public abstract class Task {
    *
    * @param taskDueDate The new end date for the task.
    */
-  public void changeEndDate(LocalDateTime taskDueDate) {
+  public void changeEndDate(LocalDateTime taskDueDate) throws DeadlineDateException, EventDateException {
 
   }
 

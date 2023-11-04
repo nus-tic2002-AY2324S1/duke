@@ -97,6 +97,7 @@ public class UserInterface {
      * @param taskName The name of the task.
      */
     public void alreadyMark(String taskName) {
+
       System.out.println(taskName + " is already marked!");
       printLineBreak();
     }
@@ -107,6 +108,7 @@ public class UserInterface {
      * @param taskName The name of the task.
      */
     public void notMark(String taskName) {
+
       System.out.println("You did not complete " + taskName + " before!");
       printLineBreak();
     }
@@ -153,7 +155,7 @@ public class UserInterface {
     /**
      * Displays a message when a task is snoozed.
      *
-     * @param task     The task being snoozed.
+     * @param task The task being snoozed.
      */
     public void rescheduleMessage(Task task) {
 

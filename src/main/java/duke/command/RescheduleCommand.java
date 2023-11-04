@@ -1,8 +1,10 @@
 package duke.command;
 
+import duke.dukeexceptions.DukeException;
 import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,12 +16,14 @@ public class RescheduleCommand extends Command {
   // The index of the task to be rescheduled.
   private final int itemIndex;
   private final LocalDateTime revisedDateTime;
+
   /**
    * Constructs a `RescheduleCommand` with the specified item index to reschedule a task.
    *
    * @param itemIndex The index of the task to be rescheduled.
    */
-  public RescheduleCommand(int itemIndex,LocalDateTime revisedDateTime) {
+  public RescheduleCommand(int itemIndex, LocalDateTime revisedDateTime) {
+
     this.revisedDateTime = revisedDateTime;
     this.itemIndex = itemIndex;
   }
@@ -32,7 +36,7 @@ public class RescheduleCommand extends Command {
    * @param taskList    The list of tasks containing the task to be rescheduled.
    */
   @Override
-  public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
+  public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) throws DukeException {
 
     taskList.get(itemIndex).changeEndDate(revisedDateTime);
     storeDuke(fileStorage, taskList);
