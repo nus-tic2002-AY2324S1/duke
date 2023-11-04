@@ -10,14 +10,11 @@ import java.util.ArrayList;
 public class TaskList {
     private static ArrayList<Task> tasks = new ArrayList<>();
 
-    /**
-     * Constructor
-     */
     public TaskList() {
     }
 
     /**
-     * The Tasklist Constructor
+     * Constructs a new TaskList object with the given list of tasks.
      *
      * @param listOfTasks An ArrayList containing tasks to initialize the TaskList.
      */
@@ -79,6 +76,34 @@ public class TaskList {
     }
 
     /**
+     * Returns a list of tasks that contain the provided search string in their description.
+     *
+     * @param search The search string to be matched against task descriptions.
+     * @return ArrayList of tasks matching the search string.
+     */
+    public ArrayList<Task> getTaskBySearchString(String search) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (isSearchFound(search, task)) {
+                foundTasks.add(task);
+            }
+        }
+        return foundTasks;
+    }
+
+    /**
+     * Checks if the provided search string is found within the task's description.
+     *
+     * @param search The search string to be matched against the task's description.
+     * @param task   The task to be checked.
+     * @return True if the search string is found in the task's description, false otherwise.
+     */
+    private boolean isSearchFound(String search, Task task) {
+        String description = task.getDukeDescription();
+        return description.contains(search);
+    }
+
+    /**
      * Checks if the specified date matches the date of the given task.
      *
      * @param date The date to match against the task's date.
@@ -93,16 +118,13 @@ public class TaskList {
         }
         if (isDeadline) {
             Deadline deadline = (Deadline) task;
-            if (areDatesEqual(date, deadline.getByDateTime())) {
-                return true;
-            }
-        } else if (isEvent) {
+            return areDatesEqual(date, deadline.getByDateTime());
+        } else {
             Event event = (Event) task;
-            if (areDatesEqual(date, event.getFromDateTime()) || areDatesEqual(date, event.getToDateTime())) {
-                return true;
-            }
+            boolean isEqualFromDate = areDatesEqual(date, event.getFromDateTime());
+            boolean isEqualToDate = areDatesEqual(date, event.getToDateTime());
+            return isEqualFromDate || isEqualToDate;
         }
-        return false;
     }
 
     /**
@@ -124,9 +146,10 @@ public class TaskList {
 
     /**
      * Removes the task at the specified index from the list of tasks.
+     *
      * @param index The index of the task to be removed.
      */
-    public void remove(int index){
+    public void remove(int index) {
         tasks.remove(index);
     }
 }

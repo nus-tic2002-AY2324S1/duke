@@ -26,10 +26,12 @@ public class TaskDecoder {
      *
      * @param strings The list of strings representing tasks to be decoded.
      * @return An ArrayList containing Task objects decoded from the input strings.
-     * @throws FileStorageException If there are issues with decoding the tasks.
-     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
+     * @throws FileStorageException     If there are issues with decoding the tasks.
+     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
+     * message.
      */
-    public static ArrayList<Task> decodeStringsToTaskList(List<String> strings) throws FileStorageException, InvalidArgumentException {
+    public static ArrayList<Task> decodeStringsToTaskList(List<String> strings) throws FileStorageException,
+            InvalidArgumentException {
         ArrayList<Task> tasks = new ArrayList<>();
         for (String string : strings) {
             tasks.add(decodeStringToTask(string));
@@ -42,8 +44,9 @@ public class TaskDecoder {
      *
      * @param string The string representation of the task to be decoded.
      * @return The Task object decoded from the input string.
-     * @throws FileStorageException If there are issues with the format or parsing of the string.
-     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
+     * @throws FileStorageException     If there are issues with the format or parsing of the string.
+     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
+     * message.
      */
     private static Task decodeStringToTask(String string) throws FileStorageException, InvalidArgumentException {
         char abbreviation = string.charAt(0);
@@ -98,7 +101,8 @@ public class TaskDecoder {
      *
      * @param byArgument The string argument representing the date and time.
      * @return The LocalDateTime object parsed from the input string, or null if parsing fails.
-     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
+     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
+     * message.
      */
     private static LocalDateTime parseStringToDateTime(String byArgument) throws InvalidArgumentException {
         final Matcher dateMatcher = Command.DATE_TIME_ARG_FORMAT.matcher(byArgument);
@@ -112,6 +116,7 @@ public class TaskDecoder {
         }
         return Parser.constructDateTime(dateMatcher, timeMatcher);
     }
+
     private static LocalDateTime parseStringToDate(String byArgument) throws InvalidArgumentException {
         final Matcher dateMatcher = Command.DATE_ARG_FORMAT.matcher(byArgument);
         if (!dateMatcher.matches()) {

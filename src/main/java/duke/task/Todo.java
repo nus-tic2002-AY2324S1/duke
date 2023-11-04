@@ -5,17 +5,11 @@ package duke.task;
  * It extends the Task class and adds specific behavior for tasks
  */
 public class Todo extends Task {
-    /**
-     * Constructor
-     */
-    public Todo() {
-        isDone = false;
-    }
 
     /**
-     * Constructor of Todo task take in description sets its abbreviation
+     * Constructs a new Todo task with the given description.
      *
-     * @param description The description for the Todo task.
+     * @param description The description of the Todo task.
      */
     public Todo(String description) {
         super(description);
@@ -23,7 +17,8 @@ public class Todo extends Task {
     }
 
     /**
-     * Constructor of Todo task take in description and status of the task sets its abbreviation.
+     * Constructs a new Todo task with the given description and marks it as done or undone based on the specified
+     * status.
      *
      * @param isDone      The status of the task.
      * @param description The description for the Todo task.
@@ -36,21 +31,22 @@ public class Todo extends Task {
 
     /**
      * Executes the task and handles the response.
-     *
      */
     public void execute() {
         displayTaskAddedResponse();
     }
 
     /**
-     * set abbreviation for Todo object.
+     * sets abbreviation for Todo object.
      */
     public void setAbbreviation() {
         abbreviation = 'T';
     }
 
     /**
-     * Overrides the toString method to provide task-specific details.
+     * @return A formatted string representing the task.
+     * @inheritDoc Returns a string representation of the task, including its abbreviation, status icon, and
+     * description.
      */
     @Override
     public String toString() {

@@ -26,14 +26,13 @@ public class EventCommand extends Command {
             "date/time'";
 
     /**
-     * Executes the command to create a new event task and adds it to the task list.
-     *
      * @param tasks           The TaskList containing the tasks to be managed.
      * @param ui              The user interface for displaying messages to the user.
      * @param storage         The storage object used to store and load tasks.
      * @param keywordArgument The parsed user input containing the keyword and arguments.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
      *                                  message.
+     * @inheritDoc Executes the command to create a new event task and adds it to the task list.
      */
     @Override
     public void executeCommand(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
@@ -45,11 +44,13 @@ public class EventCommand extends Command {
     /**
      * Processes the details provided in the UserKeywordArgument object for creating an Event task.
      * Validates the command arguments, extracts necessary details, and constructs an Event object.
+     *
      * @param keywordArgument The parsed user input containing the keyword and task details.
      * @return An Event object created based on the processed details.
-     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
+     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
+     * message.
      */
-    private Event processDetail(UserKeywordArgument keywordArgument) throws InvalidArgumentException{
+    private Event processDetail(UserKeywordArgument keywordArgument) throws InvalidArgumentException {
         validateKeywordArgument(keywordArgument, new EventCommand());
 
         final Matcher matcher = ARGUMENT_FORMAT.matcher(keywordArgument.getArguments());
@@ -80,21 +81,11 @@ public class EventCommand extends Command {
         return new Event(false, description, fromDateTime, toDateTime);
     }
 
-    /**
-     * Gets the example usage string for the command.
-     *
-     * @return The example usage string demonstrating how to use the command.
-     */
     @Override
     public String getExampleUsage() {
         return EXAMPLE_USAGE;
     }
 
-    /**
-     * Gets the command word associated with the command.
-     *
-     * @return The command word representing the keyword for the command.
-     */
     @Override
     public String getCommandWord() {
         return COMMAND_WORD;

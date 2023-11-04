@@ -18,7 +18,7 @@ public abstract class Task {
     protected char abbreviation;
 
     /**
-     * Constructor of Task take in description and the 'isDone' status set to false
+     * Constructs a new Task object with the specified description.
      *
      * @param description The description for the Task.
      */
@@ -28,7 +28,7 @@ public abstract class Task {
     }
 
     /**
-     * Constructor of Task with the 'isDone' status set to false.
+     * Constructs a new task with default values. The task is initially set as not done.
      */
     public Task() {
         isDone = false;
@@ -71,6 +71,12 @@ public abstract class Task {
         this.isDone = done;
     }
 
+    /**
+     * Returns a string representation of the object. The returned string should provide a clear and concise
+     * description of the object's state. Subclasses should override this method to provide specific implementations.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public abstract String toString();
 
@@ -125,12 +131,4 @@ public abstract class Task {
         return 0;
     }
 
-    /**
-     * Sets the Duke description associated with the task.
-     *
-     * @param description A string representing the Duke description to be set for the task.
-     */
-    public void setDukeDescription(String description) {
-        dukeDescription = description;
-    }
 }

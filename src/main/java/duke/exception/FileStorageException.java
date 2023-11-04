@@ -5,7 +5,7 @@ package duke.exception;
  */
 public class FileStorageException extends Exception {
     /**
-     * Constructor for the FileStorageException class.
+     * Constructs a new FileStorageException object with the specified error message.
      *
      * @param message A descriptive message explaining the exception.
      */

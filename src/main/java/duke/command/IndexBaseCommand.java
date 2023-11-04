@@ -7,8 +7,10 @@ import duke.data.UserKeywordArgument;
 import duke.exception.InvalidArgumentException;
 import duke.parser.Parser;
 import duke.storage.Storage;
+import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
+import duke.task.Event;
 
 /**
  * The IndexBaseCommand class serves as the base for all index-based command classes.
@@ -20,12 +22,15 @@ public abstract class IndexBaseCommand extends Command {
     private int index;
     private Command indexCommand;
 
-    /**
-     * Default constructor for the IndexBaseCommand class.
-     */
     public IndexBaseCommand() {
     }
 
+    /**
+     * This abstract method returns a message associated with the implementing class. Subclasses should override this
+     * method to provide specific messages.
+     *
+     * @return A string representing the message for unmarking a task.
+     */
     public abstract String getMessage();
 
     public abstract String getCommandWord();
@@ -33,41 +38,78 @@ public abstract class IndexBaseCommand extends Command {
     public abstract String getExampleUsage();
 
     /**
-     * Executes the command to perform an operation on a specific task in the task list.
+     * @inheritDoc Executes the command to perform an operation on a specific task in the task list.
      * Validates the command arguments, processes the command, and updates the task list accordingly.
-     *
-     * @param taskList        The TaskList containing the tasks to be managed.
-     * @param ui              The user interface for displaying messages to the user.
-     * @param storage         The storage object used to store and load tasks.
-     * @param keywordArgument The parsed user input containing the keyword and arguments.
-     * @throws InvalidArgumentException If the command arguments are invalid or out of range, an exception is thrown
-     * with an error message.
      */
     public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
-        validateNonEmptyAndValidIntegers(keywordArgument);
+        validateKeyword(keywordArgument.getArguments().isEmpty());
+        validateValidInteger(!Parser.isInteger(keywordArgument.getArguments()));
         setIndex(keywordArgument.getArguments());
-        if (index < 1 || index > TaskList.size()) {
-            String errorMessage = String.format(OUT_OF_RANGE_ERR_MESSAGE, getCommandWord());
-            throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
-        }
+
+        boolean isOutLowerBound = index < 1;
+        boolean isOutUpperBound = index > TaskList.size();
+        validateIndexOutOfRange(isOutLowerBound || isOutUpperBound);
+
         indexCommand = Parser.parseKeywordToCommand(keywordArgument);
+        validateRecurArgument(indexCommand, taskList);
         processCommand(taskList, ui);
     }
 
     /**
-     * Validates the command arguments to ensure they are non-empty and represent valid integers.
-     * Throws an InvalidArgumentException if the arguments are invalid.
-     * @param keywordArgument The parsed user input containing the keyword and arguments.
-     * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error message.
+     * Validates the argument for the RecurCommand. Ensures that the task at the specified index is an Event.
+     *
+     * @param indexCommand The command object representing the action to be performed.
+     * @param taskList     The list of tasks from which the task is retrieved for validation.
+     * @throws InvalidArgumentException If the command is RecurCommand and the task at the specified index is not an
+     *                                  Event.
      */
-    private void validateNonEmptyAndValidIntegers(UserKeywordArgument keywordArgument) throws InvalidArgumentException {
-        if (keywordArgument.getArguments().isEmpty()) {
-            String errorMessage = String.format(DESC_ERR_MESSAGE, getCommandWord());
+    private void validateRecurArgument(Command indexCommand, TaskList taskList) throws InvalidArgumentException {
+        if (!(indexCommand instanceof RecurCommand)) {
+            return;
+        }
+        Task task = taskList.get(index - 1);
+        boolean isEvent = task.getAbbreviation() == 'E';
+        if (!isEvent) {
+            throw new InvalidArgumentException(RecurCommand.RECUR_ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Validates if the index is out of the valid range and throws an exception if it is.
+     *
+     * @param isOutOfRange A boolean indicating if the index is out of the valid range.
+     * @throws InvalidArgumentException If the index is out of the valid range.
+     */
+    private void validateIndexOutOfRange(boolean isOutOfRange) throws InvalidArgumentException {
+        if (isOutOfRange) {
+            String errorMessage = String.format(IndexBaseCommand.OUT_OF_RANGE_ERR_MESSAGE, getCommandWord());
             throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
         }
-        if (!Parser.isInteger(keywordArgument.getArguments())) {
-            String errorMessage = String.format(INDEX_INT_ERR_MESSAGE, getCommandWord());
+    }
+
+    /**
+     * Validates if the input is not a valid integer and throws an exception if it is not.
+     *
+     * @param isNotInteger A boolean indicating if the input is not a valid integer.
+     * @throws InvalidArgumentException If the input is not a valid integer.
+     */
+    private void validateValidInteger(boolean isNotInteger) throws InvalidArgumentException {
+        if (isNotInteger) {
+            String errorMessage = String.format(IndexBaseCommand.INDEX_INT_ERR_MESSAGE, getCommandWord());
+            throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
+        }
+    }
+
+    /**
+     * Validates if the keyword is empty and throws an exception if it is.
+     *
+     * @param isKeywordEmpty A boolean indicating if the keyword is empty.
+     * @throws InvalidArgumentException If the keyword is empty.
+     */
+    private void validateKeyword(boolean isKeywordEmpty) throws InvalidArgumentException {
+        if (isKeywordEmpty) {
+            String errorMessage = String.format(IndexBaseCommand.DESC_ERR_MESSAGE, getCommandWord());
             throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
         }
     }
@@ -75,10 +117,10 @@ public abstract class IndexBaseCommand extends Command {
     /**
      * Sets the index variable by parsing the input string into an integer.
      *
-     * @param input The input string to be parsed and set as the index.
+     * @param argument The input string to be parsed and set as the index.
      */
-    private void setIndex(String input) {
-        index = Integer.parseInt(input);
+    private void setIndex(String argument) {
+        index = Integer.parseInt(argument);
     }
 
     /**
@@ -89,17 +131,43 @@ public abstract class IndexBaseCommand extends Command {
      * @param ui       The user interface for displaying messages to the user.
      */
     private void processCommand(TaskList taskList, Ui ui) {
+        Task task = taskList.get(index - 1);
         ArrayList<String> messages = new ArrayList<>();
         IndexBaseCommand indexBaseCommand = (IndexBaseCommand) indexCommand;
+        processTaskCommand(taskList, task);
         messages.add(indexBaseCommand.getMessage());
-        if (indexCommand instanceof MarkCommand) {
-            MarkCommand markCommand = (MarkCommand) indexCommand;
-            taskList.get(index - 1).markAsDone(markCommand.isMark());
-        }
-        messages.add(taskList.get(index - 1).toString());
+        messages.add(task.toString());
+        removeTaskIfIsDeleteCommand(taskList);
+        ui.showResponseToUser(messages);
+    }
+
+    /**
+     * Removes a task from the task list if the current command is a DeleteCommand.
+     *
+     * @param taskList The task list from which the task will be removed.
+     */
+    private void removeTaskIfIsDeleteCommand(TaskList taskList) {
         if (indexCommand instanceof DeleteCommand) {
             taskList.remove(index - 1);
         }
-        ui.showResponseToUser(messages);
+    }
+
+    /**
+     * Processes a specific command for a given task.
+     * If the command is a MarkCommand, marks the task as done or undone based on the command.
+     * If the command is a RecurCommand, recurs the task (applicable for Event tasks).
+     *
+     * @param taskList The task list containing the task to be processed.
+     * @param task     The task to be processed.
+     */
+    private void processTaskCommand(TaskList taskList, Task task) {
+        if (indexCommand instanceof MarkCommand) {
+            MarkCommand markCommand = (MarkCommand) indexCommand;
+            task.markAsDone(markCommand.isMark());
+        } else if (indexCommand instanceof RecurCommand) {
+            RecurCommand recurCommand = (RecurCommand) indexCommand;
+            assert task instanceof Event : "the tasks must be Event!";
+            recurCommand.recur(task, taskList);
+        }
     }
 }
