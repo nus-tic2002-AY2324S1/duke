@@ -28,6 +28,7 @@ public class FileReadTest {
    */
   @BeforeEach
   public void setup() {
+
     fileRead = new FileRead();
     taskList = new ArrayList<>();
     testFile = new File("./data/duke.txt");
@@ -90,4 +91,5 @@ public class FileReadTest {
     // Verify that no tasks were loaded due to data corruption
     assertEquals(0, taskList.size());
   }
+
 }

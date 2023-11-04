@@ -27,7 +27,8 @@ public class ListCommandTest {
    * Set up the test environment before each test case.
    */
   @BeforeEach
-  void setUp() {
+  public void setUp() {
+
     taskList = new ArrayList<>();
     outputStream = new ByteArrayOutputStream();
     listCommand = new ListCommand();
@@ -46,10 +47,10 @@ public class ListCommandTest {
    */
   @Test
   void testPrintListWithEmptyTaskList() {
+
     System.setOut(new PrintStream(outputStream));
-    listCommand.printList(new MessageDisplay(), taskList);
+    listCommand.printList( taskList);
     String expectedOutput = "There's nothing in your list" + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator();
-    MessageDisplay.printLineBreak();
     assertEquals(expectedOutput, outputStream.toString());
     System.setOut(System.out);
   }
@@ -59,11 +60,12 @@ public class ListCommandTest {
    */
   @Test
   void testPrintTaskList() {
+
     taskList.add(new TodoTask("Test Task 1"));
     taskList.add(new TodoTask("Test Task 2"));
 
     System.setOut(new PrintStream(outputStream));
-    listCommand.printList(new MessageDisplay(), taskList);
+    listCommand.printList( taskList);
 
     String expectedOutput = "Here are the tasks in your list:" + System.lineSeparator()
         + MessageDisplay.LINE_BREAK + System.lineSeparator()
@@ -74,4 +76,5 @@ public class ListCommandTest {
     assertEquals(expectedOutput, outputStream.toString());
     System.setOut(System.out);
   }
+
 }

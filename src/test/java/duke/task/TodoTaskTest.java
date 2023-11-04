@@ -15,6 +15,7 @@ public class TodoTaskTest {
    */
   @Test
   public void testToString() {
+
     TodoTask task = new TodoTask("Test Todo");
     String expected = "[T][ ] Test Todo";
     assertEquals(expected, task.toString());
@@ -25,6 +26,7 @@ public class TodoTaskTest {
    */
   @Test
   public void testToFile() {
+
     TodoTask task = new TodoTask("Test Todo");
     String expected = "T | 0 | Test Todo";
     assertEquals(expected, task.toFile());
@@ -36,8 +38,10 @@ public class TodoTaskTest {
    */
   @Test
   public void testCheckDate() {
+
     TodoTask task = new TodoTask("Test Todo");
     // Check with any date, should always return false
     assertFalse(task.checkDate(null));
   }
+
 }

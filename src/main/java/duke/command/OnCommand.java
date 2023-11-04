@@ -11,6 +11,13 @@ import java.util.List;
  */
 public class OnCommand extends CheckTaskCommand {
 
+  private final LocalDate checkedDate;
+
+  public OnCommand(LocalDate checkedDate) {
+
+    this.checkedDate = checkedDate;
+  }
+
   /**
    * Displays the list of user tasks as of the specified date.
    *
@@ -18,55 +25,48 @@ public class OnCommand extends CheckTaskCommand {
    * @param taskList The list of user tasks to be checked.
    * @param date     The specific date for which tasks should be displayed.
    */
-  public void checkTasks(MessageDisplay display, List<Task> taskList, LocalDate date) {
+  public void checkTasks( List<Task> taskList, LocalDate date) {
     // Check if there are no tasks in the list
     if (taskList.isEmpty()) {
-      display.print("There's nothing on " + date);
+      System.out.println("There's nothing on " + date);
+      MessageDisplay.printLineBreak();
       return;
     }
     boolean headerPrinted = false;
+    int index = 1;
     // Display the date and the tasks as of that date
-    for (int i = 0; i < taskList.size(); i++) {
-      Task task = taskList.get(i);
+    for(Task task:taskList){
       // Check if the task should be displayed based on the date
-      if (task.checkDate(date)) {
+      if(task.checkDate(date)){
         if (!headerPrinted) {
-          display.print("Here are the tasks in your list as of " + date);
+          System.out.println("Here are the tasks in your list as of " + date);
+          MessageDisplay.printLineBreak();
           headerPrinted = true;
         }
-        System.out.println((i + 1) + "." + task);
-        if (i == taskList.size() - 1) {
-          MessageDisplay.printLineBreak();
-        }
+        System.out.println(index + "." + task);
+        index++;
+      }
+      if(index-1 == taskList.size()){
+        MessageDisplay.printLineBreak();
       }
     }
+
     if (!headerPrinted) {
-      display.print(String.format("There's nothing on %s", date.toString()));
+      System.out.printf("There's nothing on %s%n", date.toString());
+      MessageDisplay.printLineBreak();
     }
   }
 
   /**
    * Executes the command by displaying the list of user tasks as of a specified date.
    *
-   * @param display     The message display interface to show messages to the user.
-   * @param taskList    The list of user tasks to be checked.
-   * @param checkedDate The specific date for which tasks should be displayed.
-   */
-  @Override
-  public void execute(MessageDisplay display, List<Task> taskList, LocalDate checkedDate) {
-    // Call the checkTasks method to display the tasks as of the specified date
-    checkTasks(display, taskList, checkedDate);
-  }
-
-  /**
-   * Executes the command without specifying a date. This method is not used in the OnCommand.
-   *
    * @param display  The message display interface to show messages to the user.
-   * @param taskList The list of user tasks.
+   * @param taskList The list of user tasks to be checked.
    */
   @Override
   public void execute(MessageDisplay display, List<Task> taskList) {
-    // This method is not used in the OnCommand.
+    // Call the checkTasks method to display the tasks as of the specified date
+    checkTasks(taskList, checkedDate);
   }
 
 }

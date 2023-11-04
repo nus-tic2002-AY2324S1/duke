@@ -20,9 +20,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class OnCommandTest {
 
+  LocalDate checkDate;
   private List<Task> taskList;
   private ByteArrayOutputStream outputStream;
-
   private OnCommand onCommand;
 
   /**
@@ -30,9 +30,11 @@ public class OnCommandTest {
    */
   @BeforeEach
   void setUp() {
+
+    checkDate = LocalDate.now();
     taskList = new ArrayList<>();
     outputStream = new ByteArrayOutputStream();
-    onCommand = new OnCommand();
+    onCommand = new OnCommand(checkDate);
   }
 
   /**
@@ -40,6 +42,7 @@ public class OnCommandTest {
    */
   @AfterEach
   public void tearDown() {
+
     taskList.clear();
   }
 
@@ -48,9 +51,9 @@ public class OnCommandTest {
    */
   @Test
   void testCheckTasksWithEmptyTaskList() {
-    LocalDate checkDate = LocalDate.now();
+
     System.setOut(new PrintStream(outputStream));
-    onCommand.checkTasks(new MessageDisplay(), taskList, checkDate);
+    onCommand.checkTasks(taskList, checkDate);
     System.setOut(System.out);
     String expectedOutput = "There's nothing on " + checkDate + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator();
     assertEquals(expectedOutput, outputStream.toString());
@@ -61,6 +64,7 @@ public class OnCommandTest {
    */
   @Test
   void testCheckTasksWithNonEmptyTaskList() {
+
     LocalDate checkDate = LocalDate.now();
     System.setOut(new PrintStream(outputStream));
     Task task1 = new DeadlineTask("Task 1", checkDate.atStartOfDay());
@@ -68,7 +72,7 @@ public class OnCommandTest {
     taskList.add(task1);
     taskList.add(task2);
 
-    onCommand.checkTasks(new MessageDisplay(), taskList, checkDate);
+    onCommand.checkTasks(taskList, checkDate);
     System.setOut(System.out);
     String expectedOutput = "Here are the tasks in your list as of " + checkDate + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator()
         + "1." + task1 + System.lineSeparator()
@@ -82,6 +86,7 @@ public class OnCommandTest {
    */
   @Test
   void testCheckTasksWithTaskNotMatchingDate() {
+
     LocalDate checkDate = LocalDate.now();
     LocalDate futureDate = checkDate.plusDays(1);
     System.setOut(new PrintStream(outputStream));
@@ -89,9 +94,10 @@ public class OnCommandTest {
 
     taskList.add(task1);
 
-    onCommand.checkTasks(new MessageDisplay(), taskList, futureDate);
+    onCommand.checkTasks(taskList, futureDate);
     System.setOut(System.out);
     String expectedOutput = "There's nothing on " + futureDate + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator();
     assertEquals(expectedOutput, outputStream.toString());
   }
+
 }

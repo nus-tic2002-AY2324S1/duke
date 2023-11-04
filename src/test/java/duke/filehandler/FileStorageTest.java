@@ -52,4 +52,5 @@ public class FileStorageTest {
     assertEquals("D | 0 | Test Deadline 1 | " + LocalDate.now().atStartOfDay().toString().replace("T", " "), lines.get(1));
     assertEquals("E | 1 | Test Event 1 | " + LocalDate.now().atStartOfDay().toString().replace("T", " ") + " | " + LocalDate.now().atStartOfDay().toString().replace("T", " "), lines.get(2));
   }
+
 }

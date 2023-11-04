@@ -79,17 +79,6 @@ public class UserInterface {
       System.out.println(LINE_BREAK);
     }
 
-
-    /**
-     * Print a message with a line break.
-     *
-     * @param line The message to print.
-     */
-    public void print(String line) {
-
-      System.out.printf("%s\n%s\n", line, LINE_BREAK);
-    }
-
     /**
      * Displays a message when a task is added.
      *
@@ -108,8 +97,8 @@ public class UserInterface {
      * @param taskName The name of the task.
      */
     public void alreadyMark(String taskName) {
-
-      print(taskName + " is already marked!");
+      System.out.println(taskName + " is already marked!");
+      printLineBreak();
     }
 
     /**
@@ -118,8 +107,8 @@ public class UserInterface {
      * @param taskName The name of the task.
      */
     public void notMark(String taskName) {
-
-      print("You did not complete " + taskName + " before!");
+      System.out.println("You did not complete " + taskName + " before!");
+      printLineBreak();
     }
 
     /**
@@ -130,8 +119,9 @@ public class UserInterface {
      */
     public void completeMessage(List<Task> taskList, int itemNumber) {
 
-      System.out.printf("That's some progress! I've marked this task as done:\n   %s\n%s\n",
-          taskList.get(itemNumber).toString(), LINE_BREAK);
+      System.out.printf("That's some progress! I've marked this task as done:\n   %s\n",
+          taskList.get(itemNumber).toString());
+      printLineBreak();
     }
 
     /**
@@ -163,10 +153,9 @@ public class UserInterface {
     /**
      * Displays a message when a task is snoozed.
      *
-     * @param taskList The list of user tasks.
      * @param task     The task being snoozed.
      */
-    public void snoozeMessage(List<Task> taskList, Task task) {
+    public void snoozeMessage(Task task) {
 
       System.out.printf("Noted. I've pushed this task to 12 hours later:\n   %s\n",
           task.toString());
@@ -179,7 +168,8 @@ public class UserInterface {
      */
     public void hello() {
 
-      print(LOGO + "hello, I'm Sophon:). \nHow can I assist you today?");
+      System.out.println(LOGO + "hello, I'm Sophon:). \nHow can I assist you today?");
+      printLineBreak();
     }
 
     /**
@@ -187,7 +177,8 @@ public class UserInterface {
      */
     public void goodbye() {
 
-      print("Bye! Hope to see you again soon!");
+      System.out.println("Bye! Hope to see you again soon!");
+      printLineBreak();
     }
 
   }

@@ -4,7 +4,6 @@ import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 
-import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -33,23 +32,20 @@ public class FindCommand extends CheckTaskCommand {
   public void printListWithKeyword(MessageDisplay display, List<Task> taskList) {
 
     if (taskList.isEmpty()) {
-      display.print("There's nothing in your list");
+      System.out.println("There's nothing in your list");
       MessageDisplay.printLineBreak();
       return;
     }
-    display.print("Here are the matching tasks in your list:");
-    for (int i = 0; i < taskList.size(); i++) {
+    System.out.println("Here are the matching tasks in your list:");
+    int index = 1;
+    for(Task task:taskList){
       // Solution below used fuzzy string search from https://central.sonatype.com/artifact/me.xdrop/fuzzywuzzy?smo=true
-      if (FuzzySearch.ratio(taskList.get(i).getTaskName(), keyword) >= 55) {
-        display.print((i + 1) + "." + taskList.get(i).toString());
+      if (FuzzySearch.ratio(task.getTaskName(), keyword) >= 55) {
+        System.out.println(index + "." + task.toString());
+        index++;
       }
     }
     MessageDisplay.printLineBreak();
-  }
-
-  @Override
-  public void execute(MessageDisplay display, List<Task> taskList, LocalDate checkedDate) {
-    // Not implemented for this command.
   }
 
   /**

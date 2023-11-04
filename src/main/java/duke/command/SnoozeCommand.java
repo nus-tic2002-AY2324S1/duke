@@ -36,7 +36,7 @@ public class SnoozeCommand extends Command {
 
     taskList.get(itemIndex).changeEndDate(taskList.get(itemIndex).getTaskEndDate().plusHours(12));
     storeDuke(fileStorage, taskList);
-    display.snoozeMessage(taskList, taskList.get(itemIndex));
+    display.snoozeMessage(taskList.get(itemIndex));
   }
 
 }

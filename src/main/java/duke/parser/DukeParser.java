@@ -1,7 +1,10 @@
 package duke.parser;
 
-import duke.command.*;
-import duke.dukeexceptions.*;
+import duke.dukeexceptions.DukeException;
+import duke.dukeexceptions.EmptyCommandException;
+import duke.dukeexceptions.InvalidNumberFormatException;
+import duke.dukeexceptions.TaskNotFoundException;
+import duke.dukeexceptions.InvalidTaskFormatException;
 import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
@@ -18,13 +21,18 @@ import java.util.List;
  */
 public class DukeParser {
 
+  private static final int BY_KEYWORD_LENGTH = 3;
   private static final int FROM_KEYWORD_LENGTH = 5;
   private static final int TO_KEYWORD_LENGTH = 3;
-  private static final int BY_KEYWORD_LENGTH = 3;
+
+  private final CommandExecutor commandExecutor;
+
+  public DukeParser() {
+    this.commandExecutor = new CommandExecutor();
+  }
+
   private static final String DATE_FORMAT = "yyyy-MM-dd";
   private static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm";
-
-
   // Date and time format for parsing
   private static final DateTimeFormatter dateTimeFormatter;
   private static final DateTimeFormatter dateFormatter;
@@ -42,7 +50,6 @@ public class DukeParser {
    * @throws DateTimeParseException if the string cannot be parsed as a valid date and time.
    */
   static LocalDateTime parseDateTime(String dateTimeString) throws DateTimeParseException {
-
     return LocalDateTime.parse(dateTimeString, dateTimeFormatter);
   }
 
@@ -54,7 +61,6 @@ public class DukeParser {
    * @throws DateTimeParseException if the string cannot be parsed as a valid date.
    */
   static LocalDate parseDate(String dateString) throws DateTimeParseException {
-
     return LocalDate.parse(dateString, dateFormatter);
   }
 
@@ -66,7 +72,6 @@ public class DukeParser {
    * @throws DateTimeParseException if the string cannot be parsed as a valid date and time.
    */
   public static LocalDateTime parseDateTimeOrDate(String dateTimeString) {
-
     if (dateTimeString.contains(" ")) {
       return parseDateTime(dateTimeString);
     } else {
@@ -82,7 +87,6 @@ public class DukeParser {
    * @throws InvalidNumberFormatException if the string is not a valid integer.
    */
   public static Integer parseInteger(String integer) throws InvalidNumberFormatException {
-
     try {
       return Integer.parseInt(integer);
     } catch (NumberFormatException e) {
@@ -93,254 +97,20 @@ public class DukeParser {
   /**
    * Parse the user's input into commands and parameters for execution.
    *
-   * @param display   The message display for showing output.
-   * @param taskList  The list of tasks to operate on.
-   * @param userInput The user's input string of commands.
+   * @param fileStorage The file storage to manage tasks.
+   * @param display     The message display for showing output.
+   * @param taskList    The list of tasks to operate on.
+   * @param userInput   The user's input string of commands.
    */
   public void parseUserInput(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, String userInput) {
-
     try {
       String[] inputs = userInput.split("\\s+");
       if (inputs.length == 0 || userInput.isEmpty()) {
         throw new EmptyCommandException();
       }
       String command = inputs[0];
-      executeCommand(fileStorage, display, taskList, command, userInput);
+      commandExecutor.executeCommand(fileStorage, display, taskList, command, userInput);
     } catch (DukeException e) {
-      System.out.printf("%s\n", e.getMessage());
-      MessageDisplay.printLineBreak();
-    }
-  }
-
-  /**
-   * Execute the user's command.
-   *
-   * @param display   The message display for showing output.
-   * @param taskList  The list of tasks to operate on.
-   * @param command   The parsed user command.
-   * @param userInput The user's remaining string of commands excluding the command string.
-   */
-  private void executeCommand(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, String command, String userInput) throws DukeException {
-
-    String arguments = userInput.substring(command.length()).trim();
-    switch (command) {
-      case "list":
-        executeListCommand(display, taskList);
-        break;
-      case "todo":
-        executeTodoCommand(fileStorage, display, taskList, arguments);
-        break;
-      case "deadline":
-        executeDeadlineCommand(fileStorage, display, taskList, arguments);
-        break;
-      case "event":
-        executeEventCommand(fileStorage, display, taskList, arguments);
-        break;
-      case "on":
-        executeOnCommand(display, taskList, arguments);
-        break;
-      case "find":
-        executeFindCommand(display, taskList, arguments);
-        break;
-      case "delete":
-      case "mark":
-      case "unmark":
-      case "snooze":
-      case "postpone":
-        modifyTask(fileStorage, display, taskList, userInput);
-        break;
-      default:
-        throw new InvalidCommandException();
-    }
-  }
-
-  /**
-   * Execute the user's "list" command.
-   *
-   * @param display  The message display for showing output.
-   * @param taskList The list of tasks to operate on.
-   */
-  private void executeListCommand(MessageDisplay display, List<Task> taskList) {
-
-    new ListCommand().execute(display, taskList);
-  }
-
-  /**
-   * Execute the "todo" task command.
-   *
-   * @param display  The message display for showing output.
-   * @param taskList The list of tasks to operate on.
-   * @param taskName The name of the todo task.
-   * @throws DukeException if there's an issue with the command or input.
-   */
-  private void executeTodoCommand(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, String taskName) throws DukeException {
-
-    if (taskName.isEmpty()) {
-      throw new EmptyTodoArgumentException();
-    }
-    new AddTodoCommand(taskName).execute(fileStorage, display, taskList);
-  }
-
-  /**
-   * Execute the "deadline" task command.
-   *
-   * @param display   The message display for showing output.
-   * @param taskList  The list of tasks to operate on.
-   * @param arguments The user's input string after the deadline task command.
-   * @throws DukeException if there's an issue with the command or input.
-   */
-  private void executeDeadlineCommand(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, String arguments) throws DukeException {
-    // Check for empty arguments
-    if (arguments.isEmpty()) {
-      throw new EmptyDeadlineArgumentException();
-    }
-    // Find the positions of "/by"
-    int byIndex = arguments.indexOf("/by");
-    // Check if "/by" exists
-    if (byIndex == -1) {
-      throw new InvalidTaskFormatException("deadline");
-    }
-    // Extract task name, by date
-    String taskName = arguments.substring(0, byIndex).trim();
-    String taskDueDateString = arguments.substring(byIndex + BY_KEYWORD_LENGTH).trim();
-    // Check if date fields are empty
-    if (taskDueDateString.isEmpty()) {
-      throw new InvalidTaskFormatException("deadline");
-    }
-    try {
-      // Parse date and time & Add Deadline Task
-      LocalDateTime taskDueDate = parseDateTimeOrDate(taskDueDateString);
-      new duke.command.AddDeadlineCommand(taskName, taskDueDate).execute(fileStorage, display, taskList);
-    } catch (DateTimeParseException e) {
-      throw new InvalidTaskFormatException("deadline");
-    }
-  }
-
-  /**
-   * Execute the "event" task command.
-   *
-   * @param display   The message display for showing output.
-   * @param taskList  The list of tasks to operate on.
-   * @param arguments The user's input string after the event task command.
-   * @throws DukeException if there's an issue with the command or input.
-   */
-  private void executeEventCommand(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, String arguments) throws DukeException {
-    // Check for empty arguments
-    if (arguments.isEmpty()) {
-      throw new EmptyEventArgumentException();
-    }
-    // Find the positions of "/from" and "/to"
-    int fromIndex = arguments.indexOf("/from");
-    int toIndex = arguments.indexOf("/to");
-    // Check if both "/from" and "/to" exist
-    if (fromIndex == -1 || toIndex == -1) {
-      throw new InvalidTaskFormatException("event");
-    }
-    // Extract task name, from date, and to date
-    String taskName;
-    String taskFromDateString;
-    String taskToDateString;
-    taskFromDateString = arguments.substring(fromIndex + FROM_KEYWORD_LENGTH, toIndex).trim();
-    taskName = arguments.substring(0, fromIndex).trim();
-    taskToDateString = arguments.substring(toIndex + TO_KEYWORD_LENGTH).trim();
-    // Check if date fields are empty
-    if (taskFromDateString.isEmpty() || taskToDateString.isEmpty()) {
-      throw new InvalidTaskFormatException("event");
-    }
-    try {
-      LocalDateTime taskFromDateTime = parseDateTimeOrDate(taskFromDateString);
-      LocalDateTime taskToDateTime = parseDateTimeOrDate(taskToDateString);
-      new AddEventCommand(taskName, taskFromDateTime, taskToDateTime).execute(fileStorage, display, taskList);
-    } catch (DateTimeParseException e) {
-      throw new InvalidTaskFormatException("event");
-    }
-  }
-
-  /**
-   * Execute the "On" task command.
-   *
-   * @param display   The message display for showing output.
-   * @param taskList  The list of tasks to operate on.
-   * @param arguments The user's input string after the On command.
-   * @throws DukeException if there's an issue with the command or input.
-   */
-  private void executeOnCommand(MessageDisplay display, List<Task> taskList, String arguments) throws DukeException {
-    // Extract specified date
-    String dateString = arguments.trim();
-    // Check if date fields are empty
-    if (dateString.isEmpty()) {
-      throw new EmptyOnArgumentException();
-    }
-    try {
-      // Parse date
-      LocalDate date = parseDate(dateString);
-      new OnCommand().execute(display, taskList, date);
-    } catch (DateTimeParseException e) {
-      throw new InvalidDateFormatException();
-    }
-  }
-
-  /**
-   * Executes a find command to search for tasks in the task list based on a specified keyword.
-   *
-   * @param display   The message display interface for showing messages to the user.
-   * @param taskList  The list of tasks to search within.
-   * @param arguments The search keyword to use for finding tasks.
-   * @throws DukeException If the search keyword is empty, an EmptyFindArgumentException is thrown.
-   */
-  private void executeFindCommand(MessageDisplay display, List<Task> taskList, String arguments) throws DukeException {
-    // Extract specified search word
-    String keywordString = arguments.trim();
-
-    // Check if keyword is empty
-    if (keywordString.isEmpty()) {
-      throw new EmptyFindArgumentException();
-    }
-
-    // Create and execute a FindCommand to search for tasks
-    new FindCommand(keywordString).execute(display, taskList);
-  }
-
-
-  /**
-   * Execute "mark," "unmark," and "delete" commands that modify a task's status.
-   *
-   * @param display   The message display for showing output.
-   * @param taskList  The list of tasks to operate on.
-   * @param userInput User's input string after a mark, unmark, or delete command.
-   */
-  public void modifyTask(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, String userInput) {
-
-    try {
-      int itemIndex = extractItemIndex(taskList, userInput);
-      if (itemIndex == -1) {
-        return;
-      }
-      switch (parseCommandFromInput(userInput)) {
-        case "mark":
-          new MarkAsCompletedCommand(itemIndex).execute(fileStorage, display, taskList);
-          break;
-        case "unmark":
-          new MarkAsInCompletedCommand(itemIndex).execute(fileStorage, display, taskList);
-          break;
-        case "delete":
-          new DeleteCommand(itemIndex).execute(fileStorage, display, taskList);
-          break;
-        case "snooze":
-          if (taskList.get(itemIndex).getTaskType() == 'T') {
-            throw new ChangeTodoDateException();
-          }
-          new SnoozeCommand(itemIndex).execute(fileStorage, display, taskList);
-          break;
-        default:
-          // Handle exception case where the command is neither mark nor unmark
-          throw new InvalidNumberFormatException();
-      }
-    } catch (InvalidNumberFormatException e) {
-      // Handle the case where the integer part is not a valid number
-      System.out.printf("%s\n", e.getMessage());
-      MessageDisplay.printLineBreak();
-    } catch (ChangeTodoDateException e) {
       System.out.printf("%s\n", e.getMessage());
       MessageDisplay.printLineBreak();
     }
@@ -352,8 +122,7 @@ public class DukeParser {
    * @param userInput User's input string
    * @return The parsed command from the input.
    */
-  protected String parseCommandFromInput(String userInput) {
-
+  protected static String parseCommandFromInput(String userInput) {
     int spaceIndex = userInput.indexOf(' ');
     return userInput.substring(0, spaceIndex);
   }
@@ -361,12 +130,12 @@ public class DukeParser {
   /**
    * Extract the item index from mark, unmark, delete commands that modify a task's status.
    *
+   * @param taskList  The list of tasks.
    * @param userInput User's input string.
    * @return The extracted item index.
    * @throws InvalidNumberFormatException if the input format is incorrect.
    */
-  private int extractItemIndex(List<Task> taskList, String userInput) throws InvalidNumberFormatException {
-
+  static int extractItemIndex(List<Task> taskList, String userInput) throws DukeException{
     try {
       int spaceIndex = userInput.indexOf(' ');
       String integerPart = userInput.substring(spaceIndex + 1).trim();
@@ -376,7 +145,7 @@ public class DukeParser {
         throw new TaskNotFoundException();
       }
       return itemIndex;
-    } catch (TaskNotFoundException e) {
+    } catch (InvalidNumberFormatException e) {
       // Handle the case where the task is not found by index
       System.out.printf("%s\n", e.getMessage());
       MessageDisplay.printLineBreak();
@@ -384,4 +153,64 @@ public class DukeParser {
     return -1;
   }
 
+  static String extractTaskName(String arguments, int firstIndex) throws DukeException {
+    return arguments.substring(0, firstIndex).trim();
+  }
+
+  static String extractDeadlineDueDateString(String arguments) throws DukeException {
+    String taskDueDateString = arguments.substring(extractDeadlineByIndex(arguments) + BY_KEYWORD_LENGTH).trim();
+    if (taskDueDateString.isEmpty()) {
+      throw new InvalidTaskFormatException("deadline");
+    }
+    return taskDueDateString;
+  }
+
+  static String extractEventFromDateString(String arguments) throws DukeException {
+    // Find the positions of "/from"
+    int fromIndex = arguments.indexOf("/from");
+    // Check if both "/from" and "/to" exist
+    System.out.println(fromIndex);
+    if (fromIndex == -1) {
+      throw new InvalidTaskFormatException("event");
+    }
+    String taskFromDateString = arguments.substring(extractEventFromIndex(arguments) + FROM_KEYWORD_LENGTH).trim();
+    if (taskFromDateString.isEmpty()) {
+      throw new InvalidTaskFormatException("event");
+    }
+    return taskFromDateString;
+  }
+
+  static String extractEventToDateString(String arguments) throws DukeException {
+    // Find the positions of "/to"
+    int toIndex = arguments.indexOf("/to");
+    // Check if "/to" exist
+    if (toIndex == -1) {
+      throw new InvalidTaskFormatException("event");
+    }
+    String taskToDateString = arguments.substring(extractDeadlineByIndex(arguments) + TO_KEYWORD_LENGTH).trim();
+    if (taskToDateString.isEmpty()) {
+      throw new InvalidTaskFormatException("event");
+    }
+    return taskToDateString;
+  }
+
+  static int extractDeadlineByIndex(String arguments) throws DukeException {
+    // Find the positions of "/by"
+    int byIndex = arguments.indexOf("/by");
+    // Check if "/by" exists
+    if (byIndex == -1) {
+      throw new InvalidTaskFormatException("deadline");
+    }
+    return byIndex;
+  }
+
+  static int extractEventFromIndex(String arguments) throws DukeException {
+    // Find the positions of "/from"
+    int fromIndex = arguments.indexOf("/from");
+    // Check if "/from" exists
+    if (fromIndex == -1) {
+      throw new InvalidTaskFormatException("event");
+    }
+    return fromIndex;
+  }
 }

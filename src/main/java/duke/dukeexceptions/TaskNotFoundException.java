@@ -11,7 +11,6 @@ public class TaskNotFoundException extends DukeException {
    * that the Duke application couldn't find the specified task.
    */
   public TaskNotFoundException() {
-
     super("OOPS!!! I'm sorry, but I can't find this task!");
   }
 

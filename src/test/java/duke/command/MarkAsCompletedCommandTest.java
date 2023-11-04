@@ -28,6 +28,7 @@ public class MarkAsCompletedCommandTest {
    */
   @BeforeEach
   void setUp() {
+
     taskList = new ArrayList<>();
     outputStream = new ByteArrayOutputStream();
   }
@@ -37,6 +38,7 @@ public class MarkAsCompletedCommandTest {
    */
   @AfterEach
   public void tearDown() {
+
     taskList.clear();
   }
 
@@ -45,6 +47,7 @@ public class MarkAsCompletedCommandTest {
    */
   @Test
   void testMarkingIncompleteTask() {
+
     Task task = new TodoTask("Test Task 1");
     taskList.add(task);
 
@@ -64,6 +67,7 @@ public class MarkAsCompletedCommandTest {
    */
   @Test
   void testMarkingCompletedTask() {
+
     Task task = new TodoTask("Test Task 1");
     task.markAsCompleted();
     taskList.add(task);
@@ -76,4 +80,5 @@ public class MarkAsCompletedCommandTest {
     String expectedOutput = task.getTaskName() + " is already marked!" + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator();
     assertEquals(expectedOutput, outputStream.toString());
   }
+
 }

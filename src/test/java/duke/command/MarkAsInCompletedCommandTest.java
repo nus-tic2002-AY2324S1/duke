@@ -28,6 +28,7 @@ public class MarkAsInCompletedCommandTest {
    */
   @BeforeEach
   void setUp() {
+
     taskList = new ArrayList<>();
     outputStream = new ByteArrayOutputStream();
   }
@@ -37,6 +38,7 @@ public class MarkAsInCompletedCommandTest {
    */
   @AfterEach
   public void tearDown() {
+
     taskList.clear();
   }
 
@@ -45,6 +47,7 @@ public class MarkAsInCompletedCommandTest {
    */
   @Test
   void testExecuteMarkingIncompleteTask() {
+
     Task task = new TodoTask("Test Task 1");
     task.markAsCompleted();
     taskList.add(task);
@@ -65,6 +68,7 @@ public class MarkAsInCompletedCommandTest {
    */
   @Test
   void testExecuteMarkingAlreadyIncompleteTask() {
+
     Task task = new TodoTask("Test Task 1");
     taskList.add(task);
 
@@ -77,4 +81,5 @@ public class MarkAsInCompletedCommandTest {
         + MessageDisplay.LINE_BREAK + System.lineSeparator();
     assertEquals(expectedOutput, outputStream.toString());
   }
+
 }
