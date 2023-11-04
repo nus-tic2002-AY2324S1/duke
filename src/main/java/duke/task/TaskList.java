@@ -10,14 +10,11 @@ import java.util.ArrayList;
 public class TaskList {
     private static ArrayList<Task> tasks = new ArrayList<>();
 
-    /**
-     * Constructor
-     */
     public TaskList() {
     }
 
     /**
-     * The Tasklist Constructor
+     * Constructs a new TaskList object with the given list of tasks.
      *
      * @param listOfTasks An ArrayList containing tasks to initialize the TaskList.
      */
@@ -80,10 +77,11 @@ public class TaskList {
 
     /**
      * Returns a list of tasks that contain the provided search string in their description.
+     *
      * @param search The search string to be matched against task descriptions.
      * @return ArrayList of tasks matching the search string.
      */
-    public ArrayList<Task> getTaskBySearchString(String search){
+    public ArrayList<Task> getTaskBySearchString(String search) {
         ArrayList<Task> foundTasks = new ArrayList<>();
         for (Task task : tasks) {
             if (isSearchFound(search, task)) {
@@ -95,8 +93,9 @@ public class TaskList {
 
     /**
      * Checks if the provided search string is found within the task's description.
+     *
      * @param search The search string to be matched against the task's description.
-     * @param task The task to be checked.
+     * @param task   The task to be checked.
      * @return True if the search string is found in the task's description, false otherwise.
      */
     private boolean isSearchFound(String search, Task task) {

@@ -30,6 +30,16 @@ public abstract class Command {
     public static final Pattern TIME_ARG_FORMAT = Pattern.compile("(?<hour>[0-9]{2})(?<minute>[0-9]{2})");
     private static boolean isExit = false;
 
+    /**
+     * Executes the command based on the provided task list, user interface, storage, and user input arguments.
+     * Subclasses must implement this method to define specific command behavior.
+     *
+     * @param taskList        The TaskList containing the tasks to be managed.
+     * @param ui              The user interface for displaying messages to the user.
+     * @param storage         The storage for saving and loading task data.
+     * @param keywordArgument The user input argument containing command details.
+     * @throws InvalidArgumentException If the input arguments are invalid or do not match the command requirements.
+     */
     public abstract void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException;
 
@@ -159,8 +169,18 @@ public abstract class Command {
         ui.showResponseToUser(messages);
     }
 
+    /**
+     * Gets the example usage string for the command.
+     *
+     * @return The example usage string for the command.
+     */
     public abstract String getExampleUsage();
 
+    /**
+     * Gets the command word associated with the command.
+     *
+     * @return The command word representing the keyword for the command.
+     */
     public abstract String getCommandWord();
 
 }

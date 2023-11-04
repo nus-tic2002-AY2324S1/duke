@@ -37,16 +37,6 @@ public class DatePrintCommandTest {
         assertEquals(getSuccessString(tasks, ui), outputStreamCaptor.toString());
     }
 
-//    @Test
-//    public void executeCommand_notAvailableDate_noDateFound() throws Exception {
-//        TaskList tasks = new TaskList(TestUtil.getTestTasks());
-//        Ui ui = new Ui();
-//        Storage storage = getTempStorage();
-//        DatePrintCommand dPrint = new DatePrintCommand();
-//        dPrint.executeCommand(tasks, ui, storage, new UserKeywordArgument("dprint 2/6/2023"));
-//        assertEquals(getNotSuccessString(tasks, ui), outputStreamCaptor.toString());
-//    }
-
     private String getSuccessString(TaskList taskList, Ui ui) {
         return Ui.getPrintLinePrefixSpace() + Ui.DIVIDER + Ui.NEWLINE +
                 Ui.getPrefixSpace() + DatePrintCommand.TASKS_IN_THE_LIST + Ui.NEWLINE +

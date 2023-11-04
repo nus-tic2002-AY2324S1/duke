@@ -25,7 +25,7 @@ public class RecurCommand extends IndexBaseCommand {
      * Generates recurring events based on the given event task and adds them to the task list.
      *
      * @param task     The original event task to recur.
-     * @param taskList he task list to which the recurring events will be added.
+     * @param taskList The task list to which the recurring events will be added.
      */
     public void recur(Task task, TaskList taskList) {
         Event event = (Event) task;
@@ -44,30 +44,19 @@ public class RecurCommand extends IndexBaseCommand {
     }
 
     /**
-     * Retrieves the message indicating that a event has been recurring.
-     *
      * @return A string representing recurring event message.
+     * @inheritDoc Retrieves the message indicating that a event has been recurring.
      */
     @Override
     public String getMessage() {
         return RECURRING_EVENT_MESSAGE;
     }
 
-    /**
-     * Gets the command word associated with the command.
-     *
-     * @return The command word representing the keyword for the command.
-     */
     @Override
     public String getCommandWord() {
         return COMMAND_WORD;
     }
 
-    /**
-     * Gets the example usage string for the command.
-     *
-     * @return The example usage string demonstrating how to use the command.
-     */
     @Override
     public String getExampleUsage() {
         return EXAMPLE_USAGE;

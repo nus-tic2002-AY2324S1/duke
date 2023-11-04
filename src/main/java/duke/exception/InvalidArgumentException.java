@@ -5,7 +5,7 @@ package duke.exception;
  */
 public class InvalidArgumentException extends Exception {
     /**
-     * Constructor for the InvalidArgumentException class.
+     * Constructs a new InvalidArgumentException object with the specified error message.
      *
      * @param message A descriptive message explaining the exception.
      */

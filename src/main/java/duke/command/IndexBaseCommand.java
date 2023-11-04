@@ -22,12 +22,15 @@ public abstract class IndexBaseCommand extends Command {
     private int index;
     private Command indexCommand;
 
-    /**
-     * Default constructor for the IndexBaseCommand class.
-     */
     public IndexBaseCommand() {
     }
 
+    /**
+     * This abstract method returns a message associated with the implementing class. Subclasses should override this
+     * method to provide specific messages.
+     *
+     * @return A string representing the message for unmarking a task.
+     */
     public abstract String getMessage();
 
     public abstract String getCommandWord();
@@ -35,15 +38,8 @@ public abstract class IndexBaseCommand extends Command {
     public abstract String getExampleUsage();
 
     /**
-     * Executes the command to perform an operation on a specific task in the task list.
+     * @inheritDoc Executes the command to perform an operation on a specific task in the task list.
      * Validates the command arguments, processes the command, and updates the task list accordingly.
-     *
-     * @param taskList        The TaskList containing the tasks to be managed.
-     * @param ui              The user interface for displaying messages to the user.
-     * @param storage         The storage object used to store and load tasks.
-     * @param keywordArgument The parsed user input containing the keyword and arguments.
-     * @throws InvalidArgumentException If the command arguments are invalid or out of range, an exception is thrown
-     *                                  with an error message.
      */
     public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
@@ -60,6 +56,14 @@ public abstract class IndexBaseCommand extends Command {
         processCommand(taskList, ui);
     }
 
+    /**
+     * Validates the argument for the RecurCommand. Ensures that the task at the specified index is an Event.
+     *
+     * @param indexCommand The command object representing the action to be performed.
+     * @param taskList     The list of tasks from which the task is retrieved for validation.
+     * @throws InvalidArgumentException If the command is RecurCommand and the task at the specified index is not an
+     *                                  Event.
+     */
     private void validateRecurArgument(Command indexCommand, TaskList taskList) throws InvalidArgumentException {
         if (!(indexCommand instanceof RecurCommand)) {
             return;
@@ -98,7 +102,7 @@ public abstract class IndexBaseCommand extends Command {
     }
 
     /**
-     * alidates if the keyword is empty and throws an exception if it is.
+     * Validates if the keyword is empty and throws an exception if it is.
      *
      * @param isKeywordEmpty A boolean indicating if the keyword is empty.
      * @throws InvalidArgumentException If the keyword is empty.
@@ -139,6 +143,7 @@ public abstract class IndexBaseCommand extends Command {
 
     /**
      * Removes a task from the task list if the current command is a DeleteCommand.
+     *
      * @param taskList The task list from which the task will be removed.
      */
     private void removeTaskIfIsDeleteCommand(TaskList taskList) {
@@ -151,8 +156,9 @@ public abstract class IndexBaseCommand extends Command {
      * Processes a specific command for a given task.
      * If the command is a MarkCommand, marks the task as done or undone based on the command.
      * If the command is a RecurCommand, recurs the task (applicable for Event tasks).
+     *
      * @param taskList The task list containing the task to be processed.
-     * @param task The task to be processed.
+     * @param task     The task to be processed.
      */
     private void processTaskCommand(TaskList taskList, Task task) {
         if (indexCommand instanceof MarkCommand) {

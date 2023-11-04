@@ -19,13 +19,12 @@ public class FindCommand extends Command {
     public static final String MESSAGE_LIST_IS_EMPTY = "No items match the provided search string in the list!";
 
     /**
-     * Executes a search command, finds tasks based on the provided search string, and displays the results.
-     *
      * @param taskList        The task list containing tasks to be searched.
      * @param ui              The user interface object used to display the response.
      * @param storage         The storage object used for saving tasks.
      * @param keywordArgument The user input containing the search keyword and arguments.
      * @throws InvalidArgumentException If the search argument is empty or invalid.
+     * @inheritDoc Executes a search command, finds tasks based on the provided search string, and displays the results.
      */
     @Override
     public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
@@ -39,21 +38,11 @@ public class FindCommand extends Command {
         processResponseMessage(ui, foundTasks, TASKS_IN_THE_LIST);
     }
 
-    /**
-     * Gets the example usage string for the command.
-     *
-     * @return The example usage string demonstrating how to use the command.
-     */
     @Override
     public String getExampleUsage() {
         return EXAMPLE_USAGE;
     }
 
-    /**
-     * Gets the command word associated with the command.
-     *
-     * @return The command word representing the keyword for the command.
-     */
     @Override
     public String getCommandWord() {
         return COMMAND_WORD;

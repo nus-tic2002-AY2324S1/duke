@@ -11,15 +11,6 @@ public class Event extends Task {
     protected LocalDateTime fromDateTime;
     protected LocalDateTime toDateTime;
 
-    /**
-     * Constructor of Event task take in description sets its abbreviation
-     *
-     * @param description The description for the Todo task.
-     */
-    public Event(String description) {
-        super(description);
-        setAbbreviation();
-    }
 
     /**
      * Constructs an Event object with the given parameters.
@@ -52,7 +43,9 @@ public class Event extends Task {
     }
 
     /**
-     * Overrides the toString method to provide task-specific details.
+     * @return A formatted string representing the task with start and end date/time information.
+     * @inheritDoc Returns a string representation of the task, including its abbreviation, status icon, description,
+     * start date/time, and end date/time. Dates are formatted according to the specified display date/time format.
      */
     @Override
     public String toString() {

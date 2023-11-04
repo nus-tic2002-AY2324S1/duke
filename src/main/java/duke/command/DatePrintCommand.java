@@ -25,14 +25,13 @@ public class DatePrintCommand extends Command {
 
 
     /**
-     * Executes the command to display tasks within a specific date filter.
-     *
      * @param taskList        The TaskList containing the tasks to be filtered.
      * @param ui              The user interface for displaying messages to the user.
      * @param storage         The storage object used to store and load tasks.
      * @param keywordArgument The parsed user input containing the keyword and arguments.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
      *                                  message.
+     * @inheritDoc Executes the command to display tasks within a specific date filter.
      */
     @Override
     public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
@@ -53,22 +52,11 @@ public class DatePrintCommand extends Command {
         processResponseMessage(ui, foundTasks, TASKS_IN_THE_LIST);
     }
 
-
-    /**
-     * Gets the example usage string for the command.
-     *
-     * @return The example usage string demonstrating how to use the command.
-     */
     @Override
     public String getExampleUsage() {
         return EXAMPLE_USAGE;
     }
 
-    /**
-     * Gets the command word associated with the command.
-     *
-     * @return The command word representing the keyword for the command.
-     */
     @Override
     public String getCommandWord() {
         return COMMAND_WORD;

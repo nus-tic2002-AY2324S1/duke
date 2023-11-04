@@ -10,7 +10,7 @@ public class UserKeywordArgument {
     private String arguments;
 
     /**
-     * Constructor for the UserKeywordArgument class.
+     * Constructs a new UserKeywordArgument object by parsing the user input to extract a keyword and its arguments.
      *
      * @param userInput The user input string containing keyword and arguments.
      */

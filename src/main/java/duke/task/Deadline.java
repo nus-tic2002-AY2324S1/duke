@@ -39,7 +39,10 @@ public class Deadline extends Task {
     }
 
     /**
-     * Overrides the toString method to provide task-specific details.
+     * @return A formatted string representing the task.
+     * @inheritDoc Returns a string representation of the task, including its abbreviation, status icon, description,
+     * and deadline.
+     * The date is formatted according to the specified display date format.
      */
     @Override
     public String toString() {

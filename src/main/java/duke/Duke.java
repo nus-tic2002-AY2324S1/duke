@@ -33,7 +33,7 @@ public class Duke {
     }
 
     /**
-     * Run the program and print the welcome message
+     * Runs the program and print the welcome message
      */
     public void run() {
         ui.showWelcome();
