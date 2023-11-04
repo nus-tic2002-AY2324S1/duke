@@ -59,6 +59,9 @@ public class Storage {
     public void save(ArrayList<Task> tasks) throws FileStorageException {
         try {
             ArrayList<String> listOfTasks = TaskEncoder.encodeTaskListToStringList(tasks);
+            if(!Files.exists(path)){
+                Files.createDirectories(path.getParent());
+            }
             Files.write(path, listOfTasks);
         } catch (IOException e) {
             throw new FileStorageException("Error writing storage file: " + path);
