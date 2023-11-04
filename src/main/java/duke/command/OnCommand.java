@@ -68,4 +68,5 @@ public class OnCommand extends CheckTaskCommand {
   public void execute(MessageDisplay display, List<Task> taskList) {
     // This method is not used in the OnCommand.
   }
+
 }

@@ -19,6 +19,7 @@ public class EventTask extends Task {
    * @param taskTo   The end date and time of the event task.
    */
   public EventTask(String taskName, LocalDateTime taskFrom, LocalDateTime taskTo) {
+
     super('E', taskName);
     this.taskFrom = taskFrom;
     this.taskTo = taskTo;
@@ -34,6 +35,7 @@ public class EventTask extends Task {
    * @param taskTo    The end date and time of the event task.
    */
   public EventTask(String taskName, boolean completed, LocalDateTime taskFrom, LocalDateTime taskTo) {
+
     super('E', taskName, completed);
     this.taskFrom = taskFrom;
     this.taskTo = taskTo;
@@ -45,6 +47,7 @@ public class EventTask extends Task {
    * @return The start date and time of the task as a formatted string.
    */
   String getTaskFromString() {
+
     return dateTimetoString(taskFrom);
   }
 
@@ -54,6 +57,7 @@ public class EventTask extends Task {
    * @return The end date and time of the task as a formatted string.
    */
   String getTaskToString() {
+
     return dateTimetoString(taskTo);
   }
 
@@ -63,6 +67,7 @@ public class EventTask extends Task {
    * @return The start date of the task as a LocalDate object.
    */
   private LocalDate getTaskFromDate() {
+
     return taskFrom.toLocalDate();
   }
 
@@ -72,6 +77,7 @@ public class EventTask extends Task {
    * @return The end date of the task as a LocalDate object.
    */
   private LocalDate getTaskToDate() {
+
     return taskTo.toLocalDate();
   }
 
@@ -82,6 +88,7 @@ public class EventTask extends Task {
    */
   @Override
   public LocalDateTime getTaskEndDate() {
+
     return taskTo;
   }
 
@@ -92,6 +99,7 @@ public class EventTask extends Task {
    */
   @Override
   public void changeEndDate(LocalDateTime taskDueDate) {
+
     this.taskTo = taskDueDate;
   }
 
@@ -105,6 +113,7 @@ public class EventTask extends Task {
    */
   @Override
   public boolean checkDate(LocalDate checkedDate) {
+
     return checkedDate.equals(getTaskFromDate()) || checkedDate.equals(getTaskToDate());
   }
 
@@ -115,6 +124,7 @@ public class EventTask extends Task {
    */
   @Override
   public String toString() {
+
     return super.toString() + String.format(" (from: %s to: %s)", getTaskFromString(), getTaskToString());
   }
 
@@ -125,6 +135,8 @@ public class EventTask extends Task {
    */
   @Override
   public String toFile() {
+
     return super.toFile() + " | " + taskFrom.toString().replace("T", " ") + " | " + taskTo.toString().replace("T", " ");
   }
+
 }

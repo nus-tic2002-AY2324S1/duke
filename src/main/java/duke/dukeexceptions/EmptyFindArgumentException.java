@@ -9,6 +9,8 @@ public class EmptyFindArgumentException extends DukeException {
    * Constructs an `EmptyFindArgumentException` with a default error message.
    */
   public EmptyFindArgumentException() {
+
     super("Please provide the specific keyword that you want to check if a task exists.");
   }
+
 }

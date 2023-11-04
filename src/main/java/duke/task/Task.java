@@ -20,6 +20,7 @@ public abstract class Task {
    * @param taskName The name of the task.
    */
   public Task(Character taskType, String taskName) {
+
     this.taskType = taskType;
     this.taskName = taskName;
     this.completed = false;
@@ -33,6 +34,7 @@ public abstract class Task {
    * @param isCompleted `true` if the task is completed, `false` otherwise.
    */
   public Task(Character taskType, String taskName, boolean isCompleted) {
+
     this.taskType = taskType;
     this.taskName = taskName;
     this.completed = isCompleted;
@@ -42,6 +44,7 @@ public abstract class Task {
    * Marks the task as completed.
    */
   public void markAsCompleted() {
+
     this.completed = true;
   }
 
@@ -49,6 +52,7 @@ public abstract class Task {
    * Marks the task as not completed.
    */
   public void markAsNotCompleted() {
+
     this.completed = false;
   }
 
@@ -58,6 +62,7 @@ public abstract class Task {
    * @return The name of the task.
    */
   public String getTaskName() {
+
     return taskName;
   }
 
@@ -67,6 +72,7 @@ public abstract class Task {
    * @return The type of the task.
    */
   public Character getTaskType() {
+
     return taskType;
   }
 
@@ -76,6 +82,7 @@ public abstract class Task {
    * @return `true` if the task is completed, `false` otherwise.
    */
   public boolean isCompleted() {
+
     return completed;
   }
 
@@ -86,6 +93,7 @@ public abstract class Task {
    * @return `true` if the task matches the date, `false` otherwise.
    */
   public boolean checkDate(LocalDate checkedDate) {
+
     return false; // Override this method in subclasses if the task has a date.
   }
 
@@ -95,6 +103,7 @@ public abstract class Task {
    * @param taskDueDate The new end date for the task.
    */
   public void changeEndDate(LocalDateTime taskDueDate) {
+
   }
 
   /**
@@ -103,6 +112,7 @@ public abstract class Task {
    * @return The end date of the task as a LocalDateTime object.
    */
   public LocalDateTime getTaskEndDate() {
+
     return LocalDateTime.now();
   }
 
@@ -113,6 +123,7 @@ public abstract class Task {
    * @return A string representation of the `Task`.
    */
   public String toString() {
+
     String taskName = getTaskName();
     Character taskType = getTaskType();
     char taskComplete = isCompleted() ? 'X' : ' ';
@@ -126,6 +137,7 @@ public abstract class Task {
    * @return The formatted date and time as a string.
    */
   public String dateTimetoString(LocalDateTime dateTime) {
+
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E dd MMM yyyy HH:mm");
     return dateTime.format(formatter);
   }
@@ -136,9 +148,11 @@ public abstract class Task {
    * @return A string representation of the `Task` for saving to a file.
    */
   public String toFile() {
+
     String taskName = getTaskName();
     Character taskType = getTaskType();
     int taskComplete = isCompleted() ? 1 : 0;
     return taskType + " | " + taskComplete + " | " + taskName;
   }
+
 }

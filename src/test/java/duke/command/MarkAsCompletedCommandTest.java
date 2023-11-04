@@ -15,27 +15,36 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests the functionality of the MarkAsCompletedCommand class for marking tasks as completed.
+ */
 public class MarkAsCompletedCommandTest {
 
   private List<Task> taskList;
   private ByteArrayOutputStream outputStream;
 
+  /**
+   * Set up the test environment before each test case.
+   */
   @BeforeEach
   void setUp() {
-
     taskList = new ArrayList<>();
     outputStream = new ByteArrayOutputStream();
   }
 
+  /**
+   * Clear the task list after each test case.
+   */
   @AfterEach
   public void tearDown() {
-
     taskList.clear();
   }
 
+  /**
+   * Test marking an incomplete task as completed.
+   */
   @Test
   void testMarkingIncompleteTask() {
-
     Task task = new TodoTask("Test Task 1");
     taskList.add(task);
 
@@ -50,9 +59,11 @@ public class MarkAsCompletedCommandTest {
     assertEquals(expectedOutput, outputStream.toString());
   }
 
+  /**
+   * Test marking an already completed task.
+   */
   @Test
   void testMarkingCompletedTask() {
-
     Task task = new TodoTask("Test Task 1");
     task.markAsCompleted();
     taskList.add(task);
@@ -65,5 +76,4 @@ public class MarkAsCompletedCommandTest {
     String expectedOutput = task.getTaskName() + " is already marked!" + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator();
     assertEquals(expectedOutput, outputStream.toString());
   }
-
 }

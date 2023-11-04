@@ -13,11 +13,17 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests the functionality of the DeleteCommand class.
+ */
 public class DeleteCommandTest {
 
   private DeleteCommand deleteCommand;
   private List<Task> taskList;
 
+  /**
+   * Set up the test environment before each test case.
+   */
   @BeforeEach
   public void setUp() {
 
@@ -25,12 +31,18 @@ public class DeleteCommandTest {
     deleteCommand = new DeleteCommand(1);
   }
 
+  /**
+   * Clear the test environment after each test case.
+   */
   @AfterEach
   public void tearDown() {
 
     taskList.clear();
   }
 
+  /**
+   * Test deleting a task from the task list.
+   */
   @Test
   public void testDeleteTask() {
 

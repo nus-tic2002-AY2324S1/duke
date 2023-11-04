@@ -15,28 +15,40 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests the functionality of the AddDeadlineCommand class.
+ */
 public class AddDeadlineCommandTest {
 
-  private AddDeadlineCommand addDeadLineCommand;
+  private AddDeadlineCommand addDeadlineCommand;
   private List<Task> taskList;
 
+  /**
+   * Set up the test environment before each test case.
+   */
   @BeforeEach
   public void setUp() {
 
     taskList = new ArrayList<>();
-    addDeadLineCommand = new AddDeadlineCommand("Test Deadline", LocalDateTime.now());
+    addDeadlineCommand = new AddDeadlineCommand("Test Deadline", LocalDateTime.now());
   }
 
+  /**
+   * Clear the test environment after each test case.
+   */
   @AfterEach
   public void tearDown() {
 
     taskList.clear();
   }
 
+  /**
+   * Test the addition of a DeadlineTask to the task list.
+   */
   @Test
-  public void TestAddsDeadlineTaskToTaskList() {
+  public void testAddsDeadlineTaskToTaskList() {
 
-    addDeadLineCommand.execute(new FileStorage(), new MessageDisplay(), taskList);
+    addDeadlineCommand.execute(new FileStorage(), new MessageDisplay(), taskList);
 
     assertEquals(1, taskList.size());
     assertTrue(taskList.get(0) instanceof DeadlineTask);

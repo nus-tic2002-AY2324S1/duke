@@ -15,11 +15,17 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests the functionality of the AddEventCommand class.
+ */
 public class AddEventCommandTest {
 
   private AddEventCommand addEventCommand;
   private List<Task> taskList;
 
+  /**
+   * Set up the test environment before each test case.
+   */
   @BeforeEach
   public void setUp() {
 
@@ -27,16 +33,23 @@ public class AddEventCommandTest {
     addEventCommand = new AddEventCommand("Test Event", LocalDateTime.now(), LocalDateTime.now().plusHours(2));
   }
 
+  /**
+   * Clear the test environment after each test case.
+   */
   @AfterEach
   public void tearDown() {
 
     taskList.clear();
   }
 
+  /**
+   * Test the addition of an EventTask to the task list.
+   */
   @Test
-  public void TestAddsEventTaskToTaskList() {
+  public void testAddsEventTaskToTaskList() {
 
     addEventCommand.execute(new FileStorage(), new MessageDisplay(), taskList);
+
     assertEquals(1, taskList.size());
     assertTrue(taskList.get(0) instanceof EventTask);
     assertEquals("Test Event", taskList.get(0).getTaskName());

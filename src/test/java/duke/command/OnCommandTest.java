@@ -15,6 +15,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests the functionality of the OnCommand class for checking tasks on a specific date.
+ */
 public class OnCommandTest {
 
   private List<Task> taskList;
@@ -22,23 +25,29 @@ public class OnCommandTest {
 
   private OnCommand onCommand;
 
+  /**
+   * Set up the test environment before each test case.
+   */
   @BeforeEach
   void setUp() {
-
     taskList = new ArrayList<>();
     outputStream = new ByteArrayOutputStream();
     onCommand = new OnCommand();
   }
 
+  /**
+   * Clear the task list after each test case.
+   */
   @AfterEach
   public void tearDown() {
-
     taskList.clear();
   }
 
+  /**
+   * Test checking tasks with an empty task list for a specific date.
+   */
   @Test
   void testCheckTasksWithEmptyTaskList() {
-
     LocalDate checkDate = LocalDate.now();
     System.setOut(new PrintStream(outputStream));
     onCommand.checkTasks(new MessageDisplay(), taskList, checkDate);
@@ -47,9 +56,11 @@ public class OnCommandTest {
     assertEquals(expectedOutput, outputStream.toString());
   }
 
+  /**
+   * Test checking tasks with a non-empty task list for a specific date.
+   */
   @Test
   void testCheckTasksWithNonEmptyTaskList() {
-
     LocalDate checkDate = LocalDate.now();
     System.setOut(new PrintStream(outputStream));
     Task task1 = new DeadlineTask("Task 1", checkDate.atStartOfDay());
@@ -59,16 +70,18 @@ public class OnCommandTest {
 
     onCommand.checkTasks(new MessageDisplay(), taskList, checkDate);
     System.setOut(System.out);
-    String expectedOutput = "Here are the tasks in your list as of " + checkDate + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator() +
-        "1." + task1 + System.lineSeparator() +
-        "2." + task2 + System.lineSeparator() +
-        MessageDisplay.LINE_BREAK + System.lineSeparator();
+    String expectedOutput = "Here are the tasks in your list as of " + checkDate + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator()
+        + "1." + task1 + System.lineSeparator()
+        + "2." + task2 + System.lineSeparator()
+        + MessageDisplay.LINE_BREAK + System.lineSeparator();
     assertEquals(expectedOutput, outputStream.toString());
   }
 
+  /**
+   * Test checking tasks with a task list where tasks do not match the specified date.
+   */
   @Test
   void testCheckTasksWithTaskNotMatchingDate() {
-
     LocalDate checkDate = LocalDate.now();
     LocalDate futureDate = checkDate.plusDays(1);
     System.setOut(new PrintStream(outputStream));
@@ -81,5 +94,4 @@ public class OnCommandTest {
     String expectedOutput = "There's nothing on " + futureDate + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator();
     assertEquals(expectedOutput, outputStream.toString());
   }
-
 }

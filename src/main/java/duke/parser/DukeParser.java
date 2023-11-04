@@ -327,7 +327,7 @@ public class DukeParser {
           new DeleteCommand(itemIndex).execute(fileStorage, display, taskList);
           break;
         case "snooze":
-          if(taskList.get(itemIndex).getTaskType() == 'T'){
+          if (taskList.get(itemIndex).getTaskType() == 'T') {
             throw new ChangeTodoDateException();
           }
           new SnoozeCommand(itemIndex).execute(fileStorage, display, taskList);

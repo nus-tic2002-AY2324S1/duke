@@ -14,20 +14,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests the functionality of the FileRead class.
+ */
 public class FileReadTest {
 
   private FileRead fileRead;
   private List<Task> taskList;
   private File testFile;
 
+  /**
+   * Set up the test environment before each test case.
+   */
   @BeforeEach
   public void setup() {
-
     fileRead = new FileRead();
     taskList = new ArrayList<>();
     testFile = new File("./data/duke.txt");
   }
 
+  /**
+   * Test loading saved tasks from a file.
+   *
+   * @throws IOException if there is an issue with file operations.
+   */
   @Test
   public void testGetSavedTask() throws IOException {
     // Create a temporary file with sample task data
@@ -48,6 +58,9 @@ public class FileReadTest {
     assertTrue(taskList.get(2).isCompleted());
   }
 
+  /**
+   * Test loading saved tasks when the file is not found.
+   */
   @Test
   public void testGetSavedTaskFileNotFound() {
 
@@ -58,6 +71,11 @@ public class FileReadTest {
     assertEquals(0, taskList.size());
   }
 
+  /**
+   * Test loading saved tasks when the file contains corrupted data.
+   *
+   * @throws IOException if there is an issue with file operations.
+   */
   @Test
   public void testGetSavedTaskFileCorrupted() throws IOException {
     // Create a temporary file with corrupted task data
@@ -72,5 +90,4 @@ public class FileReadTest {
     // Verify that no tasks were loaded due to data corruption
     assertEquals(0, taskList.size());
   }
-
 }

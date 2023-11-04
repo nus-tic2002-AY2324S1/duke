@@ -3,6 +3,7 @@ package duke.command;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,16 +20,18 @@ public class FindCommand extends CheckTaskCommand {
    * @param keyword The keyword to use for searching tasks.
    */
   public FindCommand(String keyword) {
+
     this.keyword = keyword;
   }
 
   /**
    * Prints a list of tasks that match the specified keyword.
    *
-   * @param display   The message display interface for showing messages to the user.
-   * @param taskList  The list of tasks to search within.
+   * @param display  The message display interface for showing messages to the user.
+   * @param taskList The list of tasks to search within.
    */
   public void printListWithKeyword(MessageDisplay display, List<Task> taskList) {
+
     if (taskList.isEmpty()) {
       display.print("There's nothing in your list");
       MessageDisplay.printLineBreak();
@@ -52,11 +55,13 @@ public class FindCommand extends CheckTaskCommand {
   /**
    * Executes the `FindCommand` to search for and print tasks that match the specified keyword.
    *
-   * @param display   The message display interface for showing messages to the user.
-   * @param taskList  The list of tasks to search within.
+   * @param display  The message display interface for showing messages to the user.
+   * @param taskList The list of tasks to search within.
    */
   @Override
   public void execute(MessageDisplay display, List<Task> taskList) {
+
     printListWithKeyword(display, taskList);
   }
+
 }

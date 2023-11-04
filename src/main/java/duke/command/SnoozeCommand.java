@@ -3,6 +3,7 @@ package duke.command;
 import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
+
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class SnoozeCommand extends Command {
    * @param itemIndex The index of the task to be rescheduled.
    */
   public SnoozeCommand(int itemIndex) {
+
     this.itemIndex = itemIndex;
   }
 
@@ -31,8 +33,10 @@ public class SnoozeCommand extends Command {
    */
   @Override
   public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
+
     taskList.get(itemIndex).changeEndDate(taskList.get(itemIndex).getTaskEndDate().plusHours(12));
     storeDuke(fileStorage, taskList);
     display.snoozeMessage(taskList, taskList.get(itemIndex));
   }
+
 }

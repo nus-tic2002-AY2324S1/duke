@@ -54,4 +54,5 @@ public class ListCommand extends CheckTaskCommand {
     // Call the printList method to display the tasks
     printList(display, taskList);
   }
+
 }

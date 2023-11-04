@@ -9,8 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests the functionality of the DeadlineTask class.
+ */
 public class DeadlineTaskTest {
 
+  /**
+   * Test the conversion of a DeadlineTask to its string representation.
+   */
   @Test
   public void testToString() {
 
@@ -20,6 +26,9 @@ public class DeadlineTaskTest {
     assertEquals(expected, task.toString());
   }
 
+  /**
+   * Test the conversion of a DeadlineTask to a file format string.
+   */
   @Test
   public void testToFile() {
 
@@ -29,6 +38,9 @@ public class DeadlineTaskTest {
     assertEquals(expected, task.toFile());
   }
 
+  /**
+   * Test checking a given date against the due date of the task.
+   */
   @Test
   public void testCheckDate() {
 
@@ -44,6 +56,9 @@ public class DeadlineTaskTest {
     assertFalse(task.checkDate(differentDate));
   }
 
+  /**
+   * Test getting the due date of the task as a string.
+   */
   @Test
   public void testGetTaskDueDateString() {
 
