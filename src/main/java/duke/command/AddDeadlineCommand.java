@@ -1,9 +1,10 @@
 package duke.command;
 
+import duke.filehandler.FileStorage;
 import duke.task.DeadlineTask;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-import duke.filehandler.FileStorage;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class AddDeadlineCommand extends AddTaskCommand {
    * @param taskDueDate The due date and time of the deadline task.
    */
   public AddDeadlineCommand(String taskName, LocalDateTime taskDueDate) {
+
     super(taskName);
     this.taskDueDate = taskDueDate;
   }
@@ -40,4 +42,5 @@ public class AddDeadlineCommand extends AddTaskCommand {
     // Add the created `DeadlineTask` to the task list
     addTask(fileStorage, display, taskList, task);
   }
+
 }

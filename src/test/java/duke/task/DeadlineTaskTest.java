@@ -1,14 +1,19 @@
 package duke.task;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import java.time.LocalDateTime;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DeadlineTaskTest {
 
   @Test
   public void testToString() {
+
     LocalDateTime dueDate = LocalDateTime.of(2023, 10, 31, 12, 0);
     DeadlineTask task = new DeadlineTask("Test Deadline", dueDate);
     String expected = "[D][ ] Test Deadline (by: Tue 31 Oct 2023 12:00)";
@@ -17,6 +22,7 @@ public class DeadlineTaskTest {
 
   @Test
   public void testToFile() {
+
     LocalDateTime dueDate = LocalDateTime.of(2023, 10, 31, 12, 0);
     DeadlineTask task = new DeadlineTask("Test Deadline", dueDate);
     String expected = "D | 0 | Test Deadline | 2023-10-31 12:00";
@@ -25,6 +31,7 @@ public class DeadlineTaskTest {
 
   @Test
   public void testCheckDate() {
+
     LocalDateTime dueDate = LocalDateTime.of(2023, 10, 31, 12, 0);
     DeadlineTask task = new DeadlineTask("Test Deadline", dueDate);
 
@@ -39,9 +46,11 @@ public class DeadlineTaskTest {
 
   @Test
   public void testGetTaskDueDateString() {
+
     LocalDateTime dueDate = LocalDateTime.of(2023, 10, 31, 12, 0);
     DeadlineTask task = new DeadlineTask("Test Deadline", dueDate);
     String expected = "Tue 31 Oct 2023 12:00";
     assertEquals(expected, task.getTaskDueDateString());
   }
+
 }

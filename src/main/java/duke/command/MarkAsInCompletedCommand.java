@@ -1,8 +1,9 @@
 package duke.command;
 
+import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-import duke.filehandler.FileStorage;
+
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ public class MarkAsInCompletedCommand extends ModifyTaskCommand {
    * @param itemIndex The index of the task to mark as incomplete.
    */
   public MarkAsInCompletedCommand(int itemIndex) {
+
     super(itemIndex);
   }
 
@@ -40,4 +42,5 @@ public class MarkAsInCompletedCommand extends ModifyTaskCommand {
       display.unCompleteMessage(taskList, itemIndex);
     }
   }
+
 }

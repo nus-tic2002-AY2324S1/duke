@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class Duke {
 
-  private final DukeParser dukeParser;
   public final UserInterface userInterface;
+  private final DukeParser dukeParser;
   private final FileRead fileRead;
 
   private final FileStorage fileStorage;
@@ -27,6 +27,7 @@ public class Duke {
    * file storage, file reader, task list, and parser.
    */
   public Duke() {
+
     userInterface = new UserInterface();  // Initialize the user interface
     fileStorage = new FileStorage();
     fileRead = new FileRead();             // Initialize the file reader
@@ -60,7 +61,7 @@ public class Duke {
       if (userInput.equals("bye")) {
         break;
       } else {
-        dukeParser.parseUserInput(fileStorage,userInterface.messageDisplay, taskList, userInput);
+        dukeParser.parseUserInput(fileStorage, userInterface.messageDisplay, taskList, userInput);
       }
     }
     userInterface.userInput.closeScanner();
@@ -68,6 +69,7 @@ public class Duke {
   }
 
   public List<Task> getTaskList() {
+
     return taskList;
   }
 

@@ -55,8 +55,8 @@ public class ListCommandTest {
 
     String expectedOutput = "Here are the tasks in your list:" + System.lineSeparator() +
         MessageDisplay.LINE_BREAK + System.lineSeparator() +
-        "1."+ taskList.get(0).toString() + System.lineSeparator() +
-        "2."+ taskList.get(1).toString() + System.lineSeparator() +
+        "1." + taskList.get(0).toString() + System.lineSeparator() +
+        "2." + taskList.get(1).toString() + System.lineSeparator() +
         MessageDisplay.LINE_BREAK + System.lineSeparator();
 
     assertEquals(expectedOutput, outputStream.toString());

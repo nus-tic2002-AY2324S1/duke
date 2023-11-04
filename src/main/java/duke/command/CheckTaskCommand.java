@@ -29,4 +29,5 @@ abstract class CheckTaskCommand {
    * @param taskList The list of tasks to check.
    */
   public abstract void execute(MessageDisplay display, List<Task> taskList);
+
 }

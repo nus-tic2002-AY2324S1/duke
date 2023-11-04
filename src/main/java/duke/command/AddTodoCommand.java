@@ -1,9 +1,10 @@
 package duke.command;
 
+import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.task.TodoTask;
 import duke.userinterface.UserInterface.MessageDisplay;
-import duke.filehandler.FileStorage;
+
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class AddTodoCommand extends AddTaskCommand {
    * @param taskName The name of the todo task.
    */
   public AddTodoCommand(String taskName) {
+
     super(taskName);
   }
 
@@ -34,4 +36,5 @@ public class AddTodoCommand extends AddTaskCommand {
     // Add the created todo task to the task list
     addTask(fileStorage, display, taskList, task);
   }
+
 }

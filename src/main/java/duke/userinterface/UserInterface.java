@@ -30,7 +30,7 @@ public class UserInterface {
 
     private final Scanner scanner;
 
-    public UserInput() {
+    private UserInput() {
 
       scanner = new Scanner(System.in);
     }
@@ -38,7 +38,7 @@ public class UserInterface {
     /**
      * Get user input from the console.
      *
-     * @return The user's input.
+     * @return The user's input as a String.
      */
     public String getUserInput() {
 
@@ -46,7 +46,7 @@ public class UserInterface {
     }
 
     /**
-     * Close the scanner when done.
+     * Close the underlying scanner when done.
      */
     public void closeScanner() {
 
@@ -84,14 +84,13 @@ public class UserInterface {
     /**
      * Displays a message when a task is added.
      *
-     * @param userInputList The list of user tasks.
-     * @param itemNumber    The index of the added task.
+     * @param taskList The list of user tasks.
      */
     public void addedMessage(List<Task> taskList) {
 
       System.out.printf("Got it. I've added this task:\n"
               + "   %s\nNow you have %d tasks in the list.\n%s%n",
-          taskList.get(taskList.size()-1).toString(), taskList.size(), LINE_BREAK);
+          taskList.get(taskList.size() - 1).toString(), taskList.size(), LINE_BREAK);
     }
 
     /**
@@ -117,33 +116,34 @@ public class UserInterface {
     /**
      * Displays a message when a task is marked as completed.
      *
-     * @param userInputList The list of user tasks.
-     * @param itemNumber    The index of the completed task.
+     * @param taskList   The list of user tasks.
+     * @param itemNumber The index of the completed task.
      */
-    public void completeMessage(List<Task> userInputList, int itemNumber) {
+    public void completeMessage(List<Task> taskList, int itemNumber) {
 
       System.out.printf("That's some progress! I've marked this task as done:\n   %s\n%s\n",
-          userInputList.get(itemNumber).toString(), LINE_BREAK);
+          taskList.get(itemNumber).toString(), LINE_BREAK);
     }
 
     /**
      * Displays a message when a task is unmarked.
      *
-     * @param userInputList The list of user tasks.
-     * @param itemNumber    The index of the unmarked task.
+     * @param taskList   The list of user tasks.
+     * @param itemNumber The index of the unmarked task.
      */
-    public void unCompleteMessage(List<Task> userInputList, int itemNumber) {
+    public void unCompleteMessage(List<Task> taskList, int itemNumber) {
 
       System.out.printf("Okay, you can do it at a later time:\n   %s\n%s\n",
-          userInputList.get(itemNumber).toString(), LINE_BREAK);
+          taskList.get(itemNumber).toString(), LINE_BREAK);
     }
 
     /**
      * Displays a message when a task is deleted.
      *
-     * @param task The deleted task.
+     * @param taskList The list of user tasks.
+     * @param task     The deleted task.
      */
-    public void deleteMessage(List<Task> taskList,Task task) {
+    public void deleteMessage(List<Task> taskList, Task task) {
 
       System.out.printf("Noted. I've removed this task:\n   %s\n"
               + "Now you have %s tasks in the list.\n%s\n",

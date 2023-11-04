@@ -1,8 +1,9 @@
 package duke.command;
 
+import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-import duke.filehandler.FileStorage;
+
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ public class MarkAsCompletedCommand extends ModifyTaskCommand {
    * @param itemIndex The index of the task to mark as completed.
    */
   public MarkAsCompletedCommand(int itemIndex) {
+
     super(itemIndex);
   }
 
@@ -40,4 +42,5 @@ public class MarkAsCompletedCommand extends ModifyTaskCommand {
       display.completeMessage(taskList, itemIndex);
     }
   }
+
 }

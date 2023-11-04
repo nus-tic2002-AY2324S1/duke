@@ -1,9 +1,10 @@
 package duke.command;
 
+import duke.filehandler.FileStorage;
 import duke.task.EventTask;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-import duke.filehandler.FileStorage;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class AddEventCommand extends AddTaskCommand {
    * @param taskToDate   The end date and time of the event task.
    */
   public AddEventCommand(String taskName, LocalDateTime taskFromDate, LocalDateTime taskToDate) {
+
     super(taskName);
     this.taskFromDate = taskFromDate;
     this.taskToDate = taskToDate;
@@ -44,4 +46,5 @@ public class AddEventCommand extends AddTaskCommand {
     // Add the created `EventTask` to the task list
     addTask(fileStorage, display, taskList, task);
   }
+
 }

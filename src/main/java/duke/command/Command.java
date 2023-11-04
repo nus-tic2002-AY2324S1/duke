@@ -1,9 +1,10 @@
 package duke.command;
 
 import duke.dukeexceptions.DukeException;
+import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-import duke.filehandler.FileStorage;
+
 import java.util.List;
 
 /**
@@ -28,6 +29,8 @@ abstract class Command {
    * @param taskList    The list of tasks to be stored.
    */
   public void storeDuke(FileStorage fileStorage, List<Task> taskList) {
+
     fileStorage.store(taskList);
   }
+
 }

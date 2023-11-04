@@ -45,7 +45,7 @@ public class MarkAsCompletedCommandTest {
     System.setOut(System.out);
 
     String expectedOutput = "That's some progress! I've marked this task as done:" + System.lineSeparator() +
-        "   "+ taskList.get(0).toString() + System.lineSeparator() + MessageDisplay.LINE_BREAK
+        "   " + taskList.get(0).toString() + System.lineSeparator() + MessageDisplay.LINE_BREAK
         + System.lineSeparator();
     assertEquals(expectedOutput, outputStream.toString());
   }
@@ -62,7 +62,7 @@ public class MarkAsCompletedCommandTest {
     markCommand.execute(new FileStorage(), new MessageDisplay(), taskList);
     System.setOut(System.out);
 
-    String expectedOutput =  task.getTaskName() + " is already marked!" + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator();
+    String expectedOutput = task.getTaskName() + " is already marked!" + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator();
     assertEquals(expectedOutput, outputStream.toString());
   }
 

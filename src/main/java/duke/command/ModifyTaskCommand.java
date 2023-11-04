@@ -1,8 +1,9 @@
 package duke.command;
 
+import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-import duke.filehandler.FileStorage;
+
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ abstract class ModifyTaskCommand extends Command {
    * @param itemIndex The index of the task to be modified.
    */
   public ModifyTaskCommand(int itemIndex) {
+
     this.itemIndex = itemIndex;
   }
 
@@ -30,4 +32,5 @@ abstract class ModifyTaskCommand extends Command {
    * @param taskList    The list of tasks that the command will operate on.
    */
   public abstract void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList);
+
 }

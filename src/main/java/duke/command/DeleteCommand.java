@@ -1,8 +1,9 @@
 package duke.command;
 
+import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-import duke.filehandler.FileStorage;
+
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class DeleteCommand extends Command {
    * @param itemIndex The index of the task to be deleted.
    */
   public DeleteCommand(int itemIndex) {
+
     this.itemIndex = itemIndex;
   }
 
@@ -37,4 +39,5 @@ public class DeleteCommand extends Command {
     // Display a message indicating the deleted task
     display.deleteMessage(taskList, deletedTask);
   }
+
 }

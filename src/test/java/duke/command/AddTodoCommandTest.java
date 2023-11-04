@@ -28,6 +28,7 @@ public class AddTodoCommandTest {
 
   @AfterEach
   public void tearDown() {
+
     taskList.clear();
   }
 

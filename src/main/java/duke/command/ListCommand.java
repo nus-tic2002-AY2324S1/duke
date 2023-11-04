@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,15 +18,16 @@ public class ListCommand extends CheckTaskCommand {
    * @param taskList The list of user tasks to be displayed.
    */
   public void printList(MessageDisplay display, List<Task> taskList) {
+
     if (taskList.isEmpty()) {
       display.print("There's nothing in your list");
       return;
     }
     display.print("Here are the tasks in your list:");
     for (int i = 0; i < taskList.size(); i++) {
-      display.print((i + 1) + "." + taskList.get(i).toString());
+      System.out.println((i + 1) + "." + taskList.get(i).toString());
     }
-    display.print(MessageDisplay.LINE_BREAK);
+    System.out.println(MessageDisplay.LINE_BREAK);
   }
 
   /**
@@ -51,4 +53,5 @@ public class ListCommand extends CheckTaskCommand {
     // Call the printList method to display the tasks
     printList(display, taskList);
   }
+
 }

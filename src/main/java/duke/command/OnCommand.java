@@ -14,9 +14,9 @@ public class OnCommand extends CheckTaskCommand {
   /**
    * Displays the list of user tasks as of the specified date.
    *
-   * @param display   The message display interface to show messages to the user.
-   * @param taskList  The list of user tasks to be checked.
-   * @param date      The specific date for which tasks should be displayed.
+   * @param display  The message display interface to show messages to the user.
+   * @param taskList The list of user tasks to be checked.
+   * @param date     The specific date for which tasks should be displayed.
    */
   public void checkTasks(MessageDisplay display, List<Task> taskList, LocalDate date) {
     // Check if there are no tasks in the list
@@ -34,9 +34,9 @@ public class OnCommand extends CheckTaskCommand {
           display.print("Here are the tasks in your list as of " + date);
           headerPrinted = true;
         }
-        display.print((i + 1) + "." + task);
+        System.out.println((i + 1) + "." + task);
         if (i == taskList.size() - 1) {
-          display.print(MessageDisplay.LINE_BREAK);
+          System.out.println(MessageDisplay.LINE_BREAK);
         }
       }
     }
@@ -68,4 +68,5 @@ public class OnCommand extends CheckTaskCommand {
   public void execute(MessageDisplay display, List<Task> taskList) {
     // This method is not used in the OnCommand.
   }
+
 }

@@ -29,6 +29,7 @@ public class AddEventCommandTest {
 
   @AfterEach
   public void tearDown() {
+
     taskList.clear();
   }
 

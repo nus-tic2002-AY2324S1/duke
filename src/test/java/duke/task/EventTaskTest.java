@@ -1,13 +1,19 @@
 package duke.task;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import java.time.LocalDateTime;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class EventTaskTest {
 
   @Test
   public void testToString() {
+
     LocalDateTime from = LocalDateTime.of(2023, 10, 31, 12, 0);
     LocalDateTime to = LocalDateTime.of(2023, 10, 31, 14, 0);
     EventTask task = new EventTask("Test Event", from, to);
@@ -17,6 +23,7 @@ public class EventTaskTest {
 
   @Test
   public void testToFile() {
+
     LocalDateTime from = LocalDateTime.of(2023, 10, 31, 12, 0);
     LocalDateTime to = LocalDateTime.of(2023, 10, 31, 14, 0);
     EventTask task = new EventTask("Test Event", from, to);
@@ -26,6 +33,7 @@ public class EventTaskTest {
 
   @Test
   public void testCheckDate() {
+
     LocalDateTime from = LocalDateTime.of(2023, 10, 31, 12, 0);
     LocalDateTime to = LocalDateTime.of(2023, 10, 31, 14, 0);
     EventTask task = new EventTask("Test Event", from, to);
@@ -45,6 +53,7 @@ public class EventTaskTest {
 
   @Test
   public void testGetTaskFromString() {
+
     LocalDateTime from = LocalDateTime.of(2023, 10, 31, 12, 0);
     LocalDateTime to = LocalDateTime.of(2023, 10, 31, 14, 0);
     EventTask task = new EventTask("Test Event", from, to);
@@ -54,10 +63,12 @@ public class EventTaskTest {
 
   @Test
   public void testGetTaskToString() {
+
     LocalDateTime from = LocalDateTime.of(2023, 10, 31, 12, 0);
     LocalDateTime to = LocalDateTime.of(2023, 10, 31, 14, 0);
     EventTask task = new EventTask("Test Event", from, to);
     String expected = "Tue 31 Oct 2023 14:00";
     assertEquals(expected, task.getTaskToString());
   }
+
 }

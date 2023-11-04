@@ -1,14 +1,18 @@
 package duke.filehandler;
 
-import static org.junit.jupiter.api.Assertions.*;
+import duke.task.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import duke.task.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FileReadTest {
 
@@ -18,6 +22,7 @@ public class FileReadTest {
 
   @BeforeEach
   public void setup() {
+
     fileRead = new FileRead();
     taskList = new ArrayList<>();
     testFile = new File("./data/duke.txt");
@@ -67,4 +72,5 @@ public class FileReadTest {
     // Verify that no tasks were loaded due to data corruption
     assertEquals(0, taskList.size());
   }
+
 }
