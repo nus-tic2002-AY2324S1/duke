@@ -91,8 +91,7 @@ public class FileRead extends FileHandler {
     } catch (FileNotFoundException e) {
       System.out.println("No saved tasks found, proceed to start.");
     } catch (FileCorruptedException e) {
-      System.out.printf("%s\n%s\n", e.getMessage(),
-          duke.userinterface.UserInterface.MessageDisplay.LINE_BREAK);
+      System.out.println(e.getMessage());
     } catch (IOException e) {
       e.printStackTrace(); // Handle any exceptions that may occur
     }

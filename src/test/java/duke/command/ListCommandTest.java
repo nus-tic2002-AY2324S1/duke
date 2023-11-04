@@ -40,6 +40,7 @@ public class ListCommandTest {
     System.setOut(new PrintStream(outputStream));
     listCommand.printList(new MessageDisplay(), taskList);
     String expectedOutput = "There's nothing in your list" + System.lineSeparator() + MessageDisplay.LINE_BREAK + System.lineSeparator();
+    MessageDisplay.printLineBreak();
     assertEquals(expectedOutput, outputStream.toString());
     System.setOut(System.out);
   }

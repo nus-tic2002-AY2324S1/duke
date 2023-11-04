@@ -36,7 +36,7 @@ public class OnCommand extends CheckTaskCommand {
         }
         System.out.println((i + 1) + "." + task);
         if (i == taskList.size() - 1) {
-          System.out.println(MessageDisplay.LINE_BREAK);
+          MessageDisplay.printLineBreak();
         }
       }
     }
@@ -68,5 +68,4 @@ public class OnCommand extends CheckTaskCommand {
   public void execute(MessageDisplay display, List<Task> taskList) {
     // This method is not used in the OnCommand.
   }
-
 }

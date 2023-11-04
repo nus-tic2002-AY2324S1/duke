@@ -8,7 +8,7 @@ public class EmptyCommandException extends DukeException {
 
   /**
    * Constructs a message that informs the user
-   * that no command was provided and asks them to try again.
+   * no command was provided and asks them to try again.
    */
   public EmptyCommandException() {
 

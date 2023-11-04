@@ -72,6 +72,15 @@ public class UserInterface {
             "╱╱╱╱╱╱╱╰╯\n";
 
     /**
+     * Prints a line break using a predefined LINE_BREAK constant.
+     */
+    public static void printLineBreak() {
+
+      System.out.println(LINE_BREAK);
+    }
+
+
+    /**
      * Print a message with a line break.
      *
      * @param line The message to print.
@@ -146,9 +155,24 @@ public class UserInterface {
     public void deleteMessage(List<Task> taskList, Task task) {
 
       System.out.printf("Noted. I've removed this task:\n   %s\n"
-              + "Now you have %s tasks in the list.\n%s\n",
-          task.toString(), taskList.size(), LINE_BREAK);
+              + "Now you have %s tasks in the list.\n",
+          task.toString(), taskList.size());
+      MessageDisplay.printLineBreak();
     }
+
+    /**
+     * Displays a message when a task is snoozed.
+     *
+     * @param taskList The list of user tasks.
+     * @param task     The task being snoozed.
+     */
+    public void snoozeMessage(List<Task> taskList, Task task) {
+
+      System.out.printf("Noted. I've pushed this task to 12 hours later:\n   %s\n",
+          task.toString());
+      MessageDisplay.printLineBreak();
+    }
+
 
     /**
      * Displays a welcome message with the Duke LOGO.
@@ -167,5 +191,4 @@ public class UserInterface {
     }
 
   }
-
 }

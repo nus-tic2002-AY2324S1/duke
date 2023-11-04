@@ -20,22 +20,23 @@ public class ListCommand extends CheckTaskCommand {
   public void printList(MessageDisplay display, List<Task> taskList) {
 
     if (taskList.isEmpty()) {
-      display.print("There's nothing in your list");
+      System.out.println("There's nothing in your list");
+      MessageDisplay.printLineBreak();
       return;
     }
     display.print("Here are the tasks in your list:");
     for (int i = 0; i < taskList.size(); i++) {
       System.out.println((i + 1) + "." + taskList.get(i).toString());
     }
-    System.out.println(MessageDisplay.LINE_BREAK);
+    MessageDisplay.printLineBreak();
   }
 
   /**
    * Executes the command to check tasks on the specified date.
    *
    * @param display     The message display interface to show messages to the user.
-   * @param taskList    The list of tasks to check for the specified date.
-   * @param checkedDate The date for which tasks should be checked.
+   * @param taskList    The list of tasks to check for the specified date. (Not used in ListCommand)
+   * @param checkedDate The date for which tasks should be checked. (Not used in ListCommand)
    */
   @Override
   public void execute(MessageDisplay display, List<Task> taskList, LocalDate checkedDate) {
@@ -53,5 +54,4 @@ public class ListCommand extends CheckTaskCommand {
     // Call the printList method to display the tasks
     printList(display, taskList);
   }
-
 }

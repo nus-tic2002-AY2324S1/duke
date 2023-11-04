@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
  */
 public class DeadlineTask extends Task {
 
-  private final LocalDateTime taskDueDate;
+  private LocalDateTime taskDueDate;
 
   /**
    * Constructs a `DeadlineTask` with the specified task name and due date.
@@ -17,7 +17,6 @@ public class DeadlineTask extends Task {
    * @param taskDueDate The due date and time of the deadline task.
    */
   public DeadlineTask(String taskName, LocalDateTime taskDueDate) {
-
     super('D', taskName);
     this.taskDueDate = taskDueDate;
   }
@@ -30,7 +29,6 @@ public class DeadlineTask extends Task {
    * @param taskDueDate The due date and time of the deadline task.
    */
   public DeadlineTask(String taskName, boolean completed, LocalDateTime taskDueDate) {
-
     super('D', taskName, completed);
     this.taskDueDate = taskDueDate;
   }
@@ -41,7 +39,6 @@ public class DeadlineTask extends Task {
    * @return The due date of the task as a formatted string.
    */
   String getTaskDueDateString() {
-
     return dateTimetoString(taskDueDate);
   }
 
@@ -50,10 +47,30 @@ public class DeadlineTask extends Task {
    *
    * @return The due date of the task as a LocalDate object.
    */
-  private LocalDate getTaskDueDate() {
-
+  public LocalDate getTaskDueDate() {
     return taskDueDate.toLocalDate();
   }
+
+  /**
+   * Change the end date of the task.
+   *
+   * @param taskDueDate The new end date for the task.
+   */
+  @Override
+  public void changeEndDate(LocalDateTime taskDueDate) {
+    this.taskDueDate = taskDueDate;
+  }
+
+  /**
+   * Get the end date of the task.
+   *
+   * @return The end date of the task as a LocalDateTime object.
+   */
+  @Override
+  public LocalDateTime getTaskEndDate() {
+    return taskDueDate;
+  }
+
 
   /**
    * Checks if a given date matches the due date of the task.
@@ -63,7 +80,6 @@ public class DeadlineTask extends Task {
    */
   @Override
   public boolean checkDate(LocalDate checkedDate) {
-
     return checkedDate.equals(getTaskDueDate());
   }
 
@@ -74,7 +90,6 @@ public class DeadlineTask extends Task {
    */
   @Override
   public String toString() {
-
     return super.toString() + String.format(" (by: %s)", getTaskDueDateString());
   }
 
@@ -85,8 +100,6 @@ public class DeadlineTask extends Task {
    */
   @Override
   public String toFile() {
-
     return super.toFile() + " | " + taskDueDate.toString().replace("T", " ");
   }
-
 }

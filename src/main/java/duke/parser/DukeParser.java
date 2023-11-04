@@ -1,12 +1,6 @@
 package duke.parser;
 
-import duke.command.AddEventCommand;
-import duke.command.AddTodoCommand;
-import duke.command.DeleteCommand;
-import duke.command.ListCommand;
-import duke.command.MarkAsCompletedCommand;
-import duke.command.MarkAsInCompletedCommand;
-import duke.command.OnCommand;
+import duke.command.*;
 import duke.dukeexceptions.*;
 import duke.filehandler.FileStorage;
 import duke.task.Task;
@@ -113,7 +107,8 @@ public class DukeParser {
       String command = inputs[0];
       executeCommand(fileStorage, display, taskList, command, userInput);
     } catch (DukeException e) {
-      System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
+      System.out.printf("%s\n", e.getMessage());
+      MessageDisplay.printLineBreak();
     }
   }
 
@@ -147,7 +142,8 @@ public class DukeParser {
       case "delete":
       case "mark":
       case "unmark":
-      case "reschedule":
+      case "snooze":
+      case "postpone":
         modifyTask(fileStorage, display, taskList, userInput);
         break;
       default:
@@ -305,8 +301,11 @@ public class DukeParser {
         case "delete":
           new DeleteCommand(itemIndex).execute(fileStorage, display, taskList);
           break;
-        case "reschedule":
-
+        case "snooze":
+          if(taskList.get(itemIndex).getTaskType() == 'T'){
+            throw new ChangeTodoDateException();
+          }
+          new SnoozeCommand(itemIndex).execute(fileStorage, display, taskList);
           break;
         default:
           // Handle exception case where the command is neither mark nor unmark
@@ -314,7 +313,11 @@ public class DukeParser {
       }
     } catch (InvalidNumberFormatException e) {
       // Handle the case where the integer part is not a valid number
-      System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
+      System.out.printf("%s\n", e.getMessage());
+      MessageDisplay.printLineBreak();
+    } catch (ChangeTodoDateException e) {
+      System.out.printf("%s\n", e.getMessage());
+      MessageDisplay.printLineBreak();
     }
   }
 
@@ -350,7 +353,8 @@ public class DukeParser {
       return itemIndex;
     } catch (TaskNotFoundException e) {
       // Handle the case where the task is not found by index
-      System.out.printf("%s\n%s\n", e.getMessage(), MessageDisplay.LINE_BREAK);
+      System.out.printf("%s\n", e.getMessage());
+      MessageDisplay.printLineBreak();
     }
     return -1;
   }

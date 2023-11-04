@@ -57,7 +57,7 @@ public class Duke {
     userInterface.messageDisplay.hello();
     while (true) {
       String userInput = this.userInterface.userInput.getUserInput();
-      System.out.println(UserInterface.MessageDisplay.LINE_BREAK);
+      UserInterface.MessageDisplay.printLineBreak();
       if (userInput.equals("bye")) {
         break;
       } else {
