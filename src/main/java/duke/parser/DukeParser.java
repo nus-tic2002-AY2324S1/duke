@@ -139,6 +139,9 @@ public class DukeParser {
       case "on":
         executeOnCommand(display, taskList, arguments);
         break;
+      case "find":
+        executeFindCommand(display, taskList, arguments);
+        break;
       case "delete":
       case "mark":
       case "unmark":
@@ -276,6 +279,28 @@ public class DukeParser {
       throw new InvalidDateFormatException();
     }
   }
+
+  /**
+   * Executes a find command to search for tasks in the task list based on a specified keyword.
+   *
+   * @param display   The message display interface for showing messages to the user.
+   * @param taskList  The list of tasks to search within.
+   * @param arguments The search keyword to use for finding tasks.
+   * @throws DukeException If the search keyword is empty, an EmptyFindArgumentException is thrown.
+   */
+  private void executeFindCommand(MessageDisplay display, List<Task> taskList, String arguments) throws DukeException {
+    // Extract specified search word
+    String keywordString = arguments.trim();
+
+    // Check if keyword is empty
+    if (keywordString.isEmpty()) {
+      throw new EmptyFindArgumentException();
+    }
+
+    // Create and execute a FindCommand to search for tasks
+    new FindCommand(keywordString).execute(display, taskList);
+  }
+
 
   /**
    * Execute "mark," "unmark," and "delete" commands that modify a task's status.
