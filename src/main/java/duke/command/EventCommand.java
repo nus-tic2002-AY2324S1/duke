@@ -77,7 +77,7 @@ public class EventCommand extends Command {
         if (fromDateTime.isAfter(toDateTime)) {
             throw new InvalidArgumentException(Message.concat(DATE_TIME_ERROR_MESSAGE, EXAMPLE_USAGE));
         }
-
+        assert toDateTime.isAfter(fromDateTime) : "'From' date/time must be before 'To' date/time!";
         return new Event(false, description, fromDateTime, toDateTime);
     }
 

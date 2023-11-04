@@ -39,6 +39,7 @@ public class ListCommand extends Command {
             ui.showResponseToUser(MESSAGE_LIST_IS_EMPTY);
             return;
         }
+        assert !taskList.getTasks().isEmpty() : "The task list cannot be empty!";
         ArrayList<Task> tasks = taskList.getTasks();
         ArrayList<String> messages = new ArrayList<>();
         messages.add(TASKS_IN_THE_LIST);

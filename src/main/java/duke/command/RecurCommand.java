@@ -38,6 +38,7 @@ public class RecurCommand extends IndexBaseCommand {
         for (int i = 0; i < THREE_MONTH_IN_WEEK; i++) {
             tmpFrom = tmpFrom.plus(RECURRENCE);
             tmpTo = tmpTo.plus(RECURRENCE);
+            assert !description.isEmpty() : "The description cannot be empty!";
             Event addEvent = new Event(false, description, tmpFrom, tmpTo);
             taskList.add(addEvent);
         }

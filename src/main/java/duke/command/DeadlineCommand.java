@@ -57,6 +57,7 @@ public class DeadlineCommand extends Command {
         validateDateMatcher(dateMatcher, new DeadlineCommand(), "");
 
         LocalDateTime by = Parser.constructDateTime(dateMatcher);
+        assert !description.isEmpty() : "The description cannot be empty";
         return new Deadline(false, description, by);
     }
 
