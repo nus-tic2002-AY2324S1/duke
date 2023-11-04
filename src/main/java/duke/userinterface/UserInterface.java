@@ -155,9 +155,9 @@ public class UserInterface {
      *
      * @param task     The task being snoozed.
      */
-    public void snoozeMessage(Task task) {
+    public void rescheduleMessage(Task task) {
 
-      System.out.printf("Noted. I've pushed this task to 12 hours later:\n   %s\n",
+      System.out.printf("Noted. I've updated the due date of this task:\n   %s\n",
           task.toString());
       MessageDisplay.printLineBreak();
     }

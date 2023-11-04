@@ -5,6 +5,7 @@ import duke.dukeexceptions.EmptyCommandException;
 import duke.dukeexceptions.InvalidNumberFormatException;
 import duke.dukeexceptions.TaskNotFoundException;
 import duke.dukeexceptions.InvalidTaskFormatException;
+import duke.dukeexceptions.ChangeTodoDateException;
 import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
@@ -110,7 +111,17 @@ public class DukeParser {
       }
       String command = inputs[0];
       commandExecutor.executeCommand(fileStorage, display, taskList, command, userInput);
-    } catch (DukeException e) {
+    } catch (InvalidNumberFormatException e) {
+      // Handle the case where the task is not found by index
+      System.out.printf("%s\n", e.getMessage());
+      MessageDisplay.printLineBreak();
+    }catch(DateTimeParseException e){
+      System.out.printf("%s\n", e.getMessage());
+      MessageDisplay.printLineBreak();
+    }catch(ChangeTodoDateException e){
+      System.out.printf("%s\n", e.getMessage());
+      MessageDisplay.printLineBreak();
+    }catch (DukeException e) {
       System.out.printf("%s\n", e.getMessage());
       MessageDisplay.printLineBreak();
     }
@@ -166,14 +177,8 @@ public class DukeParser {
   }
 
   static String extractEventFromDateString(String arguments) throws DukeException {
-    // Find the positions of "/from"
-    int fromIndex = arguments.indexOf("/from");
-    // Check if both "/from" and "/to" exist
-    System.out.println(fromIndex);
-    if (fromIndex == -1) {
-      throw new InvalidTaskFormatException("event");
-    }
-    String taskFromDateString = arguments.substring(extractEventFromIndex(arguments) + FROM_KEYWORD_LENGTH).trim();
+    int fromIndex = extractEventFromIndex(arguments);
+    String taskFromDateString = arguments.substring(fromIndex + FROM_KEYWORD_LENGTH,extractEventToIndex(arguments)).trim();
     if (taskFromDateString.isEmpty()) {
       throw new InvalidTaskFormatException("event");
     }
@@ -181,13 +186,8 @@ public class DukeParser {
   }
 
   static String extractEventToDateString(String arguments) throws DukeException {
-    // Find the positions of "/to"
-    int toIndex = arguments.indexOf("/to");
-    // Check if "/to" exist
-    if (toIndex == -1) {
-      throw new InvalidTaskFormatException("event");
-    }
-    String taskToDateString = arguments.substring(extractDeadlineByIndex(arguments) + TO_KEYWORD_LENGTH).trim();
+    int toindex = extractEventToIndex(arguments);
+    String taskToDateString = arguments.substring(toindex + TO_KEYWORD_LENGTH).trim();
     if (taskToDateString.isEmpty()) {
       throw new InvalidTaskFormatException("event");
     }
@@ -213,4 +213,15 @@ public class DukeParser {
     }
     return fromIndex;
   }
+
+  static int extractEventToIndex(String arguments) throws DukeException {
+    // Find the positions of "/to"
+    int toIndex = arguments.indexOf("/to");
+    // Check if "/to" exists
+    if (toIndex == -1) {
+      throw new InvalidTaskFormatException("event");
+    }
+    return toIndex;
+  }
+
 }

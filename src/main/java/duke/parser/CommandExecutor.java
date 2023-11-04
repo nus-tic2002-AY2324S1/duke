@@ -34,10 +34,12 @@ public class CommandExecutor {
       case "find":
         executeFindCommand(display, taskList, arguments);
         break;
+      case "reschedule":
+        rescheduleTask(fileStorage, display, taskList, arguments);
+        break;
       case "delete":
       case "mark":
       case "unmark":
-      case "snooze":
       case "postpone":
         modifyTask(fileStorage, display, taskList, userInput);
         break;
@@ -117,7 +119,21 @@ public class CommandExecutor {
     new ListCommand().execute(display, taskList);
   }
 
-  public void modifyTask(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, String userInput) throws duke.dukeexceptions.TaskNotFoundException {
+  private void rescheduleTask(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, String userInput) throws DukeException {
+    String[] input = userInput.split(" ");
+    int itemIndex= DukeParser.parseInteger(input[0]) - 1;
+    if(itemIndex< 0 || itemIndex >= taskList.size()){
+      throw new TaskNotFoundException();
+    }
+    LocalDateTime revisedDateTime = DukeParser.parseDateTimeOrDate(input[1].replace("T"," "));
+    if (taskList.get(itemIndex).getTaskType() == 'T') {
+      throw new ChangeTodoDateException();
+    }
+    new RescheduleCommand(itemIndex,revisedDateTime).execute(fileStorage, display, taskList);
+  }
+
+
+  public void modifyTask(FileStorage fileStorage, MessageDisplay display, List<Task> taskList, String userInput) throws TaskNotFoundException {
     try {
       int itemIndex = DukeParser.extractItemIndex(taskList, userInput);
       if (itemIndex == -1) {
@@ -133,12 +149,6 @@ public class CommandExecutor {
         case "delete":
           new DeleteCommand(itemIndex).execute(fileStorage, display, taskList);
           break;
-        case "snooze":
-          if (taskList.get(itemIndex).getTaskType() == 'T') {
-            throw new ChangeTodoDateException();
-          }
-          new SnoozeCommand(itemIndex).execute(fileStorage, display, taskList);
-          break;
         default:
           throw new InvalidNumberFormatException();
       }
@@ -149,4 +159,5 @@ public class CommandExecutor {
       throw new TaskNotFoundException();
     }
   }
+
 }

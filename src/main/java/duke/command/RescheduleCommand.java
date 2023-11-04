@@ -3,24 +3,24 @@ package duke.command;
 import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
-
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Represents a `SnoozeCommand` to reschedule a task by extending its end date.
+ * Represents a `RescheduleCommand` to reschedule a task by extending its end date.
  */
-public class SnoozeCommand extends Command {
+public class RescheduleCommand extends Command {
 
   // The index of the task to be rescheduled.
   private final int itemIndex;
-
+  private final LocalDateTime revisedDateTime;
   /**
-   * Constructs a `SnoozeCommand` with the specified item index to reschedule a task.
+   * Constructs a `RescheduleCommand` with the specified item index to reschedule a task.
    *
    * @param itemIndex The index of the task to be rescheduled.
    */
-  public SnoozeCommand(int itemIndex) {
-
+  public RescheduleCommand(int itemIndex,LocalDateTime revisedDateTime) {
+    this.revisedDateTime = revisedDateTime;
     this.itemIndex = itemIndex;
   }
 
@@ -34,9 +34,9 @@ public class SnoozeCommand extends Command {
   @Override
   public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
 
-    taskList.get(itemIndex).changeEndDate(taskList.get(itemIndex).getTaskEndDate().plusHours(12));
+    taskList.get(itemIndex).changeEndDate(revisedDateTime);
     storeDuke(fileStorage, taskList);
-    display.snoozeMessage(taskList.get(itemIndex));
+    display.rescheduleMessage(taskList.get(itemIndex));
   }
 
 }
