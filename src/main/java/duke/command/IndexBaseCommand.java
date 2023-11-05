@@ -29,7 +29,7 @@ public abstract class IndexBaseCommand extends Command {
      * This abstract method returns a message associated with the implementing class. Subclasses should override this
      * method to provide specific messages.
      *
-     * @return A string representing the message for unmarking a task.
+     * @return A string representing the message for a task.
      */
     public abstract String getMessage();
 

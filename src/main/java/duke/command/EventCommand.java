@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  */
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
-    public static final String EXAMPLE_USAGE = "Example of usage:\nevent project meeting /from 02/12/2020 0800 /to " +
+    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " project meeting /from 02/12/2020 0800 /to " +
             "02/12/2020 1000\n" + DATE_TIME_FORMAT_MESSAGE;
     public static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<description>\\w.*)\\s+/from\\s+(?<from>\\w.*)" +
             "\\s+/to\\s+(?<to>\\w.*)");

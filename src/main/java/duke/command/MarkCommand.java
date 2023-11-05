@@ -5,7 +5,7 @@ package duke.command;
  */
 public class MarkCommand extends IndexBaseCommand {
     public static final String COMMAND_WORD = "mark";
-    public static final String EXAMPLE_USAGE = "Example of usage:\nmark 1";
+    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " 1";
     public static final String MARK_TASK_DONE = "Nice! I've marked this task as done:";
     protected boolean isMark;
 

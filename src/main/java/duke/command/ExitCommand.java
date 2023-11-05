@@ -12,7 +12,7 @@ import duke.ui.Ui;
  */
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
-    public static final String EXAMPLE_USAGE = "Example of usage:\nbye";
+    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD;
 
     public ExitCommand() {
     }
