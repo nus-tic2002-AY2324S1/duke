@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 
 
 public class Storage {
-    private final String FILEPATH = "C:\\Users\\holy_\\IdeaProjects\\duke\\src\\main\\java\\DataStorage.txt";
+    private final String FILEPATH = "src\\main\\java\\DataStorage.txt";
 
     public Storage() {
 
@@ -83,6 +83,8 @@ public class Storage {
         String[] words = line.split(" ");
         Task Selector = null;
         String temp=line;
+        boolean marker = words[2].equals("1");
+
         int dividerPosition=0;
         switch (words[0]) {
             case "T":
@@ -102,6 +104,8 @@ public class Storage {
                         Selector = new Event(event , from , to);
                 break;
         }
+        assert Selector != null;
+        Selector.mark(marker);
         return Selector;
     }
 }
