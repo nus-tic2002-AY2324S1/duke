@@ -1,6 +1,10 @@
 package tim.body;
+
 import tim.tasks.Task;
+
 import java.util.ArrayList;
+
+
 
 /**
  * Represents as a Logic object.
@@ -78,6 +82,23 @@ public class Logic {
                 System.err.println("please include valid index of task to delete");
             }
             break;
+        case "find":
+            try {
+                String keyword = token[1];
+                Search.strictSearchTaskList(keyword, list);
+            } catch (Exception e) {
+                System.err.println("please include valid keyword to find");
+            }
+            break;
+        case "search" :
+            try {
+                String keyword = token[1];
+                Search.searchTaskList(keyword, list);
+            } catch (Exception e) {
+                System.err.println("please include valid keyword to find");
+            }
+            break;
+
         default:
             System.err.println("I've not learn to do this yet!!");
         }

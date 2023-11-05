@@ -52,13 +52,15 @@ public class Messenger {
     /**
      * Prints the entire list of tasks.
      *
-     * @param list List of tasks.
+     * @param tasks List of tasks.
      */
-    static void printList(ArrayList<Task> list){
-        if (!list.isEmpty()){
-            for(int i = 1; i <= list.size() ; i++){
-                printSingle(i,list);
+    static void printList(ArrayList<Task> tasks){
+        if (!tasks.isEmpty()){
+            for(int i = 1; i <= tasks.size() ; i++){
+                printSingle(i,tasks);
             }
+        } else {
+            System.out.println("There is no task in the list!");
         }
         printDash();
     }
@@ -67,11 +69,57 @@ public class Messenger {
      * Prints the task at the given index of the list.
      *
      * @param index Index of the task in the list.
-     * @param list List of tasks.
+     * @param tasks List of tasks.
      */
-    static void printSingle(int index, ArrayList<Task> list){
-        Task current = list.get(index-1);
-        System.out.println(index + ". [" + current.getType()  + "] [" + current.getIsDone() + "] " + current.getDescription() );
+    static void printSingle(int index, ArrayList<Task> tasks){
+        if(index>tasks.size()){
+            System.out.println("There is no task at index " + index + "!");
+        } else {
+            Task current = tasks.get(index-1);
+            System.out.println(index + ". [" + current.getType()  + "] [" + current.getIsDone() + "] " + current.getDescription() );
+        }
+
+    }
+
+    /**
+     * Prints the result of the search.
+     *
+     * @param listOfMatchedIndex List of indexes of the tasks that matches the keywords.
+     * @param tasks List of tasks.
+     */
+    static void printSearchResult(ArrayList<Integer> listOfMatchedIndex, ArrayList<Task> tasks){
+        if(listOfMatchedIndex.isEmpty()){
+            System.out.println("No task matches the keywords!");
+        } else {
+            System.out.println("I found task"
+                    + (listOfMatchedIndex.size() > 1 ? "s" : "")
+                    + " that contain the keywords:");
+
+            for(int i = 0; i < listOfMatchedIndex.size(); i++){
+                printSingle(listOfMatchedIndex.get(i),tasks);
+            }
+        }
+        printDash();
+    }
+
+    /**
+     * Prints the result of the strict search.
+     *
+     * @param listOfMatchedIndex List of indexes of the tasks that matches the keywords.
+     * @param tasks List of tasks.
+     */
+    static void printStrictSearchResult(ArrayList<Integer> listOfMatchedIndex, ArrayList<Task> tasks){
+        if(listOfMatchedIndex.isEmpty()){
+            System.out.println("No task matches the keywords!");
+        } else {
+            System.out.println("I found task"
+                    + (listOfMatchedIndex.size() > 1 ? "s" : "")
+                    + " that exactly matches the keywords:");
+            for(int i = 0; i < listOfMatchedIndex.size(); i++){
+                printSingle(listOfMatchedIndex.get(i),tasks);
+            }
+        }
+        printDash();
     }
 
     /**

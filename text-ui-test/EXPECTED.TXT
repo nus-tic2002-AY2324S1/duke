@@ -57,6 +57,21 @@ ____________________________________________________________
 3. [D] [ ] pay credit bill  (by: Dec 01 2023)
 
 ____________________________________________________________
+|| search ||
+I found tasks that contain the keywords:
+1. [E] [x] study math (from: Nov 01 2023 to: Dec 01 2023)
+3. [D] [ ] pay credit bill  (by: Dec 01 2023)
+
+____________________________________________________________
+|| find ||
+I found task that exactly matches the keywords:
+2. [T] [ ] return books
+
+____________________________________________________________
+|| find ||
+No task matches the keywords!
+
+____________________________________________________________
 || bye ||
 Bye. Hope to see you again soon!
 
