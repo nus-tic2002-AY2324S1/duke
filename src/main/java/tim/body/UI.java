@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Represents as a Messenger object.
+ * Represents as a UI object.
  * This class is responsible for printing messages and task list to the user.
  */
-public class Messenger {
+public class UI {
 
     /**
      * Prints the current date.
@@ -44,7 +44,7 @@ public class Messenger {
     /**
      * Prints a dash.
      */
-    static void printDash(){
+    public static void printDash(){
         System.out.println();
         System.out.println("____________________________________________________________");
     }
@@ -54,7 +54,7 @@ public class Messenger {
      *
      * @param tasks List of tasks.
      */
-    static void printList(ArrayList<Task> tasks){
+    public static void printList(TaskList tasks){
         if (!tasks.isEmpty()){
             for(int i = 1; i <= tasks.size() ; i++){
                 printSingle(i,tasks);
@@ -71,7 +71,7 @@ public class Messenger {
      * @param index Index of the task in the list.
      * @param tasks List of tasks.
      */
-    static void printSingle(int index, ArrayList<Task> tasks){
+    public static void printSingle(int index, ArrayList<Task> tasks){
         if(index>tasks.size()){
             System.out.println("There is no task at index " + index + "!");
         } else {

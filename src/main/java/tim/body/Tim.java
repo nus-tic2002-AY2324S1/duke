@@ -4,12 +4,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Tim {
-
+    /**
+     * Main method.
+     *
+     * @param args Command line arguments.
+     * @throws IOException If the file is not found.
+     * @throws ClassNotFoundException If the file is corrupted.
+     */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        ArrayList<Task> list;
-        Messenger.printLogo();
-        Messenger.greetings();
-        list = FileManager.loadList();
+        TaskList list;
+        UI.printLogo();
+        UI.greetings();
+        list = Storage.loadList();
         Parser.inputParser(list);
     }
 }

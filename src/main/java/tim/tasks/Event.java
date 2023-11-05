@@ -30,6 +30,27 @@ public class Event extends Task {
             throw new DateException("improper date");
         }
     }
+    public void postponeToDate(String extendedToDate) throws DateException {
+        LocalDate parsedExtendedToDate = LocalDate.parse(extendedToDate);
+        if(parsedExtendedToDate.isBefore(this.fromDate)
+                || parsedExtendedToDate.isBefore(this.toDate) ){
+            throw new DateException("improper date");
+        }
+        this.toDate = LocalDate.parse(extendedToDate);
+    }
+
+    public void snoozeToDateByOneWeek() throws DateException {
+        this.toDate = toDate.plusDays(7);
+    }
+
+
+    public LocalDate getFromDate () {
+        return this.fromDate;
+    }
+
+    public LocalDate getToDate () {
+        return this.toDate;
+    }
 
     /**
      * @inheritDoc

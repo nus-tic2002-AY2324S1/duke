@@ -1,0 +1,38 @@
+package tim.body.commands;
+
+import tim.body.TaskList;
+import tim.body.UI;
+import tim.tasks.ToDo;
+
+public class ToDoCommand extends Command{
+
+    /**
+     * Identify ToDo's task name to be added.
+     * Calls TaskList.addToDo() to add task.
+     *
+     * @param token The user input.
+     * @param tasks The list of tasks.
+     */
+    public void execute(String[] token, TaskList tasks){
+        try {
+            String taskName = token[1];
+            addToDo(taskName, tasks);
+        } catch (ArrayIndexOutOfBoundsException AIO) {
+            System.err.println("what is the name of the task to complete?");
+        }
+    }
+
+    /**
+     * Adds a task to the back of the list.
+     *
+     * @param inputEntry The input string from the user.
+     * @param tasks List of tasks.
+     */
+    static void addToDo (String inputEntry, TaskList tasks){
+        tasks.add(new ToDo(inputEntry));
+        System.out.println("Gotcha! Added this task:");
+        UI.printSingle(tasks.size(),tasks);
+        System.out.println("now there is: "+ tasks.size() + " item(s)");
+        UI.printDash();
+    }
+}

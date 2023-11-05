@@ -1,7 +1,5 @@
 package tim.body;
 import tim.tasks.Task;
-
-import java.security.MessageDigest;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +13,7 @@ public class Search {
      * @param keyword The keyword to search for.
      * @param tasks The list of tasks to search from.
      */
-    static void searchTaskList(String keyword, ArrayList<Task> tasks){
+    public static void searchTaskList(String keyword, TaskList tasks){
         ArrayList<Integer> listOfMatchedIndex = new ArrayList<Integer>();;
         for(int i = 0; i < tasks.size(); i++){
             Task x = tasks.get(i);
@@ -24,7 +22,7 @@ public class Search {
                 listOfMatchedIndex.add(trueIndex);
             }
         }
-        Messenger.printSearchResult(listOfMatchedIndex, tasks);
+        UI.printSearchResult(listOfMatchedIndex, tasks);
     }
 
     /**
@@ -33,7 +31,7 @@ public class Search {
      * @param keyword The keyword to search for.
      * @param tasks The list of tasks to search from.
      */
-    static void strictSearchTaskList(String keyword, ArrayList<Task> tasks){
+    public static void strictSearchTaskList(String keyword, TaskList tasks){
         ArrayList<Integer> listOfMatchedIndex = new ArrayList<Integer>();;
         for(int i = 0; i < tasks.size(); i++){
             Task x = tasks.get(i);
@@ -42,7 +40,7 @@ public class Search {
                 listOfMatchedIndex.add(trueIndex);
             }
         }
-        Messenger.printStrictSearchResult(listOfMatchedIndex, tasks);
+        UI.printStrictSearchResult(listOfMatchedIndex, tasks);
     }
 
 }

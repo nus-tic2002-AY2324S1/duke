@@ -1,4 +1,6 @@
 package tim.tasks;
+import tim.body.DateException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -22,6 +24,23 @@ public class Deadline extends Task {
         this.byDate = LocalDate.parse(byDate);
         this.setType('D');
     }
+
+    public void postponeByDate(String extendedToDate) throws DateException {
+        LocalDate parsedExtendedToDate = LocalDate.parse(extendedToDate);
+        if(parsedExtendedToDate.isBefore(this.byDate) ){
+            throw new DateException("improper date");
+        }
+        this.byDate = LocalDate.parse(extendedToDate);
+    }
+
+    public void snoozeByDateByOneWeek() throws DateException {
+        this.byDate = byDate.plusDays(7);
+    }
+
+    public LocalDate getByDate () {
+        return this.byDate;
+    }
+
 
     /**
      * @inheritDoc

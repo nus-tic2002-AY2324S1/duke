@@ -10,10 +10,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * Represents as a FileManager object.
+ * Represents as a Storage object.
  * This class handles the saving and loading of the list of tasks.
  */
-public class FileManager {
+public class Storage {
     /**
      * Loads the list of tasks from the file.
      *
@@ -22,14 +22,14 @@ public class FileManager {
      * @throws IOException If the file is not found.
      * @throws ClassNotFoundException If the file is corrupted.
      */
-    static ArrayList<Task> loadList () throws IOException, ClassNotFoundException{
-        ArrayList<Task> list = new ArrayList<>();
+    static TaskList loadList () throws IOException, ClassNotFoundException{
+        TaskList tasks = new TaskList();
         try{
             File f = new File("./src/main/data/list.data");
             if(f.exists()) {
                 FileInputStream fin = new FileInputStream(f);
                 ObjectInputStream ois = new ObjectInputStream(fin);
-                list = (ArrayList<Task>) ois.readObject();
+                tasks = (TaskList) ois.readObject();
                 ois.close();
             } else {
                 System.out.println("no saved list");
@@ -39,22 +39,22 @@ public class FileManager {
         }catch (ClassNotFoundException e) {
             System.err.println("file is corrupted");
         }
-        return list;
+        return tasks;
     }
 
     /**
      * Saves the list of tasks to the file.
      *
      * @location ./src/main/data/list.data
-     * @param list list of tasks.
+     * @param tasks list of tasks.
      */
-    static void saveList(ArrayList<Task> list){
+    static void saveList(TaskList tasks){
         try{
             File f = new File("./src/main/data/list.data");
             f.createNewFile();
             FileOutputStream fos = new FileOutputStream(f);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(list);
+            oos.writeObject(tasks);
             oos.close();
 
         } catch (IOException e) {

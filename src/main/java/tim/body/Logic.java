@@ -1,9 +1,6 @@
 package tim.body;
 
-import tim.tasks.Task;
-
-import java.util.ArrayList;
-
+import tim.body.commands.*;
 
 
 /**
@@ -17,93 +14,54 @@ public class Logic {
      * Executes the action based on the parsed user input from the parser.
      *
      * @param mode  Action to be executed.
-     * @param list  List of tasks.
+     * @param tasks  List of tasks.
      * @param token User input split into an array of strings.
      */
-    static void executeAction (String mode, ArrayList<Task> list, String[] token){
+    static void executeAction (String mode, TaskList tasks, String[] token){
         int index;
         String taskName;
         switch (mode) {
         case "bye":
-            Messenger.goodbyeGreet();
+            UI.goodbyeGreet();
             break;
         case "list":
-            Messenger.printList(list);
+            UI.printList(tasks);
             break;
         case "date":
-            Messenger.printDate();
+            UI.printDate();
             break;
         case "mark":
-            try {
-                index = Integer.parseInt(token[1]);
-                ListManager.markUnmarkTask(index, true, list);
-            } catch (ArrayIndexOutOfBoundsException AIO) {
-                System.err.println("incorrect input for index!");
-            }
+            new MarkCommand().execute(token, tasks);
             break;
         case "unmark":
-            try {
-                index = Integer.parseInt(token[1]);
-                ListManager.markUnmarkTask(index, false, list);
-            } catch (ArrayIndexOutOfBoundsException AIO) {
-                System.err.println("incorrect input for index!");
-            }
+            new UnmarkCommand().execute(token, tasks);
             break;
         case "todo":
-            try {
-                taskName = token[1];
-                ListManager.addToDo(taskName, list);
-            } catch (ArrayIndexOutOfBoundsException AIO) {
-                System.err.println("what is the name of the task to complete?");
-            }
+            new ToDoCommand().execute(token, tasks);
             break;
         case "deadline":
-            try {
-
-                taskName = token[1];
-                ListManager.addDeadline(taskName, list);
-            } catch (ArrayIndexOutOfBoundsException AIO) {
-                System.err.println("what is the name of the deadline agenda?");
-            }
+            new DeadlineCommand().execute(token, tasks);
             break;
         case "event":
-            try {
-                taskName = token[1];
-                ListManager.addEvent(taskName, list);
-            } catch (ArrayIndexOutOfBoundsException AIO) {
-                System.err.println("what is the name of the event?");
-            }
+            new EventCommand().execute(token, tasks);
             break;
         case "delete":
-            try {
-                int deleteIndex = Integer.parseInt(token[1]);
-                ListManager.deleteFromList(deleteIndex, list);
-            } catch (Exception e) {
-                System.err.println("please include valid index of task to delete");
-            }
+            new DeleteCommand().execute(token, tasks);
             break;
         case "find":
-            try {
-                String keyword = token[1];
-                Search.strictSearchTaskList(keyword, list);
-            } catch (Exception e) {
-                System.err.println("please include valid keyword to find");
-            }
+            new FindCommand().execute(token, tasks);
             break;
         case "search" :
-            try {
-                String keyword = token[1];
-                Search.searchTaskList(keyword, list);
-            } catch (Exception e) {
-                System.err.println("please include valid keyword to find");
-            }
+            new SearchCommand().execute(token, tasks);
             break;
-
+        case "snooze" :
+            new SnoozeCommand().execute(token, tasks);
+            break;
         default:
             System.err.println("I've not learn to do this yet!!");
         }
         if (!(mode.equals("list") || mode.equals("date") || mode.equals("bye"))) {
-            FileManager.saveList(list);
+            Storage.saveList(tasks);
         }
     }
 }

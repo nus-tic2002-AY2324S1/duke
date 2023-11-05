@@ -13,9 +13,9 @@ public class Parser {
     /**
      * Parses the user input and passes it to the Logic class to execute the action.
      *
-     * @param list List of tasks.
+     * @param tasks List of tasks.
      */
-     static void inputParser(ArrayList<Task> list){
+     static void inputParser(TaskList tasks){
         String input = "init" ;
         Scanner in = new Scanner(System.in);
         while(!input.equalsIgnoreCase("bye")) {
@@ -24,7 +24,7 @@ public class Parser {
             String[] token = input.split(" ", 2);
             String mode = token[0].toLowerCase();
             System.out.println("|| " + mode + " ||");
-            Logic.executeAction(mode,list, token);
+            Logic.executeAction(mode,tasks, token);
         }
     }
 }
