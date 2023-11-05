@@ -53,9 +53,9 @@ public class ListTask {
     }
     public void findTask(String line) {
         ArrayList<Task> Found = new ArrayList<>();
-        for (int i = 0; i < List.size(); i++) {
-            if (List.get(i).toString().contains(line)) {
-                Found.add(List.get(i));
+        for (Task task : List) {
+            if (task.toString().contains(line)) {
+                Found.add(task);
             }
         }
         Separator();
