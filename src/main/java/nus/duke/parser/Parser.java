@@ -51,10 +51,12 @@ public class Parser {
         case "date":
             return new DateCommand(commandArgs);
         case "deadline":
+        case "d":
             return new DeadlineCommand(commandArgs);
         case "delete":
             return new DeleteCommand(commandArgs);
         case "event":
+        case "e":
             return new EventCommand(commandArgs);
         case "find":
             return new FindCommand(commandArgs);
@@ -63,6 +65,7 @@ public class Parser {
         case "mark":
             return new MarkCommand(commandArgs);
         case "todo":
+        case "t":
             return new TodoCommand(commandArgs);
         case "unmark":
             return new UnmarkCommand(commandArgs);
