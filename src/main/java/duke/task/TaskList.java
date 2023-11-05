@@ -152,4 +152,13 @@ public class TaskList {
     public void remove(int index) {
         tasks.remove(index);
     }
+
+    public char getAbbreviation(int index){
+        for (int i = 0; i < tasks.size(); i++) {
+             if(i == index-1){
+                return tasks.get(i).getAbbreviation();
+             }
+        }
+        return 'X';
+    }
 }
