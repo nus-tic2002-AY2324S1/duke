@@ -161,4 +161,8 @@ public class TaskList {
         }
         return 'X';
     }
+
+    public void updateDescription(int index, String description) {
+        get(index -1).update(description);
+    }
 }

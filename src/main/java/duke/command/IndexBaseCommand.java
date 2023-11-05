@@ -47,13 +47,17 @@ public abstract class IndexBaseCommand extends Command {
         validateValidInteger(!Parser.isInteger(keywordArgument.getArguments()));
         setIndex(keywordArgument.getArguments());
 
-        boolean isOutLowerBound = index < 1;
-        boolean isOutUpperBound = index > TaskList.size();
-        validateIndexOutOfRange(isOutLowerBound || isOutUpperBound);
+        validateIndexRange(index);
 
         indexCommand = Parser.parseKeywordToCommand(keywordArgument);
         validateRecurArgument(indexCommand, taskList);
-        processCommand(taskList, ui);
+        processCommand(taskList, ui, indexCommand);
+    }
+
+    public void validateIndexRange(int ind) throws InvalidArgumentException {
+        boolean isOutLowerBound = ind < 1;
+        boolean isOutUpperBound = ind > TaskList.size();
+        validateIndexOutOfRange(isOutLowerBound || isOutUpperBound);
     }
 
     /**
@@ -130,10 +134,10 @@ public abstract class IndexBaseCommand extends Command {
      * @param taskList The TaskList containing the tasks to be managed.
      * @param ui       The user interface for displaying messages to the user.
      */
-    private void processCommand(TaskList taskList, Ui ui) {
+    public void processCommand(TaskList taskList, Ui ui, Command command) {
         Task task = taskList.get(index - 1);
         ArrayList<String> messages = new ArrayList<>();
-        IndexBaseCommand indexBaseCommand = (IndexBaseCommand) indexCommand;
+        IndexBaseCommand indexBaseCommand = (IndexBaseCommand) command;
         processTaskCommand(taskList, task);
         messages.add(indexBaseCommand.getMessage());
         messages.add(task.toString());

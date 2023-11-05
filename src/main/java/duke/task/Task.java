@@ -131,4 +131,7 @@ public abstract class Task {
         return 0;
     }
 
+    public void update(String description) {
+        dukeDescription = description;
+    }
 }
