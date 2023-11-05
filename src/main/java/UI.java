@@ -162,6 +162,7 @@ public class UI {
                             break;
                         case FIND:
                             Storage.findTask(line.substring(5));
+                            break;
                         default:
                             throw new IllegalArgumentException();
                     }
