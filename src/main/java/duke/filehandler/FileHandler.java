@@ -5,8 +5,11 @@ package duke.filehandler;
  */
 abstract class FileHandler {
 
-  // The default file path for Duke data
-  String filePath = "./data/duke.txt";
+    // The default file path for Duke data
+    private String filePath = "./data/duke.txt";
 
+    public String getFilePath() {
+        return filePath;
+    }
 }
 

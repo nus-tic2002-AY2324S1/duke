@@ -5,9 +5,9 @@ package duke.filehandler;
  */
 abstract class FileException extends Exception {
 
-  public FileException(String message) {
+    public FileException(String message) {
 
-    super(message);
-  }
+        super(message);
+    }
 
 }

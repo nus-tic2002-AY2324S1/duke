@@ -6,13 +6,13 @@ package duke.dukeexceptions;
  */
 public class InvalidCommandException extends DukeException {
 
-  /**
-   * Constructs a new InvalidCommandException to informs the user
-   * that the command they entered is not recognized by the Duke application.
-   */
-  public InvalidCommandException() {
+    /**
+     * Constructs a new InvalidCommandException to informs the user
+     * that the command they entered is not recognized by the Duke application.
+     */
+    public InvalidCommandException() {
 
-    super("OOPS!!! I'm sorry, but I don't know what that means :-(");
-  }
+        super("OOPS!!! I'm sorry, but I don't know what that means :-(");
+    }
 
 }

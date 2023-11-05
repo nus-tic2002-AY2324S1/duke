@@ -5,9 +5,9 @@ package duke.filehandler;
  */
 class FileCorruptedException extends duke.filehandler.FileException {
 
-  public FileCorruptedException() {
+    public FileCorruptedException() {
 
-    super("File is corrupted, proceed to start a new session without data loading.");
-  }
+        super("File is corrupted, proceed to start a new session without data loading.");
+    }
 
 }

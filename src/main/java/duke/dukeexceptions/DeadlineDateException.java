@@ -1,10 +1,17 @@
 package duke.dukeexceptions;
 
+/**
+ * DeadlineDateException is a custom exception class that is thrown when the end date
+ * of a task is before the current date or time.
+ */
 public class DeadlineDateException extends DukeException {
 
-  public DeadlineDateException() {
+    /**
+     * Constructs a new DeadlineDateException with a default error message.
+     */
+    public DeadlineDateException() {
 
-    super("End Date should be after today!!!");
-  }
+        super("End Date should be after today!!!");
+    }
 
 }

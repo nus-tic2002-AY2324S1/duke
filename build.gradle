@@ -8,6 +8,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
 dependencies {
@@ -34,7 +35,9 @@ application {
 }
 
 shadowJar {
+    mainClassName = 'duke.Duke'
     archiveBaseName = "duke"
+    archiveFileName = 'duke.jar'
     archiveClassifier = null
     dependsOn("distZip", "distTar")
 }

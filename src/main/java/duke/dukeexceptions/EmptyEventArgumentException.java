@@ -6,16 +6,16 @@ package duke.dukeexceptions;
  */
 public class EmptyEventArgumentException extends DukeException {
 
-  /**
-   * Constructs a new EmptyEventArgumentException to informs the user
-   * that no details were provided for the event task and provides
-   * an example format for how the information should be provided.
-   */
-  public EmptyEventArgumentException() {
+    /**
+     * Constructs a new EmptyEventArgumentException to informs the user
+     * that no details were provided for the event task and provides
+     * an example format for how the information should be provided.
+     */
+    public EmptyEventArgumentException() {
 
-    super("You did not provide any details on your event task. "
-        + "Please provide in the format of "
-        + "<event + Task Name + /from + From time + /to + To time>.");
-  }
+        super("You did not provide any details on your event task. "
+            + "Please provide in the format of "
+            + "<event + Task Name + /from + From time + /to + To time>.");
+    }
 
 }

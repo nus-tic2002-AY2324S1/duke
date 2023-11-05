@@ -6,13 +6,13 @@ package duke.dukeexceptions;
  */
 public class EmptyCommandException extends DukeException {
 
-  /**
-   * Constructs a message that informs the user
-   * no command was provided and asks them to try again.
-   */
-  public EmptyCommandException() {
+    /**
+     * Constructs a message that informs the user
+     * no command was provided and asks them to try again.
+     */
+    public EmptyCommandException() {
 
-    super("You did not provide any command. Please try again.");
-  }
+        super("You did not provide any command. Please try again.");
+    }
 
 }

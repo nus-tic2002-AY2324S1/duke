@@ -6,12 +6,12 @@ package duke.dukeexceptions;
  */
 public class ChangeTodoDateException extends DukeException {
 
-  /**
-   * Constructs a message that informs the user change todo task date is not allowed.
-   */
-  public ChangeTodoDateException() {
+    /**
+     * Constructs a message that informs the user change todo task date is not allowed.
+     */
+    public ChangeTodoDateException() {
 
-    super("You can't change the end date of a To do task!!!");
-  }
+        super("You can't change the end date of a To do task!!!");
+    }
 
 }

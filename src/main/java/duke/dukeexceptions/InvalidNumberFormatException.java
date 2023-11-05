@@ -6,23 +6,23 @@ package duke.dukeexceptions;
  */
 public class InvalidNumberFormatException extends DukeException {
 
-  /**
-   * Constructs a new InvalidNumberFormatException with a specified error message.
-   *
-   * @param message The error message indicating the provided value is not a valid number.
-   */
-  public InvalidNumberFormatException(String message) {
+    /**
+     * Constructs a new InvalidNumberFormatException with a specified error message.
+     *
+     * @param message The error message indicating the provided value is not a valid number.
+     */
+    public InvalidNumberFormatException(String message) {
 
-    super(message + " is not a valid number! Please try again.");
-  }
+        super(message + " is not a valid number! Please try again.");
+    }
 
-  /**
-   * Constructs a new InvalidNumberFormatException with
-   * a generic error message for an invalid number.
-   */
-  public InvalidNumberFormatException() {
+    /**
+     * Constructs a new InvalidNumberFormatException with
+     * a generic error message for an invalid number.
+     */
+    public InvalidNumberFormatException() {
 
-    super("Invalid Number! Please try again.");
-  }
+        super("Invalid Number! Please try again.");
+    }
 
 }
