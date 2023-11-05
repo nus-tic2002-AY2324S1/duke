@@ -52,6 +52,8 @@ public class TaskListDecoder {
     }
 
     private static Deadline decodeDeadline(String[] fields) throws StorageOperationException {
+        assert fields != null;
+
         if (fields.length != 5) {
             throw new StorageOperationException("The number of fields for deadline should be 5.");
         }
@@ -66,6 +68,8 @@ public class TaskListDecoder {
     }
 
     private static Event decodeEvent(String[] fields) throws StorageOperationException {
+        assert fields != null;
+
         if (fields.length != 5) {
             throw new StorageOperationException("The number of fields for an event should be 5.");
         }
@@ -86,6 +90,8 @@ public class TaskListDecoder {
     }
 
     private static Todo decodeTodo(String[] fields) throws StorageOperationException {
+        assert fields != null;
+
         if (fields.length != 4) {
             throw new StorageOperationException("he number of fields for an event should be 4.");
         }

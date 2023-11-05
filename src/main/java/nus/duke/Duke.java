@@ -24,6 +24,8 @@ public class Duke {
      * @param filePath The file path where Duke stores and loads tasks.
      */
     public Duke(String filePath) {
+        assert filePath != null;
+
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         TaskList tasks;

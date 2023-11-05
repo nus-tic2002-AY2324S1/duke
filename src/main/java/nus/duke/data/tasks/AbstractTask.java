@@ -212,6 +212,8 @@ public abstract class AbstractTask {
      * @param attributeValueGetter The function to get the attribute value.
      */
     protected void addAttribute(TaskOptionKey attributeKey, AttributeValueGetter attributeValueGetter) {
+        assert attributeValueGetter != null;
+
         this.attributes.add(new AbstractMap.SimpleEntry<>(attributeKey, attributeValueGetter));
     }
 
@@ -224,6 +226,8 @@ public abstract class AbstractTask {
      * @param attributeValueGetter The function to get the attribute value.
      */
     protected void addAttribute(int index, TaskOptionKey attributeKey, AttributeValueGetter attributeValueGetter) {
+        assert attributeValueGetter != null;
+
         this.attributes.add(index, new AbstractMap.SimpleEntry<>(attributeKey, attributeValueGetter));
     }
 
