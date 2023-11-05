@@ -1,9 +1,9 @@
 package duke;
 
 import duke.exception.DukeException;
-import duke.task.Deadlines;
-import duke.task.Events;
-import duke.task.Todos;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,12 +30,12 @@ public class Utils {
      * @return A new Todo task.
      * @throws DukeException if the command format is invalid.
      */
-    public static Todos newTodoTask(String fullCommand) throws DukeException {
+    public static Todo newTodoTask(String fullCommand) throws DukeException {
         Matcher todoMatcher = todoRegex.matcher(fullCommand);
         if(!todoMatcher.matches()){
             throw new DukeException("Invalid command, Please follow todo task command format");
         }
-        return new Todos(todoMatcher.group(0));
+        return new Todo(todoMatcher.group(0));
     }
 
     /**
@@ -44,19 +44,19 @@ public class Utils {
      * @return A new Deadline task.
      * @throws DukeException If the command format is invalid.
      */
-    public static Deadlines newDeadlineTask(String fullCommand) throws DukeException {
+    public static Deadline newDeadlineTask(String fullCommand) throws DukeException {
         Matcher deadlineMatcher = deadlineRegex.matcher(fullCommand);
         if(!deadlineMatcher.matches()){
             throw new DukeException("Invalid command, Please follow deadline task command format");
         }
         String desc = deadlineMatcher.group(1) + " (by: " +deadlineMatcher.group(2) + ")";
-        Deadlines newDeadlineTask = new Deadlines(desc);
+        Deadline newDeadlineTask = new Deadline(desc);
         LocalDateTime deadline = Utils.parseDateTime(deadlineMatcher.group(2).trim());
         if (deadline != null){
             String newDesc = deadlineMatcher.group(1) + " (by: " + deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy, ha")) + ")";
-            return new Deadlines(newDesc, deadline);
+            return new Deadline(newDesc, deadline);
         }
-        return new Deadlines(desc);
+        return new Deadline(desc);
     }
 
     /**
@@ -65,7 +65,7 @@ public class Utils {
      * @return A new Event task
      * @throws DukeException if the command format is invalid
      */
-    public static Events newEventTask(String fullCommand) throws DukeException {
+    public static Event newEventTask(String fullCommand) throws DukeException {
         Matcher eventMatcher = eventRegex.matcher(fullCommand);
         if(!eventMatcher.matches()){
             throw new DukeException("Invalid command, Please follow event task command format");
@@ -78,10 +78,10 @@ public class Utils {
             LocalDateTime end = Utils.parseDateTime(group3String);
             if (start != null && end != null ){
                 String newDesc = eventMatcher.group(1) + " (from: " + start.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + " to: " + end.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
-                return new Events(newDesc, start, end);
+                return new Event(newDesc, start, end);
             }
         }
-        return new Events(desc);
+        return new Event(desc);
     }
 
     /**
@@ -104,6 +104,12 @@ public class Utils {
         return null;
     }
 
+    /**
+     *
+     * @param dateTimeString date and time string to be parsed.
+     * @param parttern parttern string
+     * @return A LocalDateTime object representing the parsed date and time.
+     */
     public static LocalDateTime dateTimeParser(String dateTimeString, String parttern){
         try {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(parttern);

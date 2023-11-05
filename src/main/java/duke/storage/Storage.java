@@ -39,7 +39,7 @@ public class Storage {
      * @return A `TaskList` containing tasks loaded from the data file.
      * @throws DukeException If there is an issue loading task data.
      */
-    public static TaskList load() throws DukeException {
+    public static ArrayList load() throws DukeException {
         TaskList taskList = new TaskList();
         try{
             File file = new File(filePath);
@@ -56,7 +56,7 @@ public class Storage {
         } catch (IOException e) {
             throw new DukeException("Task data file not found." + e.getMessage());
         }
-        return taskList;
+        return taskList.getTaskList();
     }
 
     /**

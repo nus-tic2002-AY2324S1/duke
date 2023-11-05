@@ -19,7 +19,9 @@ public class NewTaskCommand extends Command{
      *
      * @param fullCommand The full command input by the user.
      */
-    public NewTaskCommand(String fullCommand) { this.fullCommand =fullCommand; }
+    public NewTaskCommand(String fullCommand) {
+        this.fullCommand =fullCommand;
+    }
 
 
     /**
@@ -33,8 +35,8 @@ public class NewTaskCommand extends Command{
      * @throws IOException    If there is an issue with saving the task list.
      */
     @Override
-    public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException, IOException {
-
+    public void execute(TaskList taskList, UI ui, Storage storage)
+    throws DukeException, IOException {
         Task newTask = null;
         if(fullCommand.toLowerCase().contains("todo")){
             newTask = Utils.newTodoTask(fullCommand);

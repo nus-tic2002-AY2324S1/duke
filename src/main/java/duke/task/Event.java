@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 /**
  * The `Events` class represents a task that has a starting and ending date and time.
  */
-public class Events extends Task {
+public class Event extends Task {
     private final TaskType taskType = TaskType.E;
     private LocalDateTime eventStartAt;
     private LocalDateTime eventEndAt;
@@ -14,7 +14,7 @@ public class Events extends Task {
      *
      * @param description The description of the event task.
      */
-    public Events(String description){
+    public Event(String description){
         super(description);
     }
 
@@ -26,7 +26,7 @@ public class Events extends Task {
      * @param start         The starting date and time of the event.
      * @param end           The ending date and time of the event.
      */
-    public Events(String description, LocalDateTime start, LocalDateTime end){
+    public Event(String description, LocalDateTime start, LocalDateTime end){
         super(description);
         this.eventStartAt = start;
         this.eventEndAt = end;
@@ -37,7 +37,9 @@ public class Events extends Task {
      *
      * @return The task type.
      */
-    public TaskType getTaskType() { return taskType; }
+    public TaskType getTaskType() {
+        return taskType;
+    }
 
     /**
      * Gets the starting date and time of the event.
@@ -51,21 +53,27 @@ public class Events extends Task {
      *
      * @param start The new starting date and time to set.
      */
-    public void setEventStartAt(LocalDateTime start){ this.eventStartAt = start; }
+    public void setEventStartAt(LocalDateTime start){
+        this.eventStartAt = start;
+    }
 
     /**
      * Gets the ending date and time of the event.
      *
      * @return The ending date and time as a LocalDateTime.
      */
-    public LocalDateTime getEventEndAt(){ return eventEndAt; }
+    public LocalDateTime getEventEndAt(){
+        return eventEndAt;
+    }
 
     /**
      * Sets the ending date and time of the event.
      *
      * @param end The new ending date and time to set.
      */
-    public void setEventEndAt(LocalDateTime end){ this.eventEndAt = end; }
+    public void setEventEndAt(LocalDateTime end){
+        this.eventEndAt = end;
+    }
 
 
     @Override

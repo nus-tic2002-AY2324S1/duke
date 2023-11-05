@@ -1,3 +1,5 @@
+package duke;
+
 import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
@@ -9,7 +11,7 @@ import java.io.IOException;
 
 
 /**
- * Duke is the main class for the Duke program. It manages the initialization of UI, Storage, and TaskList, and handles the core program execution.
+ * duke.Duke is the main class for the duke.Duke program. It manages the initialization of UI, Storage, and TaskList, and handles the core program execution.
  */
 public class Duke {
     private Storage storage;
@@ -18,7 +20,7 @@ public class Duke {
 
 
     /**
-     * Constructs a Duke instance with the specified file path. It initializes the user interface (UI), storage, and task list. If the file exists, it loads existing tasks; otherwise, it creates a new task list.
+     * Constructs a duke.Duke instance with the specified file path. It initializes the user interface (UI), storage, and task list. If the file exists, it loads existing tasks; otherwise, it creates a new task list.
      *
      * @param filePath The file path for storing and retrieving tasks.
      */
@@ -26,7 +28,7 @@ public class Duke {
         ui = new UI();
         storage = new Storage(filePath);
         try {
-            taskList = new TaskList(storage.load().getTaskList());
+            taskList = new TaskList(storage.load());
         } catch (DukeException e) {
             UI.showLoadingError();
             taskList = new TaskList();
@@ -35,7 +37,7 @@ public class Duke {
 
 
     /**
-     * The main run loop of the Duke program. It displays a welcome message and continues to accept and process user commands until the exit command is received.
+     * The main run loop of the duke.Duke program. It displays a welcome message and continues to accept and process user commands until the exit command is received.
      */
     public void run() {
         UI.showWelcome();

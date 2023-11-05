@@ -8,18 +8,18 @@ import duke.ui.UI;
 
 import java.io.IOException;
 
-    /**
-     * Represents a command to unmark a task as not done in the task list.
-     */
+/**
+ * Represents a command to unmark a task as not done in the task list.
+ */
 public class UnmarkCommand extends Command{
     private int index;
 
-        /**
-         * Constructs an UnmarkCommand with the given index.
-         *
-         * @param index The index of the task to be unmarked.
-         */
-        public UnmarkCommand(int index){
+    /**
+     * Constructs an UnmarkCommand with the given index.
+     *
+     * @param index The index of the task to be unmarked.
+     */
+    public UnmarkCommand(int index){
         this.index = index;
     }
 

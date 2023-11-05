@@ -33,7 +33,7 @@ public class TaskList {
             taskList.remove(index);
             return deletedTask;
         } else {
-            throw new DukeException("Invalid index, Please enter a valid int number. ");
+            throw new DukeException("Invalid index, Please enter a valid int number.");
         }
     }
 

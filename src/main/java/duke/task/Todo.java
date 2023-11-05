@@ -4,7 +4,7 @@ package duke.task;
  * This class represents a Todo task, which is a type of task without a specific deadline.
  * It extends the abstract Task class and provides specific methods and properties for Todo tasks.
  */
-public class Todos extends Task {
+public class Todo extends Task {
     private final TaskType taskType = TaskType.T;
 
     /**
@@ -12,7 +12,7 @@ public class Todos extends Task {
      *
      * @param description The description of the Todo task.
      */
-    public Todos(String description) {
+    public Todo(String description) {
         super(description);
     }
 

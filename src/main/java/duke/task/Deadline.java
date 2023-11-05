@@ -5,8 +5,7 @@ import java.time.LocalDateTime;
 /**
  * The `Deadlines` class represents a task with a specific deadline.
  */
-
-public class Deadlines extends Task {
+public class Deadline extends Task {
     private final TaskType taskType = TaskType.D;
     private LocalDateTime deadline;
 
@@ -16,7 +15,7 @@ public class Deadlines extends Task {
      *
      * @param description The description of the deadline task.
      */
-    public Deadlines(String description) {
+    public Deadline(String description) {
         super(description);
     }
 
@@ -26,7 +25,7 @@ public class Deadlines extends Task {
      * @param description The description of the deadline task.
      * @param deadline    The deadline of the task.
      */
-    public Deadlines(String description, LocalDateTime deadline){
+    public Deadline(String description, LocalDateTime deadline){
         super(description);
         this.deadline = deadline;
     }
@@ -45,14 +44,18 @@ public class Deadlines extends Task {
      *
      * @return The deadline of the task as a LocalDateTime.
      */
-    public LocalDateTime getDeadline(){ return deadline; }
+    public LocalDateTime getDeadline(){
+        return deadline;
+    }
 
     /**
      * Sets the deadline of the task.
      *
      * @param deadline The new deadline to set.
      */
-    public void setDeadline(LocalDateTime deadline){ this.deadline = deadline; }
+    public void setDeadline(LocalDateTime deadline){
+        this.deadline = deadline;
+    }
 
 
     @Override
