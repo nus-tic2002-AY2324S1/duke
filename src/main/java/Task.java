@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 /**
  * The Task class is the default base for all task-related classes.
  */
@@ -12,6 +14,29 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone=false;
+    }
+    public String printDate(LocalDateTime date){
+        String zero = "0";
+        String builddate = "";
+        if(date.getDayOfMonth()<10){
+            builddate = builddate + zero;
+        }
+        builddate = builddate + date.getDayOfMonth() + "/";
+        if(date.getMonthValue()<10){
+            builddate = builddate + zero;
+        }
+        builddate = builddate + date.getMonthValue() + "/";
+        builddate = builddate + date.getYear() + " ";
+        if(date.getHour()<10){
+            builddate = builddate + zero;
+        }
+        builddate = builddate + date.getHour() + ":";
+
+        if(date.getMinute()<10){
+            builddate = builddate + zero;
+        }
+        builddate = builddate + date.getMinute();
+        return builddate;
     }
     /**
      * Retrieves the Duke description associated with the task.

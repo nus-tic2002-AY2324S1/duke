@@ -1,17 +1,17 @@
-public class Deadline extends Todo {
-    protected String due;
+import java.time.LocalDateTime;
 
-    Deadline(String description, String by) {
+public class Deadline extends Todo {
+
+    protected LocalDateTime due;
+
+    Deadline(String description, LocalDateTime by) {
         super(description);
         due = by;
     }
 
-    public void setBy(String change) {
-        due = change;
-    }
 
     public String getBy() {
-        return due;
+        return printDate(due);
     }
     @Override
     public String toString() {

@@ -1,7 +1,9 @@
+import java.time.LocalDateTime;
+
 public class Event extends Task {
-    protected String from;
-    protected String to;
-    public Event(String description,String from,String to) {
+    protected LocalDateTime from;
+    protected LocalDateTime to;
+    public Event(String description,LocalDateTime from,LocalDateTime to) {
         super(description);
         isDone = false;
         this.from = from;
@@ -14,10 +16,10 @@ public class Event extends Task {
         this.isDone = change;
     }
     public String getFrom(){
-        return from;
+        return printDate(from);
     }
     public String getTo(){
-        return to;
+        return printDate(to);
     }
     @Override
     public String toString() {
