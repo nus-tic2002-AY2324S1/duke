@@ -1,4 +1,4 @@
-package tim.body.commands;
+package tim.commands;
 
 public enum ListOfCommands {
     BYE,

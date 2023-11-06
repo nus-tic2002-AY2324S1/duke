@@ -1,6 +1,6 @@
-package tim.body.commands;
+package tim.commands;
 
-import tim.body.TaskList;
+import tim.util.TaskList;
 
 public class UnmarkCommand extends MarkCommand{
 

@@ -1,7 +1,7 @@
-package tim.body.commands;
+package tim.commands;
 
-import tim.body.Exceptions.DateException;
-import tim.body.TaskList;
+import tim.exceptions.DateException;
+import tim.util.TaskList;
 import tim.body.UI;
 import tim.tasks.Deadline;
 import tim.tasks.Event;
@@ -27,6 +27,7 @@ public class SnoozeCommand extends Command{
             String[] temp = token[1].split(" ",2);
             int trueIndex = Integer.parseInt(temp[0]);
             if(tasks.get(trueIndex-1).getType() == 'T'){
+                System.err.println("ToDo tasks cannot be snoozed!");
                 throw new Exception();
             }
             if(temp.length>1 && !temp[1].isBlank()) {

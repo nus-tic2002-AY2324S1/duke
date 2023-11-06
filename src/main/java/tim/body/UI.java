@@ -1,6 +1,7 @@
 package tim.body;
-import tim.body.commands.ListOfCommands;
+import tim.commands.ListOfCommands;
 import tim.tasks.Task;
+import tim.util.TaskList;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -82,7 +83,7 @@ public class UI {
      * @param index Index of the task in the list.
      * @param tasks List of tasks.
      */
-    public static void printSingle(int index, ArrayList<Task> tasks){
+    public static void printSingle(int index, TaskList tasks){
         if(index>tasks.size()){
             System.out.println("There is no task at index " + index + "!");
         } else {
@@ -98,7 +99,7 @@ public class UI {
      * @param listOfMatchedIndex List of indexes of the tasks that matches the keywords.
      * @param tasks List of tasks.
      */
-    static void printSearchResult(ArrayList<Integer> listOfMatchedIndex, ArrayList<Task> tasks){
+    public static void printSearchResult(ArrayList<Integer> listOfMatchedIndex, TaskList tasks){
         if(listOfMatchedIndex.isEmpty()){
             System.out.println("No task matches the keywords!");
         } else {
@@ -119,7 +120,7 @@ public class UI {
      * @param listOfMatchedIndex List of indexes of the tasks that matches the keywords.
      * @param tasks List of tasks.
      */
-    static void printStrictSearchResult(ArrayList<Integer> listOfMatchedIndex, ArrayList<Task> tasks){
+    public static void printStrictSearchResult(ArrayList<Integer> listOfMatchedIndex, TaskList tasks){
         if(listOfMatchedIndex.isEmpty()){
             System.out.println("No task matches the keywords!");
         } else {

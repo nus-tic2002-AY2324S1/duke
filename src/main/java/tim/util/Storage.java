@@ -1,13 +1,12 @@
-package tim.body;
+package tim.util;
 
-import tim.tasks.Task;
+import tim.util.TaskList;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 import java.io.IOException;
 import java.io.File;
-import java.util.ArrayList;
 
 /**
  * Represents as a Storage object.
@@ -48,7 +47,7 @@ public class Storage {
      * @location ./src/main/data/list.data
      * @param tasks list of tasks.
      */
-    static void saveList(TaskList tasks){
+    public static void saveList(TaskList tasks){
         try{
             File f = new File("./src/main/data/list.data");
             f.createNewFile();

@@ -1,7 +1,7 @@
 package tim;
 import tim.body.Parser;
-import tim.body.Storage;
-import tim.body.TaskList;
+import tim.util.Storage;
+import tim.util.TaskList;
 import tim.body.UI;
 import tim.tasks.Task;
 import java.io.IOException;

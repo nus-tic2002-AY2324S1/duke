@@ -1,6 +1,9 @@
-package tim.body;
+package tim.util;
+
 import tim.tasks.Task;
+import tim.util.TaskList;
 import java.util.ArrayList;
+import tim.body.UI;
 
 /**
  * Represents a Search class.
