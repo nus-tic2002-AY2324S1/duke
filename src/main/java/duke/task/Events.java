@@ -1,3 +1,5 @@
+package duke.task;
+
 public class Events extends Task {
     String from;
     String to;
@@ -8,6 +10,14 @@ public class Events extends Task {
         this.description = items[0];
         this.from = items[1];
         this.to = items[2];
+    }
+
+    public Events(String description, boolean isDone, String from, String to) {
+        super("", false);
+        this.description = description;
+        this.from = from;
+        this.to = to;
+        this.isDone = isDone;
     }
 
     private String[] derive(String instruction) {
@@ -27,6 +37,11 @@ public class Events extends Task {
     @Override
     public String getType() {
         return "E";
+    }
+
+    @Override
+    public String toFileString() {
+        return getType() + " | " + (isDone ? "1" : "0") + " | " + description + " | " + from + " | " + to;
     }
 
     @Override

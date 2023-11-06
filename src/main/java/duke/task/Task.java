@@ -1,10 +1,17 @@
+package duke.task;
+
 public abstract class Task {
-    protected String description;
+    public String description;
     protected boolean isDone;
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+
+    public Task(String description, boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
     }
 
     public void markAsDone() {
@@ -13,6 +20,8 @@ public abstract class Task {
 
     public abstract String getType();
 
+    public abstract String toFileString();
+    
     public abstract String getPrintStatus();
 
     public void print() {

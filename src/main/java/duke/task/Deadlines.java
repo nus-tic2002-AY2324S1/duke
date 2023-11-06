@@ -1,3 +1,5 @@
+package duke.task;
+
 public class Deadlines extends Task {
     String deadline;
 
@@ -6,6 +8,13 @@ public class Deadlines extends Task {
         String[] items = derive(instruction);
         this.description = items[0];
         this.deadline = items[1];
+    }
+
+    public Deadlines(String description, boolean isDone, String deadline) {
+        super("", false);
+        this.description = description;
+        this.deadline = deadline;
+        this.isDone = isDone;
     }
 
     private String[] derive(String instruction) {
@@ -22,6 +31,11 @@ public class Deadlines extends Task {
     @Override
     public String getType() {
         return "D";
+    }
+    
+    @Override
+    public String toFileString() {
+        return getType() + " | " + (isDone ? "1" : "0") + " | " + description + " | " + deadline;
     }
 
     @Override
