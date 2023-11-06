@@ -54,7 +54,8 @@ public class Event extends Task {
      * @throws DateException if the new date is before the original event period
      */
     public void snoozeToDateByOneWeek() throws DateException {
-        this.toDate = toDate.plusDays(ONE_WEEK);
+        assert  this.toDate != null : "assert parsedExtendedByDate is not null";
+        this.toDate = this.toDate.plusDays(ONE_WEEK);
     }
 
 

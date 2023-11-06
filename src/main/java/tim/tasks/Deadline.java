@@ -29,17 +29,18 @@ public class Deadline extends Task {
      * Postpones the deadline to the specified date.
      * New date must be after the original deadline.
      *
-     * @param extendedToDate the new date of the deadline
+     * @param extendedByDate the new date of the deadline
      * @throws DateException if the new date is before the original deadline
      */
-    public void postponeByDate(String extendedToDate) throws DateException {
-        LocalDate parsedExtendedToDate = LocalDate.parse(extendedToDate);
-        System.out.println(parsedExtendedToDate);
-        if(parsedExtendedToDate.isBefore(this.byDate)){
+    public void postponeByDate(String extendedByDate) throws DateException {
+        LocalDate parsedExtendedByDate = LocalDate.parse(extendedByDate);
+        System.out.println(extendedByDate);
+        if(parsedExtendedByDate.isBefore(this.byDate)){
             System.err.println("New date is before the original deadline!");
             throw new DateException("improper date");
         }
-        this.byDate = LocalDate.parse(extendedToDate);
+        assert  parsedExtendedByDate != null : "assert parsedExtendedByDate is not null";
+        this.byDate = LocalDate.parse(extendedByDate);
     }
 
     /**
@@ -48,7 +49,8 @@ public class Deadline extends Task {
      * @throws DateException if the new date is before the original deadline
      */
     public void snoozeByDateByOneWeek() throws DateException {
-        this.byDate = byDate.plusDays(ONE_WEEK);
+        assert  this.byDate != null : "assert parsedExtendedByDate is not null";
+        this.byDate = this.byDate.plusDays(ONE_WEEK);
     }
 
     public LocalDate getByDate () {
