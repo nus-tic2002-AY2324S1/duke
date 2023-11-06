@@ -46,6 +46,12 @@ public class Parser{
         String[] words = line.split(" ");
         try{
         switch(k){
+        case VIEW:
+        if(words.length==1)
+                throw new MissingArgumentException("Select a date to view");
+        if(dateFormatInvalid(words[1]+" 00:00"))
+                throw new MissingArgumentException("Date format is dd/MM/yyyy");
+        break;
         case DELETE:
         if(words.length==1)
                 throw new MissingArgumentException("Nothing selected to delete");

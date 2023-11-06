@@ -102,7 +102,27 @@ public class ListTask {
         Arrangement.addAll(Sorted);
         List=Arrangement;
     }
-    public void compareLocalDateTime(LocalDateTime d1,LocalDateTime d2){
-
+    public void viewSchedule(String date){
+        LocalDateTime ViewDay = Parser.constructDateTime(date+" 00:00");
+        ArrayList<Task> PreSort = new ArrayList<>();
+        ArrayList<Task> Sorted = new ArrayList<>();
+        for ( Task task : List){
+            if(task.getStatusIcon().equals(" ")) {
+                if (task.getTag().equals("D"))
+                    PreSort.add(task);
+                if (task.getTag().equals("E"))
+                    PreSort.add(task);
+            }
+        }
+        for( Task task : PreSort){
+            if(ViewDay.isBefore(task.endTime()))
+                Sorted.add(task);
+        }
+        Separator();
+        System.out.println("Here is the schedule for " + date + " that has not been marked done");
+        for (int i = 0; i < Sorted.size(); i++) {
+            System.out.println(i + 1 + "." + Sorted.get(i));
+        }
+        Separator();
     }
 }

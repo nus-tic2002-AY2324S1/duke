@@ -122,6 +122,9 @@ public class UI {
                 Checker.checkError(key,line,Storage);
                 if(Checker.getNoError())
                     switch (key) {
+                        case VIEW:
+                            Storage.viewSchedule(words[1]);
+                            break;
                         case SORT:
                             Storage.sortSchedule(key);
                             Response(key,Storage,0);
