@@ -1,13 +1,11 @@
 import java.io.IOException;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
+
 
 
 public class Storage {
@@ -34,12 +32,13 @@ public class Storage {
 
 
 
-    public void save(ListTask tasklist) throws IOException {
+    public void save(ListTask list) throws IOException {
         FileWriter fw = new FileWriter(FILEPATH);
-        for (int i = 0; i < tasklist.size(); i++) {
-            Task task = tasklist.get(i);
+        for (int i = 0; i < list.size(); i++) {
+            Task task = list.get(i);
             String encodedTask = encodeTaskForStorage(task);
             fw.write(encodedTask);
+
         }
         fw.close();
     }
@@ -92,15 +91,15 @@ public class Storage {
                 break;
             case "D":
                 dividerPosition = temp.indexOf("| ",9);
-                Selector = new Deadline(temp.substring(8,dividerPosition) , temp.substring(dividerPosition+2));
+                Selector = new Deadline(temp.substring(8,dividerPosition) , Parser.constructDateTime(temp.substring(dividerPosition+2)));
                 break;
             case "E":
                 dividerPosition = temp.indexOf("| ",9);
                 String event = temp.substring(8,dividerPosition);
                 temp = temp.substring(dividerPosition+2);
                 dividerPosition = temp.indexOf("| ");
-                String from = temp.substring(0,dividerPosition);
-                String to = temp.substring(dividerPosition+2);
+                LocalDateTime from = Parser.constructDateTime(temp.substring(0,dividerPosition));
+                LocalDateTime to = Parser.constructDateTime(temp.substring(dividerPosition+2));
                         Selector = new Event(event , from , to);
                 break;
         }

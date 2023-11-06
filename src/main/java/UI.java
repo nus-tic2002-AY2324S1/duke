@@ -1,6 +1,3 @@
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
@@ -151,12 +148,15 @@ public class UI {
                             Response(key,Storage,Storage.size()-1);
                             break;
                         case DEADLINE:
-                            Selector = new Deadline(line.substring(9, line.indexOf("/by")), line.substring(line.indexOf("/by") + 4));
+                            String byDateTime= line.substring(line.indexOf("/by")+4);
+                            Selector = new Deadline(line.substring(9, line.indexOf("/by")), Parser.constructDateTime(byDateTime));
                             Storage.add(Selector);
                             Response(key,Storage,Storage.size()-1);
                             break;
                         case EVENT:
-                            Selector = new Event(line.substring(6, line.indexOf("/from")), line.substring(line.indexOf("/from") + 6, line.indexOf("/to")), line.substring(line.indexOf("/to") + 4));
+                            String fromDateTime= line.substring(line.indexOf("/from")+6,line.indexOf("/to"));
+                            String toDateTime= line.substring(line.indexOf("/to")+4);
+                            Selector = new Event(line.substring(6, line.indexOf("/from")), Parser.constructDateTime(fromDateTime), Parser.constructDateTime(toDateTime));
                             Storage.add(Selector);
                             Response(key,Storage,Storage.size()-1);
                             break;
