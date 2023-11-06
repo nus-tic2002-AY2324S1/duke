@@ -1,5 +1,8 @@
 package duke.task;
 
+import duke.command.EventCommand;
+import duke.exception.InvalidArgumentException;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -151,5 +154,64 @@ public class TaskList {
      */
     public void remove(int index) {
         tasks.remove(index);
+    }
+
+    public char getAbbreviation(int index) {
+        for (int i = 0; i < tasks.size(); i++) {
+            if (i == index - 1) {
+                return tasks.get(i).getAbbreviation();
+            }
+        }
+        return 'X';
+    }
+
+    /**
+     * Updates the description of an item at the specified index in the list.
+     *
+     * @param index       The index of the item to be updated (0-based index).
+     * @param description The new description to set for the item.
+     */
+    public void updateDescription(int index, String description) {
+        get(index - 1).updateDescription(description);
+    }
+
+    /**
+     * Updates the deadline time of the specified Deadline object in the list.
+     *
+     * @param index The index of the Deadline object to be updated (0-based index).
+     * @param by    The new deadline time to set for the Deadline object.
+     */
+    public void updateDeadlineBy(int index, LocalDateTime by) {
+        assert get(index - 1) instanceof Deadline : "The task must be an Event";
+        Deadline deadline = (Deadline) get(index - 1);
+        deadline.updateBy(by);
+    }
+
+    /**
+     * Updates the start time of the specified Event object in the list and validates the date and time range.
+     *
+     * @param index The index of the Event object to be updated (0-based index).
+     * @param from  The new start time to set for the Event object.
+     * @throws InvalidArgumentException If the date and time range is invalid.
+     */
+    public void updateEventFrom(int index, LocalDateTime from) throws InvalidArgumentException {
+        assert get(index - 1) instanceof Event : "The task must be an Event";
+        Event event = (Event) get(index - 1);
+        EventCommand.validateDateTimeRange(from, event.getToDateTime());
+        event.updateFrom(from);
+    }
+
+    /**
+     * Updates the end time of the specified Event object in the list and validates the date and time range.
+     *
+     * @param index The index of the Event object to be updated (0-based index).
+     * @param to    The new end time to set for the Event object.
+     * @throws InvalidArgumentException If the date and time range is invalid.
+     */
+    public void updateEventTo(int index, LocalDateTime to) throws InvalidArgumentException {
+        assert get(index - 1) instanceof Event : "The task must be an Event";
+        Event event = (Event) get(index - 1);
+        EventCommand.validateDateTimeRange(event.getFromDateTime(), to);
+        event.updateTo(to);
     }
 }

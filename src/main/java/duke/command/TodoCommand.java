@@ -12,7 +12,7 @@ import duke.ui.Ui;
  */
 public class TodoCommand extends Command {
     public static final String COMMAND_WORD = "todo";
-    public static final String EXAMPLE_USAGE = "Example of usage:\ntodo borrow book";
+    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " borrow book";
 
     /**
      * @param tasks           The TaskList where the new Todo task will be added.

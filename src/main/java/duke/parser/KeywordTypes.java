@@ -68,6 +68,12 @@ public enum KeywordTypes {
         public Command createCommand() {
             return new FindCommand();
         }
+    },
+    UPDATE{
+        @Override
+        public Command createCommand(){
+            return new UpdateCommand();
+        }
     };
 
     public abstract Command createCommand();

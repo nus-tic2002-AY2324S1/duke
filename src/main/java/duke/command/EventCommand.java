@@ -18,7 +18,8 @@ import java.util.regex.Pattern;
  */
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
-    public static final String EXAMPLE_USAGE = "Example of usage:\nevent project meeting /from 02/12/2020 0800 /to " +
+    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " project meeting /from " +
+            "02/12/2020 0800 /to " +
             "02/12/2020 1000\n" + DATE_TIME_FORMAT_MESSAGE;
     public static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<description>\\w.*)\\s+/from\\s+(?<from>\\w.*)" +
             "\\s+/to\\s+(?<to>\\w.*)");
@@ -48,7 +49,7 @@ public class EventCommand extends Command {
      * @param keywordArgument The parsed user input containing the keyword and task details.
      * @return An Event object created based on the processed details.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
-     * message.
+     *                                  message.
      */
     private Event processDetail(UserKeywordArgument keywordArgument) throws InvalidArgumentException {
         validateKeywordArgument(keywordArgument, new EventCommand());
@@ -74,11 +75,22 @@ public class EventCommand extends Command {
 
         LocalDateTime fromDateTime = Parser.constructDateTime(fromDateMatcher, fromTimeMatcher);
         LocalDateTime toDateTime = Parser.constructDateTime(toDateMatcher, toTimeMatcher);
+        validateDateTimeRange(fromDateTime, toDateTime);
+        assert toDateTime.isAfter(fromDateTime) : "'From' date/time must be before 'To' date/time!";
+        return new Event(false, description, fromDateTime, toDateTime);
+    }
+
+    /**
+     * Validates the date and time range to ensure fromDateTime is before or equal to toDateTime.
+     *
+     * @param fromDateTime The start date and time to validate.
+     * @param toDateTime   The end date and time to validate.
+     * @throws InvalidArgumentException If fromDateTime is after toDateTime.
+     */
+    public static void validateDateTimeRange(LocalDateTime fromDateTime, LocalDateTime toDateTime) throws InvalidArgumentException {
         if (fromDateTime.isAfter(toDateTime)) {
             throw new InvalidArgumentException(Message.concat(DATE_TIME_ERROR_MESSAGE, EXAMPLE_USAGE));
         }
-
-        return new Event(false, description, fromDateTime, toDateTime);
     }
 
     @Override

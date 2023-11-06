@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  */
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
-    public static final String EXAMPLE_USAGE = "Example of usage:\ndeadline return book /by 02/12/2019\n" +
+    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " return book /by 02/12/2019\n" +
             DATE_FORMAT_MESSAGE;
     public static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<description>\\w.*)\\s/by\\s(?<byArgument>\\w.*)");
 
@@ -57,6 +57,7 @@ public class DeadlineCommand extends Command {
         validateDateMatcher(dateMatcher, new DeadlineCommand(), "");
 
         LocalDateTime by = Parser.constructDateTime(dateMatcher);
+        assert !description.isEmpty() : "The description cannot be empty";
         return new Deadline(false, description, by);
     }
 

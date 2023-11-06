@@ -5,7 +5,7 @@ package duke.command;
  */
 public class UnMarkCommand extends MarkCommand {
     public static final String COMMAND_WORD = "unmark";
-    public static final String EXAMPLE_USAGE = "Example of usage:\nunmark 1";
+    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " 1";
     public static final String UNMARK_THE_TASK = "OK, I've marked this task as not done yet:";
 
     public UnMarkCommand() {

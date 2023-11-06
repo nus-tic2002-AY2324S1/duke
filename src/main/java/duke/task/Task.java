@@ -131,4 +131,12 @@ public abstract class Task {
         return 0;
     }
 
+    /**
+     * Updates the description of the tasks.
+     *
+     * @param description The new description to set for the tasks.
+     */
+    public void updateDescription(String description) {
+        dukeDescription = description;
+    }
 }

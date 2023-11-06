@@ -30,6 +30,7 @@ public class FindCommand extends Command {
     public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
         validateKeywordArgument(keywordArgument, new FindCommand());
         String search = keywordArgument.getArguments();
+        assert !search.isEmpty() : "search string cannot be empty";
         ArrayList<Task> foundTasks = taskList.getTaskBySearchString(search);
         if (foundTasks.isEmpty()) {
             ui.showResponseToUser(MESSAGE_LIST_IS_EMPTY);

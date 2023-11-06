@@ -29,7 +29,7 @@ public abstract class IndexBaseCommand extends Command {
      * This abstract method returns a message associated with the implementing class. Subclasses should override this
      * method to provide specific messages.
      *
-     * @return A string representing the message for unmarking a task.
+     * @return A string representing the message for a task.
      */
     public abstract String getMessage();
 
@@ -38,22 +38,27 @@ public abstract class IndexBaseCommand extends Command {
     public abstract String getExampleUsage();
 
     /**
+     * @throws InvalidArgumentException If the input arguments are invalid or do not match the command requirements.
      * @inheritDoc Executes the command to perform an operation on a specific task in the task list.
      * Validates the command arguments, processes the command, and updates the task list accordingly.
      */
     public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
-        validateKeyword(keywordArgument.getArguments().isEmpty());
+        validateArgument(keywordArgument.getArguments().isEmpty());
         validateValidInteger(!Parser.isInteger(keywordArgument.getArguments()));
         setIndex(keywordArgument.getArguments());
 
-        boolean isOutLowerBound = index < 1;
-        boolean isOutUpperBound = index > TaskList.size();
-        validateIndexOutOfRange(isOutLowerBound || isOutUpperBound);
+        validateIndexRange(index);
 
         indexCommand = Parser.parseKeywordToCommand(keywordArgument);
         validateRecurArgument(indexCommand, taskList);
-        processCommand(taskList, ui);
+        processCommand(taskList, ui, indexCommand);
+    }
+
+    public void validateIndexRange(int ind) throws InvalidArgumentException {
+        boolean isOutLowerBound = ind < 1;
+        boolean isOutUpperBound = ind > TaskList.size();
+        validateIndexOutOfRange(isOutLowerBound || isOutUpperBound);
     }
 
     /**
@@ -94,7 +99,7 @@ public abstract class IndexBaseCommand extends Command {
      * @param isNotInteger A boolean indicating if the input is not a valid integer.
      * @throws InvalidArgumentException If the input is not a valid integer.
      */
-    private void validateValidInteger(boolean isNotInteger) throws InvalidArgumentException {
+    public void validateValidInteger(boolean isNotInteger) throws InvalidArgumentException {
         if (isNotInteger) {
             String errorMessage = String.format(IndexBaseCommand.INDEX_INT_ERR_MESSAGE, getCommandWord());
             throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
@@ -102,13 +107,13 @@ public abstract class IndexBaseCommand extends Command {
     }
 
     /**
-     * Validates if the keyword is empty and throws an exception if it is.
+     * Validates if the argument is empty and throws an exception if it is.
      *
-     * @param isKeywordEmpty A boolean indicating if the keyword is empty.
-     * @throws InvalidArgumentException If the keyword is empty.
+     * @param isArgumentEmpty A boolean indicating if the keyword is empty.
+     * @throws InvalidArgumentException If the argument is empty.
      */
-    private void validateKeyword(boolean isKeywordEmpty) throws InvalidArgumentException {
-        if (isKeywordEmpty) {
+    public void validateArgument(boolean isArgumentEmpty) throws InvalidArgumentException {
+        if (isArgumentEmpty) {
             String errorMessage = String.format(IndexBaseCommand.DESC_ERR_MESSAGE, getCommandWord());
             throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
         }
@@ -119,7 +124,7 @@ public abstract class IndexBaseCommand extends Command {
      *
      * @param argument The input string to be parsed and set as the index.
      */
-    private void setIndex(String argument) {
+    public void setIndex(String argument) {
         index = Integer.parseInt(argument);
     }
 
@@ -130,10 +135,10 @@ public abstract class IndexBaseCommand extends Command {
      * @param taskList The TaskList containing the tasks to be managed.
      * @param ui       The user interface for displaying messages to the user.
      */
-    private void processCommand(TaskList taskList, Ui ui) {
+    public void processCommand(TaskList taskList, Ui ui, Command command) {
         Task task = taskList.get(index - 1);
         ArrayList<String> messages = new ArrayList<>();
-        IndexBaseCommand indexBaseCommand = (IndexBaseCommand) indexCommand;
+        IndexBaseCommand indexBaseCommand = (IndexBaseCommand) command;
         processTaskCommand(taskList, task);
         messages.add(indexBaseCommand.getMessage());
         messages.add(task.toString());
@@ -169,5 +174,9 @@ public abstract class IndexBaseCommand extends Command {
             assert task instanceof Event : "the tasks must be Event!";
             recurCommand.recur(task, taskList);
         }
+    }
+
+    public int getIndex() {
+        return index;
     }
 }

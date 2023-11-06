@@ -15,8 +15,11 @@ import java.util.regex.Matcher;
  * It provides methods for parsing user input into commands, tasks, or other data structures used by the application.
  */
 public class Parser {
-    public static String MESSAGE_INCORRECT_MONTH = "You've entered the incorrect month value by mistake!";
-    public static String MESSAGE_INCORRECT_DAY = "You've entered the incorrect day value by mistake!";
+    public static String MESSAGE_INCORRECT_VALUE = "You've entered the incorrect %s value by mistake!";
+    public static String MONTH = "month";
+    public static String DAY = "day";
+    public static String HOUR = "hour";
+    public static String MINUTE = "minute";
     public static int MAX_MONTH = 12;
     public static int MIN_MONTH = 1;
     public static int MAX_HOUR = 23;
@@ -142,9 +145,9 @@ public class Parser {
      */
     public static void dateValidation(int year, int month, int day) throws InvalidArgumentException {
         if (month < MIN_MONTH || MAX_MONTH < month) {
-            throw new InvalidArgumentException(MESSAGE_INCORRECT_MONTH);
+            throw new InvalidArgumentException(String.format(MESSAGE_INCORRECT_VALUE, MONTH));
         } else if (getMaxDayOfMonth(year, month) < day) {
-            throw new InvalidArgumentException(MESSAGE_INCORRECT_DAY);
+            throw new InvalidArgumentException(String.format(MESSAGE_INCORRECT_VALUE, DAY));
         }
     }
 
@@ -157,9 +160,9 @@ public class Parser {
      */
     public static void timeValidation(int hour, int minute) throws InvalidArgumentException {
         if (hour < MIN_HOUR_MINUTE || MAX_HOUR < hour) {
-            throw new InvalidArgumentException(MESSAGE_INCORRECT_MONTH);
+            throw new InvalidArgumentException(String.format(MESSAGE_INCORRECT_VALUE, HOUR));
         } else if (minute < MIN_HOUR_MINUTE || MAX_MINUTE < minute) {
-            throw new InvalidArgumentException(MESSAGE_INCORRECT_DAY);
+            throw new InvalidArgumentException(String.format(MESSAGE_INCORRECT_VALUE, MINUTE));
         }
     }
 
