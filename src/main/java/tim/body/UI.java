@@ -1,4 +1,5 @@
 package tim.body;
+import tim.body.commands.ListOfCommands;
 import tim.tasks.Task;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +10,16 @@ import java.util.Date;
  */
 public class UI {
 
+    /**
+     * Prints the help message with list of usable commands.
+     */
+    static void printHelp(){
+        System.out.println("Here are the list of commands you can use:");
+        for (ListOfCommands command : ListOfCommands.values()) {
+            System.out.println(command);
+        }
+        printDash();
+    }
     /**
      * Prints the current date.
      */
