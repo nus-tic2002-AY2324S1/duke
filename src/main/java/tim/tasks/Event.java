@@ -30,17 +30,31 @@ public class Event extends Task {
             throw new DateException("improper date");
         }
     }
+
+    /**
+     * Postpones the event's toDate to the specified date.
+     * New toDate must be after the original ToDate.
+     *
+     * @param extendedToDate the new date of the event
+     * @throws DateException if the new date is before the original event period
+     */
     public void postponeToDate(String extendedToDate) throws DateException {
         LocalDate parsedExtendedToDate = LocalDate.parse(extendedToDate);
         if(parsedExtendedToDate.isBefore(this.fromDate)
                 || parsedExtendedToDate.isBefore(this.toDate) ){
+            System.err.println("New date is before the original event period!");
             throw new DateException("improper date");
         }
         this.toDate = LocalDate.parse(extendedToDate);
     }
 
+    /**
+     * Snoozes the event by one week.
+     *
+     * @throws DateException if the new date is before the original event period
+     */
     public void snoozeToDateByOneWeek() throws DateException {
-        this.toDate = toDate.plusDays(7);
+        this.toDate = toDate.plusDays(ONE_WEEK);
     }
 
 

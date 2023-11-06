@@ -10,6 +10,7 @@ public abstract class Task implements Serializable {
     private String description;
     private char type;
     private boolean isDone;
+    final int ONE_WEEK = 7;
 
     /**
      * Creates a Task object
