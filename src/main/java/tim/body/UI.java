@@ -33,7 +33,7 @@ public class UI {
     /**
      * Prints the Tim's logo.
      */
-    static void printLogo(){
+    public static void printLogo(){
         String logo =
                 " _______                 \n"
                         +   "|__   __| [ ]  __  __    \n"
@@ -46,7 +46,7 @@ public class UI {
     /**
      * Prints Tim's greeting.
      */
-    static void greetings(){
+    public static void greetings(){
         printDash();
         System.out.println("Hello I'm Tim. \nWhat can I do for you?");
         printDash();

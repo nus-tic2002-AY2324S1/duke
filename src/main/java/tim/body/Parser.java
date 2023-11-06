@@ -15,7 +15,7 @@ public class Parser {
      *
      * @param tasks List of tasks.
      */
-     static void inputParser(TaskList tasks){
+     public static void inputParser(TaskList tasks){
         String input = "init" ;
         Scanner in = new Scanner(System.in);
         while(!input.equalsIgnoreCase("bye")) {

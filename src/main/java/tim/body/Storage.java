@@ -22,7 +22,7 @@ public class Storage {
      * @throws IOException If the file is not found.
      * @throws ClassNotFoundException If the file is corrupted.
      */
-    static TaskList loadList () throws IOException, ClassNotFoundException{
+    public static TaskList loadList () throws IOException, ClassNotFoundException{
         TaskList tasks = new TaskList();
         try{
             File f = new File("./src/main/data/list.data");
