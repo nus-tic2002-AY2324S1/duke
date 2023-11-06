@@ -1,7 +1,7 @@
 package tim;
 
 import org.junit.jupiter.api.Test;
-import tim.body.DateException;
+import tim.exceptions.DateException;
 import tim.tasks.Event;
 import tim.tasks.ToDo;
 

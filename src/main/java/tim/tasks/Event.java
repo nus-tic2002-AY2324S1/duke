@@ -1,5 +1,5 @@
 package tim.tasks;
-import tim.body.DateException;
+import tim.exceptions.DateException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

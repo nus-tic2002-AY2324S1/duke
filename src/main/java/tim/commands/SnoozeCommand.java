@@ -1,7 +1,7 @@
-package tim.body.commands;
+package tim.commands;
 
-import tim.body.DateException;
-import tim.body.TaskList;
+import tim.exceptions.DateException;
+import tim.util.TaskList;
 import tim.body.UI;
 import tim.tasks.Deadline;
 import tim.tasks.Event;
