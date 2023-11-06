@@ -1,6 +1,6 @@
-package tim.commands;
+package tim.body.commands;
 
-import tim.util.TaskList;
+import tim.body.TaskList;
 import tim.body.UI;
 import tim.tasks.ToDo;
 

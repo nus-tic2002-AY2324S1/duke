@@ -1,8 +1,5 @@
-package tim.util;
-import tim.body.UI;
+package tim.body;
 import tim.tasks.Task;
-import tim.util.TaskList;
-
 import java.util.ArrayList;
 
 /**

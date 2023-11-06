@@ -1,7 +1,7 @@
-package tim.commands;
+package tim.body.commands;
 
-import tim.exceptions.BlankInputException;
-import tim.util.TaskList;
+import tim.body.BlankInputException;
+import tim.body.TaskList;
 import tim.body.UI;
 import tim.tasks.Deadline;
 

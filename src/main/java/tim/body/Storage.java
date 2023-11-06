@@ -1,13 +1,13 @@
-package tim.util;
+package tim.body;
 
-import tim.util.TaskList;
-
+import tim.tasks.Task;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 import java.io.IOException;
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Represents as a Storage object.
@@ -22,7 +22,7 @@ public class Storage {
      * @throws IOException If the file is not found.
      * @throws ClassNotFoundException If the file is corrupted.
      */
-    public static TaskList loadList () throws IOException, ClassNotFoundException{
+    static TaskList loadList () throws IOException, ClassNotFoundException{
         TaskList tasks = new TaskList();
         try{
             File f = new File("./src/main/data/list.data");
@@ -48,7 +48,7 @@ public class Storage {
      * @location ./src/main/data/list.data
      * @param tasks list of tasks.
      */
-    public static void saveList(TaskList tasks){
+    static void saveList(TaskList tasks){
         try{
             File f = new File("./src/main/data/list.data");
             f.createNewFile();

@@ -1,7 +1,6 @@
 package tim.body;
-import tim.commands.ListOfCommands;
+import tim.body.commands.ListOfCommands;
 import tim.tasks.Task;
-import tim.util.TaskList;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -34,7 +33,7 @@ public class UI {
     /**
      * Prints the Tim's logo.
      */
-    public static void printLogo(){
+    static void printLogo(){
         String logo =
                 " _______                 \n"
                         +   "|__   __| [ ]  __  __    \n"
@@ -47,7 +46,7 @@ public class UI {
     /**
      * Prints Tim's greeting.
      */
-    public static void greetings(){
+    static void greetings(){
         printDash();
         System.out.println("Hello I'm Tim. \nWhat can I do for you?");
         printDash();
@@ -99,7 +98,7 @@ public class UI {
      * @param listOfMatchedIndex List of indexes of the tasks that matches the keywords.
      * @param tasks List of tasks.
      */
-    public static void printSearchResult(ArrayList<Integer> listOfMatchedIndex, ArrayList<Task> tasks){
+    static void printSearchResult(ArrayList<Integer> listOfMatchedIndex, ArrayList<Task> tasks){
         if(listOfMatchedIndex.isEmpty()){
             System.out.println("No task matches the keywords!");
         } else {
@@ -120,7 +119,7 @@ public class UI {
      * @param listOfMatchedIndex List of indexes of the tasks that matches the keywords.
      * @param tasks List of tasks.
      */
-    public static void printStrictSearchResult(ArrayList<Integer> listOfMatchedIndex, ArrayList<Task> tasks){
+    static void printStrictSearchResult(ArrayList<Integer> listOfMatchedIndex, ArrayList<Task> tasks){
         if(listOfMatchedIndex.isEmpty()){
             System.out.println("No task matches the keywords!");
         } else {

@@ -1,6 +1,6 @@
 package tim.body;
-import tim.util.TaskList;
-
+import tim.tasks.Task;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -15,7 +15,7 @@ public class Parser {
      *
      * @param tasks List of tasks.
      */
-     public static void inputParser(TaskList tasks){
+     static void inputParser(TaskList tasks){
         String input = "init" ;
         Scanner in = new Scanner(System.in);
         while(!input.equalsIgnoreCase("bye")) {

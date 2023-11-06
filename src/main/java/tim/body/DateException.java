@@ -1,4 +1,4 @@
-package tim.exceptions;
+package tim.body;
 
 public class DateException extends Exception{
 

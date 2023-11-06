@@ -1,7 +1,7 @@
-package tim.commands;
+package tim.body.commands;
 
-import tim.util.Search;
-import tim.util.TaskList;
+import tim.body.Search;
+import tim.body.TaskList;
 
 
 public class FindCommand extends Command{
