@@ -90,4 +90,22 @@ public class Event extends Task {
     public String getToDateTime(String pattern) {
         return toDateTime.format(DateTimeFormatter.ofPattern(pattern));
     }
+
+    /**
+     * Updates the start time of the Event object.
+     *
+     * @param from The new start time to set for the Event object.
+     */
+    public void updateFrom(LocalDateTime from) {
+        fromDateTime = from;
+    }
+
+    /**
+     * Updates the end time of the Event object.
+     *
+     * @param to The new end time to set for the Event object.
+     */
+    public void updateTo(LocalDateTime to) {
+        toDateTime = to;
+    }
 }

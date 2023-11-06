@@ -69,4 +69,12 @@ public class Deadline extends Task {
         return byDateTime.format(DateTimeFormatter.ofPattern(pattern));
     }
 
+    /**
+     * Updates the deadline date and time of the object.
+     *
+     * @param by The new deadline date and time to set for the object.
+     */
+    public void updateBy(LocalDateTime by) {
+        byDateTime = by;
+    }
 }

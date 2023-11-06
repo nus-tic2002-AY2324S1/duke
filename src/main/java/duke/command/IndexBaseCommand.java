@@ -38,6 +38,7 @@ public abstract class IndexBaseCommand extends Command {
     public abstract String getExampleUsage();
 
     /**
+     * @throws InvalidArgumentException If the input arguments are invalid or do not match the command requirements.
      * @inheritDoc Executes the command to perform an operation on a specific task in the task list.
      * Validates the command arguments, processes the command, and updates the task list accordingly.
      */
@@ -175,7 +176,7 @@ public abstract class IndexBaseCommand extends Command {
         }
     }
 
-    public int getIndex(){
+    public int getIndex() {
         return index;
     }
 }
