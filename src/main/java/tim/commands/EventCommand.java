@@ -1,7 +1,7 @@
 package tim.body.commands;
 
-import tim.body.BlankInputException;
-import tim.body.DateException;
+import tim.body.Exceptions.BlankInputException;
+import tim.body.Exceptions.DateException;
 import tim.body.TaskList;
 import tim.body.UI;
 import tim.tasks.Event;
