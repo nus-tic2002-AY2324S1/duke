@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ListTask {
@@ -49,6 +50,8 @@ public class ListTask {
             System.out.println("Work harder, there is " + List.size() + " more task now");
         else if (k==Keyword.DELETE)
             System.out.println("Great! there is only " + List.size() + " task in the List now");
+        else if (k==Keyword.SORT)
+            System.out.println("The List has been sorted with the earliest End Date at the top");
         Separator();
     }
     public void findTask(String line) {
@@ -68,5 +71,38 @@ public class ListTask {
             }
         }
         Separator();
+    }
+    public void sortSchedule(Keyword k){
+        ArrayList<Task> PreSort = new ArrayList<>();
+        ArrayList<Task> Sorted = new ArrayList<>();
+        ArrayList<Task> Arrangement = new ArrayList<>();
+        for ( Task task : List){
+            if(task.getTag().equals("T"))
+                Arrangement.add(task);
+        }
+        for ( Task task : List){
+            if(task.getTag().equals("D"))
+                PreSort.add(task);
+            if(task.getTag().equals("E"))
+                PreSort.add(task);
+        }
+
+
+        for(int j=0;j< PreSort.size();j++){
+            Task earliest = PreSort.get(0);
+            for (Task task : PreSort) {
+                if (earliest.endTime().isAfter(task.endTime())) {
+                    earliest = task;
+                }
+            }
+        PreSort.remove(earliest);
+        j--;
+        Sorted.add(earliest);
+        }
+        Arrangement.addAll(Sorted);
+        List=Arrangement;
+    }
+    public void compareLocalDateTime(LocalDateTime d1,LocalDateTime d2){
+
     }
 }

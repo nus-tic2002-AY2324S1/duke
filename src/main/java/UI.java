@@ -59,6 +59,7 @@ public class UI {
      */
     public static void Response(Keyword input,ListTask Storage,Integer number){
         switch (input){
+            case SORT:
             case DELETE:
             case LIST:
                 Storage.listAll(input);
@@ -121,6 +122,10 @@ public class UI {
                 Checker.checkError(key,line,Storage);
                 if(Checker.getNoError())
                     switch (key) {
+                        case SORT:
+                            Storage.sortSchedule(key);
+                            Response(key,Storage,0);
+                            break;
                         case DELETE:
                             Storage.removeTask(Integer.parseInt(words[1]) - 1);
                             Response(key,Storage,Integer.parseInt(words[1]) - 1);

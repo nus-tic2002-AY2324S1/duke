@@ -8,6 +8,7 @@ public class Event extends Task {
         isDone = false;
         this.from = from;
         this.to = to;
+        tag = "E";
     }
     public boolean isDone(){
         return isDone;
@@ -24,5 +25,9 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E][" + getStatusIcon() + "] " + getDescription() + "(from:" + getFrom() + " to:" + getTo() + ")";
+    }
+    @Override
+    public LocalDateTime endTime(){
+        return to;
     }
 }

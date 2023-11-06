@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected String tag;
     /**
      * Constructor of Task take in description and the 'isDone' status set to false
      *
@@ -14,29 +15,37 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone=false;
+        tag = "Task";
     }
+
+    public String getTag() {
+        return tag;
+    }
+    public LocalDateTime endTime(){
+        return null;
+}
     public String printDate(LocalDateTime date){
         String zero = "0";
-        String builddate = "";
+        String BuildDate = "";
         if(date.getDayOfMonth()<10){
-            builddate = builddate + zero;
+            BuildDate = BuildDate + zero;
         }
-        builddate = builddate + date.getDayOfMonth() + "/";
+        BuildDate = BuildDate + date.getDayOfMonth() + "/";
         if(date.getMonthValue()<10){
-            builddate = builddate + zero;
+            BuildDate = BuildDate + zero;
         }
-        builddate = builddate + date.getMonthValue() + "/";
-        builddate = builddate + date.getYear() + " ";
+        BuildDate = BuildDate + date.getMonthValue() + "/";
+        BuildDate = BuildDate + date.getYear() + " ";
         if(date.getHour()<10){
-            builddate = builddate + zero;
+            BuildDate = BuildDate + zero;
         }
-        builddate = builddate + date.getHour() + ":";
+        BuildDate = BuildDate + date.getHour() + ":";
 
         if(date.getMinute()<10){
-            builddate = builddate + zero;
+            BuildDate = BuildDate + zero;
         }
-        builddate = builddate + date.getMinute();
-        return builddate;
+        BuildDate = BuildDate + date.getMinute();
+        return BuildDate;
     }
     /**
      * Retrieves the Duke description associated with the task.
