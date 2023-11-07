@@ -57,21 +57,21 @@ public enum KeywordTypes {
             return new DatePrintCommand();
         }
     },
-    RECUR{
+    RECUR {
         @Override
         public Command createCommand() {
             return new RecurCommand();
         }
     },
-    FIND{
+    FIND {
         @Override
         public Command createCommand() {
             return new FindCommand();
         }
     },
-    UPDATE{
+    UPDATE {
         @Override
-        public Command createCommand(){
+        public Command createCommand() {
             return new UpdateCommand();
         }
     };

@@ -54,8 +54,8 @@ class UpdateCommandTest {
     void executeCommand_deadlineUpdateBy_success() throws InvalidArgumentException {
         LocalDateTime datetime = LocalDateTime.of(2023, 11, 6, 0, 0);
         Deadline expectDeadline = new Deadline(false, "return book", datetime);
-        up.executeCommand(taskList,ui,storage,new UserKeywordArgument("update 2 /by 06/11/2023"));
-        assertEquals(expectDeadline.toString(),taskList.get(1).toString());
+        up.executeCommand(taskList, ui, storage, new UserKeywordArgument("update 2 /by 06/11/2023"));
+        assertEquals(expectDeadline.toString(), taskList.get(1).toString());
     }
 
     @Test
@@ -63,8 +63,8 @@ class UpdateCommandTest {
         LocalDateTime from = LocalDateTime.of(2023, 12, 2, 3, 30);
         LocalDateTime to = LocalDateTime.of(2023, 12, 2, 21, 0);
         Event expectEvent = new Event(true, "project meeting", from, to);
-        up.executeCommand(taskList,ui,storage,new UserKeywordArgument("update 3 /to 02/12/2023 2100"));
-        assertEquals(expectEvent.toString(),taskList.get(2).toString());
+        up.executeCommand(taskList, ui, storage, new UserKeywordArgument("update 3 /to 02/12/2023 2100"));
+        assertEquals(expectEvent.toString(), taskList.get(2).toString());
     }
 
     @Test

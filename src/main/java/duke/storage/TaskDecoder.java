@@ -28,7 +28,7 @@ public class TaskDecoder {
      * @return An ArrayList containing Task objects decoded from the input strings.
      * @throws FileStorageException     If there are issues with decoding the tasks.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
-     * message.
+     *                                  message.
      */
     public static ArrayList<Task> decodeStringsToTaskList(List<String> strings) throws FileStorageException,
             InvalidArgumentException {
@@ -46,7 +46,7 @@ public class TaskDecoder {
      * @return The Task object decoded from the input string.
      * @throws FileStorageException     If there are issues with the format or parsing of the string.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
-     * message.
+     *                                  message.
      */
     private static Task decodeStringToTask(String string) throws FileStorageException, InvalidArgumentException {
         char abbreviation = string.charAt(0);
@@ -102,7 +102,7 @@ public class TaskDecoder {
      * @param byArgument The string argument representing the date and time.
      * @return The LocalDateTime object parsed from the input string, or null if parsing fails.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
-     * message.
+     *                                  message.
      */
     private static LocalDateTime parseStringToDateTime(String byArgument) throws InvalidArgumentException {
         final Matcher dateMatcher = Command.DATE_TIME_ARG_FORMAT.matcher(byArgument);

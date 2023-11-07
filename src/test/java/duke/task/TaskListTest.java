@@ -31,6 +31,7 @@ public class TaskListTest {
         TaskList taskList = new TaskList(TestUtil.getTestTasks());
         assertEquals(Character.toString('T'), Character.toString(taskList.getAbbreviation(1)));
     }
+
     @Test
     void getAbbreviation_2_success() {
         TaskList taskList = new TaskList(TestUtil.getTestTasks());
