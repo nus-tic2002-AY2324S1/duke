@@ -15,11 +15,10 @@ import java.util.regex.Matcher;
  * It provides methods for parsing user input into commands, tasks, or other data structures used by the application.
  */
 public class Parser {
-    public static String MESSAGE_INCORRECT_VALUE = "You've entered the incorrect %s value by mistake!";
-    public static String MONTH = "month";
-    public static String DAY = "day";
-    public static String HOUR = "hour";
-    public static String MINUTE = "minute";
+    public static String MESSAGE_INCORRECT_MONTH = "Invalid month: %s . Month must be between 1 and 12.";
+    public static String MESSAGE_INCORRECT_DAY = "Invalid day: %s for month %s and year %s";
+    public static String MESSAGE_INCORRECT_HOUR = "Invalid hour: %s . Hour must be between 0 and 23.";
+    public static String MESSAGE_INCORRECT_MINUTE = "Invalid minute: %s . Minute must be between 0 and 59.";
     public static int MAX_MONTH = 12;
     public static int MIN_MONTH = 1;
     public static int MAX_HOUR = 23;
@@ -144,10 +143,12 @@ public class Parser {
      * @throws InvalidArgumentException If the month or day is outside the acceptable range for the given year.
      */
     public static void dateValidation(int year, int month, int day) throws InvalidArgumentException {
-        if (month < MIN_MONTH || MAX_MONTH < month) {
-            throw new InvalidArgumentException(String.format(MESSAGE_INCORRECT_VALUE, MONTH));
-        } else if (getMaxDayOfMonth(year, month) < day) {
-            throw new InvalidArgumentException(String.format(MESSAGE_INCORRECT_VALUE, DAY));
+        if (month < MIN_MONTH || month > MAX_MONTH) {
+            String errMsg = String.format(MESSAGE_INCORRECT_MONTH, month);
+            throw new InvalidArgumentException(Message.concat(errMsg, Command.DATE_FORMAT_MESSAGE));
+        } else if (day < 1 || day > getMaxDayOfMonth(year, month)) {
+            String errMsg = String.format(MESSAGE_INCORRECT_DAY, day, month, year);
+            throw new InvalidArgumentException(Message.concat(errMsg, Command.DATE_FORMAT_MESSAGE));
         }
     }
 
@@ -159,10 +160,12 @@ public class Parser {
      * @throws InvalidArgumentException If the hour or minute is outside the acceptable range.
      */
     public static void timeValidation(int hour, int minute) throws InvalidArgumentException {
-        if (hour < MIN_HOUR_MINUTE || MAX_HOUR < hour) {
-            throw new InvalidArgumentException(String.format(MESSAGE_INCORRECT_VALUE, HOUR));
-        } else if (minute < MIN_HOUR_MINUTE || MAX_MINUTE < minute) {
-            throw new InvalidArgumentException(String.format(MESSAGE_INCORRECT_VALUE, MINUTE));
+        if (hour < MIN_HOUR_MINUTE || hour > MAX_HOUR) {
+            String errMsg = String.format(MESSAGE_INCORRECT_HOUR, hour);
+            throw new InvalidArgumentException(Message.concat(errMsg, Command.TIME_FORMAT_MESSAGE));
+        } else if (minute < MIN_HOUR_MINUTE || minute > MAX_MINUTE) {
+            String errMsg = String.format(MESSAGE_INCORRECT_MINUTE, minute);
+            throw new InvalidArgumentException(Message.concat(errMsg, Command.TIME_FORMAT_MESSAGE));
         }
     }
 
