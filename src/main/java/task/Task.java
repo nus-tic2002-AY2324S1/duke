@@ -13,6 +13,7 @@ public class Task {
 
     /**
      * Returns a task.
+     *
      * @param description the description of the task
      */
     public Task(String description) {
@@ -101,7 +102,7 @@ public class Task {
      * This method is to save the data to the local file.
      */
     public String toStorageString() {
-        String status = isDone ? "1" : "0" ;
+        String status = isDone ? "1" : "0";
         String description = this.description;
         return status + " || " + description;
     }

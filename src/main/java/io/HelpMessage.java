@@ -7,7 +7,7 @@ import java.util.*;
  * HelpMessage class is a class that handle the help message.
  * It has a method to print out the list of commands that what CrabY can do.
  */
-public class HelpMessage extends CrabyMessage{
+public class HelpMessage extends CrabyMessage {
     /**
      * Sends the help message to the user.
      */

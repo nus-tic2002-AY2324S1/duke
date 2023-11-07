@@ -30,7 +30,7 @@ public class Event extends Task {
      * This class represents an event task that user input only have /from
      *
      * @param description the description of the event task.
-     * @param timeString the time string from the user.
+     * @param timeString  the time string from the user.
      */
     public Event(String description, String timeString) {
         super(description);
@@ -63,8 +63,8 @@ public class Event extends Task {
      * It will format the time string to the correct format.
      * It will use for the sort date function.
      *
-     * @param description the description of the event task.
-     * @param timeString  the time string from the user.
+     * @param description  the description of the event task.
+     * @param timeString   the time string from the user.
      * @param timeStringTo the time string from the user.
      */
     public Event(String description, String timeString, String timeStringTo) {

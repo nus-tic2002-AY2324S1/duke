@@ -3,7 +3,6 @@ package io;
 /**
  * HelloAndByeMessage class is a class that handle some message when Craby start.
  * It has a method to print out the hello and bye message.
- *
  */
 public class HelloAndByeMessage extends CrabyMessage {
     /**

@@ -14,8 +14,7 @@ import java.util.List;
 public class SortCommand extends CrabyMessage implements CommandInterface {
 
     /**
-     * @inheritDoc
-     * Sends the sorted list task message to the user and sort the list.
+     * @inheritDoc Sends the sorted list task message to the user and sort the list.
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {

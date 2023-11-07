@@ -11,8 +11,7 @@ import java.util.List;
 public class UnmarkCommand extends CrabyMessage implements CommandInterface {
 
     /**
-     * @inheritDoc
-     * Sends the unmark message to the user and unmark the task.
+     * @inheritDoc Sends the unmark message to the user and unmark the task.
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {

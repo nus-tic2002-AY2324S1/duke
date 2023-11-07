@@ -13,8 +13,7 @@ import java.util.List;
 public class DeleteCommand extends CrabyMessage implements CommandInterface {
 
     /**
-     * @inheritDoc
-     * Sends the delete message to the user.
+     * @inheritDoc Sends the delete message to the user.
      * This method will delete the task from the list.
      */
     @Override
