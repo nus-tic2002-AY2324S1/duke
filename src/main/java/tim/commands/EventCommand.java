@@ -23,7 +23,7 @@ public class EventCommand extends Command{
             String taskName = token[1];
             addEvent(taskName, tasks);
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.err.println("what is the name of the event?");
+            System.out.println("error: what is the name of the event?");
         }
     }
 
@@ -52,13 +52,13 @@ public class EventCommand extends Command{
             System.out.println("now there is: "+ list.size() + " item(s)");
             UI.printDash();
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.err.println("you've missed out [/fromDate] or [/toDate] !");
+            System.out.println("error: you've missed out [/fromDate] or [/toDate] !");
         } catch(DateTimeParseException DTPE ){
-            System.err.println("that's not a valid date, please enter << /fromDate yyyy-mm-dd /toDate yyyy-mm-dd>>");
+            System.out.println("error: that's not a valid date, please enter << /fromDate yyyy-mm-dd /toDate yyyy-mm-dd>>");
         } catch (BlankInputException BIE) {
-            System.err.println("you've missed out the description");
+            System.out.println("error: you've missed out the description");
         } catch (DateException DE){
-            System.err.println("/fromDate date shouldn't be later than /toDate date");
+            System.out.println("error: /fromDate date shouldn't be later than /toDate date");
         }
 
     }

@@ -17,7 +17,7 @@ public class Parser {
      public static void inputParser(TaskList tasks){
         String input = "init" ;
         Scanner in = new Scanner(System.in);
-        while(!input.equalsIgnoreCase("bye")) {
+        while(in.hasNext()) {
             input = in.nextLine().replaceAll("\\s+", " ");
             input = input.trim();
             String[] token = input.split(" ", 2);
@@ -25,5 +25,7 @@ public class Parser {
             System.out.println("|| " + mode + " ||");
             Logic.executeAction(mode,tasks, token);
         }
+
+        in.close();
     }
 }

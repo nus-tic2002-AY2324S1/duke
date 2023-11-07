@@ -29,11 +29,11 @@ public class Logic {
      * @param tasks  List of tasks.
      * @param token User input split into an array of strings.
      */
-    static void executeAction (String command, TaskList tasks, String[] token){
+    static void executeAction(String command, TaskList tasks, String[] token) {
         int index;
         String taskName;
         try {
-        ListOfCommands verifiedCommands = ListOfCommands.valueOf(command.toUpperCase());
+            ListOfCommands verifiedCommands = ListOfCommands.valueOf(command.toUpperCase());
             switch (verifiedCommands) {
             case BYE:
                 UI.goodbyeGreet();
@@ -82,10 +82,10 @@ public class Logic {
                 UI.printHelp();
                 break;
             default:
-                System.err.println("this should not happen!");
+                System.out.println("error: this should not happen!");
             }
         } catch (IllegalArgumentException IAE) {
-            System.err.println("I've not learn to do this yet!!");
+            System.out.println("error: I've not learn to do this yet!!");
         }
     }
 }

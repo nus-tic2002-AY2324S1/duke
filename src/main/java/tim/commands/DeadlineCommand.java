@@ -21,7 +21,7 @@ public class DeadlineCommand extends Command{
             String taskName = token[1];
             addDeadline(taskName, tasks);
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.err.println("what is the name of the deadline agenda?");
+            System.out.println("error: what is the name of the deadline agenda?");
         }
     }
 
@@ -48,11 +48,11 @@ public class DeadlineCommand extends Command{
             System.out.println("now there is: "+ tasks.size() + " item(s)");
             UI.printDash();
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.err.println("you've missed out [/by] !");
+            System.out.println("error: you've missed out [/by] !");
         } catch(DateTimeParseException DTPE ){
-            System.err.println("that's not a valid date, please enter << /by yyyy-mm-dd >>");
+            System.out.println("error: that's not a valid date, please enter << /by yyyy-mm-dd >>");
         } catch (BlankInputException BIE) {
-            System.err.println("you've missed out the description");
+            System.out.println("error: you've missed out the description");
         }
 
     }

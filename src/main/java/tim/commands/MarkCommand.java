@@ -19,7 +19,7 @@ public class MarkCommand extends Command{
             index = Integer.parseInt(token[1]);
             markUnmarkTask(index, true, tasks);
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.err.println("incorrect input for index!");
+            System.out.println("error: incorrect input for index!");
         }
     }
 

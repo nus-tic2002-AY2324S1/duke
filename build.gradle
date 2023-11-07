@@ -28,7 +28,7 @@ test {
 }
 
 application {
-    mainClass.set("tim.body.Tim")
+    mainClass.set("tim.Tim")
 }
 
 shadowJar {

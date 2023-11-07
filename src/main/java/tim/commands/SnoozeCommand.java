@@ -27,7 +27,7 @@ public class SnoozeCommand extends Command{
             String[] temp = token[1].split(" ",2);
             int trueIndex = Integer.parseInt(temp[0]);
             if(tasks.get(trueIndex-1).getType() == 'T'){
-                System.err.println("ToDo tasks cannot be snoozed!");
+                System.out.println("error: ToDo tasks cannot be snoozed!");
                 throw new Exception();
             }
             if(temp.length>1 && !temp[1].isBlank()) {
@@ -40,7 +40,7 @@ public class SnoozeCommand extends Command{
             UI.printSingle(trueIndex, tasks);
             UI.printDash();
         } catch (Exception e) {
-            System.err.println("please check index or date to postpone to!");
+            System.out.println("error: please check index or date to postpone to!");
         }
     }
 
@@ -65,9 +65,9 @@ public class SnoozeCommand extends Command{
                 event.postponeToDate(newDate);
                 break;
             case 'T':
-                System.err.println("ToDo tasks cannot be snoozed!");
+                System.out.println("error: ToDo tasks cannot be snoozed!");
             default:
-                System.err.println("error");
+                System.out.println("error: unhandled error");
         }
 
     }
@@ -92,9 +92,9 @@ public class SnoozeCommand extends Command{
                 event.snoozeToDateByOneWeek();
                 break;
             case 'T':
-                System.err.println("ToDo tasks cannot be snoozed!");
+                System.out.println("error: ToDo tasks cannot be snoozed!");
             default:
-                System.err.println("error");
+                System.out.println("error: unhandled error");
         }
 
     }

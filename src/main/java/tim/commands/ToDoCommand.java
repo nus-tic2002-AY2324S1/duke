@@ -18,7 +18,7 @@ public class ToDoCommand extends Command{
             String taskName = token[1];
             addToDo(taskName, tasks);
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.err.println("what is the name of the task to complete?");
+            System.out.println("error: what is the name of the task to complete?");
         }
     }
 

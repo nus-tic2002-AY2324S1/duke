@@ -34,9 +34,9 @@ public class Storage {
                 System.out.println("no saved list");
             }
         } catch (IOException e){
-            System.err.println("unable to read file");
+            System.out.println("error: unable to read file");
         }catch (ClassNotFoundException e) {
-            System.err.println("file is corrupted");
+            System.out.println("error: file is corrupted");
         }
         return tasks;
     }
@@ -59,7 +59,7 @@ public class Storage {
             oos.close();
 
         } catch (IOException e) {
-            System.err.println("unable to create file");
+            System.out.println("error: unable to create file");
         }
     }
 

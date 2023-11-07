@@ -36,7 +36,7 @@ public class Deadline extends Task {
         LocalDate parsedExtendedByDate = LocalDate.parse(extendedByDate);
         System.out.println(extendedByDate);
         if(parsedExtendedByDate.isBefore(this.byDate)){
-            System.err.println("New date is before the original deadline!");
+            System.out.println("error: New date is before the original deadline!");
             throw new DateException("improper date");
         }
         assert  parsedExtendedByDate != null : "assert parsedExtendedByDate is not null";
