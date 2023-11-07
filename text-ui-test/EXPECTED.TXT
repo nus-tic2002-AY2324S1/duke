@@ -163,7 +163,7 @@
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Noted. I've removed this task:
    ╰┈➤ [T][҉҉҉] Test delete - in your list
-   Now you have: 8 tasks in your list 🗎.
+   Now you have: 9 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
     ╭─────────────────────────────────────╮
      Here are the tasks in your SCHOOL list:
@@ -175,11 +175,12 @@
    6.  [T][҉҉҉] Test unmark
    7.  [T][҉҉҉] Test delete all
    8.  [T][҉҉҉] Test undo delete
+   9.  [T][҉҉҉] Test delete
     ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Noted. I've removed this task:
    ╰┈➤ [T][҉҉҉] Test undo delete - in your list
-   Now you have: 7 tasks in your list 🗎.
+   Now you have: 9 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
     ╭─────────────────────────────────────╮
      Here are the tasks in your SCHOOL list:
@@ -190,6 +191,8 @@
    5.  [T][҉҉҉] Test undo mark
    6.  [T][҉҉҉] Test unmark
    7.  [T][҉҉҉] Test delete all
+   8.  [T][҉҉҉] Test undo delete
+   9.  [T][҉҉҉] Test delete
     ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
@@ -205,6 +208,7 @@
    6.  [T][҉҉҉] Test unmark
    7.  [T][҉҉҉] Test delete all
    8.  [T][҉҉҉] Test undo delete
+   9.  [T][҉҉҉] Test delete
     ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Ok, I clean up all your tasks
@@ -391,30 +395,31 @@
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Noted. I've removed this task:
    ╰┈➤ [T][ ✓ ] Task to delete - in your list
-   Now you have: 11 tasks in your list 🗎.
+   Now you have: 12 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
     ╭─────────────────────────────────────╮
      Here are the tasks in your SCHOOL list:
    1.  [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   2.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
-   3.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   4.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   5.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   6.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   7.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   8.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
-   9.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   10. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   11. [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
+   2.  [T][ ✓ ] Task to delete
+   3.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
+   4.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
+   5.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
+   6.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
+   7.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
+   9.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
+   10. [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
+   11. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
+   12. [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
     ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ TMA2031 - Final Exam /from 25/11/2023 0900 /to 25/11/2023 1100 - to your list
-   Now you have: 12 tasks in your list 🗎.
+   Now you have: 13 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ Drink more water - to your list
-   Now you have: 13 tasks in your list 🗎.
+   Now you have: 14 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Sorting by date...
     ╭─────────────────────────────────────╮
@@ -431,10 +436,11 @@
    10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
    11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   13. [T][҉҉҉] Drink more water
+   13. [T][ ✓ ] Task to delete
+   14. [T][҉҉҉] Drink more water
     ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-   Oops!!! Something wrong! Your list only have 1 ➞ 13 tasks.
+   Oops!!! Something wrong! Your list only have 1 ➞ 14 tasks.
    Please try again with another number ☘
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
     ╭─────────────────────────────────────╮
@@ -451,20 +457,21 @@
    10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
    11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   13. [T][҉҉҉] Drink more water
+   13. [T][ ✓ ] Task to delete
+   14. [T][҉҉҉] Drink more water
     ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ check undo mark - to your list
-   Now you have: 14 tasks in your list 🗎.
-  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-   ✎ added:
-   ╰┈➤ check multiple undo - to your list
    Now you have: 15 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
-   ╰┈➤ check undo add task - to your list
+   ╰┈➤ check multiple undo - to your list
    Now you have: 16 tasks in your list 🗎.
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   ✎ added:
+   ╰┈➤ check undo add task - to your list
+   Now you have: 17 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
    ╰┈➤I've undo your command:add - check undo add task
@@ -486,8 +493,9 @@
    10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
    11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   13. [T][҉҉҉] Drink more water
-   14. [T][҉҉҉] Check undo mark
+   13. [T][ ✓ ] Task to delete
+   14. [T][҉҉҉] Drink more water
+   15. [T][҉҉҉] Check undo mark
     ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Sorting by type revert order...
@@ -496,17 +504,18 @@
    1.  [T][҉҉҉] Oder FoodPanda for dinner every weekday
    2.  [T][҉҉҉] Drink more water
    3.  [T][҉҉҉] Check undo mark
-   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov 2023, Sat - 09:00AM ➞ to: 11:00AM
-   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
-   6.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   7.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   8.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   9.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   10. [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
-   12. [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   13. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   14. [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
+   4.  [T][ ✓ ] Task to delete
+   5.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov 2023, Sat - 09:00AM ➞ to: 11:00AM
+   6.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
+   7.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
+   8.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
+   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
+   11. [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
+   12. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
+   13. [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
+   14. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
+   15. [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
     ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
@@ -526,12 +535,13 @@
    10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
    11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   13. [T][҉҉҉] Drink more water
-   14. [T][҉҉҉] Check undo mark
+   13. [T][ ✓ ] Task to delete
+   14. [T][҉҉҉] Drink more water
+   15. [T][҉҉҉] Check undo mark
     ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Nice! I've marked this task as DONE ツ:
-   ╰┈➤ [T][ ✓ ] Check undo mark
+   ╰┈➤ [T][ ✓ ] Drink more water
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
    ╰┈➤I've undo your command: mark 14
@@ -550,8 +560,9 @@
    10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
    11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   13. [T][҉҉҉] Drink more water
-   14. [T][҉҉҉] Check undo mark
+   13. [T][ ✓ ] Task to delete
+   14. [T][҉҉҉] Drink more water
+   15. [T][҉҉҉] Check undo mark
     ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Ok, I clean up all your tasks
@@ -579,12 +590,51 @@
    10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
    11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   13. [T][҉҉҉] Drink more water
-   14. [T][҉҉҉] Check undo mark
+   13. [T][ ✓ ] Task to delete
+   14. [T][҉҉҉] Drink more water
+   15. [T][҉҉҉] Check undo mark
     ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Ok, I clean up all your tasks
    ╰┈➤ Let's start a new checklist
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+       ❉⊱•  Welcome to Craby's help page! •⊰❉
+   ╚════ ▣ Here are the list of commands: ▣ ════╝
+   1.  list - list all the tasks
+       ╰┈➤e.g. list
+   2.  <task description> - add a todo task
+       ╰┈➤e.g. read book
+   3.  <task description> /by <dd/mm/yyy hhmm> - add a deadline task
+       Note: /by Mon -> CrabY will automatically fill the date (next Monday)
+       ╰┈➤e.g. TIC2002 quiz 8 /by 2/12/2023 1800
+   4.  event <task description> /from <dd/mm/yyy hhmm> /to <dd/mm/yyy hhmm> - add an event task
+       Note: /from Fri -> CrabY will automatically fill the date (next Friday)
+       ╰┈➤e.g. project meeting /from 2/12/2023 1800 /to 2/12/2023 2000
+   5.  mark <task number> - mark a task as DONE
+       ╰┈➤e.g. mark 1
+       Note: mark all -> CrabY will mark ALL the tasks as DONE
+   6.  unmark <task number> - mark a task as NOT DONE YET
+       ╰┈➤e.g. unmark 1
+       Note: unmark all -> CrabY will mark ALL the tasks as NOT DONE YET
+   7.  delete <task number> - delete a task
+       ╰┈➤e.g. delete 1
+       Note: delete all -> CrabY will delete ALL the tasks
+   8.  find <keyword> - find a task with the keyword
+       ╰┈➤e.g. find book
+   9.  sort <type/type-r/t/tr/date/d> - sort the list by type or date
+       Note: type-r or tr will sort the list by type in revert order
+       ╰┈➤e.g. sort t
+   10. undo - undo your previous command (except: list, find, help, blah commands)
+       ╰┈➤e.g. undo
+   11. switch - switch to another list
+       ╰┈➤after that CrabY will ask you to enter the name of the list that you want to switch to
+   12. help - show the list of commands
+       ╰┈➤e.g. help
+   13. bye - exit the program
+       ╰┈➤e.g. bye
+
+   *** NOTE: if you use the same [List-name] that used before
+   ╰┈➤you can continue to use the previous list of tasks.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Bye ♡, hope to see you again soon! •ᴗ•
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈

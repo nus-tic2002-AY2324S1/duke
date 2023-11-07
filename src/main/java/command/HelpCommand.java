@@ -18,5 +18,6 @@ public class HelpCommand extends HelpMessage implements CommandInterface {
         assert input != null;
         assert tasks != null;
         printHelpMessage();
+        printHelpMessage1();
     }
 }

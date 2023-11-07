@@ -87,4 +87,5 @@ list
 undo
 list
      delete        all
+     help
 bye CrabY
