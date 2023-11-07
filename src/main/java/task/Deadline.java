@@ -15,7 +15,7 @@ public class Deadline extends Task {
     /**
      * Returns the LocalDateTime object.
      * This method is to handle the date and time.
-     * It will use for the sort function.
+     * It will use it for the sort function.
      *
      * @return The LocalDateTime object.
      */
@@ -26,8 +26,8 @@ public class Deadline extends Task {
     /**
      * This class represents a deadline task that user input have /by
      *
-     * @param description
-     * @param timeString
+     * @param description the description of the task.
+     * @param timeString the time of the task.
      */
     public Deadline(String description, String timeString) {
         super(description);

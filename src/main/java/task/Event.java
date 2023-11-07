@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Event is a task that have a description and a time.
+ * Event is a task that has a description and a time.
  * It is a subclass of Task.
  */
 public class Event extends Task {
@@ -17,7 +17,7 @@ public class Event extends Task {
     /**
      * Returns fromTime.
      * This method is to handle the date and time.
-     * It will use for the sort function.
+     * It will use it for the sort function.
      *
      * @return The LocalDateTime object
      */
@@ -61,7 +61,7 @@ public class Event extends Task {
      * Returns an event task that user input have /from and /to
      * This class represents an event task that user input have /from and /to
      * It will format the time string to the correct format.
-     * It will use for the sort date function.
+     * It will use it for the sort date function.
      *
      * @param description  the description of the event task.
      * @param timeString   the time string from the user.

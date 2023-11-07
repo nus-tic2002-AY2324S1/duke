@@ -9,14 +9,15 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * UndoCommand class is a class that handle the undo command.
+ * UndoCommand class is a class that handles the undo command.
  * It implements the CommandInterface.
  * It has a method to handle the undo command.
  */
 public class UndoCommand extends CrabyMessage implements CommandInterface {
     private static Stack<List<Task>> stackTaskList = new Stack<>();
     private static Stack<String> stackInput = new Stack<>();
-    private static final List<String> NOT_ALLOWED_UNDO = Arrays.asList("list", "find", "help", "undo", "blah", "switch");
+    private static final List<String> NOT_ALLOWED_UNDO =
+            Arrays.asList("list", "find", "help", "undo", "blah", "switch");
 
     /**
      * @inheritDoc Sends the undo message to the user and undo the previous command.

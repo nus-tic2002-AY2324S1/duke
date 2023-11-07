@@ -6,7 +6,7 @@ import task.Task;
 import java.util.List;
 
 /**
- * ByeCommand class is a class that handle the bye command.
+ * ByeCommand class is a class that handles the bye command.
  * It implements the CommandInterface.
  * It has a method to handle the bye command.
  */

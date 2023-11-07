@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This class represents a DateTimeUtils.
+ * It is a utility class for handling date and time.
+ */
 public class DateTimeUtils {
 
     /**
@@ -39,7 +43,7 @@ public class DateTimeUtils {
         if (daysToAdd < 1) {
             daysToAdd += 7;
         }
-        // set time to end of day
+        // set time to the end of the day
         return now.plusDays(daysToAdd);
 
     }

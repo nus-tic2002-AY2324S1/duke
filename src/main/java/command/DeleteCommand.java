@@ -27,8 +27,8 @@ public class DeleteCommand extends CrabyMessage implements CommandInterface {
             return;
         }
         input = input.toLowerCase().trim();
-        assert input.length() >= 6;
-        String checkDelete = input.substring(6).trim();
+        assert input.length() >= DELETE_LENGTH;
+        String checkDelete = input.substring(DELETE_LENGTH).trim();
         if (checkDelete.equals("all")) {
             printDeleteAllMessage();
             tasks.clear();

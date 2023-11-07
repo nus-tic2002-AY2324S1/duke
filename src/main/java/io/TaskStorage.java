@@ -82,7 +82,7 @@ public class TaskStorage {
 
     /**
      * Returns the list of tasks loaded from the file.
-     * load the line from the file
+     * Load the line from the file
      * line format: type || status || description || time (optional) || time (optional)
      * type: T, D, E
      * status: 0, 1

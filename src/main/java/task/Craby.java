@@ -1,7 +1,5 @@
 package task;
 
-import command.AddTaskCommand;
-
 import exceptions.MyCustomException;
 import exceptions.InputBlankException;
 import io.HelloAndByeMessage;
@@ -27,7 +25,7 @@ public class Craby extends HelloAndByeMessage {
     private static final String REGEX = ".*[^a-zA-Z0-9\\s].*";
 
     /**
-     * Sends a greeting to the user if it is the first time the user run the program.
+     * Sends a greeting to the user if it is the first time the user's runs the program.
      * This method will print out the logo and the hello message.
      *
      * @param is1stTime the arguments from the command line.
@@ -133,7 +131,7 @@ public class Craby extends HelloAndByeMessage {
         try {
             return Keyword.valueOf(checkInput);
         } catch (IllegalArgumentException e) {
-            // if the input is not a keyword
+            // if the input is not a keyword,
             // it will be a task
             return Keyword.DEFAULT;
         }

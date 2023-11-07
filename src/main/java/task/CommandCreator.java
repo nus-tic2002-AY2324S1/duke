@@ -15,7 +15,7 @@ import command.UndoCommand;
 import command.CommandInterface;
 
 /**
- * CommandCreator class is a class that create the command.
+ * CommandCreator class is a class that creates the command.
  * It has a method to create the command.
  */
 public class CommandCreator {

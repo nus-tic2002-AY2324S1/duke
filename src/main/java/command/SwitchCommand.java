@@ -6,14 +6,14 @@ import task.Task;
 import java.util.List;
 
 /**
- * SwitchCommand class is a class that handle the switch command.
+ * SwitchCommand class is a class that handles the switch command.
  * It implements the CommandInterface.
  * It has a method to handle the switch command.
  */
 public class SwitchCommand extends CrabyMessage implements CommandInterface {
 
     /**
-     * @inheritDoc Sends switch message to the user and switch to another checklist.
+     * @inheritDoc Sends a switch message to the user and switch to another checklist.
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {

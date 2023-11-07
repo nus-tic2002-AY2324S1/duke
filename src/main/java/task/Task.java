@@ -40,7 +40,7 @@ public class Task {
 
     /**
      * Returns the task is done or not.
-     * This method is to get the task is done or not.
+     * This method is to get the task done or not.
      */
     public boolean getDone() {
         return isDone;
@@ -48,7 +48,7 @@ public class Task {
 
     /**
      * This method is to handle the date and time.
-     * It will cover 4 different format of the date and time.
+     * It will cover four different formats of the date and time.
      *
      * @return The LocalDateTime object to the format requirement.
      */
@@ -98,7 +98,7 @@ public class Task {
     }
 
     /**
-     * Returns task in string format.
+     * Returns a task in string format.
      * This method is to save the data to the local file.
      */
     public String toStorageString() {
@@ -110,7 +110,7 @@ public class Task {
     /**
      * Returns a clone of the task.
      * This method is to clone the task.
-     * It will use for the undo command.
+     * It will use it for the undo command.
      *
      * @return the clone task.
      */
