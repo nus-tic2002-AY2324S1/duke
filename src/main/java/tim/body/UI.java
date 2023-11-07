@@ -11,15 +11,17 @@ import java.util.Date;
  */
 public class UI {
 
+
     /**
      * Prints the help message with list of usable commands.
      */
-    static void printHelp(){
+    static synchronized void printHelp(){
         System.out.println("Here are the list of commands you can use:");
         for (ListOfCommands command : ListOfCommands.values()) {
             System.out.println(command);
         }
         printDash();
+
     }
     /**
      * Prints the current date.
@@ -35,8 +37,7 @@ public class UI {
      * Prints the Tim's logo.
      */
     public static void printLogo(){
-        String logo =
-                " _______                 \n"
+        String logo =       " _______                 \n"
                         +   "|__   __| [ ]  __  __    \n"
                         +   "   | |    | | |  \\/  |  \n"
                         +   "   | |    | | | |\\/| |  \n"

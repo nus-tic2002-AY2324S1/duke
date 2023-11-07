@@ -24,7 +24,7 @@ public class Storage {
     public static TaskList loadList () throws IOException, ClassNotFoundException{
         TaskList tasks = new TaskList();
         try{
-            File f = new File("./src/main/data/list.data");
+            File f = new File("./data/", "list.data");
             if(f.exists()) {
                 FileInputStream fin = new FileInputStream(f);
                 ObjectInputStream ois = new ObjectInputStream(fin);
@@ -49,8 +49,10 @@ public class Storage {
      */
     public static void saveList(TaskList tasks){
         try{
-            File f = new File("./src/main/data/list.data");
-            f.createNewFile();
+            if(!new File("./data/").exists()){
+                new File("./data/").mkdir();
+            }
+            File f = new File("./data/", "list.data");
             FileOutputStream fos = new FileOutputStream(f);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(tasks);
