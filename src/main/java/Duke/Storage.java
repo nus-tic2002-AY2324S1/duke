@@ -1,9 +1,14 @@
+package Duke;
+
+import Duke.DukeException;
+import Task.Shelf;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class FileSaver {
+public class Storage {
 
     public static Path getSavefilePath(){
         String home = System.getProperty("user.dir");
@@ -48,6 +53,30 @@ public class FileSaver {
             e.printStackTrace();
         }
         return shelfData;
+    }
+
+    public static Shelf FileParser(String shelfData) throws DukeException { //converts file string into Task.Shelf arraylist
+        Shelf newlist = new Shelf();
+        String type = "";
+        String marking = "";
+        int line_no = 1;
+        String[] split = shelfData.split("[|\n]");
+        for (int i = 1; i-1 < split.length; i++) {
+            if (i%3 == 0) {
+                type = split[i-3];
+                marking = split[i-2];
+                newlist.addSpecialTask(split[i-1], type);
+                System.out.println(split[i-1]);
+                if(!marking.isEmpty()){
+                    newlist.markTask(new String[]{"mark", Integer.toString(line_no)});
+                }
+                line_no++;
+                type = "";
+                marking = "";
+            }
+        }
+        System.out.println("File loaded, Welcome Back Taskmaster!");
+        return newlist;
     }
 
 }

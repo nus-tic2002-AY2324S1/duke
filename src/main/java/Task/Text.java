@@ -1,4 +1,6 @@
-public class Text {
+package Task;
+
+public class Text { //aka UI
     public static final String newline = "____________________________________________________________\n";
     public enum Message {
         LOGO, GREETING, BYE, NOITEM
@@ -20,6 +22,13 @@ public class Text {
     private static final String NOITEM = newline +
             "No items found!, Please add items" + "\n" +
             newline;
+    public static void showWelcome(){
+        printMessage(Text.Message.LOGO);
+        printMessage(Text.Message.GREETING);
+    }
+    public static void showLoadingError(){
+        System.out.println("Error loading the file, please restart the program!");
+    }
     public static void printMessage(Message message) {
         switch (message) {
             case LOGO:

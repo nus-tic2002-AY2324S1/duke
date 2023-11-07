@@ -1,3 +1,7 @@
+package Task;
+
+import Task.Task;
+
 import java.util.ArrayList;
 
 public class Shelf {
@@ -11,9 +15,8 @@ public class Shelf {
             Text.printMessage(Text.Message.NOITEM);
             return;
         }
-        // listing sequence
         System.out.print(Text.newline);
-        System.out.println("No. [Type] [Marking] Description");
+        System.out.println("No. [Type] [Marking] Description"); // listing sequence
         for(int i = 0; i < shelf.size(); i++){
             System.out.println(Integer.toString(i+1)+ ": " + "["  + shelf.get(i).getTypeIcon() + "]" + "["  + shelf.get(i).getStatusIcon() + "]" + shelf.get(i).description);
         }
