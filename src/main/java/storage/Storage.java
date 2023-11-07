@@ -52,7 +52,7 @@ public class Storage {
     private Task parseTaskFromTxt(String txtLine) throws IllegalStorageFormat {
         ArrayList<String> lineArrayList = textToArrayList(txtLine);
         if (lineArrayList.size() < 3) {
-            throw new IllegalStorageFormat("A line in joshua.txt does not meet the required format.");
+            throw new IllegalStorageFormat("This line in joshua.txt does not meet the required format: " + txtLine);
         }
 
         String taskType = lineArrayList.get(0);

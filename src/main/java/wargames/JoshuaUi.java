@@ -2,33 +2,55 @@
 
 package wargames;
 
+import java.util.Scanner;
+
 public class JoshuaUi {
-
-    public JoshuaUi(){
-
+    private final Scanner scanner;
+    public JoshuaUi() {
+        this.scanner = new Scanner(System.in);
     }
 
-    public static void joshuaSays(String str) {
+    public void joshuaSays(String str) {
         str = str.toUpperCase();
         System.out.println(str + "\n");
     }
 
-    public static void printGreetings() {
+    public void printGreetings() {
         joshuaSays("GREETINGS PROFESSOR FALKEN.\n\n"
-                     + "SHALL WE PLAY A GAME?");
+                     + "SHALL WE PLAY A GAME?\n\n"
+                     + "\tLIST\n"
+                     + "\tMARK #\n"
+                     + "\tUNMARK #\n"
+                     + "\tTODO\n"
+                     + "\tDEADLINE /BY\n"
+                     + "\tEVENT /FROM /TO\n"
+                     + "\tDELETE\n"
+                     + "\tBYE\n"
+                     + "\tGLOBAL THERMONUCLEAR WAR");
     }
 
-    public static void printExitMessage() {
+    public void printSuccessfulLoad() {
+        joshuaSays("YOUR TASK LIST HAS BEEN LOADED FROM JOSHUA.TXT\n___");
+    }
+
+    public void printExitMessage() {
         joshuaSays("GOODBYE.");
     }
 
-    public static void printSaveMessage() {
+    public void printSaveMessage() {
         joshuaSays("SAVING TASK LIST IN JOSHUA.TXT...");
     }
 
-    public static void printLoadingError() {
+    public void printLoadingError() {
         joshuaSays("UNABLE TO LOAD TASK LIST FROM STORAGE.");
         joshuaSays("I HAVE CREATED AN EMPTY TASK LIST FOR YOU INSTEAD, PROFESSOR FALKEN.");
+    }
+
+    public String readCommand() {
+        System.out.print(">> ");
+        String input = scanner.nextLine();
+        input = input.toLowerCase();
+        return input;
     }
 
 }

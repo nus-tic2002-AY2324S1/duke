@@ -21,26 +21,16 @@ public class TaskList {
         return tasklist.size();
     }
 
-    public void markTaskAsDone(int taskNum){
+    public void markTaskAsDone(int taskNum) {
         int taskIdx = taskNum - 1;
-        try {
-            Task task = getItem(taskIdx);
-            task.setIsDone(true);
-            JoshuaUi.joshuaSays("Marked task: " + task);
-        } catch (IndexOutOfBoundsException e) {
-            JoshuaUi.joshuaSays("Enter a number from the task list.");
-        }
+        Task task = getItem(taskIdx);
+        task.setIsDone(true);
     }
 
-    public void markTaskAsNotDone(int taskNum){
+    public void markTaskAsNotDone(int taskNum) {
         int taskIdx = taskNum - 1;
-        try {
-            Task task = getItem(taskIdx);
-            task.setIsDone(false);
-            JoshuaUi.joshuaSays("Unmarked task: " + task);
-        } catch (IndexOutOfBoundsException e) {
-            JoshuaUi.joshuaSays("Enter a number from the task list.");
-        }
+        Task task = getItem(taskIdx);
+        task.setIsDone(false);
     }
 
     public void addToTaskList(Task task) {

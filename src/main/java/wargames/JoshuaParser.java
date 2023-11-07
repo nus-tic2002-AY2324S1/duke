@@ -1,125 +1,154 @@
 package wargames;
 
-import exceptions.InvalidCommandException;
-import task.*;
+import commands.Command;
+import commands.MarkCommand;
+import commands.UnmarkCommand;
+import commands.DeleteCommand;
+import commands.ListCommand;
+import commands.TodoCommand;
+import commands.DeadlineCommand;
+import commands.EventCommand;
+import commands.ByeCommand;
+import commands.HelpCommand;
+import commands.InvalidCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class JoshuaParser {
+    /**
+     * Pattern to identify command word and the following arguments.
+     */
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    public static final Pattern DEADLINE_ARGUMENT_FORMAT = Pattern.compile("(?<desc>.*)/by(?<by>.*)");
+    public static final Pattern EVENT_ARGUMENT_FORMAT = Pattern.compile("(?<desc>.*)/from(?<from>.*)/to(?<to>.*)");
+    /**
+     * Pattern to identify date format if user has entered a date.
+     */
+    public static final Pattern DATE_FORMAT = Pattern.compile("(\\\\d{1,2}/\\\\d{1,2}/\\\\d{4}) (\\\\d{4})");
 
     public JoshuaParser() {
 
     }
-    public boolean isByeCommand(String command) {
-        return command.equals("bye");
-    }
 
-    public boolean isListCommand(String command) {
-        return command.equals("list");
-    }
-
-    public boolean isMarkCommand(String command) {
-        return command.startsWith("mark ");
-    }
-
-    public boolean isUnmarkCommand(String command) {
-        return command.startsWith("unmark ");
-    }
-
-    public boolean isToDoCommand(String command) {
-        return command.startsWith("todo ");
-    }
-
-    public boolean isDeadlineCommand(String command) {
-        return command.startsWith("deadline ");
-    }
-
-    public boolean isEventCommand(String command) {
-        return command.startsWith("event ");
-    }
-
-    public boolean isDeleteCommand(String command) { return command.startsWith("delete "); }
-
-    public int parseTaskNum(String command) {
-        List<String> cmdArrayList = stringToArrayList(command);
-
-        if (cmdArrayList.size() == 2) {
-            try {
-                String taskNumStr = cmdArrayList.get(1);
-                return Integer.parseInt(taskNumStr);
-            }
-            catch (NumberFormatException e) {
-                return -1;
-            }
+    public Command parse(String userInput) {
+        Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if(!matcher.matches()) {
+            return new InvalidCommand("Please be more articulate, Professor Falken.\n" +
+                    "Enter \"help\" to see the list of available commands.");
         }
-        else {
-            return -1;
+
+        String commandWord = matcher.group("commandWord");
+        String arguments = matcher.group("arguments");
+
+        switch(commandWord) {
+        case MarkCommand.COMMAND_WORD:
+            return prepareMark(arguments);
+
+        case UnmarkCommand.COMMAND_WORD:
+            return prepareUnmark(arguments);
+
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+
+        case TodoCommand.COMMAND_WORD:
+            return prepareTodo(arguments);
+
+        case DeadlineCommand.COMMAND_WORD:
+            return prepareDeadline(arguments);
+
+        case EventCommand.COMMAND_WORD:
+            return prepareEvent(arguments);
+
+        case DeleteCommand.COMMAND_WORD:
+            return prepareDelete(arguments);
+
+        case ByeCommand.COMMAND_WORD:
+            return new ByeCommand();
+
+        case HelpCommand.COMMAND_WORD: // Fallthrough
+
+        default:
+            return new HelpCommand();
         }
     }
 
-    public Task createToDo(String command) throws InvalidCommandException {
-        List<String> inputArrayList = stringToArrayList(command);
-        List<String> descArrayList = inputArrayList.subList(1, inputArrayList.size());
-
-        if (descArrayList.isEmpty()) {
-            throw new InvalidCommandException("Enter a description for your todo.");
+    public Command prepareMark(String commandArgs) {
+        int taskNum = -1;
+        commandArgs = commandArgs.trim();
+        try {
+            taskNum = Integer.parseInt(commandArgs);
+        } catch (NumberFormatException e) {
+            return new InvalidCommand("Ensure that you have entered an integer number.");
         }
-
-        String desc = String.join(" ", descArrayList);
-
-        return TaskFactory.createTask("todo", false, desc, null, null);
+        return new MarkCommand(taskNum);
     }
 
-    public Task createDeadline(String command) throws InvalidCommandException {
-        // Get "desc" and "by" from input
-        List<String> inputArrayList = stringToArrayList(command);
-        int byMarker = inputArrayList.indexOf("/by");
-
-        if (inputArrayList.size() == 1 || byMarker == 1) {
-            throw new InvalidCommandException("Enter a description for your deadline");
+    public Command prepareUnmark(String commandArgs) {
+        int taskNum = -1;
+        commandArgs = commandArgs.trim();
+        try {
+            taskNum = Integer.parseInt(commandArgs);
+        } catch (NumberFormatException e) {
+            return new InvalidCommand("Ensure that you have entered an integer number.");
         }
-        else if (byMarker < 0 || byMarker+1 == inputArrayList.size()) {
-            throw new InvalidCommandException("Enter the /by parameter for your deadline.");
-        }
-
-        List<String> descArrayList = inputArrayList.subList(1, byMarker);
-        String desc = String.join(" ", descArrayList);
-
-        List<String> byArrayList = inputArrayList.subList(byMarker+1, inputArrayList.size());
-        String by = String.join(" ", byArrayList);
-
-        return TaskFactory.createTask("deadline", false, desc, by, null);
+        return new UnmarkCommand(taskNum);
     }
 
-    public Task createEvent(String command) throws InvalidCommandException {
-        // TODO: currently only supports /from /to in that order.
-        // Get "from" and "to" from the input
-        List<String> inputArrayList = stringToArrayList(command);
-        int fromMarker = inputArrayList.indexOf("/from");
-        int toMarker = inputArrayList.indexOf("/to");
-
-        if (inputArrayList.size() == 1 || fromMarker == 1) {
-            throw new InvalidCommandException("Enter a description for your event.");
+    public Command prepareDelete(String commandArgs) {
+        int taskNum = -1;
+        commandArgs = commandArgs.trim();
+        try {
+            taskNum = Integer.parseInt(commandArgs);
+        } catch (NumberFormatException e) {
+            return new InvalidCommand("Ensure that you have entered an integer number.");
         }
-        else if (fromMarker < 0 || fromMarker+1 == toMarker) {
-            throw new InvalidCommandException("Enter the /from parameter for your event.");
+        return new DeleteCommand(taskNum);
+    }
+
+    public Command prepareTodo(String commandArgs) {
+        String desc = commandArgs.trim();
+        if (desc.isEmpty()) {
+            return new InvalidCommand("Enter a description for your todo.");
         }
-        else if (toMarker < 0 || toMarker+1 == inputArrayList.size()) {
-            throw new InvalidCommandException("Enter the /to parameter for your event.");
+        return new TodoCommand(desc);
+    }
+
+    public Command prepareDeadline(String commandArgs) {
+        Matcher matcher = DEADLINE_ARGUMENT_FORMAT.matcher(commandArgs.trim());
+        if(!matcher.matches()) {
+            return new InvalidCommand("Please follow this command format for \"deadline\":\n" +
+                    "deadline <description> /by <date>");
         }
 
-        List<String> descArrayList = inputArrayList.subList(1, fromMarker);
-        String desc = String.join(" ", descArrayList);
+        String desc = matcher.group("desc").trim();
+        String by = matcher.group("by").trim();
 
-        List<String> fromArrayList = inputArrayList.subList(fromMarker + 1, toMarker);
-        String from = String.join(" ", fromArrayList);
+        if (desc.isEmpty()) {
+            return new InvalidCommand("Enter a description for your todo.");
+        }
+        return new DeadlineCommand(desc, by);
+    }
 
-        List<String> toArrayList = inputArrayList.subList(toMarker + 1, inputArrayList.size());
-        String to = String.join(" ", toArrayList);
+    public Command prepareEvent(String commandArgs) {
+        Matcher matcher = EVENT_ARGUMENT_FORMAT.matcher(commandArgs.trim());
+        if(!matcher.matches()) {
+            return new InvalidCommand("Please follow this command format for \"event\":\n" +
+                    "event <description> /from <date> /to <date>");
+        }
 
-        return TaskFactory.createTask("event", false, desc, from, to);
+        String desc = matcher.group("desc").trim();
+        String from = matcher.group("from").trim();
+        String to = matcher.group("to").trim();
+
+        if (desc.trim().isEmpty()) {
+            return new InvalidCommand("Enter a description for your todo.");
+        }
+        return new EventCommand(desc, from ,to);
     }
 
     private static ArrayList<String> stringToArrayList(String str) {

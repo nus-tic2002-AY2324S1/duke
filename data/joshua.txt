@@ -4,3 +4,4 @@ E | 0 | project meeting | Aug 6th 2pm | Aug 6th 4pm
 T | 1 | join sports club
 T | 0 | test
 D | 0 | assignment | 19 nov
+E | 0 | hello | you | me
