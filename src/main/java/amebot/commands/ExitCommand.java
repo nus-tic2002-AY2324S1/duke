@@ -1,16 +1,14 @@
 package amebot.commands;
 
 /**
- * ExitCommand class
- *
- * <p>Command to exit the program
+ * Represents an exit command.
  */
 public class ExitCommand extends Command {
     /**
-     * Checks if the command is an exit command
+     * Returns true if the command is exit.
      *
-     * @param command command from the user input
-     * @return true if the command is an exit command, false otherwise
+     * @param command Command from the user input
+     * @return True if the command is exit, false otherwise
      */
     public static boolean isExit(String command) {
         return command.equalsIgnoreCase("bye");

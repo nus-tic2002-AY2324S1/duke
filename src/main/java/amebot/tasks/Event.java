@@ -24,9 +24,9 @@ public class Event extends Task {
     }
 
     /**
-     * Get the information of the task.
+     * Returns information of the task.
      *
-     * @return The information of the task.
+     * @return Information of the task.
      */
     @Override
     public String getTask() {
@@ -34,36 +34,36 @@ public class Event extends Task {
     }
 
     /**
-     * Set the starting date and time of the event.
+     * Sets start date and time of the event.
      *
-     * @param fromDateTime The starting date and time of the event.
+     * @param fromDateTime Start date and time of the event.
      */
     public void setFromDateTime(String fromDateTime) {
         this.fromDateTime = fromDateTime;
     }
 
     /**
-     * Get the starting date and time of the event.
+     * Returns start date and time of the event.
      *
-     * @return The starting date and time of the event.
+     * @return Start date and time of the event.
      */
     public String getFromDateTime() {
         return fromDateTime;
     }
 
     /**
-     * Set the ending date and time of the event.
+     * Sets end date and time of the event.
      *
-     * @param toDateTime The ending date and time of the event.
+     * @param toDateTime End date and time of the event.
      */
     public void setToDateTime(String toDateTime) {
         this.toDateTime = toDateTime;
     }
 
     /**
-     * Get the ending date and time of the event.
+     * Returns end date and time of the event.
      *
-     * @return The ending date and time of the event.
+     * @return End date and time of the event.
      */
     public String getToDateTime() {
         return toDateTime;

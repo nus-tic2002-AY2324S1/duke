@@ -3,15 +3,13 @@ package amebot.commands;
 import amebot.common.Messages;
 
 /**
- * UnmarkCommand class
- *
- * <p>Command to unmark the status of a task
+ * Represents a command that marks a task as not completed.
  */
 public class UnmarkCommand extends Command {
     /**
      * UnmarkCommand constructor
      *
-     * @param index index of the task to be set as unmark
+     * @param index Index of the task to be set as unmark
      */
     public UnmarkCommand(int index) {
         boolean isValidIndex = index > 0 && index <= tasks.size();

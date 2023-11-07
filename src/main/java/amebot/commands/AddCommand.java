@@ -7,9 +7,7 @@ import amebot.tasks.Event;
 import amebot.tasks.Deadline;
 
 /**
- * AddCommand class
- *
- * <p>Command to add a task
+ * Represents a command that adds a task.
  */
 public class AddCommand extends Command {
     protected Task item;
@@ -17,8 +15,8 @@ public class AddCommand extends Command {
     /**
      * AddCommand constructor
      *
-     * @param isMarked    status of the task
-     * @param description description of the task
+     * @param isMarked    Status of the task
+     * @param description Description of the task
      */
     public AddCommand(boolean isMarked, String description) {
         item = new ToDo(isMarked, description);
@@ -29,10 +27,10 @@ public class AddCommand extends Command {
     /**
      * AddCommand constructor for event
      *
-     * @param isMarked     status of the task
-     * @param description  description of the task
-     * @param fromDateTime start date and time of the task
-     * @param toDateTime   end date and time of the task
+     * @param isMarked     Status of the task
+     * @param description  Description of the task
+     * @param fromDateTime Start date and time of the task
+     * @param toDateTime   End date and time of the task
      */
     public AddCommand(boolean isMarked, String description, String fromDateTime, String toDateTime) {
         item = new Event(isMarked, description, fromDateTime, toDateTime);
@@ -43,9 +41,9 @@ public class AddCommand extends Command {
     /**
      * AddCommand constructor for deadline
      *
-     * @param isMarked    status of the task
-     * @param description description of the task
-     * @param dueDateTime due date and time of the task
+     * @param isMarked    Status of the task
+     * @param description Description of the task
+     * @param dueDateTime Due date and time of the task
      */
     public AddCommand(boolean isMarked, String description, String dueDateTime) {
         item = new Deadline(isMarked, description, dueDateTime);

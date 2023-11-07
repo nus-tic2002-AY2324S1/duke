@@ -9,7 +9,7 @@ import java.util.EnumSet;
 import java.util.ArrayList;
 
 /**
- * Represents a parser that parses the user's input.
+ * Represents a parser that parses the user input command.
  */
 public class Parser {
     private static final int START_INDEX_OF_TODO = 5;
@@ -20,10 +20,10 @@ public class Parser {
     protected ArrayList<String> parsedCommand = new ArrayList<>();
 
     /**
-     * Parses the user's input and returns the parsed command.
+     * Returns the parsed user input command.
      *
-     * @param command The user's input.
-     * @return The parsed command.
+     * @param command User input command.
+     * @return Parsed user input command.
      */
     public ArrayList<String> parseCommand(String command) {
         int endIndex = command.length();
@@ -36,33 +36,33 @@ public class Parser {
             Keyword commandType = Keyword.valueOf(commandName);
 
             switch (commandType) {
-                case FIND:
-                    parseFind(commandName, command, endIndex);
-                    break;
-                case TODO:
-                    parseTodo(commandName, command, endIndex);
-                    break;
-                case EVENT:
-                    parseEvent(commandName, command, endIndex);
-                    break;
-                case DEADLINE:
-                    parseDeadline(commandName, command, endIndex);
-                    break;
-                case UPDATE:
-                    parseUpdate(commandName, command, taskDetail, endIndex);
-                    break;
-                case MARK:
-                    // Fallthrough
-                case UNMARK:
-                    // Fallthrough
-                case REMOVE:
-                    parseMarkStatusOrRemove(commandName, command, taskDetail);
-                    break;
-                case LIST:
-                    // Fallthrough
-                case BYE:
-                    parseListOrBye(commandName, command);
-                    break;
+            case FIND:
+                parseFind(commandName, command, endIndex);
+                break;
+            case TODO:
+                parseTodo(commandName, command, endIndex);
+                break;
+            case EVENT:
+                parseEvent(commandName, command, endIndex);
+                break;
+            case DEADLINE:
+                parseDeadline(commandName, command, endIndex);
+                break;
+            case UPDATE:
+                parseUpdate(commandName, command, taskDetail, endIndex);
+                break;
+            case MARK:
+                // Fallthrough
+            case UNMARK:
+                // Fallthrough
+            case REMOVE:
+                parseMarkStatusOrRemove(commandName, command, taskDetail);
+                break;
+            case LIST:
+                // Fallthrough
+            case BYE:
+                parseListOrBye(commandName, command);
+                break;
             }
         }
 
@@ -70,9 +70,9 @@ public class Parser {
     }
 
     /**
-     * Checks if the command type is valid.
+     * Returns true if the command type is valid.
      *
-     * @param commandName The command name.
+     * @param commandName Command name.
      * @return True if the command type is valid, false otherwise.
      */
     public boolean isValidCommandType(String commandName) {
@@ -92,9 +92,9 @@ public class Parser {
     /**
      * Parses the keyword to find matching tasks.
      *
-     * @param commandName The command name.
-     * @param command     The user's input.
-     * @param endIndex    The end index of the command.
+     * @param commandName Command name.
+     * @param command     User input command.
+     * @param endIndex    End index of the user input command.
      */
     public void parseFind(String commandName, String command, int endIndex) {
         boolean isFind = command.matches(Regex.FIND_COMMAND);
@@ -109,11 +109,11 @@ public class Parser {
     }
 
     /**
-     * Parses the description of the ToDo task.
+     * Parses description of the ToDo task.
      *
-     * @param commandName The command name.
-     * @param command     The user's input.
-     * @param endIndex    The end index of the command.
+     * @param commandName Command name.
+     * @param command     User input command.
+     * @param endIndex    End index of the user input command.
      */
     public void parseTodo(String commandName, String command, int endIndex) {
         boolean isToDo = command.matches(Regex.TODO_COMMAND);
@@ -128,11 +128,11 @@ public class Parser {
     }
 
     /**
-     * Parses the description and dateTime of the Event task.
+     * Parses description, date and time of the Event task.
      *
-     * @param commandName The command name.
-     * @param command     The user's input.
-     * @param endIndex    The end index of the command.
+     * @param commandName Command name.
+     * @param command     User input command.
+     * @param endIndex    End index of the user input command.
      */
     public void parseEvent(String commandName, String command, int endIndex) {
         boolean isEvent = command.matches(Regex.EVENT_COMMAND);
@@ -151,11 +151,11 @@ public class Parser {
     }
 
     /**
-     * Parses the description and dateTime of the Deadline task.
+     * Parses description, date and time of the Deadline task.
      *
-     * @param commandName The command name.
-     * @param command     The user's input.
-     * @param endIndex    The end index of the command.
+     * @param commandName Command name.
+     * @param command     User input command.
+     * @param endIndex    End index of the user input command.
      */
     public void parseDeadline(String commandName, String command, int endIndex) {
         boolean isDeadline = command.matches(Regex.DEADLINE_COMMAND);
@@ -174,11 +174,11 @@ public class Parser {
     }
 
     /**
-     * Sets the description of the task.
+     * Sets description of the task.
      *
-     * @param command    The user's input.
-     * @param startIndex The start index of the description.
-     * @param endIndex   The end index of the description.
+     * @param command    User input command.
+     * @param startIndex Start index of the description.
+     * @param endIndex   End index of the description.
      */
     public void setDescription(String command, int startIndex, int endIndex) {
         boolean isInValidIndex = startIndex > endIndex;
@@ -192,12 +192,12 @@ public class Parser {
     }
 
     /**
-     * Parses the index and description/dateTime of the task to be updated.
+     * Parses index and description or date and time of the task to be updated.
      *
-     * @param commandName The command name.
-     * @param command     The user's input.
-     * @param taskDetail  The user's input split into an array of task detail.
-     * @param endIndex    The end index of the command.
+     * @param commandName Command name.
+     * @param command     User input command.
+     * @param taskDetail  Task detail of the user input command.
+     * @param endIndex    End index of the user input command.
      */
     public void parseUpdate(String commandName, String command, String[] taskDetail, int endIndex) {
         boolean isUpdate = command.matches(Regex.UPDATE_INDEX_COMMAND);
@@ -228,11 +228,11 @@ public class Parser {
     }
 
     /**
-     * Parses the index of the task to be mark/unmark/remove.
+     * Parses index of the task to be marked or unmarked or removed.
      *
-     * @param commandName The command name.
-     * @param command     The user's input.
-     * @param taskDetail  The user's input split into an array of task detail.
+     * @param commandName Command name.
+     * @param command     User input command.
+     * @param taskDetail  Task detail of the user input command.
      */
     public void parseMarkStatusOrRemove(String commandName, String command, String[] taskDetail) {
         boolean isMarkStatus = command.matches(Regex.MARK_INDEX_COMMAND);
@@ -247,10 +247,10 @@ public class Parser {
     }
 
     /**
-     * Sets the command name and index of the task to be updated.
+     * Sets command name and index of the task to be updated.
      *
-     * @param commandName The command name.
-     * @param taskIndex   The index of the task to be updated.
+     * @param commandName Command name.
+     * @param taskIndex   Index of the task to be updated.
      */
     public void setCommandNameAndIndex(String commandName, int taskIndex) {
         boolean isValidIndex = taskIndex <= Task.getListSize();
@@ -269,8 +269,8 @@ public class Parser {
     /**
      * Parses the list or bye command.
      *
-     * @param commandName The command name.
-     * @param command     The user's input.
+     * @param commandName Command name.
+     * @param command     User input command.
      */
     public void parseListOrBye(String commandName, String command) {
         boolean isList = command.matches(Regex.LIST_COMMAND);

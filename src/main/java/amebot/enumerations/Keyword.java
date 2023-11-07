@@ -1,11 +1,7 @@
 package amebot.enumerations;
 
 /**
- * Keyword enumeration class for Amebot.
- * <p>
- * This class contains the keywords that Amebot uses to identify the user's
- * commands.
- * </p>
+ * Represents the keywords for command type.
  */
 public enum Keyword {
     FIND, TODO, EVENT, DEADLINE, UPDATE, MARK, UNMARK, REMOVE, LIST, BYE

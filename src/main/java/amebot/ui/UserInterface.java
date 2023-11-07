@@ -7,8 +7,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 /**
- * UserInterface class is responsible for getting the user input command(s) and
- * printing the welcome message and output.
+ * UserInterface class handles the user input command and
+ * prints the welcome and output messages.
  */
 public class UserInterface {
     /**
@@ -20,7 +20,9 @@ public class UserInterface {
     }
 
     /**
-     * Get the user input command(s).
+     * Returns the user input command.
+     *
+     * @return User input command.
      */
     public String getInputCommand() {
         Scanner scanInput = new Scanner(System.in);
@@ -31,7 +33,7 @@ public class UserInterface {
     /**
      * Prints the output.
      *
-     * @param logs ArrayList of logs to be printed.
+     * @param logs List of logs to be printed.
      */
     public void printOutput(ArrayList<String> logs) {
         if (!logs.isEmpty()) {

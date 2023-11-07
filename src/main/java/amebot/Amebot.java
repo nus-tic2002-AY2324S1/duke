@@ -9,15 +9,15 @@ import amebot.commands.ExitCommand;
 import java.util.ArrayList;
 
 /**
- * The main class of the application.
+ * Main class of the application.
  */
 public class Amebot {
     private UserInterface userInterface;
 
     /**
-     * The main method of the application.
+     * Main method of the application.
      *
-     * @param args The arguments passed in.
+     * @param args Arguments passed in by the user.
      */
     public static void main(String[] args) {
         Amebot amebot = new Amebot();

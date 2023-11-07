@@ -12,7 +12,7 @@ public class FindCommand extends Command {
     /**
      * FindCommand constructor.
      *
-     * @param keyword The keyword to find matching tasks.
+     * @param keyword Keyword to find matching tasks.
      */
     public FindCommand(String keyword) {
         if (tasks.isEmpty()) {
@@ -23,9 +23,9 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Search the list of tasks to find matching tasks.
+     * Saves list of tasks with matching keyword.
      *
-     * @param keyword The keyword to find matching tasks.
+     * @param keyword Keyword of the tasks.
      */
     public void saveLogs(String keyword) {
         int itemNum = 1;
@@ -43,11 +43,11 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Stores the matching task to the logs.
+     * Stores matching task to the logs.
      *
-     * @param task    The task to be checked.
-     * @param itemNum The item number of the task.
-     * @param keyword The keyword to find matching tasks.
+     * @param task    Task to be checked.
+     * @param itemNum Item number of the task.
+     * @param keyword Keyword to find matching tasks.
      */
     public void storeMatchingTask(Task task, int itemNum, String keyword) {
         String taskType = task.getType();

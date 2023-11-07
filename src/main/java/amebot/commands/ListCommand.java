@@ -4,9 +4,7 @@ import amebot.common.Messages;
 import amebot.tasks.Task;
 
 /**
- * ListCommand class
- *
- * <p>Command to list all tasks
+ * Represents a command that lists all the tasks.
  */
 public class ListCommand extends Command {
     /**

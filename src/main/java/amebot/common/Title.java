@@ -29,7 +29,7 @@ public class Title {
             + "Please enter the command(s):";
 
     /**
-     * Prints the title of the program.
+     * Prints title of the program.
      */
     public static void printHeader() {
         System.out.print(BORDER

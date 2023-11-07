@@ -18,9 +18,9 @@ public class ToDo extends Task {
     }
 
     /**
-     * Get the information of the task.
+     * Returns information of the task.
      *
-     * @return The information of the task.
+     * @return Information of the task.
      */
     @Override
     public String getTask() {

@@ -6,16 +6,16 @@ import amebot.tasks.Event;
 import amebot.tasks.Deadline;
 
 /**
- * TaskEncoder class encodes the Task object into a string.
+ * TaskEncoder class encodes Task object into a string.
  */
 public class TaskEncoder {
     private static final String DELIMITER = "|";
 
     /**
-     * Encodes the Task object into a string.
+     * Returns encoded Task object as string.
      *
-     * @param task The task to be encoded.
-     * @return The encoded task.
+     * @param task Task to be encoded.
+     * @return Encoded task.
      */
     public static String encodeTask(Task task) {
         String taskDetail = "";
@@ -27,18 +27,18 @@ public class TaskEncoder {
         String description = task.getDescription();
 
         switch (commandType) {
-            case TODO:
-                taskDetail = type + DELIMITER + status + DELIMITER + description;
-                break;
-            case EVENT:
-                String fromDateTime = ((Event) task).getFromDateTime();
-                String toDateTime = ((Event) task).getToDateTime();
-                taskDetail = type + DELIMITER + status + DELIMITER + description + DELIMITER + fromDateTime + DELIMITER + toDateTime;
-                break;
-            case DEADLINE:
-                String dueDateTime = ((Deadline) task).getDueDateTime();
-                taskDetail = type + DELIMITER + status + DELIMITER + description + DELIMITER + dueDateTime;
-                break;
+        case TODO:
+            taskDetail = type + DELIMITER + status + DELIMITER + description;
+            break;
+        case EVENT:
+            String fromDateTime = ((Event) task).getFromDateTime();
+            String toDateTime = ((Event) task).getToDateTime();
+            taskDetail = type + DELIMITER + status + DELIMITER + description + DELIMITER + fromDateTime + DELIMITER + toDateTime;
+            break;
+        case DEADLINE:
+            String dueDateTime = ((Deadline) task).getDueDateTime();
+            taskDetail = type + DELIMITER + status + DELIMITER + description + DELIMITER + dueDateTime;
+            break;
         }
 
         return taskDetail;

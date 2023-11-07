@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
- * DateTimeParser class is used to parse the date and time of the task.
+ * Represents a parser that parses the date and time of the task.
  */
 public class DateTimeParser extends Parser {
     private static final int START_INDEX = 0;
@@ -19,12 +19,12 @@ public class DateTimeParser extends Parser {
     private static final int START_INDEX_OF_DUE_DATETIME = 6;
 
     /**
-     * Parses the date and time of the task.
+     * Parses date and time of the task.
      *
-     * @param command    The user's input.
-     * @param startIndex The starting index of the date and time in the command.
-     * @param endIndex   The ending index of the date and time in the command.
-     * @return An ArrayList of the parsed date and time.
+     * @param command    User input command.
+     * @param startIndex Start index of the date and time in user input command.
+     * @param endIndex   End index of the date and time in user input command.
+     * @return List of parsed date and time.
      */
     public ArrayList<String> parseDateTime(String command, int startIndex, int endIndex) {
         String dateTime = command.substring(startIndex, endIndex);
@@ -39,10 +39,10 @@ public class DateTimeParser extends Parser {
     }
 
     /**
-     * Checks if the date and time format of the task is valid.
+     * Returns true if date and time format of the task is valid.
      *
-     * @param dateTime The date and time of the task.
-     * @return A boolean value to indicate if the date and time format of the task is valid.
+     * @param dateTime Date and time of the task.
+     * @return True if date and time format of the task is valid, false otherwise.
      */
     public boolean isValidDateTimeFormat(String dateTime) {
         boolean isEventDateTime = dateTime.matches(Regex.FROM_PATTERN + Regex.DATE_TIME_PATTERN + Regex.TO_PATTERN + Regex.DATE_TIME_PATTERN);
@@ -52,10 +52,10 @@ public class DateTimeParser extends Parser {
     }
 
     /**
-     * Splits the date and time of the task into the start date and time and
-     * end date and time.
+     * Splits date and time of the task into start date with time and
+     * end date with time.
      *
-     * @param dateTime The date and time of the task.
+     * @param dateTime Date and time of the task.
      */
     public void splitDateTime(String dateTime) {
         final int END_INDEX = dateTime.length();
@@ -89,10 +89,10 @@ public class DateTimeParser extends Parser {
     }
 
     /**
-     * Parses the date and time of the task.
+     * Parses date and time of the task.
      *
-     * @param dateTime The date and time of the task.
-     * @return The parsed date and time of the task.
+     * @param dateTime Date and time of the task.
+     * @return Parsed date and time of the task.
      */
     public String parseDateTime(String dateTime) {
         String dateTimeFormat = "";
@@ -114,11 +114,11 @@ public class DateTimeParser extends Parser {
     }
 
     /**
-     * Gets the date and time of the task.
+     * Returns date and time of the task.
      *
-     * @param dateTime          The date and time of the task.
-     * @param dateTimeFormatter The date and time formatter.
-     * @return The date and time of the task.
+     * @param dateTime          Date and time of the task.
+     * @param dateTimeFormatter Date and time formatter.
+     * @return Date and time of the task.
      */
     public String getDateTime(String dateTime, DateTimeFormatter dateTimeFormatter) {
         String parsedDateTime = "";
@@ -134,11 +134,11 @@ public class DateTimeParser extends Parser {
     }
 
     /**
-     * Gets the date of the task.
+     * Returns date of the task.
      *
-     * @param dateTime          The date and time of the task.
-     * @param dateTimeFormatter The date and time formatter.
-     * @return The date of the task.
+     * @param dateTime          Date and time of the task.
+     * @param dateTimeFormatter Date and time formatter.
+     * @return Date of the task.
      */
     public String getDate(String dateTime, DateTimeFormatter dateTimeFormatter) {
         String parsedDateTime = "";

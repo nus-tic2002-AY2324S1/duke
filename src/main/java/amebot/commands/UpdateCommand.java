@@ -8,16 +8,14 @@ import amebot.tasks.Deadline;
 import java.util.ArrayList;
 
 /**
- * UpdateCommand class
- *
- * <p>Command to update the status of a task
+ * Represents a command that updates the description or date and time of a task.
  */
 public class UpdateCommand extends Command {
     /**
      * UpdateCommand constructor
      *
-     * @param index         index of the task to be updated
-     * @param parsedCommand parsed command from the user input
+     * @param index         Index of the task to be updated
+     * @param parsedCommand Parsed command from the user input
      */
     public UpdateCommand(int index, ArrayList<String> parsedCommand) {
         boolean isValidIndex = index > 0 && index <= tasks.size();
@@ -30,10 +28,10 @@ public class UpdateCommand extends Command {
     }
 
     /**
-     * Sets the description or date and time of the task
+     * Sets description or date and time of the task
      *
-     * @param index         index of the task to be updated
-     * @param parsedCommand parsed command from the user input
+     * @param index         Index of the task to be updated
+     * @param parsedCommand Parsed command from the user input
      */
     public void setDescriptionOrDateTime(int index, ArrayList<String> parsedCommand) {
         String content = parsedCommand.get(2).toUpperCase();

@@ -1,9 +1,7 @@
 package amebot.exceptions;
 
 /**
- * AmebotException is the base exception class for all Amebot exceptions.
- *
- * @since 0.1
+ * Represents an exception that is thrown when an error occurs in Amebot.
  */
 public class AmebotException extends Exception {
     public AmebotException(String err) {

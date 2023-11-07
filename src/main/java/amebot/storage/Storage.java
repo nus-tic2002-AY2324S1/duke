@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.io.IOException;
 
 /**
- * Storage class handles the loading of tasks from the file and
- * saving of tasks to the file.
+ * Storage class handles the tasks loaded from file and
+ * saves tasks to file.
  */
 public class Storage {
     protected static final String FILE_PATHNAME = "./src/main/java/data/amebot.txt";
@@ -47,8 +47,7 @@ public class Storage {
     }
 
     /**
-     * Checks if the file exists.
-     * If the file does not exist, a new file will be created.
+     * Returns true if the file exists.
      *
      * @return True if the file exists, false otherwise.
      */
@@ -63,7 +62,7 @@ public class Storage {
     }
 
     /**
-     * Creates a new file if the file does not exist.
+     * Creates a file if it does not exist.
      */
     public void createNewTasksFile() {
         try {
@@ -77,7 +76,7 @@ public class Storage {
     }
 
     /**
-     * Checks if the file is empty.
+     * Returns true if the file is empty.
      *
      * @return True if the file is empty, false otherwise.
      */

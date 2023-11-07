@@ -21,9 +21,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Get the information of the task.
+     * Returns information of the task.
      *
-     * @return The information of the task.
+     * @return Information of the task.
      */
     @Override
     public String getTask() {
@@ -31,18 +31,18 @@ public class Deadline extends Task {
     }
 
     /**
-     * Set the due date and time of the task.
+     * Sets due date and time of the task.
      *
-     * @param dueDateTime The due date and time of the task.
+     * @param dueDateTime Due date and time of the task.
      */
     public void setDueDateTime(String dueDateTime) {
         this.dueDateTime = dueDateTime;
     }
 
     /**
-     * Get the due date and time of the task.
+     * Returns due date and time of the task.
      *
-     * @return The due date and time of the task.
+     * @return Due date and time of the task.
      */
     public String getDueDateTime() {
         return dueDateTime;

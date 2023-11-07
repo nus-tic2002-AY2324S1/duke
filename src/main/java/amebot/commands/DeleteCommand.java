@@ -3,9 +3,7 @@ package amebot.commands;
 import amebot.common.Messages;
 
 /**
- * DeleteCommand class
- *
- * <p>Command to delete a task
+ * Represents a command to delete a task.
  */
 public class DeleteCommand extends Command {
     /**

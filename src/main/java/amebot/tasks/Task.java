@@ -14,8 +14,8 @@ public abstract class Task {
     /**
      * Creates a task.
      *
-     * @param isMarked    Whether the task is marked.
-     * @param description The description of the task.
+     * @param isMarked    Status of the task.
+     * @param description Description of the task.
      */
     public Task(boolean isMarked, String description) {
         this.description = description.toUpperCase();
@@ -32,68 +32,68 @@ public abstract class Task {
     public abstract String getTask();
 
     /**
-     * Set the type of the task.
+     * Sets the type of task.
      *
-     * @param type The type of task.
+     * @param type Type of task.
      */
     public void setType(String type) {
         this.type = type;
     }
 
     /**
-     * Get the type of the task.
+     * Returns the type of task.
      *
-     * @return The type of task.
+     * @return Type of task.
      */
     public String getType() {
         return type;
     }
 
     /**
-     * Set the description of the task.
+     * Sets description of the task.
      *
-     * @param description The description of the task.
+     * @param description Description of the task.
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * Get the description of the task.
+     * Returns description of the task.
      *
-     * @return The description of the task.
+     * @return Description of the task.
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * Set the status of the task as mark.
+     * Sets status of the task as marked.
      */
     public void setStatusAsMark() {
         this.status = MARK;
     }
 
     /**
-     * Set the status of the task as unmark.
+     * Sets status of the task as unmarked.
      */
     public void setStatusAsUnmark() {
         this.status = UNMARK;
     }
 
     /**
-     * Get the status of the task.
+     * Returns status of the task.
      *
-     * @return The status of the task.
+     * @return Status of the task.
      */
     public String getStatus() {
         return status;
     }
 
     /**
-     * Get the size of the task list.
+     * Returns size of the task list.
      *
-     * @return The size of the task list.
+     * @return Size of the task list.
      */
     public static int getListSize() {
         return listSize;
