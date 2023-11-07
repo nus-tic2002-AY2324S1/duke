@@ -30,7 +30,7 @@ public class CrabyMessage {
      */
     public static void printEmptyListForAllCommand(String input) {
         String[] inputArr = input.split(" ");
-        System.out.println(SPACES + "Oops!!! your list are empty.");
+        System.out.println(SPACES + "Oops!!! your list are empty (╯︵╰,)");
         System.out.println(SPACES + "╰┈➤ Please add some tasks before use " + inputArr[0].trim() + " ☘");
         System.out.println(LINE);
     }
@@ -42,8 +42,8 @@ public class CrabyMessage {
      */
     public static void printNumOutOfTask(int input) {
         System.out.print(SPACES + "Oops!!! Something wrong! Your list only have 1 ➞ ");
-        System.out.println(input + " tasks.");
-        System.out.println(SPACES + "Please try again with another number ☘");
+        System.out.println(input + " tasks (╯︵╰,)");
+        System.out.println(SPACES + "╰┈➤ Please try again with another number ☘");
         System.out.println(LINE);
     }
 
@@ -73,7 +73,7 @@ public class CrabyMessage {
      * Sends the wrong date format message to the user.
      */
     public static void printDateTimeParseExceptionMessage() {
-        System.out.println(SPACES + "Oops!!! Looks like you used the wrong format.");
+        System.out.println(SPACES + "Oops!!! Looks like you used the wrong format (╯︵╰,)");
         System.out.println(SPACES + "Please enter in this format after used /by or /from and /to");
         System.out.println(SPACES + "╰┈➤ Try with: \"/by dd/mm/yyyy hhmm\" e.g: /by 12/12/2020 1800");
         System.out.println(SPACES + "          or: \"/by mon\" - CrabY will put the date to the next Monday");
@@ -101,14 +101,14 @@ public class CrabyMessage {
      * Sends the delete error message to the user.
      */
     public static void printDeleteErrorMessage() {
-        System.out.println(SPACES + "Oops!!! Looks like you used the wrong format.");
+        System.out.println(SPACES + "Oops!!! Looks like you used the wrong format (╯︵╰,)");
         System.out.println(SPACES + "╰┈➤ Try with: delete [integer] e.g: delete 1");
         System.out.println(SPACES + "          or: delete all to delete all the tasks in your list.");
         System.out.println(LINE);
     }
 
-    private static final String PRINT_END_OF_LIST = SPACES + " ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦";
-    private static final String PRINT_START_OF_LIST = SPACES + " ╭─────────────────────────────────────╮";
+    private static final String PRINT_END_OF_LIST = SPACES + "꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦";
+    private static final String PRINT_START_OF_LIST = SPACES + "╭─────────────────────────────────────╮";
 
     /**
      * Sends the list an empty message to the user.
@@ -128,7 +128,7 @@ public class CrabyMessage {
      */
     public static void printListMessage(List<Task> tasks) {
         System.out.println(PRINT_START_OF_LIST);
-        System.out.println(SPACES + "  Here are the tasks in your " + checkListName.toUpperCase() + " list:");
+        System.out.println(SPACES + "Here are the tasks in your " + checkListName.toUpperCase() + " list:");
         for (int i = 1; i < tasks.size() + 1; i++) {
             if (i <= 9) {
                 System.out.println("   " + i + ".  " + tasks.get(i - 1));
@@ -157,7 +157,7 @@ public class CrabyMessage {
      * Sends the mark-all messages to the user.
      */
     public static void printMarkAllMessage() {
-        System.out.println(SPACES + "Congratulation! You already DONE all of your tasks.");
+        System.out.println(SPACES + "Congratulations! You have COMPLETED all your tasks.");
         System.out.println(LINE);
     }
 
@@ -165,7 +165,7 @@ public class CrabyMessage {
      * Sends the mark-error message to the user.
      */
     public static void printMarkErrorMessage() {
-        System.out.println(SPACES + "Oops!!! Looks like you used the wrong format.");
+        System.out.println(SPACES + "Oops!!! Looks like you used the wrong format (╯︵╰,)");
         System.out.println(SPACES + "╰┈➤ Try with: mark [integer] e.g: mark 1");
         System.out.println(SPACES + "          or: mark all - to mark all the tasks in your list.");
         System.out.println(LINE);
@@ -194,7 +194,7 @@ public class CrabyMessage {
      * Sends the unmark-error message to the user.
      */
     public static void printUnmarkErrorMessage() {
-        System.out.println(SPACES + "Oops!!! Looks like you used the wrong format.");
+        System.out.println(SPACES + "Oops!!! Looks like you used the wrong format (╯︵╰,)");
         System.out.println(SPACES + "╰┈➤ Try with: unmark [integer] or e.g: unmark 1");
         System.out.println(SPACES + "          or: unmark all - to unmark all the tasks in your list.");
         System.out.println(LINE);
@@ -229,7 +229,7 @@ public class CrabyMessage {
      * Sends the sort message to the user.
      */
     public static void printSortErrorMessage() {
-        System.out.println(SPACES + "Oops!!! Looks like you used the wrong format.");
+        System.out.println(SPACES + "Oops!!! Looks like you used the wrong format (╯︵╰,)");
         System.out.println(SPACES + "╰┈➤ Try with: sort [type/date] e.g: sort type");
         System.out.println(LINE);
     }

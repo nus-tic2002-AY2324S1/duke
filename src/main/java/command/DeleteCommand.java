@@ -27,16 +27,18 @@ public class DeleteCommand extends CrabyMessage implements CommandInterface {
             return;
         }
         input = input.toLowerCase().trim();
-        assert input.length() >= DELETE_LENGTH;
-        String checkDelete = input.substring(DELETE_LENGTH).trim();
+        assert input.length() >= 6;
+        String checkDelete = input.substring(6).trim();
         if (checkDelete.equals("all")) {
             printDeleteAllMessage();
             tasks.clear();
             return;
         }
         try {
-            Integer checkNum = getInteger(tasks, checkDelete);
-            if (checkNum == null) {
+            int checkNum = (Integer.parseInt(checkDelete)) - 1;
+            boolean isNumOutOfTask = checkNum >= tasks.size() || checkNum < 0;
+            if (isNumOutOfTask) {
+                printNumOutOfTask(tasks.size());
                 return;
             }
             printDeleteMessage(tasks.get(checkNum).toString());
@@ -45,14 +47,5 @@ public class DeleteCommand extends CrabyMessage implements CommandInterface {
         } catch (NumberFormatException | StringIndexOutOfBoundsException nfe) {
             printDeleteErrorMessage();
         }
-    }
-
-    private static Integer getInteger(List<Task> tasks, String checkDelete) {
-        int checkNum = (Integer.parseInt(checkDelete)) - 1;
-        if (checkNum >= tasks.size() || checkNum < 0) {
-            printNumOutOfTask(tasks.size());
-            return null;
-        }
-        return checkNum;
     }
 }

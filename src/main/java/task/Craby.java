@@ -47,7 +47,9 @@ public class Craby extends HelloAndByeMessage {
             input = input.trim();
 
             // the data store in the file slip by || so replace it to | to not make the data wrong
-            input = input.replaceAll("\\|\\|", "|");
+            while (input.contains("||")) {
+                input = input.replaceAll("\\|\\|", "|");
+            }
 
             boolean isExit = false;
             putInToStack(input, tasks); // use for undo command
