@@ -16,7 +16,7 @@ import java.util.Stack;
 public class UndoCommand extends CrabyMessage implements CommandInterface {
     private static Stack<List<Task>> stackTaskList = new Stack<>();
     private static Stack<String> stackInput = new Stack<>();
-    private static final List<String> NOT_ALLOWED_UNDO = Arrays.asList("list", "find", "help", "undo", "blah");
+    private static final List<String> NOT_ALLOWED_UNDO = Arrays.asList("list", "find", "help", "undo", "blah", "switch");
 
     /**
      * @inheritDoc Sends the undo message to the user and undo the previous command.

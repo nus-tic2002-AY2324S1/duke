@@ -52,7 +52,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         String timeString = this.time.format(DateTimeFormatter.ofPattern(TIME_OUTPUT_FORMAT));
-        return "[D]" + super.toString() + " (before: " + timeString.trim() + ")";
+        return "[D]" + super.toString() + " || before: " + timeString.trim();
     }
 
     /**
