@@ -112,7 +112,7 @@ public class Parser {
         else {
             command = new Command(CommandEnum.UNKNOWN) {
                 @Override
-                public void execute(TaskList taskList, Ui ui) throws InvalidTaskNumberException {
+                public void execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException {
                     ui.printError();
                 }
             };

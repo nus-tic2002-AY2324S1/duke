@@ -1,5 +1,6 @@
 package com.tina.command;
 
+import com.tina.service.Storage;
 import com.tina.service.Ui;
 import com.tina.task.DeadlineTask;
 import com.tina.task.EventTask;
@@ -34,7 +35,7 @@ public class ScheduleCommand extends Command {
      * @param ui       the ui
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
         TaskList tasks = new TaskList();
         for (Task task : taskList.getTaskList()) {
             if (task instanceof DeadlineTask) {

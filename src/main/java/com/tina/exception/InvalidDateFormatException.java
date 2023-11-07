@@ -4,7 +4,7 @@ package com.tina.exception;
  * The type Invalid date format exception.
  * Thrown when date format is invalid.
  */
-public class InvalidDateFormatException extends DukeException {
+public class InvalidDateFormatException extends TinaException {
 
     /**
      * Instantiates a new Invalid date format exception.

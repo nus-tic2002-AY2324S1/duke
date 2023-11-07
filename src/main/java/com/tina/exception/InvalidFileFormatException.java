@@ -4,7 +4,7 @@ package com.tina.exception;
  * The type Invalid file format exception.
  * Thrown when the file format is invalid.
  */
-public class InvalidFileFormatException extends DukeException {
+public class InvalidFileFormatException extends TinaException {
     /**
      * Instantiates a new Invalid file format exception.
      */

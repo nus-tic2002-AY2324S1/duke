@@ -1,5 +1,9 @@
 package com.tina.command;
 
+import com.tina.exception.ExistedFileException;
+import com.tina.exception.IOException;
+import com.tina.exception.InvalidFilePathException;
+import com.tina.service.Storage;
 import com.tina.service.Ui;
 import com.tina.exception.InvalidTaskNumberException;
 import com.tina.task.TaskList;
@@ -31,7 +35,7 @@ public abstract class Command {
      * @param ui       the ui
      * @throws InvalidTaskNumberException the invalid task number exception
      */
-    public abstract void execute(TaskList taskList, Ui ui) throws InvalidTaskNumberException;
+    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException, InvalidFilePathException, ExistedFileException, IOException;
 
     /**
      * Gets is bye flag.

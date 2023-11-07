@@ -1,5 +1,6 @@
 package com.tina.command;
 
+import com.tina.service.Storage;
 import com.tina.service.Ui;
 import com.tina.exception.InvalidTaskNumberException;
 import com.tina.task.Task;
@@ -31,7 +32,7 @@ public class UnmarkCommand extends Command {
      * @param ui       the ui
      * @throws InvalidTaskNumberException if the task is not found
      */
-    public void execute(TaskList taskList, Ui ui) throws InvalidTaskNumberException {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException {
         try {
             Task curTask = taskList.getTaskList().get(taskNumber - 1);
             curTask.setDone(false);

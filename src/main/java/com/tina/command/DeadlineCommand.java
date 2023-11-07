@@ -1,5 +1,6 @@
 package com.tina.command;
 
+import com.tina.service.Storage;
 import com.tina.service.Ui;
 import com.tina.task.DeadlineTask;
 import com.tina.task.Task;
@@ -54,7 +55,7 @@ public class DeadlineCommand extends Command {
      * @param ui       the ui
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
         Task newTask = new DeadlineTask(taskName, by);
         taskList.add(newTask);
         ui.printTask(newTask, false, taskList.size());
