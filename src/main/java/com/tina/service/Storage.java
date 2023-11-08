@@ -80,9 +80,9 @@ public class Storage {
     public void archive(TaskList taskList, String fileName) throws InvalidFilePathException, com.tina.exception.IOException, ExistedFileException {
         ArrayList<String> tasks = Parser.parseTasksToStorage(taskList);
         try {
-            archivePath = archivePath.resolve(fileName);
-            Files.createFile(archivePath);
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivePath.toFile()))) {
+            Path archiveFile = archivePath.resolve(fileName);
+            Files.createFile(archiveFile);
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(archiveFile.toFile()))) {
                 for (String line : tasks) {
                     bw.write(line);
                     bw.newLine();
@@ -97,5 +97,9 @@ public class Storage {
         } catch (IOException e) {
             throw new com.tina.exception.IOException();
         }
+    }
+
+    public Path getArchivePath() {
+        return archivePath;
     }
 }

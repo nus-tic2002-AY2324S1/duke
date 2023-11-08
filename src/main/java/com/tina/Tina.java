@@ -46,7 +46,7 @@ public class Tina {
     public static void main(String[] args) throws InvalidFilePathException {
         String dir = System.getProperty("user.dir");
         Path path = Paths.get(dir, "data/Tina.txt");
-        Path archviePath = Paths.get(dir, "archive");
+        Path archviePath = Paths.get(dir, "data/archive/");
 
         new Tina(path, archviePath).run();
     }

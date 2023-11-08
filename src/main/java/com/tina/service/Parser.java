@@ -106,6 +106,15 @@ public class Parser {
                         throw new InvalidDateFormatException();
                     }
                     break;
+                case ARCHIVE:
+                    if (tokens.size() != 2) {
+                        throw new InvalidParameterException(CommandEnum.ARCHIVE);
+                    }
+                    String fileName = tokens.get(1);
+                    if (!fileName.toLowerCase().endsWith(".txt")) {
+                        throw new InvalidParameterException(CommandEnum.ARCHIVE);
+                    }
+                    command = new ArchiveCommand(fileName);
                 default:
             }
         }

@@ -28,4 +28,8 @@ public class TaskList {
         return taskList.size();
     }
 
+    public void clear() {
+        taskList.clear();
+    }
+
 }
