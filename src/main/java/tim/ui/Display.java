@@ -1,4 +1,4 @@
-package tim.body;
+package tim.ui;
 import tim.commands.ListOfCommands;
 import tim.tasks.Task;
 import tim.util.TaskList;
@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Represents as a UI object.
+ * Represents as a Display object.
  * This class is responsible for printing messages and task list to the user.
  */
-public class UI {
+public class Display {
 
 
     /**

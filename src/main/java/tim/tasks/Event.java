@@ -42,7 +42,7 @@ public class Event extends Task {
         LocalDate parsedExtendedToDate = LocalDate.parse(extendedToDate);
         if(parsedExtendedToDate.isBefore(this.fromDate)
                 || parsedExtendedToDate.isBefore(this.toDate) ){
-            System.out.println("error: New date is before the original event period!");
+            System.out.println("oh no!  New date is before the original event period!");
             throw new DateException("improper date");
         }
         this.toDate = LocalDate.parse(extendedToDate);

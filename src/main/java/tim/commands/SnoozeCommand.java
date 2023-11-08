@@ -1,8 +1,8 @@
 package tim.commands;
 
+import tim.ui.Display;
 import tim.exceptions.DateException;
 import tim.util.TaskList;
-import tim.body.UI;
 import tim.tasks.Deadline;
 import tim.tasks.Event;
 
@@ -27,20 +27,21 @@ public class SnoozeCommand extends Command{
             String[] temp = token[1].split(" ",2);
             int trueIndex = Integer.parseInt(temp[0]);
             if(tasks.get(trueIndex-1).getType() == 'T'){
-                System.out.println("error: ToDo tasks cannot be snoozed!");
+                System.out.println("oh no!  ToDo tasks cannot be snoozed!");
                 throw new Exception();
             }
             if(temp.length>1 && !temp[1].isBlank()) {
                 postPoneTask(trueIndex, temp[1], tasks);
+                System.out.println("Snoozed task " + trueIndex + ", new end date set.");
             } else {
                 snoozeTaskOneWeek(trueIndex, tasks);
+                System.out.println("Snoozed task " + trueIndex + " by one week.");
             }
-            System.out.println("Snoozed task " + trueIndex + " by one week.");
             System.out.println("Updated Details: ");
-            UI.printSingle(trueIndex, tasks);
-            UI.printDash();
+            Display.printSingle(trueIndex, tasks);
+            Display.printDash();
         } catch (Exception e) {
-            System.out.println("error: please check index or date to postpone to!");
+            System.out.println("oh no!  please check index or date to postpone to!");
         }
     }
 
@@ -65,9 +66,9 @@ public class SnoozeCommand extends Command{
                 event.postponeToDate(newDate);
                 break;
             case 'T':
-                System.out.println("error: ToDo tasks cannot be snoozed!");
+                System.out.println("oh no!  ToDo tasks cannot be snoozed!");
             default:
-                System.out.println("error: unhandled error");
+                System.out.println("oh no!  unhandled error");
         }
 
     }
@@ -92,9 +93,9 @@ public class SnoozeCommand extends Command{
                 event.snoozeToDateByOneWeek();
                 break;
             case 'T':
-                System.out.println("error: ToDo tasks cannot be snoozed!");
+                System.out.println("oh no!  ToDo tasks cannot be snoozed!");
             default:
-                System.out.println("error: unhandled error");
+                System.out.println("oh no!  unhandled error");
         }
 
     }

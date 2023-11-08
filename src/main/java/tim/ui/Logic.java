@@ -1,15 +1,6 @@
-package tim.body;
+package tim.ui;
 
-import tim.commands.ListOfCommands;
-import tim.commands.MarkCommand;
-import tim.commands.UnmarkCommand;
-import tim.commands.ToDoCommand;
-import tim.commands.DeadlineCommand;
-import tim.commands.EventCommand;
-import tim.commands.DeleteCommand;
-import tim.commands.FindCommand;
-import tim.commands.SearchCommand;
-import tim.commands.SnoozeCommand;
+import tim.commands.*;
 import tim.util.Storage;
 import tim.util.TaskList;
 
@@ -36,13 +27,13 @@ public class Logic {
             ListOfCommands verifiedCommands = ListOfCommands.valueOf(command.toUpperCase());
             switch (verifiedCommands) {
             case BYE:
-                UI.goodbyeGreet();
+                Display.goodbyeGreet();
                 break;
             case LIST:
-                UI.printList(tasks);
+                Display.printList(tasks);
                 break;
             case DATE:
-                UI.printDate();
+                Display.printDate();
                 break;
             case MARK:
                 new MarkCommand().execute(token, tasks);
@@ -78,14 +69,18 @@ public class Logic {
                 new SnoozeCommand().execute(token, tasks);
                 Storage.saveList(tasks);
                 break;
+            case CLEAR:
+                new ClearCommand().execute(token, tasks);
+                Storage.saveList(tasks);
+                break;
             case HELP:
-                UI.printHelp();
+                Display.printHelp();
                 break;
             default:
-                System.out.println("error: this should not happen!");
+                System.out.println("oh no!  this should not happen!");
             }
         } catch (IllegalArgumentException IAE) {
-            System.out.println("error: I've not learn to do this yet!!");
+            System.out.println("oh no!  I've not learn to do this yet!!");
         }
     }
 }

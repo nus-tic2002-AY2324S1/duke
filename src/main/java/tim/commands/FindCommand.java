@@ -18,7 +18,7 @@ public class FindCommand extends Command{
             String keyword = token[1];
             Search.strictSearchTaskList(keyword, tasks);
         } catch (Exception e) {
-            System.out.println("error: please include valid keyword to find");
+            System.out.println("oh no!  please include valid keyword to find");
         }
     }
 }

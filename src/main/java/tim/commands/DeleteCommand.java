@@ -1,7 +1,7 @@
 package tim.commands;
 
+import tim.ui.Display;
 import tim.util.TaskList;
-import tim.body.UI;
 
 
 public class DeleteCommand extends Command{
@@ -18,7 +18,7 @@ public class DeleteCommand extends Command{
             int deleteIndex = Integer.parseInt(token[1]);
             deleteFromList(deleteIndex, tasks);
         } catch (Exception e) {
-            System.out.println("error: please include valid index of task to delete");
+            System.out.println("oh no!  please include valid index of task to delete");
         }
     }
 
@@ -26,14 +26,15 @@ public class DeleteCommand extends Command{
      * Deletes the task at the given index from the list.
      *
      * @param deleteIndex Index of the task to be deleted.
-     * @param list List of tasks.
+     * @param tasks List of tasks.
      */
-    static void deleteFromList(int deleteIndex, TaskList list){
+    static void deleteFromList(int deleteIndex, TaskList tasks){
+        TaskList temp = tasks;
+        tasks.remove(deleteIndex-1);
         System.out.print("Deleting: ");
-        UI.printSingle(deleteIndex,list);
-        UI.printDash();
-        list.remove(deleteIndex-1);
-        UI.printList(list);
+        Display.printSingle(deleteIndex,temp);
+        Display.printDash();
+        Display.printList(tasks);
     }
 
 }

@@ -13,6 +13,7 @@ public enum ListOfCommands {
     FIND,
     SEARCH,
     SNOOZE,
+    CLEAR,
     HELP;
 
 }

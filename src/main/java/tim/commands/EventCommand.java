@@ -1,9 +1,9 @@
 package tim.commands;
 
+import tim.ui.Display;
 import tim.util.TaskList;
 import tim.exceptions.BlankInputException;
 import tim.exceptions.DateException;
-import tim.body.UI;
 import tim.tasks.Event;
 
 import java.time.format.DateTimeParseException;
@@ -23,7 +23,7 @@ public class EventCommand extends Command{
             String taskName = token[1];
             addEvent(taskName, tasks);
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.out.println("error: what is the name of the event?");
+            System.out.println("oh no!  what is the name of the event?");
         }
     }
 
@@ -48,17 +48,17 @@ public class EventCommand extends Command{
             fromDate = inputTokenized[1].split(" /to ", 2)[0];
             list.add(new Event(description,fromDate,toDate));
             System.out.println("Gotcha! Added this task:");
-            UI.printSingle(list.size(),list);
+            Display.printSingle(list.size(),list);
             System.out.println("now there is: "+ list.size() + " item(s)");
-            UI.printDash();
+            Display.printDash();
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.out.println("error: you've missed out [/fromDate] or [/toDate] !");
+            System.out.println("oh no!  you've missed out [/fromDate] or [/toDate] !");
         } catch(DateTimeParseException DTPE ){
-            System.out.println("error: that's not a valid date, please enter << /fromDate yyyy-mm-dd /toDate yyyy-mm-dd>>");
+            System.out.println("oh no!  that's not a valid date, please enter << /fromDate yyyy-mm-dd /toDate yyyy-mm-dd>>");
         } catch (BlankInputException BIE) {
-            System.out.println("error: you've missed out the description");
+            System.out.println("oh no!  you've missed out the description");
         } catch (DateException DE){
-            System.out.println("error: /fromDate date shouldn't be later than /toDate date");
+            System.out.println("oh no!  /fromDate date shouldn't be later than /toDate date");
         }
 
     }

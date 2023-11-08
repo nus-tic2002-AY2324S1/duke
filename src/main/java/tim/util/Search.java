@@ -1,9 +1,9 @@
 package tim.util;
 
+import tim.ui.Display;
 import tim.tasks.Task;
-import tim.util.TaskList;
+
 import java.util.ArrayList;
-import tim.body.UI;
 
 /**
  * Represents a Search class.
@@ -25,7 +25,7 @@ public class Search {
                 listOfMatchedIndex.add(trueIndex);
             }
         }
-        UI.printSearchResult(listOfMatchedIndex, tasks);
+        Display.printSearchResult(listOfMatchedIndex, tasks);
     }
 
     /**
@@ -43,7 +43,7 @@ public class Search {
                 listOfMatchedIndex.add(trueIndex);
             }
         }
-        UI.printStrictSearchResult(listOfMatchedIndex, tasks);
+        Display.printStrictSearchResult(listOfMatchedIndex, tasks);
     }
 
 }

@@ -1,7 +1,7 @@
 package tim.commands;
 
+import tim.ui.Display;
 import tim.util.TaskList;
-import tim.body.UI;
 import tim.tasks.Task;
 
 public class MarkCommand extends Command{
@@ -19,7 +19,9 @@ public class MarkCommand extends Command{
             index = Integer.parseInt(token[1]);
             markUnmarkTask(index, true, tasks);
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.out.println("error: incorrect input for index!");
+            System.out.println("oh no!  missing input for index!");
+        } catch (IllegalArgumentException IAE){
+            System.out.println("oh no!  please include valid index of task to mark");
         }
     }
 
@@ -31,21 +33,25 @@ public class MarkCommand extends Command{
      * @param list List of tasks.
      */
     static void markUnmarkTask(int index, boolean markUnmark, TaskList list){
-        Task target = list.get(index-1);
-
-        if((target.getIsDone().equals("x")) != markUnmark){
-            if(markUnmark){
-                System.out.println("Nice! I've marked this task as done:");
+        try{
+            Task target = list.get(index-1);
+            if((target.getIsDone().equals("x")) != markUnmark){
+                if(markUnmark){
+                    System.out.println("Nice! I've marked this task as done:");
+                } else {
+                    System.out.println("OK, I've marked this task as not done yet:");
+                }
+                target.setIsDone(markUnmark);
+                Display.printSingle(index,list);
             } else {
-                System.out.println("OK, I've marked this task as not done yet:");
-            }
-            target.setIsDone(markUnmark);
-            UI.printSingle(index,list);
-        } else {
-            System.out.print("Task is already " + (markUnmark ? "marked" : "unmarked") + ".");
+                System.out.print("Task is already " + (markUnmark ? "marked" : "unmarked") + ".");
 
+            }
+            Display.printDash();
+        } catch (IndexOutOfBoundsException IOOBE){
+            System.out.println("oh no!  please include valid index of task to mark");
         }
-        UI.printDash();
+
 
     }
 

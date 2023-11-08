@@ -1,11 +1,10 @@
 package tim;
-import tim.body.Parser;
+import tim.ui.Display;
+import tim.ui.Parser;
 import tim.util.Storage;
 import tim.util.TaskList;
-import tim.body.UI;
-import tim.tasks.Task;
+
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Tim {
     /**
@@ -17,8 +16,8 @@ public class Tim {
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         TaskList list;
-        UI.printLogo();
-        UI.greetings();
+        Display.printLogo();
+        Display.greetings();
         list = Storage.loadList();
         Parser.inputParser(list);
     }

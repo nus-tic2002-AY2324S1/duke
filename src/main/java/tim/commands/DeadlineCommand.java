@@ -1,8 +1,8 @@
 package tim.commands;
 
+import tim.ui.Display;
 import tim.util.TaskList;
 import tim.exceptions.BlankInputException;
-import tim.body.UI;
 import tim.tasks.Deadline;
 
 import java.time.format.DateTimeParseException;
@@ -21,7 +21,7 @@ public class DeadlineCommand extends Command{
             String taskName = token[1];
             addDeadline(taskName, tasks);
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.out.println("error: what is the name of the deadline agenda?");
+            System.out.println("oh no!  what is the name of the deadline agenda?");
         }
     }
 
@@ -44,15 +44,15 @@ public class DeadlineCommand extends Command{
             }
             tasks.add(new Deadline(description,byDate));
             System.out.println("Gotcha! Added this task:");
-            UI.printSingle(tasks.size(),tasks);
+            Display.printSingle(tasks.size(),tasks);
             System.out.println("now there is: "+ tasks.size() + " item(s)");
-            UI.printDash();
+            Display.printDash();
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.out.println("error: you've missed out [/by] !");
+            System.out.println("oh no!  you've missed out [/by] !");
         } catch(DateTimeParseException DTPE ){
-            System.out.println("error: that's not a valid date, please enter << /by yyyy-mm-dd >>");
+            System.out.println("oh no!  that's not a valid date, please enter << /by yyyy-mm-dd >>");
         } catch (BlankInputException BIE) {
-            System.out.println("error: you've missed out the description");
+            System.out.println("oh no!  you've missed out the description");
         }
 
     }

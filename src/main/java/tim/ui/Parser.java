@@ -1,4 +1,4 @@
-package tim.body;
+package tim.ui;
 import tim.util.TaskList;
 import java.util.Scanner;
 

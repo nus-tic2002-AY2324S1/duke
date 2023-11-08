@@ -1,11 +1,58 @@
-event study math /from 2023-11-01 /to 2023-12-01
-todo pay school fee
-todo return books
-deadline pay credit bill /by 2023-12-01
-list
-mark 1
-delete 2
-search 2023
-find return books
-find books
-bye
+TODO todo1
+TODO
+TODO todo2 2022-02-02
+LIST
+EVENT event1 /from 2022-02-02 /to 2022-02-03
+EVENT
+EVENT /from 2022-02-03 /to 2022-02-04
+EVENT event2 /to 2022-02-05
+EVENT event3 /from 2022-02-06
+EVENT event4 /from 2022-02-07 /to 2022-02-06
+LIST
+DEADLINE deadline1 /by 2000-01-01
+DEADLINE
+DEADLINE /by 2023-01-07
+DEADLINE deadline2
+LIST
+LIST BLAH
+LIST BLAH BLAH BLAH
+MARK 1
+MARK
+MARK -1
+MARK 9999
+MARK non-integer value
+MARK 1 2 3
+LIST
+UNMARK 1
+UNMARK 1
+UNMARK
+UNMARK -1
+UNMARK 9999
+UNMARK non-integer value
+UNMARK 2 3
+DELETE 2
+DELETE
+DELETE -1
+DELETE 9999
+DELETE non-integer value
+SNOOZE 2
+SNOOZE 2 2300-01-01
+SNOOZE 1
+SNOOZE
+SNOOZE -1
+SNOOZE 9999
+SNOOZE non-integer value
+SNOOZE 1 2 3
+SEARCH tod
+SEARCH event1
+SEARCH this doesn't exist
+SEARCH 123
+FIND tod
+FIND todo1
+FIND this doesn't exist
+FIND 123
+CLEAR
+LIST
+BYE
+
+

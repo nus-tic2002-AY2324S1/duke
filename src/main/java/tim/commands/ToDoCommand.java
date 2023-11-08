@@ -1,7 +1,7 @@
 package tim.commands;
 
+import tim.ui.Display;
 import tim.util.TaskList;
-import tim.body.UI;
 import tim.tasks.ToDo;
 
 public class ToDoCommand extends Command{
@@ -18,7 +18,7 @@ public class ToDoCommand extends Command{
             String taskName = token[1];
             addToDo(taskName, tasks);
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.out.println("error: what is the name of the task to complete?");
+            System.out.println("oh no! what is the name of the task to complete?");
         }
     }
 
@@ -31,8 +31,8 @@ public class ToDoCommand extends Command{
     static void addToDo (String inputEntry, TaskList tasks){
         tasks.add(new ToDo(inputEntry));
         System.out.println("Gotcha! Added this task:");
-        UI.printSingle(tasks.size(),tasks);
+        Display.printSingle(tasks.size(),tasks);
         System.out.println("now there is: "+ tasks.size() + " item(s)");
-        UI.printDash();
+        Display.printDash();
     }
 }
