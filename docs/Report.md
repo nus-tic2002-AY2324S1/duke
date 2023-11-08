@@ -35,7 +35,7 @@
     - Delete the local file when it empties the task list.
     - Create a new local file when it creates a new task list.
 
-7. As a user, I want to be able to see the help message when I forget how to use the program.
+7. As a user, I want to be able to see the list of commands that I can use when I forget how to use the program.
 
 8. As a user, I want to be able to see all the tasks in the task list that I have added.
 
@@ -46,6 +46,9 @@
 10. As a user, I want to be able to switch between different task lists, so I just need to type, no need to close the
     program and open it again.
 
+11. As a user, I want to be able to see all checklists that I have created, so I can choose which checklist I want to
+    switch to.
+
 ## Non-Functional Requirements
 
 1. The program should be able to run on any platform.
@@ -53,85 +56,46 @@
 3. The program should be able to run on any screen size.
 4. The program should be able to run on Mac, Windows, and Linux.
 
-## Show case
+## Showcase
 
 1. Show the output Duke shows when you launch the program.
-     ```
-         ____                  _      __   __
-        / ___|  _ __    __ _  | |__   \ \ / /
-       | |     | '__|  / _` | | '_ \   \ V /
-       | |___  | |    | (_| | | |_) |   | |
-        \____| |_|     \__,_| |_.__/    |_|
-    
-       ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-       Hi Amber ♡, CrabY 🦀 here!
-       Which checklist do you want to work on today? (｡◕‿◕｡)
-       ╰┈➤You can typing: "School" | "Work" | "Personal" |
-                      or  [checklist-name] if you wanna creat a new list.
-       ```
+
+     ![img_2.png](img_2.png)
+
+     ![img_3.png](img_3.png)
+
 2. Todo, Deadlines, Events Give examples of command(s) and expected outputs for adding different types of tasks.
 
-    * Todo
-    ```
-    TIC2002 - finish project
-       ✎ added:
-       ╰┈➤ TIC2002 - finish project - to your list
-       Now you have: 1 tasks in your list 🗎.
-      ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ```
-    * Deadline
-    ```
-   TIC2002 - submit project /by 19/11/2023
-      ✎ added:
-      ╰┈➤ TIC2002 - submit project /by 19/11/2023 - to your list
-      Now you have: 4 tasks in your list 🗎.
-      ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ```
-    * Event
-    ```
-   TIC2002 - sent draft to Prof. Damith /from today /to 15/11/2023 2359
-      ✎ added:
-      ╰┈➤ TIC2002 - sent draft to Prof. Damith /from today /to 15/11/2023 2359 - to your list
-      Now you have: 5 tasks in your list 🗎.
-      ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ```
+   * Todo
+
+   ![img_4.png](img_4.png)
+
+   * Deadline
+
+   ![img_5.png](img_5.png)
+
+   * Event
+
+   ![img_6.png](img_6.png)
+
 3. The List Gives examples of command(s) and expected outputs for listing tasks.
-   ```
-   list
-      ╭─────────────────────────────────────╮
-      Here are the tasks in your REPORT list:
-      1.  [T][҉҉҉] TIC2002 - finish project
-      2.  [D][҉҉҉] TIC2002 - submit project || before: 19 Nov 2023, Sun - 12:00AM
-      3.  [E][҉҉҉] TIC2002 - sent draft to Prof. Damith || from: 8 Nov 2023, Wed - 11:59PM ➞ to: 15 Nov 2023, Wed - 11:59PM
-      ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
-      ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-   ```
+
+     ![img_7.png](img_7.png)
+
 4. Mark, Unmark Give examples of command(s) and expected outputs for marking/unmarking tasks as done.
 
     * Mark
-   ```
-   mark 1
-      Nice! I've marked this task as DONE ツ:
-      ╰┈➤ [T][ ✓ ] TIC2002 - finish project
-      ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-   ```
-   ```
-   mark all
-      Congratulations! You have COMPLETED all your tasks.
-      ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-   ```
+   
+    ![img_8.png](img_8.png)
+
+    ![img_9.png](img_9.png)
+
     * Unmark
-   ```
-   unmark             2
-      OK, I've marked this task as ☉⌓☉ NOT DONE yet:
-      ╰┈➤ [D][҉҉҉] TIC2002 - submit project || before: 19 Nov 2023, Sun - 12:00AM
-      ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ```
-    ```
-   unmark all
-      OK, I've marked ALL tasks as ☉⌓☉ NOT DONE yet:
-      ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ```
+
+    ![img_10.png](img_10.png)
+
+    ![img_11.png](img_11.png)
+
 5. Errors Describe what kind of errors Duke can handle. E.g., give different types of incorrect commands (and the
    expected outputs) it can handle
     - If the user types in an invalid index, CrabY will show the error message and ask the user to type in a valid
@@ -209,18 +173,81 @@
    E || 0 || TIC2002 - sent draft to Prof. Damith || 08/11/2023 0000 || 15/11/2023 2359
    ```
 
-8.Dates Give examples (i.e., screenshots of commands and outputs) of how your Duke uses dates/times in meaningful ways
-i.e., what commands can use dates/times in meaningful ways? E.g., is it possible to list deadlines/events on a specific
-day? Does it detect invalid dates given by the user?
-- Easy to format 4 types of date format (dd/mm/yyyy hhmm, yyyy/mm/dd hhmm, dd-mm-yyyy hhmm, yyyy-mm-dd hhmm) to what I want to show to the user.
-- If the event is on the same day, CrabY will show the date only once.
-   ```
+8. Dates Give examples (i.e., screenshots of commands and outputs) of how your Duke uses dates/times in meaningful ways
+   i.e., what commands can use dates/times in meaningful ways? E.g., is it possible to list deadlines/events on a
+   specific
+   day? Does it detect invalid dates given by the user?
+    - Easy to format 4 types of date format (dd/mm/yyyy hhmm, yyyy/mm/dd hhmm, dd-mm-yyyy hhmm, yyyy-mm-dd hhmm) to what
+      I want to show to the user.
+    - If the event is on the same day, CrabY will show the date only once.
+    ```
    group meeting /from 2023/11/14 1830 /to 14-11-2023 2000
       ✎ added:
       ╰┈➤ group meeting /from 14/11/2023 1830 /to 14/11/2023 2000 - to your list
-       Now you have: 4 tasks in your list 🗎.
+      Now you have: 4 tasks in your list 🗎.
    ```
--->
+      -->
    ```
       4.  [E][҉҉҉] Group meeting || from: 14 Nov 2023, Tue - 06:30PM ➞ to: 08:00PM
    ```
+
+9. Find Give examples of command(s) and expected outputs for searching for tasks.
+   ```
+   list
+      ╭─────────────────────────────────────╮
+      Here are the tasks in your REPORT list:
+      1.  [T][҉҉҉] TIC2002 - finish project
+      2.  [D][҉҉҉] TIC2002 - submit project || before: 19 Nov 2023, Sun - 12:00AM
+      3.  [E][҉҉҉] TIC2002 - sent draft to Prof || from: 8 Nov 2023, Wed - 11:59PM ➞ to: 15 Nov 2023, Wed - 12:00AM
+      4.  [E][҉҉҉] Group meeting || from: 14 Nov 2023, Tue - 06:30PM ➞ to: 08:00PM
+      ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+      ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   find project
+      ⌖ Here are the list tasks matching with "project":
+      [T][҉҉҉] TIC2002 - finish project
+      [D][҉҉҉] TIC2002 - submit project || before: 19 Nov 2023, Sun - 12:00AM
+      ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   find tue
+      ⌖ Here are the list tasks matching with "tue":
+      [E][҉҉҉] Group meeting || from: 14 Nov 2023, Tue - 06:30PM ➞ to: 08:00PM
+      ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   find book
+      ✘ No tasks matching with "book" in your list.
+      ╰┈➤ Please try with another keyword ☘
+      ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   ```
+   
+10. GUI/individual feature If you implement a GUI, give some screenshots. If you implement an individual feature, describe that feature.
+    - C-Undo
+        + You can undo the previous command by typing `undo` and then enter.
+        + You can undo the add, delete, mark, unmark, and sort command.
+        + You can undo all tasks to the task they start the program.
+
+    - C-Sort
+        + You can sort the task list by its type or date and time of the task.
+        + If you want to sort the task list by its type, you can type `sort type` or `sort t` and then enter.
+        + If you want to sort the task list by its type reverse, you can type `sort type-r` or `sort tr` and then enter.
+        + If you want to sort the task list by its date and time, you can type `sort date` or `sort d` and then enter.
+
+    - C-Help
+        + You can see the list of commands that you can use by typing `help` and then enter.
+
+    - C-NaturalDates (matching last student number: 3)
+        + Support more natural date formats e.g., Mon in a user command can be interpreted as the date of the next Monday in the calendar.
+
+11. Other features Describe other features you implement (i.e., not described above), if any e.g., optional increments.
+
+    - When the system starts, the user can choose the checklist that they want to work on.
+    - Reason for doing this feature: When I put a lot of tasks in the list, I want to separate them into different
+      categories, so I can work on them one by one, and it will be easier to manage.
+    - How to use this feature:
+        + You can choose the checklist that they want to work on by typing the name of the checklist at the beginning
+          of the program.
+        + If you want to create a new checklist, they can type the name of the checklist that they want to create.
+        + If you type in the name of an existing checklist, they can continue working on the checklist that already has the tasks they set before.
+        + If you want to switch to another checklist, they can type `switch` and then enter. After that, the user
+          can type the checklist name that they want to work on.
+        + If you want to see all the checklists that they have created, they can type `checklists` and then enter.
+          After that, you can see all the checklists that they have created.
+
+    - Screenshots: ![img_1.png](img_1.png)

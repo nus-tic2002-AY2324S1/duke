@@ -14,8 +14,8 @@ public class AddTaskCommandTest {
         AddTaskCommand addTaskCommand = new AddTaskCommand();
         List<Task> tasks = new ArrayList<>();
         addTaskCommand.handleCommand("input", tasks);
-        addTaskCommand.handleCommand("input1", tasks);
-        addTaskCommand.handleCommand("input2", tasks);
+        addTaskCommand.handleCommand("input1 /by tomorrow", tasks);
+        addTaskCommand.handleCommand("input2 /from today /to sunday", tasks);
         Assertions.assertEquals(3, tasks.size());
     }
 }

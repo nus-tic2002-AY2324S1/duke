@@ -3,7 +3,7 @@
 
 ## Introduction
 
-CrabY 🦀 is a Chat bot that help you to manage things to remember, optimized for users who prefer to type over mouse/GUI.
+CrabY 🦀 is a Chat bot that helps you to manage things to remember, optimized for users who prefer to type over mouse/GUI.
 
 ## Getting Started
 
@@ -40,6 +40,7 @@ CrabY 🦀 is a Chat bot that help you to manage things to remember, optimized f
 * Mark a task as done
 * Unmark a task
 * List all tasks
+* Checklists for different task lists
 * Find tasks by keyword
 * Sort tasks by date
 * Sort tasks by type
@@ -51,10 +52,10 @@ CrabY 🦀 is a Chat bot that help you to manage things to remember, optimized f
 
 CrabY can add 3 types of tasks: todo, deadline and event.
 * Todo: A task with only a description.
-* Deadline: A task with a description and a deadline. - Must use `/by` to specify the deadline.
+* Deadline: A task with a description and a deadline. — Must use `/by` to specify the deadline.
     
     E.g. `return book /by 2020-02-02 1800`
-* Event: A task with a description and a time. - Must use `/from` to specify the time.
+* Event: A task with a description and a time. — Must use `/from` to specify the time.
 
     E.g. `project meeting /from 2020-02-02 1400`
 
@@ -80,6 +81,12 @@ E.g. `unmark 2` - will unmark the second task in the task list.
 List all tasks: List all tasks in the task list.
 
 E.g. `list` - will list all tasks in the task list.
+
+### Feature-Checklist
+
+Show all task lists: Show all task lists. 
+
+E.g. `checklist` - will list all task lists.
 
 ### Feature-Find
 
@@ -112,7 +119,7 @@ Type `undo` to undo the previous command. Note: you can only undo add, delete, m
 
 ### Feature-Help
 
-Type `help` to show help message.
+Type `help` to show a help message.
 
 ### Feature-Exit
 
@@ -125,6 +132,8 @@ Type `bye` to exit the program.
 * `find` - Find tasks by keyword
 
 * `list` - List all tasks
+
+* `checklists` - Show all task lists
 
 * `sort` - Sort tasks by date or type
 

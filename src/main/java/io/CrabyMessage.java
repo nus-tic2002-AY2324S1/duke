@@ -1,5 +1,6 @@
 package io;
 
+import java.io.*;
 import task.Task;
 
 import java.util.List;
@@ -277,5 +278,28 @@ public class CrabyMessage {
         System.out.println(LINE);
     }
 
+    /**
+     * Sends the checklist message to the user.
+     */
+    public static void printChecklistMessage(File[] files) {
+        System.out.println(PRINT_START_OF_LIST);
+        if (files != null) {
+            System.out.println(SPACES + "Here are categories of your checklist:");
+            for (File file : files) {
+                if (file.isFile()) {
+                    String fileName = file.getName();
+                    int indexOfLastDot = fileName.lastIndexOf(".");
+                    if (indexOfLastDot > 0) {
+                        fileName = fileName.substring(0, indexOfLastDot).toUpperCase();
+                    }
+                    System.out.println(SPACES + "……✎ " + fileName + " \uD83D\uDDCE.");
+                }
+            }
+        } else {
+            System.out.println(SPACES + "You don't have any checklist yet.");
+        }
+        System.out.println(PRINT_END_OF_LIST);
+        System.out.println(LINE);
+    }
 }
 
