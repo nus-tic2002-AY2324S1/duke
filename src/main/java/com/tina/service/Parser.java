@@ -1,13 +1,16 @@
 package com.tina.service;
 
+import com.joestelmach.natty.DateGroup;
 import com.tina.command.*;
 import com.tina.exception.*;
 import com.tina.task.*;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -100,8 +103,21 @@ public class Parser {
                     }
                     tokens.remove(0);
                     try {
-                        LocalDate date = LocalDate.parse(String.join(" ", tokens));
-                        command = new ScheduleCommand(date);
+                        com.joestelmach.natty.Parser parser = new com.joestelmach.natty.Parser();
+                        List<DateGroup> groups = parser.parse(String.join(" ", tokens));
+                        if (groups.size() != 1) {
+                            throw new InvalidDateFormatException();
+                        }
+                        Date date = null;
+                        List<Date> dates = groups.get(0).getDates();
+                        if (!dates.isEmpty()) {
+                            date = dates.get(0);
+                        }
+                        else {
+                            throw new InvalidDateFormatException();
+                        }
+                        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                        command = new ScheduleCommand(localDate);
                     } catch (DateTimeParseException e) {
                         throw new InvalidDateFormatException();
                     }
