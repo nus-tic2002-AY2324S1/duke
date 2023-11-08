@@ -115,6 +115,13 @@ public class Parser {
                         throw new InvalidParameterException(CommandEnum.ARCHIVE);
                     }
                     command = new ArchiveCommand(fileName);
+                case FIND:
+                    if (tokens.size() == 1) {
+                        throw new InvalidParameterException(CommandEnum.SCHEDULE);
+                    }
+                    tokens.remove(0);
+                    String keyword = String.join(" ", tokens);
+                    command = new FindCommand(keyword);
                 default:
             }
         }

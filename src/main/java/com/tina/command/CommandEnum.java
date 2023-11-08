@@ -16,6 +16,7 @@ public enum CommandEnum {
     DELETE("delete [task number"),
     SCHEDULE("schedule [date]"),
     ARCHIVE("archive [file name].txt"),
+    FIND("find [keyword]"),
     UNKNOWN();
 
     private String syntax;
