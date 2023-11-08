@@ -269,7 +269,7 @@ public class WonkyManager {
      * @throws DukeException if there is an error validating the command argument.
      */
     private static boolean validateArgs(
-        CommandArgument cmdArg, int expectedSize, boolean logError
+        CommandArgument cmdArg, int expectedSize, boolean isError
     ) throws DukeException {
         List<String> argList = cmdArg.getArgList();
         int argCount = cmdArg.getArgCount();
@@ -283,7 +283,7 @@ public class WonkyManager {
             return true;
         }
         if (argCount != expectedSize || (argList.get(0).trim().isEmpty())) {
-            if (logError) {
+            if (isError) {
                 WonkyLogger.mismatchArgs(getLastCmd().getLitr(), expectedSize);
             }
             return false;
