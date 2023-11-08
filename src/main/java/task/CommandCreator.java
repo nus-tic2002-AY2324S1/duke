@@ -37,6 +37,7 @@ public class CommandCreator {
         case UNDO:
             return new UndoCommand();
         case CHECKLISTS:
+        case CHECKLIST:
             return new ChecklistCommand();
         case SWITCH:
             return new SwitchCommand();

@@ -9,7 +9,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static command.UndoCommand.putInToStack;
+import static command.UndoCommand.putOnTheStack;
 
 import java.util.stream.Stream;
 
@@ -43,14 +43,12 @@ public class Craby extends HelloAndByeMessage {
         while (true) {
             String input = scanner.nextLine();
             input = input.trim();
-
             // the data store in the file slip by || so replace it to | to not make the data wrong
             while (input.contains("||")) {
                 input = input.replaceAll("\\|\\|", "|");
             }
-
             boolean isExit = false;
-            putInToStack(input, tasks); // use for undo command
+            putOnTheStack(input, tasks); // use for undo command
             try {
                 isExit = handleInput(input, tasks);
             } catch (InputBlankException e) {

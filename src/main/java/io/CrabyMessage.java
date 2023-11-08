@@ -13,6 +13,9 @@ import java.util.List;
 public class CrabyMessage {
     public static final String LINE = "  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈";
     public static final String SPACES = "   ";
+    private static final String PRINT_END_OF_LIST = SPACES + "꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦";
+    private static final String PRINT_START_OF_LIST = SPACES + "╭─────────────────────────────────────╮";
+
     public static String checkListName;
 
     /**
@@ -107,9 +110,6 @@ public class CrabyMessage {
         System.out.println(SPACES + "          or: delete all to delete all the tasks in your list.");
         System.out.println(LINE);
     }
-
-    private static final String PRINT_END_OF_LIST = SPACES + "꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦";
-    private static final String PRINT_START_OF_LIST = SPACES + "╭─────────────────────────────────────╮";
 
     /**
      * Sends the list an empty message to the user.
@@ -285,21 +285,26 @@ public class CrabyMessage {
         System.out.println(PRINT_START_OF_LIST);
         if (files != null) {
             System.out.println(SPACES + "Here are categories of your checklist:");
-            for (File file : files) {
-                if (file.isFile()) {
-                    String fileName = file.getName();
-                    int indexOfLastDot = fileName.lastIndexOf(".");
-                    if (indexOfLastDot > 0) {
-                        fileName = fileName.substring(0, indexOfLastDot).toUpperCase();
-                    }
-                    System.out.println(SPACES + "……✎ " + fileName + " \uD83D\uDDCE.");
-                }
-            }
+            printChecklist(files);
         } else {
             System.out.println(SPACES + "You don't have any checklist yet.");
         }
         System.out.println(PRINT_END_OF_LIST);
         System.out.println(LINE);
+    }
+
+    private static void printChecklist(File[] files) {
+        for (File file : files) {
+            if (!file.isFile()) {
+                continue;
+            }
+            String fileName = file.getName();
+            int indexOfLastDot = fileName.lastIndexOf(".");
+            if (indexOfLastDot > 0) {
+                fileName = fileName.substring(0, indexOfLastDot).toUpperCase();
+            }
+            System.out.println(SPACES + "……✎ " + fileName + " \uD83D\uDDCE.");
+        }
     }
 }
 

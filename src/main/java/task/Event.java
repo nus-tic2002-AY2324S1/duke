@@ -53,7 +53,7 @@ public class Event extends Task {
         if (isTime.length > 1) {
             this.fromTime = handleDateTime(timeString);
         } else {
-            this.fromTime = handleDateTime(timeString + " 0000");
+            this.fromTime = handleDateTime(timeString + TIME_START_DAY);
         }
     }
 
@@ -80,7 +80,7 @@ public class Event extends Task {
         if (isTime1.length > 1) {
             this.toTime = handleDateTime(timeStringTo);
         } else {
-            this.toTime = handleDateTime(timeStringTo + " 0000");
+            this.toTime = handleDateTime(timeStringTo + TIME_END_DAY);
         }
     }
 

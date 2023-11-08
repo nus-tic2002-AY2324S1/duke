@@ -42,7 +42,7 @@ public class Deadline extends Task {
         if (isTime.length > 1) {
             this.time = handleDateTime(timeString);
         } else {
-            this.time = handleDateTime(timeString + " 0000");
+            this.time = handleDateTime(timeString + TIME_END_DAY);
         }
     }
 

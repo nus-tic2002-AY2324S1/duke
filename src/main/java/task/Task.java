@@ -10,6 +10,8 @@ public class Task {
     public static final String DATE_TIME_OUTPUT_FORMAT = "d MMM yyyy, E hh:mma";
     public static final String DATE_TIME_OUTPUT_FORMAT_THIS_YEAR = "d MMM, E hh:mma";
     public static final String DATE_TIME_STORAGE_DEFAULT_FORMAT = "yyyy/M/d HHmm";
+    public static final String TIME_START_DAY = " 0000";
+    public static final String TIME_END_DAY = " 2359";
 
     protected String description;
     protected boolean isDone;
