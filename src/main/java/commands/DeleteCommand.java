@@ -18,9 +18,13 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, JoshuaUi ui, Storage storage) {
-        Task task = taskList.getItem(taskIdx);
-        ui.joshuaSays("The following task will be deleted:\n\t" + task.toString());
-        taskList.deleteFromTaskList(task);
-        ui.joshuaSays("You now have " + taskList.listSize() + " item(s) in your list.");
+        try {
+            Task task = taskList.getItem(taskIdx);
+            ui.joshuaSays("The following task will be deleted:\n\t" + task.toString());
+            taskList.deleteFromTaskList(task);
+            ui.joshuaSays("You now have " + taskList.listSize() + " item(s) in your list.");
+        } catch (IndexOutOfBoundsException e) {
+            ui.joshuaSays("Enter a number from the task list.");
+        }
     }
 }

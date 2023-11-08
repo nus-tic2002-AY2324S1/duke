@@ -26,6 +26,7 @@ public class JoshuaParser {
 
     public static final Pattern DEADLINE_ARGUMENT_FORMAT = Pattern.compile("(?<desc>.*)/by(?<by>.*)");
     public static final Pattern EVENT_ARGUMENT_FORMAT = Pattern.compile("(?<desc>.*)/from(?<from>.*)/to(?<to>.*)");
+
     /**
      * Pattern to identify date format if user has entered a date.
      */
@@ -38,8 +39,7 @@ public class JoshuaParser {
     public Command parse(String userInput) {
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if(!matcher.matches()) {
-            return new InvalidCommand("Please be more articulate, Professor Falken.\n" +
-                    "Enter \"help\" to see the list of available commands.");
+            return new HelpCommand();
         }
 
         String commandWord = matcher.group("commandWord");
@@ -70,10 +70,11 @@ public class JoshuaParser {
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
 
-        case HelpCommand.COMMAND_WORD: // Fallthrough
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         default:
-            return new HelpCommand();
+            return new InvalidCommand(InvalidCommand.INVALID_COMMAND_MESSAGE);
         }
     }
 
@@ -83,7 +84,7 @@ public class JoshuaParser {
         try {
             taskNum = Integer.parseInt(commandArgs);
         } catch (NumberFormatException e) {
-            return new InvalidCommand("Ensure that you have entered an integer number.");
+            return new InvalidCommand("Please enter an integer number.");
         }
         return new MarkCommand(taskNum);
     }
@@ -94,7 +95,7 @@ public class JoshuaParser {
         try {
             taskNum = Integer.parseInt(commandArgs);
         } catch (NumberFormatException e) {
-            return new InvalidCommand("Ensure that you have entered an integer number.");
+            return new InvalidCommand("Please enter an integer number.");
         }
         return new UnmarkCommand(taskNum);
     }
@@ -105,7 +106,7 @@ public class JoshuaParser {
         try {
             taskNum = Integer.parseInt(commandArgs);
         } catch (NumberFormatException e) {
-            return new InvalidCommand("Ensure that you have entered an integer number.");
+            return new InvalidCommand("Please enter an integer number.");
         }
         return new DeleteCommand(taskNum);
     }
@@ -129,7 +130,10 @@ public class JoshuaParser {
         String by = matcher.group("by").trim();
 
         if (desc.isEmpty()) {
-            return new InvalidCommand("Enter a description for your todo.");
+            return new InvalidCommand("Enter a description for your deadline.");
+        }
+        if (by.isEmpty()) {
+            return new InvalidCommand("Enter the /by parameter for your deadline.");
         }
         return new DeadlineCommand(desc, by);
     }
@@ -145,8 +149,14 @@ public class JoshuaParser {
         String from = matcher.group("from").trim();
         String to = matcher.group("to").trim();
 
-        if (desc.trim().isEmpty()) {
-            return new InvalidCommand("Enter a description for your todo.");
+        if (desc.isEmpty()) {
+            return new InvalidCommand("Enter a description for your event.");
+        }
+        if (from.isEmpty()) {
+            return new InvalidCommand("Enter the /from parameter for your event.");
+        }
+        if (to.isEmpty()) {
+            return new InvalidCommand("Enter the /to parameter for your event.");
         }
         return new EventCommand(desc, from ,to);
     }

@@ -20,7 +20,7 @@ public class MarkCommand extends Command {
             taskList.markTaskAsDone(taskNum);
             ui.joshuaSays("Marked task: " + taskList.getItem(taskIdx));
         } catch (IndexOutOfBoundsException e) {
-            ui.joshuaSays("Enter a number within the task list.");
+            ui.joshuaSays("Enter a number from the task list.");
         }
     }
 }

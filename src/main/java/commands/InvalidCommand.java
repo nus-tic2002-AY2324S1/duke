@@ -8,6 +8,8 @@ import wargames.TaskList;
  * Represents an invalid command
  */
 public class InvalidCommand extends Command {
+    public static final String INVALID_COMMAND_MESSAGE = "Please be more articulate, Professor Falken.\n" +
+            "Enter \"help\" to see the list of available commands.";
     public final String errorMessage;
 
     public InvalidCommand(String errorMessage) {

@@ -14,7 +14,7 @@ public class HelpCommand extends Command {
     @Override
     public void execute(TaskList taskList, JoshuaUi ui, Storage storage) {
         ui.joshuaSays(
-                "Execute one of the following commands: "
+                "List of available commands:\n"
                 + "\tLIST\n"
                 + "\tMARK #\n"
                 + "\tUNMARK #\n"
@@ -23,7 +23,7 @@ public class HelpCommand extends Command {
                 + "\tEVENT /FROM /TO\n"
                 + "\tDELETE\n"
                 + "\tBYE\n"
-                        // + "\n" + DeleteCommand.MESSAGE_USAGE
+                        // + "\n" + HelpCommand.MESSAGE_USAGE
                 + "\tGLOBAL THERMONUCLEAR WAR");
     }
 }
