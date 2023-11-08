@@ -8,15 +8,20 @@ import com.tina.task.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 /**
  * The main program Tina, a chatbot, allows to schedule tasks with flexible functions.
  *
  */
-public class Tina {
+public class Tina extends Application {
 
-    private final Ui ui;
+    private Ui ui;
     private TaskList taskList;
-    private final Storage storage;
+    private Storage storage;
 
     /**
      * Instantiates a new Tina program.
@@ -33,6 +38,8 @@ public class Tina {
             taskList = new TaskList();
         }
     }
+
+    public Tina() {}
 
     /**
      * The entry point of application.
@@ -76,6 +83,15 @@ public class Tina {
         }
 
         storage.save(taskList);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+        Stage stage = new Stage();
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 }
 
