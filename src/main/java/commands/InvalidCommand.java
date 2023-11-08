@@ -1,8 +1,8 @@
 package commands;
 
 import storage.Storage;
-import wargames.JoshuaUi;
-import wargames.TaskList;
+import joshua.JoshuaUi;
+import joshua.TaskList;
 
 /**
  * Represents an invalid command

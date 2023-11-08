@@ -1,6 +1,6 @@
 // JoshuaUi.java handles chatbot-related logic
 
-package wargames;
+package joshua;
 
 import java.util.Scanner;
 

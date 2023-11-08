@@ -2,8 +2,8 @@ package commands;
 
 import storage.Storage;
 import task.Task;
-import wargames.JoshuaUi;
-import wargames.TaskList;
+import joshua.JoshuaUi;
+import joshua.TaskList;
 
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";

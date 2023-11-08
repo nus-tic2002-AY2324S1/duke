@@ -1,8 +1,8 @@
 package commands;
 
 import storage.Storage;
-import wargames.JoshuaUi;
-import wargames.TaskList;
+import joshua.JoshuaUi;
+import joshua.TaskList;
 
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";

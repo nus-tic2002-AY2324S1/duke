@@ -1,4 +1,4 @@
-package wargames;
+package joshua;
 
 import commands.Command;
 import commands.MarkCommand;

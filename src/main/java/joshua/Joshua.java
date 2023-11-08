@@ -1,23 +1,19 @@
-package wargames;
+package joshua;
 import commands.Command;
 import commands.ByeCommand;
 import exceptions.IllegalStorageFormat;
-import exceptions.InvalidCommandException;
-import task.Task;
 import storage.Storage;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Scanner;
 
-public class Duke {
+public class Joshua {
 
     private Storage storage;
     private TaskList taskList;
     private JoshuaUi ui;
     private JoshuaParser parser;
 
-    public Duke() {
+    public Joshua() {
         ui = new JoshuaUi();
         parser = new JoshuaParser();
         storage = new Storage();
@@ -42,6 +38,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke().run();
+        new Joshua().run();
     }
 }

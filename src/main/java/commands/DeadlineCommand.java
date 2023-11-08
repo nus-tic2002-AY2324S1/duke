@@ -3,8 +3,8 @@ package commands;
 import storage.Storage;
 import task.Deadline;
 import task.Task;
-import wargames.JoshuaUi;
-import wargames.TaskList;
+import joshua.JoshuaUi;
+import joshua.TaskList;
 
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";

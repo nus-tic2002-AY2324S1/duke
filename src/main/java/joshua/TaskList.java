@@ -1,6 +1,6 @@
 // MyList.java manages the list of tasks
 
-package wargames;
+package joshua;
 import task.Task;
 
 import java.util.ArrayList;

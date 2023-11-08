@@ -1,11 +1,10 @@
 package commands;
 
-import exceptions.InvalidCommandException;
 import storage.Storage;
 import task.Task;
 import task.ToDo;
-import wargames.JoshuaUi;
-import wargames.TaskList;
+import joshua.JoshuaUi;
+import joshua.TaskList;
 
 public class TodoCommand extends Command {
     public static final String COMMAND_WORD = "todo";
