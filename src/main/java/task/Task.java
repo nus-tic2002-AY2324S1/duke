@@ -30,12 +30,14 @@ public class Task {
         this.isDone = isDone;
     }
 
+    public String toStorageString() {
+        String doneMarker = this.getIsDone() ? "1" : "0";
+        return doneMarker + " | " + desc;
+    }
+
     @Override
     public String toString() {
-        String doneMarker = " ";
-        if (isDone) {
-            doneMarker = "X";
-        }
+        String doneMarker = this.getIsDone() ? "X" : " ";
         return "[" + doneMarker + "] " + desc;
     }
 }

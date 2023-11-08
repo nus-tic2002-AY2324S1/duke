@@ -1,7 +1,7 @@
 package task;
 
 public class Deadline extends Task{
-    private String by;
+    private final String by;
 
     public Deadline(String desc, String by) {
         super(desc);
@@ -15,6 +15,11 @@ public class Deadline extends Task{
 
     public String getBy() {
         return by;
+    }
+
+    @Override
+    public String toStorageString() {
+        return "D | " + super.toStorageString() + " | " + by;
     }
 
     @Override

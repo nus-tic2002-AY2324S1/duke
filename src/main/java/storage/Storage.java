@@ -1,24 +1,45 @@
 package storage;
 
+import commands.InvalidCommand;
+import task.Task;
+import task.ToDo;
+import task.Deadline;
+import task.Event;
+import wargames.TaskList;
 import exceptions.IllegalStorageFormat;
-import task.*;
-import wargames.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.SplittableRandom;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Storage {
+    public static final Pattern BASIC_STORED_TASK_PATTERN = Pattern.compile("(?<taskType>[^|]) \\| (?<isDone>[^|]) \\| (?<args>.*)");
+    public static final Pattern STORED_DEADLINE_ARGS_PATTERN = Pattern.compile("(?<desc>[^|]*) \\| (?<by>[^|]*)");
+    public static final Pattern STORED_EVENT_ARGS_PATTERN = Pattern.compile("(?<desc>[^|]*) \\| (?<from>[^|]*) \\| (?<to>[^|]*)");
 
-    private final String FILEPATH = "data/joshua.txt";
+    private final String FILEPATH = "./data/joshua.txt";
 
     public Storage() {
 
+    }
+
+    /**
+     * Writes the task list from the latest session into joshua.txt
+     *
+     * @param taskList The task list from the latest session of running the Joshua program
+     * @throws IOException If error occurs when writing lines to stored file
+     */
+    public void save(TaskList taskList) throws IOException {
+        FileWriter fw = new FileWriter(FILEPATH);
+        for (int i = 0; i < taskList.listSize(); i++) {
+            Task task = taskList.getItem(i);
+            fw.write(task.toStorageString() + "\n");
+        }
+        fw.close();
     }
 
     /**
@@ -34,7 +55,7 @@ public class Storage {
         TaskList tasklist = new TaskList();
 
         while (scanner.hasNext()) {
-            Task task = parseTaskFromTxt(scanner.nextLine());
+            Task task = parseTaskFromStorage(scanner.nextLine());
             tasklist.addToTaskList(task);
         }
 
@@ -49,95 +70,65 @@ public class Storage {
      * @return A new task object of the specified type (Todo, Deadline, or Event)
      * @throws IllegalStorageFormat If an unsupported task type is provided
      */
-    private Task parseTaskFromTxt(String txtLine) throws IllegalStorageFormat {
-        ArrayList<String> lineArrayList = textToArrayList(txtLine);
-        if (lineArrayList.size() < 3) {
+    private Task parseTaskFromStorage(String txtLine) throws IllegalStorageFormat {
+        Matcher matcher = BASIC_STORED_TASK_PATTERN.matcher(txtLine);
+        if(!matcher.matches()) {
             throw new IllegalStorageFormat("This line in joshua.txt does not meet the required format: " + txtLine);
         }
 
-        String taskType = lineArrayList.get(0);
-        boolean isDone = lineArrayList.get(1).equals("1");
-        String desc = lineArrayList.get(2);
-        String from = null;
-        String to = null;
+        String taskType = matcher.group("taskType");
+        boolean isDone = matcher.group("isDone").equals("1");
+        String args = matcher.group("args");
 
         switch (taskType) {
             case "T":
-                taskType = "todo";
-                break;
+                return new ToDo(args, isDone);
             case "D":
-                taskType = "deadline";
-                from = lineArrayList.get(3);
-                break;
+                return prepareDeadline(isDone, args);
             case "E":
-                taskType = "event";
-                from = lineArrayList.get(3);
-                to = lineArrayList.get(4);
-                break;
+                return prepareEvent(isDone, args);
             default:
                 throw new IllegalStorageFormat("Could not detect task type.");
         }
-
-        return TaskFactory.createTask(taskType, isDone, desc, from, to);
     }
 
-    /**
-     * Takes in a string and splits it by the "|" (pipe) symbol
-     *
-     * @param txtLine a line from stored file joshua.txt
-     * @return An ArrayList of the parts of the command
-     */
-    private ArrayList<String> textToArrayList(String txtLine) {
-        String[] items = txtLine.split(" \\| "); // Split on | symbol
-        ArrayList<String> itemList = new ArrayList<>(Arrays.asList(items));
-        // Remove leading and trailing spaces from each item
-        itemList.replaceAll(String::trim);
-        return itemList;
+    private Task prepareDeadline(boolean isDone, String storedArgs) throws IllegalStorageFormat {
+        Matcher matcher = STORED_DEADLINE_ARGS_PATTERN.matcher(storedArgs);
+        if(!matcher.matches()) {
+            throw new IllegalStorageFormat("Invalid arguments for deadline: " + storedArgs);
+        }
+
+        String desc = matcher.group("desc").trim();
+        String by = matcher.group("by").trim();
+
+        if (desc.isEmpty()) {
+            throw new IllegalStorageFormat("The description for this deadline is empty: " + storedArgs);
+        }
+        if (by.isEmpty()) {
+            throw new IllegalStorageFormat("The \"by\" date for this deadline is empty: " + storedArgs);
+        }
+        return new Deadline(desc, isDone, by);
     }
 
-    public void save(TaskList tasklist) throws IOException {
-        FileWriter fw = new FileWriter(FILEPATH);
-        for (int i = 0; i < tasklist.listSize(); i++) {
-            Task task = tasklist.getItem(i);
-            String encodedTask = encodeTaskForStorage(task);
-            fw.write(encodedTask);
-        }
-        fw.close();
-    }
-
-    private String encodeTaskForStorage(Task task) {
-        final StringBuilder encodedTaskBuilder = new StringBuilder();
-        String taskType = encodeTaskType(task);
-
-        encodedTaskBuilder.append(taskType).append(" | ");
-        encodedTaskBuilder.append(task.getIsDone() ? "1" : "0").append(" | ");
-        encodedTaskBuilder.append(task.getDesc());
-
-        if (taskType.equals("D")) {
-            Deadline deadline = (Deadline) task;
-            encodedTaskBuilder.append(" | ").append(deadline.getBy());
-        }
-        else if (taskType.equals("E")) {
-            Event event = (Event) task;
-            encodedTaskBuilder.append(" | ").append(event.getFrom()).append(" | ").append(event.getTo());
+    private Task prepareEvent(boolean isDone, String storedArgs) throws IllegalStorageFormat {
+        Matcher matcher = STORED_EVENT_ARGS_PATTERN.matcher(storedArgs);
+        if(!matcher.matches()) {
+            throw new IllegalStorageFormat("Invalid arguments for event: " + storedArgs);
         }
 
-        encodedTaskBuilder.append("\n");
+        String desc = matcher.group("desc").trim();
+        String from = matcher.group("from").trim();
+        String to = matcher.group("to").trim();
 
-        return encodedTaskBuilder.toString();
-    }
-
-    private String encodeTaskType(Task task) {
-        String taskType = "";
-        if (task.getClass().equals(ToDo.class)) {
-            taskType = "T";
+        if (desc.isEmpty()) {
+            throw new IllegalStorageFormat("The description for this event is empty: " + storedArgs);
         }
-        else if (task.getClass().equals(Deadline.class)) {
-            taskType = "D";
+        if (from.isEmpty()) {
+            throw new IllegalStorageFormat("The \"from\" date for this event is empty: " + storedArgs);
         }
-        else if (task.getClass().equals(Event.class)) {
-            taskType = "E";
+        if (to.isEmpty()) {
+            throw new IllegalStorageFormat("The \"to\" date for this event is empty: " + storedArgs);
         }
-        return taskType;
+        return new Event(desc, isDone, from, to);
     }
 }
