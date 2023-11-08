@@ -20,15 +20,16 @@ public class Ui {
      * Show welcome message and give command list for help.
      */
     public void showWelcome() {
-        String logo =   "████████ ██ ███    ██  █████  \n" +
-                        "   ██    ██ ████   ██ ██   ██ \n" +
-                        "   ██    ██ ██ ██  ██ ███████ \n" +
-                        "   ██    ██ ██  ██ ██ ██   ██ \n" +
-                        "   ██    ██ ██   ████ ██   ██";
-
+        String logo =   "                      \n" +
+                        "  ___________   _____ \n" +
+                        " /_  __/  _/ | / /   |\n" +
+                        "  / /  / //  |/ / /| |\n" +
+                        " / / _/ // /|  / ___ |\n" +
+                        "/_/ /___/_/ |_/_/  |_|\n"+
+                        "                      ";
         System.out.println(logo);
         System.out.println("Hello! I'm TINA. \nHow can I help you?\n");
-        printCommandList();
+        System.out.println("type help to get command list");
         printDividerLine();
     }
 
@@ -45,6 +46,8 @@ public class Ui {
         System.out.println("mark [task number]");
         System.out.println("unmark [task number]");
         System.out.println("delete [task number]");
+        System.out.println("schedule [date]");
+        System.out.println("archive [file name].txt");
     }
 
     /**
