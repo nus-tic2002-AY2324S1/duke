@@ -284,7 +284,7 @@ public class WonkyManager {
         }
         if (argCount != expectedSize || (argList.get(0).trim().isEmpty())) {
             if (isError) {
-                WonkyLogger.mismatchArgs(getLastCmd().getLitr(), expectedSize);
+                WonkyLogger.mismatchArgs(cmdArg.getCmdLitr(), expectedSize);
             }
             return false;
         }
