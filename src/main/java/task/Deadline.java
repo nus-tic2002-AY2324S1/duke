@@ -24,20 +24,20 @@ public class Deadline extends Task {
     }
 
     /**
-     * This class represents a deadline task that user input have /by
+     * Adds a deadline tasks.
      *
      * @param description the description of the task.
-     * @param timeString the time of the task.
+     * @param timeString  the time of the task.
      */
     public Deadline(String description, String timeString) {
         super(description);
+        assert timeString != null;
         timeString = timeString.trim();
         LocalDateTime dateTime = DateTimeUtils.parseNextDay(timeString);
         if (dateTime != null) {
             this.time = dateTime;
             return;
         }
-
         String[] isTime = timeString.split(" ");
         if (isTime.length > 1) {
             this.time = handleDateTime(timeString);
@@ -51,7 +51,13 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        String timeString = this.time.format(DateTimeFormatter.ofPattern(TIME_OUTPUT_FORMAT));
+        LocalDateTime now = LocalDateTime.now();
+        String timeString;
+        if (now.getYear() == this.time.getYear()) {
+            timeString = this.time.format(DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMAT_THIS_YEAR));
+        } else {
+            timeString = this.time.format(DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMAT));
+        }
         return "[D]" + super.toString() + " || before: " + timeString.trim();
     }
 
@@ -63,7 +69,7 @@ public class Deadline extends Task {
         String type = "D";
         String status = isDone ? "1" : "0";
         String description = this.description;
-        String time = this.time.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm"));
+        String time = this.time.format(DateTimeFormatter.ofPattern(DATE_TIME_STORAGE_DEFAULT_FORMAT));
         return type + " || " + status + " || " + description + " || " + time;
     }
 
@@ -72,7 +78,8 @@ public class Deadline extends Task {
      */
     @Override
     public Task clone() {
-        Deadline clone = new Deadline(this.description, this.time.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")));
+        Deadline clone = new Deadline(this.description,
+                                      this.time.format(DateTimeFormatter.ofPattern(DATE_TIME_STORAGE_DEFAULT_FORMAT)));
         clone.setDone(this.isDone);
         return clone;
     }

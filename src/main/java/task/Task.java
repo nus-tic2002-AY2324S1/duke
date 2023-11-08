@@ -7,7 +7,10 @@ import java.time.format.DateTimeFormatter;
  * This class represents a task.
  */
 public class Task {
-    public static final String TIME_OUTPUT_FORMAT = "d MMM yyyy, E - hh:mma";
+    public static final String DATE_TIME_OUTPUT_FORMAT = "d MMM yyyy, E hh:mma";
+    public static final String DATE_TIME_OUTPUT_FORMAT_THIS_YEAR = "d MMM, E hh:mma";
+    public static final String DATE_TIME_STORAGE_DEFAULT_FORMAT = "yyyy/M/d HHmm";
+
     protected String description;
     protected boolean isDone;
 
@@ -47,9 +50,10 @@ public class Task {
     }
 
     /**
-     * This method is to handle the date and time.
+     * Returns the date and time of the task.
      * It will cover four different formats of the date and time.
      *
+     * @param time the time string from the user.
      * @return The LocalDateTime object to the format requirement.
      */
     protected LocalDateTime handleDateTime(String time) {

@@ -89,17 +89,25 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        String timeString = this.fromTime.format(DateTimeFormatter.ofPattern(TIME_OUTPUT_FORMAT));
+        LocalDateTime now = LocalDateTime.now();
+        String timeString;
+        if (now.getYear() == this.fromTime.getYear()) {
+            timeString = this.fromTime.format(DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMAT_THIS_YEAR));
+        } else {
+            timeString = this.fromTime.format(DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMAT));
+        }
         if (this.toTime == null) {
             return "[E]" + super.toString() + " || from: " + timeString;
         }
         boolean isSameDay = this.fromTime.format(DateTimeFormatter.ofPattern("d MMM yyyy"))
-                .equals(this.toTime.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
+                                         .equals(this.toTime.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
         String timeString1;
         if (isSameDay) {
             timeString1 = this.toTime.format(DateTimeFormatter.ofPattern("hh:mma"));
+        } else if (now.getYear() == this.toTime.getYear()) {
+            timeString1 = this.toTime.format(DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMAT_THIS_YEAR));
         } else {
-            timeString1 = this.toTime.format(DateTimeFormatter.ofPattern(TIME_OUTPUT_FORMAT));
+            timeString1 = this.toTime.format(DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMAT));
         }
         return "[E]" + super.toString() + " || from: " + timeString + " ➞ to: " + timeString1;
     }
@@ -112,11 +120,11 @@ public class Event extends Task {
         String type = "E";
         String status = isDone ? "1" : "0";
         String description = this.description;
-        String time = this.fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm"));
+        String time = this.fromTime.format(DateTimeFormatter.ofPattern(DATE_TIME_STORAGE_DEFAULT_FORMAT));
         if (this.toTime == null) {
             return type + " || " + status + " || " + description + " || " + time;
         }
-        String timeOfTo = this.toTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm"));
+        String timeOfTo = this.toTime.format(DateTimeFormatter.ofPattern(DATE_TIME_STORAGE_DEFAULT_FORMAT));
         return type + " || " + status + " || " + description + " || " + time + " || " + timeOfTo;
     }
 
@@ -125,7 +133,8 @@ public class Event extends Task {
      */
     @Override
     public Event clone() {
-        Event event = new Event(this.description, this.fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")));
+        Event event = new Event(this.description,
+                                this.fromTime.format(DateTimeFormatter.ofPattern(DATE_TIME_STORAGE_DEFAULT_FORMAT)));
         event.setDone(this.isDone);
         event.toTime = this.toTime;
         return event;

@@ -116,8 +116,8 @@ public class CrabyMessage {
      */
     public static void printEmptyList() {
         System.out.println(PRINT_START_OF_LIST);
-        System.out.println(SPACES + "    ░░░░ Your " + checkListName.toUpperCase() + " list is empty! ░░░░");
-        System.out.println(SPACES + "        Let's start a new checklist");
+        System.out.println(SPACES + " ░░░░ Your " + checkListName.toUpperCase() + " list is empty! ░░░░");
+        System.out.println(SPACES + "      Let's start a new checklist");
         System.out.println(PRINT_END_OF_LIST);
         System.out.println(LINE);
     }

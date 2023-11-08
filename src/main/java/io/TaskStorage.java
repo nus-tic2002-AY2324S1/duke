@@ -90,8 +90,6 @@ public class TaskStorage {
      * time: yyyy/MM/dd HHmm
      *
      * @param reader the reader to read the file
-     *               the list of tasks
-     *               the line from the file
      * @param tasks  the list of tasks to store the tasks
      */
     private static void loadLine(BufferedReader reader, List<Task> tasks) throws IOException {

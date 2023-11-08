@@ -12,6 +12,7 @@ import java.util.List;
 public class Sort {
     /**
      * Returns the sorted list of tasks according to the input.
+     *
      * @param input The input from the user.
      * @param tasks The list of tasks.
      */

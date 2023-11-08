@@ -12,6 +12,7 @@ public class ChecklistCommand extends CrabyMessage implements CommandInterface {
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
+        assert input != null;
         String folderPath = "./data";
         File folder = new File(folderPath);
         if (!folder.exists() && !folder.isDirectory()) {

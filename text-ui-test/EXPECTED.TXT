@@ -14,13 +14,13 @@
    Ok I got it! Let start with your ➞ School list.
    ╰┈➤Type "help" if you need to see what I can do for you
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-   Oops!!! your list are empty.
+   Oops!!! your list are empty (╯︵╰,)
    ╰┈➤ Please add some tasks before use find ☘
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-       ░░░░ Your SCHOOL list is empty! ░░░░
-           Let's start a new checklist
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ╭─────────────────────────────────────╮
+    ░░░░ Your SCHOOL list is empty! ░░░░
+         Let's start a new checklist
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ Test mark - to your list
@@ -34,12 +34,12 @@
    ╰┈➤ Test undo mark - to your list
    Now you have: 3 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
    1.  [T][҉҉҉] Test mark
    2.  [T][҉҉҉] Test unmark
    3.  [T][҉҉҉] Test undo mark
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Nice! I've marked this task as DONE ツ:
    ╰┈➤ [T][ ✓ ] Test mark
@@ -47,12 +47,12 @@
    Nice! I've marked this task as DONE ツ:
    ╰┈➤ [T][ ✓ ] Test unmark
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
    1.  [T][ ✓ ] Test mark
    2.  [T][ ✓ ] Test unmark
    3.  [T][҉҉҉] Test undo mark
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    OK, I've marked this task as ☉⌓☉ NOT DONE yet:
    ╰┈➤ [T][҉҉҉] Test unmark
@@ -60,12 +60,12 @@
    Nice! I've marked this task as DONE ツ:
    ╰┈➤ [T][ ✓ ] Test undo mark
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
    1.  [T][ ✓ ] Test mark
    2.  [T][҉҉҉] Test unmark
    3.  [T][ ✓ ] Test undo mark
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
    ╰┈➤I've undo your command: mark 3
@@ -83,50 +83,50 @@
    Now you have: 6 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Sorting by type...
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon - 12:00PM
-   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon - 01:00PM
-   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon - 04:00PM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon 12:00PM
+   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon 01:00PM
+   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon 04:00PM
    4.  [T][ ✓ ] Test mark
    5.  [T][҉҉҉] Test undo mark
    6.  [T][҉҉҉] Test unmark
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Sorting by date...
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon - 12:00PM
-   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon - 01:00PM
-   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon - 04:00PM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon 12:00PM
+   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon 01:00PM
+   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon 04:00PM
    4.  [T][ ✓ ] Test mark
    5.  [T][҉҉҉] Test undo mark
    6.  [T][҉҉҉] Test unmark
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Sorting by type revert order...
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
    1.  [T][҉҉҉] Test unmark
    2.  [T][҉҉҉] Test undo mark
    3.  [T][ ✓ ] Test mark
-   4.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon - 04:00PM
-   5.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon - 01:00PM
-   6.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon - 12:00PM
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   4.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon 04:00PM
+   5.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon 01:00PM
+   6.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon 12:00PM
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
    ╰┈➤I've undo your command: sort tr
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon - 12:00PM
-   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon - 01:00PM
-   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon - 04:00PM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon 12:00PM
+   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon 01:00PM
+   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon 04:00PM
    4.  [T][ ✓ ] Test mark
    5.  [T][҉҉҉] Test undo mark
    6.  [T][҉҉҉] Test unmark
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ test delete all - to your list
@@ -140,84 +140,80 @@
    ╰┈➤ Test delete - to your list
    Now you have: 9 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon - 12:00PM
-   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon - 01:00PM
-   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon - 04:00PM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon 12:00PM
+   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon 01:00PM
+   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon 04:00PM
    4.  [T][ ✓ ] Test mark
    5.  [T][҉҉҉] Test undo mark
    6.  [T][҉҉҉] Test unmark
    7.  [T][҉҉҉] Test delete all
    8.  [T][҉҉҉] Test undo delete
    9.  [T][҉҉҉] Test delete
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ⌖ Here are the list tasks matching with "sort":
-   [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon - 12:00PM
-   [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon - 01:00PM
-   [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon - 04:00PM
+   [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon 12:00PM
+   [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon 01:00PM
+   [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon 04:00PM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ⌖ Here are the list tasks matching with "[d]":
-   [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon - 12:00PM
+   [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon 12:00PM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Noted. I've removed this task:
    ╰┈➤ [T][҉҉҉] Test delete - in your list
-   Now you have: 9 tasks in your list 🗎.
+   Now you have: 8 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon - 12:00PM
-   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon - 01:00PM
-   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon - 04:00PM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon 12:00PM
+   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon 01:00PM
+   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon 04:00PM
    4.  [T][ ✓ ] Test mark
    5.  [T][҉҉҉] Test undo mark
    6.  [T][҉҉҉] Test unmark
    7.  [T][҉҉҉] Test delete all
    8.  [T][҉҉҉] Test undo delete
-   9.  [T][҉҉҉] Test delete
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Noted. I've removed this task:
    ╰┈➤ [T][҉҉҉] Test undo delete - in your list
-   Now you have: 9 tasks in your list 🗎.
+   Now you have: 7 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon - 12:00PM
-   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon - 01:00PM
-   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon - 04:00PM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon 12:00PM
+   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon 01:00PM
+   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon 04:00PM
    4.  [T][ ✓ ] Test mark
    5.  [T][҉҉҉] Test undo mark
    6.  [T][҉҉҉] Test unmark
    7.  [T][҉҉҉] Test delete all
-   8.  [T][҉҉҉] Test undo delete
-   9.  [T][҉҉҉] Test delete
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
    ╰┈➤I've undo your command: delete 8
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon - 12:00PM
-   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon - 01:00PM
-   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon - 04:00PM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][҉҉҉] Test sort by type || before: 1 Jan 2024, Mon 12:00PM
+   2.  [E][҉҉҉] Test sort by date || from: 1 Jan 2024, Mon 01:00PM
+   3.  [E][҉҉҉] Test sort by date: this one will on top if system correct || from: 1 Apr 2024, Mon 04:00PM
    4.  [T][ ✓ ] Test mark
    5.  [T][҉҉҉] Test undo mark
    6.  [T][҉҉҉] Test unmark
    7.  [T][҉҉҉] Test delete all
    8.  [T][҉҉҉] Test undo delete
-   9.  [T][҉҉҉] Test delete
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Ok, I clean up all your tasks
    ╰┈➤ Let's start a new checklist
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-       ░░░░ Your SCHOOL list is empty! ░░░░
-           Let's start a new checklist
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ╭─────────────────────────────────────╮
+    ░░░░ Your SCHOOL list is empty! ░░░░
+         Let's start a new checklist
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ learn front end /from 04-12-2023 1300 /to 2023-12-31 2300 - to your list
@@ -244,14 +240,14 @@
    Now you have: 6 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Nice! I've marked this task as DONE ツ:
-   ╰┈➤ [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
+   ╰┈➤ [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ Chang & Felicia's wedding /from 04/11/2023 1800 /to 2023-11-04 2200 - to your list
    Now you have: 7 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Nice! I've marked this task as DONE ツ:
-   ╰┈➤ [D][ ✓ ] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
+   ╰┈➤ [D][ ✓ ] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ TIC2002 - Final Exam /from 04-12-2023 1300 /to 04-12-2023 1430 - to your list
@@ -261,21 +257,21 @@
    ╰┈➤ Task to delete - to your list
    Now you have: 9 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   2.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   3.  [D][ ✓ ] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   4.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   6.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
-   7.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   8.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   2.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   3.  [D][ ✓ ] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   4.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   6.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   7.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   8.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    9.  [T][҉҉҉] Task to delete
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    OK, I've marked this task as ☉⌓☉ NOT DONE yet:
-   ╰┈➤ [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
+   ╰┈➤ [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ Oder FoodPanda for dinner every weekday - to your list
@@ -290,7 +286,7 @@
    Now you have: 12 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Nice! I've marked this task as DONE ツ:
-   ╰┈➤ [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
+   ╰┈➤ [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Oops!!! The description cannot be empty.
    ╰┈➤Type "help" if you need to see the list of command
@@ -302,176 +298,173 @@
    Undo Successful!!!
    ╰┈➤I've undo your command:add - event to check undo /from 2/10/2019 0900 /to 2/10/2019 1130
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   2.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   3.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   4.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   6.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
-   7.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   8.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   2.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   3.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   4.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   6.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   7.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   8.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    9.  [T][҉҉҉] Task to delete
    10. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   11. [D][҉҉҉] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   12. [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   11. [D][҉҉҉] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   12. [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ⌖ Here are the list tasks matching with "tic":
-   [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
-   [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
-   [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
+   [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
+   [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ⌖ Here are the list tasks matching with "[d]":
-   [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
-   [D][҉҉҉] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
+   [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   [D][҉҉҉] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Oops!!! I'm sorry, but I don't know what that means ☘
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   2.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   3.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   4.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   6.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
-   7.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   8.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   2.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   3.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   4.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   6.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   7.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   8.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    9.  [T][҉҉҉] Task to delete
    10. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   11. [D][҉҉҉] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   12. [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   11. [D][҉҉҉] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   12. [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Sorting by type...
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
-   2.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   3.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
-   4.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   6.  [D][҉҉҉] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   7.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   8.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   9.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   10. [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
+   2.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   3.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   4.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   6.  [D][҉҉҉] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   7.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   8.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   9.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   10. [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    11. [T][҉҉҉] Oder FoodPanda for dinner every weekday
    12. [T][҉҉҉] Task to delete
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Nice! I've marked this task as DONE ツ:
    ╰┈➤ [T][ ✓ ] Task to delete
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Nice! I've marked this task as DONE ツ:
-   ╰┈➤ [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
+   ╰┈➤ [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Sorting by type revert order...
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
    1.  [T][҉҉҉] Oder FoodPanda for dinner every weekday
    2.  [T][ ✓ ] Task to delete
-   3.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
-   4.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   5.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   6.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   7.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   9.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
-   10. [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   11. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   12. [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   3.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
+   4.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   5.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   6.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   7.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   9.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   10. [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   11. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   12. [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Noted. I've removed this task:
    ╰┈➤ [T][ ✓ ] Task to delete - in your list
-   Now you have: 12 tasks in your list 🗎.
+   Now you have: 11 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
    1.  [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   2.  [T][ ✓ ] Task to delete
-   3.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
-   4.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   5.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   6.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   7.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   9.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
-   10. [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   11. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   12. [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   2.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
+   3.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   4.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   5.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   6.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   7.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   8.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   9.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   10. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   11. [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ TMA2031 - Final Exam /from 25/11/2023 0900 /to 25/11/2023 1100 - to your list
-   Now you have: 13 tasks in your list 🗎.
+   Now you have: 12 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ Drink more water - to your list
-   Now you have: 14 tasks in your list 🗎.
+   Now you have: 13 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Sorting by date...
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   2.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   3.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
-   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov 2023, Sat - 09:00AM ➞ to: 11:00AM
-   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
-   6.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   2.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   3.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
+   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov, Sat 09:00AM ➞ to: 11:00AM
+   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
+   6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   13. [T][ ✓ ] Task to delete
-   14. [T][҉҉҉] Drink more water
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   13. [T][҉҉҉] Drink more water
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-   Oops!!! Something wrong! Your list only have 1 ➞ 14 tasks.
-   Please try again with another number ☘
+   Oops!!! Something wrong! Your list only have 1 ➞ 13 tasks (╯︵╰,)
+   ╰┈➤ Please try again with another number ☘
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   2.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   3.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
-   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov 2023, Sat - 09:00AM ➞ to: 11:00AM
-   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
-   6.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   2.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   3.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
+   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov, Sat 09:00AM ➞ to: 11:00AM
+   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
+   6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   13. [T][ ✓ ] Task to delete
-   14. [T][҉҉҉] Drink more water
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   13. [T][҉҉҉] Drink more water
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ check undo mark - to your list
-   Now you have: 15 tasks in your list 🗎.
+   Now you have: 14 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ check multiple undo - to your list
-   Now you have: 16 tasks in your list 🗎.
+   Now you have: 15 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ check undo add task - to your list
-   Now you have: 17 tasks in your list 🗎.
+   Now you have: 16 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
    ╰┈➤I've undo your command:add - check undo add task
@@ -479,121 +472,116 @@
    Undo Successful!!!
    ╰┈➤I've undo your command:add - check multiple undo
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   2.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   3.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
-   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov 2023, Sat - 09:00AM ➞ to: 11:00AM
-   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
-   6.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   2.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   3.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
+   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov, Sat 09:00AM ➞ to: 11:00AM
+   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
+   6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   13. [T][ ✓ ] Task to delete
-   14. [T][҉҉҉] Drink more water
-   15. [T][҉҉҉] Check undo mark
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   13. [T][҉҉҉] Drink more water
+   14. [T][҉҉҉] Check undo mark
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Sorting by type revert order...
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
    1.  [T][҉҉҉] Oder FoodPanda for dinner every weekday
    2.  [T][҉҉҉] Drink more water
    3.  [T][҉҉҉] Check undo mark
-   4.  [T][ ✓ ] Task to delete
-   5.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov 2023, Sat - 09:00AM ➞ to: 11:00AM
-   6.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
-   7.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   8.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   11. [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   12. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
-   13. [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   14. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   15. [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov, Sat 09:00AM ➞ to: 11:00AM
+   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
+   6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   7.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   8.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   9.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   10. [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   12. [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   13. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   14. [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
    ╰┈➤I've undo your command: sort tr
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   2.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   3.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
-   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov 2023, Sat - 09:00AM ➞ to: 11:00AM
-   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
-   6.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   2.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   3.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
+   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov, Sat 09:00AM ➞ to: 11:00AM
+   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
+   6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   13. [T][ ✓ ] Task to delete
-   14. [T][҉҉҉] Drink more water
-   15. [T][҉҉҉] Check undo mark
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   13. [T][҉҉҉] Drink more water
+   14. [T][҉҉҉] Check undo mark
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Nice! I've marked this task as DONE ツ:
-   ╰┈➤ [T][ ✓ ] Drink more water
+   ╰┈➤ [T][ ✓ ] Check undo mark
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
    ╰┈➤I've undo your command: mark 14
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   2.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   3.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
-   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov 2023, Sat - 09:00AM ➞ to: 11:00AM
-   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
-   6.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   2.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   3.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
+   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov, Sat 09:00AM ➞ to: 11:00AM
+   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
+   6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   13. [T][ ✓ ] Task to delete
-   14. [T][҉҉҉] Drink more water
-   15. [T][҉҉҉] Check undo mark
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   13. [T][҉҉҉] Drink more water
+   14. [T][҉҉҉] Check undo mark
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Ok, I clean up all your tasks
    ╰┈➤ Let's start a new checklist
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-       ░░░░ Your SCHOOL list is empty! ░░░░
-           Let's start a new checklist
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   ╭─────────────────────────────────────╮
+    ░░░░ Your SCHOOL list is empty! ░░░░
+         Let's start a new checklist
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
    ╰┈➤I've undo your command: delete all
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-    ╭─────────────────────────────────────╮
-     Here are the tasks in your SCHOOL list:
-   1.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat - 05:30AM
-   2.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov 2023, Sat - 06:00PM ➞ to: 10:00PM
-   3.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov 2023, Sat - 10:00PM
-   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov 2023, Sat - 09:00AM ➞ to: 11:00AM
-   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 02:30PM
-   6.  [E][҉҉҉] Learn front end || from: 4 Dec 2023, Mon - 01:00PM ➞ to: 31 Dec 2023, Sun - 11:00PM
-   7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon - 12:00PM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun - 12:00AM
-   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri - 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun - 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun - 12:00AM
+   ╭─────────────────────────────────────╮
+   Here are the tasks in your SCHOOL list:
+   1.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
+   2.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   3.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
+   4.  [E][҉҉҉] TMA2031 - Final Exam || from: 25 Nov, Sat 09:00AM ➞ to: 11:00AM
+   5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
+   6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
+   7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
-   13. [T][ ✓ ] Task to delete
-   14. [T][҉҉҉] Drink more water
-   15. [T][҉҉҉] Check undo mark
-    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+   13. [T][҉҉҉] Drink more water
+   14. [T][҉҉҉] Check undo mark
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Ok, I clean up all your tasks
    ╰┈➤ Let's start a new checklist
