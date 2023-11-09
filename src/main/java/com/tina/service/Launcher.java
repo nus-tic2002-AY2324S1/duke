@@ -1,6 +1,5 @@
 package com.tina.service;
 
-import com.tina.Tina;
 import javafx.application.Application;
 
 /**
