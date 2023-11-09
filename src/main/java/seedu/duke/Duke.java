@@ -50,7 +50,7 @@ public class Duke {
         wonkyManager = WonkyManager.getInstance();
 
         wonkyStorage.setReferences(wonkyLogger, wonkyManager, wonkyScanner);
-        wonkyManager.setReferences(wonkyLogger, wonkyStorage, wonkyScanner);
+        wonkyManager.setReferences(wonkyLogger, wonkyStorage);
         wonkyScanner.setReferences(wonkyLogger, wonkyManager);
 
         wonkyStorage.startUp(mode);

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import seedu.duke.commands.CommandEnum;
-import seedu.duke.commands.CommandArgument;
+import seedu.duke.commands.CommandType;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeStorageException;
 import seedu.duke.helper.WonkyMode;
@@ -73,32 +73,32 @@ public class WonkyStorage {
         }
     }
 
-    public void save(List<CommandArgument> cmdArgs) throws DukeException {
-        save(cmdArgs, STORAGE_FILE);
+    public void save(List<CommandType> cmdTypes) throws DukeException {
+        save(cmdTypes, STORAGE_FILE);
     }
 
     /**
      * Saves the given list of command arguments to the storage file.
      *
-     * @param cmdArgs the list of command arguments to save.
+     * @param cmdTypes the list of command arguments to save.
      * @throws DukeException if there is an error saving the command arguments to the storage file.
      */
-    public void save(List<CommandArgument> cmdArgs, File fileToStore) throws DukeException {
-        assert cmdArgs != null : "Command arguments list should not be null";
+    public void save(List<CommandType> cmdTypes, File fileToStore) throws DukeException {
+        assert cmdTypes != null : "Command arguments list should not be null";
         assert fileToStore != null : "Storage file should not be null";
         if (WonkyMode.NORMAL.equals(wonkyLogger.getMode())) {
             try (
                 BufferedWriter writer = new BufferedWriter(new FileWriter(fileToStore, false));
             ) {
-                for (CommandArgument cmdArg : cmdArgs) {
+                for (CommandType cmdType : cmdTypes) {
                     if (
-                        !CommandEnum.BYE.equals(cmdArg.getCmd())
-                            && !CommandEnum.LIST.equals(cmdArg.getCmd())
-                            && !CommandEnum.FIND.equals(cmdArg.getCmd())
-                            && !CommandEnum.STASH.equals(cmdArg.getCmd())
-                            && !CommandEnum.HELP.equals(cmdArg.getCmd())
+                        !CommandEnum.BYE.equals(cmdType.getCmd())
+                            && !CommandEnum.LIST.equals(cmdType.getCmd())
+                            && !CommandEnum.FIND.equals(cmdType.getCmd())
+                            && !CommandEnum.STASH.equals(cmdType.getCmd())
+                            && !CommandEnum.HELP.equals(cmdType.getCmd())
                     ) {
-                        writer.write(cmdArg.getCmdLitr() + " " + cmdArg.getArgStr());
+                        writer.write(cmdType.getCmdLitr() + " " + cmdType.getArgStr());
                         writer.newLine();
                     }
                 }
@@ -138,7 +138,7 @@ public class WonkyStorage {
             if (stashFile.exists() && stashFile.isFile()) {
                 try {
                     wonkyLogger.setIsLoading(true);
-                    wonkyManager.resetCmdArgs();
+                    wonkyManager.resetCmdTypes();
                     Scanner fileScanner = new Scanner(stashFile);
                     while (fileScanner.hasNextLine()) {
                         String line = fileScanner.nextLine();
@@ -158,10 +158,10 @@ public class WonkyStorage {
      * Adds the given list of command arguments to the given stash file.
      *
      * @param stashName
-     * @param cmdArgs
+     * @param cmdTypes
      * @throws DukeException
      */
-    public void addStash(String stashName, List<CommandArgument> cmdArgs) throws DukeException {
+    public void addStash(String stashName, List<CommandType> cmdTypes) throws DukeException {
         if (!STASH_FOLDER.exists()) {
             STASH_FOLDER.mkdir();
         }
@@ -173,6 +173,6 @@ public class WonkyStorage {
                 throw new DukeStorageException(e);
             }
         }
-        save(cmdArgs, stashFile);
+        save(cmdTypes, stashFile);
     }
 }

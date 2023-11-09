@@ -7,7 +7,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import seedu.duke.commands.CommandEnum;
-import seedu.duke.commands.CommandArgument;
+import seedu.duke.commands.CommandType;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeScannerException;
 import seedu.duke.task.WonkyManager;
@@ -95,7 +95,7 @@ public class WonkyScanner {
                     currArgument = splitLn.get(1);
                 }
                 if (Objects.nonNull(currCommand)) {
-                    wonkyManager.executeCommand(new CommandArgument(currCommand, currArgument));
+                    wonkyManager.checkCommand(currCommand, currArgument);
                 }
             } catch (IllegalArgumentException e) {
                 wonkyLogger.unknownCommand(inputCmd);

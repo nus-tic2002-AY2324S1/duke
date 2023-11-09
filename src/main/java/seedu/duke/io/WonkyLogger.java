@@ -121,6 +121,10 @@ public class WonkyLogger {
         return instance;
     }
 
+    private void padLine() throws DukeLoggerException {
+        println("");
+    }
+
     private void printlnWithWonky(String toPrint) throws DukeLoggerException {
         assert toPrint != null : "String to print should not be null";
         if (!isLoading) {
@@ -231,8 +235,13 @@ public class WonkyLogger {
      * @param desc
      * @throws DukeLoggerException
      */
-    public void addedToList(String task, String desc) throws DukeLoggerException {
-        printlnWithWonky(String.format(ADD_TO_LIST_MSG, task, desc));
+    public void addedToList(Task task, int totalTasks) throws DukeLoggerException {
+        printlnWithWonky(String.format(ADD_TO_LIST_MSG, task.getLitr(), task.getDescription()));
+        if (!isLoading) {
+            task(task.getStatusMsg(1));
+            padLine();
+        }
+        printlnWithWonky(String.format("You now have %d task(s) in the list.", totalTasks));
     }
 
     /**

@@ -60,13 +60,8 @@ public abstract class Task {
         return String.format(statusMsg, String.valueOf(idx), letter, isDone ? "X" : " ", description);
     }
 
-    /**
-     * Returns the command associated with the task.
-     *
-     * @return The command associated with the task.
-     */
-    public CommandEnum getCommand() {
-        return command;
+    public String getLitr() {
+        return command.getLitr();
     }
 
     /**
