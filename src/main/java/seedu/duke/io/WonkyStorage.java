@@ -8,11 +8,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import seedu.duke.commands.Command;
+import seedu.duke.commands.CommandEnum;
 import seedu.duke.commands.CommandArgument;
-import seedu.duke.commands.WonkyMode;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeStorageException;
+import seedu.duke.helper.WonkyMode;
 import seedu.duke.task.WonkyManager;
 
 /**
@@ -20,9 +20,27 @@ import seedu.duke.task.WonkyManager;
  */
 public class WonkyStorage {
 
-    private static final String STORAGE_PATH = "./storage.txt";
-    private static final File STORAGE_FILE = new File(STORAGE_PATH);
-    private static final File STASH_FOLDER = new File("./stash/");
+    private static WonkyStorage wonkyStorage;
+    private static WonkyLogger wonkyLogger;
+    private static WonkyManager wonkyManager;
+    private static WonkyScanner wonkyScanner;
+
+    private final String STORAGE_PATH = "./storage.txt";
+    private final File STORAGE_FILE = new File(STORAGE_PATH);
+    private final File STASH_FOLDER = new File("./stash/");
+
+    public WonkyStorage() {
+        wonkyLogger = WonkyLogger.getInstance();
+        wonkyManager = WonkyManager.getInstance(this, wonkyLogger);
+        wonkyScanner = WonkyScanner.getInstance(wonkyManager, wonkyLogger);
+    }
+
+    public static WonkyStorage getInstance() {
+        if (wonkyStorage == null) {
+            wonkyStorage = new WonkyStorage();
+        }
+        return wonkyStorage;
+    }
 
     /**
      * Initialises the storage file and loads previous commands if in normal mode.
@@ -30,22 +48,22 @@ public class WonkyStorage {
      * @param mode the current mode of the program.
      * @throws DukeException if there is an error initializing the storage file or loading previous commands.
      */
-    public static void startUp(WonkyMode mode) throws DukeException {
+    public void startUp(WonkyMode mode) throws DukeException {
         if (WonkyMode.NORMAL.equals(mode)) {
             try {
                 if (!STORAGE_FILE.isFile()) {
                     STORAGE_FILE.createNewFile();
-                    WonkyLogger.initialiseStorage(true);
+                    wonkyLogger.initialiseStorage(true);
                 } else {
-                    WonkyLogger.setIsLoading(true);
-                    WonkyLogger.initialiseStorage(false);
+                    wonkyLogger.setIsLoading(true);
+                    wonkyLogger.initialiseStorage(false);
                     Scanner fileScanner = new Scanner(STORAGE_FILE);
                     while (fileScanner.hasNextLine()) {
                         String line = fileScanner.nextLine();
-                        WonkyScanner.processNextLine(line);
+                        wonkyScanner.processNextLine(line);
                     }
                     fileScanner.close();
-                    WonkyLogger.setIsLoading(false);
+                    wonkyLogger.setIsLoading(false);
                 }
             } catch (Exception e) {
                 throw new DukeStorageException(e);
@@ -53,7 +71,7 @@ public class WonkyStorage {
         }
     }
 
-    public static void save(List<CommandArgument> cmdArgs) throws DukeException {
+    public void save(List<CommandArgument> cmdArgs) throws DukeException {
         save(cmdArgs, STORAGE_FILE);
     }
 
@@ -63,20 +81,20 @@ public class WonkyStorage {
      * @param cmdArgs the list of command arguments to save.
      * @throws DukeException if there is an error saving the command arguments to the storage file.
      */
-    public static void save(List<CommandArgument> cmdArgs, File fileToStore) throws DukeException {
+    public void save(List<CommandArgument> cmdArgs, File fileToStore) throws DukeException {
         assert cmdArgs != null : "Command arguments list should not be null";
         assert fileToStore != null : "Storage file should not be null";
-        if (WonkyMode.NORMAL.equals(WonkyLogger.getMode())) {
+        if (WonkyMode.NORMAL.equals(wonkyLogger.getMode())) {
             try (
                 BufferedWriter writer = new BufferedWriter(new FileWriter(fileToStore, false));
             ) {
                 for (CommandArgument cmdArg : cmdArgs) {
                     if (
-                        !Command.BYE.equals(cmdArg.getCmd())
-                            && !Command.LIST.equals(cmdArg.getCmd())
-                            && !Command.FIND.equals(cmdArg.getCmd())
-                            && !Command.STASH.equals(cmdArg.getCmd())
-                            && !Command.HELP.equals(cmdArg.getCmd())
+                        !CommandEnum.BYE.equals(cmdArg.getCmd())
+                            && !CommandEnum.LIST.equals(cmdArg.getCmd())
+                            && !CommandEnum.FIND.equals(cmdArg.getCmd())
+                            && !CommandEnum.STASH.equals(cmdArg.getCmd())
+                            && !CommandEnum.HELP.equals(cmdArg.getCmd())
                     ) {
                         writer.write(cmdArg.getCmdLitr() + " " + cmdArg.getArgStr());
                         writer.newLine();
@@ -88,7 +106,7 @@ public class WonkyStorage {
         }
     }
 
-    public static List<String> getStashList() {
+    public List<String> getStashList() {
         if (STASH_FOLDER.exists() && STASH_FOLDER.isDirectory()) {
             return Arrays.asList(STASH_FOLDER.list());
         }
@@ -98,7 +116,7 @@ public class WonkyStorage {
     /**
      * Clears the all the stashed files.
      */
-    public static void clearStash() {
+    public void clearStash() {
         if (STASH_FOLDER.exists() && STASH_FOLDER.isDirectory()) {
             for (File file : STASH_FOLDER.listFiles()) {
                 file.delete();
@@ -112,21 +130,21 @@ public class WonkyStorage {
      * @param stashName
      * @throws DukeException
      */
-    public static void popStash(String stashName) throws DukeException {
+    public void popStash(String stashName) throws DukeException {
         if (STASH_FOLDER.exists() && STASH_FOLDER.isDirectory()) {
             File stashFile = new File(STASH_FOLDER, stashName);
             if (stashFile.exists() && stashFile.isFile()) {
                 try {
-                    WonkyLogger.setIsLoading(true);
-                    WonkyManager.resetCmdArgs();
+                    wonkyLogger.setIsLoading(true);
+                    wonkyManager.resetCmdArgs();
                     Scanner fileScanner = new Scanner(stashFile);
                     while (fileScanner.hasNextLine()) {
                         String line = fileScanner.nextLine();
-                        WonkyScanner.processNextLine(line);
+                        wonkyScanner.processNextLine(line);
                     }
                     fileScanner.close();
                     stashFile.delete();
-                    WonkyLogger.setIsLoading(false);
+                    wonkyLogger.setIsLoading(false);
                 } catch (Exception e) {
                     throw new DukeStorageException(e);
                 }
@@ -141,7 +159,7 @@ public class WonkyStorage {
      * @param cmdArgs
      * @throws DukeException
      */
-    public static void addStash(String stashName, List<CommandArgument> cmdArgs) throws DukeException {
+    public void addStash(String stashName, List<CommandArgument> cmdArgs) throws DukeException {
         if (!STASH_FOLDER.exists()) {
             STASH_FOLDER.mkdir();
         }

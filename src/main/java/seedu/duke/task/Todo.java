@@ -1,6 +1,6 @@
 package seedu.duke.task;
 
-import seedu.duke.commands.Command;
+import seedu.duke.commands.CommandEnum;
 
 /**
  * Represents a Todo task.
@@ -14,7 +14,7 @@ public class Todo extends Task {
      * @param description Description of the Todo task.
      */
     public Todo(String description) {
-        super(Command.TODO, "T", description);
+        super(CommandEnum.TODO, "T", description);
     }
 
     /**

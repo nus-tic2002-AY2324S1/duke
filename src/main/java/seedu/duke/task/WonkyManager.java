@@ -1,18 +1,18 @@
 package seedu.duke.task;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import seedu.duke.commands.Command;
+import seedu.duke.commands.CommandEnum;
 import seedu.duke.commands.CommandArgument;
-import seedu.duke.commands.WonkyDateTime;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeLoggerException;
 import seedu.duke.exceptions.DukeManagerException;
+import seedu.duke.helper.WonkyDateTime;
+import seedu.duke.helper.utils.WonkyUtils;
 import seedu.duke.io.WonkyLogger;
 import seedu.duke.io.WonkyScanner;
 import seedu.duke.io.WonkyStorage;
@@ -24,50 +24,74 @@ import seedu.duke.io.WonkyStorage;
 public class WonkyManager {
 
     // Constants for command argument validation.
-    private static final String EMPTY_LITR = "";
-    private static final int ZERO_ARGS = 0;
-    private static final int ONE_ARGS = 1;
-    private static final int TWO_ARGS = 2;
+    private final String EMPTY_LITR = "";
+    private final int ZERO_ARGS = 0;
+    private final int ONE_ARGS = 1;
+    private final int TWO_ARGS = 2;
 
-    private static final int TODO_ARGS = 1;
-    private static final int DEADLINE_ARGS = 2;
-    private static final int EVENT_ARGS = 3;
+    private final int TODO_ARGS = 1;
+    private final int DEADLINE_ARGS = 2;
+    private final int EVENT_ARGS = 3;
 
     // Constants for command argument indices.
-    private static final int DESC_IDX = 0;
-    private static final int BY_IDX = 1;
-    private static final int FROM_IDX = 1;
-    private static final int TO_IDX = 2;
+    private final int DESC_IDX = 0;
+    private final int BY_IDX = 1;
+    private final int FROM_IDX = 1;
+    private final int TO_IDX = 2;
 
-    private static final int ZERO_IDX = 0;
-    private static final int ONE_IDX = 1;
+    private final int ZERO_IDX = 0;
+    private final int ONE_IDX = 1;
 
     // Lists for storing command arguments and tasks.
-    private static List<CommandArgument> cmdArgs = new ArrayList<CommandArgument>();
-    private static List<Task> tasks = new ArrayList<Task>();
+    private List<CommandArgument> cmdArgs = new ArrayList<CommandArgument>();
+    private List<Task> tasks = new ArrayList<Task>();
+
+    private static WonkyManager wonkyManager;
+    private static WonkyScanner wonkyScanner;
+    private WonkyLogger wonkyLogger;
+    private WonkyStorage wonkyStorage;
+
+    public WonkyManager (WonkyStorage wonkyStorage, WonkyLogger wonkyLogger) {
+        this.wonkyStorage = wonkyStorage;
+        this.wonkyLogger = wonkyLogger;
+        wonkyScanner = WonkyScanner.getInstance(this, wonkyLogger);
+    }
+
+    public static WonkyManager getInstance(WonkyStorage wonkyStorage, WonkyLogger wonkyLogger) {
+        if (wonkyManager == null) {
+            wonkyManager = new WonkyManager(wonkyStorage, wonkyLogger);
+        }
+        return wonkyManager;
+    }
+
+    public static WonkyManager getInstance() {
+        if (wonkyManager == null) {
+            wonkyManager = new WonkyManager(WonkyStorage.getInstance(), WonkyLogger.getInstance());
+        }
+        return wonkyManager;
+    }
 
     /**
      * Executes the given command argument.
      *
      * @param cmdArg the command argument to execute.
      * @throws DukeException if there is an error executing the command.
-     * @throws IOException
      */
-    public static void executeCommand(CommandArgument cmdArg) throws DukeException {
+    public void executeCommand(CommandArgument cmdArg) throws DukeException {
         switch (cmdArg.getCmd()) {
         case BYE:
             if (validateArgs(cmdArg, ZERO_ARGS)) {
-                WonkyScanner.bye();
+                wonkyScanner.bye();
             }
             break;
         case LIST:
             if (validateArgs(cmdArg, ZERO_ARGS)) {
-                WonkyLogger.printListCommand(tasks);
+                wonkyLogger.printListCommand(tasks);
             }
             break;
         case HELP:
             if (validateArgs(cmdArg, ZERO_ARGS)) {
-                WonkyLogger.printHelpCommand();
+                wonkyLogger.printHelpCommand();
             }
             break;
         case FIND:
@@ -97,32 +121,32 @@ public class WonkyManager {
         }
     }
 
-    private static void validateAndExecuteStash(CommandArgument cmdArg) throws DukeException {
+    private void validateAndExecuteStash(CommandArgument cmdArg) throws DukeException {
         List<String> cmdList = cmdArg.getArgList();
-        List<String> stashList = WonkyStorage.getStashList();
+        List<String> stashList = wonkyStorage.getStashList();
         if (validateArgs(cmdArg, ONE_ARGS, false)) {
             String firstArg = cmdList.get(ZERO_IDX).trim();
             if (firstArg.equals("list")) {
-                WonkyLogger.printStashList(stashList);
+                wonkyLogger.printStashList(stashList);
             } else if (firstArg.equals("clear")) {
-                WonkyStorage.clearStash();
-                WonkyLogger.stashCleared();
+                wonkyStorage.clearStash();
+                wonkyLogger.stashCleared();
             } else {
-                WonkyLogger.invalidStashCommand(firstArg);
+                wonkyLogger.invalidStashCommand(firstArg);
             }
         } else if (validateArgs(cmdArg, TWO_ARGS, false)) {
             String firstArg = cmdList.get(ZERO_IDX).trim();
             String stashName = cmdList.get(ONE_IDX).trim();
             if (firstArg.equals("add")) {
-                WonkyStorage.addStash(stashName, cmdArgs);
-                WonkyLogger.stashAdded(stashName);
+                wonkyStorage.addStash(stashName, cmdArgs);
+                wonkyLogger.stashAdded(stashName);
             } else if (!stashList.contains(stashName)) {
-                WonkyLogger.invalidStashName(stashName);
+                wonkyLogger.invalidStashName(stashName);
             } else if (firstArg.equals("pop")) {
-                WonkyStorage.popStash(stashName);
-                WonkyLogger.stashPopped(stashName);
+                wonkyStorage.popStash(stashName);
+                wonkyLogger.stashPopped(stashName);
             } else {
-                WonkyLogger.invalidStashCommand(firstArg);
+                wonkyLogger.invalidStashCommand(firstArg);
             }
         }
     }
@@ -133,7 +157,7 @@ public class WonkyManager {
      * @param cmdArg the command argument specifying the string to find.
      * @throws DukeLoggerException
      */
-    private static void findTasks(CommandArgument cmdArg) throws DukeLoggerException {
+    private void findTasks(CommandArgument cmdArg) throws DukeLoggerException {
         List<Task> foundTasks = new ArrayList<Task>();
         String searchStr = cmdArg.getArgList().get(0);
         for (Task task : tasks) {
@@ -142,9 +166,9 @@ public class WonkyManager {
             }
         }
         if (foundTasks.size() > 0) {
-            WonkyLogger.printFoundTasks(foundTasks, searchStr);
+            wonkyLogger.printFoundTasks(foundTasks, searchStr);
         } else {
-            WonkyLogger.noTasksFound(searchStr);
+            wonkyLogger.noTasksFound(searchStr);
         }
     }
 
@@ -154,7 +178,7 @@ public class WonkyManager {
      * @param cmdArg the command argument specifying the task to modify.
      * @throws DukeException if there is an error modifying the task.
      */
-    public static void modifyTask(CommandArgument cmdArg) throws DukeException {
+    public void modifyTask(CommandArgument cmdArg) throws DukeException {
         List<String> argList = cmdArg.getArgList();
         try {
             int taskIdx = Integer.parseInt(argList.get(0)) - 1;
@@ -172,9 +196,9 @@ public class WonkyManager {
                     try {
                         Task taskToDelete = tasks.get(taskIdx);
                         tasks.remove(taskIdx);
-                        WonkyLogger.taskDeleted(taskToDelete.description);
+                        wonkyLogger.taskDeleted(taskToDelete.description);
                     } catch (IndexOutOfBoundsException e) {
-                        WonkyLogger.deleteTypo(taskIdx + 1);
+                        wonkyLogger.deleteTypo(taskIdx + 1);
                         break;
                     }
                     break;
@@ -183,7 +207,7 @@ public class WonkyManager {
                 }
             }
         } catch (NumberFormatException e) {
-            WonkyLogger.expectedInteger(argList.get(0));
+            wonkyLogger.expectedInteger(argList.get(0));
         }
     }
 
@@ -193,7 +217,7 @@ public class WonkyManager {
      * @param cmdArg the command argument to parse.
      * @throws DukeException if there is an error parsing the command or adding the task.
      */
-    private static void parseCmdToTask(CommandArgument cmdArg) throws DukeException {
+    private void parseCmdToTask(CommandArgument cmdArg) throws DukeException {
         List<String> argList = cmdArg.getArgList();
         switch (cmdArg.getCmd()) {
         case TODO:
@@ -234,16 +258,16 @@ public class WonkyManager {
      * @param toAdd the task to add.
      * @throws DukeException if there is an error adding the task.
      */
-    private static void addTask(Task toAdd) throws DukeException {
+    private void addTask(Task toAdd) throws DukeException {
         tasks.add(toAdd);
-        WonkyLogger.addedToList(toAdd.command.getLitr(), toAdd.description);
+        wonkyLogger.addedToList(toAdd.command.getLitr(), toAdd.description);
     }
 
-    private static boolean isValidTaskIdx(int taskIdx) throws DukeLoggerException {
+    private boolean isValidTaskIdx(int taskIdx) throws DukeLoggerException {
         if (taskIdx >= 0 && taskIdx < tasks.size()) {
             return true;
         } else {
-            WonkyLogger.invalidTaskIdx(taskIdx + 1);
+            wonkyLogger.invalidTaskIdx(taskIdx + 1);
             return false;
         }
     }
@@ -256,7 +280,7 @@ public class WonkyManager {
      * @return true if the command argument is valid, false otherwise.
      * @throws DukeException if there is an error validating the command argument.
      */
-    private static boolean validateArgs(CommandArgument cmdArg, int expectedSize) throws DukeException {
+    private boolean validateArgs(CommandArgument cmdArg, int expectedSize) throws DukeException {
         return validateArgs(cmdArg, expectedSize, true);
     }
 
@@ -268,23 +292,23 @@ public class WonkyManager {
      * @return true if the command argument is valid, false otherwise.
      * @throws DukeException if there is an error validating the command argument.
      */
-    private static boolean validateArgs(
+    private boolean validateArgs(
         CommandArgument cmdArg, int expectedSize, boolean isError
     ) throws DukeException {
         List<String> argList = cmdArg.getArgList();
         int argCount = cmdArg.getArgCount();
-        if (WonkyLogger.getLoading()) {
+        if (wonkyLogger.getLoading()) {
             cmdArgs.add(cmdArg);
-            WonkyStorage.save(cmdArgs);
+            wonkyStorage.save(cmdArgs);
         }
         if (argCount == expectedSize && expectedSize == ZERO_ARGS) {
             cmdArgs.add(cmdArg);
-            WonkyStorage.save(cmdArgs);
+            wonkyStorage.save(cmdArgs);
             return true;
         }
         if (argCount != expectedSize || (argList.get(0).trim().isEmpty())) {
             if (isError) {
-                WonkyLogger.mismatchArgs(cmdArg.getCmdLitr(), expectedSize);
+                wonkyLogger.mismatchArgs(cmdArg.getCmdLitr(), expectedSize);
             }
             return false;
         }
@@ -293,7 +317,7 @@ public class WonkyManager {
                 return false;
             }
         }
-        if (Command.EVENT.equals(cmdArg.getCmd()) || Command.DEADLINE.equals(cmdArg.getCmd())) {
+        if (CommandEnum.EVENT.equals(cmdArg.getCmd()) || CommandEnum.DEADLINE.equals(cmdArg.getCmd())) {
             String newCmdArgStr = cmdArg.getArgList().get(0);
             for (int i = 1; i < cmdArg.getArgCount(); i += 1) {
                 String currArg = cmdArg.getArgList().get(i);
@@ -305,21 +329,12 @@ public class WonkyManager {
             }
             cmdArg.setArg(newCmdArgStr);
         }
-        if (!WonkyLogger.getLoading()) {
+        if (!wonkyLogger.getLoading()) {
             // Save the command argument to storage if it is not being loaded from storage
             cmdArgs.add(cmdArg);
-            WonkyStorage.save(cmdArgs);
+            wonkyStorage.save(cmdArgs);
         }
         return true;
-    }
-
-    /**
-     * Returns the last command argument in the command argument list.
-     *
-     * @return the last command argument in the list.
-     */
-    private static Command getLastCmd() {
-        return cmdArgs.get(cmdArgs.size() - 1).getCmd();
     }
 
     /**
@@ -327,21 +342,21 @@ public class WonkyManager {
      * If the string is not a valid date and time, it checks if it is a valid date in the format specified by
      * {@link WonkyDateTime#getMappedDateTimeStr(String)}.
      * If the string is not a valid date or date and time,
-     * it logs an error message using {@link WonkyLogger#expectedDateTime(String)}.
+     * it logs an error message using {@link wonkyLogger#expectedDateTime(String)}.
      *
      * @param str the string to be checked.
      * @return true if the string is a valid date or date and time, false otherwise.
      * @throws DukeException if there is an error parsing the string as a date or date and time.
      */
-    private static boolean isValidDateTime(String str) throws DukeException {
+    private boolean isValidDateTime(String str) throws DukeException {
         str = str.trim();
         try {
-            LocalDateTime.parse(str, WonkyDateTime.getDtf());
+            LocalDateTime.parse(str, WonkyDateTime.dtf);
         } catch (DateTimeParseException e) {
-            if (Objects.nonNull(WonkyDateTime.getMappedDateTimeStr(str))) {
+            if (Objects.nonNull(new WonkyDateTime(str))) {
                 return true;
             }
-            WonkyLogger.expectedDateTime(str);
+            wonkyLogger.expectedDateTime(str);
             return false;
         }
         return true;
@@ -354,13 +369,13 @@ public class WonkyManager {
      * @return a WonkyDateTime object representing the parsed date and time.
      * @throws DukeException if the string cannot be parsed into a valid date and time.
      */
-    private static WonkyDateTime parseToDate(String str) throws DukeException {
+    private WonkyDateTime parseToDate(String str) throws DukeException {
         str = str.trim();
         try {
-            return new WonkyDateTime(LocalDateTime.parse(str, WonkyDateTime.getDtf()));
+            return new WonkyDateTime(LocalDateTime.parse(str, WonkyDateTime.dtf));
         } catch (DateTimeParseException e) {
-            if (Objects.nonNull(WonkyDateTime.getMappedDateTimeStr(str))) {
-                return new WonkyDateTime(WonkyDateTime.getMappedDateTimeStr(str));
+            if (Objects.nonNull(WonkyUtils.isValidNaturalDateTimeStr(str))) {
+                return new WonkyDateTime(str);
             }
             throw new DukeManagerException("Invalid date value.");
         } catch (Exception e) {
@@ -373,18 +388,18 @@ public class WonkyManager {
      *
      * @return a list of all tasks.
      */
-    public static List<Task> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
 
     /**
      * Resets the task list by creating a new empty ArrayList of tasks.
      */
-    public static void resetTaskList() {
+    public void resetTaskList() {
         tasks = new ArrayList<Task>();
     }
 
-    public static void resetCmdArgs() {
+    public void resetCmdArgs() {
         cmdArgs = new ArrayList<CommandArgument>();
     }
 }

@@ -25,9 +25,11 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image wonky = new Image(this.getClass().getResourceAsStream("/images/wonky.png"));
+
+    private static WonkyScanner wonkyScanner = WonkyScanner.getInstance();
+    private static WonkyLogger wonkyLogger = WonkyLogger.getInstance();
 
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
@@ -37,9 +39,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() throws DukeException {
         String input = userInput.getText();
-        WonkyScanner.processNextLine(input);
-        String response = WonkyLogger.flushResponse();
-        if (WonkyScanner.isActive()) {
+        wonkyScanner.processNextLine(input);
+        String response = wonkyLogger.flushResponse();
+        if (wonkyScanner.isActive()) {
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, user),
                     DialogBox.getWonkyDialog(response, wonky)
@@ -48,7 +50,7 @@ public class MainWindow extends AnchorPane {
             Platform.runLater(() -> {
                 scrollPane.setVvalue(dialogContainer.getHeight());
                 if (input.equals("bye")) {
-                    WonkyScanner.setActive(false);
+                    wonkyScanner.setActive(false);
                 }
             });
         }
@@ -60,7 +62,7 @@ public class MainWindow extends AnchorPane {
      * @throws DukeException
      */
     public void startUp() throws DukeException {
-        String response = WonkyLogger.flushResponse();
+        String response = wonkyLogger.flushResponse();
         dialogContainer.getChildren().addAll(
                 DialogBox.getWonkyDialog(response, wonky)
         );

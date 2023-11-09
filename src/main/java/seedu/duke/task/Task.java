@@ -1,6 +1,6 @@
 package seedu.duke.task;
 
-import seedu.duke.commands.Command;
+import seedu.duke.commands.CommandEnum;
 import seedu.duke.exceptions.DukeLoggerException;
 import seedu.duke.io.WonkyLogger;
 
@@ -13,7 +13,7 @@ public abstract class Task {
     /**
      * The command associated with the task.
      */
-    protected Command command;
+    protected CommandEnum command;
 
     /**
      * The description of the task.
@@ -43,7 +43,7 @@ public abstract class Task {
      * @param letter The letter associated with the task.
      * @param description The description of the task.
      */
-    public Task(Command command, String letter, String description) {
+    public Task(CommandEnum command, String letter, String description) {
         this.command = command;
         this.letter = letter;
         this.description = description.trim();
@@ -65,7 +65,7 @@ public abstract class Task {
      *
      * @return The command associated with the task.
      */
-    public Command getCommand() {
+    public CommandEnum getCommand() {
         return command;
     }
 
@@ -78,9 +78,9 @@ public abstract class Task {
     public void setDone(boolean toSet) throws DukeLoggerException {
         String isDoneLitr = toSet ? "done" : "not done";
         if (isDone == toSet) {
-            WonkyLogger.markTypo(description, isDoneLitr);
+            WonkyLogger.getInstance().markTypo(description, isDoneLitr);
         } else {
-            WonkyLogger.taskMarked(description, isDoneLitr);
+            WonkyLogger.getInstance().taskMarked(description, isDoneLitr);
             isDone = toSet;
         }
     }

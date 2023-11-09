@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class CommandArgument {
 
-    private Command command;
+    private CommandEnum command;
     private String arguments;
 
     /**
@@ -20,7 +20,7 @@ public class CommandArgument {
      * @param command the command to be executed.
      * @param arguments the arguments for the command.
      */
-    public CommandArgument(Command command, String arguments) {
+    public CommandArgument(CommandEnum command, String arguments) {
         this.command = command;
         this.arguments = arguments;
     }
@@ -30,7 +30,7 @@ public class CommandArgument {
      *
      * @return the command to be executed
      */
-    public Command getCmd() {
+    public CommandEnum getCmd() {
         return command;
     }
 

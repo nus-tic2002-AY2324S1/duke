@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import seedu.duke.commands.WonkyMode;
 import seedu.duke.exceptions.DukeLoggerException;
+import seedu.duke.helper.WonkyMode;
 import seedu.duke.task.Task;
 
 /**
@@ -17,7 +17,9 @@ import seedu.duke.task.Task;
  */
 public class WonkyLogger {
 
-    private static final String LOGO =
+    private static WonkyLogger instance;
+
+    private final String LOGO =
         "\t__          __         _            ____        _   " + System.lineSeparator()
         + "\t\\ \\        / /        | |          |  _ \\      | |  " + System.lineSeparator()
         + "\t \\ \\  /\\  / /__  _ __ | | ___   _  | |_) | ___ | |_ " + System.lineSeparator()
@@ -27,7 +29,7 @@ public class WonkyLogger {
         + "\t                             __/ |                  " + System.lineSeparator()
         + "\t                            |___/                  " + System.lineSeparator();
 
-    private static final List<String> UNKNOWN_CMD_MSGS = new ArrayList<>(
+    private final List<String> UNKNOWN_CMD_MSGS = new ArrayList<>(
         Arrays.asList(
             "Oops! I do not understand the command [%s].",
             "Sorry, the command [%s] you entered does not exist.",
@@ -35,7 +37,7 @@ public class WonkyLogger {
         )
     );
 
-    private static final List<String> MISMATCH_ARG_MSGS = new ArrayList<>(
+    private final List<String> MISMATCH_ARG_MSGS = new ArrayList<>(
         Arrays.asList(
             "Oops! Seems like your argument(s) for command [%s] are wrong.",
             "Sorry, the argument(s) for this command [%s] are incorrect.",
@@ -43,35 +45,35 @@ public class WonkyLogger {
         )
     );
 
-    private static final List<String> SUGGEST_CMD_MSGS = new ArrayList<>(
+    private final List<String> SUGGEST_CMD_MSGS = new ArrayList<>(
         Arrays.asList(
             "Did you mean to type command [%s] instead?"
         )
     );
 
-    private static final String EXPECTED_ARG_MSG =
+    private final String EXPECTED_ARG_MSG =
         "Did you input the wrong argument(s)? Expected [%d] argument(s) for the command.";
-    private static final String EXPECTED_TYPE_MSG =
+    private final String EXPECTED_TYPE_MSG =
         "There is mistake with the argument. Expected [%s] instead of [%s].";
 
-    private static final String ADD_TO_LIST_MSG =
+    private final String ADD_TO_LIST_MSG =
         "I have added %s task [%s] to our list!";
 
-    private static final String MARK_TYPO_MSG =
+    private final String MARK_TYPO_MSG =
         "Did you mark/unmark the wrong task? %s is already set to [%s].";
-    private static final String TASK_MARKED_MSG =
+    private final String TASK_MARKED_MSG =
         "Your task [%s] is marked as [%s].";
 
-    private static final String DELETE_INVALID_MSG =
+    private final String DELETE_INVALID_MSG =
         "Did you make a mistake trying to delete task [%d]? A task can't be be less than 1.";
-    private static final String DELETE_TYPO_MSG =
+    private final String DELETE_TYPO_MSG =
         "Did you want to delete the wrong task? There is no task no. [%d].";
-    private static final String TASK_DELETED_MSG =
+    private final String TASK_DELETED_MSG =
         "Your task [%s] is deleted!";
-    private static final String TASK_NOT_EXIST_MSG =
+    private final String TASK_NOT_EXIST_MSG =
         "The task [%d] does not exist!";
 
-    private static final String HELP_TEXT =
+    private final String HELP_TEXT =
         "Below are the list of commands you can use!" + System.lineSeparator() + System.lineSeparator()
         + "\tlist" + System.lineSeparator()
         + "\t\tLists all the tasks." + System.lineSeparator() + System.lineSeparator()
@@ -102,22 +104,31 @@ public class WonkyLogger {
         + "\tstash pop | {stashName}" + System.lineSeparator()
         + "\t\tPops the stash to the current list of tasks." + System.lineSeparator() + System.lineSeparator();
 
-    private static final Random RND = new Random();
+    private final Random RND = new Random();
 
-    private static boolean hasError = false;
-    private static WonkyMode mode = WonkyMode.NORMAL;
-    private static boolean isLoading = false;
+    private boolean hasError = false;
+    private WonkyMode mode = WonkyMode.NORMAL;
+    private boolean isLoading = false;
 
-    private static String response = "";
+    private String response = "";
 
-    private static void printlnWithWonky(String toPrint) throws DukeLoggerException {
+    public WonkyLogger() {}
+
+    public static WonkyLogger getInstance() {
+        if (instance == null) {
+            instance = new WonkyLogger();
+        }
+        return instance;
+    }
+
+    private void printlnWithWonky(String toPrint) throws DukeLoggerException {
         assert toPrint != null : "String to print should not be null";
         if (!isLoading) {
             println("Wonky: " + toPrint);
         }
     }
 
-    private static void printWarnWithWonky(String toPrint) throws DukeLoggerException {
+    private void printWarnWithWonky(String toPrint) throws DukeLoggerException {
         assert toPrint != null : "String to print should not be null";
         hasError = true;
         if (isLoading) {
@@ -127,7 +138,7 @@ public class WonkyLogger {
         }
     }
 
-    private static void println(String toPrint) throws DukeLoggerException {
+    private void println(String toPrint) throws DukeLoggerException {
         try {
             response = response + System.lineSeparator() + toPrint;
         } catch (Exception e) {
@@ -135,7 +146,7 @@ public class WonkyLogger {
         }
     }
 
-    private static void printListTitle(int size) throws DukeLoggerException {
+    private void printListTitle(int size) throws DukeLoggerException {
         assert size >= 0 : "Size should not be negative";
         if (size == 0) {
             printlnWithWonky("Hooray you have no pending tasks!");
@@ -144,7 +155,7 @@ public class WonkyLogger {
         }
     }
 
-    private static void printFindTitle(int size, String searchStr) throws DukeLoggerException {
+    private void printFindTitle(int size, String searchStr) throws DukeLoggerException {
         assert size >= 0 : "Size should not be negative";
         if (size == 0) {
             printlnWithWonky("No tasks containing [" + searchStr + "] found!");
@@ -159,7 +170,7 @@ public class WonkyLogger {
      * @param tasks The list of tasks to print.
      * @throws DukeLoggerException If there is an error with the logger.
      */
-    public static void printListCommand(List<Task> tasks) throws DukeLoggerException {
+    public void printListCommand(List<Task> tasks) throws DukeLoggerException {
         printListTitle(tasks.size());
         if (!isLoading) {
             for (int i = 0; i < tasks.size(); i += 1) {
@@ -174,7 +185,7 @@ public class WonkyLogger {
      * @param modeToSet
      * @throws DukeLoggerException
      */
-    public static void startUp(WonkyMode modeToSet) throws DukeLoggerException {
+    public void startUp(WonkyMode modeToSet) throws DukeLoggerException {
         mode = modeToSet;
         if (hasError) {
             println("");
@@ -194,7 +205,7 @@ public class WonkyLogger {
      * @param isNew
      * @throws DukeLoggerException
      */
-    public static void initialiseStorage(boolean isNew) throws DukeLoggerException {
+    public void initialiseStorage(boolean isNew) throws DukeLoggerException {
         if (isNew) {
             printlnWithWonky("Initialising...");
         } else {
@@ -209,7 +220,7 @@ public class WonkyLogger {
      * @param task
      * @throws DukeLoggerException
      */
-    private static void task(String task) throws DukeLoggerException {
+    private void task(String task) throws DukeLoggerException {
         println("\t" + task);
     }
 
@@ -220,7 +231,7 @@ public class WonkyLogger {
      * @param desc
      * @throws DukeLoggerException
      */
-    public static void addedToList(String task, String desc) throws DukeLoggerException {
+    public void addedToList(String task, String desc) throws DukeLoggerException {
         printlnWithWonky(String.format(ADD_TO_LIST_MSG, task, desc));
     }
 
@@ -229,7 +240,7 @@ public class WonkyLogger {
      *
      * @throws DukeLoggerException
      */
-    public static void bye() throws DukeLoggerException {
+    public void bye() throws DukeLoggerException {
         printlnWithWonky("Bye! Thank you for using Wonky Bot. Hope to see you again soon!");
     }
 
@@ -239,7 +250,7 @@ public class WonkyLogger {
      * @param cmd
      * @throws DukeLoggerException
      */
-    public static void unknownCommand(String cmd) throws DukeLoggerException {
+    public void unknownCommand(String cmd) throws DukeLoggerException {
         printWarnWithWonky(
             String.format(
                 randomFromArray(UNKNOWN_CMD_MSGS),
@@ -254,7 +265,7 @@ public class WonkyLogger {
      * @param cmd
      * @throws DukeLoggerException
      */
-    public static void mismatchArgs(String cmd) throws DukeLoggerException {
+    public void mismatchArgs(String cmd) throws DukeLoggerException {
         printWarnWithWonky(
             String.format(
                 randomFromArray(MISMATCH_ARG_MSGS),
@@ -270,7 +281,7 @@ public class WonkyLogger {
      * @param expectedArgCount
      * @throws DukeLoggerException
      */
-    public static void mismatchArgs(String cmd, int expectedArgCount) throws DukeLoggerException {
+    public void mismatchArgs(String cmd, int expectedArgCount) throws DukeLoggerException {
         mismatchArgs(cmd);
         printWarnWithWonky(String.format(EXPECTED_ARG_MSG, expectedArgCount));
     }
@@ -281,7 +292,7 @@ public class WonkyLogger {
      * @param val
      * @throws DukeLoggerException
      */
-    public static void expectedInteger(String val) throws DukeLoggerException {
+    public void expectedInteger(String val) throws DukeLoggerException {
         printWarnWithWonky(String.format(EXPECTED_TYPE_MSG, "Integer", val));
     }
 
@@ -291,7 +302,7 @@ public class WonkyLogger {
      * @param val
      * @throws DukeLoggerException
      */
-    public static void expectedDateTime(String val) throws DukeLoggerException {
+    public void expectedDateTime(String val) throws DukeLoggerException {
         printWarnWithWonky(String.format(EXPECTED_TYPE_MSG, "yyyy-MM-dd HH:mm", val));
     }
 
@@ -301,7 +312,7 @@ public class WonkyLogger {
      * @param cmd
      * @throws DukeLoggerException
      */
-    public static void suggestCommand(String cmd) throws DukeLoggerException {
+    public void suggestCommand(String cmd) throws DukeLoggerException {
         if (Objects.nonNull(cmd)) {
             printWarnWithWonky(
                 String.format(
@@ -319,7 +330,7 @@ public class WonkyLogger {
      * @param isDoneLitr
      * @throws DukeLoggerException
      */
-    public static void markTypo(String desc, String isDoneLitr) throws DukeLoggerException {
+    public void markTypo(String desc, String isDoneLitr) throws DukeLoggerException {
         printWarnWithWonky(String.format(MARK_TYPO_MSG, desc, isDoneLitr));
     }
 
@@ -330,7 +341,7 @@ public class WonkyLogger {
      * @param isDoneLitr
      * @throws DukeLoggerException
      */
-    public static void taskMarked(String desc, String isDoneLitr) throws DukeLoggerException {
+    public void taskMarked(String desc, String isDoneLitr) throws DukeLoggerException {
         printlnWithWonky(String.format(TASK_MARKED_MSG, desc, isDoneLitr));
     }
 
@@ -340,7 +351,7 @@ public class WonkyLogger {
      * @param idx
      * @throws DukeLoggerException
      */
-    public static void deleteTypo(int idx) throws DukeLoggerException {
+    public void deleteTypo(int idx) throws DukeLoggerException {
         String msg = DELETE_TYPO_MSG;
         if (idx <= 0) {
             msg = DELETE_INVALID_MSG;
@@ -354,7 +365,7 @@ public class WonkyLogger {
      * @param desc
      * @throws DukeLoggerException
      */
-    public static void taskDeleted(String desc) throws DukeLoggerException {
+    public void taskDeleted(String desc) throws DukeLoggerException {
         printlnWithWonky(String.format(TASK_DELETED_MSG, desc));
     }
 
@@ -363,7 +374,7 @@ public class WonkyLogger {
      *
      * @param bool
      */
-    public static void setIsLoading(boolean bool) {
+    public void setIsLoading(boolean bool) {
         isLoading = bool;
     }
 
@@ -372,7 +383,7 @@ public class WonkyLogger {
      *
      * @throws DukeLoggerException
      */
-    public static void byeInStorage() throws DukeLoggerException {
+    public void byeInStorage() throws DukeLoggerException {
         printWarnWithWonky("Bye command should not be stored.");
     }
 
@@ -381,7 +392,7 @@ public class WonkyLogger {
      *
      * @return
      */
-    public static WonkyMode getMode() {
+    public WonkyMode getMode() {
         return mode;
     }
 
@@ -390,11 +401,11 @@ public class WonkyLogger {
      *
      * @return
      */
-    public static boolean getLoading() {
+    public boolean getLoading() {
         return isLoading;
     }
 
-    private static String randomFromArray(List<String> choices) {
+    private String randomFromArray(List<String> choices) {
         if (WonkyMode.TEST.equals(mode)) {
             return choices.get(0);
         }
@@ -407,7 +418,7 @@ public class WonkyLogger {
      * @param foundTasks
      * @throws DukeLoggerException
      */
-    public static void printFoundTasks(List<Task> foundTasks, String searchStr) throws DukeLoggerException {
+    public void printFoundTasks(List<Task> foundTasks, String searchStr) throws DukeLoggerException {
         printFindTitle(foundTasks.size(), searchStr);
         for (int i = 0; i < foundTasks.size(); i += 1) {
             task(foundTasks.get(i).getStatusMsg(i + 1));
@@ -420,7 +431,7 @@ public class WonkyLogger {
      * @param searchStr
      * @throws DukeLoggerException
      */
-    public static void noTasksFound(String searchStr) throws DukeLoggerException {
+    public void noTasksFound(String searchStr) throws DukeLoggerException {
         printFindTitle(0, searchStr);
     }
 
@@ -430,7 +441,7 @@ public class WonkyLogger {
      * @param stashList
      * @throws DukeLoggerException
      */
-    public static void printStashList(List<String> stashList) throws DukeLoggerException {
+    public void printStashList(List<String> stashList) throws DukeLoggerException {
         if (stashList.size() > 0) {
             printlnWithWonky("Below are the list of stashes you have!");
             for (int i = 0; i < stashList.size(); i += 1) {
@@ -441,27 +452,27 @@ public class WonkyLogger {
         }
     }
 
-    public static void stashCleared() throws DukeLoggerException {
+    public void stashCleared() throws DukeLoggerException {
         printlnWithWonky("Your stashes have been cleared!");
     }
 
-    public static void invalidStashCommand(String string) throws DukeLoggerException {
+    public void invalidStashCommand(String string) throws DukeLoggerException {
         printlnWithWonky("You have entered an invalid stash command [" + string + "]!");
     }
 
-    public static void invalidStashName(String stashName) throws DukeLoggerException {
+    public void invalidStashName(String stashName) throws DukeLoggerException {
         printlnWithWonky("You have entered an invalid stash name [" + stashName + "]!");
     }
 
-    public static void stashPopped(String stashName) throws DukeLoggerException {
+    public void stashPopped(String stashName) throws DukeLoggerException {
         printlnWithWonky("I have popped this stash [" + stashName + "]!");
     }
 
-    public static void stashAdded(String stashName) throws DukeLoggerException {
+    public void stashAdded(String stashName) throws DukeLoggerException {
         printlnWithWonky("I have added [" + stashName + "] to your stashes!");
     }
 
-    public static void printHelpCommand() throws DukeLoggerException {
+    public void printHelpCommand() throws DukeLoggerException {
         printlnWithWonky(HELP_TEXT);
     }
 
@@ -470,13 +481,13 @@ public class WonkyLogger {
      *
      * @return returns the flushed response.
      */
-    public static String flushResponse() {
+    public String flushResponse() {
         String toFlush = response;
         response = "";
         return toFlush;
     }
 
-    public static void invalidTaskIdx(int i) throws DukeLoggerException {
+    public void invalidTaskIdx(int i) throws DukeLoggerException {
         printWarnWithWonky(String.format(TASK_NOT_EXIST_MSG, i));
     }
 }

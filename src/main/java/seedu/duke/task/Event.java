@@ -1,7 +1,7 @@
 package seedu.duke.task;
 
-import seedu.duke.commands.Command;
-import seedu.duke.commands.WonkyDateTime;
+import seedu.duke.commands.CommandEnum;
+import seedu.duke.helper.WonkyDateTime;
 
 /**
  * Represents an event task that has a start and end time.
@@ -20,7 +20,7 @@ public class Event extends Task {
      * @param to End time of the event task.
      */
     public Event(String description, WonkyDateTime from, WonkyDateTime to) {
-        super(Command.EVENT, "E", description);
+        super(CommandEnum.EVENT, "E", description);
         this.from = from;
         this.to = to;
     }

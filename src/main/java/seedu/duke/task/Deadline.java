@@ -1,7 +1,7 @@
 package seedu.duke.task;
 
-import seedu.duke.commands.Command;
-import seedu.duke.commands.WonkyDateTime;
+import seedu.duke.commands.CommandEnum;
+import seedu.duke.helper.WonkyDateTime;
 
 /**
  * Represents a task with a deadline.
@@ -18,7 +18,7 @@ public class Deadline extends Task {
      * @param by The deadline of the task.
      */
     public Deadline(String description, WonkyDateTime by) {
-        super(Command.DEADLINE, "D", description);
+        super(CommandEnum.DEADLINE, "D", description);
         this.by = by;
     }
 

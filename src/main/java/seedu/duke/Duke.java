@@ -3,9 +3,9 @@ package seedu.duke;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.duke.commands.WonkyMode;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeUnhandledException;
+import seedu.duke.helper.WonkyMode;
 import seedu.duke.io.WonkyLogger;
 import seedu.duke.io.WonkyStorage;
 
@@ -37,8 +37,8 @@ public class Duke {
      * @throws DukeException If there is an error during startup.
      */
     public static void initialise(WonkyMode mode) throws DukeException {
-        WonkyStorage.startUp(mode);
-        WonkyLogger.startUp(mode);
+        WonkyStorage.getInstance().startUp(mode);
+        WonkyLogger.getInstance().startUp(mode);
     }
 
     /**

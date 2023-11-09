@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.duke.commands.WonkyMode;
 import seedu.duke.exceptions.DukeException;
+import seedu.duke.helper.WonkyMode;
 
 public class DukeTest {
     @Test

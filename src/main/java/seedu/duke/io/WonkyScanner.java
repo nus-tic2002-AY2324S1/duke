@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import seedu.duke.commands.Command;
+import seedu.duke.commands.CommandEnum;
 import seedu.duke.commands.CommandArgument;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeScannerException;
@@ -17,17 +17,42 @@ import seedu.duke.task.WonkyManager;
  */
 public class WonkyScanner {
 
-    private static Command currCommand;
-    private static boolean isActive = true;
+    private CommandEnum currCommand;
+    private boolean isActive = true;
+
+    private static WonkyScanner wonkyScanner;
+    private WonkyLogger wonkyLogger;
+    private WonkyManager wonkyManager;
+
+    public WonkyScanner(WonkyManager wonkyManager, WonkyLogger wonkyLogger) {
+        this.wonkyLogger = wonkyLogger;
+        this.wonkyManager = wonkyManager;
+    }
+
+    public static WonkyScanner getInstance(WonkyManager wonkyManager, WonkyLogger wonkyLogger) {
+        if (wonkyScanner == null) {
+            wonkyScanner = new WonkyScanner(wonkyManager, wonkyLogger);
+        }
+        return wonkyScanner;
+    }
+
+    public static WonkyScanner getInstance() {
+        if (wonkyScanner == null) {
+            
+            wonkyScanner = new WonkyScanner(WonkyManager.getInstance(), WonkyLogger.getInstance());
+        }
+        return wonkyScanner;
+    }
+
 
     /**
      * Exits the program.
      *
      * @throws DukeException If there is an error with the logger or scanner.
      */
-    public static void bye() throws DukeException {
-        if (WonkyLogger.getLoading()) {
-            WonkyLogger.byeInStorage();
+    public void bye() throws DukeException {
+        if (wonkyLogger.getLoading()) {
+            wonkyLogger.byeInStorage();
         } else {
             shutdown();
         }
@@ -39,8 +64,8 @@ public class WonkyScanner {
      * @param invalidCmd The user's input with a typo.
      * @return The suggested command, or null if there is no suggestion.
      */
-    public static String typoSuggestion(String invalidCmd) {
-        for (Command cmd : Command.values()) {
+    public String typoSuggestion(String invalidCmd) {
+        for (CommandEnum cmd : CommandEnum.values()) {
             String cmdStr = cmd.getLitr();
             if (cmdStr.length() == invalidCmd.length()) {
                 int matches = 0;
@@ -63,7 +88,7 @@ public class WonkyScanner {
      * @param nextLine The user's input.
      * @throws DukeException If there is an error with the logger, scanner, or executing a command.
      */
-    public static void processNextLine(String nextLine) throws DukeException {
+    public void processNextLine(String nextLine) throws DukeException {
         if (!isActive) {
             return;
         }
@@ -71,20 +96,20 @@ public class WonkyScanner {
             final List<String> splitLn = Arrays.asList(nextLine.split(" ", 2));
             final String inputCmd = splitLn.get(0);
             try {
-                currCommand = Command.getEnum(inputCmd);
+                currCommand = CommandEnum.getEnum(inputCmd);
                 String currArgument = "";
                 if (splitLn.size() == 2) {
                     currArgument = splitLn.get(1);
                 }
                 if (Objects.nonNull(currCommand)) {
-                    WonkyManager.executeCommand(new CommandArgument(currCommand, currArgument));
+                    wonkyManager.executeCommand(new CommandArgument(currCommand, currArgument));
                 }
             } catch (IllegalArgumentException e) {
-                WonkyLogger.unknownCommand(inputCmd);
-                WonkyLogger.suggestCommand(typoSuggestion(inputCmd));
+                wonkyLogger.unknownCommand(inputCmd);
+                wonkyLogger.suggestCommand(typoSuggestion(inputCmd));
             } catch (IndexOutOfBoundsException e) {
-                WonkyLogger.mismatchArgs(inputCmd);
-                WonkyLogger.suggestCommand(typoSuggestion(inputCmd));
+                wonkyLogger.mismatchArgs(inputCmd);
+                wonkyLogger.suggestCommand(typoSuggestion(inputCmd));
             }
         } catch (DukeException e) {
             throw e;
@@ -98,8 +123,8 @@ public class WonkyScanner {
      *
      * @throws DukeException If there is an error with the logger or scanner.
      */
-    public static void shutdown() throws DukeException {
-        WonkyLogger.bye();
+    public void shutdown() throws DukeException {
+        wonkyLogger.bye();
 
         // Create a Timer
         Timer timer = new Timer();
@@ -113,11 +138,11 @@ public class WonkyScanner {
         }, 1000); // Delay in milliseconds
     }
 
-    public static boolean isActive() {
+    public boolean isActive() {
         return isActive;
     }
 
-    public static void setActive(boolean bool) {
+    public void setActive(boolean bool) {
         isActive = bool;
     }
 }
