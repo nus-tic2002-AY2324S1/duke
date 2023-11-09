@@ -7,21 +7,19 @@ import com.tina.task.*;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 /**
- * The Parser class.
- * Parse input to a desired object, such as command object or task object.
+ * Parses input to a desired object, such as command object or task object.
  * Valid the input and throw exception if there is an error.
  */
 public class Parser {
 
     /**
-     * Parse user input to command object.
+     * Parses user input to command object.
      *
      * @param userInput the user input
      * @return the parsed command object
@@ -32,66 +30,19 @@ public class Parser {
             throws InvalidParameterException, InvalidDateFormatException {
         List<String> list = Arrays.asList(userInput.split(" "));
         ArrayList<String> tokens = new ArrayList<>(list);
+
         String firstToken = tokens.get(0).toUpperCase();
-        CommandEnum commandEnum = null;
-        Command command = null;
+        Command command;
 
         try {
-            commandEnum = CommandEnum.valueOf(firstToken);
-            int taskNumber;
-            String taskName;
+            CommandEnum commandEnum = CommandEnum.valueOf(firstToken);
 
             // validate the command syntax and parameter format
             Validator.validateCommand(tokens, commandEnum);
-
             // removes the command type and remains parameters
             tokens.remove(0);
 
-            switch (commandEnum) {
-                case BYE:
-                    command = new ByeCommand();
-                    break;
-                case LIST:
-                    command = new ListCommand();
-                    break;
-                case MARK:
-                    command = new MarkCommand(Integer.parseInt(tokens.get(0)));
-                    break;
-                case UNMARK:
-                    command = new UnmarkCommand(Integer.parseInt(tokens.get(0)));
-                    break;
-                case DELETE:
-                    command = new DeleteCommand(Integer.parseInt(tokens.get(0)));
-                    break;
-                case TODO:
-                    command = new TodoCommand(String.join(" ", tokens));
-                    break;
-                case DEADLINE:
-                    int byIndex = tokens.indexOf("/by");
-                    taskName = String.join(" ", tokens.subList(1, byIndex));
-                    String by = String.join(" ", tokens.subList(byIndex + 1, tokens.size()));
-                    command = new DeadlineCommand(taskName, parseDate(by));
-                    break;
-                case EVENT:
-                    int fromIndex = tokens.indexOf("/from");
-                    int toIndex = tokens.indexOf("/to");
-                    taskName = String.join(" ", tokens.subList(1, fromIndex));
-                    String from = String.join(" ", tokens.subList(fromIndex + 1, toIndex));
-                    String to = String.join(" ", tokens.subList(toIndex + 1, tokens.size()));
-                    command = new EventCommand(taskName, parseDate(from), parseDate(to));
-                    break;
-                case SCHEDULE:
-                    command = new ScheduleCommand(parseDate(String.join(" ", tokens)));
-                    break;
-                case ARCHIVE:
-                    command = new ArchiveCommand(tokens.get(0));
-                    break;
-                case FIND:
-                    command = new FindCommand(String.join(" ", tokens));
-                    break;
-                default:
-            }
-
+            command = parseTokensToCommand(tokens, commandEnum);
         } catch (IllegalArgumentException e) {
             command = new Command(CommandEnum.UNKNOWN) {
                 @Override
@@ -99,14 +50,12 @@ public class Parser {
                     ui.printError();
                 }
             };
-        } catch (DateTimeParseException e) {
-            throw new InvalidDateFormatException();
         }
         return command;
     }
 
     /**
-     * Parse one line read from storage file to a task object
+     * Parses one line read from storage file to a task object
      * Storage file format:
      * T | 1 | read book
      * D | 0 | return book | June 6th
@@ -134,7 +83,7 @@ public class Parser {
     }
 
     /**
-     * Parse task list to storage file format and store in an array list.
+     * Parses task list to storage file format and store in an array list.
      *
      * @param tasks the task list
      * @return the array list
@@ -163,5 +112,56 @@ public class Parser {
         Date date = dates.get(0);
         // parse Date object to LocalDate object
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public static Command parseTokensToCommand(ArrayList<String> tokens, CommandEnum commandEnum)
+            throws InvalidDateFormatException {
+        Command command = null;
+        String taskName;
+        switch (commandEnum) {
+            case BYE:
+                command = new ByeCommand();
+                break;
+            case LIST:
+                command = new ListCommand();
+                break;
+            case MARK:
+                command = new MarkCommand(Integer.parseInt(tokens.get(0)));
+                break;
+            case UNMARK:
+                command = new UnmarkCommand(Integer.parseInt(tokens.get(0)));
+                break;
+            case DELETE:
+                command = new DeleteCommand(Integer.parseInt(tokens.get(0)));
+                break;
+            case TODO:
+                command = new TodoCommand(String.join(" ", tokens));
+                break;
+            case DEADLINE:
+                int byIndex = tokens.indexOf("/by");
+                taskName = String.join(" ", tokens.subList(1, byIndex));
+                String by = String.join(" ", tokens.subList(byIndex + 1, tokens.size()));
+                command = new DeadlineCommand(taskName, parseDate(by));
+                break;
+            case EVENT:
+                int fromIndex = tokens.indexOf("/from");
+                int toIndex = tokens.indexOf("/to");
+                taskName = String.join(" ", tokens.subList(1, fromIndex));
+                String from = String.join(" ", tokens.subList(fromIndex + 1, toIndex));
+                String to = String.join(" ", tokens.subList(toIndex + 1, tokens.size()));
+                command = new EventCommand(taskName, parseDate(from), parseDate(to));
+                break;
+            case SCHEDULE:
+                command = new ScheduleCommand(parseDate(String.join(" ", tokens)));
+                break;
+            case ARCHIVE:
+                command = new ArchiveCommand(tokens.get(0));
+                break;
+            case FIND:
+                command = new FindCommand(String.join(" ", tokens));
+                break;
+            default:
+        }
+        return command;
     }
 }
