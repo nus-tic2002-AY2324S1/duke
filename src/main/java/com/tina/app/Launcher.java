@@ -1,5 +1,6 @@
-package com.tina.service;
+package com.tina.app;
 
+import com.tina.app.Tina;
 import javafx.application.Application;
 
 /**
@@ -7,6 +8,6 @@ import javafx.application.Application;
  */
 public class Launcher {
     public static void main(String[] args) {
-        Application.launch(Tina.class, args);
+        Application.launch(Main.class, args);
     }
 }
