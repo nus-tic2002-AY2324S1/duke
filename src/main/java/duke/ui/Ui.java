@@ -60,7 +60,7 @@ public class Ui {
     }
 
     /**
-     * print divider line
+     * Prints a horizontal line with indentation to the output.
      */
     public void showLine() {
         out.println(generateSpaces(INDENT_LINE) + DIVIDER);
