@@ -1,9 +1,6 @@
 package Task;
-
-import Task.Task;
-
 public class SpecialTask extends Task {
-    private String type;
+    protected String type;
     public SpecialTask(String description, String type) {
         super(description);
         switch(type){

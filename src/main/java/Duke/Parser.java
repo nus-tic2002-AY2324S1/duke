@@ -34,7 +34,12 @@ public class Parser {
                     Shelf.addSpecialTask(input[1], input[0]);
                     break;
                 case "deadline":
-                    Shelf.addSpecialTask(input[1], input[0]);
+                    if(!input[2].isEmpty()){
+                        Shelf.addDateTask(input[1], input[0], input[2]);
+                        System.out.println("test");
+                    }else{
+                        Shelf.addSpecialTask(input[1], input[0]);
+                    }
                     break;
                 case "event":
                     Shelf.addSpecialTask(input[1], input[0]);
@@ -62,6 +67,12 @@ public class Parser {
     }
     public static String[] InputParser(String input) {
         String[] words = input.split(" ", 2);
+        if(words.length > 1){
+            String[] taskwithdates = words[1].split("/by ", 2);
+            if(taskwithdates.length > 1){
+                return new String[]{words[0],taskwithdates[0],taskwithdates[1]};
+            }
+        }
         return words;
     }
 

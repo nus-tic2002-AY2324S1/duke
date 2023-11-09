@@ -1,7 +1,5 @@
 package Task;
-
-import Task.Task;
-
+import Duke.DukeException;
 import java.util.ArrayList;
 
 public class Shelf {
@@ -9,7 +7,6 @@ public class Shelf {
     public Shelf(){
         shelf = new ArrayList<>();
     }
-
     public static void listShelf(){
         if(shelf.isEmpty()){
             Text.printMessage(Text.Message.NOITEM);
@@ -18,7 +15,12 @@ public class Shelf {
         System.out.print(Text.newline);
         System.out.println("No. [Type] [Marking] Description"); // listing sequence
         for(int i = 0; i < shelf.size(); i++){
-            System.out.println(Integer.toString(i+1)+ ": " + "["  + shelf.get(i).getTypeIcon() + "]" + "["  + shelf.get(i).getStatusIcon() + "]" + shelf.get(i).description);
+            String deadline = "";
+            if (shelf.get(i) instanceof DateTask){
+                DateTask dateTask = (DateTask) shelf.get(i);
+                deadline = dateTask.getDate();
+            }
+            System.out.println(Integer.toString(i+1)+ ": " + "["  + shelf.get(i).getTypeIcon() + "]" + "["  + shelf.get(i).getStatusIcon() + "]" + shelf.get(i).description + deadline);
         }
         System.out.println(Text.newline);
     }
@@ -40,7 +42,6 @@ public class Shelf {
         System.out.println("Now you have "+ shelf.size() +" tasks in the list.");
     }
     public static void markTask (String[] msg) throws DukeException {
-
         String markingIndication = msg[0];
         int idx = Integer.parseInt(msg[1]) - 1;
         if(idx >= shelf.size()){
@@ -64,10 +65,22 @@ public class Shelf {
         System.out.print("[" + t.getTypeIcon() + "]" + "[ ] " + item + "\n" + Text.newline);
         System.out.println("Now you have "+ shelf.size() +" tasks in the list.");
     }
+    public static void addDateTask(String item, String type, String date){
+        DateTask d = new DateTask(item, type, date);
+        shelf.add(d);
+        System.out.println(Text.newline + "Got it. I've added this task with a deadline:");
+        System.out.print("[" + d.getTypeIcon() + "]" + "[ ] " + item + " " + date +"\n" + Text.newline);
+        System.out.println("Now you have "+ shelf.size() +" tasks in the list.");
+    }
     public static String ShelftoString(){
         String save = "";
         for (SpecialTask specialTask : shelf) {
-            save += specialTask.getTypeIcon() + "|" + specialTask.getStatusIcon() + "|" + specialTask.description + "\n";
+            String deadline = "";
+            if (specialTask instanceof DateTask){
+                DateTask dateTask = (DateTask) specialTask;
+                deadline = "|" + String.valueOf(dateTask.deadline);
+            }
+            save += specialTask.getTypeIcon() + "|" + specialTask.getStatusIcon() + "|" + specialTask.description + deadline + "\n";
         }
         return save;
     }
