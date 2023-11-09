@@ -77,7 +77,8 @@ public class Storage {
         }
     }
 
-    public void archive(TaskList taskList, String fileName) throws InvalidFilePathException, com.tina.exception.IOException, ExistedFileException {
+    public void archive(TaskList taskList, String fileName)
+            throws InvalidFilePathException, com.tina.exception.IOException, ExistedFileException {
         ArrayList<String> tasks = Parser.parseTasksToStorage(taskList);
         try {
             Path archiveFile = archivePath.resolve(fileName);

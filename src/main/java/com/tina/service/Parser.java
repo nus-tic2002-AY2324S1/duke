@@ -28,128 +28,80 @@ public class Parser {
      * @throws InvalidParameterException  if input parameter is invalid
      * @throws InvalidDateFormatException if the date format is invalid
      */
-    public static Command parseInputToCommand(String userInput) throws InvalidParameterException, InvalidDateFormatException {
+    public static Command parseInputToCommand(String userInput)
+            throws InvalidParameterException, InvalidDateFormatException {
         List<String> list = Arrays.asList(userInput.split(" "));
         ArrayList<String> tokens = new ArrayList<>(list);
         String firstToken = tokens.get(0).toUpperCase();
-        CommandEnum commandEnum;
+        CommandEnum commandEnum = null;
         Command command = null;
 
         try {
             commandEnum = CommandEnum.valueOf(firstToken);
-        } catch (IllegalArgumentException e) {
-            commandEnum = null;
-        }
-
-        if (commandEnum != null) {
             int taskNumber;
             String taskName;
 
+            // validate the command syntax and parameter format
+            Validator.validateCommand(tokens, commandEnum);
+
+            // removes the command type and remains parameters
+            tokens.remove(0);
+
             switch (commandEnum) {
                 case BYE:
-                    validateSingleCommand(tokens, CommandEnum.BYE);
                     command = new ByeCommand();
                     break;
                 case LIST:
-                    validateSingleCommand(tokens, CommandEnum.LIST);
                     command = new ListCommand();
                     break;
                 case MARK:
-                    taskNumber = validateTaskNumber(tokens, CommandEnum.MARK);
-                    command = new MarkCommand(taskNumber);
+                    command = new MarkCommand(Integer.parseInt(tokens.get(0)));
                     break;
                 case UNMARK:
-                    taskNumber = validateTaskNumber(tokens, CommandEnum.UNMARK);
-                    command = new UnmarkCommand(taskNumber);
+                    command = new UnmarkCommand(Integer.parseInt(tokens.get(0)));
                     break;
                 case DELETE:
-                    taskNumber = validateTaskNumber(tokens, CommandEnum.DELETE);
-                    command = new DeleteCommand(taskNumber);
+                    command = new DeleteCommand(Integer.parseInt(tokens.get(0)));
                     break;
                 case TODO:
-                    if (tokens.size() == 1) {
-                        throw new InvalidParameterException(CommandEnum.TODO);
-                    }
-                    tokens.remove(0);
-                    taskName = String.join(" ", tokens);
-                    command = new TodoCommand(taskName);
+                    command = new TodoCommand(String.join(" ", tokens));
                     break;
                 case DEADLINE:
                     int byIndex = tokens.indexOf("/by");
-                    if (tokens.size() == 1 || byIndex == -1 || byIndex == tokens.size() - 1 ) {
-                        throw new InvalidParameterException(CommandEnum.DEADLINE);
-                    }
                     taskName = String.join(" ", tokens.subList(1, byIndex));
                     String by = String.join(" ", tokens.subList(byIndex + 1, tokens.size()));
-                    LocalDate byDateTime = LocalDate.parse(by);
-                    command = new DeadlineCommand(taskName, byDateTime);
+                    command = new DeadlineCommand(taskName, parseDate(by));
                     break;
                 case EVENT:
                     int fromIndex = tokens.indexOf("/from");
                     int toIndex = tokens.indexOf("/to");
-                    if (tokens.size() == 1 || fromIndex == -1 || toIndex == -1 || fromIndex >= toIndex - 1 || toIndex == tokens.size() - 1) {
-                        throw new InvalidParameterException(CommandEnum.EVENT);
-                    }
                     taskName = String.join(" ", tokens.subList(1, fromIndex));
                     String from = String.join(" ", tokens.subList(fromIndex + 1, toIndex));
                     String to = String.join(" ", tokens.subList(toIndex + 1, tokens.size()));
-                    LocalDate fromDateTime = LocalDate.parse(from);
-                    LocalDate toDateTime = LocalDate.parse(to);
-                    command = new EventCommand(taskName, fromDateTime, toDateTime);
+                    command = new EventCommand(taskName, parseDate(from), parseDate(to));
                     break;
                 case SCHEDULE:
-                    if (tokens.size() == 1) {
-                        throw new InvalidParameterException(CommandEnum.SCHEDULE);
-                    }
-                    tokens.remove(0);
-                    try {
-                        com.joestelmach.natty.Parser parser = new com.joestelmach.natty.Parser();
-                        List<DateGroup> groups = parser.parse(String.join(" ", tokens));
-                        if (groups.size() != 1) {
-                            throw new InvalidDateFormatException();
-                        }
-                        Date date = null;
-                        List<Date> dates = groups.get(0).getDates();
-                        if (!dates.isEmpty()) {
-                            date = dates.get(0);
-                        }
-                        else {
-                            throw new InvalidDateFormatException();
-                        }
-                        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                        command = new ScheduleCommand(localDate);
-                    } catch (DateTimeParseException e) {
-                        throw new InvalidDateFormatException();
-                    }
+                    command = new ScheduleCommand(parseDate(String.join(" ", tokens)));
                     break;
                 case ARCHIVE:
-                    if (tokens.size() != 2) {
-                        throw new InvalidParameterException(CommandEnum.ARCHIVE);
-                    }
-                    String fileName = tokens.get(1);
-                    if (!fileName.toLowerCase().endsWith(".txt")) {
-                        throw new InvalidParameterException(CommandEnum.ARCHIVE);
-                    }
-                    command = new ArchiveCommand(fileName);
+                    command = new ArchiveCommand(tokens.get(0));
+                    break;
                 case FIND:
-                    if (tokens.size() == 1) {
-                        throw new InvalidParameterException(CommandEnum.SCHEDULE);
-                    }
-                    tokens.remove(0);
-                    String keyword = String.join(" ", tokens);
-                    command = new FindCommand(keyword);
+                    command = new FindCommand(String.join(" ", tokens));
+                    break;
                 default:
             }
-        }
-        else {
+
+        } catch (IllegalArgumentException e) {
             command = new Command(CommandEnum.UNKNOWN) {
                 @Override
-                public void execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException {
+                public void execute(TaskList taskList, Ui ui, Storage storage) {
                     ui.printError();
                 }
             };
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateFormatException();
         }
-
         return command;
     }
 
@@ -174,7 +126,8 @@ public class Parser {
             case "D":
                 return new DeadlineTask(parts[2], isDone, LocalDate.parse(parts[3]));
             case "E":
-                return new EventTask(parts[2], isDone, LocalDate.parse(parts[3]), LocalDate.parse(parts[4]));
+                return new EventTask(parts[2], isDone, LocalDate.parse(parts[3]),
+                        LocalDate.parse(parts[4]));
             default:
                 throw new InvalidFileFormatException();
         }
@@ -194,36 +147,21 @@ public class Parser {
         return taskArray;
     }
 
-    /**
-     * Validate task number.
-     * Throws exception if task number is missing or task number is not in integer format.
-     *
-     * @param tokens  the parameters from user input
-     * @param command the command type
-     * @return the int
-     * @throws InvalidParameterException if task number is missing or invalid
-     */
-    public static int validateTaskNumber(ArrayList<String> tokens, CommandEnum command) throws InvalidParameterException {
-        int taskNumber;
-        try {
-            taskNumber = Integer.parseInt(tokens.get(1));
-        } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            throw new InvalidParameterException(command);
-        }
-        return taskNumber;
-    }
+    public static LocalDate parseDate(String dateString) throws InvalidDateFormatException {
+        com.joestelmach.natty.Parser parser = new com.joestelmach.natty.Parser();
 
-    /**
-     * Validate single command, such as bye, list.
-     * Throw exception if extra parameters are given.
-     *
-     * @param tokens  the parameters from user input
-     * @param command the command type
-     * @throws InvalidParameterException if extra parameters are given
-     */
-    public static void validateSingleCommand(ArrayList<String> tokens, CommandEnum command) throws InvalidParameterException {
-        if (tokens.size() > 1) {
-            throw new InvalidParameterException(command);
+        List<DateGroup> groups = parser.parse(dateString);
+        if (groups.size() != 1) {
+            throw new InvalidDateFormatException();
         }
+
+        List<Date> dates = groups.get(0).getDates();
+        if (dates.isEmpty()) {
+            throw new InvalidDateFormatException();
+        }
+
+        Date date = dates.get(0);
+        // parse Date object to LocalDate object
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 }
