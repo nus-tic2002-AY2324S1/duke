@@ -28,7 +28,7 @@ public class DeleteCommand extends CommandType {
             taskIdx = Integer.parseInt(argList.get(0)) - 1;
             assert taskIdx >= 0 : "taskIdx cannot be negative!";
             assert taskIdx < tasks.size() : "taskIdx cannot be larger than tasks size!";
-            if (wonkyManager.isValidTaskIdx(taskIdx) && super.validateArgs(this, ONE_ARGS)) {
+            if (super.validateArgs(this, ONE_ARGS)) {
                 Task taskToDelete = tasks.get(taskIdx);
                 tasks.remove(taskIdx);
                 wonkyLogger.taskDeleted(taskToDelete.getDescription());

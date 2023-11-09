@@ -17,7 +17,6 @@ import seedu.duke.commands.types.StashCommand;
 import seedu.duke.commands.types.TodoCommand;
 import seedu.duke.commands.types.UnmarkCommand;
 import seedu.duke.exceptions.DukeException;
-import seedu.duke.exceptions.DukeLoggerException;
 import seedu.duke.exceptions.DukeManagerException;
 import seedu.duke.io.WonkyLogger;
 import seedu.duke.io.WonkyStorage;
@@ -106,15 +105,6 @@ public class WonkyManager {
     public void addTask(Task toAdd) throws DukeException {
         tasks.add(toAdd);
         wonkyLogger.addedToList(toAdd, tasks.size());
-    }
-
-    public boolean isValidTaskIdx(int taskIdx) throws DukeLoggerException {
-        if (taskIdx >= 0 && taskIdx < tasks.size()) {
-            return true;
-        } else {
-            wonkyLogger.invalidTaskIdx(taskIdx + 1);
-            return false;
-        }
     }
 
     public List<Task> getTasks() {

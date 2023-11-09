@@ -3,11 +3,11 @@ package seedu.duke.io;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import seedu.duke.commands.CommandEnum;
-import seedu.duke.commands.CommandType;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.DukeScannerException;
 import seedu.duke.task.WonkyManager;
@@ -21,8 +21,10 @@ public class WonkyScanner {
     private boolean isActive = true;
 
     private static WonkyScanner wonkyScanner;
+
     private WonkyLogger wonkyLogger;
     private WonkyManager wonkyManager;
+    private Scanner in;
 
     public WonkyScanner() {}
 
@@ -36,6 +38,16 @@ public class WonkyScanner {
     public void setReferences(WonkyLogger wonkyLogger, WonkyManager wonkyManager) {
         this.wonkyLogger = wonkyLogger;
         this.wonkyManager = wonkyManager;
+    }
+
+    public void setScannerMode() throws DukeException {
+        System.out.println(wonkyLogger.flushResponse());
+        in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String nextLine = in.nextLine();
+            processNextLine(nextLine);
+            System.out.println(wonkyLogger.flushResponse());
+        }
     }
 
     /**
@@ -86,7 +98,7 @@ public class WonkyScanner {
             return;
         }
         try {
-            final List<String> splitLn = Arrays.asList(nextLine.split(" ", 2));
+            final List<String> splitLn = Arrays.asList(nextLine.trim().split(" ", 2));
             final String inputCmd = splitLn.get(0);
             try {
                 currCommand = CommandEnum.getEnum(inputCmd);
@@ -126,6 +138,9 @@ public class WonkyScanner {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+                if (Objects.nonNull(in)) {
+                    in.close();
+                }
                 System.exit(0);
             }
         }, 1000); // Delay in milliseconds

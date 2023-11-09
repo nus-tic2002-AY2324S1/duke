@@ -38,14 +38,14 @@ public class WonkyUtils {
         str = str.trim();
         try {
             LocalDateTime.parse(str, WonkyDateTime.dtf);
+            return true;
         } catch (DateTimeParseException e) {
-            if (Objects.nonNull(new WonkyDateTime(str))) {
+            if (isValidNaturalDateTimeStr(str)) {
                 return true;
             }
             WonkyLogger.getInstance().expectedDateTime(str);
-            return false;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -60,7 +60,7 @@ public class WonkyUtils {
         try {
             return new WonkyDateTime(LocalDateTime.parse(str, WonkyDateTime.dtf));
         } catch (DateTimeParseException e) {
-            if (Objects.nonNull(WonkyUtils.isValidNaturalDateTimeStr(str))) {
+            if (WonkyUtils.isValidNaturalDateTimeStr(str)) {
                 return new WonkyDateTime(str);
             }
             throw new DukeManagerException("Invalid date value.");

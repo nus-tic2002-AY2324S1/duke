@@ -55,6 +55,9 @@ public class Duke {
 
         wonkyStorage.startUp(mode);
         wonkyLogger.startUp(mode);
+        if (WonkyMode.TEST.equals(mode)) {
+            wonkyScanner.setScannerMode();
+        }
     }
 
     /**
