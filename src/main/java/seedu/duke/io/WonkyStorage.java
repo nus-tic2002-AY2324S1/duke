@@ -21,25 +21,27 @@ import seedu.duke.task.WonkyManager;
 public class WonkyStorage {
 
     private static WonkyStorage wonkyStorage;
-    private static WonkyLogger wonkyLogger;
-    private static WonkyManager wonkyManager;
-    private static WonkyScanner wonkyScanner;
+    private WonkyLogger wonkyLogger;
+    private WonkyManager wonkyManager;
+    private WonkyScanner wonkyScanner;
 
     private final String STORAGE_PATH = "./storage.txt";
     private final File STORAGE_FILE = new File(STORAGE_PATH);
     private final File STASH_FOLDER = new File("./stash/");
 
-    public WonkyStorage() {
-        wonkyLogger = WonkyLogger.getInstance();
-        wonkyManager = WonkyManager.getInstance(this, wonkyLogger);
-        wonkyScanner = WonkyScanner.getInstance(wonkyManager, wonkyLogger);
-    }
+    public WonkyStorage() {}
 
     public static WonkyStorage getInstance() {
         if (wonkyStorage == null) {
             wonkyStorage = new WonkyStorage();
         }
         return wonkyStorage;
+    }
+
+    public void setReferences(WonkyLogger wonkyLogger, WonkyManager wonkyManager, WonkyScanner wonkyScanner) {
+        this.wonkyLogger = wonkyLogger;
+        this.wonkyManager = wonkyManager;
+        this.wonkyScanner = wonkyScanner;
     }
 
     /**

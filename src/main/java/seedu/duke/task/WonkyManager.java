@@ -47,28 +47,23 @@ public class WonkyManager {
     private List<Task> tasks = new ArrayList<Task>();
 
     private static WonkyManager wonkyManager;
-    private static WonkyScanner wonkyScanner;
+    private WonkyScanner wonkyScanner;
     private WonkyLogger wonkyLogger;
     private WonkyStorage wonkyStorage;
 
-    public WonkyManager (WonkyStorage wonkyStorage, WonkyLogger wonkyLogger) {
-        this.wonkyStorage = wonkyStorage;
-        this.wonkyLogger = wonkyLogger;
-        wonkyScanner = WonkyScanner.getInstance(this, wonkyLogger);
-    }
-
-    public static WonkyManager getInstance(WonkyStorage wonkyStorage, WonkyLogger wonkyLogger) {
-        if (wonkyManager == null) {
-            wonkyManager = new WonkyManager(wonkyStorage, wonkyLogger);
-        }
-        return wonkyManager;
-    }
+    public WonkyManager () {}
 
     public static WonkyManager getInstance() {
         if (wonkyManager == null) {
-            wonkyManager = new WonkyManager(WonkyStorage.getInstance(), WonkyLogger.getInstance());
+            wonkyManager = new WonkyManager();
         }
         return wonkyManager;
+    }
+
+    public void setReferences(WonkyLogger wonkyLogger, WonkyStorage wonkyStorage, WonkyScanner wonkyScanner) {
+        this.wonkyLogger = wonkyLogger;
+        this.wonkyStorage = wonkyStorage;
+        this.wonkyScanner = wonkyScanner;
     }
 
     /**

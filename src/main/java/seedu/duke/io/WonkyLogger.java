@@ -17,8 +17,6 @@ import seedu.duke.task.Task;
  */
 public class WonkyLogger {
 
-    private static WonkyLogger instance;
-
     private final String LOGO =
         "\t__          __         _            ____        _   " + System.lineSeparator()
         + "\t\\ \\        / /        | |          |  _ \\      | |  " + System.lineSeparator()
@@ -111,6 +109,8 @@ public class WonkyLogger {
     private boolean isLoading = false;
 
     private String response = "";
+
+    private static WonkyLogger instance;
 
     public WonkyLogger() {}
 

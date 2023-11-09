@@ -28,8 +28,8 @@ public class MainWindow extends AnchorPane {
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image wonky = new Image(this.getClass().getResourceAsStream("/images/wonky.png"));
 
-    private static WonkyScanner wonkyScanner = WonkyScanner.getInstance();
     private static WonkyLogger wonkyLogger = WonkyLogger.getInstance();
+    private static WonkyScanner wonkyScanner = WonkyScanner.getInstance();
 
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to

@@ -24,26 +24,19 @@ public class WonkyScanner {
     private WonkyLogger wonkyLogger;
     private WonkyManager wonkyManager;
 
-    public WonkyScanner(WonkyManager wonkyManager, WonkyLogger wonkyLogger) {
-        this.wonkyLogger = wonkyLogger;
-        this.wonkyManager = wonkyManager;
-    }
-
-    public static WonkyScanner getInstance(WonkyManager wonkyManager, WonkyLogger wonkyLogger) {
-        if (wonkyScanner == null) {
-            wonkyScanner = new WonkyScanner(wonkyManager, wonkyLogger);
-        }
-        return wonkyScanner;
-    }
+    public WonkyScanner() {}
 
     public static WonkyScanner getInstance() {
         if (wonkyScanner == null) {
-            
-            wonkyScanner = new WonkyScanner(WonkyManager.getInstance(), WonkyLogger.getInstance());
+            wonkyScanner = new WonkyScanner();
         }
         return wonkyScanner;
     }
 
+    public void setReferences(WonkyLogger wonkyLogger, WonkyManager wonkyManager) {
+        this.wonkyLogger = wonkyLogger;
+        this.wonkyManager = wonkyManager;
+    }
 
     /**
      * Exits the program.

@@ -59,6 +59,8 @@ checkstyle {
 }
 
 application {
+    sourceCompatibility = 11
+    targetCompatibility = 11
     mainClass.set("seedu.duke.gui.Launcher")
 }
 
