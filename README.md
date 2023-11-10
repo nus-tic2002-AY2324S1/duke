@@ -15,7 +15,14 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    In the same dialog, set the **Project language level** field to the `SDK default` option.
 3. After that, locate the `src/main/java/nus/duke/Duke.java` file, right-click it, and choose `Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
    ```
-   Hello! I'm DukeBot.
+   Hello! I'm
+    ______   __   __  ___   _  _______  _______  _______  _______ 
+   |      | |  | |  ||   | | ||       ||  _    ||       ||       |
+   |  _    ||  | |  ||   |_| ||    ___|| |_|   ||   _   ||_     _|
+   | | |   ||  |_|  ||      _||   |___ |       ||  | |  |  |   |  
+   | |_|   ||       ||     |_ |    ___||  _   | |  |_|  |  |   |  
+   |       ||       ||    _  ||   |___ | |_|   ||       |  |   |  
+   |______| |_______||___| |_||_______||_______||_______|  |___|  
    What can I do for you?
    ```
 4. Duke is released under an MIT license.
