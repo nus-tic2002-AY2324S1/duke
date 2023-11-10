@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
@@ -57,10 +58,25 @@ public abstract class AbstractTask {
      * @param isDone      The completion status of the task.
      */
     protected AbstractTask(String description, boolean isDone) {
+        this(description, isDone, null);
+    }
+
+    /**
+     * Instantiates a new `AbstractTask` with the provided description, completion status,
+     * and an optional afterOption.
+     *
+     * @param description The description of the task. Must not be null.
+     * @param isDone      The completion status of the task.
+     * @param afterOption An optional afterOption associated with the task.
+     *                    It represents additional data relevant to the task execution.
+     *                    Use null if no afterOption is provided.
+     */
+    protected AbstractTask(String description, boolean isDone, TaskAfterOption afterOption) {
         assert description != null;
 
         this.description = description;
         this.isDone = isDone;
+        this.afterOption = afterOption;
         addAttribute(TaskOptionKey.AFTER, this::getAfterOptionString);
     }
 
@@ -290,13 +306,33 @@ public abstract class AbstractTask {
         throw new RuntimeException("Invalid task after option.");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof AbstractTask)) {
+            return false;
+        }
+
+        AbstractTask task = (AbstractTask) o;
+        return description.equals(task.getDescription())
+            && isDone == task.getDone()
+            && (afterOption != null ? afterOption.equals(task.getAfterOption()) : task.getAfterOption() == null);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(new Object[] {description, isDone, afterOption});
+    }
+
     /**
      * A functional interface to get an attribute's value as an optional string.
      */
     @FunctionalInterface
     protected interface AttributeValueGetter {
         /**
-         * Get the attribute value as an optional string.
+         * Gets the attribute value as an optional string.
          *
          * @return An optional string representing the attribute value.
          */

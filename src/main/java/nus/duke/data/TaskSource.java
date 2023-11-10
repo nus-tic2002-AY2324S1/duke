@@ -36,7 +36,7 @@ public class TaskSource {
     }
 
     /**
-     * Get the description of the task source.
+     * Gets the description of the task source.
      *
      * @return The description of the task source.
      */
@@ -45,7 +45,7 @@ public class TaskSource {
     }
 
     /**
-     * Get the key-value options associated with the task source.
+     * Gets the key-value options associated with the task source.
      *
      * @return A HashMap containing the key-value options of the task source.
      */
@@ -54,7 +54,7 @@ public class TaskSource {
     }
 
     /**
-     * Get the value associated with a specific option key.
+     * Gets the value associated with a specific option key.
      *
      * @param optionKey The key of the option for which to retrieve the value. Must not be null.
      * @return An Optional containing the value of the option if it exists, or an empty Optional if it doesn't.
@@ -68,7 +68,7 @@ public class TaskSource {
     }
 
     /**
-     * Get the value associated with a specific option key represented by a `TaskOptionKey` enum.
+     * Gets the value associated with a specific option key represented by a `TaskOptionKey` enum.
      *
      * @param optionKey The `TaskOptionKey` enum representing the option key to retrieve.
      * @return An Optional containing the value of the option if it exists, or an empty Optional if it doesn't.
