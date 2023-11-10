@@ -11,13 +11,13 @@ import duke.parser.Parser;
 import duke.exception.FileStorageException;
 
 /**
- * Duke is the main entry point of the Luna chat-bot application
+ * Duke is the main entry point of the Luna chatbot application
  * Initializes the applications and starts the interaction with the user
  */
 public class Duke {
 
-    private Ui ui;
-    private Storage storage;
+    final private Ui ui;
+    final private Storage storage;
     private TaskList tasks;
     private UserKeywordArgument keywordArgument;
 
