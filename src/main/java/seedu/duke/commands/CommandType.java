@@ -111,6 +111,7 @@ public abstract class CommandType {
      *
      * @param commandType the command argument to validate.
      * @param expectedSize the expected number of arguments.
+     * @param isError whether to log an error if the command argument is invalid.
      * @return true if the command argument is valid, false otherwise.
      * @throws DukeException if there is an error validating the command argument.
      */
