@@ -23,17 +23,13 @@ public class ListCommand extends Command {
     }
 
     /**
-     * @param taskList        The TaskList containing the tasks to be displayed.
-     * @param ui              The user interface for displaying messages and tasks to the user.
-     * @param storage         The storage object used to store and load tasks.
-     * @param keywordArgument The parsed user input containing the keyword and arguments.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
      *                                  message.
      * @inheritDoc Executes the List command to display the tasks in the task list to the user.
      * Validates the command arguments and shows the list of tasks to the user through the user interface.
      */
     @Override
-    public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public void executeCommand(TaskList taskList, Ui ui, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
         validateNonEmptyKeywordArgument(keywordArgument, new ListCommand());
         if (TaskList.size() == 0) {

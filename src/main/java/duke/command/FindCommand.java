@@ -23,14 +23,13 @@ public class FindCommand extends Command {
 
     /**
      * @param taskList        The task list containing tasks to be searched.
-     * @param ui              The user interface object used to display the response.
-     * @param storage         The storage object used for saving tasks.
+     * @param ui              The user interface object used to display the response.*
      * @param keywordArgument The user input containing the search keyword and arguments.
      * @throws InvalidArgumentException If the search argument is empty or invalid.
      * @inheritDoc Executes a search command, finds tasks based on the provided search string, and displays the results.
      */
     @Override
-    public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
+    public void executeCommand(TaskList taskList, Ui ui, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
         validateKeywordArgument(keywordArgument, new FindCommand());
         String search = keywordArgument.getArguments();
         assert !search.isEmpty() : "search string cannot be empty";

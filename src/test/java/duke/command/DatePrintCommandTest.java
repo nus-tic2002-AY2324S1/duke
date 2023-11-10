@@ -31,9 +31,8 @@ public class DatePrintCommandTest {
     public void executeCommand_availableDate_foundDate() throws Exception {
         TaskList tasks = new TaskList(TestUtil.getTestTasks());
         Ui ui = new Ui();
-        Storage storage = getTempStorage();
         DatePrintCommand dPrint = new DatePrintCommand();
-        dPrint.executeCommand(tasks, ui, storage, new UserKeywordArgument("dprint 02/12/2023"));
+        dPrint.executeCommand(tasks, ui, new UserKeywordArgument("dprint 02/12/2023"));
         assertEquals(getSuccessString(tasks, ui), outputStreamCaptor.toString());
     }
 

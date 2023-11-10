@@ -8,15 +8,19 @@ import duke.ui.Ui;
 
 import java.util.ArrayList;
 
-public class HelpCommand extends Command{
+public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
-    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Displays examples and usage instructions for all available commands.\n" +
+    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Displays examples and usage instructions for all " +
+            "available commands.\n" +
             "Example of usage: " + COMMAND_WORD;
     public static final String COMMAND_IN_THE_LIST = "Here is a list of commands that are available:";
 
-
+    /**
+     * @throws InvalidArgumentException If the user input arguments are invalid.
+     * @inheritDoc Executes the help command by displaying a list of available commands.
+     */
     @Override
-    public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
+    public void executeCommand(TaskList taskList, Ui ui, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
         validateNonEmptyKeywordArgument(keywordArgument, new HelpCommand());
 
         ArrayList<String> messages = new ArrayList<>();

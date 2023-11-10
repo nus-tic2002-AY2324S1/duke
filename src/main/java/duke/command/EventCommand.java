@@ -29,15 +29,14 @@ public class EventCommand extends Command {
 
     /**
      * @param tasks           The TaskList containing the tasks to be managed.
-     * @param ui              The user interface for displaying messages to the user.
-     * @param storage         The storage object used to store and load tasks.
+     * @param ui              The user interface for displaying messages to the user.*
      * @param keywordArgument The parsed user input containing the keyword and arguments.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
      *                                  message.
      * @inheritDoc Executes the command to create a new event task and adds it to the task list.
      */
     @Override
-    public void executeCommand(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
+    public void executeCommand(TaskList tasks, Ui ui, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
         Event event = processDetail(keywordArgument);
         event.execute();
         tasks.add(event);

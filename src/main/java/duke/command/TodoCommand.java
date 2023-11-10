@@ -18,8 +18,7 @@ public class TodoCommand extends Command {
 
     /**
      * @param tasks           The TaskList where the new Todo task will be added.
-     * @param ui              The user interface for displaying messages to the user.
-     * @param storage         The storage object used to store and load tasks
+     * @param ui              The user interface for displaying messages to the user.*
      * @param keywordArgument The parsed user input containing the keyword and task description.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
      *                                  message.
@@ -27,7 +26,7 @@ public class TodoCommand extends Command {
      * Validates the command arguments, creates a Todo task, executes the task, and adds it to the task list.
      */
     @Override
-    public void executeCommand(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public void executeCommand(TaskList tasks, Ui ui, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
         validateKeywordArgument(keywordArgument, new TodoCommand());
         Todo todo = new Todo(keywordArgument.getArguments());

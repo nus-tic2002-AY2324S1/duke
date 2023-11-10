@@ -17,19 +17,15 @@ import static duke.command.Command.DATE_TIME_ERR_MESSAGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EventCommandTest {
-    @TempDir
-    static Path testFolder;
     EventCommand evt = new EventCommand();
     TaskList taskList;
     Ui ui;
-    Storage storage;
     String err = "";
 
     @BeforeEach
     void setUp() throws Exception {
         taskList = new TaskList(TestUtil.getTestTasks());
         ui = new Ui();
-        storage = getTempStorage();
     }
 
     @Test
@@ -38,14 +34,11 @@ class EventCommandTest {
         String expect = Message.concat(errMsg, EventCommand.EXAMPLE_USAGE);
         UserKeywordArgument keywordArgument = new UserKeywordArgument("event");
         try {
-            evt.executeCommand(taskList,ui, storage, keywordArgument);
+            evt.executeCommand(taskList,ui, keywordArgument);
         } catch (InvalidArgumentException e) {
             err = e.getMessage();
         }
         assertEquals(expect, err);
     }
 
-    public static Storage getTempStorage() throws Exception {
-        return new Storage(testFolder.resolve("temp.txt").toString());
-    }
 }

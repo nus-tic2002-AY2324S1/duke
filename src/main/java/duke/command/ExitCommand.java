@@ -21,14 +21,13 @@ public class ExitCommand extends Command {
     /**
      * @param tasks           The TaskList containing the tasks to be managed.
      * @param ui              The user interface for displaying messages to the user.
-     * @param storage         The storage object used to store and load tasks.
      * @param keywordArgument The parsed user input containing the keyword and arguments.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
      *                                  message.
      * @inheritDoc Executes the exit command, sets the exit flag, and displays a goodbye message to the user.
      */
     @Override
-    public void executeCommand(TaskList tasks, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public void executeCommand(TaskList tasks, Ui ui, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
         validateNonEmptyKeywordArgument(keywordArgument, new ExitCommand());
         setExit();

@@ -29,14 +29,13 @@ public class DatePrintCommand extends Command {
     /**
      * @param taskList        The TaskList containing the tasks to be filtered.
      * @param ui              The user interface for displaying messages to the user.
-     * @param storage         The storage object used to store and load tasks.
      * @param keywordArgument The parsed user input containing the keyword and arguments.
      * @throws InvalidArgumentException If the command arguments are invalid, an exception is thrown with an error
      *                                  message.
      * @inheritDoc Executes the command to display tasks within a specific date filter.
      */
     @Override
-    public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public void executeCommand(TaskList taskList, Ui ui, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
         validateKeywordArgument(keywordArgument, new DatePrintCommand());
 

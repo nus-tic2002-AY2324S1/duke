@@ -41,7 +41,8 @@ public abstract class IndexBaseCommand extends Command {
      * @inheritDoc Executes the command to perform an operation on a specific task in the task list.
      * Validates the command arguments, processes the command, and updates the task list accordingly.
      */
-    public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    @Override
+    public void executeCommand(TaskList taskList, Ui ui, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
         validateArgument(keywordArgument.getArguments().isEmpty());
         validateValidInteger(!Parser.isInteger(keywordArgument.getArguments()));

@@ -32,16 +32,15 @@ public abstract class Command {
     private static boolean isExit = false;
 
     /**
-     * Executes the command based on the provided task list, user interface, storage, and user input arguments.
+     * Executes the command based on the provided task list, user interface, and user input arguments.
      * Subclasses must implement this method to define specific command behavior.
      *
      * @param taskList        The TaskList containing the tasks to be managed.
      * @param ui              The user interface for displaying messages to the user.
-     * @param storage         The storage for saving and loading task data.
      * @param keywordArgument The user input argument containing command details.
      * @throws InvalidArgumentException If the input arguments are invalid or do not match the command requirements.
      */
-    public abstract void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public abstract void executeCommand(TaskList taskList, Ui ui, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException;
 
     /**

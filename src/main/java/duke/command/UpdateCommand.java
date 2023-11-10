@@ -198,7 +198,7 @@ public class UpdateCommand extends IndexBaseCommand {
      * accordingly.
      */
     @Override
-    public void executeCommand(TaskList taskList, Ui ui, Storage storage, UserKeywordArgument keywordArgument)
+    public void executeCommand(TaskList taskList, Ui ui, UserKeywordArgument keywordArgument)
             throws InvalidArgumentException {
         if (!isValidArgument(keywordArgument, taskList)) {
             return;
