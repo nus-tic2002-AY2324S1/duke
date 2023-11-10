@@ -1,3 +1,4 @@
 [T][ ] read book
-[T][X] return book
-[T][ ] borrow book 
+[T][ ] return book
+[T][ ] buy bread
+[T][ ] Borrow book 
