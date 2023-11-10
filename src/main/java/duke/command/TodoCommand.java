@@ -30,8 +30,8 @@ public class TodoCommand extends Command {
             throws InvalidArgumentException {
         validateKeywordArgument(keywordArgument, new TodoCommand());
         Todo todo = new Todo(keywordArgument.getArguments());
-        todo.execute();
         tasks.add(todo);
+        todo.execute();
     }
 
     @Override

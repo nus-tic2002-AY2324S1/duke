@@ -145,10 +145,10 @@ public class Parser {
     public static void dateValidation(int year, int month, int day) throws InvalidArgumentException {
         if (month < MIN_MONTH || month > MAX_MONTH) {
             String errMsg = String.format(MESSAGE_INCORRECT_MONTH, month);
-            throw new InvalidArgumentException(Message.concat(errMsg, Command.DATE_FORMAT_MESSAGE));
+            throw new InvalidArgumentException(errMsg);
         } else if (day < 1 || day > getMaxDayOfMonth(year, month)) {
             String errMsg = String.format(MESSAGE_INCORRECT_DAY, day, month, year);
-            throw new InvalidArgumentException(Message.concat(errMsg, Command.DATE_FORMAT_MESSAGE));
+            throw new InvalidArgumentException(errMsg);
         }
     }
 
@@ -162,10 +162,10 @@ public class Parser {
     public static void timeValidation(int hour, int minute) throws InvalidArgumentException {
         if (hour < MIN_HOUR_MINUTE || hour > MAX_HOUR) {
             String errMsg = String.format(MESSAGE_INCORRECT_HOUR, hour);
-            throw new InvalidArgumentException(Message.concat(errMsg, Command.TIME_FORMAT_MESSAGE));
+            throw new InvalidArgumentException(errMsg);
         } else if (minute < MIN_HOUR_MINUTE || minute > MAX_MINUTE) {
             String errMsg = String.format(MESSAGE_INCORRECT_MINUTE, minute);
-            throw new InvalidArgumentException(Message.concat(errMsg, Command.TIME_FORMAT_MESSAGE));
+            throw new InvalidArgumentException(errMsg);
         }
     }
 

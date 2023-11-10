@@ -34,8 +34,8 @@ public class DeadlineCommand extends Command {
     @Override
     public void executeCommand(TaskList tasks, Ui ui, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
         Deadline deadline = processDetail(keywordArgument);
-        deadline.execute();
         tasks.add(deadline);
+        deadline.execute();
     }
 
     /**

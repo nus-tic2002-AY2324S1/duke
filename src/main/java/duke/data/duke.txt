@@ -7,3 +7,4 @@ E|0|small group meeting|06/11/2023 2015|06/11/2023 2100
 T|1|borrow book
 T|0|complete the report
 D|0|submit report|19/11/2023
+E|0|presentation|09/11/2023 1830|09/11/2023 2100

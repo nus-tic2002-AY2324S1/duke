@@ -40,17 +40,8 @@ public abstract class Task {
      * @return A response indicating the number of tasks in the TaskList.
      */
     protected static String responseNumberOfTasks() {
-        int numberOfTasks = TaskList.size() + 1;
+        int numberOfTasks = TaskList.size();
         return String.format("Now you have %d %s in the list.", numberOfTasks, numberOfTasks > 1 ? "tasks" : "task");
-    }
-
-    /**
-     * Returns a response indicating that a task has been successfully added.
-     *
-     * @return A response message confirming the addition of a task.
-     */
-    static String taskAddedSuccessfullyResponse() {
-        return Message.MESSAGE_GOT_IT;
     }
 
     /**
@@ -81,12 +72,14 @@ public abstract class Task {
     public abstract String toString();
 
     /**
-     * Constructs and displays a response message after adding a task.
+     * Displays a processed task response to the user, including a custom message
+     *
+     * @param message A custom message to be displayed as part of the response.
      */
-    public void displayTaskAddedResponse() {
+    public void displayProcessedTaskResponse(String message) {
         Ui ui = new Ui();
         ArrayList<String> messages = new ArrayList<>();
-        messages.add(taskAddedSuccessfullyResponse());
+        messages.add(message);
         messages.add(" " + this.toString());
         messages.add(responseNumberOfTasks());
         ui.showResponseToUser(messages);

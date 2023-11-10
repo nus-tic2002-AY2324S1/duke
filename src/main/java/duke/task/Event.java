@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.common.Message;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -32,7 +34,7 @@ public class Event extends Task {
      * Executes the task by displaying a response indicating that the task has been added.
      */
     public void execute() {
-        displayTaskAddedResponse();
+        displayProcessedTaskResponse(Message.MESSAGE_ADDED_TASK);
     }
 
     /**

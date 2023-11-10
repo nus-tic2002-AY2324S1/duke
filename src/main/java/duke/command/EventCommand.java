@@ -38,8 +38,8 @@ public class EventCommand extends Command {
     @Override
     public void executeCommand(TaskList tasks, Ui ui, UserKeywordArgument keywordArgument) throws InvalidArgumentException {
         Event event = processDetail(keywordArgument);
-        event.execute();
         tasks.add(event);
+        event.execute();
     }
 
     /**

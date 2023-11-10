@@ -139,41 +139,70 @@ public abstract class IndexBaseCommand extends Command {
         Task task = taskList.get(index - 1);
         ArrayList<String> messages = new ArrayList<>();
         IndexBaseCommand indexBaseCommand = (IndexBaseCommand) command;
-        processTaskCommand(taskList, task);
+
+        if (indexCommand instanceof DeleteCommand) {
+            processDeleteCommand(taskList, task, indexBaseCommand);
+            return;
+        }
+        if (indexCommand instanceof RecurCommand) {
+            processRecurCommand(taskList, task, indexBaseCommand);
+            return;
+        }
+
+        if (indexCommand instanceof MarkCommand) {
+            processMarkCommand(task);
+        }
         messages.add(indexBaseCommand.getMessage());
         messages.add(task.toString());
-        removeTaskIfIsDeleteCommand(taskList);
+
         ui.showResponseToUser(messages);
     }
 
     /**
-     * Removes a task from the task list if the current command is a DeleteCommand.
+     * Processes a MarkCommand for the given task, marking it as done or undone based on the command.
+     *
+     * @param task The Task to be marked as done or undone.
+     */
+    private void processMarkCommand(Task task) {
+        MarkCommand markCommand = (MarkCommand) indexCommand;
+        task.markAsDone(markCommand.isMark());
+    }
+
+    /**
+     * Processes a RecurCommand for the given event task, updating its recurrence and displaying a processed task
+     * response.
+     *
+     * @param taskList         The TaskList object containing the list of tasks.
+     * @param task             The Event task to be updated for recurrence.
+     * @param indexBaseCommand The IndexBaseCommand containing the index and command details.
+     */
+    private void processRecurCommand(TaskList taskList, Task task, IndexBaseCommand indexBaseCommand) {
+        RecurCommand recurCommand = (RecurCommand) indexCommand;
+        assert task instanceof Event : "The tasks must be Event!";
+        recurCommand.recur(task, taskList);
+        task.displayProcessedTaskResponse(indexBaseCommand.getMessage());
+    }
+
+    /**
+     * Processes a DeleteCommand for the given task, removing it from the TaskList and displaying a processed task
+     * response.
+     *
+     * @param taskList         The TaskList object containing the list of tasks.
+     * @param task             The Task to be removed.
+     * @param indexBaseCommand The IndexBaseCommand containing the index and command details.
+     */
+    private void processDeleteCommand(TaskList taskList, Task task, IndexBaseCommand indexBaseCommand) {
+        removeTaskIfIsDeleteCommand(taskList);
+        task.displayProcessedTaskResponse(indexBaseCommand.getMessage());
+    }
+
+    /**
+     * Removes the task at the specified index from the TaskList.
      *
      * @param taskList The task list from which the task will be removed.
      */
     private void removeTaskIfIsDeleteCommand(TaskList taskList) {
-        if (indexCommand instanceof DeleteCommand) {
-            taskList.remove(index - 1);
-        }
-    }
-
-    /**
-     * Processes a specific command for a given task.
-     * If the command is a MarkCommand, marks the task as done or undone based on the command.
-     * If the command is a RecurCommand, recurs the task (applicable for Event tasks).
-     *
-     * @param taskList The task list containing the task to be processed.
-     * @param task     The task to be processed.
-     */
-    private void processTaskCommand(TaskList taskList, Task task) {
-        if (indexCommand instanceof MarkCommand) {
-            MarkCommand markCommand = (MarkCommand) indexCommand;
-            task.markAsDone(markCommand.isMark());
-        } else if (indexCommand instanceof RecurCommand) {
-            RecurCommand recurCommand = (RecurCommand) indexCommand;
-            assert task instanceof Event : "the tasks must be Event!";
-            recurCommand.recur(task, taskList);
-        }
+        taskList.remove(index - 1);
     }
 
     public int getIndex() {

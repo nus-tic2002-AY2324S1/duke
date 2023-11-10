@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.common.Message;
+
 /**
  * The Todo class represents a task that need to be done.
  * It extends the Task class and adds specific behavior for tasks
@@ -33,7 +35,7 @@ public class Todo extends Task {
      * Executes the task and handles the response.
      */
     public void execute() {
-        displayTaskAddedResponse();
+        displayProcessedTaskResponse(Message.MESSAGE_ADDED_TASK);
     }
 
     /**
