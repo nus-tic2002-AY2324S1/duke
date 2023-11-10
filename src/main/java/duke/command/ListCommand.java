@@ -14,7 +14,8 @@ import duke.ui.Ui;
  */
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
-    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD;
+    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Displays a list all tasks to the user.\n" +
+            "Example of usage: " + COMMAND_WORD;
     public static final String TASKS_IN_THE_LIST = "Here are the tasks in your list:";
     public static final String MESSAGE_LIST_IS_EMPTY = "Your list is empty. Let's start adding some items! :)";
 

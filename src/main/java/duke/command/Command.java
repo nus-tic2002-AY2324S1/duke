@@ -16,12 +16,12 @@ import java.util.regex.Pattern;
  * This is the abstract Command class that serves as the base for all command classes.
  */
 public abstract class Command {
-    public static final String DESC_ERR_MESSAGE = "OOPS!!! The \"description\" of a \"%s\" cannot be empty :(";
-    public static final String DESC_NEED_BLANK_ERR_MESSAGE = "OOPS!!! Please leave the description blank for the " +
+    public static final String DESC_ERR_MESSAGE = "OOPS!!! The \"Parameter\" of a \"%s\" command cannot be empty :(";
+    public static final String DESC_NEED_BLANK_ERR_MESSAGE = "OOPS!!! Please leave the \"Parameter\" blank for the " +
             "\"%s\" command.";
-    public static final String DATE_TIME_FORMAT_MESSAGE = "Date and Time format: {dd/mm/yyyy hhmm}";
-    public static final String TIME_FORMAT_MESSAGE = "Date and Time format: {hhmm}";
-    public static final String DATE_FORMAT_MESSAGE = "Date format: {dd/mm/yyyy}";
+    public static final String DATE_TIME_FORMAT_MESSAGE = "{dd/mm/yyyy hhmm}";
+    public static final String TIME_FORMAT_MESSAGE = "{hhmm}";
+    public static final String DATE_FORMAT_MESSAGE = "{dd/mm/yyyy}";
     public static final String SUB_ARG_ERR_MESSAGE = "OOPS!!! The \"%s\" of a \"%s\" cannot be empty :(";
     public static final String DATE_TIME_ERR_MESSAGE = "OOPS!!! The %s format of a \"%s\" is invalid :(";
     public static final Pattern DATE_TIME_ARG_FORMAT = Pattern.compile("(?<day>[0-9]{2})/" +

@@ -16,7 +16,6 @@ import duke.task.Event;
  * The IndexBaseCommand class serves as the base for all index-based command classes.
  */
 public abstract class IndexBaseCommand extends Command {
-    public static final String DESC_ERR_MESSAGE = "OOPS!!! The \"description\" of a \"%s\" cannot be empty :(";
     public static final String INDEX_INT_ERR_MESSAGE = "The \"index number\" of the \"%s\" must be an integer :(";
     public static final String OUT_OF_RANGE_ERR_MESSAGE = "The \"index number\" of the \"%s\" is out of range :(";
     private int index;
@@ -114,7 +113,7 @@ public abstract class IndexBaseCommand extends Command {
      */
     public void validateArgument(boolean isArgumentEmpty) throws InvalidArgumentException {
         if (isArgumentEmpty) {
-            String errorMessage = String.format(IndexBaseCommand.DESC_ERR_MESSAGE, getCommandWord());
+            String errorMessage = String.format(DESC_ERR_MESSAGE, getCommandWord());
             throw new InvalidArgumentException(Message.concat(errorMessage, getExampleUsage()));
         }
     }

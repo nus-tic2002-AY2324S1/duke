@@ -25,11 +25,14 @@ public class UpdateCommand extends IndexBaseCommand {
     private LocalDateTime to;
 
     public static final String COMMAND_WORD = "update";
-    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " 1 /desc return book \t#for " +
-            "todo, deadline, event tasks#\n"
-            + COMMAND_WORD + " 1 /by 23/02/2023 \t#only for deadline task#\n" + COMMAND_WORD + " 1 /from 23/11/2023 " +
-            "0300 \t#only for event task#\n"
-            + COMMAND_WORD + " 1 /to 23/11/2023 0400 \t#only for event task#";
+    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Updates information for a task in the task list.\n" +
+            "Parameter : INDEX /desc DESCRIPTION | INDEX /by DATE " + DATE_FORMAT_MESSAGE + "\n" +
+            "\t\t\t | INDEX /from " + DATE_TIME_FORMAT_MESSAGE + " | INDEX /to " + DATE_TIME_FORMAT_MESSAGE + "\n" +
+            "Example of usage: \n" +
+            COMMAND_WORD + " 1 /desc return book \t(for todo, deadline, event tasks)\n" +
+            COMMAND_WORD + " 1 /by 23/02/2023 \t(only for deadline task)\n" +
+            COMMAND_WORD + " 1 /from 23/11/2023 0300 \t(only for event task)\n" +
+            COMMAND_WORD + " 1 /to 23/11/2023 0400 \t(only for event task)";
     public static final String UPDATE_ERROR_ARGUMENT = "OOPS!!! The argument format must adhere to the correct " +
             "pattern!";
     public static final String UPDATE_ERROR_BY = "OOPS!!! The /by keyword is only applicable to deadline tasks!";

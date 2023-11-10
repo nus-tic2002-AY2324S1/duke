@@ -14,7 +14,10 @@ import java.util.ArrayList;
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
-    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " book";
+    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Searches for a keyword in task description and " +
+            "displays matching tasks to the user.\n" +
+            "Parameter: KEYWORD\n" +
+            "Example of usage: " + COMMAND_WORD + " book";
     public static final String TASKS_IN_THE_LIST = "Here are the matching tasks in your list:";
     public static final String MESSAGE_LIST_IS_EMPTY = "No items match the provided search string in the list!";
 

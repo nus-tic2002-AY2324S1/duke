@@ -18,9 +18,10 @@ import java.util.regex.Pattern;
  */
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
-    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " project meeting /from " +
-            "02/12/2020 0800 /to " +
-            "02/12/2020 1000\n" + DATE_TIME_FORMAT_MESSAGE;
+    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Adds an event to the task list with specified start " +
+            "and end date-time.\n" +
+            "Parameter: DESCRIPTION /from START-DATE " + DATE_TIME_FORMAT_MESSAGE + " /to END-DATE " + DATE_TIME_FORMAT_MESSAGE + "\n" +
+            "Example of usage: " + COMMAND_WORD + " project meeting /from 02/12/2020 0800 /to 02/12/2020 1000";
     public static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<description>\\w.*)\\s+/from\\s+(?<from>\\w.*)" +
             "\\s+/to\\s+(?<to>\\w.*)");
     public static final String DATE_TIME_ERROR_MESSAGE = "OOPS!!! The 'from: date/time' can not be after the 'to: " +

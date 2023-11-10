@@ -5,7 +5,10 @@ package duke.command;
  */
 public class UnMarkCommand extends MarkCommand {
     public static final String COMMAND_WORD = "unmark";
-    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " 1";
+    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Marks a task as incomplete in the list using the " +
+            "specified index.\n" +
+            "Parameter : INDEX\n" +
+            "Example of usage: " + COMMAND_WORD + " 1";
     public static final String UNMARK_THE_TASK = "OK, I've marked this task as not done yet:";
 
     public UnMarkCommand() {

@@ -18,8 +18,10 @@ import java.util.regex.Matcher;
 public class DatePrintCommand extends Command {
     LocalDateTime date;
     public static final String COMMAND_WORD = "dprint";
-    public static final String EXAMPLE_USAGE = "Example of usage:\n" + COMMAND_WORD + " 22/10/2023\n" +
-            DATE_FORMAT_MESSAGE;
+    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Prints a list of tasks scheduled for the specified " +
+            "date.\n" +
+            "Parameter: DATE " + DATE_FORMAT_MESSAGE + ".\n" +
+            "Example of usage: " + COMMAND_WORD + " 22/10/2023";
     public static final String TASKS_IN_THE_LIST = "Here are the tasks in your date filter list:";
     public static final String MESSAGE_LIST_IS_EMPTY = "There are no items in the filter list for the given date!";
 
