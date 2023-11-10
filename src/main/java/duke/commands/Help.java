@@ -24,12 +24,13 @@ public class Help extends Task {
      */
     @Override
     public String toString() {
-        return "Here are the list of available commands: "
+        return "Here are the list of available commands: \n"
                 + "\n" + Help.CMD_HELP
                 + "\n............................."
                 + "\n" + Todo.CMD_HELP
                 + "\n" + Deadline.CMD_HELP
                 + "\n" + Event.CMD_HELP
+                + "\n" + Update.CMD_HELP
                 + "\n............................."
                 + "\n" + Mark.CMD_HELP
                 + "\n" + Unmark.CMD_HELP

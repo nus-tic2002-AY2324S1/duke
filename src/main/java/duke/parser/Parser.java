@@ -49,7 +49,7 @@ public class Parser {
         final String command = match.group("command");
         final String args = match.group("args");
 
-        switch (command) {
+        switch (command.toLowerCase()) {
         case Todo.CMD:
             return prepTodo(args);
         case Deadline.CMD:

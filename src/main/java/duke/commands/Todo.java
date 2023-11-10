@@ -6,8 +6,8 @@ package duke.commands;
 public class Todo extends Task {
     public static final String CMD = "todo";
     public static final String CMD_HELP = "[" + CMD + "] \t\t"
-            + "Create a basic to do task ||"
-            + "Syntax: e.g. todo <text>";
+            + "Create a basic to do task\n"
+            + "\tSyntax: e.g. todo <text>";
 
     /**
      * Todo constructor

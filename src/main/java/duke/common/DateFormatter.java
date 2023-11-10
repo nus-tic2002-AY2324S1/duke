@@ -31,7 +31,7 @@ public class DateFormatter {
             match = DATETIME_FORMAT.matcher(input);
             if (match.matches()) {
                 return LocalDateTime.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd kkmm"))
-                        .format(DateTimeFormatter.ofPattern("MMM dd yyyy, h:ma"));
+                        .format(DateTimeFormatter.ofPattern("MMM dd yyyy, h:mma"));
             }
         } catch (DateTimeException ignore) {
             return input;

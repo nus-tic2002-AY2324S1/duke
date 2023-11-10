@@ -8,8 +8,8 @@ import java.util.List;
 public class Delete extends Task {
     public static final String CMD = "delete";
     public static final String CMD_HELP = "[" + CMD + "] \t"
-            + "Delete the task in the list using the index ||"
-            + "Syntax: e.g. delete <index(+ve)>";
+            + "Delete the task in the list using the index\n"
+            + "\tSyntax: e.g. delete <index(+ve)>";
 
     /**
      * Delete task constructor

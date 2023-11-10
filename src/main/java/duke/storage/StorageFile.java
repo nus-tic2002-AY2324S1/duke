@@ -10,6 +10,8 @@ import java.util.Scanner;
 import duke.commands.Task;
 import duke.data.TaskList;
 
+import static duke.common.Messages.MSG_NOFILEFOUND;
+
 /**
  * StorageFile class
  */
@@ -42,6 +44,7 @@ public class StorageFile {
      */
     public void append(Task task) {
         try {
+            assert task != null: "task cannot be null";
             FileWriter fw = new FileWriter(file.getName(), true);
             fw.write(task.toCode() + System.lineSeparator());
             fw.close();
@@ -57,6 +60,7 @@ public class StorageFile {
      */
     public void write(List <Task> tasklist) {
         try {
+            assert tasklist != null: "tasklist cannot be null";
             FileWriter fw = new FileWriter(file.getName(), false);
             for (Task task : tasklist) {
                 fw.write(task.toCode() + System.lineSeparator());

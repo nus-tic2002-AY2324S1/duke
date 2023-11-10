@@ -12,4 +12,5 @@ public class Messages {
             + "|____   \\___/   |____ \n"
             + "\nWhat can i do for you?";
     public static final String MSG_GOODBYE = "Goodbye!";
+    public static final String MSG_NOFILEFOUND = "\nNo file found. Saving entries to default file \"myTaskList.txt\"\n";
 }

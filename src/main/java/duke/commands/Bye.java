@@ -6,8 +6,8 @@ package duke.commands;
 public class Bye extends Task {
     public static final String CMD = "bye";
     public static final String CMD_HELP = "[" + CMD + "] \t\t"
-            + "Exits the program ||"
-            + "Type \"bye\" to exit";
+            + "Exits the program \n"
+            + "\tSyntax: Type \"bye\" to exit";
 
     /**
      * Bye constructor

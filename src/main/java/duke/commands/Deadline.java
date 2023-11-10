@@ -8,8 +8,8 @@ import duke.common.DateFormatter;
 public class Deadline extends Task {
     public static final String CMD = "deadline";
     public static final String CMD_HELP = "[" + CMD + "] \t"
-            + "Create a task with a deadline with a single date ||"
-            + "Syntax: e.g. deadline <text> /by <date>";
+            + "Create a task with a deadline with a single date\n"
+            + "\tSyntax: e.g. deadline <text> /by <date>";
     protected String by;
 
     /**

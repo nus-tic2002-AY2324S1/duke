@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import duke.data.TaskList;
 import duke.storage.StorageFile;
 import duke.ui.TextUI;
+import static duke.common.Messages.MSG_NOFILEFOUND;
 
 
 /**
@@ -42,7 +43,7 @@ public class Duke {
             }
             tasklist = myStorage.load();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            ui.printMessage(MSG_NOFILEFOUND);
         }
     }
 

@@ -8,8 +8,8 @@ import java.util.List;
 public class Update extends Task {
     public static final String CMD = "update";
     public static final String CMD_HELP = "[" + CMD + "] \t"
-            + "Update the task in the list using the index and field to override ||"
-            + "Syntax: update <index(+ve)> <field> <text>\n"
+            + "Update the task in the list using the index and field to override\n"
+            + "\tSyntax: update <index(+ve)> <field> <text>\n"
             + "\t<field> = '/desc', '/by', '/from', '/to'\n"
             + "\tExample_1: update 4 /desc bake a cake\n"
             + "\tExample_2: update 3 /to 2023-02-14";
