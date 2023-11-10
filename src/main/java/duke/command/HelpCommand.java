@@ -10,8 +10,7 @@ import java.util.ArrayList;
 
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
-    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Displays examples and usage instructions for all " +
-            "available commands.\n" +
+    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Displays a list of all available commands.\n" +
             "Example of usage: " + COMMAND_WORD;
     public static final String COMMAND_IN_THE_LIST = "Here is a list of commands that are available:";
 
