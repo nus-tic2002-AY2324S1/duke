@@ -13,6 +13,7 @@ public class Mark extends Task {
 
     /**
      * Mark constructor
+     *
      * @param index integer position in list
      * @param tasklist list of tasks
      */
@@ -24,6 +25,7 @@ public class Mark extends Task {
 
     /**
      * Returns a string message to user
+     *
      * @param index integer position in list
      * @param tasklist list of tasks
      * @return string message to user
@@ -46,6 +48,7 @@ public class Mark extends Task {
 
     /**
      * String to return to user
+     *
      * @return string message to user
      */
     @Override

@@ -15,6 +15,7 @@ public class Event extends Task {
 
     /**
      * Event constructor
+     *
      * @param isDone boolean to mark task as complete
      * @param description string description
      * @param from string or date
@@ -29,6 +30,7 @@ public class Event extends Task {
 
     /**
      * Changes 'from' to the text inputted
+     *
      * @param from String text or date
      */
     public void setFrom(String from) {
@@ -37,6 +39,7 @@ public class Event extends Task {
 
     /**
      * Changes 'to' to the text inputted
+     *
      * @param to String text or date
      */
     public void setTo(String to) {
@@ -46,6 +49,7 @@ public class Event extends Task {
 
     /**
      * Code entry for storage
+     *
      * @return
      */
     @Override
@@ -55,6 +59,7 @@ public class Event extends Task {
 
     /**
      * String entry to user
+     *
      * @return
      */
     @Override

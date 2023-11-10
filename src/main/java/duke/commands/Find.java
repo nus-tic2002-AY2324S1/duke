@@ -13,6 +13,7 @@ public class Find extends Task {
 
     /**
      * Find constructor
+     *
      * @param textToFind string of text to find
      * @param tasklist list of tasks to search from
      */
@@ -24,6 +25,7 @@ public class Find extends Task {
 
     /**
      * Returns a string of tasks that matched
+     *
      * @param textToFind string of text to find
      * @param tasklist lis of tasks to search from
      * @return string

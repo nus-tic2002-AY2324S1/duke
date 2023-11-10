@@ -16,6 +16,7 @@ public class DateFormatter {
     private static final Pattern DATETIME_FORMAT = Pattern.compile("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{4})");
     /**
      * Returns a string format of a date it recognizes
+     *
      * @param input string that may contain a date
      * @return String reformatted date
      */

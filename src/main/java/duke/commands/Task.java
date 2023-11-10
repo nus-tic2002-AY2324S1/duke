@@ -11,6 +11,7 @@ public abstract class Task {
 
     /**
      * Task empty constructor
+     *
      */
     public Task() {
 
@@ -18,6 +19,7 @@ public abstract class Task {
 
     /**
      * Task constructor with description
+     *
      * @param description string description of task
      */
     public Task(String description) {
@@ -29,6 +31,7 @@ public abstract class Task {
 
     /**
      * Returns if complete
+     *
      * @return X or " "
      */
     public String getStatusIcon() {
@@ -37,6 +40,7 @@ public abstract class Task {
 
     /**
      * Returns string description
+     *
      * @return string description
      */
     public String getDescription() {
@@ -45,6 +49,7 @@ public abstract class Task {
 
     /**
      * Returns boolean if complete
+     *
      * @return boolean
      */
     public boolean getIsDone() {
@@ -53,6 +58,7 @@ public abstract class Task {
 
     /**
      * Change isDone to complete or incomplete
+     *
      * @param isDone boolean to indicate if the task is completed
      */
     public void setIsDone(boolean isDone) {
@@ -61,6 +67,7 @@ public abstract class Task {
 
     /**
      * Change description of this task
+     *
      * @param description String description of task
      */
     public void setDescription(String description) {
@@ -69,6 +76,7 @@ public abstract class Task {
 
     /**
      * Returns boolean if this task is to be written into storage
+     *
      * @return boolean
      */
     public boolean getForRecording() {
@@ -77,6 +85,7 @@ public abstract class Task {
 
     /**
      * Returns boolean if this task is to be added to tasklist
+     *
      * @return boolean
      */
     public boolean getForUpdateList() {
@@ -85,6 +94,7 @@ public abstract class Task {
 
     /**
      * Code to be written into storage
+     *
      * @return string
      */
     public String toCode() {
@@ -93,6 +103,7 @@ public abstract class Task {
 
     /**
      * String to return to user
+     *
      * @return string
      */
     @Override

@@ -19,6 +19,7 @@ public class Help extends Task {
 
     /**
      * String to return to user
+     *
      * @return string
      */
     @Override

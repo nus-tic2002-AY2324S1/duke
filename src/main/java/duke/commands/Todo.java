@@ -11,6 +11,7 @@ public class Todo extends Task {
 
     /**
      * Todo constructor
+     *
      * @param isdone boolean to indicate task is complete
      * @param description string description
      */
@@ -21,6 +22,7 @@ public class Todo extends Task {
 
     /**
      * Code to write into StorageFIle
+     *
      * @return string code
      */
     @Override
@@ -30,6 +32,7 @@ public class Todo extends Task {
 
     /**
      * String to return to user
+     *
      * @return strint message
      */
     @Override

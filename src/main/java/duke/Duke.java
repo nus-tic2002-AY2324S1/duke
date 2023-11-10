@@ -18,6 +18,7 @@ public class Duke {
 
     /**
      * Main function to run the program
+     *
      * @param args String provided by user to indicate the txt file to be used as storage
      */
     public static void main(String[] args) {
@@ -29,6 +30,7 @@ public class Duke {
 
     /**
      * Loads data into myStorage
+     *
      * @param args string file path
      */
     private static void loadData(String[] args) {

@@ -13,6 +13,7 @@ public class ListCmd extends Task {
 
     /**
      * List constructor
+     *
      * @param tasklist list of tasks
      */
     public ListCmd(List <Task> tasklist) {
@@ -23,6 +24,7 @@ public class ListCmd extends Task {
 
     /**
      * Returns a string of tasks
+     *
      * @param tasklist list of tasks
      * @return string of tasks
      */
@@ -41,7 +43,8 @@ public class ListCmd extends Task {
 
     /**
      * String to return to user
-     * @return
+     *
+     * @return String description
      */
     @Override
     public String toString() {

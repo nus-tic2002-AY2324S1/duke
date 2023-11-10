@@ -26,6 +26,7 @@ public class StorageFile {
 
     /**
      * StorageFile with one string argument constructor
+     *
      * @param file string file address
      */
     public StorageFile(String file) {
@@ -36,6 +37,7 @@ public class StorageFile {
 
     /**
      * Appends task into StorageFile
+     *
      * @param task Task
      */
     public void append(Task task) {
@@ -50,6 +52,7 @@ public class StorageFile {
 
     /**
      * Overwrites StorageFile with the entries in the task list
+     *
      * @param tasklist user's task list
      */
     public void write(List <Task> tasklist) {
@@ -66,6 +69,7 @@ public class StorageFile {
 
     /**
      * Returns the list of tasks  from the StorageFile
+     *
      * @return TaskList
      * @throws FileNotFoundException
      */
@@ -80,6 +84,7 @@ public class StorageFile {
 
     /**
      * Checks if a file ends in .txt
+     *
      * @param file string file path
      * @return boolean
      */

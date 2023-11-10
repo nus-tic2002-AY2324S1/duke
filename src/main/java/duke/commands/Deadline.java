@@ -27,6 +27,7 @@ public class Deadline extends Task {
 
     /**
      * Changes the deadline date to the string set
+     *
      * @param by String text or date
      */
     public void setBy(String by) {

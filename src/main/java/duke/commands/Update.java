@@ -15,7 +15,8 @@ public class Update extends Task {
             + "\tExample_2: update 3 /to 2023-02-14";
 
     /**
-     * Update contstructor
+     * Update constructor
+     *
      * @param index position in the task list
      * @param field String field to be updated
      * @param newText String text to input
@@ -29,6 +30,7 @@ public class Update extends Task {
 
     /**
      * Returns a string message to user if the update is a success or failure
+     *
      * @param index position in the task list
      * @param field String field to be updated
      * @param newText String text to input

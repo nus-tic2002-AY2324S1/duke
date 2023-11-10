@@ -13,6 +13,7 @@ public class Delete extends Task {
 
     /**
      * Delete task constructor
+     *
      * @param index integer location in the list
      * @param tasklist array of tasks
      */
@@ -24,6 +25,7 @@ public class Delete extends Task {
 
     /**
      * Returns a string message when deleting a task
+     *
      * @param index integer location in the list
      * @param tasklist array of tasks
      * @return

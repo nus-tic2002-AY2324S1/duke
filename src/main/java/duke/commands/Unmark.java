@@ -13,6 +13,7 @@ public class Unmark extends Task {
 
     /**
      * Unmark constructor
+     *
      * @param index integer position in task list
      * @param tasklist list of tasks
      */
@@ -24,6 +25,7 @@ public class Unmark extends Task {
 
     /**
      * Returns a string message to user
+     *
      * @param index integer position in task list
      * @param tasklist list of tasks
      * @return
@@ -46,6 +48,7 @@ public class Unmark extends Task {
 
     /**
      * String to return to user
+     *
      * @return String message
      */
     @Override
