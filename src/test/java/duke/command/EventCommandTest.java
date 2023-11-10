@@ -34,7 +34,7 @@ class EventCommandTest {
         String expect = Message.concat(errMsg, EventCommand.EXAMPLE_USAGE);
         UserKeywordArgument keywordArgument = new UserKeywordArgument("event");
         try {
-            evt.executeCommand(taskList,ui, keywordArgument);
+            evt.executeCommand(taskList, ui, keywordArgument);
         } catch (InvalidArgumentException e) {
             err = e.getMessage();
         }

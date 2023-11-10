@@ -75,9 +75,9 @@ public enum KeywordTypes {
             return new UpdateCommand();
         }
     },
-    HELP{
+    HELP {
         @Override
-        public Command createCommand(){
+        public Command createCommand() {
             return new HelpCommand();
         }
     };

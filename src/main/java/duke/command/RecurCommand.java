@@ -16,7 +16,8 @@ public class RecurCommand extends IndexBaseCommand {
     private LocalDateTime from;
     private LocalDateTime to;
     public static final String COMMAND_WORD = "recur";
-    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Sets a recurring event to repeat every week for three months.\n" +
+    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Sets a recurring event to repeat every week for " +
+            "three months.\n" +
             "Parameter : INDEX\n" +
             "Example of usage: " + COMMAND_WORD + " 1";
     public static final String RECUR_ERROR_MESSAGE = "The RECUR command is only applicable to event tasks!";
