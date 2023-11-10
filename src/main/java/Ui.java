@@ -31,4 +31,13 @@ public class Ui {
     public static void printLine(){
         System.out.println("    ____________________________________________________________");
     }
+
+    public static void printRemoveMsg(){
+        System.out.println(
+                "    ____________________________________________________________\n" +
+                        "     Noted. I've removed this task:");
+        System.out.print("       ");
+    }
+
+    
 }

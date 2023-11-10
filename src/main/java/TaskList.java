@@ -11,20 +11,14 @@ public class TaskList {
     }
     public ArrayList<Task> removeTasks(String input, ArrayList<Task> actions){
         int taskNo = getNumber(input);
-        System.out.println(
-                "    ____________________________________________________________\n" +
-                        "     Noted. I've removed this task:");
         //e.g. "   [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)"
-        System.out.print("       ");
+
         actions.get(taskNo-1).printTask();
-
         actions.remove(taskNo-1) ;
-
         //print task number as of now
         System.out.println(
                 "     Now you have "+actions.size()+ " tasks in the list.\n" +
                         "    ____________________________________________________________\n");
-
         return actions;
     }
 
