@@ -13,8 +13,8 @@ public class Bye extends Task {
      * Bye constructor
      */
     public Bye() {
-        this.toRecord = false;
-        this.toUpdateList = false;
+        this.isForRecording = false;
+        this.isForUpdateList = false;
     }
 
     @Override

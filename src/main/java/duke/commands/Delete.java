@@ -17,8 +17,8 @@ public class Delete extends Task {
      * @param tasklist array of tasks
      */
     public Delete(int index, List<Task> tasklist) {
-        this.toRecord = false;
-        this.toUpdateList = true;
+        this.isForRecording = false;
+        this.isForUpdateList = true;
         this.description = deleteTask(index, tasklist);
     }
 

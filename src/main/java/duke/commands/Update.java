@@ -22,8 +22,8 @@ public class Update extends Task {
      * @param taskList list of tasks
      */
     public Update(int index, String field, String newText, List<Task> taskList) {
-        this.toRecord = false;
-        this.toUpdateList = true;
+        this.isForRecording = false;
+        this.isForUpdateList = true;
         this.description = updateTask(index, field, newText, taskList);
     }
 

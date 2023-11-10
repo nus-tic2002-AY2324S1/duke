@@ -17,8 +17,8 @@ public class Find extends Task {
      * @param tasklist list of tasks to search from
      */
     public Find(String textToFind, List<Task> tasklist) {
-        this.toRecord = false;
-        this.toUpdateList = false;
+        this.isForRecording = false;
+        this.isForUpdateList = false;
         this.description = findText(textToFind, tasklist);
     }
 

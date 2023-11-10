@@ -17,8 +17,8 @@ public class Duke {
     private static StorageFile myStorage;
 
     /**
-     * main
-     * @param args
+     * Main function to run the program
+     * @param args String provided by user to indicate the txt file to be used as storage
      */
     public static void main(String[] args) {
         loadData(args);

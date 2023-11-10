@@ -6,8 +6,8 @@ package duke.commands;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
-    protected boolean toRecord;
-    protected boolean toUpdateList;
+    protected boolean isForRecording;
+    protected boolean isForUpdateList;
 
     /**
      * Task empty constructor
@@ -23,8 +23,8 @@ public abstract class Task {
     public Task(String description) {
         setDescription(description);
         this.isDone = false;
-        this.toRecord = true;
-        this.toUpdateList = false;
+        this.isForRecording = true;
+        this.isForUpdateList = false;
     }
 
     /**
@@ -53,7 +53,7 @@ public abstract class Task {
 
     /**
      * Change isDone to complete or incomplete
-     * @param isDone boolean
+     * @param isDone boolean to indicate if the task is completed
      */
     public void setIsDone(boolean isDone) {
         this.isDone = isDone;
@@ -71,16 +71,16 @@ public abstract class Task {
      * Returns boolean if this task is to be written into storage
      * @return boolean
      */
-    public boolean getToRecord() {
-        return this.toRecord;
+    public boolean getForRecording() {
+        return this.isForRecording;
     }
 
     /**
      * Returns boolean if this task is to be added to tasklist
      * @return boolean
      */
-    public boolean getToUpdateList() {
-        return this.toUpdateList;
+    public boolean getForUpdateList() {
+        return this.isForUpdateList;
     }
 
     /**

@@ -17,8 +17,8 @@ public class Unmark extends Task {
      * @param tasklist list of tasks
      */
     public Unmark(int index, List <Task> tasklist) {
-        this.toRecord = false;
-        this.toUpdateList = true;
+        this.isForRecording = false;
+        this.isForUpdateList = true;
         this.description = markTask(index, tasklist);
     }
 

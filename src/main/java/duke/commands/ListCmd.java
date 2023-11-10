@@ -16,8 +16,8 @@ public class ListCmd extends Task {
      * @param tasklist list of tasks
      */
     public ListCmd(List <Task> tasklist) {
-        this.toRecord = false;
-        this.toUpdateList = false;
+        this.isForRecording = false;
+        this.isForUpdateList = false;
         this.description = getList(tasklist);
     }
 

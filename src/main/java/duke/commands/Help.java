@@ -13,8 +13,8 @@ public class Help extends Task {
      * Help constructor
      */
     public Help() {
-        this.toRecord = false;
-        this.toUpdateList = false;
+        this.isForRecording = false;
+        this.isForUpdateList = false;
     }
 
     /**

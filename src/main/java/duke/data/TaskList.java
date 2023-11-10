@@ -30,7 +30,7 @@ public class TaskList {
         Task task = Parser.parseCommand(line, tasklist);
         String msg;
         /* if ToRecord is TRUE, add Task and append into storage else pass message*/
-        if (task.getToRecord()) {
+        if (task.getForRecording()) {
             tasklist.add(task);
             msg = "Got it. I've added this task:\n"
                     + tasklist.get(tasklist.size() - 1).toString() + "\n"
@@ -42,7 +42,7 @@ public class TaskList {
             msg = task.toString();
         }
 
-        if (task.getToUpdateList()) {
+        if (task.getForUpdateList()) {
             myStorage.write(tasklist);
         }
 
