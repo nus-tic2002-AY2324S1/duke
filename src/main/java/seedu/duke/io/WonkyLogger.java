@@ -57,15 +57,15 @@ public class WonkyLogger {
     private final String ADD_TO_LIST_MSG =
         "I have added %s task [%s] to our list!";
 
-    private final String MARK_TYPO_MSG =
+    private final String ALREADY_MARK_MSG =
         "Did you mark/unmark the wrong task? %s is already set to [%s].";
     private final String TASK_MARKED_MSG =
         "Your task [%s] is marked as [%s].";
 
-    private final String DELETE_INVALID_MSG =
-        "Did you make a mistake trying to delete task [%d]? A task can't be be less than 1.";
-    private final String DELETE_TYPO_MSG =
-        "Did you want to delete the wrong task? There is no task no. [%d].";
+    private final String INVALID_MSG =
+        "Did you make a mistake trying to %s task [%d]? A task can't be be less than 1.";
+    private final String TYPO_MSG =
+        "Did you want to %s the wrong task? There is no task no. [%d].";
     private final String TASK_DELETED_MSG =
         "Your task [%s] is deleted!";
     private final String TASK_NOT_EXIST_MSG =
@@ -99,6 +99,8 @@ public class WonkyLogger {
         + "\t\tClears all of current stashes." + System.lineSeparator() + System.lineSeparator()
         + "\tstash add | {stashName}" + System.lineSeparator()
         + "\t\tAdds the current lists of tasks to a stash." + System.lineSeparator() + System.lineSeparator()
+        + "\tstash apply | {stashName}" + System.lineSeparator()
+        + "\t\tApplies the stash to the current list of tasks." + System.lineSeparator() + System.lineSeparator()
         + "\tstash pop | {stashName}" + System.lineSeparator()
         + "\t\tPops the stash to the current list of tasks." + System.lineSeparator() + System.lineSeparator();
 
@@ -339,19 +341,16 @@ public class WonkyLogger {
      * @param isDoneLitr
      * @throws DukeLoggerException
      */
-    public void markTypo(String desc, String isDoneLitr) throws DukeLoggerException {
-        printWarnWithWonky(String.format(MARK_TYPO_MSG, desc, isDoneLitr));
+    public void alreadyMarked(String desc, String isDoneLitr) throws DukeLoggerException {
+        printWarnWithWonky(String.format(ALREADY_MARK_MSG, desc, isDoneLitr));
     }
 
-    /**
-     * Prints log message for marking a task.
-     *
-     * @param desc
-     * @param isDoneLitr
-     * @throws DukeLoggerException
-     */
-    public void taskMarked(String desc, String isDoneLitr) throws DukeLoggerException {
-        printlnWithWonky(String.format(TASK_MARKED_MSG, desc, isDoneLitr));
+    public void taskMarked(Task task) throws DukeLoggerException {
+        String isDoneLitr = task.getDone() ? "done" : "not done";
+        printlnWithWonky(String.format(TASK_MARKED_MSG, task.getDescription(), isDoneLitr));
+        if (!isLoading) {
+            task(task.getStatusMsg(1));
+        }
     }
 
     /**
@@ -361,11 +360,35 @@ public class WonkyLogger {
      * @throws DukeLoggerException
      */
     public void deleteTypo(int idx) throws DukeLoggerException {
-        String msg = DELETE_TYPO_MSG;
+        typo("delete", idx);
+    }
+
+    /**
+     * Prints log message for a typo in marking a task.
+     *
+     * @param idx
+     * @throws DukeLoggerException
+     */
+    public void markTypo(int idx) throws DukeLoggerException {
+        typo("mark", idx);
+    }
+
+    /**
+     * Prints log message for a typo in unmarking a task.
+     *
+     * @param idx
+     * @throws DukeLoggerException
+     */
+    public void unmarkTypo(int idx) throws DukeLoggerException {
+        typo("unmark", idx);
+    }
+
+    private void typo(String type, int idx) throws DukeLoggerException {
+        String msg = TYPO_MSG;
         if (idx <= 0) {
-            msg = DELETE_INVALID_MSG;
+            msg = INVALID_MSG;
         }
-        printWarnWithWonky(String.format(msg, idx));
+        printWarnWithWonky(String.format(msg, type, idx));
     }
 
     /**
@@ -374,8 +397,13 @@ public class WonkyLogger {
      * @param desc
      * @throws DukeLoggerException
      */
-    public void taskDeleted(String desc) throws DukeLoggerException {
+    public void taskDeleted(String desc, int totalTasks) throws DukeLoggerException {
         printlnWithWonky(String.format(TASK_DELETED_MSG, desc));
+        if (totalTasks == 0) {
+            printlnWithWonky("Hooray you have no pending tasks!");
+        } else {
+            printlnWithWonky(String.format("You now have %d task(s) in the list.", totalTasks));
+        }
     }
 
     /**
@@ -463,6 +491,7 @@ public class WonkyLogger {
 
     public void stashCleared() throws DukeLoggerException {
         printlnWithWonky("Your stashes have been cleared!");
+        printlnWithWonky("You now have no stashes!");
     }
 
     public void invalidStashCommand(String string) throws DukeLoggerException {
@@ -475,10 +504,21 @@ public class WonkyLogger {
 
     public void stashPopped(String stashName) throws DukeLoggerException {
         printlnWithWonky("I have popped this stash [" + stashName + "]!");
+        int stashSize = WonkyStorage.getInstance().getStashList().size();
+        if (stashSize == 0) {
+            printlnWithWonky("You have no more stashes!");
+        } else {
+            printlnWithWonky("You now have " + stashSize + " stash(es)!");
+        }
+    }
+
+    public void stashApplied(String stashName) throws DukeLoggerException {
+        printlnWithWonky("I have applied this stash [" + stashName + "]!");
     }
 
     public void stashAdded(String stashName) throws DukeLoggerException {
         printlnWithWonky("I have added [" + stashName + "] to your stashes!");
+        printlnWithWonky("You now have " + (WonkyStorage.getInstance().getStashList().size()) + " stash(es)!");
     }
 
     public void printHelpCommand() throws DukeLoggerException {

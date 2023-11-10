@@ -28,13 +28,14 @@ public class MarkCommand extends CommandType {
             taskIdx = Integer.parseInt(argList.get(0)) - 1;
             assert taskIdx >= 0 : "taskIdx cannot be negative!";
             assert taskIdx < tasks.size() : "taskIdx cannot be larger than tasks size!";
+            Task task = tasks.get(taskIdx);
             if (super.validateArgs(this, ONE_ARGS)) {
-                tasks.get(taskIdx).setDone(true);
+                task.setDone(true);
             }
         } catch (NumberFormatException e) {
             wonkyLogger.expectedInteger(argList.get(0));
         } catch (IndexOutOfBoundsException e) {
-            wonkyLogger.deleteTypo(taskIdx + 1);
+            wonkyLogger.markTypo(taskIdx + 1);
         }
     }
     

@@ -2,6 +2,7 @@ package seedu.duke.io;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
@@ -137,21 +138,44 @@ public class WonkyStorage {
             File stashFile = new File(STASH_FOLDER, stashName);
             if (stashFile.exists() && stashFile.isFile()) {
                 try {
-                    wonkyLogger.setIsLoading(true);
-                    wonkyManager.resetCmdTypes();
-                    Scanner fileScanner = new Scanner(stashFile);
-                    while (fileScanner.hasNextLine()) {
-                        String line = fileScanner.nextLine();
-                        wonkyScanner.processNextLine(line);
-                    }
-                    fileScanner.close();
+                    loadStash(stashFile);
                     stashFile.delete();
-                    wonkyLogger.setIsLoading(false);
                 } catch (Exception e) {
                     throw new DukeStorageException(e);
                 }
             }
         }
+    }
+
+    /**
+     * Applies the given stash file and executes the commands in it.
+     *
+     * @param stashName
+     * @throws DukeException
+     */
+    public void applyStash(String stashName) throws DukeException {
+        if (STASH_FOLDER.exists() && STASH_FOLDER.isDirectory()) {
+            File stashFile = new File(STASH_FOLDER, stashName);
+            if (stashFile.exists() && stashFile.isFile()) {
+                try {
+                    loadStash(stashFile);
+                } catch (Exception e) {
+                    throw new DukeStorageException(e);
+                }
+            }
+        }
+    }
+
+    private void loadStash(File stashFile) throws DukeException, FileNotFoundException {
+        wonkyLogger.setIsLoading(true);
+        wonkyManager.resetCmdTypes();
+        Scanner fileScanner = new Scanner(stashFile);
+        while (fileScanner.hasNextLine()) {
+            String line = fileScanner.nextLine();
+            wonkyScanner.processNextLine(line);
+        }
+        fileScanner.close();
+        wonkyLogger.setIsLoading(false);
     }
 
     /**

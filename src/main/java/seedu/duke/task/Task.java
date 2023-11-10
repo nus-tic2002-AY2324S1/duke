@@ -73,10 +73,10 @@ public abstract class Task {
     public void setDone(boolean toSet) throws DukeLoggerException {
         String isDoneLitr = toSet ? "done" : "not done";
         if (isDone == toSet) {
-            WonkyLogger.getInstance().markTypo(description, isDoneLitr);
+            WonkyLogger.getInstance().alreadyMarked(description, isDoneLitr);
         } else {
-            WonkyLogger.getInstance().taskMarked(description, isDoneLitr);
             isDone = toSet;
+            WonkyLogger.getInstance().taskMarked(this);
         }
     }
 

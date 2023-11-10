@@ -45,7 +45,10 @@ public class StashCommand extends CommandType {
                 wonkyLogger.stashAdded(stashName);
             } else if (!stashList.contains(stashName)) {
                 wonkyLogger.invalidStashName(stashName);
-            } else if (firstArg.equals("pop")) {
+            } else if (firstArg.equals("apply")) {
+                wonkyStorage.applyStash(stashName);
+                wonkyLogger.stashApplied(stashName);
+            }  else if (firstArg.equals("pop")) {
                 wonkyStorage.popStash(stashName);
                 wonkyLogger.stashPopped(stashName);
             } else {

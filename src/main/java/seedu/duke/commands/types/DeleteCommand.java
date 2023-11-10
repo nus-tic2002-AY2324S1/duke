@@ -28,10 +28,10 @@ public class DeleteCommand extends CommandType {
             taskIdx = Integer.parseInt(argList.get(0)) - 1;
             assert taskIdx >= 0 : "taskIdx cannot be negative!";
             assert taskIdx < tasks.size() : "taskIdx cannot be larger than tasks size!";
+            Task taskToDelete = tasks.get(taskIdx);
             if (super.validateArgs(this, ONE_ARGS)) {
-                Task taskToDelete = tasks.get(taskIdx);
                 tasks.remove(taskIdx);
-                wonkyLogger.taskDeleted(taskToDelete.getDescription());
+                wonkyLogger.taskDeleted(taskToDelete.getDescription(), tasks.size());
             }
         } catch (NumberFormatException e) {
             wonkyLogger.expectedInteger(argList.get(0));

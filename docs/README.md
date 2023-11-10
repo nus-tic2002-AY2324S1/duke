@@ -56,6 +56,9 @@ Examples
 ### `stash add` - Adds the current tasks to a stash.
 `stash add | <stash name>`
 
+### `stash apply` - Applies a task to current tasks.
+`stash pop | <stash name>`
+
 ### `stash pop` - Removes and applies a task to current tasks.
 `stash pop | <stash name>`
 

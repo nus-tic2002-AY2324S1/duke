@@ -110,8 +110,10 @@ public class WonkyScanner {
                     wonkyManager.checkCommand(currCommand, currArgument);
                 }
             } catch (IllegalArgumentException e) {
-                wonkyLogger.unknownCommand(inputCmd);
-                wonkyLogger.suggestCommand(typoSuggestion(inputCmd));
+                if (!wonkyLogger.getLoading()) {
+                    wonkyLogger.unknownCommand(inputCmd);
+                    wonkyLogger.suggestCommand(typoSuggestion(inputCmd));
+                }
             } catch (IndexOutOfBoundsException e) {
                 wonkyLogger.mismatchArgs(inputCmd);
                 wonkyLogger.suggestCommand(typoSuggestion(inputCmd));
