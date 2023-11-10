@@ -1,6 +1,7 @@
 package nus.duke.data;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 /**
  * The `TaskAfterOption` class represents an option for specifying a task or a date/time
@@ -71,6 +72,30 @@ public class TaskAfterOption {
      */
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof TaskAfterOption)) {
+            return false;
+        }
+
+        TaskAfterOption afterOption = (TaskAfterOption) o;
+        if (dataType.equals(DataType.TASK)) {
+            return afterOption.isAfterTask() && taskNumber == afterOption.getTaskNumber();
+        }
+        if (dataType.equals(DataType.TIME)) {
+            return afterOption.isAfterTime() && dateTime != null && dateTime.equals(afterOption.getDateTime());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(new Object[] {dataType, taskNumber, dateTime});
     }
 
     private enum DataType {

@@ -2,7 +2,9 @@ package nus.duke.data.tasks;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Optional;
+import nus.duke.data.TaskAfterOption;
 import nus.duke.data.TaskOptionKey;
 
 /**
@@ -33,7 +35,22 @@ public class Deadline extends AbstractTask {
      * @param isDone      The completion status of the task.
      */
     public Deadline(String description, LocalDateTime by, boolean isDone) {
-        super(description, isDone);
+        this(description, by, isDone, null);
+    }
+
+    /**
+     * Instantiates a new `Deadline` task with the provided description, deadline date and time,
+     * completion status, and an optional afterOption.
+     *
+     * @param description The description of the task.
+     * @param by          The deadline date and time. Must not be null.
+     * @param isDone      The completion status of the task.
+     * @param afterOption An optional afterOption associated with the task.
+     *                    It represents additional data relevant to the task execution.
+     *                    Use null if no afterOption is provided.
+     */
+    public Deadline(String description, LocalDateTime by, boolean isDone, TaskAfterOption afterOption) {
+        super(description, isDone, afterOption);
 
         assert by != null;
 
@@ -53,6 +70,24 @@ public class Deadline extends AbstractTask {
      */
     public LocalDateTime getBy() {
         return by;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Deadline)) {
+            return false;
+        }
+
+        Deadline deadline = (Deadline) o;
+        return super.equals(o) && by.equals(deadline.getBy());
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(new Object[] {super.hashCode(), by});
     }
 
     @Override
