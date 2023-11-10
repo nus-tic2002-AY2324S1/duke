@@ -1,3 +1,4 @@
+package ui;
 public class Ui {
     public static void printHeader(){
         String logo = " ____        _        \n"
