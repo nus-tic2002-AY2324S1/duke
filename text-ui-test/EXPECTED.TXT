@@ -8,6 +8,41 @@ ____________________________________________________________
  |       ||       ||    _  ||   |___ | |_|   ||       |  |   |  
  |______| |_______||___| |_||_______||_______||_______|  |___|  
  What can I do for you?
+ HINT: Use the 'help' command for more information.
+____________________________________________________________
+____________________________________________________________
+ deadline /by {datetime} [/after {datetime/task-number}]
+     Create a deadline task with the specified due datetime and an optional dependency.
+ 
+ event /from {datetime} /to {datetime} [/after {datetime/task-number}]
+     Create an event task with the specified start and end datetime, and an optional dependency.
+ 
+ todo [/after {datetime/task-number}]
+     Create a todo task with an optional dependency.
+ 
+ delete {task-number}
+     Delete the task with the given task number.
+ 
+ mark {task-number}
+     Mark the task with the given task number as complete.
+ 
+ unmark {task-number}
+     Mark the task with the given task number as incomplete.
+ 
+ list
+     Show all tasks.
+ 
+ find {criteria}
+     Display tasks with descriptions containing the specified criteria.
+ 
+ date {date}
+     Show tasks scheduled on the given date.
+ 
+ bye
+     Display the farewell message.
+ 
+ help
+     Display this help message.
 ____________________________________________________________
 ____________________________________________________________
  OOPS!!! I'm sorry, but I don't know what that means :-(
@@ -54,10 +89,10 @@ ____________________________________________________________
  OOPS!!! The description of a deadline cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
- OOPS!!! The "/by {date/time}" of a deadline is required.
+ OOPS!!! The "/by {datetime}" of a deadline is required.
 ____________________________________________________________
 ____________________________________________________________
- OOPS!!! The "/by {date/time}" of a deadline is required.
+ OOPS!!! The "/by {datetime}" of a deadline is required.
 ____________________________________________________________
 ____________________________________________________________
  Got it. I've added this task:
@@ -102,16 +137,16 @@ ____________________________________________________________
  OOPS!!! The description of an event cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
- OOPS!!! The "/from {date/time}" of an event is required.
+ OOPS!!! The "/from {datetime}" of an event is required.
 ____________________________________________________________
 ____________________________________________________________
- OOPS!!! The "/to {date/time}" of an event is required.
+ OOPS!!! The "/to {datetime}" of an event is required.
 ____________________________________________________________
 ____________________________________________________________
- OOPS!!! The "/from {date/time}" of an event is required.
+ OOPS!!! The "/from {datetime}" of an event is required.
 ____________________________________________________________
 ____________________________________________________________
- OOPS!!! The "/from {date/time}" of an event is required.
+ OOPS!!! The "/from {datetime}" of an event is required.
 ____________________________________________________________
 ____________________________________________________________
  Got it. I've added this task:

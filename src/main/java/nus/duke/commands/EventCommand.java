@@ -15,13 +15,13 @@ import nus.duke.storage.Storage;
 /**
  * The `EventCommand` class represents a command to add a new event task.
  * When executed, it parses user input to create an event task with a description
- * and specific start and end date/time, and then adds the task to the task list.
+ * and specific start and end datetime, and then adds the task to the task list.
  */
 public class EventCommand extends AbstractTaskCommand {
     /**
      * Instantiates a new `EventCommand` with the provided arguments.
      *
-     * @param args The user input containing the event description, start date/time, and end date/time.
+     * @param args The user input containing the event description, start datetime, and end datetime.
      */
     public EventCommand(String args) {
         super(args);
@@ -62,11 +62,11 @@ public class EventCommand extends AbstractTaskCommand {
         Optional<String> toOption = taskSource.getOptionValue(TaskOptionKey.TO);
         if (fromOption.isEmpty()) {
             throw new InvalidCommandArgsDukeException(
-                String.format("The \"/%s {date/time}\" of an event is required.", TaskOptionKey.FROM));
+                String.format("The \"/%s {datetime}\" of an event is required.", TaskOptionKey.FROM));
         }
         if (toOption.isEmpty()) {
             throw new InvalidCommandArgsDukeException(
-                String.format("The \"/%s {date/time}\" of an event is required.", TaskOptionKey.TO));
+                String.format("The \"/%s {datetime}\" of an event is required.", TaskOptionKey.TO));
         }
 
         Optional<TaskAfterOption> optionalAfterOption = getAfterOption(tasks, taskSource);

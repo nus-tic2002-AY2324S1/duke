@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 
 /**
- * The `TaskAfterOption` class represents an option for specifying a task or a date/time
+ * The `TaskAfterOption` class represents an option for specifying a task or a datetime
  * after which another task or event should occur. This option is used in certain commands
  * to indicate a dependency or a specific time reference.
  */

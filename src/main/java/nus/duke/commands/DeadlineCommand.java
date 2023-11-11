@@ -15,13 +15,13 @@ import nus.duke.storage.Storage;
 /**
  * The `DeadlineCommand` class represents a command to add a new deadline task.
  * When executed, it parses user input to create a deadline task with a description
- * and a specific due date/time, then adds the task to the task list.
+ * and a specific due datetime, then adds the task to the task list.
  */
 public class DeadlineCommand extends AbstractTaskCommand {
     /**
      * Instantiates a new `DeadlineCommand` with the provided arguments.
      *
-     * @param args The user input containing the description and the due date/time of the deadline task.
+     * @param args The user input containing the description and the due datetime of the deadline task.
      */
     public DeadlineCommand(String args) {
         super(args);
@@ -40,7 +40,7 @@ public class DeadlineCommand extends AbstractTaskCommand {
         Optional<String> byOption = taskSource.getOptionValue(TaskOptionKey.BY);
         if (byOption.isEmpty()) {
             throw new InvalidCommandArgsDukeException(
-                String.format("The \"/%s {date/time}\" of a deadline is required.", TaskOptionKey.BY));
+                String.format("The \"/%s {datetime}\" of a deadline is required.", TaskOptionKey.BY));
         }
 
         Optional<TaskAfterOption> optionalAfterOption = getAfterOption(tasks, taskSource);

@@ -33,7 +33,8 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
             DialogBox.getDukeDialog(String.join(System.lineSeparator(), new String[] {
                 "Hello! I'm DuckBot.",
-                "What can I do for you?"
+                "What can I do for you?",
+                "HINT: Use the 'help' command for more information."
             }), dukeImage)
         );
     }

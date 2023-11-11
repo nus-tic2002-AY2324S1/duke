@@ -14,7 +14,7 @@ import nus.duke.data.TaskOptionKey;
 /**
  * The `AbstractTask` class is an abstract base class for tasks in Duke.
  * It provides common properties and methods for tasks, such as description, completion status,
- * and date/time formatting.
+ * and datetime formatting.
  */
 public abstract class AbstractTask {
     private static final String DATE_PATTERN_OUTPUT = "MMM dd yyyy";

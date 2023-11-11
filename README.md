@@ -24,5 +24,6 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    |       ||       ||    _  ||   |___ | |_|   ||       |  |   |  
    |______| |_______||___| |_||_______||_______||_______|  |___|  
    What can I do for you?
+   HINT: Use the 'help' command for more information.
    ```
 4. Duke is released under an MIT license.
