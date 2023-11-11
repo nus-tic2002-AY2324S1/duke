@@ -11,15 +11,15 @@ import java.io.IOException;
 /**
  * Represents a command to unmark a task as not done in the task list.
  */
-public class UnmarkCommand extends Command{
-    private int index;
+public class UnmarkCommand extends Command {
+    private final int index;
 
     /**
      * Constructs an UnmarkCommand with the given index.
      *
      * @param index The index of the task to be unmarked.
      */
-    public UnmarkCommand(int index){
+    public UnmarkCommand(int index) {
         this.index = index;
     }
 
@@ -32,12 +32,12 @@ public class UnmarkCommand extends Command{
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
-        try{
+        try {
             Task unmarkedTask = taskList.unmarkTaskAsNotDone(index);
-            storage.save(taskList);
+            Storage.save(taskList);
             UI.showTaskUnmarkedAsNotDone(unmarkedTask);
         } catch (DukeException | IOException e) {
-           UI.showError(e.getMessage());
+            UI.showError(e.getMessage());
         }
     }
 
@@ -49,5 +49,10 @@ public class UnmarkCommand extends Command{
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public boolean isChangingState() {
+        return true;
     }
 }

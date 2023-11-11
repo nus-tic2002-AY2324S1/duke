@@ -1,9 +1,10 @@
 package duke.storage;
 
-import duke.Utils;
 import duke.exception.DukeException;
-import duke.task.*;
+import duke.task.Task;
+import duke.task.TaskList;
 import duke.ui.UI;
+import duke.utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,6 @@ public class StorageTest {
     private TaskList taskList;
     private UI ui;
     private static final String TEST_FILE_PATH = "data/test_data.txt";
-//    private static final String OUT_FILE_PATH =  "test_data_out.txt";
 
     @BeforeEach
     public void setUp() {
@@ -34,7 +34,7 @@ public class StorageTest {
         // Create a test data file with tasks
         createTestDataFile(TEST_FILE_PATH);
 
-        ArrayList<Task> loadedTaskList = storage.load();
+        ArrayList<Task> loadedTaskList = Storage.load();
 
         // Assert that the loaded tasks match the expected tasks
         ArrayList<Task> expectedTasks = new ArrayList<>();
@@ -59,7 +59,7 @@ public class StorageTest {
         taskList.addTask(Utils.newDeadlineTask("deadline Task 3 /by 30/11/2023 1800"));
 
         // Save the tasks to a test data file
-        storage.save(taskList);
+        Storage.save(taskList);
 
         // Check if the file exists
         File savedFile = new File("data/dukeOut.txt");

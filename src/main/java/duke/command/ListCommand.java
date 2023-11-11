@@ -8,7 +8,7 @@ import duke.ui.UI;
 /**
  * Represents a command to list all the  tasks from the task list.
  */
-public class ListCommand extends Command{
+public class ListCommand extends Command {
 
     /**
      * Executes the list command, displaying all tasks in the task list along with their statuses.
@@ -19,14 +19,14 @@ public class ListCommand extends Command{
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
-        if (!taskList.getTaskList().isEmpty()){
+        if (!taskList.getTaskList().isEmpty()) {
             int idx = 1;
             UI.showMessage("Here are the tasks in your list: ");
-            for (Task task :taskList.getTaskList()) {
-                UI.showMessage(idx + ". "  + task.getStatusIcon() + " " + task.getDescription());
+            for (Task task : taskList.getTaskList()) {
+                UI.showMessage(idx + ". " + task.getStatusIcon() + " " + task.getDescription());
                 idx++;
             }
-        }else{
+        } else {
             UI.showMessage("list");
         }
     }
@@ -38,6 +38,11 @@ public class ListCommand extends Command{
      */
     @Override
     public boolean isExit() {
+        return false;
+    }
+
+    @Override
+    public boolean isChangingState() {
         return false;
     }
 }

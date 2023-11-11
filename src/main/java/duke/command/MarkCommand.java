@@ -11,15 +11,15 @@ import java.io.IOException;
 /**
  * Represents a command to mark a task as done by its index.
  */
-public class MarkCommand extends Command{
-    private int index;
+public class MarkCommand extends Command {
+    private final int index;
 
     /**
      * Constructs a MarkCommand with the given index.
      *
      * @param index The index of the task to mark as done.
      */
-    public MarkCommand(int index){
+    public MarkCommand(int index) {
         this.index = index;
     }
 
@@ -32,9 +32,9 @@ public class MarkCommand extends Command{
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
-        try{
+        try {
             Task markAsDOneTask = taskList.markTaskAsDone(index);
-            storage.save(taskList);
+            Storage.save(taskList);
             UI.showTaskMarkedAsDone(markAsDOneTask);
         } catch (DukeException | IOException e) {
             UI.showError(e.getMessage());
@@ -49,5 +49,10 @@ public class MarkCommand extends Command{
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public boolean isChangingState() {
+        return true;
     }
 }

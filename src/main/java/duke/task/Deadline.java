@@ -25,7 +25,7 @@ public class Deadline extends Task {
      * @param description The description of the deadline task.
      * @param deadline    The deadline of the task.
      */
-    public Deadline(String description, LocalDateTime deadline){
+    public Deadline(String description, LocalDateTime deadline) {
         super(description);
         this.deadline = deadline;
     }
@@ -44,7 +44,7 @@ public class Deadline extends Task {
      *
      * @return The deadline of the task as a LocalDateTime.
      */
-    public LocalDateTime getDeadline(){
+    public LocalDateTime getDeadline() {
         return deadline;
     }
 
@@ -53,14 +53,22 @@ public class Deadline extends Task {
      *
      * @param deadline The new deadline to set.
      */
-    public void setDeadline(LocalDateTime deadline){
+    public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
     }
 
+    @Override
+    public Task makeCopy() {
+        Deadline copiedDeadline = new Deadline(this.description, this.deadline);
+        if (this.getStatus()) {
+            copiedDeadline.markAsDone();
+        }
+        return copiedDeadline;
+    }
 
     @Override
     public String getStatusIcon() {
-        return "["+ taskType +"]" + super.getStatusIcon();
+        return "[" + taskType + "]" + super.getStatusIcon();
     }
 
 }

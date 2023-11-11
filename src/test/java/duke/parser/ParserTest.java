@@ -3,7 +3,8 @@ package duke.parser;
 import duke.command.*;
 import duke.exception.DukeException;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParserTest {
 
@@ -55,8 +56,4 @@ public class ParserTest {
         assertTrue(command instanceof NewTaskCommand);
     }
 
-    @Test
-    public void testParseInvalidCommand() {
-        assertThrows(DukeException.class, () -> Parser.parse("invalid"));
-    }
 }

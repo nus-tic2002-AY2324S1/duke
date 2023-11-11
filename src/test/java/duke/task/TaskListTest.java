@@ -18,7 +18,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testDeleteTask() throws DukeException, IOException {
+    public void testDeleteTask() throws IOException, DukeException {
         TaskList taskList = new TaskList();
         Task task = new Deadline("Test Task");
         taskList.addTask(task);
@@ -29,7 +29,7 @@ public class TaskListTest {
     @Test
     public void testDeleteTaskWithInvalidIndex() {
         TaskList taskList = new TaskList();
-        assertThrows(DukeException.class,()->{
+        assertThrows(DukeException.class, () -> {
             taskList.deleteTask(0);  // This should throw DukeException
         });
     }
@@ -46,7 +46,7 @@ public class TaskListTest {
     @Test
     public void testMarkTaskAsDoneWithInvalidIndex() {
         TaskList taskList = new TaskList();
-        assertThrows(DukeException.class, ()->{
+        assertThrows(DukeException.class, () -> {
             taskList.markTaskAsDone(0);  // This should throw DukeException
         });
     }
@@ -58,13 +58,13 @@ public class TaskListTest {
         task.markAsDone();
         taskList.addTask(task);
         Task unmarkedTask = taskList.unmarkTaskAsNotDone(0);
-        assertTrue(!unmarkedTask.getStatus());
+        assertFalse(unmarkedTask.getStatus());
     }
 
     @Test
     public void testUnmarkTaskAsNotDoneWithInvalidIndex() {
         TaskList taskList = new TaskList();
-        assertThrows(DukeException.class, ()->{
+        assertThrows(DukeException.class, () -> {
             taskList.unmarkTaskAsNotDone(0);  // This should throw DukeException
         });
 

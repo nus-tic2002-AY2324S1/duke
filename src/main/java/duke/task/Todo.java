@@ -26,6 +26,15 @@ public class Todo extends Task {
         return taskType;
     }
 
+    @Override
+    public Task makeCopy() {
+        Todo copiedTodo = new Todo(this.description);
+        if (this.getStatus()) {
+            copiedTodo.markAsDone();
+        }
+        return copiedTodo;
+    }
+
     /**
      * Gets an icon representing the status of the Todo task.
      *

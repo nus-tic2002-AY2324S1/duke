@@ -26,7 +26,7 @@ public abstract class Task {
      *
      * @param description The new description of the task.
      */
-    public void setDescription(String Desc){
+    public void setDescription(String Desc) {
         this.description = Desc;
     }
 
@@ -35,7 +35,7 @@ public abstract class Task {
      *
      * @return The description of the task.
      */
-    public String getDescription(){
+    public String getDescription() {
         return this.description;
     }
 
@@ -44,7 +44,7 @@ public abstract class Task {
      *
      * @return true if the task is done, false if it's not.
      */
-    public boolean getStatus(){
+    public boolean getStatus() {
         return isDone;
     }
 
@@ -52,14 +52,14 @@ public abstract class Task {
     /**
      * Marks the task as done.
      */
-    public void markAsDone(){
+    public void markAsDone() {
         this.isDone = true;
     }
 
     /**
      * Marks the task as not done.
      */
-    public void unmarkDone(){
+    public void unmarkDone() {
         this.isDone = false;
     }
 
@@ -68,9 +68,11 @@ public abstract class Task {
      *
      * @return The status icon, which is "[X]" for done tasks and "[ ]" for undone tasks.
      */
-    public String getStatusIcon(){
-        return isDone? "[X]" : "[ ]";
+    public String getStatusIcon() {
+        return isDone ? "[X]" : "[ ]";
     }
+
+    public abstract Task makeCopy();
 
     /**
      * Gets the type of the task, such as 'T' for Todo, 'D' for Deadline, or 'E' for Event.

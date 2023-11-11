@@ -2,6 +2,7 @@ package duke;
 
 import duke.command.Command;
 import duke.exception.DukeException;
+import duke.history.History;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
@@ -14,9 +15,10 @@ import java.io.IOException;
  * duke.Duke is the main class for the duke.Duke program. It manages the initialization of UI, Storage, and TaskList, and handles the core program execution.
  */
 public class Duke {
-    private Storage storage;
+    private final Storage storage;
     private TaskList taskList;
-    private UI ui;
+    private final UI ui;
+    private History history;
 
 
     /**
@@ -28,7 +30,7 @@ public class Duke {
         ui = new UI();
         storage = new Storage(filePath);
         try {
-            taskList = new TaskList(storage.load());
+            taskList = new TaskList(Storage.load());
         } catch (DukeException e) {
             UI.showLoadingError();
             taskList = new TaskList();
@@ -47,8 +49,13 @@ public class Duke {
                 String fullCommand = UI.readCommand();
                 UI.showLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
-                c.execute(taskList, ui, storage);
-                isExit = c.isExit();
+                if (c != null) {
+                    if (c.isChangingState() && !taskList.getTaskList().isEmpty()) {
+                        History.saveHistory(taskList);
+                    }
+                    c.execute(taskList, ui, storage);
+                    isExit = c.isExit();
+                }
             } catch (DukeException | IOException e) {
                 UI.showError(e.getMessage());
             } finally {

@@ -5,10 +5,7 @@ import duke.task.TaskList;
 import duke.ui.UI;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ByeCommandTest {
 
@@ -37,5 +34,4 @@ public class ByeCommandTest {
         assertTrue(byeCommand.isExit());
     }
 }
-
 

@@ -1,17 +1,18 @@
 package duke.command;
 
-import duke.Utils;
 import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.task.*;
+import duke.task.Task;
+import duke.task.TaskList;
 import duke.ui.UI;
+import duke.utils.Utils;
 
 import java.io.IOException;
 
 /**
  * Represent a command to create and add a new task to the task list.
  */
-public class NewTaskCommand extends Command{
+public class NewTaskCommand extends Command {
     String fullCommand;
 
     /**
@@ -20,7 +21,7 @@ public class NewTaskCommand extends Command{
      * @param fullCommand The full command input by the user.
      */
     public NewTaskCommand(String fullCommand) {
-        this.fullCommand =fullCommand;
+        this.fullCommand = fullCommand;
     }
 
 
@@ -32,13 +33,13 @@ public class NewTaskCommand extends Command{
      * @param ui       The user interface for input and output.
      * @param storage  The storage for reading and writing data.
      * @throws DukeException If there is an issue with the command or task creation.
-     * @throws IOException    If there is an issue with saving the task list.
+     * @throws IOException   If there is an issue with saving the task list.
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage)
-    throws DukeException, IOException {
+            throws DukeException, IOException {
         Task newTask = null;
-        if(fullCommand.toLowerCase().contains("todo")){
+        if (fullCommand.toLowerCase().contains("todo")) {
             newTask = Utils.newTodoTask(fullCommand);
         } else if (fullCommand.toLowerCase().contains("deadline")) {
             newTask = Utils.newDeadlineTask(fullCommand);
@@ -49,7 +50,7 @@ public class NewTaskCommand extends Command{
             return;
         }
         taskList.addTask(newTask);
-        storage.save(taskList);
+        Storage.save(taskList);
         UI.showNewTask(newTask, taskList);
     }
 
@@ -61,5 +62,10 @@ public class NewTaskCommand extends Command{
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public boolean isChangingState() {
+        return true;
     }
 }

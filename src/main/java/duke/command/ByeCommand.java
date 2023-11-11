@@ -4,7 +4,7 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.UI;
 
-public class ByeCommand extends Command{
+public class ByeCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         UI.showBye();
@@ -18,5 +18,10 @@ public class ByeCommand extends Command{
     @Override
     public boolean isExit() {
         return true;
+    }
+
+    @Override
+    public boolean isChangingState() {
+        return false;
     }
 }

@@ -1,8 +1,17 @@
 package duke.parser;
 
 
-import duke.command.*;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ListCommand;
+import duke.command.ByeCommand;
+import duke.command.MarkCommand;
+import duke.command.UndoCommand;
+import duke.command.UnmarkCommand;
+import duke.command.FindCommand;
+import duke.command.NewTaskCommand;
 import duke.exception.DukeException;
+import duke.ui.UI;
 
 
 /**
@@ -18,46 +27,76 @@ public class Parser {
      * @return A concrete `Command` object based on the user's input.
      * @throws DukeException If an error occurs during command parsing or execution.
      */
-    public static Command parse (String fullCommand) throws DukeException {
+    public static Command parse(String fullCommand) throws DukeException {
         String[] parts = fullCommand.split(" ");
         String command = parts[0].toLowerCase();
+        Command newCommand = null;
 
-        switch (command){
+        switch (command) {
             case "list":
-                return new ListCommand();
+                newCommand = new ListCommand();
+                break;
             case "bye":
-                return new ByeCommand();
+                newCommand = new ByeCommand();
+                break;
             case "delete":
-                try{
-                    int index = Integer.parseInt(parts[1])-1;
-                    return new DeleteCommand(index);
-                } catch (Exception e){
-                    throw new DukeException("OOPS!!! Please input item number you want to delete");
+                try {
+                    int index = Integer.parseInt(parts[1]) - 1;
+                    newCommand = new DeleteCommand(index);
+                    break;
+                } catch (Exception e) {
+                    UI.showMessage("OOPS!!! Please input item number you want to delete");
+                    break;
                 }
             case "mark":
-                try{
-                    int index = Integer.parseInt(parts[1])-1;
-                    return new MarkCommand(index);
-                } catch (Exception e){
-                    throw new DukeException("OOPS!!! Please input item number you want to mark");
+                try {
+                    int index = Integer.parseInt(parts[1]) - 1;
+                    newCommand = new MarkCommand(index);
+                    break;
+                } catch (Exception e) {
+                    UI.showMessage("OOPS!!! Please input item number you want to mark");
+                    break;
                 }
             case "unmark":
-                try{
-                    int index = Integer.parseInt(parts[1])-1;
-                    return new UnmarkCommand(index);
+                try {
+                    int index = Integer.parseInt(parts[1]) - 1;
+                    newCommand = new UnmarkCommand(index);
+                    break;
                 } catch (Exception e) {
-                    throw new DukeException("OOPS!!! Please input item number you want to unmark");
+                    UI.showMessage("OOPS!!! Please input item number you want to unmark");
+                    break;
                 }
             case "todo":
             case "deadline":
             case "event":
-                try{
-                    return new NewTaskCommand(fullCommand);
+                try {
+                    newCommand = new NewTaskCommand(fullCommand);
+                    break;
                 } catch (Exception e) {
-                    throw new DukeException("OOPS!!! Please input valid todo task command");
+                    UI.showMessage("OOPS!!! Please input valid Task command");
+                    break;
+                }
+            case "undo":
+                try {
+                    newCommand = new UndoCommand();
+                    break;
+                } catch (Exception e) {
+                    UI.showMessage("OOPS!!! unable to perform undo action");
+                    break;
+                }
+            case "find":
+                try {
+                    String keyword = parts[1];
+                    newCommand = new FindCommand(keyword);
+                    break;
+                } catch (Exception e) {
+                    UI.showMessage("OOPS!!! Please provide a keyword to search");
+                    break;
                 }
             default:
-                throw new DukeException("OOPS!!! Please input valid  command");
+                UI.showMessage("OOPS!!! Please input valid  command");
+                break;
         }
+        return newCommand;
     }
 }
