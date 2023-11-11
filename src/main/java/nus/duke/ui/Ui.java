@@ -34,7 +34,8 @@ public class Ui {
             "| |_|   ||       ||     |_ |    ___||  _   | |  |_|  |  |   |  ",
             "|       ||       ||    _  ||   |___ | |_|   ||       |  |   |  ",
             "|______| |_______||___| |_||_______||_______||_______|  |___|  ",
-            "What can I do for you?"
+            "What can I do for you?",
+            "HINT: Use the 'help' command for more information."
         });
         showLine();
     }

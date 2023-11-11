@@ -14,6 +14,7 @@ import nus.duke.commands.DeadlineCommand;
 import nus.duke.commands.DeleteCommand;
 import nus.duke.commands.EventCommand;
 import nus.duke.commands.FindCommand;
+import nus.duke.commands.HelpCommand;
 import nus.duke.commands.ListCommand;
 import nus.duke.commands.MarkCommand;
 import nus.duke.commands.TodoCommand;
@@ -25,7 +26,7 @@ import nus.duke.exceptions.UnknownCommandDukeException;
 
 /**
  * The `Parser` class is responsible for parsing user input and converting it into executable commands.
- * It includes methods for parsing various types of user input, such as commands and date/time information.
+ * It includes methods for parsing various types of user input, such as commands and datetime information.
  */
 public class Parser {
     private static final String DATE_PATTERN_INPUT = "yyyy-M-d";
@@ -60,6 +61,8 @@ public class Parser {
             return new EventCommand(commandArgs);
         case "find":
             return new FindCommand(commandArgs);
+        case "help":
+            return new HelpCommand(commandArgs);
         case "list":
             return new ListCommand(commandArgs);
         case "mark":
