@@ -134,6 +134,7 @@ public abstract class IndexBaseCommand extends Command {
      *
      * @param taskList The TaskList containing the tasks to be managed.
      * @param ui       The user interface for displaying messages to the user.
+     * @param command  The Command object representing the user command to be processed.
      */
     public void processCommand(TaskList taskList, Ui ui, Command command) {
         Task task = taskList.get(index - 1);

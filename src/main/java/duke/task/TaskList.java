@@ -182,7 +182,7 @@ public class TaskList {
      * @param by    The new deadline time to set for the Deadline object.
      */
     public void updateDeadlineBy(int index, LocalDateTime by) {
-        assert get(index - 1) instanceof Deadline : "The task must be an Event";
+        assert get(index - 1) instanceof Deadline : "The task must be an Deadline";
         Deadline deadline = (Deadline) get(index - 1);
         deadline.updateBy(by);
     }
