@@ -12,7 +12,8 @@ import duke.ui.Ui;
  */
 public class TodoCommand extends Command {
     public static final String COMMAND_WORD = "todo";
-    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Adds a to-do task to the task list.\n" +
+    public static final String COMMAND_DESCRIPTION = COMMAND_WORD + ": Adds a to-do task to the task list.";
+    public static final String EXAMPLE_USAGE = COMMAND_DESCRIPTION + "\n" +
             "Parameter: DESCRIPTION\n" +
             "Example of usage: " + COMMAND_WORD + " borrow book";
 

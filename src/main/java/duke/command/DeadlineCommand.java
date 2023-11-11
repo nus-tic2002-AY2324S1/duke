@@ -17,8 +17,9 @@ import java.util.regex.Pattern;
  */
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
-    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Adds a task with a specified deadline to the task " +
-            "list.\n" +
+    public static final String COMMAND_DESCRIPTION = COMMAND_WORD + ": Adds a task with a specified deadline to the " +
+            "task list.";
+    public static final String EXAMPLE_USAGE = COMMAND_DESCRIPTION + "\n" +
             "Parameter: DESCRIPTION /by DATE " + DATE_FORMAT_MESSAGE + "\n" +
             "Example of usage: " + COMMAND_WORD + " return book /by 02/12/2019";
     public static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<description>\\w.*)\\s/by\\s(?<byArgument>\\w.*)");

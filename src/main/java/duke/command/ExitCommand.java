@@ -12,7 +12,8 @@ import duke.ui.Ui;
  */
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
-    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Exits the application.\n" +
+    public static final String COMMAND_DESCRIPTION = COMMAND_WORD + ": Exits the application.";
+    public static final String EXAMPLE_USAGE = COMMAND_DESCRIPTION + "\n" +
             "Example of usage: " + COMMAND_WORD;
 
     public ExitCommand() {

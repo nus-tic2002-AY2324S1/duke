@@ -4,7 +4,6 @@ import duke.common.Message;
 import duke.data.UserKeywordArgument;
 import duke.exception.InvalidArgumentException;
 import duke.parser.Parser;
-import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
@@ -25,7 +24,9 @@ public class UpdateCommand extends IndexBaseCommand {
     private LocalDateTime to;
 
     public static final String COMMAND_WORD = "update";
-    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Updates information for a task in the task list.\n" +
+    public static final String COMMAND_DESCRIPTION = COMMAND_WORD + ": Updates information for a task in the task " +
+            "list.";
+    public static final String EXAMPLE_USAGE = COMMAND_DESCRIPTION + "\n" +
             "Parameter : INDEX /desc DESCRIPTION | INDEX /by DATE " + DATE_FORMAT_MESSAGE + "\n" +
             "\t\t\t | INDEX /from " + DATE_TIME_FORMAT_MESSAGE + " | INDEX /to " + DATE_TIME_FORMAT_MESSAGE + "\n" +
             "Example of usage: \n" +

@@ -5,8 +5,9 @@ package duke.command;
  */
 public class DeleteCommand extends IndexBaseCommand {
     public static final String COMMAND_WORD = "delete";
-    public static final String EXAMPLE_USAGE = COMMAND_WORD + ": Deletes a task from the list based on the provided " +
-            "index.\n" +
+    public static final String COMMAND_DESCRIPTION = COMMAND_WORD + ": Deletes a task from the list based on the " +
+            "provided index.";
+    public static final String EXAMPLE_USAGE = COMMAND_DESCRIPTION + "\n" +
             "Parameter: INDEX\n" +
             "Example of usage: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_REMOVED_TASK = "Noted. I've removed this task:";
