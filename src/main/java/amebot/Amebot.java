@@ -1,10 +1,12 @@
 package amebot;
 
+import amebot.common.Messages;
 import amebot.storage.Storage;
 import amebot.ui.UserInterface;
 import amebot.parser.Parser;
 import amebot.commands.Command;
 import amebot.commands.ExitCommand;
+import amebot.exceptions.AmebotException;
 
 import java.util.ArrayList;
 
@@ -13,6 +15,7 @@ import java.util.ArrayList;
  */
 public class Amebot {
     private UserInterface userInterface;
+    private Storage storage;
 
     /**
      * Main method of the application.
@@ -31,18 +34,20 @@ public class Amebot {
         this.userInterface = new UserInterface();
         this.userInterface.printWelcome();
 
-        Storage storage = new Storage();
-        storage.loadTasks();
+        this.storage = new Storage();
+        this.storage.loadTasks();
 
-        render();
-
-        storage.saveTasks();
+        try {
+            this.render();
+        } catch (AmebotException err) {
+            System.out.println(Messages.RENDER_ERROR);
+        }
     }
 
     /**
      * Renders the application.
      */
-    public void render() {
+    public void render() throws AmebotException {
         String commandLine = "";
         Command command = new Command();
 
@@ -51,6 +56,7 @@ public class Amebot {
             ArrayList<String> parsedCommand = new Parser().parseCommand(commandLine);
             ArrayList<String> logs = command.executeCommand(parsedCommand);
             this.userInterface.printOutput(logs);
+            this.storage.saveTasks();
         } while (!ExitCommand.isExit(commandLine));
     }
 }

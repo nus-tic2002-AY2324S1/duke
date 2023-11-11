@@ -15,7 +15,7 @@ public class UnmarkCommand extends Command {
         boolean isValidIndex = index > 0 && index <= tasks.size();
 
         if (isValidIndex) {
-            tasks.get(index - 1).setStatusAsUnmark();
+            tasks.get(index - 1).setStatusAsUnmarked();
             logs.add(Messages.STATUS_UNMARKED);
 
             logs.add(tasks.get(index - 1).getTask());

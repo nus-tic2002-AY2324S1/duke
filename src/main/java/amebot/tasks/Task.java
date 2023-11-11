@@ -70,14 +70,14 @@ public abstract class Task {
     /**
      * Sets status of the task as marked.
      */
-    public void setStatusAsMark() {
+    public void setStatusAsMarked() {
         this.status = MARK;
     }
 
     /**
      * Sets status of the task as unmarked.
      */
-    public void setStatusAsUnmark() {
+    public void setStatusAsUnmarked() {
         this.status = UNMARK;
     }
 

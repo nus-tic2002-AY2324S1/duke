@@ -17,8 +17,10 @@ import java.io.IOException;
  * saves tasks to file.
  */
 public class Storage {
-    protected static final String FILE_PATHNAME = "./src/main/java/data/amebot.txt";
-    private File tasksFile = new File(FILE_PATHNAME);
+    protected static final String FOLDER_PATHNAME = "./data/";
+    protected static final File TASKS_FOLDER = new File(FOLDER_PATHNAME);
+    protected static final String FILE_PATHNAME = "./data/amebot.txt";
+    protected static final File TASKS_FILE = new File(FILE_PATHNAME);
 
     /**
      * Loads tasks from the file.
@@ -29,7 +31,7 @@ public class Storage {
         }
 
         try {
-            FileReader tasksFileReader = new FileReader(tasksFile);
+            FileReader tasksFileReader = new FileReader(TASKS_FILE);
             BufferedReader bufferedReader = new BufferedReader(tasksFileReader);
             String task = "";
 
@@ -52,7 +54,7 @@ public class Storage {
      * @return True if the file exists, false otherwise.
      */
     public boolean isTasksFileFound() {
-        if (tasksFile.exists()) {
+        if (TASKS_FILE.exists()) {
             return true;
         }
 
@@ -66,7 +68,12 @@ public class Storage {
      */
     public void createNewTasksFile() {
         try {
-            boolean isCreated = tasksFile.createNewFile();
+            boolean isFolderCreated = TASKS_FOLDER.mkdir();
+            if (isFolderCreated) {
+                System.out.println(Messages.FOLDER_CREATED);
+            }
+
+            boolean isCreated = TASKS_FILE.createNewFile();
             if (isCreated) {
                 System.out.println(Messages.FILE_CREATED);
             }
@@ -81,7 +88,7 @@ public class Storage {
      * @return True if the file is empty, false otherwise.
      */
     public boolean isTasksFileEmpty() {
-        if (tasksFile.length() == 0) {
+        if (TASKS_FILE.length() == 0) {
             System.out.println((Messages.EMPTY_FILE));
             return true;
         }
@@ -97,7 +104,7 @@ public class Storage {
         String taskDetail = "";
 
         try {
-            FileWriter tasksFileWriter = new FileWriter(tasksFile);
+            FileWriter tasksFileWriter = new FileWriter(TASKS_FILE);
             BufferedWriter bufferedWriter = new BufferedWriter(tasksFileWriter);
 
             for (Task task : tasksList) {
@@ -106,8 +113,6 @@ public class Storage {
                 bufferedWriter.write(taskDetail);
                 bufferedWriter.newLine();
             }
-
-            System.out.println(Messages.SUCCESS_SAVE_TASK);
 
             bufferedWriter.close();
             tasksFileWriter.close();

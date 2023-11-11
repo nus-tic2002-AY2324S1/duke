@@ -15,7 +15,7 @@ public class MarkCommand extends Command {
         boolean isValidIndex = index > 0 && index <= tasks.size();
 
         if (isValidIndex) {
-            tasks.get(index - 1).setStatusAsMark();
+            tasks.get(index - 1).setStatusAsMarked();
             logs.add(Messages.STATUS_MARKED);
 
             logs.add(tasks.get(index - 1).getTask());
