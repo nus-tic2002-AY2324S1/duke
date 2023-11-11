@@ -46,7 +46,7 @@ public class WonkyStorageTest {
     }
 
     @Test
-    public void addStashPopStashIssuccess() throws DukeException, IOException {
+    public void addStashPopStashIsSuccess() throws DukeException, IOException {
         List<CommandType> cmdTypes = new ArrayList<>();
         cmdTypes.add(new TodoCommand(CommandEnum.TODO, "test todo"));
         cmdTypes.add(new DeadlineCommand(CommandEnum.DEADLINE, "test deadline | today "));
@@ -57,7 +57,7 @@ public class WonkyStorageTest {
         assertTrue(stashFile.exists());
         assertEquals(3, countLines(stashFile));
 
-        wonkyStorage.popStash("testStash");
+        wonkyStorage.popStash("testStash2");
         assertTrue(!stashFile.exists());
         assertEquals(3, wonkyManager.getTasks().size());
     }
