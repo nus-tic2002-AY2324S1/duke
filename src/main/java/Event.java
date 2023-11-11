@@ -12,4 +12,9 @@ public class Event extends Task{
     public String toString() {
         return "[E]" + super.toString() + " (from: " + start + " to" + end + ")";
     }
+
+    @Override
+    public String writeFile() {
+        return "E," + isDone + "," + description + "," + start + "," + end;
+    }
 }

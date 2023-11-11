@@ -1,6 +1,12 @@
 import java.util.Scanner;
 
 public class Duke {
+
+    private Storage storage;
+    private TaskList tasks;
+    private UI ui;
+    
+
     public static void main(String[] args) {
         UI ui = new UI();
         Bot bot = new Bot();

@@ -29,4 +29,9 @@ public class Task {
         return "[" + getStatusIcon() + "] " + description;
     }
 
+
+    public String writeFile(){
+        String text = "T," + isDone + "," + description ;
+        return text;
+    }
 }

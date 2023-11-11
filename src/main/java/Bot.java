@@ -1,12 +1,18 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Bot {
 
     boolean typing = true;
-    taskList tasks = new taskList();
+    TaskList tasks = new TaskList();
+    Storage s = new Storage();
+
     UI ui = new UI();
 
     protected void start(Scanner in){
+
+        s.loadData(tasks);
 
         while(typing){
             try {
@@ -14,6 +20,7 @@ public class Bot {
                 if(line.equals("bye")){
                     System.out.println("Bye! Hope I'll get to see you soon! :)");
                     typing = false;
+                    s.storeData(tasks);
                     continue;
                 }
                 else if(line.contains("list")){
@@ -69,7 +76,7 @@ public class Bot {
             }
     
         }
-        
+
     }
 
     

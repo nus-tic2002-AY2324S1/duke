@@ -1,0 +1,2 @@
+E,true,project meeting ,Mon 2pm, 4pm
+T,false,borrow book

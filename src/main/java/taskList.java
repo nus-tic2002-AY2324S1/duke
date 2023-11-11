@@ -1,20 +1,23 @@
 import java.util.ArrayList;
 
-public class taskList {
+public class TaskList{
     protected ArrayList<Task> tasks = new ArrayList<>();
     protected int totalTasks = 0;
     protected Task task;
 
+    // User Input
     protected void addItem(String line) throws InvalidInputException{
+        // Handling User Input 
         String[] input = line.trim().split(" ",2); 
+
         if(input[0].contains("deadline")){
-            // deadline buy food /by 5pm
+            // deadline buy food by 5pm
             int by = input[1].indexOf("/by");
             String date = input[1].substring(by+4, input[1].length());
             String description = input[1].substring(0, by);
             task = new Deadline(description, date);
         }
-        // event project meeting /from Mon 2pm /to 4pm
+        // event project meeting from Mon 2pm to 4pm
         else if(input[0].contains("event")){
             int from = input[1].indexOf("/from");
             int to = input[1].indexOf("/to");
@@ -23,7 +26,6 @@ public class taskList {
             String description = input[1].substring(0, from);
             task = new Event(description, fromDate, toDate);
         }
-
         else if(input[0].contains("todo")){
             task = new ToDo(input[1]);
             //throw new InvalidInputException();
@@ -38,6 +40,30 @@ public class taskList {
         System.out.println("---------------------------------------");
         System.out.println("Got it. I've added this task: \n" + task);
         System.out.println("Now you have " + totalTasks + " tasks in the list.");
+    }
+
+    protected void addItem(String[] line) throws InvalidInputException{
+        if(line[0].equals("T")){
+            if (line.length != 3 ){
+                throw new InvalidInputException();
+            }
+            task = new ToDo(line[2]);
+        }
+        else if(line[0].equals("D")){
+            if (line.length != 4 ){
+                throw new InvalidInputException();
+            }
+            task = new Deadline(line[2], line[3]);
+        }
+        else if(line[0].equals("E")){
+            if (line.length != 5 ){
+                throw new InvalidInputException();
+            }
+            task = new Event(line[2], line[3], line[4]);
+        }
+
+        tasks.add(task);
+        totalTasks ++;
     }
 
     protected void markItem(String line) throws MissingTaskException{
@@ -76,6 +102,11 @@ public class taskList {
                 System.out.println("Nice! I've marked this task as done: " + task);
             }
         }
+    }
+
+    protected void markItem(int item){
+        task = tasks.get(item-1);
+        task.markAsDone();
     }
 
     protected void listItems() throws EmptyListException{
