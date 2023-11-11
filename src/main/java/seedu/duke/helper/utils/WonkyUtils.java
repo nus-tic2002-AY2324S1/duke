@@ -24,15 +24,13 @@ public class WonkyUtils {
     }
 
     /**
-     * Checks if a given string is a valid date and time in the format specified by {@link WonkyDateTime#getDtf()}.
-     * If the string is not a valid date and time, it checks if it is a valid date in the format specified by
-     * {@link WonkyDateTime#getMappedDateTimeStr(String)}.
-     * If the string is not a valid date or date and time,
-     * it logs an error message using {@link wonkyLogger#expectedDateTime(String)}.
+     * Checks if the given string is a valid date and time in the format specified by WonkyDateTime.dtf.
+     * If the string is not in the specified format, it checks if it is a valid natural language date and time string.
+     * If the string is not valid, it logs an error message using WonkyLogger.getInstance().expectedDateTime(str).
      *
-     * @param str the string to be checked.
-     * @return true if the string is a valid date or date and time, false otherwise.
-     * @throws DukeException if there is an error parsing the string as a date or date and time.
+     * @param str the string to be checked
+     * @return true if the string is a valid date and time, false otherwise
+     * @throws DukeException if there is an error parsing the string
      */
     public static boolean isValidDateTime(String str) throws DukeException {
         str = str.trim();

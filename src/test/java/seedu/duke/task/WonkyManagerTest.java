@@ -1,7 +1,9 @@
 package seedu.duke.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +25,10 @@ public class WonkyManagerTest {
 
     @BeforeEach
     public void setUp() throws DukeException {
+        WonkyLogger.reset();
+        WonkyStorage.reset();
+        WonkyScanner.reset();
+        WonkyManager.reset();
         wonkyLogger = WonkyLogger.getInstance();
         wonkyStorage = WonkyStorage.getInstance();
         wonkyScanner = WonkyScanner.getInstance();
@@ -35,31 +41,34 @@ public class WonkyManagerTest {
         wonkyStorage.startUp(WonkyMode.TEST);
         wonkyLogger.startUp(WonkyMode.TEST);
         wonkyScanner.setScannerMode();
+        wonkyManager.resetCmdTypes();
     }
 
     @Test
     public void checkCommand_validCommand_success() throws DukeException {
+        assertEquals(0, wonkyManager.getTasks().size());
+
         wonkyManager.checkCommand(CommandEnum.TODO, "test todo");
+        wonkyManager.checkCommand(CommandEnum.DEADLINE, "test deadline | today ");
+        wonkyManager.checkCommand(CommandEnum.EVENT, "test event | today | tmr ");
+        assertEquals(3, wonkyManager.getTasks().size());
+
+        wonkyManager.checkCommand(CommandEnum.TODO, "invalid todo | invalid");
+        wonkyManager.checkCommand(CommandEnum.MARK, "1");
+        assertEquals(3, wonkyManager.getTasks().size());
+        assertEquals(4, wonkyManager.getCmdTypes().size());
+        assertTrue(wonkyManager.getTasks().get(0).getDone());
+
+        wonkyManager.checkCommand(CommandEnum.DELETE, "2");
+        wonkyManager.checkCommand(CommandEnum.UNMARK, "1");
         assertEquals(2, wonkyManager.getTasks().size());
+        assertEquals(6, wonkyManager.getCmdTypes().size());
+        assertFalse(wonkyManager.getTasks().get(0).getDone());
     }
 
     @Test
     public void checkCommand_invalidCommand_exceptionThrown() {
         assertThrows(IllegalArgumentException.class, () -> wonkyManager.checkCommand(CommandEnum.getEnum("UNKNOWN"), ""));
-    }
-
-    @Test
-    public void addTask_validTask_success() throws DukeException {
-        Task task = new Todo("test todo");
-        wonkyManager.addTask(task);
-        assertEquals(1, wonkyManager.getTasks().size());
-    }
-
-    @Test
-    public void addCmdType_validCmdType_success() throws DukeException {
-        CommandType cmdType = new TodoCommand(CommandEnum.TODO, "test todo");
-        wonkyManager.addCmdType(cmdType);
-        assertEquals(2, wonkyManager.getCmdTypes().size());
     }
 
     @Test

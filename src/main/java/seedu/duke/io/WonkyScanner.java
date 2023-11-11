@@ -35,6 +35,10 @@ public class WonkyScanner {
         return wonkyScanner;
     }
 
+    public static void reset() {
+        wonkyScanner = null;
+    }
+
     public void setReferences(WonkyLogger wonkyLogger, WonkyManager wonkyManager) {
         this.wonkyLogger = wonkyLogger;
         this.wonkyManager = wonkyManager;

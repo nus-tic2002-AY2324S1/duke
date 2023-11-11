@@ -39,6 +39,10 @@ public class WonkyStorage {
         return wonkyStorage;
     }
 
+    public static void reset() {
+        wonkyStorage = null;
+    }
+
     public void setReferences(WonkyLogger wonkyLogger, WonkyManager wonkyManager, WonkyScanner wonkyScanner) {
         this.wonkyLogger = wonkyLogger;
         this.wonkyManager = wonkyManager;

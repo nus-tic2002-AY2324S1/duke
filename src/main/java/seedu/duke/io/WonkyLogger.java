@@ -123,6 +123,10 @@ public class WonkyLogger {
         return instance;
     }
 
+    public static void reset() {
+        instance = null;
+    }
+
     private void padLine() throws DukeLoggerException {
         println("");
     }
