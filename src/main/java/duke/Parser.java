@@ -4,32 +4,42 @@ import commands.*;
 import commands.add.AddDeadline;
 import commands.add.AddEvent;
 import commands.add.AddToDo;
-import tasks.InvalidInputException;
 
 public class Parser {
     static Command c;
 
-    public static Command parse(String userInput) throws InvalidInputException{
+    public static Command parse(String userInput) throws DukeException{
         String userCommand = userInput.split(" ")[0];
-        String item;
+        int item = 0;
+
+        if (userCommand.toLowerCase().equals("mark") || userCommand.toLowerCase().equals("unmark") || userCommand.toLowerCase().equals("delete")){
+            if (userInput.split(" ").length < 2){
+                throw new DukeException("Missing item number!");
+            }
+            try{
+                item = Integer.parseInt(userInput.split(" ")[1]);
+            }
+            catch (NumberFormatException e){
+                throw new DukeException("Ensure the item number is a valid integer!");
+            }
+        
+                    
+        }
 
         switch(userCommand.toLowerCase()){
             case "list":
                 c = new ListCommand();
                 break;
             case "mark":
-                item = userInput.split(" ")[1];
                 c = new MarkCommand(item);
                 break;
             case "unmark":
-                item = userInput.split(" ")[1];
                 c = new UnmarkCommand(item);
                 break;
             case "bye":
                 c = new ByeCommand();
                 break;
             case "delete":
-                item = userInput.split(" ")[1];
                 c = new DeleteCommand(item);
                 break;
             case "todo":
@@ -42,7 +52,7 @@ public class Parser {
                 c = new AddDeadline(userInput.trim());
                 break;
             default:
-                throw new InvalidInputException("Oops! Look at the manual to see accepted inputs!");
+                throw new DukeException("Oops! Look at the manual to see accepted inputs!");
 
         }
         

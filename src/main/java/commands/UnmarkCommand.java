@@ -8,8 +8,8 @@ import tasks.TaskList;
 public class UnmarkCommand extends Command{
     int item;
 
-    public UnmarkCommand(String input) { 
-        this.item = Integer.parseInt(input);
+    public UnmarkCommand(int input) { 
+        this.item = input;
     }
 
     @Override

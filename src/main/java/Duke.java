@@ -1,13 +1,11 @@
 
 import java.io.IOException;
-import java.io.InvalidObjectException;
-import java.util.Scanner;
 
 import commands.*;
+import duke.DukeException;
 import duke.Parser;
 import duke.Storage;
 import duke.UI;
-import tasks.InvalidInputException;
 import tasks.TaskList;
 
 public class Duke {
@@ -39,7 +37,7 @@ public class Duke {
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
-            } catch (InvalidInputException e) {
+            } catch (DukeException e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.showLine();

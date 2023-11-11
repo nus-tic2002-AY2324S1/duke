@@ -8,8 +8,8 @@ import tasks.TaskList;
 public class MarkCommand extends Command{
     int item;
 
-    public MarkCommand(String input) { 
-        this.item = Integer.parseInt(input);
+    public MarkCommand(int input) { 
+        this.item = input;
     }
 
     @Override

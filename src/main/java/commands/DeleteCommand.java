@@ -9,8 +9,8 @@ import tasks.TaskList;
 public class DeleteCommand extends Command{
 
     int item;
-    public DeleteCommand(String input) {
-        this.item = Integer.parseInt(input);
+    public DeleteCommand(int input) {
+        this.item = input;
     }
 
     @Override
