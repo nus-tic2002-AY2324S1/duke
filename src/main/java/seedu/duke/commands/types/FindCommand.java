@@ -10,9 +10,14 @@ import seedu.duke.io.WonkyLogger;
 import seedu.duke.task.Task;
 import seedu.duke.task.WonkyManager;
 
+/**
+ * Represents a command to find tasks that contain a specific search string in their description.
+ * Inherits from the abstract class CommandType.
+ * Contains an execute method that searches for tasks and prints the results using the WonkyLogger class.
+ */
 public class FindCommand extends CommandType {
 
-    private final int ONE_ARGS = 1;
+    private static final int ONE_ARGS = 1;
 
     public FindCommand(CommandEnum command, String arguments) {
         super(command, arguments);
@@ -36,5 +41,4 @@ public class FindCommand extends CommandType {
             }
         }
     }
-    
 }

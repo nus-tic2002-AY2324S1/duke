@@ -16,6 +16,10 @@ import seedu.duke.io.WonkyScanner;
  * Controls the MainWindow and provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+
+    private static WonkyLogger wonkyLogger = WonkyLogger.getInstance();
+    private static WonkyScanner wonkyScanner = WonkyScanner.getInstance();
+
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -27,9 +31,6 @@ public class MainWindow extends AnchorPane {
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image wonky = new Image(this.getClass().getResourceAsStream("/images/wonky.png"));
-
-    private static WonkyLogger wonkyLogger = WonkyLogger.getInstance();
-    private static WonkyScanner wonkyScanner = WonkyScanner.getInstance();
 
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to

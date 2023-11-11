@@ -9,13 +9,18 @@ import seedu.duke.io.WonkyLogger;
 import seedu.duke.io.WonkyStorage;
 import seedu.duke.task.WonkyManager;
 
+/**
+ * Represents a stash command that allows users to add, apply, pop, clear, and list stashes.
+ * Inherits from the CommandType class.
+ * Contains methods to execute the stash command.
+ */
 public class StashCommand extends CommandType {
 
-    private final int ZERO_IDX = 0;
-    private final int ONE_IDX = 1;
+    private static final int ZERO_IDX = 0;
+    private static final int ONE_IDX = 1;
 
-    private final int ONE_ARGS = 1; 
-    private final int TWO_ARGS = 2;
+    private static final int ONE_ARGS = 1;
+    private static final int TWO_ARGS = 2;
 
     public StashCommand(CommandEnum command, String arguments) {
         super(command, arguments);
@@ -48,7 +53,7 @@ public class StashCommand extends CommandType {
             } else if (firstArg.equals("apply")) {
                 wonkyStorage.applyStash(stashName);
                 wonkyLogger.stashApplied(stashName);
-            }  else if (firstArg.equals("pop")) {
+            } else if (firstArg.equals("pop")) {
                 wonkyStorage.popStash(stashName);
                 wonkyLogger.stashPopped(stashName);
             } else {
@@ -56,5 +61,4 @@ public class StashCommand extends CommandType {
             }
         }
     }
-    
 }

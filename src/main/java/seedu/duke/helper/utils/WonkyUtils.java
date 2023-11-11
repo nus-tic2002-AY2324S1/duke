@@ -24,7 +24,7 @@ public class WonkyUtils {
     }
 
     /**
-     * Checks if the given string is a valid date and time in the format specified by WonkyDateTime.dtf.
+     * Checks if the given string is a valid date and time in the format specified by WonkyDateTime.getDtf().
      * If the string is not in the specified format, it checks if it is a valid natural language date and time string.
      * If the string is not valid, it logs an error message using WonkyLogger.getInstance().expectedDateTime(str).
      *
@@ -35,7 +35,7 @@ public class WonkyUtils {
     public static boolean isValidDateTime(String str) throws DukeException {
         str = str.trim();
         try {
-            LocalDateTime.parse(str, WonkyDateTime.dtf);
+            LocalDateTime.parse(str, WonkyDateTime.getDtf());
             return true;
         } catch (DateTimeParseException e) {
             if (isValidNaturalDateTimeStr(str)) {
@@ -56,7 +56,7 @@ public class WonkyUtils {
     public static WonkyDateTime parseToDate(String str) throws DukeException {
         str = str.trim();
         try {
-            return new WonkyDateTime(LocalDateTime.parse(str, WonkyDateTime.dtf));
+            return new WonkyDateTime(LocalDateTime.parse(str, WonkyDateTime.getDtf()));
         } catch (DateTimeParseException e) {
             if (WonkyUtils.isValidNaturalDateTimeStr(str)) {
                 return new WonkyDateTime(str);

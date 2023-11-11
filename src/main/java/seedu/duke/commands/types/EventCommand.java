@@ -9,12 +9,19 @@ import seedu.duke.helper.utils.WonkyUtils;
 import seedu.duke.task.Event;
 import seedu.duke.task.WonkyManager;
 
+/**
+ * Represents a command to add an event task to the task list.
+ * Inherits from the CommandType abstract class.
+ * Contains the execute method to add the event task to the task list.
+ * Requires 3 arguments: description, start date/time, and end date/time.
+ * Throws DukeException if the arguments are invalid.
+ */
 public class EventCommand extends CommandType {
 
-    private final int EVENT_ARGS = 3;
-    private final int DESC_IDX = 0;
-    private final int FROM_IDX = 1;
-    private final int TO_IDX = 2;
+    private static final int EVENT_ARGS = 3;
+    private static final int DESC_IDX = 0;
+    private static final int FROM_IDX = 1;
+    private static final int TO_IDX = 2;
 
     public EventCommand(CommandEnum command, String arguments) {
         super(command, arguments);
@@ -33,5 +40,4 @@ public class EventCommand extends CommandType {
             );
         }
     }
-    
 }

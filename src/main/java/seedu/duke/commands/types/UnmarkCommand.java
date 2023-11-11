@@ -9,9 +9,16 @@ import seedu.duke.io.WonkyLogger;
 import seedu.duke.task.Task;
 import seedu.duke.task.WonkyManager;
 
+/**
+ * Represents a command to unmark a task as done.
+ * Inherits from the CommandType abstract class.
+ * Requires one argument, the index of the task to be unmarked.
+ * Executes the command by setting the task's done status to false.
+ * Throws DukeException if the argument is not a valid integer or if the task index is out of bounds.
+ */
 public class UnmarkCommand extends CommandType {
 
-    private final int ONE_ARGS = 1;
+    private static final int ONE_ARGS = 1;
 
     public UnmarkCommand(CommandEnum command, String arguments) {
         super(command, arguments);
@@ -38,5 +45,4 @@ public class UnmarkCommand extends CommandType {
             wonkyLogger.unmarkTypo(taskIdx + 1);
         }
     }
-    
 }

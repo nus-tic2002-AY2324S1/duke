@@ -17,7 +17,7 @@ import seedu.duke.task.Task;
  */
 public class WonkyLogger {
 
-    private final String LOGO =
+    private static final String LOGO =
         "\t__          __         _            ____        _   " + System.lineSeparator()
         + "\t\\ \\        / /        | |          |  _ \\      | |  " + System.lineSeparator()
         + "\t \\ \\  /\\  / /__  _ __ | | ___   _  | |_) | ___ | |_ " + System.lineSeparator()
@@ -27,7 +27,7 @@ public class WonkyLogger {
         + "\t                             __/ |                  " + System.lineSeparator()
         + "\t                            |___/                  " + System.lineSeparator();
 
-    private final List<String> UNKNOWN_CMD_MSGS = new ArrayList<>(
+    private static final List<String> UNKNOWN_CMD_MSGS = new ArrayList<>(
         Arrays.asList(
             "Oops! I do not understand the command [%s].",
             "Sorry, the command [%s] you entered does not exist.",
@@ -35,7 +35,7 @@ public class WonkyLogger {
         )
     );
 
-    private final List<String> MISMATCH_ARG_MSGS = new ArrayList<>(
+    private static final List<String> MISMATCH_ARG_MSGS = new ArrayList<>(
         Arrays.asList(
             "Oops! Seems like your argument(s) for command [%s] are wrong.",
             "Sorry, the argument(s) for this command [%s] are incorrect.",
@@ -43,35 +43,35 @@ public class WonkyLogger {
         )
     );
 
-    private final List<String> SUGGEST_CMD_MSGS = new ArrayList<>(
+    private static final List<String> SUGGEST_CMD_MSGS = new ArrayList<>(
         Arrays.asList(
             "Did you mean to type command [%s] instead?"
         )
     );
 
-    private final String EXPECTED_ARG_MSG =
+    private static final String EXPECTED_ARG_MSG =
         "Did you input the wrong argument(s)? Expected [%d] argument(s) for the command.";
-    private final String EXPECTED_TYPE_MSG =
+    private static final String EXPECTED_TYPE_MSG =
         "There is mistake with the argument. Expected [%s] instead of [%s].";
 
-    private final String ADD_TO_LIST_MSG =
+    private static final String ADD_TO_LIST_MSG =
         "I have added %s task [%s] to our list!";
 
-    private final String ALREADY_MARK_MSG =
+    private static final String ALREADY_MARK_MSG =
         "Did you mark/unmark the wrong task? %s is already set to [%s].";
-    private final String TASK_MARKED_MSG =
+    private static final String TASK_MARKED_MSG =
         "Your task [%s] is marked as [%s].";
 
-    private final String INVALID_MSG =
+    private static final String INVALID_MSG =
         "Did you make a mistake trying to %s task [%d]? A task can't be be less than 1.";
-    private final String TYPO_MSG =
+    private static final String TYPO_MSG =
         "Did you want to %s the wrong task? There is no task no. [%d].";
-    private final String TASK_DELETED_MSG =
+    private static final String TASK_DELETED_MSG =
         "Your task [%s] is deleted!";
-    private final String TASK_NOT_EXIST_MSG =
+    private static final String TASK_NOT_EXIST_MSG =
         "The task [%d] does not exist!";
 
-    private final String HELP_TEXT =
+    private static final String HELP_TEXT =
         "Below are the list of commands you can use!" + System.lineSeparator() + System.lineSeparator()
         + "\tlist" + System.lineSeparator()
         + "\t\tLists all the tasks." + System.lineSeparator() + System.lineSeparator()
@@ -104,15 +104,15 @@ public class WonkyLogger {
         + "\tstash pop | {stashName}" + System.lineSeparator()
         + "\t\tPops the stash to the current list of tasks." + System.lineSeparator() + System.lineSeparator();
 
-    private final Random RND = new Random();
+    private static final Random RND = new Random();
+
+    private static WonkyLogger instance;
 
     private boolean hasError = false;
     private WonkyMode mode = WonkyMode.NORMAL;
     private boolean isLoading = false;
 
     private String response = "";
-
-    private static WonkyLogger instance;
 
     public WonkyLogger() {}
 
@@ -238,7 +238,7 @@ public class WonkyLogger {
      * Prints log message for a task added to the list.
      *
      * @param task
-     * @param desc
+     * @param totalTasks
      * @throws DukeLoggerException
      */
     public void addedToList(Task task, int totalTasks) throws DukeLoggerException {
@@ -349,6 +349,12 @@ public class WonkyLogger {
         printWarnWithWonky(String.format(ALREADY_MARK_MSG, desc, isDoneLitr));
     }
 
+    /**
+     * Prints log message for marking a task.
+     *
+     * @param task
+     * @throws DukeLoggerException
+     */
     public void taskMarked(Task task) throws DukeLoggerException {
         String isDoneLitr = task.getDone() ? "done" : "not done";
         printlnWithWonky(String.format(TASK_MARKED_MSG, task.getDescription(), isDoneLitr));
@@ -493,19 +499,42 @@ public class WonkyLogger {
         }
     }
 
+    /**
+     * Prints log message for a cleared stash.
+     *
+     * @throws DukeLoggerException
+     */
     public void stashCleared() throws DukeLoggerException {
         printlnWithWonky("Your stashes have been cleared!");
         printlnWithWonky("You now have no stashes!");
     }
 
+    /**
+     * Prints log message for an invalid stash command.
+     *
+     * @param string
+     * @throws DukeLoggerException
+     */
     public void invalidStashCommand(String string) throws DukeLoggerException {
         printlnWithWonky("You have entered an invalid stash command [" + string + "]!");
     }
 
+    /**
+     * Prints log message for an invalid stash name.
+     *
+     * @param stashName
+     * @throws DukeLoggerException
+     */
     public void invalidStashName(String stashName) throws DukeLoggerException {
         printlnWithWonky("You have entered an invalid stash name [" + stashName + "]!");
     }
 
+    /**
+     * Prints log message for a popped stash.
+     *
+     * @param stashName
+     * @throws DukeLoggerException
+     */
     public void stashPopped(String stashName) throws DukeLoggerException {
         printlnWithWonky("I have popped this stash [" + stashName + "]!");
         int stashSize = WonkyStorage.getInstance().getStashList().size();
@@ -516,15 +545,32 @@ public class WonkyLogger {
         }
     }
 
+    /**
+     * Prints log message for an applied stash.
+     *
+     * @param stashName
+     * @throws DukeLoggerException
+     */
     public void stashApplied(String stashName) throws DukeLoggerException {
         printlnWithWonky("I have applied this stash [" + stashName + "]!");
     }
 
+    /**
+     * Prints log message for an added stash.
+     *
+     * @param stashName
+     * @throws DukeLoggerException
+     */
     public void stashAdded(String stashName) throws DukeLoggerException {
         printlnWithWonky("I have added [" + stashName + "] to your stashes!");
         printlnWithWonky("You now have " + (WonkyStorage.getInstance().getStashList().size()) + " stash(es)!");
     }
 
+    /**
+     * Prints log message for help command.
+     *
+     * @throws DukeLoggerException
+     */
     public void printHelpCommand() throws DukeLoggerException {
         printlnWithWonky(HELP_TEXT);
     }

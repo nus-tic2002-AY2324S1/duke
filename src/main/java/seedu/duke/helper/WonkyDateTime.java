@@ -15,7 +15,7 @@ public class WonkyDateTime {
     /**
      * Stores a mapping of strings to LocalDateTime objects. The strings are used to represent specific dates and times.
      */
-    public final static Map<String, LocalDateTime> STR_TO_DATE_TIME_MAPPING = new HashMap<String, LocalDateTime>() {
+    public static final Map<String, LocalDateTime> STR_TO_DATE_TIME_MAPPING = new HashMap<String, LocalDateTime>() {
         {
             put("today", LocalDateTime.now());
             put("tomorrow", LocalDateTime.now().plusDays(1));
@@ -36,11 +36,11 @@ public class WonkyDateTime {
             put("sunday", LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY)));
         }
     };
-    
-    private final FormatStyle FORMAT_STYLE = FormatStyle.MEDIUM;
-    private LocalDateTime dateTime;
 
-    public final static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final FormatStyle FORMAT_STYLE = FormatStyle.MEDIUM;
+    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    private LocalDateTime dateTime;
 
     /**
      * Constructs a WonkyDateTime object with the specified LocalDateTime.
@@ -87,5 +87,9 @@ public class WonkyDateTime {
      */
     public String getDateTimeStr() {
         return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
+
+    public static DateTimeFormatter getDtf() {
+        return DTF;
     }
 }

@@ -21,14 +21,15 @@ import seedu.duke.task.WonkyManager;
  */
 public class WonkyStorage {
 
+    private static final String STORAGE_PATH = "./storage.txt";
+    private static final File STORAGE_FILE = new File(STORAGE_PATH);
+    private static final File STASH_FOLDER = new File("./stash/");
+
     private static WonkyStorage wonkyStorage;
+
     private WonkyLogger wonkyLogger;
     private WonkyManager wonkyManager;
     private WonkyScanner wonkyScanner;
-
-    private final String STORAGE_PATH = "./storage.txt";
-    private final File STORAGE_FILE = new File(STORAGE_PATH);
-    private final File STASH_FOLDER = new File("./stash/");
 
     public WonkyStorage() {}
 

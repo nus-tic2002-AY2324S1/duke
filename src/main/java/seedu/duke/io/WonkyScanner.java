@@ -17,10 +17,10 @@ import seedu.duke.task.WonkyManager;
  */
 public class WonkyScanner {
 
+    private static WonkyScanner wonkyScanner;
+
     private CommandEnum currCommand;
     private boolean isActive = true;
-
-    private static WonkyScanner wonkyScanner;
 
     private WonkyLogger wonkyLogger;
     private WonkyManager wonkyManager;
@@ -47,7 +47,7 @@ public class WonkyScanner {
     public void setScannerMode() throws DukeException {
         System.out.println(wonkyLogger.flushResponse());
         in = new Scanner(System.in);
-        while(in.hasNextLine()) {
+        while (in.hasNextLine()) {
             String nextLine = in.nextLine();
             processNextLine(nextLine);
             System.out.println(wonkyLogger.flushResponse());

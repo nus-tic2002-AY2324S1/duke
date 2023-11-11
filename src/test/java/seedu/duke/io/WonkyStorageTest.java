@@ -46,7 +46,7 @@ public class WonkyStorageTest {
     }
 
     @Test
-    public void addStash_popStash_validStash_success() throws DukeException, IOException {
+    public void addStashPopStashIssuccess() throws DukeException, IOException {
         List<CommandType> cmdTypes = new ArrayList<>();
         cmdTypes.add(new TodoCommand(CommandEnum.TODO, "test todo"));
         cmdTypes.add(new DeadlineCommand(CommandEnum.DEADLINE, "test deadline | today "));

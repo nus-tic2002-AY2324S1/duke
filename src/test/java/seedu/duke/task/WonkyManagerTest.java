@@ -68,7 +68,8 @@ public class WonkyManagerTest {
 
     @Test
     public void checkCommand_invalidCommand_exceptionThrown() {
-        assertThrows(IllegalArgumentException.class, () -> wonkyManager.checkCommand(CommandEnum.getEnum("UNKNOWN"), ""));
+        assertThrows(IllegalArgumentException.class, () ->
+            wonkyManager.checkCommand(CommandEnum.getEnum("UNKNOWN"), ""));
     }
 
     @Test

@@ -16,8 +16,8 @@ import seedu.duke.task.WonkyManager;
  */
 public abstract class CommandType {
 
-    private final String EMPTY_LITR = "";
-    private final int ZERO_ARGS = 0;
+    private static final String EMPTY_LITR = "";
+    private static final int ZERO_ARGS = 0;
 
     private CommandEnum command;
     private String arguments;
@@ -94,7 +94,7 @@ public abstract class CommandType {
         arguments = newArg;
     }
 
-        /**
+    /**
      * Validates that the given command argument has the expected number of arguments.
      *
      * @param commandType the command argument to validate.
@@ -159,5 +159,11 @@ public abstract class CommandType {
         return true;
     }
 
+    /**
+     * Executes the command.
+     * This method is overridden by the child classes.
+     *
+     * @throws DukeException
+     */
     public abstract void execute() throws DukeException;
 }

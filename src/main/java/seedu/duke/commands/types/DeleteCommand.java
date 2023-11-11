@@ -9,9 +9,15 @@ import seedu.duke.io.WonkyLogger;
 import seedu.duke.task.Task;
 import seedu.duke.task.WonkyManager;
 
+/**
+ * Represents a command to delete a task from the task list.
+ * Inherits from the CommandType abstract class.
+ * Contains an execute method that removes the specified task from the task list.
+ * If the argument is not a valid integer or is out of bounds, an error message is logged.
+ */
 public class DeleteCommand extends CommandType {
 
-    private final int ONE_ARGS = 1;
+    private static final int ONE_ARGS = 1;
 
     public DeleteCommand(CommandEnum command, String arguments) {
         super(command, arguments);
@@ -39,5 +45,4 @@ public class DeleteCommand extends CommandType {
             wonkyLogger.deleteTypo(taskIdx + 1);
         }
     }
-    
 }

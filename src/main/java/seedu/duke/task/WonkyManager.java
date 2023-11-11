@@ -26,15 +26,17 @@ import seedu.duke.io.WonkyStorage;
  * It contains methods for executing commands, modifying tasks, and parsing commands into tasks.
  */
 public class WonkyManager {
+
+    private static WonkyManager wonkyManager;
+
     // Lists for storing command arguments and tasks.
     private List<CommandType> cmdTypes = new ArrayList<CommandType>();
     private List<Task> tasks = new ArrayList<Task>();
 
-    private static WonkyManager wonkyManager;
     private WonkyLogger wonkyLogger;
     private WonkyStorage wonkyStorage;
 
-    public WonkyManager () {}
+    public WonkyManager() {}
 
     public static WonkyManager getInstance() {
         if (wonkyManager == null) {
@@ -53,10 +55,11 @@ public class WonkyManager {
     }
 
     /**
-     * Checks and executes the given command argument.
+     * Checks and executes the given command.
      *
-     * @param cmdType the command argument to execute.
-     * @throws DukeException if there is an error executing the command.
+     * @param cmdStr
+     * @param argumentStr
+     * @throws DukeException
      */
     public void checkCommand(CommandEnum cmdStr, String argumentStr) throws DukeException {
         CommandType command;
@@ -119,6 +122,12 @@ public class WonkyManager {
         return cmdTypes;
     }
 
+    /**
+     * Adds the given command type to the command type list.
+     *
+     * @param cmdType
+     * @throws DukeException
+     */
     public void addCmdType(CommandType cmdType) throws DukeException {
         cmdTypes.add(cmdType);
         wonkyStorage.save(cmdTypes);

@@ -9,9 +9,14 @@ import seedu.duke.io.WonkyLogger;
 import seedu.duke.task.Task;
 import seedu.duke.task.WonkyManager;
 
+/**
+ * Represents a command to mark a task as done.
+ * Inherits from the abstract class CommandType.
+ * Contains an execute method that marks the specified task as done.
+ */
 public class MarkCommand extends CommandType {
 
-    private final int ONE_ARGS = 1;
+    private static final int ONE_ARGS = 1;
 
     public MarkCommand(CommandEnum command, String arguments) {
         super(command, arguments);
@@ -38,5 +43,4 @@ public class MarkCommand extends CommandType {
             wonkyLogger.markTypo(taskIdx + 1);
         }
     }
-    
 }
