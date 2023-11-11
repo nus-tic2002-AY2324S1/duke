@@ -1,6 +1,8 @@
 package duke;
 import java.util.Scanner;
 
+import tasks.Task;
+
 public class UI {
 
     Scanner in;
@@ -52,5 +54,9 @@ public class UI {
 
     public void printMessage(String message){
         System.out.println(message);
+    }
+
+    public void addedTask(Task task){
+        System.out.println("Got it. I've added this task: \n" + task);
     }
 }

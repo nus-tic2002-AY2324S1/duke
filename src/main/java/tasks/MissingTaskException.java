@@ -1,7 +1,12 @@
 package tasks;
 public class MissingTaskException extends Exception {
-
-    public MissingTaskException(String string) {
+    String message;
+    public MissingTaskException(String message) {
+        this.message = message;
     }
     
+    @Override
+    public String getMessage() {
+        return message;
+    }
 }

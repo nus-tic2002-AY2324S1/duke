@@ -1,10 +1,15 @@
 package duke;
+
 import commands.*;
+import commands.add.AddDeadline;
+import commands.add.AddEvent;
+import commands.add.AddToDo;
+import tasks.InvalidInputException;
 
 public class Parser {
     static Command c;
 
-    public static Command parse(String userInput){
+    public static Command parse(String userInput) throws InvalidInputException{
         String userCommand = userInput.split(" ")[0];
         String item;
 
@@ -28,10 +33,17 @@ public class Parser {
                 c = new DeleteCommand(item);
                 break;
             case "todo":
-            case "event":
-            case "deadline":
-                c = new AddCommand(userInput);
+                c = new AddToDo(userInput.trim());
                 break;
+            case "event":
+                c = new AddEvent(userInput.trim());
+                break;
+            case "deadline":
+                c = new AddDeadline(userInput.trim());
+                break;
+            default:
+                throw new InvalidInputException("Oops! Look at the manual to see accepted inputs!");
+
         }
         
         return c;

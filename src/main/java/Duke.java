@@ -7,6 +7,7 @@ import commands.*;
 import duke.Parser;
 import duke.Storage;
 import duke.UI;
+import tasks.InvalidInputException;
 import tasks.TaskList;
 
 public class Duke {
@@ -32,23 +33,17 @@ public class Duke {
         ui.greet();
         boolean isExit = false;
         while (!isExit) {
-            // try {
-            //     String fullCommand = ui.readCommand();
-            //     ui.showLine(); // show the divider line ("_______")
-            //     Command c = Parser.parse(fullCommand);
-            //     c.execute(tasks, ui, storage);
-            //     isExit = c.isExit();
-            // } catch (IOException e) {
-            //     ui.showError(e.getMessage());
-            // } finally {
-            //     ui.showLine();
-            // }
-            String fullCommand = ui.readCommand();
-            ui.showLine(); // show the divider line ("_______")
-            Command c = Parser.parse(fullCommand);
-            c.execute(tasks, ui, storage);
-            isExit = c.isExit();
-            ui.showLine();
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine(); // show the divider line ("_______")
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (InvalidInputException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
+            }
         }
     }
     

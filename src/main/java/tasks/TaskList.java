@@ -16,46 +16,32 @@ public class TaskList{
         this.totalTasks = taskList.size();
     }
 
-    // User Input
-    public void addItem(String line) throws InvalidInputException{
-        // Handling User Input 
-        String[] input = line.trim().split(" ",2); 
-
-        if(input[0].contains("deadline")){
-            // deadline buy food by 5pm
-            int by = input[1].indexOf("/by");
-            String date = input[1].substring(by+4, input[1].length());
-            String description = input[1].substring(0, by);
-            task = new Deadline(description, date);
-        }
-        // event project meeting from Mon 2pm to 4pm
-        else if(input[0].contains("event")){
-            int from = input[1].indexOf("/from");
-            int to = input[1].indexOf("/to");
-            String fromDate = input[1].substring(from+6, to-1);
-            String toDate = input[1].substring(to+3, input[1].length());
-            String description = input[1].substring(0, from);
-            task = new Event(description, fromDate, toDate);
-        }
-        else if(input[0].contains("todo")){
-            task = new ToDo(input[1]);
-        }
-        else{
-            throw new InvalidInputException();
-        }
-
+    public Task addDeadline(String date, String description){
+        task = new Deadline(description, date);
         tasks.add(task);
         totalTasks ++;
-        System.out.println("---------------------------------------");
-        System.out.println("Got it. I've added this task: \n" + task);
-        System.out.println("Now you have " + totalTasks + " tasks in the list.");
+        return task;
+    }
+
+    public Task addToDo(String description){
+        task = new ToDo(description);
+        tasks.add(task);
+        totalTasks ++;
+        return task;
+    }
+
+    public Task addEvent(String description, String fromDate, String toDate){
+        task = new Event(description, fromDate, toDate);
+        tasks.add(task);
+        totalTasks ++;
+        return task;
     }
 
     public void markItem(int item) throws MissingTaskException{
-        task = tasks.get(item-1);
         if(item > totalTasks || item == 0){
-            throw new MissingTaskException("Trying to delete a non existent task!");
+            throw new MissingTaskException("Trying to mark a non existent task!");
         }
+        task = tasks.get(item-1);
         if(task.isDone){
             System.out.println("Task already marked!");
             return;
@@ -65,10 +51,10 @@ public class TaskList{
     }
 
     public void unmarkItem(int item) throws MissingTaskException {
-        task = tasks.get(item-1);
         if(item > totalTasks || item == 0){
-            throw new MissingTaskException("Trying to delete a non existent task!");
+            throw new MissingTaskException("Trying to unmark a non existent task!");
         }
+        task = tasks.get(item-1);
         if(!task.isDone){
             System.out.println("Task was not previously marked!");
             return;
@@ -88,7 +74,6 @@ public class TaskList{
     }
 
     public void deleteItem(int item) throws EmptyListException, MissingTaskException{
-        item = 0;
 
         if (totalTasks<1){
             throw new EmptyListException("Empty List");
@@ -96,7 +81,7 @@ public class TaskList{
         if (item>totalTasks || item==0){
             throw new MissingTaskException("Trying to delete a non-existing task!");
         }
-
+        System.out.println("Removing task " + item + ":" + tasks.get(item-1));
         tasks.remove((item-1));
         totalTasks --;
     }

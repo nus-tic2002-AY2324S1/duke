@@ -1,4 +1,11 @@
 package tasks;
 public class InvalidInputException extends Exception {
-    //no other code needed
+    String message;
+    public InvalidInputException(String message){
+      this.message = message;
+    }
+    @Override
+    public String getMessage() {
+      return this.message;
+    }
   }
