@@ -5,14 +5,13 @@ import nus.duke.data.tasks.AbstractTask;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.storage.Storage;
-import nus.duke.ui.Ui;
 
 /**
  * The `ListCommand` class represents a command to list all tasks in the task list.
  * When executed, this command retrieves all tasks and displays them, including their
  * respective task numbers.
  */
-public class ListCommand extends AbstractCommand {
+public class ListCommand extends AbstractQueryCommand {
     /**
      * Instantiates a new `ListCommand`.
      *
@@ -23,9 +22,8 @@ public class ListCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
         assert tasks != null;
-        assert ui != null;
         assert storage != null;
 
         if (!args.isEmpty()) {
@@ -37,6 +35,6 @@ public class ListCommand extends AbstractCommand {
             AbstractTask task = tasks.getTask(i);
             lines[i] = String.format("%d.%s", i + 1, task.toString());
         }
-        ui.showMessages(lines);
+        return lines;
     }
 }

@@ -1,6 +1,7 @@
 package nus.duke;
 
 import nus.duke.commands.AbstractCommand;
+import nus.duke.commands.AbstractQueryCommand;
 import nus.duke.data.TaskList;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.UnknownCommandDukeException;
@@ -17,6 +18,13 @@ public class Duke {
     private final Storage storage;
     private final TaskList tasks;
     private final Ui ui;
+
+    /**
+     * Instantiates a new Duke instance with the default storage file path.
+     */
+    public Duke() {
+        this("./data/duke.txt");
+    }
 
     /**
      * Instantiates a new Duke instance with the specified storage file path.
@@ -39,16 +47,6 @@ public class Duke {
     }
 
     /**
-     * Runs the application.
-     *
-     * @param args The input arguments passed to the application.
-     */
-    public static void main(String[] args) {
-        Duke duke = new Duke("./data/duke.txt");
-        duke.run();
-    }
-
-    /**
      * Runs the Duke application.
      */
     public void run() {
@@ -59,17 +57,39 @@ public class Duke {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
                 AbstractCommand c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
+                String[] outputLines = c.execute(tasks, storage);
+                ui.showMessages(outputLines);
                 isExit = c.isExit();
-            } catch (DukeException e) {
-                if (e instanceof UnknownCommandDukeException) {
-                    ui.showError("OOPS!!! I'm sorry, but I don't know what that means :-(");
-                } else {
-                    ui.showError("OOPS!!! " + e.getMessage());
-                }
+            } catch (UnknownCommandDukeException e) {
+                ui.showError("OOPS!!! I'm sorry, but I don't know what that means :-(");
+            } catch (Exception e) {
+                ui.showError("OOPS!!! " + e.getMessage());
             } finally {
                 ui.showLine();
             }
+        }
+    }
+
+    /**
+     * Generates a response based on the provided user input.
+     * Parses the input to create a command, executes the command on the current task list
+     * and storage, and returns the resulting output or error message.
+     *
+     * @param input The user input to be processed.
+     * @return A String representing the response generated based on the input.
+     */
+    public String getResponse(String input) {
+        try {
+            AbstractCommand c = Parser.parse(input);
+            String[] outputLines = c.execute(tasks, storage);
+            if (outputLines.length == 0 && c instanceof AbstractQueryCommand) {
+                return "No tasks found.";
+            }
+            return String.join(System.lineSeparator(), outputLines);
+        } catch (UnknownCommandDukeException e) {
+            return "OOPS!!! I'm sorry, but I don't know what that means :-(";
+        } catch (Exception e) {
+            return "OOPS!!! " + e.getMessage();
         }
     }
 }

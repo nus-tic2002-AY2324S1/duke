@@ -9,7 +9,6 @@ import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.parser.Parser;
 import nus.duke.storage.Storage;
-import nus.duke.ui.Ui;
 
 /**
  * The `TodoCommand` class represents a command to add a new "todo" task.
@@ -27,9 +26,8 @@ public class TodoCommand extends AbstractTaskCommand {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
         assert tasks != null;
-        assert ui != null;
         assert storage != null;
 
         if (args.isEmpty()) {
@@ -42,6 +40,6 @@ public class TodoCommand extends AbstractTaskCommand {
         optionalAfterOption.ifPresent(todo::setAfterOption);
         tasks.addTask(todo);
         storage.save(tasks);
-        ui.showMessages(getTaskAddedMessages(tasks));
+        return getTaskAddedMessages(tasks);
     }
 }

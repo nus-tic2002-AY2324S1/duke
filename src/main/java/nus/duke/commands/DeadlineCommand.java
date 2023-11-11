@@ -11,7 +11,6 @@ import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.parser.Parser;
 import nus.duke.storage.Storage;
-import nus.duke.ui.Ui;
 
 /**
  * The `DeadlineCommand` class represents a command to add a new deadline task.
@@ -29,9 +28,8 @@ public class DeadlineCommand extends AbstractTaskCommand {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
         assert tasks != null;
-        assert ui != null;
         assert storage != null;
 
         if (args.isEmpty()) {
@@ -51,6 +49,6 @@ public class DeadlineCommand extends AbstractTaskCommand {
         optionalAfterOption.ifPresent(deadline::setAfterOption);
         tasks.addTask(deadline);
         storage.save(tasks);
-        ui.showMessages(getTaskAddedMessages(tasks));
+        return getTaskAddedMessages(tasks);
     }
 }
