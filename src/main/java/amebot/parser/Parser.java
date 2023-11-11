@@ -208,6 +208,7 @@ public class Parser {
         }
 
         int taskIndex = Integer.parseInt(taskDetail[1]);
+        assert taskIndex > 0 : "Task index refers to item number and should be greater than 0!";
         setCommandNameAndIndex(commandName, taskIndex);
 
         if (parsedCommand.isEmpty()) {
@@ -221,6 +222,7 @@ public class Parser {
 
         if (isDateTime) {
             ArrayList<String> parsedDateTime = new DateTimeParser().parseDateTime(command, Parser.START_INDEX_OF_UPDATE_DATETIME, endIndex);
+            assert parsedDateTime.size() < 3 : "Parsed date and time list should have a maximum size of 2!";
             parsedCommand.addAll(parsedDateTime);
         } else {
             setDescription(command, START_INDEX_OF_UPDATE_DESCRIPTION, endIndex);
@@ -240,6 +242,7 @@ public class Parser {
 
         if (isMarkStatus || isRemove) {
             int taskIndex = Integer.parseInt(taskDetail[1]);
+            assert taskIndex > 0 : "Task index refers to item number and should be greater than 0!";
             setCommandNameAndIndex(commandName, taskIndex);
         } else {
             System.out.println(Messages.INVALID_INDEX);
