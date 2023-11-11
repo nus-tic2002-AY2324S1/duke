@@ -3,7 +3,6 @@ package nus.duke.commands;
 import nus.duke.data.TaskList;
 import nus.duke.exceptions.DukeException;
 import nus.duke.storage.Storage;
-import nus.duke.ui.Ui;
 
 /**
  * The `AbstractCommand` class serves as the base class for various command objects
@@ -27,14 +26,14 @@ public abstract class AbstractCommand {
     }
 
     /**
-     * Executes the command.
+     * Executes the command, operating on the provided task list and storage.
      *
      * @param tasks   The task list containing tasks to be operated upon.
-     * @param ui      The user interface for displaying information to the user.
      * @param storage The storage component for reading and writing task data to a file.
+     * @return An array of Strings representing the output messages or results of the command execution.
      * @throws DukeException If an error occurs during the execution of the command.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String[] execute(TaskList tasks, Storage storage) throws DukeException;
 
     /**
      * Checks whether the program should exit.

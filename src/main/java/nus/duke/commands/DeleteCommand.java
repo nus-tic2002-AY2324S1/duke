@@ -5,7 +5,6 @@ import nus.duke.data.tasks.AbstractTask;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.storage.Storage;
-import nus.duke.ui.Ui;
 import nus.duke.util.IntegerUtils;
 
 /**
@@ -24,9 +23,8 @@ public class DeleteCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
         assert tasks != null;
-        assert ui != null;
         assert storage != null;
 
         if (args.isEmpty()) {
@@ -41,10 +39,10 @@ public class DeleteCommand extends AbstractCommand {
         AbstractTask task = tasks.getTask(taskNumber - 1);
         tasks.removeTask(taskNumber - 1);
         storage.save(tasks);
-        ui.showMessages(new String[] {
+        return new String[] {
             "Noted. I've removed this task:",
             "  " + task.toString(),
             String.format("Now you have %d tasks in the list.", tasks.size())
-        });
+        };
     }
 }

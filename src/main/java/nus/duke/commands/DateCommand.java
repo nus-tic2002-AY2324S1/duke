@@ -9,13 +9,12 @@ import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.parser.Parser;
 import nus.duke.storage.Storage;
-import nus.duke.ui.Ui;
 
 /**
  * The `DateCommand` class represents a command to list tasks with a specific due date.
  * It retrieves tasks from the task list that match the given date and displays them.
  */
-public class DateCommand extends AbstractCommand {
+public class DateCommand extends AbstractQueryCommand {
     /**
      * Instantiates a new `DateCommand` with the provided arguments.
      *
@@ -26,9 +25,8 @@ public class DateCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
         assert tasks != null;
-        assert ui != null;
         assert storage != null;
 
         if (args.isEmpty()) {
@@ -42,6 +40,6 @@ public class DateCommand extends AbstractCommand {
         tasksOnDate.forEach((index, task) -> {
             lines.add(String.format("%d.%s", index + 1, task));
         });
-        ui.showMessages(lines.toArray(String[]::new));
+        return lines.toArray(String[]::new);
     }
 }

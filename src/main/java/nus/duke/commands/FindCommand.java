@@ -6,12 +6,11 @@ import nus.duke.data.tasks.AbstractTask;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.storage.Storage;
-import nus.duke.ui.Ui;
 
 /**
  * Represents a command to search for tasks based on a given criteria.
  */
-public class FindCommand extends AbstractCommand {
+public class FindCommand extends AbstractQueryCommand {
 
     /**
      * Creates a FindCommand with the specified search criteria.
@@ -23,9 +22,8 @@ public class FindCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
         assert tasks != null;
-        assert ui != null;
         assert storage != null;
 
         if (args.isEmpty()) {
@@ -40,6 +38,6 @@ public class FindCommand extends AbstractCommand {
                 lines.add(String.format("%d.%s", i + 1, task));
             }
         }
-        ui.showMessages(lines.toArray(String[]::new));
+        return lines.toArray(String[]::new);
     }
 }

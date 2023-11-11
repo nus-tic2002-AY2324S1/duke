@@ -4,7 +4,6 @@ import nus.duke.data.TaskList;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
 import nus.duke.storage.Storage;
-import nus.duke.ui.Ui;
 
 /**
  * The `ByeCommand` class represents a command for exiting the Duke task manager application.
@@ -21,16 +20,15 @@ public class ByeCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
         assert tasks != null;
-        assert ui != null;
         assert storage != null;
 
         if (!args.isEmpty()) {
             throw new InvalidCommandArgsDukeException("The bye command should not take any arguments.");
         }
 
-        ui.showMessages("Bye. Hope to see you again soon!");
+        return new String[] {"Bye. Hope to see you again soon!"};
     }
 
     @Override
