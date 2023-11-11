@@ -52,12 +52,12 @@ Wonky: Oops! Seems like your argument(s) for command [event] are wrong.
 Wonky: Did you input the wrong argument(s)? Expected [3] argument(s) for the command.
 
 Wonky: I have added deadline task [homework2] to our list!
-	1. [D][ ] homework2 |   by: 25 Nov 2023, 12:27:00 PM
+	1. [D][ ] homework2 |   by: 25 Nov, 2023 12:27:00 PM
 
 Wonky: You now have 2 task(s) in the list.
 
 Wonky: I have added event task [homework3] to our list!
-	1. [E][ ] homework3 | from: 26 Nov 2023, 5:27:00 PM | to: 27 Nov 2023, 9:27:00 AM
+	1. [E][ ] homework3 | from: 26 Nov, 2023 5:27:00 PM | to: 27 Nov, 2023 9:27:00 AM
 
 Wonky: You now have 3 task(s) in the list.
 
@@ -69,26 +69,30 @@ Wonky: There is mistake with the argument. Expected [yyyy-MM-dd HH:mm] instead o
 
 Wonky: Below are the list of tasks you have added!
 	1. [T][ ] homework1
-	2. [D][ ] homework2 |   by: 25 Nov 2023, 12:27:00 PM
-	3. [E][ ] homework3 | from: 26 Nov 2023, 5:27:00 PM | to: 27 Nov 2023, 9:27:00 AM
+	2. [D][ ] homework2 |   by: 25 Nov, 2023 12:27:00 PM
+	3. [E][ ] homework3 | from: 26 Nov, 2023 5:27:00 PM | to: 27 Nov, 2023 9:27:00 AM
 
 Wonky: Your task [homework2] is marked as [done].
+	1. [D][X] homework2 |   by: 25 Nov, 2023 12:27:00 PM
 
 Wonky: Below are the list of tasks you have added!
 	1. [T][ ] homework1
-	2. [D][X] homework2 |   by: 25 Nov 2023, 12:27:00 PM
-	3. [E][ ] homework3 | from: 26 Nov 2023, 5:27:00 PM | to: 27 Nov 2023, 9:27:00 AM
+	2. [D][X] homework2 |   by: 25 Nov, 2023 12:27:00 PM
+	3. [E][ ] homework3 | from: 26 Nov, 2023 5:27:00 PM | to: 27 Nov, 2023 9:27:00 AM
 
 Wonky: Your task [homework3] is marked as [done].
+	1. [E][X] homework3 | from: 26 Nov, 2023 5:27:00 PM | to: 27 Nov, 2023 9:27:00 AM
 
 Wonky: Your task [homework2] is marked as [not done].
+	1. [D][ ] homework2 |   by: 25 Nov, 2023 12:27:00 PM
 
 Wonky: Your task [homework1] is marked as [done].
+	1. [T][X] homework1
 
 Wonky: Below are the list of tasks you have added!
 	1. [T][X] homework1
-	2. [D][ ] homework2 |   by: 25 Nov 2023, 12:27:00 PM
-	3. [E][X] homework3 | from: 26 Nov 2023, 5:27:00 PM | to: 27 Nov 2023, 9:27:00 AM
+	2. [D][ ] homework2 |   by: 25 Nov, 2023 12:27:00 PM
+	3. [E][X] homework3 | from: 26 Nov, 2023 5:27:00 PM | to: 27 Nov, 2023 9:27:00 AM
 
 Wonky: Did you make a mistake trying to delete task [-5]? A task can't be be less than 1.
 
@@ -97,19 +101,22 @@ Wonky: Did you want to delete the wrong task? There is no task no. [7].
 Wonky: Did you make a mistake trying to delete task [0]? A task can't be be less than 1.
 
 Wonky: Your task [homework2] is deleted!
+Wonky: You now have 2 task(s) in the list.
 
 Wonky: Below are the list of tasks you have added!
 	1. [T][X] homework1
-	2. [E][X] homework3 | from: 26 Nov 2023, 5:27:00 PM | to: 27 Nov 2023, 9:27:00 AM
+	2. [E][X] homework3 | from: 26 Nov, 2023 5:27:00 PM | to: 27 Nov, 2023 9:27:00 AM
 
 Wonky: Did you want to delete the wrong task? There is no task no. [3].
 
 Wonky: Your task [homework3] is deleted!
+Wonky: You now have 1 task(s) in the list.
 
 Wonky: Below are the list of tasks you have added!
 	1. [T][X] homework1
 
 Wonky: Your task [homework1] is deleted!
+Wonky: Hooray you have no pending tasks!
 
 Wonky: Hooray you have no pending tasks!
 
