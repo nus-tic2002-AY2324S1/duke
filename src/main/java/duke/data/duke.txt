@@ -1,9 +1,0 @@
-D|0|borrow book Yay!|10/11/2023
-E|1|project meeting|22/10/2023 0330|22/10/2023 0400
-D|0|return book|06/11/2023
-E|1|weekly meeting|22/10/2023 0346|22/10/2023 0440
-E|0|small group meeting|06/11/2023 2015|06/11/2023 2100
-T|1|return book
-T|0|complete the report
-D|0|submit report|19/11/2023
-E|0|presentation|08/11/2023 2200|09/11/2023 2100
