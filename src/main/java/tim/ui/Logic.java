@@ -77,6 +77,9 @@ public class Logic {
             case HELP:
                 Display.printHelp();
                 break;
+            case COUNTDOWN:
+                new CountdownCommand().execute(token, tasks);
+                break;
             default:
                 System.out.println("oh no!  this should not happen!");
             }

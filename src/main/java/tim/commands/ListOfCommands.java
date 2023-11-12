@@ -14,6 +14,7 @@ public enum ListOfCommands {
     SEARCH,
     SNOOZE,
     CLEAR,
+    COUNTDOWN,
     HELP;
 
 }

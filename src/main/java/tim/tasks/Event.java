@@ -61,10 +61,12 @@ public class Event extends Task {
 
     public LocalDate getFromDate () {
         return this.fromDate;
+
     }
 
     public LocalDate getToDate () {
         return this.toDate;
+
     }
 
     /**

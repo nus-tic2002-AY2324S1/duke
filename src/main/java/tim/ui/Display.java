@@ -136,6 +136,19 @@ public class Display {
     }
 
     /**
+     * Prints the days overdue/left from now till end date of task.
+     *
+     * @param days Number of days left.
+     */
+    public static void printCountdown(long days){
+        if(days >= 0){
+            System.out.println("You have " + days + " days left!");
+        } else {
+            System.out.println("You are " + Math.abs(days) + " days overdue!");
+        }
+    }
+
+    /**
      * Prints the goodbye message.
      */
     static void goodbyeGreet(){

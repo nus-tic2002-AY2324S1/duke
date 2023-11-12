@@ -57,18 +57,18 @@ public class SnoozeCommand extends Command{
         index--;
         assert tasks.get(index).getType() != 'T' : "assert ToDo tasks cannot be snoozed!";
         switch (tasks.get(index).getType()){
-            case 'D':
-                Deadline deadline = (Deadline) tasks.get(index);
-                deadline.postponeByDate(newDate);
-                break;
-            case 'E':
-                Event event = (Event) tasks.get(index);
-                event.postponeToDate(newDate);
-                break;
-            case 'T':
-                System.out.println("oh no!  ToDo tasks cannot be snoozed!");
-            default:
-                System.out.println("oh no!  unhandled error");
+        case 'D':
+            Deadline deadline = (Deadline) tasks.get(index);
+            deadline.postponeByDate(newDate);
+            break;
+        case 'E':
+            Event event = (Event) tasks.get(index);
+            event.postponeToDate(newDate);
+            break;
+        case 'T':
+            System.out.println("oh no!  ToDo tasks cannot be snoozed!");
+        default:
+            System.out.println("oh no!  unhandled error");
         }
 
     }
