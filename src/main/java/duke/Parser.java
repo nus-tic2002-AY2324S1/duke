@@ -4,6 +4,7 @@ import commands.*;
 import commands.add.AddDeadline;
 import commands.add.AddEvent;
 import commands.add.AddToDo;
+import exceptions.DukeException;
 
 public class Parser {
     static Command c;

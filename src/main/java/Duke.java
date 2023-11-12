@@ -2,10 +2,10 @@
 import java.io.IOException;
 
 import commands.*;
-import duke.DukeException;
 import duke.Parser;
 import duke.Storage;
 import duke.UI;
+import exceptions.DukeException;
 import tasks.TaskList;
 
 public class Duke {

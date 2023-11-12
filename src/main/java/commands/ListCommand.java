@@ -2,7 +2,7 @@ package commands;
 
 import duke.Storage;
 import duke.UI;
-import tasks.EmptyListException;
+import exceptions.EmptyListException;
 import tasks.TaskList;
 
 public class ListCommand extends Command{

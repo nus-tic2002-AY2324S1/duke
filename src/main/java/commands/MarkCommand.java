@@ -2,7 +2,7 @@ package commands;
 
 import duke.Storage;
 import duke.UI;
-import tasks.MissingTaskException;
+import exceptions.MissingTaskException;
 import tasks.TaskList;
 
 public class MarkCommand extends Command{

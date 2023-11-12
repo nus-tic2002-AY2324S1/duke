@@ -1,4 +1,4 @@
-package tasks;
+package exceptions;
 public class EmptyListException extends Exception {
     public String message;
     public EmptyListException(String string) {

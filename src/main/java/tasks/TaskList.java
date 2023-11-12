@@ -2,6 +2,9 @@ package tasks;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import exceptions.EmptyListException;
+import exceptions.MissingTaskException;
+
 public class TaskList{
     public ArrayList<Task> tasks;
     public int totalTasks;

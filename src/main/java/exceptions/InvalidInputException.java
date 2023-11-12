@@ -1,4 +1,4 @@
-package tasks;
+package exceptions;
 public class InvalidInputException extends Exception {
     String message;
     public InvalidInputException(String message){

@@ -2,8 +2,8 @@ package commands;
 
 import duke.Storage;
 import duke.UI;
-import tasks.EmptyListException;
-import tasks.MissingTaskException;
+import exceptions.EmptyListException;
+import exceptions.MissingTaskException;
 import tasks.TaskList;
 
 public class DeleteCommand extends Command{
