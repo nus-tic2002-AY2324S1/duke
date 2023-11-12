@@ -17,7 +17,7 @@ public class Parser {
      public static void inputParser(TaskList tasks){
         String input = "init" ;
         Scanner in = new Scanner(System.in);
-        while(in.hasNext()) {
+        while(in.hasNext() && !input.equals("bye")){
             input = in.nextLine().replaceAll("\\s+", " ");
             input = input.trim();
             String[] token = input.split(" ", 2);

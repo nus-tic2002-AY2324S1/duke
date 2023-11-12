@@ -29,11 +29,9 @@ public class DeleteCommand extends Command{
      * @param tasks List of tasks.
      */
     static void deleteFromList(int deleteIndex, TaskList tasks){
-        TaskList temp = tasks;
         tasks.remove(deleteIndex-1);
-        System.out.print("Deleting: ");
-        Display.printSingle(deleteIndex,temp);
-        Display.printDash();
+        System.out.println("Deleting: " + deleteIndex);
+        System.out.println("Updated List: ");
         Display.printList(tasks);
     }
 
