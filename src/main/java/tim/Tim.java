@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Tim {
     /**
-     * Main method.
+     * Represents the Main method.
      *
      * @param args Command line arguments.
      * @throws IOException If the file is not found.

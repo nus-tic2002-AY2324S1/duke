@@ -13,10 +13,11 @@ import java.io.File;
  * This class handles the saving and loading of the list of tasks.
  */
 public class Storage {
+
     /**
      * Loads the list of tasks from the file.
      *
-     * @location ./src/main/data/list.data
+     * @location ./src/main/data/list.data .
      * @return List of tasks.
      * @throws IOException If the file is not found.
      * @throws ClassNotFoundException If the file is corrupted.
@@ -44,7 +45,7 @@ public class Storage {
     /**
      * Saves the list of tasks to the file.
      *
-     * @location ./src/main/data/list.data
+     * @location ./src/main/data/list.data .
      * @param tasks list of tasks.
      */
     public static void saveList(TaskList tasks){

@@ -5,7 +5,7 @@ import tim.util.TaskList;
 public class UnmarkCommand extends MarkCommand{
 
     /**
-     * Identify index of task to be unmarked.
+     * Identifies index of task to be unmarked.
      * Calls TaskList.markUnmarkTask() to unmark task.
      *
      * @param token The user input.

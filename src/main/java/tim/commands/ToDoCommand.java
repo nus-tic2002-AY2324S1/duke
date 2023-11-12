@@ -7,7 +7,7 @@ import tim.tasks.ToDo;
 public class ToDoCommand extends Command{
 
     /**
-     * Identify ToDo's task name to be added.
+     * Identifies ToDo's task name to be added.
      * Calls TaskList.addToDo() to add task.
      *
      * @param token The user input.

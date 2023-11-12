@@ -13,7 +13,7 @@ import tim.tasks.Event;
 public class SnoozeCommand extends Command{
 
     /**
-     * Identify index of task to be snoozed.
+     * Identifies index of task to be snoozed.
      * If no date is specified, snooze by one week.
      * Else, snooze to the specified date.
      * trueIndex is the user facing index of the task.

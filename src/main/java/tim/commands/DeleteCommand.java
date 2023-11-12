@@ -7,8 +7,8 @@ import tim.util.TaskList;
 public class DeleteCommand extends Command{
 
     /**
-     * Identify index of task to be deleted.
-     * Calls TaskList.deleteFromList() to delete task.
+     * Identifies index of task to be deleted.
+     * Calls TaskList.deleteFromList() to delete task from task list.
      *
      * @param token The user input.
      * @param tasks The list of tasks.

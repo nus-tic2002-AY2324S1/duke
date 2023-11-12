@@ -15,7 +15,7 @@ public abstract class Task implements Serializable {
     /**
      * Creates a Task object
      *
-     * @param description
+     * @param description name of the task.
      */
     public Task(String description){
         this.description = description;
@@ -26,14 +26,16 @@ public abstract class Task implements Serializable {
     /**
      * Returns the description of the task.
      *
-     * @return description of the task
+     * @return description of the task.
      */
-    public String getDescription() { return this.description;}
+    public String getDescription() {
+        return this.description;
+    }
 
     /**
      * Returns the status of the task.
      *
-     * @return status of the task
+     * @return status of the task.
      */
     public String getIsDone(){
         return isDone ? "x" : " ";

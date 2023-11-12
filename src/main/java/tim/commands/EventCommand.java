@@ -12,8 +12,8 @@ import java.time.format.DateTimeParseException;
 public class EventCommand extends Command{
 
     /**
-     * Identify Event's task name to be added.
-     * Calls TaskList.addEvent() to add task.
+     * Identifies Event's task name to be added.
+     * Calls TaskList.addEvent() to add Event task to task list.
      *
      * @param token The user input.
      * @param tasks The list of tasks.

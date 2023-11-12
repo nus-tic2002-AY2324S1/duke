@@ -7,7 +7,7 @@ import tim.util.TaskList;
 public class SearchCommand extends Command{
 
     /**
-     * Identify the keyword to be searched.
+     * Identifies the keyword to be searched.
      * Calls Search.strictSearchTaskList() to search for tasks containing keyword.
      *
      * @param token The user input.

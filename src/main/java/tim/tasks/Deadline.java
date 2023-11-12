@@ -9,15 +9,14 @@ import java.time.format.DateTimeFormatter;
  * This class is a subclass of Task.
  * It has a description and a byDate.
  */
-
 public class Deadline extends Task {
     private LocalDate byDate;
 
     /**
      * Creates a Deadline object.
      *
-     * @param description the description of the task
-     * @param byDate the date of the deadline
+     * @param description the description of the task.
+     * @param byDate the date of the deadline.
      */
     public Deadline(String description, String byDate){
         super(description);
@@ -29,8 +28,8 @@ public class Deadline extends Task {
      * Postpones the deadline to the specified date.
      * New date must be after the original deadline.
      *
-     * @param extendedByDate the new date of the deadline
-     * @throws DateException if the new date is before the original deadline
+     * @param extendedByDate the new date of the deadline.
+     * @throws DateException if the new date is before the original deadline.
      */
     public void postponeByDate(String extendedByDate) throws DateException {
         LocalDate parsedExtendedByDate = LocalDate.parse(extendedByDate);

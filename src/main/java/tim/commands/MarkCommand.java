@@ -7,7 +7,7 @@ import tim.tasks.Task;
 public class MarkCommand extends Command{
 
     /**
-     * Identify index of task to be marked.
+     * Identifies index of task to be marked.
      * Calls TaskList.markUnmarkTask() to mark task.
      *
      * @param token The user input.

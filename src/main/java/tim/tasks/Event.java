@@ -16,10 +16,10 @@ public class Event extends Task {
     /**
      * Creates an Event object.
      *
-     * @param description the description of the task
-     * @param fromDate the date of the event
-     * @param toDate the date of the event
-     * @throws DateException if the fromDate is after toDate
+     * @param description the description of the task.
+     * @param fromDate the date of the event.
+     * @param toDate the date of the event.
+     * @throws DateException if the fromDate is after toDate.
      */
     public Event(String description, String fromDate, String toDate) throws DateException {
         super(description);
@@ -35,8 +35,8 @@ public class Event extends Task {
      * Postpones the event's toDate to the specified date.
      * New toDate must be after the original ToDate.
      *
-     * @param extendedToDate the new date of the event
-     * @throws DateException if the new date is before the original event period
+     * @param extendedToDate the new date of the event.
+     * @throws DateException if the new date is before the original event period.
      */
     public void postponeToDate(String extendedToDate) throws DateException {
         LocalDate parsedExtendedToDate = LocalDate.parse(extendedToDate);
@@ -51,7 +51,7 @@ public class Event extends Task {
     /**
      * Snoozes the event by one week.
      *
-     * @throws DateException if the new date is before the original event period
+     * @throws DateException if the new date is before the original event period.
      */
     public void snoozeToDateByOneWeek() throws DateException {
         assert  this.toDate != null : "assert parsedExtendedByDate is not null";

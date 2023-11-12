@@ -10,8 +10,8 @@ import java.time.format.DateTimeParseException;
 public class DeadlineCommand extends Command{
 
     /**
-     * Identify Deadline's task name to be added.
-     * Calls TaskList.addDeadline() to add task.
+     * Identifies Deadline's task name to be added.
+     * Calls TaskList.addDeadline() to add Deadline task to task list.
      *
      * @param token The user input.
      * @param tasks The list of tasks.
