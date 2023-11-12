@@ -113,7 +113,9 @@ public class Craby extends HelloAndByeMessage {
                 throw new InputBlankException();
             }
             // handle the input
-            new CommandCreator().create(keyWords).handleCommand(input, tasks);
+            CommandCreator commandCreator = new CommandCreator();
+            CommandInterface command = commandCreator.create(keyWords);
+            command.handleCommand(input, tasks);
             boolean isExit = keyWords == Keyword.BYE || keyWords == Keyword.SWITCH;
             if (isExit) {
                 return true;
