@@ -45,7 +45,7 @@ public class WonkyManagerTest {
     }
 
     @Test
-    public void executeCommand_validCommand_success() throws DukeException {
+    public void executeCommandSuccess() throws DukeException {
         assertEquals(0, wonkyManager.getTasks().size());
 
         wonkyManager.executeCommand(CommandEnum.TODO, "test todo");
@@ -67,13 +67,13 @@ public class WonkyManagerTest {
     }
 
     @Test
-    public void executeCommand_invalidCommand_exceptionThrown() {
+    public void executeCommandThrowsException() {
         assertThrows(IllegalArgumentException.class, () ->
             wonkyManager.executeCommand(CommandEnum.getEnum("UNKNOWN"), ""));
     }
 
     @Test
-    public void resetCmdTypes_validCmdTypes_success() throws DukeException {
+    public void resetCmdTypeSuccess() throws DukeException {
         CommandType cmdType = new TodoCommand(CommandEnum.TODO, "test todo");
         wonkyManager.addCmdType(cmdType);
         wonkyManager.resetCmdTypes();
