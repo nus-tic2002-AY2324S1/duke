@@ -28,6 +28,7 @@ public class Logic {
             switch (verifiedCommands) {
             case BYE:
                 Display.goodbyeGreet();
+                System.exit(0);
                 break;
             case LIST:
                 Display.printList(tasks);
