@@ -9,8 +9,8 @@ import seedu.duke.helper.WonkyDateTime;
  */
 public class Event extends Task {
 
-    protected WonkyDateTime from;
-    protected WonkyDateTime to;
+    private WonkyDateTime from;
+    private WonkyDateTime to;
 
     /**
      * Constructs the Event class.

@@ -111,7 +111,7 @@ public class WonkyScanner {
                     currArgument = splitLn.get(1);
                 }
                 if (Objects.nonNull(currCommand)) {
-                    wonkyManager.checkCommand(currCommand, currArgument);
+                    wonkyManager.executeCommand(currCommand, currArgument);
                 }
             } catch (IllegalArgumentException e) {
                 if (!wonkyLogger.getLoading()) {

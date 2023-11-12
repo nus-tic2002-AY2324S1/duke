@@ -45,31 +45,31 @@ public class WonkyManagerTest {
     }
 
     @Test
-    public void checkCommand_validCommand_success() throws DukeException {
+    public void executeCommand_validCommand_success() throws DukeException {
         assertEquals(0, wonkyManager.getTasks().size());
 
-        wonkyManager.checkCommand(CommandEnum.TODO, "test todo");
-        wonkyManager.checkCommand(CommandEnum.DEADLINE, "test deadline | today ");
-        wonkyManager.checkCommand(CommandEnum.EVENT, "test event | today | tmr ");
+        wonkyManager.executeCommand(CommandEnum.TODO, "test todo");
+        wonkyManager.executeCommand(CommandEnum.DEADLINE, "test deadline | today ");
+        wonkyManager.executeCommand(CommandEnum.EVENT, "test event | today | tmr ");
         assertEquals(3, wonkyManager.getTasks().size());
 
-        wonkyManager.checkCommand(CommandEnum.TODO, "invalid todo | invalid");
-        wonkyManager.checkCommand(CommandEnum.MARK, "1");
+        wonkyManager.executeCommand(CommandEnum.TODO, "invalid todo | invalid");
+        wonkyManager.executeCommand(CommandEnum.MARK, "1");
         assertEquals(3, wonkyManager.getTasks().size());
         assertEquals(4, wonkyManager.getCmdTypes().size());
         assertTrue(wonkyManager.getTasks().get(0).getDone());
 
-        wonkyManager.checkCommand(CommandEnum.DELETE, "2");
-        wonkyManager.checkCommand(CommandEnum.UNMARK, "1");
+        wonkyManager.executeCommand(CommandEnum.DELETE, "2");
+        wonkyManager.executeCommand(CommandEnum.UNMARK, "1");
         assertEquals(2, wonkyManager.getTasks().size());
         assertEquals(6, wonkyManager.getCmdTypes().size());
         assertFalse(wonkyManager.getTasks().get(0).getDone());
     }
 
     @Test
-    public void checkCommand_invalidCommand_exceptionThrown() {
+    public void executeCommand_invalidCommand_exceptionThrown() {
         assertThrows(IllegalArgumentException.class, () ->
-            wonkyManager.checkCommand(CommandEnum.getEnum("UNKNOWN"), ""));
+            wonkyManager.executeCommand(CommandEnum.getEnum("UNKNOWN"), ""));
     }
 
     @Test

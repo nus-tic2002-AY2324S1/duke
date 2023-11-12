@@ -9,7 +9,7 @@ import seedu.duke.helper.WonkyDateTime;
  */
 public class Deadline extends Task {
 
-    protected WonkyDateTime by;
+    private WonkyDateTime by;
 
     /**
      * Constructs the Deadline class.

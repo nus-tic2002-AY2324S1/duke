@@ -61,7 +61,7 @@ public class WonkyManager {
      * @param argumentStr
      * @throws DukeException
      */
-    public void checkCommand(CommandEnum cmdStr, String argumentStr) throws DukeException {
+    public void executeCommand(CommandEnum cmdStr, String argumentStr) throws DukeException {
         CommandType command;
         switch (cmdStr) {
         case BYE:
