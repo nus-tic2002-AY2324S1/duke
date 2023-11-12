@@ -52,13 +52,13 @@ public class EventCommand extends Command{
             System.out.println("now there is: "+ list.size() + " item(s)");
             Display.printDash();
         } catch (ArrayIndexOutOfBoundsException AIO) {
-            System.out.println("oh no!  you've missed out [/fromDate] or [/toDate] !");
+            System.out.println("oh no!  you've missed out [/from] or [/to] !");
         } catch(DateTimeParseException DTPE ){
-            System.out.println("oh no!  that's not a valid date, please enter << /fromDate yyyy-mm-dd /toDate yyyy-mm-dd>>");
+            System.out.println("oh no!  that's not a valid date, please enter << /from yyyy-mm-dd /to yyyy-mm-dd>>");
         } catch (BlankInputException BIE) {
             System.out.println("oh no!  you've missed out the description");
         } catch (DateException DE){
-            System.out.println("oh no!  /fromDate date shouldn't be later than /toDate date");
+            System.out.println("oh no!  /from date shouldn't be later than /to date");
         }
 
     }
