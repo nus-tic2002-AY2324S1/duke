@@ -1,5 +1,6 @@
 package task;
 
+import command.CommandInterface;
 import command.CommandCreator;
 
 import exceptions.MyCustomException;
