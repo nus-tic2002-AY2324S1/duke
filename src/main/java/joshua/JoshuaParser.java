@@ -11,10 +11,10 @@ import commands.EventCommand;
 import commands.ByeCommand;
 import commands.HelpCommand;
 import commands.InvalidCommand;
+import exceptions.InvalidCommandException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,14 +23,18 @@ public class JoshuaParser {
      * Pattern to identify command word and the following arguments.
      */
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
     public static final Pattern DEADLINE_ARGUMENT_FORMAT = Pattern.compile("(?<desc>.*)/by(?<by>.*)");
     public static final Pattern EVENT_ARGUMENT_FORMAT = Pattern.compile("(?<desc>.*)/from(?<from>.*)/to(?<to>.*)");
 
     /**
      * Pattern to identify date format if user has entered a date.
      */
-    public static final Pattern DATE_FORMAT = Pattern.compile("(\\\\d{1,2}/\\\\d{1,2}/\\\\d{4}) (\\\\d{4})");
+    public static final Pattern DATE_REGEX_PATTERN = Pattern.compile("(\\d{1,2}\\/\\d{1,2}\\/\\d{4}) (\\d{4})");
+
+    private final String PARSED_DATE_STRING = "d/M/yyyy HHmm";
+    private final String FORMATTED_DATE_STRING = "d MMM yyyy, hh:mm a";
+    private final DateTimeFormatter PARSED_DATE_FORMATTER = DateTimeFormatter.ofPattern(PARSED_DATE_STRING);
+    private final DateTimeFormatter FORMATTED_DATE_FORMATTER = DateTimeFormatter.ofPattern(FORMATTED_DATE_STRING);
 
     public JoshuaParser() {
 
@@ -79,36 +83,37 @@ public class JoshuaParser {
     }
 
     public Command prepareMark(String commandArgs) {
-        int taskNum = -1;
-        commandArgs = commandArgs.trim();
-        try {
-            taskNum = Integer.parseInt(commandArgs);
-        } catch (NumberFormatException e) {
+        int taskNum = parseTaskNumber(commandArgs);
+        if (taskNum == -1) {
             return new InvalidCommand("Please enter an integer number.");
         }
         return new MarkCommand(taskNum);
     }
 
     public Command prepareUnmark(String commandArgs) {
-        int taskNum = -1;
-        commandArgs = commandArgs.trim();
-        try {
-            taskNum = Integer.parseInt(commandArgs);
-        } catch (NumberFormatException e) {
+        int taskNum = parseTaskNumber(commandArgs);
+        if (taskNum == -1) {
             return new InvalidCommand("Please enter an integer number.");
         }
         return new UnmarkCommand(taskNum);
     }
 
     public Command prepareDelete(String commandArgs) {
+        int taskNum = parseTaskNumber(commandArgs);
+        if (taskNum == -1) {
+            return new InvalidCommand("Please enter an integer number.");
+        }
+        return new DeleteCommand(taskNum);
+    }
+
+    private int parseTaskNumber(String commandArgs) {
         int taskNum = -1;
         commandArgs = commandArgs.trim();
         try {
             taskNum = Integer.parseInt(commandArgs);
-        } catch (NumberFormatException e) {
-            return new InvalidCommand("Please enter an integer number.");
+        } catch (NumberFormatException ignored) {
         }
-        return new DeleteCommand(taskNum);
+        return taskNum;
     }
 
     public Command prepareTodo(String commandArgs) {
@@ -135,6 +140,13 @@ public class JoshuaParser {
         if (by.isEmpty()) {
             return new InvalidCommand("Enter the /by parameter for your deadline.");
         }
+
+        try {
+            by = parseDateTime(by);
+        } catch (InvalidCommandException e) {
+            return new InvalidCommand(e.getMessage());
+        }
+
         return new DeadlineCommand(desc, by);
     }
 
@@ -158,12 +170,33 @@ public class JoshuaParser {
         if (to.isEmpty()) {
             return new InvalidCommand("Enter the /to parameter for your event.");
         }
+
+        try {
+            from = parseDateTime(from);
+            to = parseDateTime(to);
+        } catch (InvalidCommandException e) {
+            return new InvalidCommand(e.getMessage());
+        }
+
         return new EventCommand(desc, from ,to);
     }
 
-    private static ArrayList<String> stringToArrayList(String str) {
-        String[] strArray = str.split("\\s+"); // Split on any number of whitespaces
-        List<String> strList = new ArrayList<>(Arrays.asList(strArray));
-        return new ArrayList<>(strList);
+    /**
+     * Takes in a string and checks if it is in the accepted date format (d/M/yyyy HHmm)
+     * then parses it into a LocalDateTime object before finally formatting it as a string
+     *
+     * @param dateStr The date entered by the user
+     * @return Date and time in the format: dd MMM yyyy, hh:mm a
+     * @throws InvalidCommandException If user entered date does not follow the specified format
+     */
+    private String parseDateTime(String dateStr) throws InvalidCommandException {
+        Matcher dateMatcher = DATE_REGEX_PATTERN.matcher(dateStr);
+        if(!dateMatcher.matches()) {
+            throw new InvalidCommandException("Please follow this format for entering a date:\n" + PARSED_DATE_STRING);
+        }
+
+        LocalDateTime parsedDateTime = LocalDateTime.parse(dateStr, PARSED_DATE_FORMATTER);
+        String formattedDateTime = parsedDateTime.format(FORMATTED_DATE_FORMATTER);
+        return formattedDateTime;
     }
 }
