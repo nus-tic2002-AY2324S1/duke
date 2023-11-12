@@ -247,7 +247,7 @@
    Now you have: 7 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Nice! I've marked this task as DONE ツ:
-   ╰┈➤ [D][ ✓ ] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   ╰┈➤ [D][ ✓ ] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ TIC2002 - Final Exam /from 04-12-2023 1300 /to 04-12-2023 1430 - to your list
@@ -261,17 +261,17 @@
    Here are the tasks in your SCHOOL list:
    1.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
    2.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
-   3.  [D][ ✓ ] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   3.  [D][ ✓ ] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
    4.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   6.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   6.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    7.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
    8.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    9.  [T][҉҉҉] Task to delete
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    OK, I've marked this task as ☉⌓☉ NOT DONE yet:
-   ╰┈➤ [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   ╰┈➤ [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ Oder FoodPanda for dinner every weekday - to your list
@@ -302,10 +302,10 @@
    Here are the tasks in your SCHOOL list:
    1.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
    2.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
-   3.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   3.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
    4.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   6.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   6.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    7.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
    8.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    9.  [T][҉҉҉] Task to delete
@@ -316,18 +316,18 @@
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ⌖ Here are the list tasks matching with "tic":
    [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
-   [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
-   [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
+   [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ⌖ Here are the list tasks matching with "[d]":
    [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
-   [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
    [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    [D][҉҉҉] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
    [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
@@ -337,10 +337,10 @@
    Here are the tasks in your SCHOOL list:
    1.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
    2.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
-   3.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   3.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
    4.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   6.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   6.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    7.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
    8.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    9.  [T][҉҉҉] Task to delete
@@ -354,9 +354,9 @@
    Here are the tasks in your SCHOOL list:
    1.  [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
    2.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
-   3.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
-   4.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
-   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
+   3.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
+   4.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
+   5.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
    6.  [D][҉҉҉] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
    7.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
    8.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
@@ -381,9 +381,9 @@
    4.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
    5.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
    6.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   7.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
-   9.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   7.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
+   9.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    10. [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
    11. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
    12. [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
@@ -400,9 +400,9 @@
    3.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
    4.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
    5.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   6.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   7.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
-   8.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   6.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   7.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
+   8.  [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    9.  [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
    10. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
    11. [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
@@ -426,10 +426,10 @@
    5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
    7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
    9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
    13. [T][҉҉҉] Drink more water
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
@@ -446,10 +446,10 @@
    5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
    7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
    9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
    13. [T][҉҉҉] Drink more water
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
@@ -481,10 +481,10 @@
    5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
    7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
    9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
    13. [T][҉҉҉] Drink more water
    14. [T][҉҉҉] Check undo mark
@@ -501,9 +501,9 @@
    6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
    7.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
    8.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   9.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   10. [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   9.  [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   10. [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    12. [D][ ✓ ] Task to check sort by date - on top after use sort date/d || before: 3 Jul 1993, Sat 05:30AM
    13. [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
    14. [D][ ✓ ] TIC2002 quiz || before: 4 Nov, Sat 10:00PM
@@ -521,10 +521,10 @@
    5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
    7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
    9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
    13. [T][҉҉҉] Drink more water
    14. [T][҉҉҉] Check undo mark
@@ -545,10 +545,10 @@
    5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
    7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
    9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
    13. [T][҉҉҉] Drink more water
    14. [T][҉҉҉] Check undo mark
@@ -574,10 +574,10 @@
    5.  [E][҉҉҉] TIC2002 - Final Exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:30PM
    6.  [E][҉҉҉] Learn front end || from: 4 Dec, Mon 01:00PM ➞ to: 31 Dec, Sun 11:00PM
    7.  [D][ ✓ ] TIC3901 - Presentation 1 || before: 1 Jan 2024, Mon 12:00PM
-   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 12:00AM
+   8.  [D][҉҉҉] TIC3901 - Report 2 || before: 28 Jan 2024, Sun 11:59PM
    9.  [D][҉҉҉] Video call with Grandpa || before: 1 Mar 2024, Fri 12:00PM
-   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 12:00AM
-   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 12:00AM
+   10. [D][҉҉҉] TIC3901 - Report 3 || before: 17 Mar 2024, Sun 11:59PM
+   11. [D][҉҉҉] TIC3901 - Presentation 2 || before: 14 Apr 2024, Sun 11:59PM
    12. [T][҉҉҉] Oder FoodPanda for dinner every weekday
    13. [T][҉҉҉] Drink more water
    14. [T][҉҉҉] Check undo mark

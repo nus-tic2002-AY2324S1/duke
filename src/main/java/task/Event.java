@@ -132,7 +132,7 @@ public class Event extends Task {
      * @inheritDoc
      */
     @Override
-    public Event clone() {
+    public Task clone() {
         Event event = new Event(this.description,
                                 this.fromTime.format(DateTimeFormatter.ofPattern(DATE_TIME_STORAGE_DEFAULT_FORMAT)));
         event.setDone(this.isDone);

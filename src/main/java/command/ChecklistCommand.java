@@ -1,9 +1,9 @@
 package command;
 
-import io.*;
-import java.io.*;
-import java.util.*;
-import task.*;
+import io.CrabyMessage;
+import java.io.File;
+import java.util.List;
+import task.Task;
 
 public class ChecklistCommand extends CrabyMessage implements CommandInterface {
 

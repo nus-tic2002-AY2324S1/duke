@@ -1,6 +1,7 @@
-package task;
+package command;
 
-import command.*;
+import task.Keyword;
+
 
 /**
  * CommandCreator class is a class that creates the command.

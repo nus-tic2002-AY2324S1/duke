@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * This class represents a task.
  */
-public class Task {
+public abstract class Task {
     public static final String DATE_TIME_OUTPUT_FORMAT = "d MMM yyyy, E hh:mma";
     public static final String DATE_TIME_OUTPUT_FORMAT_THIS_YEAR = "d MMM, E hh:mma";
     public static final String DATE_TIME_STORAGE_DEFAULT_FORMAT = "yyyy/M/d HHmm";
@@ -120,9 +120,5 @@ public class Task {
      *
      * @return the clone task.
      */
-    public Task clone() {
-        Task cloneTask = new Task(this.description);
-        cloneTask.setDone(this.isDone);
-        return cloneTask;
-    }
+    public abstract Task clone();
 }

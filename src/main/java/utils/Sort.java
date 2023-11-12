@@ -1,4 +1,4 @@
-package io;
+package utils;
 
 import task.Deadline;
 import task.Event;
