@@ -1,3 +1,1 @@
-T,true,borrow book
-D,true,return book ,Sunday
-T,true,eat dinner
+E,false,project meeting,2023-10-05,2024-10-06

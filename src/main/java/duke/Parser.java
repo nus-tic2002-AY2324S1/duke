@@ -21,9 +21,7 @@ public class Parser {
             }
             catch (NumberFormatException e){
                 throw new DukeException("Ensure the item number is a valid integer!");
-            }
-        
-                    
+            }        
         }
 
         switch(userCommand.toLowerCase()){

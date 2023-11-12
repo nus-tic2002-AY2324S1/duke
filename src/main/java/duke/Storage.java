@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.regex.*;
 
 public class Storage {
     // default values for storage
@@ -37,17 +39,21 @@ public class Storage {
         
             while (s.hasNext()) {
                 String[] line = s.nextLine().split(",");
+                String regex = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
 
                 switch(line[0]){
                     case "E":
-                        // doesnt add invalid task
+                        //doesnt add invalid task
                         if (line.length != 5) continue;
-                        t = new Event(line[2], line[3], line[4]);
+                        if(!Pattern.matches(regex, line[3])) continue;
+                        if(!Pattern.matches(regex, line[4])) continue;
+                        t = new Event(line[2], LocalDate.parse(line[3]), LocalDate.parse(line[4]));
                         tasks.add(t);
                         break;
                     case "D":
                         if(line.length != 4) continue;
-                        t = new Deadline(line[2], line[3]);
+                        if(!Pattern.matches(regex, line[3])) continue;
+                        t = new Deadline(line[2], LocalDate.parse(line[3]));
                         tasks.add(t);
                         break;
                     case "T":

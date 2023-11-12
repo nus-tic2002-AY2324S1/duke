@@ -1,4 +1,5 @@
 package tasks;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskList{
@@ -16,7 +17,7 @@ public class TaskList{
         this.totalTasks = taskList.size();
     }
 
-    public Task addDeadline(String date, String description){
+    public Task addDeadline(String description, LocalDate date){
         task = new Deadline(description, date);
         tasks.add(task);
         totalTasks ++;
@@ -30,7 +31,7 @@ public class TaskList{
         return task;
     }
 
-    public Task addEvent(String description, String fromDate, String toDate){
+    public Task addEvent(String description, LocalDate fromDate, LocalDate toDate){
         task = new Event(description, fromDate, toDate);
         tasks.add(task);
         totalTasks ++;

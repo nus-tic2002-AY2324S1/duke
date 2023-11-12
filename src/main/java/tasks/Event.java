@@ -1,10 +1,17 @@
 package tasks;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Event extends Task{
-    protected String start;
-    protected String end;
 
-    public Event(String description, String start, String end){
+    // accept date format: yyyy-mm-dd (2019-10-15)
+    // print in format: MMM dd yyyy (Oct 15 2019)
+    protected LocalDate start; 
+    protected LocalDate end;
+ 
+
+    public Event(String description, LocalDate start, LocalDate end){
         super(description);
         this.start = start;
         this.end = end;
@@ -12,7 +19,7 @@ public class Event extends Task{
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + start + " to " + end + ")";
+        return "[E]" + super.toString() + " (from: " + start.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " to " + end.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     @Override
