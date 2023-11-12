@@ -133,7 +133,13 @@ public class WonkyManager {
         wonkyStorage.save(cmdTypes);
     }
 
+    /**
+     * Resets the command type list and task list.
+     *
+     * @throws DukeException
+     */
     public void resetCmdTypes() throws DukeException {
         cmdTypes = new ArrayList<CommandType>();
+        tasks = new ArrayList<Task>();
     }
 }
