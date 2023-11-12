@@ -29,9 +29,10 @@ public class AddEvent extends Command {
         }
 
         this.description = input.substring(5, input.indexOf("/from")).trim();
+        if (description.length() == 0) throw new DukeException("Oops, missing event description!");
+
         this.fromDate = LocalDate.parse(userFrom);
         this.toDate = LocalDate.parse(userTo);
-
         if (fromDate.isAfter(toDate)){
             throw new DukeException("Your End Date should be later than your Start Date.");
         }

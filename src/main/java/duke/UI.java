@@ -1,7 +1,11 @@
 package duke;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 import tasks.Task;
+import tasks.TaskList;
 
 public class UI {
 
@@ -31,10 +35,10 @@ public class UI {
 
     public void help(){
         System.out.println("To Add:");
-        System.out.println("(a) A Deadline: start with 'deadline /by' and specify any day of the week. e.g.: deadline return book /by Sunday");
-        System.out.println("(b) An Event: start with 'event' and a description, then '/from' and '/to' the Event Day and Time. e.g.: event project meeting /from Mon 2pm /to 4pm");
-        System.out.println("(c) A To-Do: start with 'todo' and task name. e.g. todo borrow book");
-        System.out.println("To List all items in your list, type: list"); 
+        System.out.println("(a) A Deadline: deadline return book /by 2023-10-06");
+        System.out.println("(b) An Event: event project meeting /from 2023-10-05 /to 2023-10-06");
+        System.out.println("(c) A To-Do: todo borrow book");
+        System.out.println("To List all items in your list: list"); 
         System.out.println("To Mark or Unmark your tasks, type: (a) mark 'task no.' or (b) unmark 'task no' ");
         System.out.println("To Delete your tasks, type: delete 'task no.' ");
         System.out.println();
@@ -58,5 +62,23 @@ public class UI {
 
     public void addedTask(Task task){
         System.out.println("Got it. I've added this task: \n" + task);
+    }
+
+    public void printDue(ArrayList<Task> tasks, LocalDate dueDate){
+        Period days = LocalDate.now().until(dueDate);
+
+        if (tasks.size()>0){
+            System.out.println("There are " + days.getDays()  + " day(s) left until " + dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+            for (Task t: tasks){
+                System.out.println(t);
+            }
+        }
+        else{
+            System.out.println("You have nothing due on " + dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        }
+
+
+        
+        
     }
 }

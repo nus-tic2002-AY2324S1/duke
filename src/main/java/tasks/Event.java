@@ -17,6 +17,10 @@ public class Event extends Task{
         this.end = end;
     }
 
+    public LocalDate getDueDate(){
+        return this.end;
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (from: " + start.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " to " + end.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";

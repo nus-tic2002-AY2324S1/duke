@@ -18,6 +18,10 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    public LocalDate getDueDate(){
+        return this.by;
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";

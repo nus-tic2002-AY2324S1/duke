@@ -18,24 +18,24 @@ public class TaskList{
     }
 
     public Task addDeadline(String description, LocalDate date){
-        task = new Deadline(description, date);
+        this.task = new Deadline(description, date);
         tasks.add(task);
-        totalTasks ++;
-        return task;
+        this.totalTasks ++;
+        return this.task;
     }
 
     public Task addToDo(String description){
-        task = new ToDo(description);
+        this.task = new ToDo(description);
         tasks.add(task);
-        totalTasks ++;
-        return task;
+        this.totalTasks ++;
+        return this.task;
     }
 
     public Task addEvent(String description, LocalDate fromDate, LocalDate toDate){
-        task = new Event(description, fromDate, toDate);
-        tasks.add(task);
-        totalTasks ++;
-        return task;
+        this.task = new Event(description, fromDate, toDate);
+        this.tasks.add(this.task);
+        this.totalTasks ++;
+        return this.task;
     }
 
     public void markItem(int item) throws MissingTaskException{
@@ -85,6 +85,32 @@ public class TaskList{
         System.out.println("Removing task " + item + ":" + tasks.get(item-1));
         tasks.remove((item-1));
         totalTasks --;
+    }
+
+    public ArrayList<Task> getTasksDue(LocalDate due){
+        // iterate through arraylist to check for Due Dates from Events and Deadlines
+        
+        ArrayList<Task> taskDueList = new ArrayList<Task>();
+
+        for (Task t: this.tasks){
+            if (t instanceof tasks.Event){
+                tasks.Event e = (tasks.Event) t;
+                LocalDate taskDue = e.getDueDate();
+                if(taskDue.equals(due)){
+                    taskDueList.add(e);
+                }
+            }
+
+            if (t instanceof tasks.Deadline){
+                tasks.Deadline d = (tasks.Deadline) t;
+                LocalDate taskDue = d.getDueDate();
+                if(taskDue.equals(due)){
+                    taskDueList.add(d);
+                }
+            }
+        }
+        return taskDueList;
+
     }
 
 }

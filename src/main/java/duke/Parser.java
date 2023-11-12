@@ -8,6 +8,8 @@ import commands.add.AddToDo;
 public class Parser {
     static Command c;
 
+    // Stretch goal: Use dates and times in more meaningful ways. 
+    // e.g., add a command to print deadlines/events occurring on a specific date.
     public static Command parse(String userInput) throws DukeException{
         String userCommand = userInput.split(" ")[0];
         int item = 0;
@@ -48,6 +50,9 @@ public class Parser {
                 break;
             case "deadline":
                 c = new AddDeadline(userInput.trim());
+                break;
+            case "due":
+                c = new DueCommand(userInput.trim());
                 break;
             default:
                 throw new DukeException("Oops! Look at the manual to see accepted inputs!");
