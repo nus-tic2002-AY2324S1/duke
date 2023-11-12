@@ -7,14 +7,17 @@ import java.lang.*;
 public class Duke {
     public static void main(String[] args) {
             // Rename the chatbot
-            String chatbotName = "RoboChat";
-
             // Greet the user
-            System.out.println ("--------------------------------------------------------");
-            System.out.println("Hello! I'm " + chatbotName);
-            System.out.println("What can I do for you?");
-            System.out.println ("--------------------------------------------------------");
 
+        System.out.println ("*************************************************************");
+        String logo = "  ____   ____  ||        ____   ____              __     _____  \n"
+                    + " |    | |    | ||       |    | |    | |    |     //\\\\      |     \n"
+                    + " |____| |    | ||_____  |    | |      |____|    //__\\\\     |        \n"
+                    + " | \\    |    | ||    || |    | |      |    |   //    \\\\    |    \n"
+                    + " |   \\  |____| ||____|| |____| |____| |    |  //      \\\\   |         \n";
+        System.out.println("Hello !!!!!!!!!!!!!!!!!  from\n" + logo);
+        System.out.println("What can I do for you? :) ");
+        System.out.println ("*************************************************************");
 
             // Create a Scanner object for user input
             Scanner userInput = new Scanner(System.in);
@@ -48,6 +51,7 @@ public class Duke {
                     }catch (DukeException d) {
                         System.out.println(d.getMessage());
                     }
+                    System.out.println("--------------------------------------------------------");
 
                 } else if (userCommand.startsWith("unmark")) {
                     try {
@@ -64,6 +68,7 @@ public class Duke {
                     }catch (DukeException d) {
                         System.out.println(d.getMessage());
                     }
+                    System.out.println("--------------------------------------------------------");
 
                 } else if (userCommand.startsWith("todo")) {
                     String description = userCommand.substring(4);
@@ -134,8 +139,30 @@ public class Duke {
                     }
 
                     // list all added items if user command is "list"
-                } else if (userCommand.equalsIgnoreCase("list")) {
+                } else if (userCommand.startsWith("delete")){
+                    try {
+                        if (userCommand.substring(6).isEmpty()) {
+                            throw new DukeException("Invalid input. Please provide a valid task number.");
+                        }
+                        int taskNo = Integer.parseInt(userCommand.substring(7));
+                        Task t = list.get(taskNo-1);
+                        System.out.println("Noted. I've removed this task: ");
+                        System.out.println("  " + t );
+                        list.remove(t);
+
+                        if (list.size()<=1) {
+                            System.out.println("Now you have " + list.size() + " task in the list.");
+                        }
+                        else {
+                            System.out.println("Now you have " + list.size() + " tasks in the list.");
+                        }
+
+                    }catch (DukeException d) {
+                        System.out.println(d.getMessage());
+                    }
                     System.out.println("--------------------------------------------------------");
+
+                }else if (userCommand.equalsIgnoreCase("list")) {
                     try{
                         if(list.isEmpty()) {
                             throw new DukeException("OOPS!!!...There are no tasks in your list :-(");
@@ -160,13 +187,15 @@ public class Duke {
                     } catch (DukeException d) {
                         System.out.println(d.getMessage());
                     }
+                    System.out.println("--------------------------------------------------------");
                 }
 
             }while (!userCommand.equalsIgnoreCase("bye")) ;
 
                 // Exit
-                System.out.println("Bye. Hope to see you again soon!");
-                System.out.println("--------------------------------------------------------");
+                System.out.println("Goodbye :(  from \n \n" + logo );
+                System.out.println("Hope to see you again soon!");
+                System.out.println("*************************************************************");
     }
 }
 
