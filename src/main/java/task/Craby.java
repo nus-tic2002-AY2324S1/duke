@@ -28,6 +28,7 @@ import java.util.stream.Stream;
 public class Craby extends HelloAndByeMessage {
     private static TaskStorage taskStorage;
     private static final String REGEX = ".*[^a-zA-Z0-9\\s].*";
+    private static final Scanner scanner = new Scanner(System.in);
 
     /**
      * Sends a greeting to the user if it is the first time the user's runs the program.
@@ -39,7 +40,6 @@ public class Craby extends HelloAndByeMessage {
         if (is1stTime) {
             printHello();
         }
-        Scanner scanner = new Scanner(System.in);
         String nameOfList = checkListName(scanner);
         assert nameOfList != null;
         printFirstMessage(nameOfList);
