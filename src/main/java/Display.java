@@ -68,9 +68,9 @@ public void unmark(ArrayList<Task>userInputTasks, int indexNumber){
         System.out.println("Here are the matching tasks in your list: ");
     }
 
-public void changesMadeNotification(){
+public void changesMadeNotification(ArrayList<Task>userInputTasks, int indexNumber){
     System.out.println("Here is the updated task: ");
-    System.out.println(true);
+    System.out.println(userInputTasks.get(indexNumber));
     }
 
 }

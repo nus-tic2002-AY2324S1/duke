@@ -1,21 +1,22 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Filename: Duke.java
-//Filetype: Java Source file
-//Author: Peh Qing Wen
-//Created on: 13/10/2023 17:51
-//Last Modified On: xx/10/2023 xx:xx
-//Copy Rights: me!
-//Description: My own code were added after referencing from others' codes from the open source Project Code Dashboard
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Creates a simple task management application that functions by taking in user inputs via the console.
+ * User inputs are parsed and stored inside the hard disk as a text file.
+ */
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.DateTimeException;
+import java.time.DayOfWeek;
 import java.util.Scanner;
 import java.io.File;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import NUS.duke.UserInterface;
-// %n : new line
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -185,6 +186,12 @@ class Duke extends Application {
                     changeDateOrTime(arguments);
                     break;
                 }
+                case "date": {
+
+                }
+                case "day": {
+
+                }
                 default:
                     newCheckTask(userInput);
             }
@@ -192,6 +199,61 @@ class Duke extends Application {
             System.out.println(e.getMessage());
         }
     }
+
+
+    //(to be used on createDeadline & createEvent)
+    //to be used on checkCommand(): if is valid date, then call findTaskWithDate else datetimeparseexception
+    public boolean isValidDate(String dateInput){
+        try{
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+            LocalDate date = LocalDate.parse(dateInput, formatter);
+            return true;
+        }catch(DateTimeParseException e){
+            return false;
+        }
+    }
+
+    //is date within range
+public boolean isDateWithinRange(String dateInputStr, String startDateStr, String endDateStr){
+        try{
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+            LocalDate dateInput = LocalDate.parse(dateInputStr, formatter);
+            LocalDate startDate = LocalDate.parse(startDateStr, formatter);
+            LocalDate endDate = LocalDate.parse(endDateStr, formatter);
+            return !dateInput.isBefore(startDate) && !dateInput.isAfter(endDate);
+        }catch(Exception e){
+            return false;
+        }
+}
+
+    //find the day of dates
+public DayOfWeek findDayOfWeek(String dateInput){
+        try{
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+            LocalDate date = LocalDate.parse(dateInput, formatter);
+            DayOfWeek dayOfWeek = date.getDayOfWeek();
+            return dayOfWeek;
+        }catch(Exception e){
+            return null;
+        }
+}
+
+    //find tasks on particular date
+public void findTaskWithDate(ArrayList<Task>userInputTasks, String dateInput){
+        ArrayList<Task>tasksFound = new ArrayList<>();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+    LocalDate date = LocalDate.parse(dateInput, formatter);
+        if(!userInputTasks.isEmpty()){
+            for(int i = 0; i<userInputTasks.size(); i++){
+//                if(userInputTasks.get(i).contains(date)){
+
+//                }
+            }
+        }
+}
+
+    //find tasks on particular day
+
 
 
     //method to help mark tasks
@@ -382,44 +444,25 @@ private void findTask(String input) throws InvalidKeywordException{
     //method for changing dates and times
     private void changeDateOrTime(String argument) throws InvalidInputException{
         String[] inputs = argument.split("\\s+");
-        int index = Integer.parseInt(inputs[0]);
+        int index = Integer.parseInt(inputs[0]) - 1;
         String newstarttime = null;
         String newendtime = null;
         String newstartdate = null;
         String newenddate = null;
         try{
-            int check = 0;
-            String[] keywords = new String[inputs.length];
-            for(int i = 1; i<inputs.length; i++){
-                if(inputs[i].equals("starttime") || inputs[i].equals("endtime") || inputs[i].equals("startdate") || inputs[i].equals("enddate")){
-                    keywords[check] = inputs[i];
-                    check++;
+
+            for(int x = 0; x<inputs.length; x++){
+                if(inputs[x] == "starttime"){
+                    newstarttime = inputs[x+1];
                 }
-            }
-            if(check > 0){
-                for(int j = 0; j<check; j++){
-                    switch(keywords[j]){
-                        case "starttime": {
-                            int index1 = argument.indexOf("starttime") + 1;
-                            newstarttime = inputs[index1];
-                            break;
-                        }
-                        case "startdate": {
-                            int index2 = argument.indexOf("startdate") + 1;
-                            newstartdate = inputs[index2];
-                            break;
-                        }
-                        case "endtime": {
-                            int index3 = argument.indexOf("endtime") + 1;
-                            newendtime = inputs[index3];
-                            break;
-                        }
-                        case "enddate": {
-                            int index4 = argument.indexOf("enddate") + 1;
-                            newenddate = inputs[index4];
-                            break;
-                        }
-                    }
+                if(inputs[x] == "startdate"){
+                    newstartdate = inputs[x+1];
+                }
+                if(inputs[x] == "endtime"){
+                    newendtime = inputs[x+1];
+                }
+                if(inputs[x] == "enddate"){
+                    newenddate = inputs[x+1];
                 }
             }
 
@@ -440,13 +483,14 @@ private void findTask(String input) throws InvalidKeywordException{
                 if(newendtime == null){
                     String[] inputSplit1 = input.split("\\s+");
                     for(int k = 0; k < inputSplit1.length; k++){
-                        if(inputSplit1[k].equals("(from:")){
+                        if(inputSplit1[k].equals("(from:")){ // here got issues
                             newendtime = inputSplit1[k+2];
                         }
                     }
                 }
                 Deadline newDeadline = new Deadline(type, name, newenddate, newendtime); // Create a new Deadline object
                 userInputTasks.set(index, newDeadline);
+                display.changesMadeNotification(userInputTasks, index);
 
             }else if(type == 'E'){
 
@@ -487,6 +531,8 @@ private void findTask(String input) throws InvalidKeywordException{
                 }
                 Event newEvent = new Event(type, name, newstartdate, newstarttime, newenddate, newendtime); // Create a new Event object
                 userInputTasks.set(index, newEvent); // Replace the old task with the new one
+                display.changesMadeNotification(userInputTasks, index);
+
             }else{
                 throw new InvalidInputException();
             }
@@ -501,6 +547,7 @@ private Task createDeadlineTask(String arguments){
         int byIndex = arguments.indexOf("/by");
         String taskName = arguments.substring(0, byIndex).trim();
         String date = arguments.substring(byIndex + 3).trim();
+        //call validator here
         String[] dateTime = date.split("\\s+");
         String dueDate = dateTime[0];
         String dueTime = dateTime[1];
