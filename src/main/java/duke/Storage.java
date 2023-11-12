@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.regex.*;
 
+import commands.Command;
+import exceptions.DukeException;
+
 public class Storage {
     // default values for storage
     private String filePath, directoryPath;
@@ -31,6 +34,18 @@ public class Storage {
         directory = new File(directoryPath);
     }
 
+    /**
+     * Reads the contents from the object's {@code filePath}, validates the data format, and creates Task objects.
+     * <p>
+     * This method checks if the data is in the expected format and that the date follows the specified format
+     * before creating Task objects and adding them to the ArrayList of tasks.
+     * <p>
+     * If the file path is not present in the current workspace, this method will create a new file. It will also create the necessary
+     * directory if it is not already present. If file creation fails, an IOException is thrown.
+     *
+     * @return An {@code ArrayList<Task>} containing all the tasks stored in the specified file path.
+     * @throws IOException If file creation fails.
+     */
     public ArrayList<Task> loadData() throws IOException{
         try{
             Scanner s = new Scanner(file);
@@ -85,7 +100,14 @@ public class Storage {
 
     }
 
-
+    /**
+     * Stores the user's {@code tasks} in the objects' {@code filePath}.
+    * <p>
+    * This method saves the user's tasks to the file path specified by the {@code filePath} attribute
+    * of this object. 
+    * </p>
+     * @param tasks The users current TaskList object.
+     */
     public void storeData(TaskList tasks){
         try{
             fw = new FileWriter(filePath);

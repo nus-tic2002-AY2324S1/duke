@@ -9,8 +9,17 @@ import exceptions.DukeException;
 public class Parser {
     static Command c;
 
-    // Stretch goal: Use dates and times in more meaningful ways. 
-    // e.g., add a command to print deadlines/events occurring on a specific date.
+    /**
+     * Returns a {@code Command} object based on user input.
+     * <p>
+     * This method performs input validation before creating the {@code Command} object.
+     * Users can later call the {@link Command#execute()} method on the returned object.
+     * </p>
+     *
+     * @param userInput the user input received.
+     * @return A {@code Command} object based on user input.
+     * @throws DukeException if input validations fail.
+     */
     public static Command parse(String userInput) throws DukeException{
         String userCommand = userInput.split(" ")[0];
         int item = 0;

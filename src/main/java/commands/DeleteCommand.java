@@ -13,6 +13,14 @@ public class DeleteCommand extends Command{
         this.item = input;
     }
 
+    /**
+     * {@inheritDoc}
+     * 
+     * This implementation of {@code execute} deletes the specified
+     * {@code task} object from the user's {@code tasks}
+     * 
+     * @param storage is not used in this implementation.
+     */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
         try{

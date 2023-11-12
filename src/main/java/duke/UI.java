@@ -1,11 +1,21 @@
 package duke;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-
 import tasks.Task;
-import tasks.TaskList;
+
+/**
+ * Object of class UI gives access to methods which offers interactions to the user via the command line. 
+ * This class offers methods for various interactions, including:
+ * <ul>
+ *     <li>{@code greet()}: Displays a greeting message.</li>
+ *     <li>{@code readCommand()}: Reads and retrieves a command from the input.</li>
+ *     <li>{@code help()}: Displays informative content or instructions.</li>
+ *     <li>{@code killUI()}: Terminates the UI object, concluding the interaction.</li>
+ * </ul>
+ */
 
 public class UI {
 
@@ -75,10 +85,6 @@ public class UI {
         }
         else{
             System.out.println("You have nothing due on " + dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
-        }
-
-
-        
-        
+        } 
     }
 }

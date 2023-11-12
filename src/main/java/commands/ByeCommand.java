@@ -1,10 +1,16 @@
 package commands;
 
 import duke.*;
-import duke.UI;
 import tasks.TaskList;
 
 public class ByeCommand extends Command{
+    /**
+     * {@inheritDoc}
+     * 
+     * This implementation of {@code execute} stores/save the current user 
+     * {@code tasks} list and kills the program.
+     * 
+     */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
         storage.storeData(tasks);
