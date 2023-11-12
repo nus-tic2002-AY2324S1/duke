@@ -46,7 +46,7 @@ public class WonkyStorageTest {
     }
 
     @Test
-    public void addStashPopStashIsSuccess() throws DukeException, IOException {
+    public void addStashPopStashSuccess() throws DukeException, IOException {
         List<CommandType> cmdTypes = new ArrayList<>();
         cmdTypes.add(new TodoCommand(CommandEnum.TODO, "test todo"));
         cmdTypes.add(new DeadlineCommand(CommandEnum.DEADLINE, "test deadline | today "));
@@ -63,7 +63,7 @@ public class WonkyStorageTest {
     }
 
     @Test
-    public void applyStash_validStash_success() throws DukeException, IOException {
+    public void applyStashSuccess() throws DukeException, IOException {
         List<CommandType> cmdTypes = new ArrayList<>();
         cmdTypes.add(new TodoCommand(CommandEnum.TODO, "test todo"));
         cmdTypes.add(new DeadlineCommand(CommandEnum.DEADLINE, "test deadline | today "));
@@ -75,7 +75,7 @@ public class WonkyStorageTest {
     }
 
     @Test
-    public void clearStash_validStash_success() throws DukeException, IOException {
+    public void clearStashSuccess() throws DukeException, IOException {
         List<CommandType> cmdTypes = new ArrayList<>();
         cmdTypes.add(new TodoCommand(CommandEnum.TODO, "test todo"));
         cmdTypes.add(new DeadlineCommand(CommandEnum.DEADLINE, "test deadline | today "));
