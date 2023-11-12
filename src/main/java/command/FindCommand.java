@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FindCommand extends CrabyMessage implements CommandInterface {
+    private static final Integer FIND_LENGTH = 4;
 
     /**
-     * @inheritDoc
-     * Sends the list of tasks that contain the keyword to the user.
+     * @inheritDoc Sends the list of tasks that contain the keyword to the user.
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
@@ -21,9 +21,8 @@ public class FindCommand extends CrabyMessage implements CommandInterface {
             printEmptyListForAllCommand(input);
             return;
         }
-        String[] inputArr = input.split(" ");
-        assert inputArr.length > 1;
-        String keyword = inputArr[1].trim().toLowerCase();
+        input = input.toLowerCase().trim();
+        String keyword = input.substring(FIND_LENGTH).trim();
         List<String> listFound = new ArrayList<>();
         for (Task task : tasks) {
             String tmpAdd = task.toString();

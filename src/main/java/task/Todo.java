@@ -1,6 +1,5 @@
 package task;
 
-import java.time.format.*;
 
 /**
  * This class represents a todo task.
@@ -39,7 +38,7 @@ public class Todo extends Task {
      * @inheritDoc
      */
     @Override
-    public Todo clone() {
+    public Task clone() {
         Todo todo = new Todo(this.description);
         todo.isDone = this.isDone;
         return todo;

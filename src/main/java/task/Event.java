@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Event is a task that have a description and a time.
+ * Event is a task that has a description and a time.
  * It is a subclass of Task.
  */
 public class Event extends Task {
@@ -17,7 +17,7 @@ public class Event extends Task {
     /**
      * Returns fromTime.
      * This method is to handle the date and time.
-     * It will use for the sort function.
+     * It will use it for the sort function.
      *
      * @return The LocalDateTime object
      */
@@ -30,7 +30,7 @@ public class Event extends Task {
      * This class represents an event task that user input only have /from
      *
      * @param description the description of the event task.
-     * @param timeString the time string from the user.
+     * @param timeString  the time string from the user.
      */
     public Event(String description, String timeString) {
         super(description);
@@ -53,7 +53,7 @@ public class Event extends Task {
         if (isTime.length > 1) {
             this.fromTime = handleDateTime(timeString);
         } else {
-            this.fromTime = handleDateTime(timeString + " 0000");
+            this.fromTime = handleDateTime(timeString + TIME_START_DAY);
         }
     }
 
@@ -61,10 +61,10 @@ public class Event extends Task {
      * Returns an event task that user input have /from and /to
      * This class represents an event task that user input have /from and /to
      * It will format the time string to the correct format.
-     * It will use for the sort date function.
+     * It will use it for the sort date function.
      *
-     * @param description the description of the event task.
-     * @param timeString  the time string from the user.
+     * @param description  the description of the event task.
+     * @param timeString   the time string from the user.
      * @param timeStringTo the time string from the user.
      */
     public Event(String description, String timeString, String timeStringTo) {
@@ -80,7 +80,7 @@ public class Event extends Task {
         if (isTime1.length > 1) {
             this.toTime = handleDateTime(timeStringTo);
         } else {
-            this.toTime = handleDateTime(timeStringTo + " 0000");
+            this.toTime = handleDateTime(timeStringTo + TIME_END_DAY);
         }
     }
 
@@ -89,19 +89,27 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        String timeString = this.fromTime.format(DateTimeFormatter.ofPattern(TIME_OUTPUT_FORMAT));
+        LocalDateTime now = LocalDateTime.now();
+        String timeString;
+        if (now.getYear() == this.fromTime.getYear()) {
+            timeString = this.fromTime.format(DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMAT_THIS_YEAR));
+        } else {
+            timeString = this.fromTime.format(DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMAT));
+        }
         if (this.toTime == null) {
-            return "[E]" + super.toString() + " (from: " + timeString + ")";
+            return "[E]" + super.toString() + " || from: " + timeString;
         }
         boolean isSameDay = this.fromTime.format(DateTimeFormatter.ofPattern("d MMM yyyy"))
-                .equals(this.toTime.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
+                                         .equals(this.toTime.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
         String timeString1;
         if (isSameDay) {
             timeString1 = this.toTime.format(DateTimeFormatter.ofPattern("hh:mma"));
+        } else if (now.getYear() == this.toTime.getYear()) {
+            timeString1 = this.toTime.format(DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMAT_THIS_YEAR));
         } else {
-            timeString1 = this.toTime.format(DateTimeFormatter.ofPattern(TIME_OUTPUT_FORMAT));
+            timeString1 = this.toTime.format(DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMAT));
         }
-        return "[E]" + super.toString() + " (from: " + timeString + " ➞ to: " + timeString1 + ")";
+        return "[E]" + super.toString() + " || from: " + timeString + " ➞ to: " + timeString1;
     }
 
     /**
@@ -112,11 +120,11 @@ public class Event extends Task {
         String type = "E";
         String status = isDone ? "1" : "0";
         String description = this.description;
-        String time = this.fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm"));
+        String time = this.fromTime.format(DateTimeFormatter.ofPattern(DATE_TIME_STORAGE_DEFAULT_FORMAT));
         if (this.toTime == null) {
             return type + " || " + status + " || " + description + " || " + time;
         }
-        String timeOfTo = this.toTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm"));
+        String timeOfTo = this.toTime.format(DateTimeFormatter.ofPattern(DATE_TIME_STORAGE_DEFAULT_FORMAT));
         return type + " || " + status + " || " + description + " || " + time + " || " + timeOfTo;
     }
 
@@ -124,8 +132,9 @@ public class Event extends Task {
      * @inheritDoc
      */
     @Override
-    public Event clone() {
-        Event event = new Event(this.description, this.fromTime.format(DateTimeFormatter.ofPattern("yyyy/M/d HHmm")));
+    public Task clone() {
+        Event event = new Event(this.description,
+                                this.fromTime.format(DateTimeFormatter.ofPattern(DATE_TIME_STORAGE_DEFAULT_FORMAT)));
         event.setDone(this.isDone);
         event.toTime = this.toTime;
         return event;

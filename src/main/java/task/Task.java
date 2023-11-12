@@ -6,13 +6,19 @@ import java.time.format.DateTimeFormatter;
 /**
  * This class represents a task.
  */
-public class Task {
-    public static final String TIME_OUTPUT_FORMAT = "d MMM yyyy, E - hh:mma";
+public abstract class Task {
+    public static final String DATE_TIME_OUTPUT_FORMAT = "d MMM yyyy, E hh:mma";
+    public static final String DATE_TIME_OUTPUT_FORMAT_THIS_YEAR = "d MMM, E hh:mma";
+    public static final String DATE_TIME_STORAGE_DEFAULT_FORMAT = "yyyy/M/d HHmm";
+    public static final String TIME_START_DAY = " 0000";
+    public static final String TIME_END_DAY = " 2359";
+
     protected String description;
     protected boolean isDone;
 
     /**
      * Returns a task.
+     *
      * @param description the description of the task
      */
     public Task(String description) {
@@ -39,16 +45,17 @@ public class Task {
 
     /**
      * Returns the task is done or not.
-     * This method is to get the task is done or not.
+     * This method is to get the task done or not.
      */
     public boolean getDone() {
         return isDone;
     }
 
     /**
-     * This method is to handle the date and time.
-     * It will cover 4 different format of the date and time.
+     * Returns the date and time of the task.
+     * It will cover four different formats of the date and time.
      *
+     * @param time the time string from the user.
      * @return The LocalDateTime object to the format requirement.
      */
     protected LocalDateTime handleDateTime(String time) {
@@ -97,11 +104,11 @@ public class Task {
     }
 
     /**
-     * Returns task in string format.
+     * Returns a task in string format.
      * This method is to save the data to the local file.
      */
     public String toStorageString() {
-        String status = isDone ? "1" : "0" ;
+        String status = isDone ? "1" : "0";
         String description = this.description;
         return status + " || " + description;
     }
@@ -109,13 +116,9 @@ public class Task {
     /**
      * Returns a clone of the task.
      * This method is to clone the task.
-     * It will use for the undo command.
+     * It will use it for the undo command.
      *
      * @return the clone task.
      */
-    public Task clone() {
-        Task cloneTask = new Task(this.description);
-        cloneTask.setDone(this.isDone);
-        return cloneTask;
-    }
+    public abstract Task clone();
 }

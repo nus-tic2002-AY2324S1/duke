@@ -1,17 +1,19 @@
 package task;
 
-import command.AddTaskCommand;
+import command.CommandCreator;
 
 import exceptions.MyCustomException;
 import exceptions.InputBlankException;
 import io.HelloAndByeMessage;
 import io.TaskStorage;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static command.UndoCommand.putInToStack;
+import static command.UndoCommand.putOnTheStack;
 
 import java.util.stream.Stream;
 
@@ -27,7 +29,7 @@ public class Craby extends HelloAndByeMessage {
     private static final String REGEX = ".*[^a-zA-Z0-9\\s].*";
 
     /**
-     * Sends a greeting to the user if it is the first time the user run the program.
+     * Sends a greeting to the user if it is the first time the user's runs the program.
      * This method will print out the logo and the hello message.
      *
      * @param is1stTime the arguments from the command line.
@@ -45,12 +47,12 @@ public class Craby extends HelloAndByeMessage {
         while (true) {
             String input = scanner.nextLine();
             input = input.trim();
-
             // the data store in the file slip by || so replace it to | to not make the data wrong
-            input = input.replaceAll("\\|\\|", "|");
-
+            while (input.contains("||")) {
+                input = input.replaceAll("\\|\\|", "|");
+            }
             boolean isExit = false;
-            putInToStack(input, tasks); // use for undo command
+            putOnTheStack(input, tasks); // use for undo command
             try {
                 isExit = handleInput(input, tasks);
             } catch (InputBlankException e) {
@@ -133,7 +135,7 @@ public class Craby extends HelloAndByeMessage {
         try {
             return Keyword.valueOf(checkInput);
         } catch (IllegalArgumentException e) {
-            // if the input is not a keyword
+            // if the input is not a keyword,
             // it will be a task
             return Keyword.DEFAULT;
         }

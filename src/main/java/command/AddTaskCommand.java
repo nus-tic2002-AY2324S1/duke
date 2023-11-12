@@ -12,13 +12,12 @@ import java.util.List;
 
 /**
  * Adds a task to the list.
- * AddTaskCommand class is a class that handle the add command.
+ * AddTaskCommand class is a class that handles the add command.
  */
 public class AddTaskCommand extends CrabyMessage implements CommandInterface {
 
     /**
-     * @inheritDoc
-     * Adds the task to the list.
+     * @inheritDoc Adds the task to the list.
      * It will print out the message to the user.
      */
     @Override

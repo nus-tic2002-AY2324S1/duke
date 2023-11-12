@@ -9,10 +9,10 @@ import java.util.List;
  * This class represents an unmark command.
  */
 public class UnmarkCommand extends CrabyMessage implements CommandInterface {
+    Integer UNMARK_LENGTH = 6;
 
     /**
-     * @inheritDoc
-     * Sends the unmark message to the user and unmark the task.
+     * @inheritDoc Sends the unmark message to the user and unmark the task.
      */
     @Override
     public void handleCommand(String input, List<Task> tasks) {
@@ -24,8 +24,16 @@ public class UnmarkCommand extends CrabyMessage implements CommandInterface {
             return;
         }
         input = input.toLowerCase().trim();
+        String checkUnmark = input.substring(UNMARK_LENGTH).trim();
+        if (checkUnmark.equals("all")) {
+            printUnmarkAllMessage();
+            for (Task task : tasks) {
+                task.setDone(false);
+            }
+            return;
+        }
         try {
-            Integer checkNum = getInteger(input, tasks);
+            Integer checkNum = getInteger(checkUnmark, tasks);
             if (checkNum == null) {
                 return;
             }
@@ -36,10 +44,8 @@ public class UnmarkCommand extends CrabyMessage implements CommandInterface {
         }
     }
 
-    private static Integer getInteger(String input, List<Task> tasks) {
-        input = input.trim();
-        String checkMark = input.substring(6).trim();
-        int checkNum = (Integer.parseInt(checkMark)) - 1;
+    private static Integer getInteger(String checkUnmark, List<Task> tasks) {
+        int checkNum = (Integer.parseInt(checkUnmark)) - 1;
         if (checkNum >= tasks.size() || checkNum < 0) {
             printNumOutOfTask(tasks.size());
             return null;

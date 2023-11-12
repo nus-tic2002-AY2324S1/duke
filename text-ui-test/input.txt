@@ -1,4 +1,4 @@
-Amber
+School
 find test
   list
 Test mark
@@ -87,5 +87,5 @@ list
 undo
 list
      delete        all
-help
+     help
 bye CrabY

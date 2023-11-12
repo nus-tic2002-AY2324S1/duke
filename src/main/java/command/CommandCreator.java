@@ -1,21 +1,10 @@
-package task;
+package command;
 
-import command.ByeCommand;
-import command.ListCommand;
-import command.AddTaskCommand;
-import command.BlahCommand;
-import command.DeleteCommand;
-import command.FindCommand;
-import command.HelpCommand;
-import command.MarkCommand;
-import command.SortCommand;
-import command.SwitchCommand;
-import command.UnmarkCommand;
-import command.UndoCommand;
-import command.CommandInterface;
+import task.Keyword;
+
 
 /**
- * CommandCreator class is a class that create the command.
+ * CommandCreator class is a class that creates the command.
  * It has a method to create the command.
  */
 public class CommandCreator {
@@ -48,6 +37,9 @@ public class CommandCreator {
             return new HelpCommand();
         case UNDO:
             return new UndoCommand();
+        case CHECKLISTS:
+        case CHECKLIST:
+            return new ChecklistCommand();
         case SWITCH:
             return new SwitchCommand();
         case ADD:

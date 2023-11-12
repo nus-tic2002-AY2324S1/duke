@@ -3,7 +3,6 @@ package io;
 /**
  * HelloAndByeMessage class is a class that handle some message when Craby start.
  * It has a method to print out the hello and bye message.
- *
  */
 public class HelloAndByeMessage extends CrabyMessage {
     /**
@@ -12,13 +11,14 @@ public class HelloAndByeMessage extends CrabyMessage {
     public static void printHello() {
         System.out.println(LINE + System.lineSeparator() +
 
-                "   ____                  _      __   __" + System.lineSeparator() +
-                "  / ___|  _ __    __ _  | |__   \\ \\ / /" + System.lineSeparator() +
-                " | |     | '__|  / _` | | '_ \\   \\ V /" + System.lineSeparator() +
-                " | |___  | |    | (_| | | |_) |   | |" + System.lineSeparator() +
-                "  \\____| |_|     \\__,_| |_.__/    |_|" + System.lineSeparator() + System.lineSeparator() + LINE);
+                                   "   ____                  _      __   __" + System.lineSeparator() +
+                                   "  / ___|  _ __    __ _  | |__   \\ \\ / /" + System.lineSeparator() +
+                                   " | |     | '__|  / _` | | '_ \\   \\ V /" + System.lineSeparator() +
+                                   " | |___  | |    | (_| | | |_) |   | |" + System.lineSeparator() +
+                                   "  \\____| |_|     \\__,_| |_.__/    |_|" + System.lineSeparator() +
+                                   System.lineSeparator() + LINE);
 
-        System.out.println(SPACES + "Hi Amber ♡, CrabY 🦀 here!");
+        System.out.println(SPACES + "Hi ♡, CrabY 🦀 here!");
         System.out.println(SPACES + "Which checklist do you want to work on today? (｡◕‿◕｡)");
         System.out.println(SPACES + "╰┈➤You can typing: \"School\" | \"Work\" | \"Personal\" |");
         System.out.println(SPACES + "               or  [checklist-name] if you wanna creat a new list.");
@@ -72,13 +72,16 @@ public class HelloAndByeMessage extends CrabyMessage {
      * Sends the bye message to the user.
      */
     public static void printByeMessage() {
-        System.out.println(SPACES + "Bye Amber ♡, hope to see you again soon! •ᴗ•");
+        System.out.println(SPACES + "Bye ♡, hope to see you again soon! •ᴗ•");
         System.out.println(LINE);
-        System.out.println("               __   ♡   __" + System.lineSeparator() + "              /           \\" +
-                System.lineSeparator() + "             (  / @   @ \\  )" + System.lineSeparator() +
-                "              \\(_ _\\_/_ _)/" + System.lineSeparator() + "            (\\ `-/     \\-' /)" +
-                System.lineSeparator() + "             \"===\\     /===\"" + System.lineSeparator() +
-                "              .==')___(`==." + System.lineSeparator() + "               .='     `=.");
+        System.out.println(        "               __   ♡   __" + System.lineSeparator() +
+                                   "              /           \\" + System.lineSeparator() +
+                                   "             (  / @   @ \\  )" + System.lineSeparator() +
+                                   "              \\(_ _\\_/_ _)/" + System.lineSeparator() +
+                                   "            (\\ `-/     \\-' /)" + System.lineSeparator() +
+                                   "             \"===\\     /===\"" + System.lineSeparator() +
+                                   "              .==')___(`==." + System.lineSeparator() +
+                                   "               .='     `=.");
     }
 
 }
