@@ -11,32 +11,34 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Dupe {
-    private static final int MAX_TASKS = 100;
-    private static Task[] tasks = new Task[MAX_TASKS];
-    private static int taskCounter = 0;
+import java.util.ArrayList;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        loadTasksFromFile();
+public class Dupe {
+
+    private static ArrayList<Task> tasks = new ArrayList<>();
+    private static Ui ui = new Ui();
+    private static final String FILE_PATH = "data/dupe.txt"; // adjust the file path as needed
+    private static Storage storage = new Storage(FILE_PATH);
+
+    public static void main(String[] args) throws DupeException {
+        try {
+            tasks = storage.load();
+        } catch (DupeException e) {
+            // Handle the exception (e.g., show an error message)
+            System.out.println("Error loading tasks: " + e.getMessage());
+        }
         // Greet the user
-        String logo = "    ____                       __\n" +
-                "   / __ \\__  ______  ___  ____/ /\n" +
-                "  / / / / / / / __ \\/ _ \\/ __  /\n" +
-                " / /_/ / /_/ / /_/ /  __/ /_/ /\n" +
-                "/_____/\\__,_/ .___/\\___/\\__,_/\n" +
-                "           /_/";
-        System.out.println("Hello! I'm DupeBot.\n" + logo);
-        System.out.println("What can I do for you?");
+        ui.showWelcome();
 
 
         while (true) {
-            String userInput = scanner.nextLine();
+            String userInput = ui.readCommand();
+            ui.showLine();
             if (userInput.equalsIgnoreCase("bye")) {
-                System.out.println("Bye. Hope to see you again soon!");
+                ui.showBye();
                 break;
             }
-            else if (userInput.equalsIgnoreCase("list")) {
+            else if (userInput.toLowerCase().startsWith("list")) {
                 displayTasks();
             } else if (userInput.toLowerCase().startsWith("mark ")) {
                 markTaskAsDone(userInput);
@@ -46,30 +48,27 @@ public class Dupe {
                 deleteTask(userInput);
             } else {
                 addTask(userInput);
-
             }
         }
-
-        scanner.close();
     }
 
     private static void displayTasks() {
-        if (taskCounter == 0) {
+        if (tasks.isEmpty()) {
             System.out.println("The task list is currently empty");
         } else {
             System.out.println("Here are the tasks in your list:");
-            for (int i = 0; i < taskCounter; i++) {
-                System.out.println((i + 1) + ". " + tasks[i].toString());
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println((i + 1) + ". " + tasks.get(i).toString());
             }
         }
     }
 
-    private static void markTaskAsDone(String userInput) {
+    private static void markTaskAsDone(String userInput) throws DupeException {
         int taskIndex = getTaskIndex(userInput);
-        if (taskIndex >= 1 && taskIndex <= taskCounter) {
-            Task task = tasks[taskIndex - 1];
+        if (taskIndex >= 1 && taskIndex <= tasks.size()) {
+            Task task = tasks.get(taskIndex - 1);
             task.markAsDone();
-            saveTasksToFile();
+            storage.save(tasks);
             System.out.println("Nice! I've marked this task as done:");
             System.out.println("  " + task.getStatusIcon() + " " + task.getDescription());
         } else {
@@ -77,12 +76,12 @@ public class Dupe {
         }
     }
 
-    private static void unmarkTask(String userInput) {
+    private static void unmarkTask(String userInput) throws DupeException {
         int taskIndex = getTaskIndex(userInput);
-        if (taskIndex >= 1 && taskIndex <= taskCounter) {
-            Task task = tasks[taskIndex - 1];
+        if (taskIndex >= 1 && taskIndex <= tasks.size()) {
+            Task task = tasks.get(taskIndex - 1);
             task.markAsNotDone();
-            saveTasksToFile();
+            storage.save(tasks);
             System.out.println("OK, I've marked this task as not done yet:");
             System.out.println("  " + task.getStatusIcon() + " " + task.getDescription());
         } else {
@@ -97,13 +96,14 @@ public class Dupe {
                 return Integer.parseInt(parts[1]);
             } catch (NumberFormatException e) {
                 // Handle the case where the user didn't provide a valid number.
+                System.out.println("Invalid task number format.");
             }
         }
         return -1; // Invalid input
     }
 
     private static void addTask(String userInput) {
-        if (taskCounter < MAX_TASKS) {
+
             String[] inputParts = userInput.split(" ", 2);
 
             if (inputParts.length < 2) {
@@ -159,19 +159,16 @@ public class Dupe {
                         throw new UnknownCommandException();
                 }
 
-                tasks[taskCounter] = task;
-                taskCounter++;
-                saveTasksToFile(); //save to file after a new task is added
+                tasks.add(task);
+                storage.save(tasks); //save to file after a new task is added
                 System.out.println("Got it. I've added this task:");
                 System.out.println("  " + task.toString());
-                System.out.println("Now you have " + taskCounter + " tasks in the list.");
+                System.out.println("Now you have " + (tasks.size()) + " tasks in the list.");
 
             } catch (DupeException e) {
                 System.out.println(e.getMessage());
             }
-        } else {
-            System.out.println("Sorry, your task list is full.");
-        }
+
     }
 
     private static String extractBy(String description) {
@@ -211,7 +208,7 @@ public class Dupe {
         return description;
     }
     private static void deleteTask(String userInput) {
-        if (taskCounter == 0) {
+        if (tasks.isEmpty()) {
             System.out.println("The task list is currently empty. Nothing to delete.");
             return;
         }
@@ -225,66 +222,22 @@ public class Dupe {
 
         try {
             int taskIndex = Integer.parseInt(inputParts[1]);
-            if (taskIndex < 1 || taskIndex > taskCounter) {
+            if (taskIndex < 1 || taskIndex > tasks.size()) {
                 System.out.println("TaskClasses.Task index is out of range.");
             } else {
                 // Remove the task from the list
-                Task deletedTask = tasks[taskIndex - 1];
-                for (int i = taskIndex - 1; i < taskCounter - 1; i++) {
-                    tasks[i] = tasks[i + 1];
-                }
-                tasks[taskCounter - 1] = null;
-                taskCounter--;
-                saveTasksToFile();
+                Task deletedTask = tasks.remove(taskIndex - 1);
+                storage.save(tasks);
 
                 System.out.println("Noted. I've removed this task:");
                 System.out.println("  " + deletedTask.toString());
-                System.out.println("Now you have " + taskCounter + " tasks in the list.");
+                System.out.println("Now you have " + tasks.size() + " tasks in the list.");
             }
         } catch (NumberFormatException e) {
             System.out.println("Invalid task index. Please enter a valid number.");
         }
-    }
-    private static void saveTasksToFile() {
-        try {
-            // Specify the directory path
-            String directoryPath = "./data/";
-
-            // Create the directory if it doesn't exist
-            File directory = new File(directoryPath);
-            if (!directory.exists()) {
-                directory.mkdirs(); // Creates the directory and any necessary parent directories
-            }
-
-            // Now, save the tasks to the file within the directory
-            FileWriter writer = new FileWriter(directoryPath + "duke.txt");
-            for (int i = 0; i < taskCounter; i++) {
-                writer.write(tasks[i].toFileString() + "\n");
-            }
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Error saving tasks to file: " + e.getMessage());
-        }
-    }
-    private static void loadTasksFromFile() {
-        try {
-            File file = new File("data/duke.txt");
-            if (file.exists()) {
-                Scanner scanner = new Scanner(file);
-                while (scanner.hasNext()) {
-                    String taskString = scanner.nextLine();
-                    Task task = Task.fromFileString(taskString);
-                    if (task != null) {
-                        tasks[taskCounter] = task;
-                        taskCounter++;
-                    }
-                }
-                scanner.close();
-            }
-        } catch (IOException e) {
-            System.out.println("Error loading tasks from file.");
-        } catch (CorruptedFileException e) {
-            throw new RuntimeException(e);
+        catch (DupeException e) {
+            System.out.println("Error saving tasks: " + e.getMessage());
         }
     }
 

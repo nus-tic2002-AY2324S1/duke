@@ -1,5 +1,7 @@
 package TaskClasses;
 
+import ExceptionClasses.*;
+
 import ExceptionClasses.CorruptedFileException;
 
 public class Task {
@@ -11,7 +13,11 @@ public class Task {
         this.description = description;
         this.isDone = false;
     }
-    public Task(String description, boolean isDone) {
+    public Task(String description, boolean isDone) throws IncompleteDataException {
+        if (description == null || description.isEmpty()) {
+            throw new IncompleteDataException();
+        }
+
         this.description = description;
         this.isDone = isDone;
     }
@@ -19,10 +25,6 @@ public class Task {
 
     public String getDescription() {
         return description;
-    }
-
-    public boolean isDone() {
-        return isDone;
     }
 
     public void markAsDone() {
@@ -45,7 +47,7 @@ public class Task {
         return isDone;
     }
 
-    public static Task fromFileString(String fileString) throws CorruptedFileException {
+    public static Task fromFileString(String fileString) throws CorruptedFileException, IncompleteDataException {
         String[] parts = fileString.split("\\s*\\|\\s*");
         if (parts.length >= 3) {
             String taskType = parts[0].trim();
@@ -56,22 +58,36 @@ public class Task {
 
             switch (taskType) {
                 case "T":
-                    return new ToDo(description, isDone);
+                    try {
+                        return new ToDo(description, isDone);
+                    } catch (IncompleteDataException e) {
+                        throw new IncompleteDataException("Incomplete data in ToDo task");
+                    }
                 case "D":
                     if (parts.length >= 4) {
                         String by = parts[3].trim();
-                        return new Deadline(description, by, isDone);
+                        try{
+                            return new Deadline(description, by, isDone);
+                        } catch (IncompleteDataException e){
+                            throw new IncompleteDataException("Incomplete data in Deadline task");
+                        }
+
                     } else {
-                        throw new CorruptedFileException("Missing information in Deadline task");
+                        throw new IncompleteDataException("Missing information in Deadline task");
                     }
                 case "E":
                     if (parts.length >= 5) {
                         String from = parts[3].trim();
                         String to = parts[4].trim();
-                        return new Event(description, from, to, isDone);
+                        try {
+                            return new Event(description, from, to, isDone);
+                        } catch (IncompleteDataException e){
+                            throw new IncompleteDataException("Incomplete data in Event task");
+                        }
                     } else {
-                    throw new CorruptedFileException("Missing information in Event task");
-                }
+                            throw new IncompleteDataException("Missing information in Event task");
+                    }
+
                 default:
                     throw new CorruptedFileException("Invalid task type"); // Invalid task type
             }

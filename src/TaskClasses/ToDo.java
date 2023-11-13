@@ -1,11 +1,13 @@
 package TaskClasses;
 
+import ExceptionClasses.IncompleteDataException;
+
 public class ToDo extends Task {
     public ToDo(String description) {
         super(description);
     }
 
-    public ToDo(String description, boolean isDone) {
+    public ToDo(String description, boolean isDone) throws IncompleteDataException {
         super(description, isDone);
     }
 
