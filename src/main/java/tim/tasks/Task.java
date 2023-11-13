@@ -10,7 +10,7 @@ public abstract class Task implements Serializable {
     private String description;
     private char type;
     private boolean isDone;
-    final int ONE_WEEK = 7;
+    final static int ONE_WEEK = 7;
 
     /**
      * Creates a Task object
@@ -29,6 +29,7 @@ public abstract class Task implements Serializable {
      * @return description of the task.
      */
     public String getDescription() {
+
         return this.description;
     }
 
@@ -38,6 +39,7 @@ public abstract class Task implements Serializable {
      * @return status of the task.
      */
     public String getIsDone(){
+
         return isDone ? "x" : " ";
     }
 
@@ -47,6 +49,7 @@ public abstract class Task implements Serializable {
      * @param markUnmark boolean of whether the task is done.
      */
     public void setIsDone(boolean markUnmark){
+
         isDone = markUnmark;
     }
 
@@ -56,6 +59,7 @@ public abstract class Task implements Serializable {
      * @return type of the task.
      */
     public char getType (){
+
         return type;
     }
 
@@ -64,5 +68,7 @@ public abstract class Task implements Serializable {
      *
      * @param type type of the task.
      */
-    public void setType (char type){ this.type = type; }
+    void setType (char type){
+
+        this.type = type; }
 }

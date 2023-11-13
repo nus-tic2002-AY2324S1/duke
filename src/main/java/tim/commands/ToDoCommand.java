@@ -23,7 +23,7 @@ public class ToDoCommand extends Command{
     }
 
     /**
-     * Adds a task to the back of the list.
+     * Adds a Todo task to the back of the list.
      *
      * @param inputEntry The input string from the user.
      * @param tasks List of tasks.

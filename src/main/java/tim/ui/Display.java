@@ -146,6 +146,7 @@ public class Display {
         } else {
             System.out.println("You are " + Math.abs(days) + " days overdue!");
         }
+        printDash();
     }
 
     /**

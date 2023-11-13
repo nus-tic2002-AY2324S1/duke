@@ -38,7 +38,7 @@ public class CountdownCommand extends Command {
                 System.out.println("oh no!  unhandled error");
             }
 
-        } catch (ArrayIndexOutOfBoundsException AIO) {
+        } catch (Exception e) {
             System.out.println("oh no!  please provide a valid index of the task!");
         }
     }

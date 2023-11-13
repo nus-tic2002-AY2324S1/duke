@@ -15,10 +15,10 @@ public class Tim {
      * @throws ClassNotFoundException If the file is corrupted.
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        TaskList list;
+        TaskList Tasks;
         Display.printLogo();
         Display.greetings();
-        list = Storage.loadList();
-        Parser.inputParser(list);
+        Tasks = Storage.loadList();
+        Parser.inputParser(Tasks);
     }
 }

@@ -17,13 +17,4 @@ public class ToDo extends Task {
         this.setType('T');
     }
 
-    /**
-     * @inheritDoc
-     *
-     * @return description of the task.
-     */
-    @Override
-    public String getDescription(){
-        return super.getDescription() ;
-    }
 }

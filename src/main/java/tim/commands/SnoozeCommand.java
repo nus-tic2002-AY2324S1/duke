@@ -51,7 +51,7 @@ public class SnoozeCommand extends Command{
      * @param index Index of the task to be postponed.
      * @param newDate The date to postpone the task to.
      * @param tasks List of tasks.
-     * @throws DateException
+     * @throws DateException Exception thrown when the date is invalid.
      */
     static void postPoneTask(int index, String newDate, TaskList tasks) throws DateException {
         index--;
@@ -78,7 +78,7 @@ public class SnoozeCommand extends Command{
      *
      * @param index Index of the task to be postponed.
      * @param tasks List of tasks.
-     * @throws DateException
+     * @throws DateException Exception thrown when the date is invalid.
      */
     static void snoozeTaskOneWeek(int index, TaskList tasks) throws DateException {
         index--;
