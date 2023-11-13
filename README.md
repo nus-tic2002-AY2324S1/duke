@@ -52,3 +52,13 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 ### Level 7
 1, implement Level-7 Save, A-MoreOOP, A-Packages, A-JUnit Testing
 
+### Level 8
+1, implement Level-7 Dates and Times,  Add JavaDoc comments, Automate project builds using Gradle,JUnit tests
+
+### Level 9
+1, Add individual feature 1 (undo), implement Find function, Give users a way to find a task by searching for a keyword.Tweak the code to comply with a coding standard， Increase Code Quality
+
+### Level 10
+1, Improve the individual feature and add another individual feature (Flexible data source),Use Assertions, and Package the App as a JAR file
+
+

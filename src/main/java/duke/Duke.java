@@ -11,9 +11,6 @@ import duke.ui.UI;
 import java.io.IOException;
 
 
-/**
- * duke.Duke is the main class for the duke.Duke program. It manages the initialization of UI, Storage, and TaskList, and handles the core program execution.
- */
 public class Duke {
     private final Storage storage;
     private TaskList taskList;
@@ -38,9 +35,6 @@ public class Duke {
     }
 
 
-    /**
-     * The main run loop of the duke.Duke program. It displays a welcome message and continues to accept and process user commands until the exit command is received.
-     */
     public void run() {
         UI.showWelcome();
         boolean isExit = false;
@@ -65,7 +59,11 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+        String filePath = "data/tasks.txt"; // Default file path
+        if (args.length > 0) {
+        filePath = args[0]; // Use provided file path if available
+        }
+        new Duke(filePath).run();
     }
 }
 

@@ -109,9 +109,16 @@ public class Utils {
     }
 
     /**
-     * @param dateTimeString date and time string to be parsed.
-     * @param parttern       parttern string
-     * @return A LocalDateTime object representing the parsed date and time.
+     * Parses a string representing a date and time into a {@link LocalDateTime} object.
+     * <p>
+     * This method attempts to parse the provided string based on the specified pattern.
+     * If the parsing is successful, a {@link LocalDateTime} object is returned.
+     * If the parsing fails due to a format mismatch, {@code null} is returned.
+     *
+     * @param dateTimeString The string representation of the date and time to be parsed.
+     * @param pattern        The pattern used for parsing the date and time string.
+     * @return A {@link LocalDateTime} object representing the parsed date and time,
+     *         or {@code null} if parsing fails.
      */
     public static LocalDateTime dateTimeParser(String dateTimeString, String parttern) {
         try {

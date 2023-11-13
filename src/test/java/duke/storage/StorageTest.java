@@ -31,12 +31,10 @@ public class StorageTest {
 
     @Test
     public void testLoadValidFile() throws DukeException {
-        // Create a test data file with tasks
         createTestDataFile(TEST_FILE_PATH);
 
         ArrayList<Task> loadedTaskList = Storage.load();
 
-        // Assert that the loaded tasks match the expected tasks
         ArrayList<Task> expectedTasks = new ArrayList<>();
         expectedTasks.add(Utils.newTodoTask("todo Task 1"));
         expectedTasks.add(Utils.newEventTask("event Task 2 /from 11/11/2023 /to 20/11/2023"));
@@ -47,25 +45,20 @@ public class StorageTest {
         assertEquals(expectedTasks.get(1).getDescription(), loadedTaskList.get(1).getDescription());
         assertEquals(expectedTasks.get(2).getDescription(), loadedTaskList.get(2).getDescription());
 
-        // Clean up: Delete the test data file
         deleteTestDataFile(TEST_FILE_PATH);
     }
 
     @Test
     public void testSaveTasks() throws DukeException, IOException {
-        // Add some tasks to the task list
         taskList.addTask(Utils.newTodoTask("todo Task 1"));
         taskList.addTask(Utils.newEventTask("event Task 2 /from 11/11/2023 /to 20/11/2023"));
         taskList.addTask(Utils.newDeadlineTask("deadline Task 3 /by 30/11/2023 1800"));
 
-        // Save the tasks to a test data file
         Storage.save(taskList);
 
-        // Check if the file exists
         File savedFile = new File("data/dukeOut.txt");
         assertTrue(savedFile.exists());
 
-        // Clean up: Delete the test data file
         deleteTestDataFile("data/dukeOut.txt");
     }
 

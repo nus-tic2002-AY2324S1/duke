@@ -44,7 +44,9 @@ public class Storage {
         History history = new History();
         try {
             File file = new File(filePath);
+            assert file.exists() : "Data file should exist for loading tasks";
             Scanner s = new Scanner(file);
+            UI.showMessage("Loading task ...... ");
             while (s.hasNextLine()) {
                 UI.showLine();
                 String fullCommand = s.nextLine().trim();
@@ -56,7 +58,6 @@ public class Storage {
                     History.saveHistory(taskList);
                 }
                 command.execute(taskList, ui, storage);
-
             }
             s.close();
         } catch (IOException e) {
@@ -73,6 +74,7 @@ public class Storage {
      * @throws IOException   If an IO error occurs during the saving process.
      */
     public static void save(TaskList taskList) throws DukeException, IOException {
+        assert taskList != null : "TaskList to be saved should not be null";
         String dukeOutPath = "data/dukeOut.txt";
         File file = new File(dukeOutPath);
         //  if file not exist, create it and its parent folder.
