@@ -1,6 +1,17 @@
 package task;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import parser.DateTimeParser;
+import storage.Storage;
+
+/**
+ * A class handle task with deadlines for multiple formats in Java.
+ */
 public class Deadline extends Task{
 
+    private static DateTimeParser dateParser;
     private String by;
     public Deadline(String d,boolean x) {
         super(d,x);
@@ -10,7 +21,7 @@ public class Deadline extends Task{
         return by;
     }
     public void setBy(String newBy) {
-        by = newBy;
+        by = dateParser.toDate(newBy);
     }
 
     public void filterBy(String description) {
@@ -18,7 +29,8 @@ public class Deadline extends Task{
         try {
             String[] splitBy = words[1].split("/by ");
             setDescription(splitBy[0]);
-            this.by = splitBy[1];
+            String deadline = splitBy[1];
+            this.by = dateParser.toDate(deadline);
         } catch(ArrayIndexOutOfBoundsException e) {
             //error message display is at main class
         }

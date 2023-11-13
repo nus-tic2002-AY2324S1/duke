@@ -1,19 +1,23 @@
 package task;
+
+import parser.DateTimeParser;
+
 public class Event extends Task{
+    private static DateTimeParser dateParser;
     private String from;
     private String to;
 
     //variable x stands for isDone
     public Event(String d, boolean x) {
         super(d,x);
-        setFromAndTo(d);
+        extractFromAndTo(d);
     }
 
     public void setFrom(String newFrom) {
-        this.from = newFrom;
+        this.from = dateParser.toDate(newFrom);
     }
 
-    public void setFromAndTo(String description) {
+    public void extractFromAndTo(String description) {
         String[] words = description.split(" ", 2);
         try {
             String[] splitFrom = words[1].split("/from ");
@@ -27,7 +31,7 @@ public class Event extends Task{
     }
 
     public void setTo(String newTo) {
-        this.to = newTo;
+        this.to = dateParser.toDate(newTo);
     }
 
     public String getFrom(){

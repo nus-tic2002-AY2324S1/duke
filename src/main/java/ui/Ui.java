@@ -9,7 +9,8 @@ public class Ui {
         System.out.println("Hello from\n" + logo);
         System.out.println("____________________________________________________________\n"+
                 "Hello! I'm venni\n" +
-                "What can I do for you?\n"
+                "What can I do for you?\n" +
+                "(if you wish to put in any date please follow dd/mm/yyyy)"
         );
     }
     public static void printBye(){
