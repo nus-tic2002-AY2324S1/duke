@@ -1,9 +1,7 @@
 package Duke;
-
-import Duke.DukeException;
 import Task.Shelf;
-
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -63,11 +61,16 @@ public class Storage {
         String[] split = shelfData.split("[|\n]");
         for (int i = 1; i-1 < split.length; i++) {
             if (i%3 == 0) {
-                type = split[i-3];
+                type = Parser.TypeParser(split[i-3]);
                 marking = split[i-2];
-                newlist.addSpecialTask(split[i-1], type);
+                if(split[i-1].contains("/by")){
+                    String[] datesplit = split[i-1].split(" /by ");
+                    newlist.addDateTask(datesplit[0], type, datesplit[1]);
+                }else {
+                    newlist.addSpecialTask(split[i - 1], type);
+                }
                 System.out.println(split[i-1]);
-                if(!marking.isEmpty()){
+                if(!marking.equals(" ")){
                     newlist.markTask(new String[]{"mark", Integer.toString(line_no)});
                 }
                 line_no++;

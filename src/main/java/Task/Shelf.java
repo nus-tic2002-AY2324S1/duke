@@ -78,7 +78,7 @@ public class Shelf {
             String deadline = "";
             if (specialTask instanceof DateTask){
                 DateTask dateTask = (DateTask) specialTask;
-                deadline = "|" + String.valueOf(dateTask.deadline);
+                deadline = " /by " + String.valueOf(dateTask.deadline);
             }
             save += specialTask.getTypeIcon() + "|" + specialTask.getStatusIcon() + "|" + specialTask.description + deadline + "\n";
         }

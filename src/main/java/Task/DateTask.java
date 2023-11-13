@@ -1,4 +1,5 @@
 package Task;
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -9,7 +10,7 @@ public class DateTask extends SpecialTask {
         this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
     public String getDate(){
-        String date = deadline.format(DateTimeFormatter.ofPattern("MMM-dd-yyyy"));
+        String date = " ("+ deadline.format(DateTimeFormatter.ofPattern("MMM-dd-yyyy")) + ")";
         return date;
     }
 }

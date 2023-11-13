@@ -30,19 +30,15 @@ public class Parser {
                 case "unmark":
                     Shelf.markTask(input);
                     break;
-                case "todo":
-                    Shelf.addSpecialTask(input[1], input[0]);
-                    break;
+                case "todo" :
                 case "deadline":
+                case "event":
                     if(!input[2].isEmpty()){
                         Shelf.addDateTask(input[1], input[0], input[2]);
                         System.out.println("test");
                     }else{
                         Shelf.addSpecialTask(input[1], input[0]);
                     }
-                    break;
-                case "event":
-                    Shelf.addSpecialTask(input[1], input[0]);
                     break;
                 case "delete":
                     Shelf.deleteTask(input[1]);
@@ -74,6 +70,19 @@ public class Parser {
             }
         }
         return words;
+    }
+
+    public static String TypeParser(String typeshort){
+        switch (typeshort){
+            case "T":
+                return "todo";
+            case "D":
+                return "deadline";
+            case "E":
+                return "event";
+            default:
+                return " ";
+        }
     }
 
 }
