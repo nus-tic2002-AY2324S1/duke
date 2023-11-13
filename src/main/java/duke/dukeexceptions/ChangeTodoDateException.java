@@ -11,7 +11,7 @@ public class ChangeTodoDateException extends DukeException {
      */
     public ChangeTodoDateException() {
 
-        super("You can't change the end date of a To do task!!!");
+        super("You can't change the date of a to-do task!!!");
     }
 
 }

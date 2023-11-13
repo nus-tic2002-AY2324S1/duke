@@ -5,26 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import duke.dukeexceptions.DukeException;
 import duke.dukeexceptions.InvalidNumberFormatException;
 
 /**
  * Tests the functionality of the DukeParser class.
  */
 public class DukeParserTest {
-
-    private DukeParser dukeParser;
-
-    /**
-     * Set up the test environment before each test case.
-     */
-    @BeforeEach
-    public void setUp() {
-
-        dukeParser = new DukeParser();
-    }
 
     /**
      * Test parsing a date and time string into a LocalDateTime object.
@@ -74,7 +63,7 @@ public class DukeParserTest {
      * Test parsing a command from user input.
      */
     @Test
-    public void testParseCommandFromInput() {
+    public void testParseCommandFromInput() throws DukeException {
 
         String command = DukeParser.parseCommandFromInput("delete 1");
         assertEquals(command, "delete");

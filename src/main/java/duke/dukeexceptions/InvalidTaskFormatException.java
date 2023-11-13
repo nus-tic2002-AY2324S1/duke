@@ -32,7 +32,7 @@ public class InvalidTaskFormatException extends DukeException {
                 + "<deadline + Task Name + /by + yyyy-MM-dd HH:mm>";
         case "event":
             return "Invalid format for Event task. Please provide in the format of "
-                + "<event + Duke.Task.Task Name + /from + "
+                + "<event + Task Name + /from + "
                 + "yyyy-MM-dd HH:mm:ss + /to + yyyy-MM-dd HH:mm>";
         default:
             throw new DukeException("Unknown task type: " + taskType);

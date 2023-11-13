@@ -8,6 +8,7 @@ import java.util.List;
 
 import duke.dukeexceptions.ChangeTodoDateException;
 import duke.dukeexceptions.DukeException;
+import duke.dukeexceptions.EmptyArgumentException;
 import duke.dukeexceptions.EmptyCommandException;
 import duke.dukeexceptions.InvalidNumberFormatException;
 import duke.dukeexceptions.InvalidTaskFormatException;
@@ -27,7 +28,7 @@ public class DukeParser {
     private static final int TO_KEYWORD_LENGTH = 3;
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm";
-    // Date and time format for parsing
+
     private static final DateTimeFormatter dateTimeFormatter;
     private static final DateTimeFormatter dateFormatter;
 
@@ -36,14 +37,14 @@ public class DukeParser {
         dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
     }
 
-    private final CommandExecutor commandExecutor;
+    private final CommandValidator commandValidator;
 
     /**
-     * Constructs a new DukeParser object and initializes the commandExecutor.
+     * Constructs a new DukeParser object and initializes the commandValidator.
      */
     public DukeParser() {
 
-        this.commandExecutor = new CommandExecutor();
+        this.commandValidator = new CommandValidator();
     }
 
     /**
@@ -108,25 +109,36 @@ public class DukeParser {
      * @param userInput User's input string
      * @return The parsed command from the input.
      */
-    protected static String parseCommandFromInput(String userInput) {
-
+    protected static String parseCommandFromInput(String userInput) throws DukeException {
         int spaceIndex = userInput.indexOf(' ');
+        if (spaceIndex == -1) {
+            throw new EmptyArgumentException(userInput);
+        }
         return userInput.substring(0, spaceIndex);
     }
 
     /**
-     * Extract the item index from mark, unmark, delete commands that modify a task's status.
+     * Extracts and validates the task index from the user input.
+     * This method takes a list of tasks and the user input string. It extracts the part
+     * of the input string containing the task index, converts it to an integer, and
+     * validates it. If the index is valid, it returns the corresponding item index in
+     * the task list. If the index is out of bounds or cannot be parsed, it throws an
+     * appropriate exception and prints an error message.
      *
-     * @param taskList  The list of tasks.
-     * @param userInput User's input string.
-     * @return The extracted item index.
-     * @throws InvalidNumberFormatException if the input format is incorrect.
+     * @param taskList The list of tasks.
+     * @param userInput The user input string containing the task index.
+     * @return The validated item index in the task list.
+     * @throws DukeException If the task index is out of bounds or cannot be parsed,
+     *                      indicating a task not found or an invalid number format.
      */
-    static int extractItemIndex(List<Task> taskList, String userInput) throws DukeException {
+    static int extractItemIndex(List<Task> taskList, String command , String userInput) throws DukeException {
 
         try {
             int spaceIndex = userInput.indexOf(' ');
             String integerPart = userInput.substring(spaceIndex + 1).trim();
+            if (integerPart.isEmpty()) {
+                throw new EmptyArgumentException(command);
+            }
             int itemIndex = parseInteger(integerPart) - 1;
             if (itemIndex < 0 || itemIndex >= taskList.size()) {
                 // Handle exception case where the item index is out of bounds or does not exist
@@ -134,75 +146,147 @@ public class DukeParser {
             }
             return itemIndex;
         } catch (InvalidNumberFormatException e) {
-            // Handle the case where the task is not found by index
             System.out.printf("%s\n", e.getMessage());
             MessageDisplay.printLineBreak();
         }
         return -1;
     }
 
-    static String extractTaskName(String arguments, int firstIndex) throws DukeException {
-
+    /**
+     * Extracts the task name from the provided arguments, up to the specified index.
+     * This method takes a string of arguments and an index indicating the first occurrence
+     * of a delimiter. It extracts the task name by taking a substring from the beginning
+     * of the arguments up to the specified index (exclusive), and then trims any leading
+     * or trailing whitespace.
+     *
+     * @param arguments The string containing the arguments.
+     * @param firstIndex The index indicating the first occurrence of a delimiter.
+     * @return The extracted task name.
+     */
+    static String extractTaskName(String arguments, int firstIndex) {
         return arguments.substring(0, firstIndex).trim();
     }
 
+    /**
+     * Extracts the deadline due date string from the provided arguments.
+     * This method takes a string of arguments and extracts the deadline due date string
+     * by locating the "/by" keyword and retrieving the substring following it. The extracted
+     * string is then trimmed to remove any leading or trailing whitespace. If the resulting
+     * string is empty, an exception is thrown to indicate an invalid task format.
+     *
+     * @param arguments The string containing the arguments.
+     * @return The extracted deadline due date string.
+     * @throws InvalidTaskFormatException If the deadline due date string is empty,
+     *                      indicating an invalid task format.
+     */
     static String extractDeadlineDueDateString(String arguments) throws DukeException {
 
         String taskDueDateString =
             arguments.substring(extractDeadlineByIndex(arguments) + BY_KEYWORD_LENGTH).trim();
         if (taskDueDateString.isEmpty()) {
-            throw new InvalidTaskFormatException("deadline");
+            throw new InvalidTaskFormatException(CommandValidator.DEADLINE_COMMAND);
         }
         return taskDueDateString;
     }
 
+    /**
+     * Extracts the deadline due date string from the provided arguments.
+     * This method takes a string of arguments and extracts the deadline due date string
+     * by locating the "by" keyword and retrieving the substring following it. The extracted
+     * string is then trimmed to remove any leading or trailing whitespace. If the resulting
+     * string is empty, an exception is thrown to indicate an invalid task format.
+     *
+     * @param arguments The string containing the arguments.
+     * @return The extracted deadline due date string.
+     * @throws InvalidTaskFormatException If the deadline due date string is empty,
+     *                      indicating an invalid task format.
+     */
     static String extractEventFromDateString(String arguments) throws DukeException {
 
         int fromIndex = extractEventFromIndex(arguments);
         String taskFromDateString =
             arguments.substring(fromIndex + FROM_KEYWORD_LENGTH, extractEventToIndex(arguments)).trim();
         if (taskFromDateString.isEmpty()) {
-            throw new InvalidTaskFormatException("event");
+            throw new InvalidTaskFormatException(CommandValidator.EVENT_COMMAND);
         }
         return taskFromDateString;
     }
 
+    /**
+     * Extracts the event end date string from the provided arguments.
+     * This method takes a string of arguments and extracts the event end date string
+     * by locating the "to" keyword and retrieving the substring following it. The extracted
+     * string is then trimmed to remove any leading or trailing whitespace. If the resulting
+     * string is empty, an exception is thrown to indicate an invalid task format.
+     *
+     * @param arguments The string containing the arguments.
+     * @return The extracted event end date string.
+     * @throws InvalidTaskFormatException If the event end date string is empty,
+     *                      indicating an invalid task format.
+     */
     static String extractEventToDateString(String arguments) throws DukeException {
 
         int toindex = extractEventToIndex(arguments);
         String taskToDateString = arguments.substring(toindex + TO_KEYWORD_LENGTH).trim();
         if (taskToDateString.isEmpty()) {
-            throw new InvalidTaskFormatException("event");
+            throw new InvalidTaskFormatException(CommandValidator.EVENT_COMMAND);
         }
         return taskToDateString;
     }
 
+    /**
+     * Extracts the index of the "/by" keyword from the provided arguments.
+     * This method searches for the position of the "/by" keyword within the given string
+     * of arguments. If the keyword is found, the method returns its starting index. If not
+     * found, an exception is thrown to indicate an invalid task format.
+     *
+     * @param arguments The string containing the arguments.
+     * @return The index of the "/by" keyword in the arguments.
+     * @throws InvalidTaskFormatException If the "/by" keyword is not found,
+     *                      indicating an invalid task format.
+     */
     static int extractDeadlineByIndex(String arguments) throws DukeException {
-        // Find the positions of "/by"
         int byIndex = arguments.indexOf("/by");
-        // Check if "/by" exists
         if (byIndex == -1) {
-            throw new InvalidTaskFormatException("deadline");
+            throw new InvalidTaskFormatException(CommandValidator.DEADLINE_COMMAND);
         }
         return byIndex;
     }
 
+    /**
+     * Extracts the index of the "/from" keyword from the provided arguments.
+     * This method searches for the position of the "/from" keyword within the given string
+     * of arguments. If the keyword is found, the method returns its starting index. If not
+     * found, an exception is thrown to indicate an invalid task format.
+     *
+     * @param arguments The string containing the arguments.
+     * @return The index of the "/from" keyword in the arguments.
+     * @throws InvalidTaskFormatException If the "/from" keyword is not found,
+     *                      indicating an invalid task format.
+     */
     static int extractEventFromIndex(String arguments) throws DukeException {
-        // Find the positions of "/from"
         int fromIndex = arguments.indexOf("/from");
-        // Check if "/from" exists
         if (fromIndex == -1) {
-            throw new InvalidTaskFormatException("event");
+            throw new InvalidTaskFormatException(CommandValidator.EVENT_COMMAND);
         }
         return fromIndex;
     }
 
+    /**
+     * Extracts the index of the "/to" keyword from the provided arguments.
+     * This method searches for the position of the "/to" keyword within the given string
+     * of arguments. If the keyword is found, the method returns its starting index. If not
+     * found, an exception is thrown to indicate an invalid task format.
+     *
+     * @param arguments The string containing the arguments.
+     * @return The index of the "/to" keyword in the arguments.
+     * @throws InvalidTaskFormatException If the "/to" keyword is not found,
+     *                      indicating an invalid task format.
+     */
     static int extractEventToIndex(String arguments) throws DukeException {
-        // Find the positions of "/to"
         int toIndex = arguments.indexOf("/to");
-        // Check if "/to" exists
         if (toIndex == -1) {
-            throw new InvalidTaskFormatException("event");
+            throw new InvalidTaskFormatException(CommandValidator.EVENT_COMMAND);
         }
         return toIndex;
     }
@@ -224,15 +308,12 @@ public class DukeParser {
                 throw new EmptyCommandException();
             }
             String command = inputs[0];
-            commandExecutor.executeCommand(fileStorage, display, taskList, command, userInput);
+            commandValidator.executeCommand(fileStorage, display, taskList, command, userInput);
         } catch (InvalidNumberFormatException e) {
             // Handle the case where the task is not found by index
             System.out.printf("%s\n", e.getMessage());
             MessageDisplay.printLineBreak();
-        } catch (DateTimeParseException e) {
-            System.out.printf("%s\n", e.getMessage());
-            MessageDisplay.printLineBreak();
-        } catch (ChangeTodoDateException e) {
+        } catch (DateTimeParseException | ChangeTodoDateException e) {
             System.out.printf("%s\n", e.getMessage());
             MessageDisplay.printLineBreak();
         } catch (DukeException e) {

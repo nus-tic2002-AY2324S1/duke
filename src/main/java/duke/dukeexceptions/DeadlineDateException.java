@@ -11,7 +11,7 @@ public class DeadlineDateException extends DukeException {
      */
     public DeadlineDateException() {
 
-        super("End Date should be after today!!!");
+        super("You can't reschedule the deadline to a past date!");
     }
 
 }

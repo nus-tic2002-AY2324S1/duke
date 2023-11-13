@@ -37,17 +37,29 @@ public class FindCommand extends CheckTaskCommand {
             MessageDisplay.printLineBreak();
             return;
         }
-        System.out.println("Here are the matching tasks in your list:");
+        boolean printed = false;
         int index = 1;
         for (Task task : taskList) {
             // Solution below used fuzzy string search from
             // https://central.sonatype.com/artifact/me.xdrop/fuzzywuzzy?smo=true
-            if (FuzzySearch.ratio(task.getTaskName(), keyword) >= 55) {
+            if (FuzzySearch.ratio(task.getTaskName(), keyword) >= 53) {
+                if (!printed) {
+                    System.out.println("Here are the matching tasks in your list:");
+                    MessageDisplay.printLineBreak();
+                    printed = true;
+                }
                 System.out.println(index + "." + task);
                 index++;
             }
         }
-        MessageDisplay.printLineBreak();
+        if (printed) {
+            MessageDisplay.printLineBreak();
+        }
+
+        if (!printed) {
+            System.out.printf("There's no relevant task with keyword '%s'.\n", keyword);
+            MessageDisplay.printLineBreak();
+        }
     }
 
     /**

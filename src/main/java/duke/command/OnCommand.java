@@ -35,26 +35,26 @@ public class OnCommand extends CheckTaskCommand {
             MessageDisplay.printLineBreak();
             return;
         }
-        boolean headerPrinted = false;
+        boolean printed = false;
         int index = 1;
         // Display the date and the tasks as of that date
         for (Task task : taskList) {
             // Check if the task should be displayed based on the date
             if (task.checkDate(date)) {
-                if (!headerPrinted) {
+                if (!printed) {
                     System.out.println("Here are the tasks in your list as of " + date);
                     MessageDisplay.printLineBreak();
-                    headerPrinted = true;
+                    printed = true;
                 }
                 System.out.println(index + "." + task);
                 index++;
             }
-            if (index - 1 == taskList.size()) {
-                MessageDisplay.printLineBreak();
-            }
+        }
+        if (printed) {
+            MessageDisplay.printLineBreak();
         }
 
-        if (!headerPrinted) {
+        if (!printed) {
             System.out.printf("There's nothing on %s%n", date.toString());
             MessageDisplay.printLineBreak();
         }

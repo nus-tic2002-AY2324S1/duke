@@ -35,13 +35,15 @@ public class FileRead extends FileHandler {
             String inputs;
             // Read each line from the file until the end is reached
             while ((inputs = bufferedReader.readLine()) != null) {
-                String[] input = inputs.replaceAll(" ", "").split("\\|");
+                String[] input = inputs.split("\\|");
                 if (input.length <= 2 || input.length > 5) {
                     throw new FileCorruptedException();
                 }
+                for (int i = 0; i < input.length; i++) {
+                    input[i] = input[i].trim();
+                }
                 String taskType = input[0];
                 boolean isCompleted;
-
                 try {
                     int temp = DukeParser.parseInteger(input[1]);
                     isCompleted = temp == 1;
@@ -62,8 +64,7 @@ public class FileRead extends FileHandler {
                         throw new FileCorruptedException();
                     }
                     try {
-                        LocalDateTime taskDueDate = DukeParser.parseDateTimeOrDate(
-                            input[3].substring(0, 10) + " " + input[3].substring(10));
+                        LocalDateTime taskDueDate = DukeParser.parseDateTimeOrDate(input[3]);
                         task = new DeadlineTask(taskName, isCompleted, taskDueDate);
                     } catch (DateTimeParseException e) {
                         throw new FileCorruptedException();
@@ -74,10 +75,8 @@ public class FileRead extends FileHandler {
                         throw new FileCorruptedException();
                     }
                     try {
-                        LocalDateTime taskFrom = DukeParser.parseDateTimeOrDate(
-                            input[3].substring(0, 10) + " " + input[3].substring(10));
-                        LocalDateTime taskTo = DukeParser.parseDateTimeOrDate(
-                            input[4].substring(0, 10) + " " + input[4].substring(10));
+                        LocalDateTime taskFrom = DukeParser.parseDateTimeOrDate(input[3]);
+                        LocalDateTime taskTo = DukeParser.parseDateTimeOrDate(input[4]);
                         task = new EventTask(taskName, isCompleted, taskFrom, taskTo);
                     } catch (DateTimeParseException e) {
                         throw new FileCorruptedException();
