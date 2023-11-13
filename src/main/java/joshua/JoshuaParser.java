@@ -14,6 +14,7 @@ import commands.HelpCommand;
 import commands.InvalidCommand;
 import exceptions.InvalidCommandException;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
@@ -52,10 +53,11 @@ public class JoshuaParser {
 
         switch(commandWord) {
         case MarkCommand.COMMAND_WORD:
-            return prepareMark(args);
-
+            // Fallthrough
         case UnmarkCommand.COMMAND_WORD:
-            return prepareUnmark(args);
+            // Fallthrough
+        case DeleteCommand.COMMAND_WORD:
+            return prepareTaskOperationCommand(commandWord, args);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -68,9 +70,6 @@ public class JoshuaParser {
 
         case EventCommand.COMMAND_WORD:
             return prepareEvent(args);
-
-        case DeleteCommand.COMMAND_WORD:
-            return prepareDelete(args);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommand(args);
@@ -86,40 +85,49 @@ public class JoshuaParser {
         }
     }
 
-    public Command prepareMark(String commandArgs) {
-        int taskNum = parseTaskNumber(commandArgs);
-        if (taskNum == -1) {
-            return new InvalidCommand("Please enter an integer number.");
-        }
-        return new MarkCommand(taskNum);
-    }
-
-    public Command prepareUnmark(String commandArgs) {
-        int taskNum = parseTaskNumber(commandArgs);
-        if (taskNum == -1) {
-            return new InvalidCommand("Please enter an integer number.");
-        }
-        return new UnmarkCommand(taskNum);
-    }
-
-    public Command prepareDelete(String commandArgs) {
-        int taskNum = parseTaskNumber(commandArgs);
-        if (taskNum == -1) {
-            return new InvalidCommand("Please enter an integer number.");
-        }
-        return new DeleteCommand(taskNum);
-    }
-
-    private int parseTaskNumber(String commandArgs) {
-        int taskNum = -1;
+    /**
+     *  This method should only be used for task operation commands (ie mark, unmark, delete).
+     *  It parses the command arguments which should be a string of numbers eg: "1,2,3,4,5"
+     *  into an int array and uses it to instantiate the corresponding Command object.
+     *
+     * @param commandWord The command input by the user
+     * @param commandArgs The arguments for the command
+     * @return A Command object corresponding to the commandWord or InvalidCommand if command is invalid
+     */
+    private Command prepareTaskOperationCommand(String commandWord, String commandArgs) {
+        int[] taskNums;
         try {
-            taskNum = Integer.parseInt(commandArgs);
-        } catch (NumberFormatException ignored) {
+            taskNums = parseTaskNumbers(commandArgs);
+        } catch (InvalidCommandException e) {
+            return new InvalidCommand(e.getMessage());
         }
-        return taskNum;
+
+        switch (commandWord) {
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommand(taskNums);
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommand(taskNums);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommand(taskNums);
+        default:
+            return new InvalidCommand(InvalidCommand.INVALID_COMMAND_MESSAGE);
+        }
     }
 
-    public Command prepareTodo(String commandArgs) {
+    private int[] parseTaskNumbers(String commandArgs) throws InvalidCommandException {
+        String[] taskNumsStrArray = commandArgs.split(",");
+        int[] taskNums = new int[taskNumsStrArray.length];
+        try {
+            for (int i = 0; i < taskNumsStrArray.length; i++) {
+                taskNums[i] = Integer.parseInt(taskNumsStrArray[i].trim());
+            }
+        } catch (NumberFormatException e) {
+            throw new InvalidCommandException("Please enter an integer number.");
+        }
+        return taskNums;
+    }
+
+    private Command prepareTodo(String commandArgs) {
         String desc = commandArgs.trim();
         if (desc.isEmpty()) {
             return new InvalidCommand("Enter a description for your todo.");
@@ -127,7 +135,7 @@ public class JoshuaParser {
         return new TodoCommand(desc);
     }
 
-    public Command prepareDeadline(String commandArgs) {
+    private Command prepareDeadline(String commandArgs) {
         Matcher matcher = DEADLINE_ARGUMENT_FORMAT.matcher(commandArgs.trim());
         if(!matcher.matches()) {
             return new InvalidCommand("Please follow this command format for \"deadline\":\n" +
@@ -148,12 +156,14 @@ public class JoshuaParser {
             by = parseDateTime(by);
         } catch (InvalidCommandException e) {
             return new InvalidCommand(e.getMessage());
+        } catch (DateTimeException e) {
+            return new InvalidCommand("Entered date is invalid. Please check your input.");
         }
 
         return new DeadlineCommand(desc, by);
     }
 
-    public Command prepareEvent(String commandArgs) {
+    private Command prepareEvent(String commandArgs) {
         Matcher matcher = EVENT_ARGUMENT_FORMAT.matcher(commandArgs.trim());
         if(!matcher.matches()) {
             return new InvalidCommand("Please follow this command format for \"event\":\n" +
@@ -179,6 +189,8 @@ public class JoshuaParser {
             to = parseDateTime(to);
         } catch (InvalidCommandException e) {
             return new InvalidCommand(e.getMessage());
+        } catch (DateTimeException e) {
+            return new InvalidCommand("Entered date is invalid. Please check your input.");
         }
 
         return new EventCommand(desc, from ,to);
