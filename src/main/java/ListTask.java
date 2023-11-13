@@ -108,10 +108,14 @@ public class ListTask {
         ArrayList<Task> Sorted = new ArrayList<>();
         for ( Task task : List){
             if(task.getStatusIcon().equals(" ")) {
-                if (task.getTag().equals("D"))
+                if (task.getTag().equals("D")){
                     PreSort.add(task);
-                if (task.getTag().equals("E"))
+                }
+                if (task.getTag().equals("E")){
+                    if(task.startTime().isAfter(ViewDay)){
                     PreSort.add(task);
+                    }
+                }
             }
         }
         for( Task task : PreSort){

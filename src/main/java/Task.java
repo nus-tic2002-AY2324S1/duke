@@ -24,6 +24,10 @@ public class Task {
     public LocalDateTime endTime(){
         return null;
 }
+    public LocalDateTime startTime(){
+        return null;
+    }
+
     public String printDate(LocalDateTime date){
         String zero = "0";
         String BuildDate = "";

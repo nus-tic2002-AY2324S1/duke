@@ -27,7 +27,12 @@ public class Event extends Task {
         return "[E][" + getStatusIcon() + "] " + getDescription() + "(from:" + getFrom() + " to:" + getTo() + ")";
     }
     @Override
+    public LocalDateTime startTime(){
+        return from;
+    }
+    @Override
     public LocalDateTime endTime(){
         return to;
     }
 }
+
