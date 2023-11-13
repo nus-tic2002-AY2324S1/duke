@@ -20,6 +20,11 @@ public class AddEvent extends Command {
             throw new DukeException("Please follow the correct format.");
         }
 
+        // since the program hardcoded +5, need to check that /from has no trailing letters after it 
+        if (input.charAt(input.indexOf("/from")+5)!=' ') throw new DukeException("Ensure you have no trailing letters behind /from.");
+        // since the program hardcoded +5, need to check that /from has no trailing letters after it 
+        if (input.charAt(input.indexOf("/to")+3)!=' ') throw new DukeException("Ensure you have no trailing letters behind /to.");
+
         String userFrom = input.substring(input.indexOf("/from")+5, input.indexOf("/to")).trim();
         String userTo = input.substring(input.indexOf("/to")+3).trim();
         String regex = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";

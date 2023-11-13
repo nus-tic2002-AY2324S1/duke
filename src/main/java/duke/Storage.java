@@ -26,7 +26,7 @@ public class Storage {
         this.tasks = new ArrayList<Task>();
 
         this.filePath = filePath;
-        file = new File(filePath);
+        this.file = new File(filePath);
 
         int endIndex = filePath.lastIndexOf("/");
 

@@ -12,7 +12,7 @@ public class Parser {
     /**
      * Returns a {@code Command} object based on user input.
      * <p>
-     * This method performs input validation before creating the {@code Command} object.
+     * Further validation will be done inside the {@code Command} object.
      * Users can later call the {@link Command#execute()} method on the returned object.
      * </p>
      *
@@ -22,35 +22,22 @@ public class Parser {
      */
     public static Command parse(String userInput) throws DukeException{
         String userCommand = userInput.split(" ")[0];
-        int item = 0;
-
-        if (userCommand.toLowerCase().equals("mark") || userCommand.toLowerCase().equals("unmark") || userCommand.toLowerCase().equals("delete")){
-            if (userInput.split(" ").length < 2){
-                throw new DukeException("Missing item number!");
-            }
-            try{
-                item = Integer.parseInt(userInput.split(" ")[1]);
-            }
-            catch (NumberFormatException e){
-                throw new DukeException("Ensure the item number is a valid integer!");
-            }        
-        }
 
         switch(userCommand.toLowerCase()){
             case "list":
                 c = new ListCommand();
                 break;
             case "mark":
-                c = new MarkCommand(item);
+                c = new MarkCommand(userInput);
                 break;
             case "unmark":
-                c = new UnmarkCommand(item);
+                c = new UnmarkCommand(userInput);
                 break;
             case "bye":
                 c = new ByeCommand();
                 break;
             case "delete":
-                c = new DeleteCommand(item);
+                c = new DeleteCommand(userInput);
                 break;
             case "todo":
                 c = new AddToDo(userInput.trim());

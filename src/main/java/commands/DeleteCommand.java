@@ -2,6 +2,7 @@ package commands;
 
 import duke.Storage;
 import duke.UI;
+import exceptions.DukeException;
 import exceptions.EmptyListException;
 import exceptions.MissingTaskException;
 import tasks.TaskList;
@@ -9,8 +10,16 @@ import tasks.TaskList;
 public class DeleteCommand extends Command{
 
     int item;
-    public DeleteCommand(int input) {
-        this.item = input;
+    public DeleteCommand(String userInput) throws DukeException {
+        if (userInput.split(" ").length < 2){
+            throw new DukeException("Missing item number!");
+        }
+        try{
+            this.item = Integer.parseInt(userInput.split(" ")[1]);
+        }
+        catch (NumberFormatException e){
+            throw new DukeException("Ensure the item number is a valid integer!");
+        }  
     }
 
     /**

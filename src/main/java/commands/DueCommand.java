@@ -22,7 +22,7 @@ import tasks.TaskList;
 
 public class DueCommand extends Command{
     LocalDate date;
-    ArrayList<Task> tasksDue;
+    public ArrayList<Task> tasksDue;
 
     public DueCommand(String line) throws DukeException{
         if (line.split(" ").length < 2) throw new DukeException("Missing date!");

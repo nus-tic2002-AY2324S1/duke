@@ -17,6 +17,9 @@ public class AddDeadline extends Command {
         // deadline buy food /by 2023-10-05 & format accepted yyyy-mm-dd
         if (line.indexOf("/by") == -1) throw new DukeException("Please follow the correct format.");
 
+        // since the program hardcoded +3, need to check that /by has no trailing y's 
+        if (line.charAt(line.indexOf("/by")+3)!=' ') throw new DukeException("Ensure you have no trailing letters behind /by.");
+
         this.description = line.substring(8, line.indexOf("/by")).trim();
         if (description.length() == 0) throw new DukeException("Oops, missing task description!");
 
