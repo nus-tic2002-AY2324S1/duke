@@ -1,3 +1,7 @@
+package TaskClasses;
+
+import ExceptionClasses.CorruptedFileException;
+
 public class Task {
 
     protected String description;
@@ -41,7 +45,7 @@ public class Task {
         return isDone;
     }
 
-    public static Task fromFileString(String fileString) {
+    public static Task fromFileString(String fileString) throws CorruptedFileException {
         String[] parts = fileString.split("\\s*\\|\\s*");
         if (parts.length >= 3) {
             String taskType = parts[0].trim();
@@ -57,20 +61,22 @@ public class Task {
                     if (parts.length >= 4) {
                         String by = parts[3].trim();
                         return new Deadline(description, by, isDone);
+                    } else {
+                        throw new CorruptedFileException("Missing information in Deadline task");
                     }
-                    break;
                 case "E":
                     if (parts.length >= 5) {
                         String from = parts[3].trim();
                         String to = parts[4].trim();
                         return new Event(description, from, to, isDone);
-                    }
-                    break;
+                    } else {
+                    throw new CorruptedFileException("Missing information in Event task");
+                }
                 default:
-                    return null; // Invalid task type
+                    throw new CorruptedFileException("Invalid task type"); // Invalid task type
             }
         }
-        return null; // Invalid fileString format
+        throw new CorruptedFileException("Invalid fileString format"); // Invalid fileString format
     }
 
     @Override

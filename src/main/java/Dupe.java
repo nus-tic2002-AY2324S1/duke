@@ -1,12 +1,17 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
+package main.java;// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
+import ExceptionClasses.*;
+import TaskClasses.Deadline;
+import TaskClasses.Event;
+import TaskClasses.Task;
+import TaskClasses.ToDo;
+
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Main {
+public class Dupe {
     private static final int MAX_TASKS = 100;
     private static Task[] tasks = new Task[MAX_TASKS];
     private static int taskCounter = 0;
@@ -64,6 +69,7 @@ public class Main {
         if (taskIndex >= 1 && taskIndex <= taskCounter) {
             Task task = tasks[taskIndex - 1];
             task.markAsDone();
+            saveTasksToFile();
             System.out.println("Nice! I've marked this task as done:");
             System.out.println("  " + task.getStatusIcon() + " " + task.getDescription());
         } else {
@@ -76,6 +82,7 @@ public class Main {
         if (taskIndex >= 1 && taskIndex <= taskCounter) {
             Task task = tasks[taskIndex - 1];
             task.markAsNotDone();
+            saveTasksToFile();
             System.out.println("OK, I've marked this task as not done yet:");
             System.out.println("  " + task.getStatusIcon() + " " + task.getDescription());
         } else {
@@ -219,7 +226,7 @@ public class Main {
         try {
             int taskIndex = Integer.parseInt(inputParts[1]);
             if (taskIndex < 1 || taskIndex > taskCounter) {
-                System.out.println("Task index is out of range.");
+                System.out.println("TaskClasses.Task index is out of range.");
             } else {
                 // Remove the task from the list
                 Task deletedTask = tasks[taskIndex - 1];
@@ -276,6 +283,8 @@ public class Main {
             }
         } catch (IOException e) {
             System.out.println("Error loading tasks from file.");
+        } catch (CorruptedFileException e) {
+            throw new RuntimeException(e);
         }
     }
 
