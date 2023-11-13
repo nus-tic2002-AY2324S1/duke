@@ -8,6 +8,7 @@ import commands.ListCommand;
 import commands.TodoCommand;
 import commands.DeadlineCommand;
 import commands.EventCommand;
+import commands.FindCommand;
 import commands.ByeCommand;
 import commands.HelpCommand;
 import commands.InvalidCommand;
@@ -47,29 +48,32 @@ public class JoshuaParser {
         }
 
         String commandWord = matcher.group("commandWord");
-        String arguments = matcher.group("arguments");
+        String args = matcher.group("arguments").trim();
 
         switch(commandWord) {
         case MarkCommand.COMMAND_WORD:
-            return prepareMark(arguments);
+            return prepareMark(args);
 
         case UnmarkCommand.COMMAND_WORD:
-            return prepareUnmark(arguments);
+            return prepareUnmark(args);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
         case TodoCommand.COMMAND_WORD:
-            return prepareTodo(arguments);
+            return prepareTodo(args);
 
         case DeadlineCommand.COMMAND_WORD:
-            return prepareDeadline(arguments);
+            return prepareDeadline(args);
 
         case EventCommand.COMMAND_WORD:
-            return prepareEvent(arguments);
+            return prepareEvent(args);
 
         case DeleteCommand.COMMAND_WORD:
-            return prepareDelete(arguments);
+            return prepareDelete(args);
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommand(args);
 
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
@@ -108,7 +112,6 @@ public class JoshuaParser {
 
     private int parseTaskNumber(String commandArgs) {
         int taskNum = -1;
-        commandArgs = commandArgs.trim();
         try {
             taskNum = Integer.parseInt(commandArgs);
         } catch (NumberFormatException ignored) {

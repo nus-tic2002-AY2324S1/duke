@@ -2,9 +2,8 @@ T | 1 | read book
 D | 0 | return book | June 6th
 E | 0 | project meeting | Aug 6th 2pm | Aug 6th 4pm
 T | 1 | join sports club
-T | 0 | test
 D | 0 | assignment | 19 nov
 E | 0 | hello | you | me
-D | 0 | test | 11 Nov 2023, 07:53pm
+D | 1 | test | 11 Nov 2023, 07:53pm
 D | 0 | test2 | 09 Sep 2023, 09:45 am
 E | 0 | test3 | 03 Nov 2023, 06:00 am | 05 Nov 2023, 11:59 pm
