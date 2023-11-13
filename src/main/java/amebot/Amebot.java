@@ -18,7 +18,7 @@ public class Amebot {
     private Storage storage;
 
     /**
-     * Main method of the application.
+     * Starts and create the application.
      *
      * @param args Arguments passed in by the user.
      */
