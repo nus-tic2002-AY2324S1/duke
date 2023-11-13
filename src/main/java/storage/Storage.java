@@ -35,7 +35,8 @@ public class Storage {
     public void save(TaskList taskList) throws IOException {
         FileWriter fw = new FileWriter(FILEPATH);
         for (int i = 0; i < taskList.listSize(); i++) {
-            Task task = taskList.getItem(i);
+            int taskNum = i + 1;
+            Task task = taskList.getTask(taskNum);
             fw.write(task.toStorageString() + "\n");
         }
         fw.close();
@@ -58,6 +59,7 @@ public class Storage {
             tasklist.addToTaskList(task);
         }
 
+        scanner.close();
         return tasklist;
     }
 
@@ -80,14 +82,14 @@ public class Storage {
         String args = matcher.group("args");
 
         switch (taskType) {
-            case "T":
-                return new ToDo(args, isDone);
-            case "D":
-                return prepareDeadline(isDone, args);
-            case "E":
-                return prepareEvent(isDone, args);
-            default:
-                throw new IllegalStorageFormat("Could not detect task type.");
+        case "T":
+            return new ToDo(args, isDone);
+        case "D":
+            return prepareDeadline(isDone, args);
+        case "E":
+            return prepareEvent(isDone, args);
+        default:
+            throw new IllegalStorageFormat("Could not detect task type.");
         }
     }
 

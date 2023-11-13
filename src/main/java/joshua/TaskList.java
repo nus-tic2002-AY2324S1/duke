@@ -4,7 +4,6 @@ package joshua;
 import task.Task;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TaskList {
     private ArrayList<Task> tasklist = new ArrayList<>();
@@ -13,8 +12,9 @@ public class TaskList {
 
     }
 
-    public Task getItem(int index){
-        return tasklist.get(index);
+    public Task getTask(int taskNum) {
+        int taskIdx = taskNum - 1;
+        return tasklist.get(taskIdx);
     }
 
     public int listSize() {
@@ -22,23 +22,17 @@ public class TaskList {
     }
 
     public void markTaskAsDone(int taskNum) {
-        int taskIdx = taskNum - 1;
-        Task task = getItem(taskIdx);
+        Task task = getTask(taskNum);
         task.setIsDone(true);
     }
 
     public void markTaskAsNotDone(int taskNum) {
-        int taskIdx = taskNum - 1;
-        Task task = getItem(taskIdx);
+        Task task = getTask(taskNum);
         task.setIsDone(false);
     }
 
     public void addToTaskList(Task task) {
         tasklist.add(task);
-    }
-
-    public void addToTaskList(Task[] arr){
-        tasklist.addAll(Arrays.asList(arr));
     }
 
     public void deleteFromTaskList(Task task) {
