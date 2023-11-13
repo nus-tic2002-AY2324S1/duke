@@ -2,6 +2,9 @@
 // then press Enter. You can now see whitespace characters in your code.
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
     private static final int MAX_TASKS = 100;
@@ -10,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        loadTasksFromFile();
         // Greet the user
         String logo = "    ____                       __\n" +
                 "   / __ \\__  ______  ___  ____/ /\n" +
@@ -30,14 +33,15 @@ public class Main {
             }
             else if (userInput.equalsIgnoreCase("list")) {
                 displayTasks();
-            } else if (userInput.startsWith("mark ")) {
+            } else if (userInput.toLowerCase().startsWith("mark ")) {
                 markTaskAsDone(userInput);
-            } else if (userInput.startsWith("unmark ")) {
+            } else if (userInput.toLowerCase().startsWith("unmark ")) {
                 unmarkTask(userInput);
-            } else if(userInput.startsWith("delete")){
+            } else if(userInput.toLowerCase().startsWith("delete")){
                 deleteTask(userInput);
             } else {
                 addTask(userInput);
+
             }
         }
 
@@ -150,9 +154,11 @@ public class Main {
 
                 tasks[taskCounter] = task;
                 taskCounter++;
+                saveTasksToFile(); //save to file after a new task is added
                 System.out.println("Got it. I've added this task:");
                 System.out.println("  " + task.toString());
                 System.out.println("Now you have " + taskCounter + " tasks in the list.");
+
             } catch (DupeException e) {
                 System.out.println(e.getMessage());
             }
@@ -195,7 +201,7 @@ public class Main {
             String[] splitDescription = description.split("/", 2);
             return splitDescription[0];
         }
-        return description; // Return an empty string if no "/to" information is found
+        return description;
     }
     private static void deleteTask(String userInput) {
         if (taskCounter == 0) {
@@ -222,6 +228,7 @@ public class Main {
                 }
                 tasks[taskCounter - 1] = null;
                 taskCounter--;
+                saveTasksToFile();
 
                 System.out.println("Noted. I've removed this task:");
                 System.out.println("  " + deletedTask.toString());
@@ -229,6 +236,46 @@ public class Main {
             }
         } catch (NumberFormatException e) {
             System.out.println("Invalid task index. Please enter a valid number.");
+        }
+    }
+    private static void saveTasksToFile() {
+        try {
+            // Specify the directory path
+            String directoryPath = "./data/";
+
+            // Create the directory if it doesn't exist
+            File directory = new File(directoryPath);
+            if (!directory.exists()) {
+                directory.mkdirs(); // Creates the directory and any necessary parent directories
+            }
+
+            // Now, save the tasks to the file within the directory
+            FileWriter writer = new FileWriter(directoryPath + "duke.txt");
+            for (int i = 0; i < taskCounter; i++) {
+                writer.write(tasks[i].toFileString() + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error saving tasks to file: " + e.getMessage());
+        }
+    }
+    private static void loadTasksFromFile() {
+        try {
+            File file = new File("data/duke.txt");
+            if (file.exists()) {
+                Scanner scanner = new Scanner(file);
+                while (scanner.hasNext()) {
+                    String taskString = scanner.nextLine();
+                    Task task = Task.fromFileString(taskString);
+                    if (task != null) {
+                        tasks[taskCounter] = task;
+                        taskCounter++;
+                    }
+                }
+                scanner.close();
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading tasks from file.");
         }
     }
 
