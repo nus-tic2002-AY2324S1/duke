@@ -15,7 +15,7 @@ public class Deadline extends Task{
     private String by;
     public Deadline(String d,boolean x) {
         super(d,x);
-        filterBy(d);
+        extractBy(d);
     }
     public String getBy() {
         return by;
@@ -24,7 +24,7 @@ public class Deadline extends Task{
         by = dateParser.toDate(newBy);
     }
 
-    public void filterBy(String description) {
+    public void extractBy(String description) {
         String[] words = description.split(" ", 2);
         try {
             String[] splitBy = words[1].split("/by ");

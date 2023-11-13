@@ -3,6 +3,7 @@ package parser;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,11 +30,14 @@ public class DateTimeParser {
         //validate if the inputDate matches expected pattern
         if (matcher.find()){
             // Extract the matched date
-            String inputDate = matcher.group(1);
+            String inputDate = matcher.group();
 
             // Parse the extracted date
-            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");//-> Example: 2013-06-23
+            //inputFormatter = inputFormatter.withLocale(Locale.getDefault() );
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate formattedDate = LocalDate.parse(inputDate, inputFormatter);
+
+
 
             //print date to MMM dd yyyy
             printedDate = formattedDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")); // -> Example: Oct 15 2019
