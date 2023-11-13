@@ -21,7 +21,8 @@ public class HelpCommand extends Command {
                 + "\tTODO\n"
                 + "\tDEADLINE /BY\n"
                 + "\tEVENT /FROM /TO\n"
-                + "\tDELETE\n"
+                + "\tFIND\n"
+                + "\tDELETE #\n"
                 + "\tBYE\n"
                         // + "\n" + HelpCommand.MESSAGE_USAGE
                 + "\tGLOBAL THERMONUCLEAR WAR");

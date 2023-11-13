@@ -24,7 +24,8 @@ public class JoshuaUi {
                      + "\tTODO\n"
                      + "\tDEADLINE /BY\n"
                      + "\tEVENT /FROM /TO\n"
-                     + "\tDELETE\n"
+                     + "\tFIND\n"
+                     + "\tDELETE #\n"
                      + "\tBYE\n"
                      + "\tGLOBAL THERMONUCLEAR WAR");
     }
