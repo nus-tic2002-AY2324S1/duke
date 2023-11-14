@@ -7,7 +7,12 @@ public class Deadline extends Task{
     }
 
     @Override
-    public String printItemWithStatus() {
-        return "[D]" + super.printItemWithStatus() + " (by: " + this.by + ")";
+    public String toDisplay() {
+        return "[D]" + super.toDisplay() + " (by: " + by + ")";
+    }
+
+    @Override
+    public String toSave() {
+        return "D | " + super.toSave() + " | " + by;
     }
 }

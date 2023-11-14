@@ -5,7 +5,12 @@ public class Todo extends Task{
     }
 
     @Override
-    public String printItemWithStatus() {
-        return "[T]" + super.printItemWithStatus();
+    public String toDisplay() {
+        return "[T]" + super.toDisplay();
+    }
+
+    @Override
+    public String toSave() {
+        return "T | " + super.toSave();
     }
 }

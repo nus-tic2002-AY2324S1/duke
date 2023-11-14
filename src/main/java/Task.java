@@ -7,8 +7,12 @@ public abstract class Task {
         this.description = description;
     }
 
-    public String printItemWithStatus() {
-        return getStatusIcon() + description;
+    public String toDisplay() {
+        return getStatusIcon() + getDescription();
+    }
+
+    public String toSave() {
+        return getStatusValue() + getDescription();
     }
 
     public String getDescription() {
@@ -20,10 +24,18 @@ public abstract class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "[X] " : "[ ] ");
+        return (getStatus() ? "[X] " : "[ ] ");
     }
 
-    public void setDone(boolean bool) {
-        this.isDone = bool;
+    public String getStatusValue() {
+        return (getStatus() ? "1 | " : "0 | ");
+    }
+
+    public void setDone() {
+        this.isDone = true;
+    }
+
+    public void setNotDone() {
+        this.isDone = false;
     }
 }

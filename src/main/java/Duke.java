@@ -1,195 +1,194 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class Duke {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        ArrayList<Task> taskList = new ArrayList<>(100);
-        int index = 0;
+    private static ArrayList<Task> taskList = new ArrayList<>(100);
+    private static Storage storage = new Storage("./duke.txt");
 
-        printMessageWithBorder("Hello! I'm Bott!\n\tWhat can I do for you?");
+    public static void main(String[] args) throws IOException {
+
+        taskList = storage.readFromFile();
+
+        Scanner in = new Scanner(System.in);
+//        Scanner arr = new Scanner(new File(storage.getPath()));
+        int index = taskList.size();
+
+        UI.welcome();
+        System.out.println(index);
 
         while(true) {
             String input = in.nextLine();
             String[] stringArray = input.split(" ");
             String command = stringArray[0];
+            int taskIndex = 0;
+            String description = null;
+            String by = null;
+            String from = null;
+            String to = null;
 
             switch (command) {
                 case "hello" : {
-                    printMessageWithBorder("Hello! Nice to meet you.");
+                    UI.hello();
                     break;
                 }
                 case "bye" : {
-                    printMessageWithBorder("Bye. Hope to see you again soon!");
+                    UI.bye();
                     return;
                 }
                 case "list" : {
                     if (taskList.isEmpty()) {
-                        printMessageWithBorder("Your task list is empty.");
+                        UI.printGenericMessage("Your task list is empty.");
                     } else {
-                        printTaskList(taskList);
+                        UI.printTaskList(taskList);
                     }
                     break;
                 }
                 case "mark" : {
-                    int taskIndex;
-
                     // condition for "mark" command without any number
                     try {
                         taskIndex = Integer.parseInt(stringArray[1]) - 1;
                     } catch (ArrayIndexOutOfBoundsException e) {
-                        printMessageWithBorder("Please include the task number that you'd like to mark as done.");
+                        UI.errorArrayIndexOutOfBounds();
                         break;
                     } catch (NumberFormatException e) {
-                        printMessageWithBorder("Please only input a number.");
+                        UI.errorNumberFormatException();
                         break;
                     }
 
                     // condition for "mark" command with out-of-bounds number
                     try {
-                        taskList.get(taskIndex).isDone = true;
+                        taskList.get(taskIndex).setDone();
                     } catch (IndexOutOfBoundsException e) {
-                        printMessageWithBorder("Please enter a valid number, i.e. within the list.");
+                        UI.errorIndexOutOfBounds();
                         break;
                     }
 
-                    printMessageWithBorder("Nice! I've marked this task as done:\n\t"
-                            + taskList.get(taskIndex).printItemWithStatus());
+                    UI.setDone(taskList, taskIndex);
+
+                    storage.saveToFile(taskList);
+
                     break;
                 }
                 case "unmark" : {
-                    int taskIndex;
-
                     // condition for "unmark" command without any number
                     try {
                         taskIndex = Integer.parseInt(stringArray[1]) - 1;
                     } catch (ArrayIndexOutOfBoundsException e) {
-                        printMessageWithBorder("Please include the task number that you'd like to mark as not done.");
+                        UI.errorArrayIndexOutOfBounds();
                         break;
                     } catch (NumberFormatException e) {
-                        printMessageWithBorder("Please only input a number.");
+                        UI.errorNumberFormatException();
                         break;
                     }
 
-                    // condition for "mark" command with out-of-bounds number
+                    // condition for "unmark" command with out-of-bounds number
                     try {
-                        taskList.get(taskIndex).isDone = false;
+                        taskList.get(taskIndex).setNotDone();
                     } catch (IndexOutOfBoundsException e) {
-                        printMessageWithBorder("Please enter a valid number, i.e. within the list.");
+                        UI.errorIndexOutOfBounds();
                         break;
                     }
 
-                    printMessageWithBorder("OK! I've marked this task as not done yet:\n\t"
-                            + taskList.get(taskIndex).printItemWithStatus());
+                    UI.setNotDone(taskList, taskIndex);
+
+                    storage.saveToFile(taskList);
+
                     break;
                 }
                 case "todo" : {
-                    String description;
-
                     try {
                         description = createDescription(input, "todo");
                     } catch (StringIndexOutOfBoundsException e) {
-                        printMessageWithBorder("Please follow this format:\n\t" +
-                                "\"todo\" \"your description\"");
+                        UI.errorWrongTodoFormat();
                         break;
                     }
 
                     taskList.add(index, new Todo(description));
-                    printEchoMessage(taskList.get(index).printItemWithStatus(), (index+1));
+                    UI.printTaskAdded(taskList, index);
+
+                    try {
+                        storage.appendToFile(taskList.get(index).toSave());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
                     index++;
                     break;
                 }
                 case "deadline" : {
-                    String by;
-                    String description;
-
                     try {
                         description = createDescription(input, "deadline");
                         by = createByDate(input);
                     } catch (StringIndexOutOfBoundsException e) {
-                        printMessageWithBorder("Please follow this format:\n\t" +
-                                "\"deadline\" \"your description\" \"/by\" \"date/time\"");
+                        UI.errorWrongDeadlineFormat();
                         break;
                     }
 
                     taskList.add(index, new Deadline(description, by));
-                    printEchoMessage(taskList.get(index).printItemWithStatus(), (index + 1));
+                    UI.printTaskAdded(taskList, index);
+
+                    try {
+                        storage.appendToFile(taskList.get(index).toSave());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
                     index++;
                     break;
                 }
                 case "event" : {
-                    String description;
-                    String from;
-                    String to;
-
                     try {
                         description = createDescription(input, "event");
                         from = createFromDate(input);
                         to = createToDate(input);
                     } catch (StringIndexOutOfBoundsException e) {
-                        printMessageWithBorder("Please follow this format:\n\t" +
-                                "\"event\" \"your description\" \"/from\" \"date/time\" \"/to\" \"date/time\"");
+                        UI.errorWrongEventFormat();
                         break;
                     }
 
                     taskList.add(index, new Event(description, from, to));
-                    printEchoMessage(taskList.get(index).printItemWithStatus(), (index+1));
+                    UI.printTaskAdded(taskList, index);
+
+                    try {
+                        storage.appendToFile(taskList.get(index).toSave());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
                     index++;
                     break;
                 }
                 case "delete" : {
-                    int taskIndex;
-
                     try {
                         taskIndex = Integer.parseInt(stringArray[1]) - 1;
                     } catch (ArrayIndexOutOfBoundsException e) {
-                        printMessageWithBorder("Please include the task number that you'd like to mark as done.");
+                        UI.errorArrayIndexOutOfBounds();
                         break;
                     } catch (NumberFormatException e) {
-                        printMessageWithBorder("Please only input a number.");
+                        UI.errorNumberFormatException();
                         break;
                     }
 
                     try {
-                        printMessageWithBorder("Noted! I will remove this task:\n\t"
-                                + taskList.get(taskIndex).printItemWithStatus()
-                                + String.format("\n\tNow you have %d task in the list", index-1));
+                        UI.printTaskDeleted(taskList, taskIndex, index);
                         taskList.remove(taskIndex);
                     } catch (IndexOutOfBoundsException e) {
-                        printMessageWithBorder("Please enter a valid number, i.e. within the list.");
+                        UI.errorIndexOutOfBounds();
                         break;
                     }
-                    
+
+                    storage.saveToFile(taskList);
+
                     index--;
                     break;
                 }
                 default : {
-                    printMessageWithBorder("I don't quite understand that. Please try again.");
+                    UI.printDefaultMessage();
                 }
             }
         }
-    }
-
-    public static void printMessageWithBorder(String message) {
-        System.out.println("\t─────────────────────────────────────────────────────────────────");
-        System.out.println("\t" + message);
-        System.out.println("\t─────────────────────────────────────────────────────────────────");
-    }
-
-    public static void printEchoMessage(String message, int index) {
-        printMessageWithBorder("Got it! I've added this task:\n\t"
-                + message + "\n\t"
-                + String.format("Now you have %d task in the list", index));
-    }
-
-    public static void printTaskList(ArrayList<Task> taskList) {
-        System.out.println("\t─────────────────────────────────────────────────────────────────"
-                + "\n\tHere are the tasks in your list:");
-        for (int i = 0; i < taskList.size(); i++) {
-            System.out.println("\t" + (i+1) + ". " + taskList.get(i).printItemWithStatus());
-        }
-        System.out.println("\t─────────────────────────────────────────────────────────────────");
     }
 
     public static String createDescription(String input, String command) {

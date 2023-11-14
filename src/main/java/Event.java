@@ -9,7 +9,12 @@ public class Event extends Task{
     }
 
     @Override
-    public String printItemWithStatus() {
-        return "[E]" + super.printItemWithStatus() + " (from: " + this.from + " to: " + this.to + ")";
+    public String toDisplay() {
+        return "[E]" + super.toDisplay() + " (from: " + from + " to: " + to + ")";
+    }
+
+    @Override
+    public String toSave() {
+        return "E | " + super.toSave() + " | " + from + " | " + to;
     }
 }
