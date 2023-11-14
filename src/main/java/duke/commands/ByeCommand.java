@@ -5,12 +5,12 @@ import duke.tasks.TaskList;
 import duke.ui.UI;
 
 public class ByeCommand extends Command {
+    
     /**
      * {@inheritDoc}
-     * 
-     * This implementation of {@code execute} stores/save the current user
-     * {@code tasks} list and kills the program.
-     * 
+     * <p>
+     * This implementation of {@code execute} stores the current user
+     * {@code tasks} list and terminates the program.
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {

@@ -8,7 +8,7 @@ import duke.ui.UI;
 public class ListCommand extends Command {
     /**
      * {@inheritDoc}
-     * 
+     * <p>
      * This implementation of {@code execute} lists every {@code task} in the user's {@code tasks}
      * list.
      * 

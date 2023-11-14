@@ -42,7 +42,7 @@ public class DueCommand extends Command {
 
     /**
      * {@inheritDoc}
-     * 
+     * <p>
      * This implementation of {@code execute} gets all related tasks due on the particular date and
      * prints it on the user interface.
      * 

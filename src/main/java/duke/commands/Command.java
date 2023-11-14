@@ -17,14 +17,16 @@ import duke.ui.UI;
 public abstract class Command {
     protected boolean isExit = false;
     protected String input;
-
+    
     /**
-     * {@code execute} method defines the behaviour of respective user command.
+     * Executes the specified user command, defining its behavior.
      * <p>
-     * 
-     * @param tasks   user's current TaskList.
-     * @param ui      ui object that handles printing of statements.
-     * @param storage storage object to save/store user input.
+     * This method is responsible for handling a user command and performing
+     * the necessary actions accordingly.
+     *
+     * @param tasks   The current TaskList of the user.
+     * @param ui      The UI object responsible for printing statements.
+     * @param storage The storage object used for saving and storing user input.
      */
     abstract public void execute(TaskList tasks, UI ui, Storage storage);
 

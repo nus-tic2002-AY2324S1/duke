@@ -42,6 +42,7 @@ public class StorageTest {
         assertEquals(tasks.get(1).toString(),td.toString()); 
         assertEquals(tasks.get(2).toString(),e.toString());  
     }
+    
     /**
      * Adds 3 Tasks of Each Task Type {@code Deadline}, {@code Event} and {@code ToDo} and checks if all are written onto file. 
      * @throws FileNotFoundException

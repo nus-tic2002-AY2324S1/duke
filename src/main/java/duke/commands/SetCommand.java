@@ -44,7 +44,7 @@ public class SetCommand extends Command {
 
     /**
      * {@inheritDoc}
-     * 
+     * <p>
      * This implementation of {@code execute} sets the task item to the {@code Priority} attribute
      * specified when first creating this {@code SetCommand} object.
      * 
