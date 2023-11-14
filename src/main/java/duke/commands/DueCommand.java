@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import java.time.LocalDate;
-
+import duke.constants.Constant;
+import duke.constants.ErrorMessages;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Task;
@@ -24,15 +25,14 @@ public class DueCommand extends Command {
 
     public DueCommand(String line) throws DukeException {
         if (line.split(" ").length < 2) {
-            throw new DukeException("Missing date!");
+            throw new DukeException(ErrorMessages.MISSING_DATE);
         } else if (line.split(" ").length > 2) {
-            throw new DukeException("Please follow the correct format.");
+            throw new DukeException(ErrorMessages.INVALID_COMMAND_FORMAT);
         } else {
             String userDate = line.split(" ")[1];
-            String regex = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
 
-            if (!Pattern.matches(regex, userDate)) {
-                throw new DukeException("Please provide the date in this format: YYYY-MM-DD");
+            if (!Pattern.matches(Constant.DATE_REGEX, userDate)) {
+                throw new DukeException(ErrorMessages.INVALID_DATE_FORMAT);
             } else {
                 this.date = LocalDate.parse(userDate);
             }

@@ -1,6 +1,7 @@
 package duke.commands.add;
 
 import duke.commands.Command;
+import duke.constants.ErrorMessages;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Task;
@@ -12,7 +13,7 @@ public class ToDoCommand extends Command {
 
     public ToDoCommand(String line) throws DukeException {
         if (line.split(" ").length < 2)
-            throw new DukeException("Oops, missing todo description!");
+            throw new DukeException(ErrorMessages.MISSING_TODO_DESCRIPTION);
         this.description = line.split(" ", 2)[1].trim();
     }
 

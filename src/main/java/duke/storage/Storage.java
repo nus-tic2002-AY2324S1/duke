@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 import duke.tasks.Task;
+import duke.constants.Constant;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.TaskList;
@@ -59,16 +60,15 @@ public class Storage {
             while (s.hasNext()) {
 
                 String[] line = s.nextLine().split("\\|");
-                String regex = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
 
                 switch (line[0]) {
                 case "E":
                     // doesnt add invalid task
                     if (line.length != 6) {
                         continue;
-                    } else if (!Pattern.matches(regex, line[4])) {
+                    } else if (!Pattern.matches(Constant.DATE_REGEX, line[4])) {
                         continue;
-                    } else if (!Pattern.matches(regex, line[5])) {
+                    } else if (!Pattern.matches(Constant.DATE_REGEX, line[5])) {
                         continue;
                     } else {
                         t = new Event(line[3], LocalDate.parse(line[4]), LocalDate.parse(line[5]));
@@ -78,7 +78,7 @@ public class Storage {
                 case "D":
                     if (line.length != 5) {
                         continue;
-                    } else if (!Pattern.matches(regex, line[4])) {
+                    } else if (!Pattern.matches(Constant.DATE_REGEX, line[4])) {
                         continue;
                     } else {
                         t = new Deadline(line[3], LocalDate.parse(line[4]));

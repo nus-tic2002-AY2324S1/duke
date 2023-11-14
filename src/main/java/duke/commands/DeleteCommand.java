@@ -1,5 +1,7 @@
 package duke.commands;
 
+import duke.constants.Constant;
+import duke.constants.ErrorMessages;
 import duke.exceptions.DukeException;
 import duke.exceptions.EmptyListException;
 import duke.exceptions.MissingTaskException;
@@ -13,12 +15,12 @@ public class DeleteCommand extends Command {
 
     public DeleteCommand(String userInput) throws DukeException {
         if (userInput.split(" ").length < 2) {
-            throw new DukeException("Missing item number!");
+            throw new DukeException(ErrorMessages.MISSING_ITEM_NUMBER);
         } else {
             try {
                 this.item = Integer.parseInt(userInput.split(" ")[1]);
             } catch (NumberFormatException e) {
-                throw new DukeException("Ensure the item number is a valid integer!");
+                throw new DukeException(ErrorMessages.INVALID_INTEGER);
             }
         }
     }

@@ -12,6 +12,7 @@ import duke.commands.FindCommand;
 import duke.commands.add.DeadlineCommand;
 import duke.commands.add.EventCommand;
 import duke.commands.add.ToDoCommand;
+import duke.constants.ErrorMessages;
 import duke.exceptions.DukeException;
 
 public class Parser {
@@ -66,7 +67,7 @@ public class Parser {
             c = new FindCommand(userInput.trim());
             break;
         default:
-            throw new DukeException("Oops! Look at the manual to see accepted inputs!");
+            throw new DukeException(ErrorMessages.INVALID_USER_INPUT);
         }
 
         return c;

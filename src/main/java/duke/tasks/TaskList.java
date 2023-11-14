@@ -2,7 +2,7 @@ package duke.tasks;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+import duke.constants.ErrorMessages;
 import duke.exceptions.EmptyListException;
 import duke.exceptions.MissingTaskException;
 
@@ -52,7 +52,7 @@ public class TaskList {
 
     public Task markItem(int item) throws MissingTaskException {
         if (item > totalTasks || item == 0) {
-            throw new MissingTaskException("Trying to mark a non existent task!");
+            throw new MissingTaskException(ErrorMessages.TASK_NOT_FOUND);
         } else {
             task = tasks.get(item - 1);
             if (task.isDone) {
@@ -66,7 +66,7 @@ public class TaskList {
 
     public void unmarkItem(int item) throws MissingTaskException {
         if (item > totalTasks || item == 0) {
-            throw new MissingTaskException("Trying to unmark a non existent task!");
+            throw new MissingTaskException(ErrorMessages.TASK_NOT_FOUND);
         } else {
             task = tasks.get(item - 1);
             if (!task.isDone) {
@@ -81,7 +81,7 @@ public class TaskList {
 
     public void listItems() throws EmptyListException {
         if (totalTasks < 1) {
-            throw new EmptyListException("Empty List");
+            throw new EmptyListException(ErrorMessages.EMPTY_LIST);
         } else {
             System.out.println("Here are the tasks in your list: ");
             for (int i = 1; i <= totalTasks; i++) {
@@ -94,9 +94,9 @@ public class TaskList {
     public void deleteItem(int item) throws EmptyListException, MissingTaskException {
 
         if (totalTasks < 1) {
-            throw new EmptyListException("Empty List");
+            throw new EmptyListException(ErrorMessages.EMPTY_LIST);
         } else if (item > totalTasks || item == 0) {
-            throw new MissingTaskException("Trying to delete a non-existing task!");
+            throw new MissingTaskException(ErrorMessages.TASK_NOT_FOUND);
         } else {
             System.out.println("Removing task " + item + ":" + tasks.get(item - 1));
             tasks.remove((item - 1));
@@ -108,9 +108,9 @@ public class TaskList {
     public Task setPriority(int item, Priority p) throws EmptyListException, MissingTaskException {
 
         if (totalTasks < 1) {
-            throw new EmptyListException("Empty List");
+            throw new EmptyListException(ErrorMessages.EMPTY_LIST);
         } else if (item > totalTasks || item == 0) {
-            throw new MissingTaskException("Trying to add Priority to a non-existing task!");
+            throw new MissingTaskException(ErrorMessages.TASK_NOT_FOUND);
         } else {
             Task t = tasks.get(item - 1);
             t.setTaskPriority(p);

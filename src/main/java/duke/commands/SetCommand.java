@@ -1,7 +1,8 @@
 package duke.commands;
 
 import java.util.regex.Pattern;
-
+import duke.constants.Constant;
+import duke.constants.ErrorMessages;
 import duke.exceptions.DukeException;
 import duke.exceptions.EmptyListException;
 import duke.exceptions.MissingTaskException;
@@ -20,22 +21,21 @@ public class SetCommand extends Command {
     public SetCommand(String line) throws DukeException {
 
         // check if format of input is correct
-        String regex = "^set (\\d+) to (.+)$";
-        if (Pattern.matches(regex, line.toLowerCase())) {
+        if (Pattern.matches(Constant.DATE_REGEX, line.toLowerCase())) {
             try {
                 this.item = Integer.parseInt(line.split(" ")[1]);
             } catch (NumberFormatException e) {
-                throw new DukeException("Ensure the item number is a valid integer!");
+                throw new DukeException(ErrorMessages.INVALID_INTEGER);
             } finally {
                 String taskPriority = line.split(" ")[3].trim().toUpperCase();
                 try {
                     this.p = Priority.valueOf(taskPriority);
                 } catch (IllegalArgumentException e) {
-                    throw new DukeException("Invalid Priority!");
+                    throw new DukeException(ErrorMessages.INVALID_PRIORITY);
                 }
             }
         } else {
-            throw new DukeException("Please follow the correct format!");
+            throw new DukeException(ErrorMessages.INVALID_COMMAND_FORMAT);
         }
 
 

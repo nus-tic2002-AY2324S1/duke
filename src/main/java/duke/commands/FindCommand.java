@@ -1,7 +1,7 @@
 package duke.commands;
 
 import java.util.ArrayList;
-
+import duke.constants.ErrorMessages;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Task;
@@ -14,7 +14,7 @@ public class FindCommand extends Command {
 
     public FindCommand(String line) throws DukeException {
         if (line.split(" ").length > 2) {
-            throw new DukeException("Please provide only one keyword at a time!");
+            throw new DukeException(ErrorMessages.INVALID_FIND_COMMAND_FORMAT);
         } else {
             this.keyword = line.split(" ")[1].toLowerCase();
         }
