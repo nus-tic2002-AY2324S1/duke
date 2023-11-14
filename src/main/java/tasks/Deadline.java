@@ -29,6 +29,6 @@ public class Deadline extends Task {
 
     @Override
     public String writeFile() {
-        return "D," + isDone + "," + description + "," + by;
+        return "D|" + super.writeFile() + "|" + by;
     }
 }

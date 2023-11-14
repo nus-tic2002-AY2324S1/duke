@@ -28,6 +28,6 @@ public class Event extends Task{
 
     @Override
     public String writeFile() {
-        return "E," + isDone + "," + description + "," + start + "," + end;
+        return "E|" + super.writeFile() + "|" + start + "|" + end;
     }
 }

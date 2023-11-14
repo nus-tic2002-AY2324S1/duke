@@ -51,6 +51,9 @@ public class Parser {
             case "due":
                 c = new DueCommand(userInput.trim());
                 break;
+            case "set":
+                c = new SetCommand(userInput.trim());
+                break;
             default:
                 throw new DukeException("Oops! Look at the manual to see accepted inputs!");
 

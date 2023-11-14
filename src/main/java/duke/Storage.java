@@ -53,36 +53,40 @@ public class Storage {
             Task t;
         
             while (s.hasNext()) {
-                String[] line = s.nextLine().split(",");
+                
+                String[] line = s.nextLine().split("\\|");
                 String regex = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
 
                 switch(line[0]){
                     case "E":
                         //doesnt add invalid task
-                        if (line.length != 5) continue;
-                        if(!Pattern.matches(regex, line[3])) continue;
+                        if (line.length != 6) continue;
                         if(!Pattern.matches(regex, line[4])) continue;
-                        t = new Event(line[2], LocalDate.parse(line[3]), LocalDate.parse(line[4]));
+                        if(!Pattern.matches(regex, line[5])) continue;
+                        t = new Event(line[3], LocalDate.parse(line[4]), LocalDate.parse(line[5]));
                         tasks.add(t);
                         break;
                     case "D":
-                        if(line.length != 4) continue;
-                        if(!Pattern.matches(regex, line[3])) continue;
-                        t = new Deadline(line[2], LocalDate.parse(line[3]));
+                        if(line.length != 5) continue;
+                        if(!Pattern.matches(regex, line[4])) continue;
+                        t = new Deadline(line[3], LocalDate.parse(line[4]));
                         tasks.add(t);
                         break;
                     case "T":
                         // doesnt add invalid task
-                        if (line.length != 3) continue;
-                        t = new ToDo(line[2]);
+                        if (line.length != 4) continue;
+                        t = new ToDo(line[3]);
                         tasks.add(t);
                         break;
                 }
 
-                if(line[1].equals("true")){
+                tasks.get(counter).setTaskPriority(Priority.valueOf(line[1]));
+                
+                if(line[2].equals("true")){
                     t = tasks.get(counter);
                     t.markAsDone();
                 }
+
 
                 counter++;
             }

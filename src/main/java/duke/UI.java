@@ -74,6 +74,10 @@ public class UI {
         System.out.println("Got it. I've added this task: \n" + task);
     }
 
+    public void setTask(Task task){
+        System.out.println("Successfully set " + task.getDescription() + " to " + task.getPriority() + " Priority.");
+    }
+
     public void printDue(ArrayList<Task> tasks, LocalDate dueDate){
         Period days = LocalDate.now().until(dueDate);
 

@@ -90,6 +90,20 @@ public class TaskList{
         totalTasks --;
     }
 
+    public Task setPriority(int item, Priority p) throws EmptyListException, MissingTaskException{
+
+        if (totalTasks<1){
+            throw new EmptyListException("Empty List");
+        }
+        if (item>totalTasks || item==0){
+            throw new MissingTaskException("Trying to add Priority to a non-existing task!");
+        }
+
+        Task t = tasks.get(item-1);
+        t.setTaskPriority(p);
+        return t;
+    }
+
     public ArrayList<Task> getTasksDue(LocalDate due){
         // iterate through arraylist to check for Due Dates from Events and Deadlines
         
