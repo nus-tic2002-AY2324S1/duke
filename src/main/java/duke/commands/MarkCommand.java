@@ -14,12 +14,12 @@ public class MarkCommand extends Command {
     public MarkCommand(String userInput) throws DukeException {
         if (userInput.split(" ").length < 2) {
             throw new DukeException(ErrorMessages.MISSING_ITEM_NUMBER);
-        } else {
-            try {
-                this.item = Integer.parseInt(userInput.split(" ")[1]);
-            } catch (NumberFormatException e) {
-                throw new DukeException(ErrorMessages.INVALID_INTEGER);
-            }
+        }
+
+        try {
+            this.item = Integer.parseInt(userInput.split(" ")[1]);
+        } catch (NumberFormatException e) {
+            throw new DukeException(ErrorMessages.INVALID_INTEGER);
         }
 
     }

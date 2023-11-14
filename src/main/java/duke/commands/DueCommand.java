@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import java.time.LocalDate;
-import duke.constants.Constant;
+import duke.constants.RegExp;
 import duke.constants.ErrorMessages;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
@@ -24,19 +24,21 @@ public class DueCommand extends Command {
     public ArrayList<Task> tasksDue;
 
     public DueCommand(String line) throws DukeException {
+
+
         if (line.split(" ").length < 2) {
             throw new DukeException(ErrorMessages.MISSING_DATE);
-        } else if (line.split(" ").length > 2) {
-            throw new DukeException(ErrorMessages.INVALID_COMMAND_FORMAT);
-        } else {
-            String userDate = line.split(" ")[1];
-
-            if (!Pattern.matches(Constant.DATE_REGEX, userDate)) {
-                throw new DukeException(ErrorMessages.INVALID_DATE_FORMAT);
-            } else {
-                this.date = LocalDate.parse(userDate);
-            }
         }
+        if (line.split(" ").length > 2) {
+            throw new DukeException(ErrorMessages.INVALID_COMMAND_FORMAT);
+        }
+
+        String userDate = line.split(" ")[1];
+        if (!Pattern.matches(RegExp.DATE_REGEX, userDate)) {
+            throw new DukeException(ErrorMessages.INVALID_DATE_FORMAT);
+        }
+
+        this.date = LocalDate.parse(userDate);
 
     }
 

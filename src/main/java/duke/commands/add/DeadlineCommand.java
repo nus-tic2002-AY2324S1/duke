@@ -1,7 +1,7 @@
 package duke.commands.add;
 
 import duke.commands.Command;
-import duke.constants.Constant;
+import duke.constants.RegExp;
 import duke.constants.ErrorMessages;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
@@ -20,27 +20,22 @@ public class DeadlineCommand extends Command {
         if (line.indexOf("/by") == -1) {
             throw new DukeException(ErrorMessages.INVALID_COMMAND_FORMAT);
         }
-
         // since the program hardcoded +3, need to check that /by has no trailing y's
         if (line.charAt(line.indexOf("/by") + 3) != ' ') {
             throw new DukeException(ErrorMessages.TRAILING_LETTERS_BEHIND_BY);
         }
 
         this.description = line.substring(8, line.indexOf("/by")).trim();
-
-        if (description.length() > 0) {
-            String userDate = line.substring(line.indexOf("/by") + 3).trim();
-
-            if (Pattern.matches(Constant.DATE_REGEX, userDate)) {
-                this.date = LocalDate.parse(userDate);
-            } else {
-                throw new DukeException(ErrorMessages.INVALID_DATE_FORMAT);
-            }
-
-        } else {
+        if (description.length() == 0) {
             throw new DukeException(ErrorMessages.MISSING_TASK_DESCRIPTION);
         }
 
+        String userDate = line.substring(line.indexOf("/by") + 3).trim();
+        if (!Pattern.matches(RegExp.DATE_REGEX, userDate)) {
+            throw new DukeException(ErrorMessages.INVALID_DATE_FORMAT);
+        }
+
+        this.date = LocalDate.parse(userDate);
     }
 
     @Override

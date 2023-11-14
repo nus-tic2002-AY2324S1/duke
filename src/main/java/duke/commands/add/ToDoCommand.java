@@ -12,8 +12,10 @@ public class ToDoCommand extends Command {
     String description;
 
     public ToDoCommand(String line) throws DukeException {
-        if (line.split(" ").length < 2)
+        if (line.split(" ").length < 2){
             throw new DukeException(ErrorMessages.MISSING_TODO_DESCRIPTION);
+        }
+
         this.description = line.split(" ", 2)[1].trim();
     }
 

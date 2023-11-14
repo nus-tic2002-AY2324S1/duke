@@ -14,6 +14,7 @@ public class UnmarkCommand extends Command {
         if (userInput.split(" ").length < 2) {
             throw new DukeException(ErrorMessages.MISSING_ITEM_NUMBER);
         }
+
         try {
             this.item = Integer.parseInt(userInput.split(" ")[1]);
         } catch (NumberFormatException e) {

@@ -15,10 +15,9 @@ public class FindCommand extends Command {
     public FindCommand(String line) throws DukeException {
         if (line.split(" ").length > 2) {
             throw new DukeException(ErrorMessages.INVALID_FIND_COMMAND_FORMAT);
-        } else {
-            this.keyword = line.split(" ")[1].toLowerCase();
-        }
+        } 
 
+        this.keyword = line.split(" ")[1].toLowerCase();
     }
 
     /**

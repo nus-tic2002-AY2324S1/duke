@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 import duke.tasks.Task;
-import duke.constants.Constant;
+import duke.constants.RegExp;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.TaskList;
@@ -58,7 +58,6 @@ public class Storage {
             Task t;
 
             while (s.hasNext()) {
-
                 String[] line = s.nextLine().split("\\|");
 
                 switch (line[0]) {
@@ -66,35 +65,37 @@ public class Storage {
                     // doesnt add invalid task
                     if (line.length != 6) {
                         continue;
-                    } else if (!Pattern.matches(Constant.DATE_REGEX, line[4])) {
-                        continue;
-                    } else if (!Pattern.matches(Constant.DATE_REGEX, line[5])) {
-                        continue;
-                    } else {
-                        t = new Event(line[3], LocalDate.parse(line[4]), LocalDate.parse(line[5]));
-                        tasks.add(t);
-                        break;
                     }
+                    if (!Pattern.matches(RegExp.DATE_REGEX, line[4])) {
+                        continue;
+                    }
+                    if (!Pattern.matches(RegExp.DATE_REGEX, line[5])) {
+                        continue;
+                    }
+                    t = new Event(line[3], LocalDate.parse(line[4]), LocalDate.parse(line[5]));
+                    tasks.add(t);
+                    break;
+
                 case "D":
                     if (line.length != 5) {
                         continue;
-                    } else if (!Pattern.matches(Constant.DATE_REGEX, line[4])) {
-                        continue;
-                    } else {
-                        t = new Deadline(line[3], LocalDate.parse(line[4]));
-                        tasks.add(t);
-                        break;
                     }
+                    if (!Pattern.matches(RegExp.DATE_REGEX, line[4])) {
+                        continue;
+                    }
+                    t = new Deadline(line[3], LocalDate.parse(line[4]));
+                    tasks.add(t);
+                    break;
 
                 case "T":
                     // doesnt add invalid task
                     if (line.length != 4) {
                         continue;
-                    } else {
-                        t = new ToDo(line[3]);
-                        tasks.add(t);
-                        break;
                     }
+
+                    t = new ToDo(line[3]);
+                    tasks.add(t);
+                    break;
 
                 default:
                     continue;
@@ -113,10 +114,9 @@ public class Storage {
         } catch (FileNotFoundException e) {
             if (!directory.exists()) {
                 directory.mkdir();
-            } else {
-                file.createNewFile();
-            }
-
+            } 
+    
+            file.createNewFile();
         }
 
         return tasks;
@@ -141,9 +141,7 @@ public class Storage {
                 String textToAdd = taskList.get(i).writeToFile();
                 fw.write(textToAdd + "\n");
             }
-
             fw.close();
-
         } catch (IOException e) {
             System.out.println("Error Writing to File!");
         }
