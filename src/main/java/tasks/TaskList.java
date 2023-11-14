@@ -6,7 +6,7 @@ import exceptions.EmptyListException;
 import exceptions.MissingTaskException;
 
 public class TaskList{
-    public ArrayList<Task> tasks;
+    protected ArrayList<Task> tasks;
     public int totalTasks;
     public Task task;
 
@@ -128,6 +128,10 @@ public class TaskList{
         }
         return taskDueList;
 
+    }
+
+    public ArrayList<Task> getTaskList(){
+        return this.tasks;
     }
 
 }

@@ -1,1 +1,3 @@
-T|HIGH|true|buy food
+T|LOW|true|buy food
+D|HIGH|false|duke submission|2023-11-19
+T|MEDIUM|false|duke increment week 10

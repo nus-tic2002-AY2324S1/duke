@@ -117,7 +117,7 @@ public class Storage {
             fw = new FileWriter(filePath);
 
             for(int i=0; i<tasks.totalTasks; i++){
-                String textToAdd = tasks.tasks.get(i).writeFile();
+                String textToAdd = tasks.getTaskList().get(i).writeFile();
                 fw.write(textToAdd + "\n");
             } 
 

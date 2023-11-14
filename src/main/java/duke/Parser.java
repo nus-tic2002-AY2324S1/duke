@@ -54,6 +54,9 @@ public class Parser {
             case "set":
                 c = new SetCommand(userInput.trim());
                 break;
+            case "find":
+                c = new FindCommand(userInput.trim());
+                break;
             default:
                 throw new DukeException("Oops! Look at the manual to see accepted inputs!");
 
