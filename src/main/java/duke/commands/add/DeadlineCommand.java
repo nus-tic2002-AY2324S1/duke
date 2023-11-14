@@ -39,7 +39,7 @@ public class DeadlineCommand extends Command {
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
         Task t = tasks.addDeadline(description, date);
-        ui.addedTask(t);
+        ui.showTaskAdded(t);
     }
 
 }

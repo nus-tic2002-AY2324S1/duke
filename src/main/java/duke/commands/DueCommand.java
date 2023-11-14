@@ -49,6 +49,6 @@ public class DueCommand extends Command {
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
         this.tasksDue = tasks.getTasksDue(this.date);
-        ui.printDue(this.tasksDue, this.date);
+        ui.showTasksDue(this.tasksDue, this.date);
     }
 }

@@ -8,8 +8,8 @@ import duke.exceptions.MissingTaskException;
 
 public class TaskList {
     protected ArrayList<Task> tasks;
-    public int totalTasks;
-    public Task task;
+    protected int totalTasks;
+    protected Task task;
 
     public TaskList() {
         this.tasks = new ArrayList<Task>();
@@ -19,6 +19,14 @@ public class TaskList {
     public TaskList(ArrayList<Task> taskList) {
         this.tasks = taskList;
         this.totalTasks = taskList.size();
+    }
+
+    public ArrayList<Task> getTaskList() {
+        return this.tasks;
+    }
+
+    public Integer getTotalTasks() {
+        return this.totalTasks;
     }
 
     public Task addDeadline(String description, LocalDate date) {
@@ -130,9 +138,4 @@ public class TaskList {
         return taskDueList;
 
     }
-
-    public ArrayList<Task> getTaskList() {
-        return this.tasks;
-    }
-
 }

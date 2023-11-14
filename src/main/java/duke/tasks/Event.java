@@ -30,7 +30,7 @@ public class Event extends Task {
     }
 
     @Override
-    public String writeFile() {
-        return "E|" + super.writeFile() + "|" + start + "|" + end;
+    public String writeToFile() {
+        return "E|" + super.writeToFile() + "|" + start + "|" + end;
     }
 }

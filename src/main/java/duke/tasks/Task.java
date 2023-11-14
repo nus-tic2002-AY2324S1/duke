@@ -45,7 +45,7 @@ public class Task {
         return "[" + getStatusIcon() + "]" + "[" + getPriority() + "] " + description;
     }
 
-    public String writeFile() {
+    public String writeToFile() {
         String text = p + "|" + isDone + "|" + description;
         return text;
     }

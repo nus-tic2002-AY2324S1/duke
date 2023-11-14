@@ -42,7 +42,7 @@ public class DeleteCommand extends Command {
             return;
         }
         ui.printMessage(
-                "That's one less thing to do! You now have " + tasks.totalTasks + " tasks left.");
+                "That's one less thing to do! You now have " + tasks.getTotalTasks() + " tasks left.");
 
     }
 

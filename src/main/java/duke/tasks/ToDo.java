@@ -12,8 +12,8 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String writeFile() {
-        String text = "T|" + super.writeFile();
+    public String writeToFile() {
+        String text = "T|" + super.writeToFile();
         return text;
     }
 }

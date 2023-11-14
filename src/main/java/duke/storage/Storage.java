@@ -121,9 +121,10 @@ public class Storage {
     public void storeData(TaskList tasks) {
         try {
             fw = new FileWriter(filePath);
-
-            for (int i = 0; i < tasks.totalTasks; i++) {
-                String textToAdd = tasks.getTaskList().get(i).writeFile();
+            int totalTasks = tasks.getTotalTasks();
+            ArrayList<Task> taskList = tasks.getTaskList();
+            for (int i = 0; i < totalTasks; i++) {
+                String textToAdd = taskList.get(i).writeToFile();
                 fw.write(textToAdd + "\n");
             }
 

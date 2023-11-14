@@ -23,7 +23,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String writeFile() {
-        return "D|" + super.writeFile() + "|" + by;
+    public String writeToFile() {
+        return "D|" + super.writeToFile() + "|" + by;
     }
 }

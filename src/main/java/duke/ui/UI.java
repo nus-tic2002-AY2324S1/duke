@@ -75,16 +75,16 @@ public class UI {
         System.out.println(message);
     }
 
-    public void addedTask(Task task) {
+    public void showTaskAdded(Task task) {
         System.out.println("Got it. I've added this task: \n" + task);
     }
 
-    public void setTask(Task task) {
+    public void showTaskPrioritySet(Task task) {
         System.out.println("Successfully set " + task.getDescription() + " to " + task.getPriority()
                 + " Priority.");
     }
 
-    public void printDue(ArrayList<Task> tasks, LocalDate dueDate) {
+    public void showTasksDue(ArrayList<Task> tasks, LocalDate dueDate) {
         Period days = LocalDate.now().until(dueDate);
 
         if (tasks.size() > 0) {

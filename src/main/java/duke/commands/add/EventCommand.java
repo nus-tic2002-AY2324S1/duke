@@ -53,6 +53,6 @@ public class EventCommand extends Command {
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
         Task t = tasks.addEvent(description, fromDate, toDate);
-        ui.addedTask(t);
+        ui.showTaskAdded(t);
     }
 }
