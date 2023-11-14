@@ -2,7 +2,7 @@ package duke;
 
 import java.io.IOException;
 
-import duke.commands.*;
+import duke.commands.Command;
 import duke.exceptions.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;

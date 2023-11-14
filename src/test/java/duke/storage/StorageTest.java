@@ -1,9 +1,17 @@
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import duke.storage.Storage;
 import duke.exceptions.EmptyListException;
 import duke.exceptions.MissingTaskException;
-import duke.tasks.*;
+import duke.tasks.Task;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Priority;
+import duke.tasks.TaskList;
+import duke.tasks.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,8 +21,6 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class StorageTest {
 

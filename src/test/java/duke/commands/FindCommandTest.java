@@ -1,11 +1,12 @@
-import duke.tasks.TaskList;
-
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import duke.tasks.TaskList;
 import duke.ui.UI;
 import duke.commands.FindCommand;
 import duke.exceptions.DukeException;

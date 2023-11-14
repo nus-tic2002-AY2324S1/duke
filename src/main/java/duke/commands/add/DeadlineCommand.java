@@ -7,7 +7,7 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.ui.UI;
 
-import java.util.regex.*;
+import java.util.regex.Pattern;
 import java.time.LocalDate;
 
 public class DeadlineCommand extends Command {
@@ -36,7 +36,7 @@ public class DeadlineCommand extends Command {
             } else {
                 throw new DukeException("Please provide the date in this format: YYYY-MM-DD");
             }
-            
+
         } else {
             throw new DukeException("Oops, missing task description!");
         }

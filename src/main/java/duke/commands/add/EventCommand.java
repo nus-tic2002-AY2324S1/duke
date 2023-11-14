@@ -7,7 +7,7 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.ui.UI;
 
-import java.util.regex.*;
+import java.util.regex.Pattern;
 import java.time.LocalDate;
 
 public class EventCommand extends Command {
