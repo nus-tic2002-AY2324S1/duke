@@ -1,6 +1,8 @@
 package duke;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -27,6 +29,7 @@ public class Duke {
         TASK_KEYWORDS.put(TaskType.DEADLINE, "deadline");
         TASK_KEYWORDS.put(TaskType.EVENT, "event");
         TASK_KEYWORDS.put(TaskType.DELETE, "delete");
+        TASK_KEYWORDS.put(TaskType.FIND, "find");
     }
 
     public Duke() {
@@ -59,7 +62,7 @@ public class Duke {
 
     public void processInput(String input) {
         if (input.equalsIgnoreCase("list")) {
-            ui.printTaskList(taskList.getList());
+            ui.printTaskList(taskList.getList(), null);
             return;
         }
         TaskType taskType = getTaskType(input);
@@ -92,9 +95,28 @@ public class Duke {
                 } catch (NumberFormatException e) {
                     ui.printErrorMessage(ErrorType.ERR_EXPECT_NUMBER, taskType, taskList.getListSize());
                 }
+            } else if (taskType == TaskType.FIND) {
+                String searchKeyword = taskDescription;
+                List<Task> resultTaskList = taskList.searchList(searchKeyword);
+                ui.printTaskList(resultTaskList, TaskType.FIND);
             } else {
-                taskList.addTask(createTask(taskType, taskDescription));
-                storage.saveTasks(taskList.getList()); // Save tasks to file after each change
+                List<Task> resultTaskList= taskList.searchList(taskDescription);
+
+                // Create an iterator to safely remove elements while iterating
+                Iterator<Task> iterator = resultTaskList.iterator();
+                while (iterator.hasNext()) {
+                    Task task = iterator.next();
+                    if (!task.getTaskType().equals(taskType)) {
+                        iterator.remove();
+                    }
+                }
+
+                if (!resultTaskList.isEmpty()) {
+                    ui.printTaskList(resultTaskList, taskType);
+                } else {
+                    taskList.addTask(createTask(taskType, taskDescription));
+                    storage.saveTasks(taskList.getList()); // Save tasks to file after each
+                }
             }
         } catch (IllegalArgumentException e) {
             ui.printErrorMessage(ErrorType.ERR_INVALID_FORMAT, taskType, taskList.getListSize());

@@ -3,6 +3,8 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import duke.command.TaskType;
+
 public class Deadlines extends Task {
     LocalDate deadline;
 
@@ -32,10 +34,15 @@ public class Deadlines extends Task {
     }
 
     @Override
+    public TaskType getTaskType() {
+        return TaskType.DEADLINE;
+    }
+
+    @Override
     public String getType() {
         return "D";
     }
-    
+
     @Override
     public String toFileString() {
         return getType() + " | " + (isDone ? "1" : "0") + " | " + description + " | " + deadline;
@@ -43,6 +50,7 @@ public class Deadlines extends Task {
 
     @Override
     public String getPrintStatus() {
-        return "[" + (isDone ? "X" : " ") + "] " + description + " (by: " + deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[" + (isDone ? "X" : " ") + "] " + description + " (by: "
+                + deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

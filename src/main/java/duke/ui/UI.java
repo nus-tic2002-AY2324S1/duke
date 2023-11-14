@@ -17,8 +17,15 @@ public class UI {
         TASK_KEYWORDS.put(TaskType.DELETE, "delete");
     }
 
-    public void printTaskList(List<Task> list) {
+    public void printTaskList(List<Task> list, TaskType t) {
         printSeparator();
+        if (t == TaskType.FIND) {
+            System.out.println("Here are the matching tasks in your list:");
+        } else if (t == TaskType.TODO ||
+                t == TaskType.EVENT ||
+                t == TaskType.DEADLINE) {
+            System.out.println("Unable to add as there is duplicate record:");
+        }
         for (int i = 0; i < list.size(); i++) {
             System.out.print(i + 1 + ". ");
             list.get(i).print();

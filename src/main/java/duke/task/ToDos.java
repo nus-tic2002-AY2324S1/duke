@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.command.TaskType;
+
 public class ToDos extends Task {
     public ToDos(String description) {
         super(description);
@@ -9,6 +11,11 @@ public class ToDos extends Task {
         super(description, isDone);
     }
 
+    @Override
+    public TaskType getTaskType() {
+        return TaskType.TODO;
+    }
+    
     @Override
     public String getType() {
         return "T";

@@ -3,6 +3,8 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import duke.command.TaskType;
+
 public class Events extends Task {
     LocalDate from;
     LocalDate to;
@@ -38,6 +40,11 @@ public class Events extends Task {
     }
 
     @Override
+    public TaskType getTaskType() {
+        return TaskType.EVENT;
+    }
+
+    @Override
     public String getType() {
         return "E";
     }
@@ -50,6 +57,7 @@ public class Events extends Task {
     @Override
     public String getPrintStatus() {
         DateTimeFormatter patt = DateTimeFormatter.ofPattern("MMM d yyyy");
-        return "[" + (isDone ? "X" : " ") + "] " + description + " (from: " + from.format(patt) + " to:" + to.format(patt) + ")";
+        return "[" + (isDone ? "X" : " ") + "] " + description + " (from: " + from.format(patt) + " to:"
+                + to.format(patt) + ")";
     }
 }

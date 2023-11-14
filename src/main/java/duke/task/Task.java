@@ -3,6 +3,8 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import duke.command.TaskType;
+
 public abstract class Task {
     public String description;
     protected boolean isDone;
@@ -24,6 +26,8 @@ public abstract class Task {
     public void markAsDone() {
         this.isDone = true;
     }
+
+    public abstract TaskType getTaskType();
 
     public abstract String getType();
 

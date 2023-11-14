@@ -29,6 +29,17 @@ public class TaskList {
         this.list = list;
     }
 
+    public List<Task> searchList(String keyword){
+        List<Task> resultList = new ArrayList<>();
+        
+        for (Task task : list) {
+            if(task.getDescription().toLowerCase().contains(keyword.toLowerCase())){
+                resultList.add(task);
+            }
+        }
+        return resultList;
+    }
+
     public void addTask(Task task) {
         list.add(task);
         UI.printSeparator();
