@@ -14,7 +14,6 @@ import java.nio.file.Paths;
 
 /**
  * The main program Tina, a chatbot, allows to schedule tasks with flexible functions.
- *
  */
 public class Tina {
 
@@ -22,7 +21,8 @@ public class Tina {
     private TaskList taskList;
     private Storage storage;
 
-    public Tina() {}
+    public Tina() {
+    }
 
     public void setPath(Path path, Path archivePath) {
         this.ui = new Ui();

@@ -8,7 +8,8 @@ public class TaskList {
     public TaskList(ArrayList<Task> taskList) {
         this.taskList = taskList;
     }
-    public TaskList () {
+
+    public TaskList() {
         this.taskList = new ArrayList<>();
     }
 

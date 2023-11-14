@@ -39,14 +39,13 @@ public class ScheduleCommand extends Command {
         TaskList tasks = new TaskList();
         for (Task task : taskList.getTaskList()) {
             if (task instanceof DeadlineTask) {
-                DeadlineTask deadlineTask = (DeadlineTask)task;
+                DeadlineTask deadlineTask = (DeadlineTask) task;
                 LocalDate by = deadlineTask.getBy();
                 if (by.isEqual(date)) {
                     tasks.add(deadlineTask);
                 }
-            }
-            else if (task instanceof EventTask) {
-                EventTask eventTask = (EventTask)task;
+            } else if (task instanceof EventTask) {
+                EventTask eventTask = (EventTask) task;
                 LocalDate from = eventTask.getFrom();
                 LocalDate to = eventTask.getTo();
                 if (from.isBefore(date) && to.isAfter(date)) {

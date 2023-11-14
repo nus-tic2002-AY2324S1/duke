@@ -20,7 +20,7 @@ public class Ui {
      * Show welcome message and give command list for help.
      */
     public static String showWelcome() {
-        return  "Hello! I'm TINA. \nHow can I help you?\n" +
+        return "Hello! I'm TINA. \nHow can I help you?\n" +
                 "type help to get command list";
     }
 
@@ -28,7 +28,7 @@ public class Ui {
      * Print command list.
      */
     public String printCommandList() {
-        return  "Command List:\n" +
+        return "Command List:\n" +
                 "bye\n" +
                 "list\n" +
                 "todo [task name]\n" +
@@ -63,8 +63,8 @@ public class Ui {
      */
     public String printMark(Task task, boolean isMark) {
         String str = isMark ? "" : "not ";
-        return "Nice! I've marked this Tina.task as " + str +"done:\n" +
-                "[" + task.isDone() +"]" + task.getTaskName();
+        return "Nice! I've marked this Tina.task as " + str + "done:\n" +
+                "[" + task.isDone() + "]" + task.getTaskName();
     }
 
     /**
@@ -94,7 +94,7 @@ public class Ui {
      * Print goodbye message when exiting program.
      */
     public String printBye() {
-        return"Bye. Hope to see you again.";
+        return "Bye. Hope to see you again.";
     }
 
     /**

@@ -8,7 +8,7 @@ import com.tina.task.TaskList;
  * The type List command.
  * Show all tasks in the task list.
  */
-public class ListCommand extends Command{
+public class ListCommand extends Command {
     /**
      * Instantiates a new List command.
      */

@@ -8,7 +8,7 @@ public class InvalidTaskNumberException extends TinaException {
     /**
      * Instantiates a new Invalid task number exception.
      */
-    public InvalidTaskNumberException () {
+    public InvalidTaskNumberException() {
         super("OOPS!!! Invalid task number");
     }
 }

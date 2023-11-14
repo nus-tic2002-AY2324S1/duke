@@ -25,7 +25,9 @@ public enum CommandEnum {
     CommandEnum(String syntax) {
         this.syntax = syntax;
     }
-    CommandEnum(){}
+
+    CommandEnum() {
+    }
 
     /**
      * Gets syntax of current command type.

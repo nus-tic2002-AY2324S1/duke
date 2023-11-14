@@ -91,8 +91,7 @@ public class Validator {
         int size = tokens.size();
         if (isFixedLength && size != minLength) {
             throw new InvalidParameterException(command);
-        }
-        else if (size < minLength) {
+        } else if (size < minLength) {
             throw new InvalidParameterException(command);
 
         }

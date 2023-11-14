@@ -8,7 +8,7 @@ import com.tina.service.Storage;
 import com.tina.service.Ui;
 import com.tina.task.TaskList;
 
-public class HelpCommand extends Command{
+public class HelpCommand extends Command {
     public HelpCommand() {
         super(CommandEnum.HELP);
     }
