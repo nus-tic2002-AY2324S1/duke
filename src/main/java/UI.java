@@ -29,6 +29,9 @@ public class UI {
     public static void Separator(){
         System.out.println("__________________________");
     }
+    /**
+     * print blank space line
+     */
     public static void Spacer(){
         System.out.println("    ");
     }
@@ -36,13 +39,14 @@ public class UI {
      * prints number of task
      */    public static void TaskCount(int i){
         System.out.println("The list is increasing , there is "+ i +" Tasks now");
-    }/**
+    }
+    /**
      * prints default error message
      */
     public static void ErrorDuke(){
         Separator();
         System.out.println("Cate does not know what this means");
-        System.out.println("The available commands are : list , mark , unmark , todo , deadline , event , bye , find");
+        System.out.println("The available commands are : list , mark , unmark , todo , deadline , event , bye , find , view");
         Separator();
     }
     /**
@@ -106,7 +110,6 @@ public class UI {
     }
     /**
      * main application run function that loops
-     *
      * uses parser to check for invalid keywords and returns error messages
      */
     public void Run(ListTask Storage,Parser Checker){

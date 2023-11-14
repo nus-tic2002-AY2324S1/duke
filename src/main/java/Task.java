@@ -8,14 +8,14 @@ public class Task {
     protected boolean isDone;
     protected String tag;
     /**
-     * Constructor of Task take in description and the 'isDone' status set to false
+     * Constructor of Task take in description , the 'isDone' status set to false and the tag is set to T
      *
      * @param description The description for the Task.
      */
     public Task(String description) {
         this.description = description;
         this.isDone=false;
-        tag = "Task";
+        tag = "T";
     }
 
     public String getTag() {

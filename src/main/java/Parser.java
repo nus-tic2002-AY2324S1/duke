@@ -103,8 +103,6 @@ public class Parser{
                 throw new MissingArgumentException("Please use the format dd/MM/yyyy HH:mm with valid Date for due date");
         break;
         case EVENT:
-                String fromDateTime= line.substring(line.indexOf("/from")+6,line.indexOf("/to"));
-                String toDateTime= line.substring(line.indexOf("/to")+4);
         if(words.length==1)
                 throw new MissingArgumentException("What Event is this? there is no content , start date time and end date time");
         else if(words[1].equals("/from"))
@@ -121,7 +119,9 @@ public class Parser{
                 throw new MissingArgumentException("Event end time is blank");
         else if(line.indexOf("/from")>line.indexOf("/to"))
                 throw new MissingArgumentException("Start time first followed by end time");
-        else if(dateFormatInvalid(fromDateTime))
+        String fromDateTime= line.substring(line.indexOf("/from")+6,line.indexOf("/to"));
+        String toDateTime= line.substring(line.indexOf("/to")+4);
+        if(dateFormatInvalid(fromDateTime))
                 throw new MissingArgumentException("Please use the format dd/MM/yyyy HH:mm with valid Date for start date");
         else if(dateFormatInvalid(toDateTime))
                 throw new MissingArgumentException("Please use the format dd/MM/yyyy HH:mm with valid Date for end date");

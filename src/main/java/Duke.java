@@ -14,7 +14,8 @@ public class Duke {
         }
         ui.Run(listofitems, parse);
         try{
-            storage.save(listofitems);}
+            storage.save(listofitems);
+        }
         catch (IOException e) {
             System.out.println("Error in saving, data is lost");
         }

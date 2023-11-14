@@ -29,8 +29,9 @@ public class ListTask {
     public void removeTask(int number){
         ArrayList<Task> StorageUpdate = new ArrayList<>();
         for(int i=0;i< List.size();i++){
-            if(i != number)
+            if(i != number) {
                 StorageUpdate.add(List.get(i));
+            }
             else {
                 Separator();
                 System.out.println("Cate has deleted this Task:");
