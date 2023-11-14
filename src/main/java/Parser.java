@@ -40,6 +40,10 @@ public class Parser{
 
                 return LocalDateTime.of(year, month, day, hour, minute);
         }
+        public static boolean isSameDate(LocalDateTime date1, LocalDateTime date2){
+                Integer day = date1.getDayOfYear();
+            return day.equals(date2.getDayOfYear());
+        }
 
         public void checkError(Keyword k,String line,ListTask Storage){
                 this.NoError=true;

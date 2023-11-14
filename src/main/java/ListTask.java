@@ -1,3 +1,4 @@
+import javax.swing.text.View;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -112,8 +113,10 @@ public class ListTask {
                     PreSort.add(task);
                 }
                 if (task.getTag().equals("E")){
-                    if(task.startTime().isAfter(ViewDay)){
+                    if(ViewDay.isAfter(task.startTime())){
                     PreSort.add(task);
+                    }else if(Parser.isSameDate(task.startTime(),ViewDay)){
+                        PreSort.add(task);
                     }
                 }
             }
