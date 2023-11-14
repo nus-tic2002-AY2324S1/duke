@@ -7,10 +7,10 @@ import duke.tasks.Task;
 import duke.tasks.TaskList;
 import duke.ui.UI;
 
-public class AddToDo extends Command{
+public class ToDoCommand extends Command{
     String description;
 
-    public AddToDo(String line)throws DukeException{
+    public ToDoCommand(String line)throws DukeException{
         if (line.split(" ").length<2) throw new DukeException("Oops, missing todo description!");
         this.description = line.split(" ",2)[1].trim();
     }

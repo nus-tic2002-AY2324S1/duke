@@ -1,19 +1,19 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import duke.exceptions.DukeException;
-import duke.commands.add.AddToDo;
+import duke.commands.add.ToDoCommand;
 
-public class AddToDoTest {
+public class ToDoCommandTest {
     @Test
-    public void addToDoConstructorTest() throws DukeException{
+    public void toDoCommandConstuctorTest() throws DukeException{
         // Test Set Up
         Throwable exception; 
 
         // Working Test Case
-        AddToDo t = new AddToDo("todo eat dinner");
+        ToDoCommand t = new ToDoCommand("todo eat dinner");
 
         // Test Case 1: Missing Task Description
-        exception = assertThrows(DukeException.class, () -> new AddToDo("todo "));
+        exception = assertThrows(DukeException.class, () -> new ToDoCommand("todo "));
         assertEquals("Oops, missing todo description!", exception.getMessage());
     }
 }

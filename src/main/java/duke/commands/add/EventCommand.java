@@ -10,12 +10,12 @@ import duke.ui.UI;
 import java.util.regex.*;  
 import java.time.LocalDate;
 
-public class AddEvent extends Command {
+public class EventCommand extends Command {
     public String description;
     public LocalDate fromDate;
     public LocalDate toDate;
     
-    public AddEvent(String input) throws DukeException{
+    public EventCommand(String input) throws DukeException{
 
         if(input.indexOf("/from")==-1 || input.indexOf("/to")==-1){
             throw new DukeException("Please follow the correct format.");

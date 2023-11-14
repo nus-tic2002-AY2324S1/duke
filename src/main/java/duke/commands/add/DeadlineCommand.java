@@ -10,11 +10,11 @@ import duke.ui.UI;
 import java.util.regex.*;  
 import java.time.LocalDate;
 
-public class AddDeadline extends Command {
+public class DeadlineCommand extends Command {
     LocalDate date;
     String description;
 
-    public AddDeadline(String line) throws DukeException{
+    public DeadlineCommand(String line) throws DukeException{
         // deadline buy food /by 2023-10-05 & format accepted yyyy-mm-dd
         if (line.indexOf("/by") == -1) throw new DukeException("Please follow the correct format.");
 

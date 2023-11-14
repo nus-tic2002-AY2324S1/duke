@@ -1,9 +1,9 @@
 package duke.parser;
 
 import duke.commands.*;
-import duke.commands.add.AddDeadline;
-import duke.commands.add.AddEvent;
-import duke.commands.add.AddToDo;
+import duke.commands.add.DeadlineCommand;
+import duke.commands.add.EventCommand;
+import duke.commands.add.ToDoCommand;
 import duke.exceptions.DukeException;
 
 public class Parser {
@@ -40,13 +40,13 @@ public class Parser {
                 c = new DeleteCommand(userInput);
                 break;
             case "todo":
-                c = new AddToDo(userInput.trim());
+                c = new ToDoCommand(userInput.trim());
                 break;
             case "event":
-                c = new AddEvent(userInput.trim());
+                c = new EventCommand(userInput.trim());
                 break;
             case "deadline":
-                c = new AddDeadline(userInput.trim());
+                c = new DeadlineCommand(userInput.trim());
                 break;
             case "due":
                 c = new DueCommand(userInput.trim());
