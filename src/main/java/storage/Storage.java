@@ -8,8 +8,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
+/**
+ * A festure class contains function that convert the TaskList to a Text file duke.txt
+ * The text file and file path will be created if doesn't exist in the directory.
+ * whenever the TaskList being updated the text file will be updated too.
+ */
 public class Storage {
-
+    /**
+     * This is a function returns nothing
+     * but take in an ArrayList of <code>Task</code> and put them into duke.txt file.
+     *
+     * @param actions ArrayList of Tasks.
+     * @return nothing will be returned.
+     * @throws IOException If file does not exist.
+     */
     public static void convertToTxtFile(ArrayList<Task> actions) throws IOException {
         //handling file/folder does not exit
         String filePath = "./data/duke.txt";
@@ -31,7 +43,8 @@ public class Storage {
             }
             FileWriter fw = new FileWriter(filePath);
             for (Task task : actions) {
-                fw.write(task.toTextFile());
+                fw.write(task.getTask());
+
                 //line seperator in the file
                 fw.write(System.lineSeparator());
             }

@@ -11,7 +11,18 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+/**
+ * <h1>Duke Scheduling Robot venni </h1>
+ *  This program allow user to put in their task and turn it into a list.
+ * The list will be stored in a file called duke.txt as well.
+ * <p>
+ * User can mark/unmark the tasks as "done",add and delete task.
+ * There are three types of Task: Event, Deadline, Todo
+ *
+ * @author  WanYing Li
+ * @version 1.0
+ * @since   2023-08-18
+ */
 public class Duke {
     private static Storage storage;
     private static TaskList tasks;
@@ -34,7 +45,7 @@ public class Duke {
         actions.add(task2);
         actions.add(task3);
         inputCount +=3;
-        tasks = new TaskList(actions);
+        tasks = new TaskList();
         storage.convertToTxtFile(actions);
 
         Scanner scanner = new Scanner(System.in);

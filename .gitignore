@@ -17,4 +17,4 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 
 #text file created from the program
-/data/duke.txt
+data/duke.txt

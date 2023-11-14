@@ -1,18 +1,18 @@
 package task;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import parser.DateTimeParser;
-import storage.Storage;
+
+import java.time.LocalDate;
 
 /**
- * A class handle task with deadlines for multiple formats in Java.
+ *  Represent a <code>Deadline</code> object that extends an instance from <code>Task</code> object
+ *  that comes with date as deadline.
  */
 public class Deadline extends Task{
 
     private static DateTimeParser dateParser;
     private String by;
+    private String description;
     public Deadline(String d,boolean x) {
         super(d,x);
         extractBy(d);
@@ -20,26 +20,28 @@ public class Deadline extends Task{
     public String getBy() {
         return by;
     }
-    public void setBy(String newBy) {
-        by = dateParser.toDate(newBy);
+
+    public void setBy( String newBy) {
+        this.by = newBy;
     }
 
     public void extractBy(String description) {
         String[] words = description.split(" ", 2);
         try {
             String[] splitBy = words[1].split("/by ");
-            setDescription(splitBy[0]);
+            //setDescription(splitBy[0]);
             String deadline = splitBy[1];
-            this.by = dateParser.toDate(deadline);
+            String newBy = dateParser.toDate(deadline);
+            setBy(newBy);
         } catch(ArrayIndexOutOfBoundsException e) {
             //error message display is at main class
         }
     }
 
     @Override
-    public String toTextFile(){
+    public String getTask(){
         String result = "";
-        if (!getIsDone()){
+        if (getIsDone()){
             result = "[D][ ] "+ getDescription() + "(by: "+getBy()+")";
         }else {
             result = "[D][X] "+ getDescription() + "(by: "+getBy()+")";
@@ -47,13 +49,9 @@ public class Deadline extends Task{
         return result;
     }
 
+
     @Override
     public void printTask(){
-        if (!getIsDone()){
-            System.out.println("[D][ ] "+ getDescription() + "(by: "+getBy()+")");
-        }else {
-            System.out.println("[D][X] "+ getDescription() + "(by: "+getBy()+")");
-        }
-
+        System.out.println(getTask());
     }
 }

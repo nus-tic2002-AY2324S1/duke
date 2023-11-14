@@ -7,14 +7,22 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * A parser for datetime formatting. Any datetime format will be formatted from "dd/MM/yyyy" to "MMM dd yyyy" in <code>DateTimeParser</code> .
+ */
 public class DateTimeParser {
     /*
     method to extract date from inputString and format it.
     find date matches format dd/mm/yyyy, which is a required format from user side,
     parse it to dd-MM-yyyy format
      */
-
+    /**
+     * Returns a date in "MMM dd yyyy" format string based on user input.
+     * if date is not in "dd/MM/yyyy" format, method will return an empty string with a prompt
+     * @param inputString datetime string input by the user.
+     * @return date in "MMM dd yyyy" format and will be use in Tasklist.
+     * @throws DateTimeParseException If extracted date doesn't match the inputFormatter.
+     */
     public static String toDate(String inputString){
         String printedDate = " ";
 
@@ -36,7 +44,6 @@ public class DateTimeParser {
             //inputFormatter = inputFormatter.withLocale(Locale.getDefault() );
             DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate formattedDate = LocalDate.parse(inputDate, inputFormatter);
-
 
 
             //print date to MMM dd yyyy

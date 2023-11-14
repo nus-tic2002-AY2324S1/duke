@@ -2,14 +2,27 @@ package task;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * A functional class contains All the operations to a <code>Task</code> list.
+ * Including add OR delete <code>Task</code>,
+ * also print all the <code>Task</code> in the <code>Task</code> list.
+ */
 public class TaskList {
-    private ArrayList<Task> actions;
-    private int inputCount;
 
-    public TaskList(ArrayList<Task> actions) {
-        this.actions = actions;
-        this.inputCount = actions.size();
-    }
+    /**
+     * Constructor for TaskList class
+     */
+    public TaskList(){}
+    /**
+     * Returns list of <code>Task</code> after removing the input task.
+     * function will only be called when user wish to delete particular task.
+     * Task to be deleted will identify the task
+     * by calling <code>getNumber()</code> function to get the index of the task.
+     *
+     * @param input String input contains task to be removed by user.
+     * @param actions the latest version of list of <code>Task</code>
+     * @return the updated list of <code>Task</code>.
+     */
     public ArrayList<Task> removeTasks(String input, ArrayList<Task> actions){
         int taskNo = getNumber(input);
         //e.g. "   [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)"
@@ -23,6 +36,11 @@ public class TaskList {
         return actions;
     }
 
+    /**
+     * function to print out the list of task with numbers in sequence.
+     *
+     * @param actions the latest version of list of <code>Task</code>
+     */
     public void printTaskList(ArrayList<Task> actions){
         System.out.println("    ____________________________________________________________\n"+
                 "    Here are the tasks in your list: ");
@@ -34,6 +52,14 @@ public class TaskList {
         System.out.println("    ____________________________________________________________");
     }
 
+    /**
+     * Returns list of <code>Task</code> after adding the input task.
+     * function will only be called when user wish to add particular task.
+     *
+     * @param input String input contains task to be added by user.
+     * @param actions the latest version of list of <code>Task</code>
+     * @return updated list of <code>Task</code>.
+     */
     public ArrayList<Task> addTasks(String input, ArrayList<Task> actions){
         boolean isValid = validateInput(input);
         //if isValid ==false, stop process.
@@ -62,12 +88,20 @@ public class TaskList {
         return actions;
     }
 
+    /**
+     * Returns index in the <code>Task</code> list of selected task.
+     * If there is no number found in the input String, NaN is returned.
+     * function will only be called when user entered a Task number
+     *
+     * @param input String input contains index of the task user wish to action on.
+     * @return integer that represents index in the <code>Task</code> list of selected task.
+     * @throws  NumberFormatException if the string cannot be converted to Integer.
+     */
     public int getNumber(String input){
         String[] words = input.split(" ");
         for (String word : words) {
             try {
-                int no = Integer.parseInt(word);
-                return no;
+                return Integer.parseInt(word);
             } catch (NumberFormatException nfe) {
                 continue;
             }
@@ -75,24 +109,34 @@ public class TaskList {
         return -1;
     }
 
+
+    /**
+     * Returns true if user input fits into <code>Task</code> object.
+     * If input doesn't starts with Todo OR Event OR Deadline , return false.
+     *
+     * @param input String input contains task to be added by user.
+     * @return updated list of <code>Task</code>.
+     */
     public boolean validateInput(String input){
         String trimInput = input.trim().toLowerCase();
-        if (!trimInput.startsWith("todo")&&!trimInput.startsWith("deadline")
-                &&!trimInput.startsWith("event")){
-            return false;
-        }
-        return true;
+        return trimInput.startsWith("todo") || trimInput.startsWith("deadline")
+                || trimInput.startsWith("event");
     }
+
+    /**
+     * Identifies the type of <code>Task</code>, <code>Deadline</code>
+     * OR <code>Event</code> OR todo task.
+     *
+     * @param input String input contains task to be added by user.
+     * @return A new <code>Task</code> according to the type of the task.
+     */
     public Task getNewTask (String input){
         if (input.trim().toLowerCase().startsWith("deadline")){
-            Deadline newDeadline = new Deadline(input, false);
-            return newDeadline;
+            return new Deadline(input, false);
         }else if (input.trim().toLowerCase().startsWith("event")){
-            Event newEvent = new Event(input, false);
-            return newEvent;
+            return new Event(input, false);
         }else  {
-            Task newTask = new Task(input, false);
-            return newTask;
+            return new Task(input, false);
         }
     }
 }

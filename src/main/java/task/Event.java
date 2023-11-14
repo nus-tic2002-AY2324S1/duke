@@ -43,9 +43,9 @@ public class Event extends Task{
     }
 
     @Override
-    public String toTextFile(){
+    public String getTask(){
         String result = "";
-        if (!getIsDone()){
+        if (getIsDone()){
             result = "[E][ ] "+ getDescription() + "(from: " + getFrom() + "to: "+ getTo() +")";
         }else {
             result = "[E][X] "+ getDescription() + "(from: " + getFrom() + "to: "+ getTo() +")";
@@ -55,12 +55,7 @@ public class Event extends Task{
 
     @Override
     public void printTask(){
-        if (!getIsDone()){
-            System.out.println("[E][ ] "+ getDescription() + "(from: " + getFrom() + "to: "+ getTo() +")");
-
-        }else {
-            System.out.println("[E][X] "+ getDescription() + "(from: " + getFrom() + "to: "+ getTo() +")");
-        }
+        System.out.println(getTask());
 
     }
 }
