@@ -70,15 +70,15 @@ public class Parser {
         String[] parts = line.split("\\s*\\|\\s*");
         boolean isDone = parts[1].equals("X");
         switch (parts[0]) {
-            case "T":
-                return new TodoTask(parts[2], isDone);
-            case "D":
-                return new DeadlineTask(parts[2], isDone, LocalDate.parse(parts[3]));
-            case "E":
-                return new EventTask(parts[2], isDone, LocalDate.parse(parts[3]),
-                        LocalDate.parse(parts[4]));
-            default:
-                throw new InvalidFileFormatException();
+        case "T":
+            return new TodoTask(parts[2], isDone);
+        case "D":
+            return new DeadlineTask(parts[2], isDone, LocalDate.parse(parts[3]));
+        case "E":
+            return new EventTask(parts[2], isDone, LocalDate.parse(parts[3]),
+                    LocalDate.parse(parts[4]));
+        default:
+            throw new InvalidFileFormatException();
         }
     }
 
@@ -119,48 +119,50 @@ public class Parser {
         Command command = null;
         String taskName;
         switch (commandEnum) {
-            case BYE:
-                command = new ByeCommand();
-                break;
-            case LIST:
-                command = new ListCommand();
-                break;
-            case MARK:
-                command = new MarkCommand(Integer.parseInt(tokens.get(0)));
-                break;
-            case UNMARK:
-                command = new UnmarkCommand(Integer.parseInt(tokens.get(0)));
-                break;
-            case DELETE:
-                command = new DeleteCommand(Integer.parseInt(tokens.get(0)));
-                break;
-            case TODO:
-                command = new TodoCommand(String.join(" ", tokens));
-                break;
-            case DEADLINE:
-                int byIndex = tokens.indexOf("/by");
-                taskName = String.join(" ", tokens.subList(1, byIndex));
-                String by = String.join(" ", tokens.subList(byIndex + 1, tokens.size()));
-                command = new DeadlineCommand(taskName, parseDate(by));
-                break;
-            case EVENT:
-                int fromIndex = tokens.indexOf("/from");
-                int toIndex = tokens.indexOf("/to");
-                taskName = String.join(" ", tokens.subList(1, fromIndex));
-                String from = String.join(" ", tokens.subList(fromIndex + 1, toIndex));
-                String to = String.join(" ", tokens.subList(toIndex + 1, tokens.size()));
-                command = new EventCommand(taskName, parseDate(from), parseDate(to));
-                break;
-            case SCHEDULE:
-                command = new ScheduleCommand(parseDate(String.join(" ", tokens)));
-                break;
-            case ARCHIVE:
-                command = new ArchiveCommand(tokens.get(0));
-                break;
-            case FIND:
-                command = new FindCommand(String.join(" ", tokens));
-                break;
-            default:
+        case BYE:
+            command = new ByeCommand();
+            break;
+        case LIST:
+            command = new ListCommand();
+            break;
+        case MARK:
+            command = new MarkCommand(Integer.parseInt(tokens.get(0)));
+            break;
+        case UNMARK:
+            command = new UnmarkCommand(Integer.parseInt(tokens.get(0)));
+            break;
+        case DELETE:
+            command = new DeleteCommand(Integer.parseInt(tokens.get(0)));
+            break;
+        case TODO:
+            command = new TodoCommand(String.join(" ", tokens));
+            break;
+        case DEADLINE:
+            int byIndex = tokens.indexOf("/by");
+            taskName = String.join(" ", tokens.subList(1, byIndex));
+            String by = String.join(" ", tokens.subList(byIndex + 1, tokens.size()));
+            command = new DeadlineCommand(taskName, parseDate(by));
+            break;
+        case EVENT:
+            int fromIndex = tokens.indexOf("/from");
+            int toIndex = tokens.indexOf("/to");
+            taskName = String.join(" ", tokens.subList(1, fromIndex));
+            String from = String.join(" ", tokens.subList(fromIndex + 1, toIndex));
+            String to = String.join(" ", tokens.subList(toIndex + 1, tokens.size()));
+            command = new EventCommand(taskName, parseDate(from), parseDate(to));
+            break;
+        case SCHEDULE:
+            command = new ScheduleCommand(parseDate(String.join(" ", tokens)));
+            break;
+        case ARCHIVE:
+            command = new ArchiveCommand(tokens.get(0));
+            break;
+        case FIND:
+            command = new FindCommand(String.join(" ", tokens));
+            break;
+        case HELP:
+            command = new HelpCommand();
+        default:
         }
         return command;
     }

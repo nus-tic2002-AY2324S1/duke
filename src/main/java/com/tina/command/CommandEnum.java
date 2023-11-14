@@ -17,6 +17,7 @@ public enum CommandEnum {
     SCHEDULE("schedule [date]"),
     ARCHIVE("archive [file name].txt"),
     FIND("find [keyword]"),
+    HELP("help"),
     UNKNOWN();
 
     private String syntax;

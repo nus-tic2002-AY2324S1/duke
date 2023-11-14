@@ -25,6 +25,7 @@ public class Validator {
         switch (command) {
         case BYE:
         case LIST:
+        case HELP:
             validateCommandParameter(tokens, command, 1, true);
             break;
         case MARK:

@@ -1,5 +1,6 @@
 package com.tina.GUI;
 
+import com.tina.service.Ui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,6 +21,11 @@ public class DialogBox extends HBox {
     private Text dialog;
     @FXML
     private ImageView displayPicture;
+
+    @FXML
+    public void initialize() {
+
+    }
 
     private DialogBox(String text, Image img) {
         try {
