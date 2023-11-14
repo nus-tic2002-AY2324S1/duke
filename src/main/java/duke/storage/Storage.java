@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.regex.*;
-
+import duke.exceptions.DukeException;
 import duke.tasks.*;
 
 public class Storage {
@@ -57,32 +57,42 @@ public class Storage {
                 String regex = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
 
                 switch (line[0]) {
-                    case "E":
-                        // doesnt add invalid task
-                        if (line.length != 6)
-                            continue;
-                        if (!Pattern.matches(regex, line[4]))
-                            continue;
-                        if (!Pattern.matches(regex, line[5]))
-                            continue;
+                case "E":
+                    // doesnt add invalid task
+                    if (line.length != 6) {
+                        continue;
+                    } else if (!Pattern.matches(regex, line[4])) {
+                        continue;
+                    } else if (!Pattern.matches(regex, line[5])) {
+                        continue;
+                    } else {
                         t = new Event(line[3], LocalDate.parse(line[4]), LocalDate.parse(line[5]));
                         tasks.add(t);
                         break;
-                    case "D":
-                        if (line.length != 5)
-                            continue;
-                        if (!Pattern.matches(regex, line[4]))
-                            continue;
+                    }
+                case "D":
+                    if (line.length != 5) {
+                        continue;
+                    } else if (!Pattern.matches(regex, line[4])) {
+                        continue;
+                    } else {
                         t = new Deadline(line[3], LocalDate.parse(line[4]));
                         tasks.add(t);
                         break;
-                    case "T":
-                        // doesnt add invalid task
-                        if (line.length != 4)
-                            continue;
+                    }
+
+                case "T":
+                    // doesnt add invalid task
+                    if (line.length != 4) {
+                        continue;
+                    } else {
                         t = new ToDo(line[3]);
                         tasks.add(t);
                         break;
+                    }
+
+                default:
+                    continue;
                 }
 
                 tasks.get(counter).setTaskPriority(Priority.valueOf(line[1]));
@@ -91,8 +101,6 @@ public class Storage {
                     t = tasks.get(counter);
                     t.setDone();
                 }
-
-
                 counter++;
             }
 
@@ -100,8 +108,10 @@ public class Storage {
         } catch (FileNotFoundException e) {
             if (!directory.exists()) {
                 directory.mkdir();
+            } else {
+                file.createNewFile();
             }
-            file.createNewFile();
+
         }
 
         return tasks;
