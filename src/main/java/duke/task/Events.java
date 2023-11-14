@@ -1,22 +1,25 @@
 package duke.task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Events extends Task {
-    String from;
-    String to;
+    LocalDate from;
+    LocalDate to;
 
     public Events(String instruction) {
         super("");
         String[] items = derive(instruction);
         this.description = items[0];
-        this.from = items[1];
-        this.to = items[2];
+        this.from = convertDate(items[1]);
+        this.to = convertDate(items[2]);
     }
 
     public Events(String description, boolean isDone, String from, String to) {
         super("", false);
         this.description = description;
-        this.from = from;
-        this.to = to;
+        this.from = convertDate(from);
+        this.to = convertDate(to);
         this.isDone = isDone;
     }
 
@@ -46,6 +49,7 @@ public class Events extends Task {
 
     @Override
     public String getPrintStatus() {
-        return "[" + (isDone ? "X" : " ") + "] " + description + " (from: " + from + " to:" + to + ")";
+        DateTimeFormatter patt = DateTimeFormatter.ofPattern("MMM d yyyy");
+        return "[" + (isDone ? "X" : " ") + "] " + description + " (from: " + from.format(patt) + " to:" + to.format(patt) + ")";
     }
 }

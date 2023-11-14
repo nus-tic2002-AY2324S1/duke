@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import duke.command.TaskType; 
+import duke.command.TaskType;
 import duke.error.ErrorType;
 import duke.ui.UI;
 import duke.storage.Storage;
@@ -16,11 +16,11 @@ import duke.task.ToDos;
 import duke.task.Task;
 
 public class Duke {
-    private UI ui;
-    private Storage storage;
-    private TaskList taskList;
+    public UI ui;
+    public Storage storage;
+    public TaskList taskList;
 
-    private static final Map<TaskType, String> TASK_KEYWORDS = new HashMap<>();
+    public static final Map<TaskType, String> TASK_KEYWORDS = new HashMap<>();
 
     static {
         TASK_KEYWORDS.put(TaskType.TODO, "todo");
@@ -41,20 +41,23 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         String input;
 
-        do {
-            input = scanner.nextLine().trim();
-            processInput(input);
-        } while (!input.equalsIgnoreCase("bye"));
+        try {
 
+            do {
+                input = scanner.nextLine().trim();
+                processInput(input);
+            } while (!input.equalsIgnoreCase("bye"));
+        } finally {
+            scanner.close();
+        }
         ui.printGoodbyeMessage();
-        scanner.close();
     }
 
     public static void main(String[] args) {
         new Duke().run();
     }
 
-    private void processInput(String input) {
+    public void processInput(String input) {
         if (input.equalsIgnoreCase("list")) {
             ui.printTaskList(taskList.getList());
             return;
@@ -99,7 +102,7 @@ public class Duke {
         }
     }
 
-    private static Task createTask(TaskType taskType, String taskDescription) {
+    public static Task createTask(TaskType taskType, String taskDescription) {
         switch (taskType) {
             case EVENT:
                 return new Events(taskDescription);

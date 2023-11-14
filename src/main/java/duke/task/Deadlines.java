@@ -1,19 +1,22 @@
 package duke.task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Deadlines extends Task {
-    String deadline;
+    LocalDate deadline;
 
     public Deadlines(String instruction) {
         super("");
         String[] items = derive(instruction);
         this.description = items[0];
-        this.deadline = items[1];
+        this.deadline = convertDate(items[1]);
     }
 
     public Deadlines(String description, boolean isDone, String deadline) {
         super("", false);
         this.description = description;
-        this.deadline = deadline;
+        this.deadline = convertDate(deadline);
         this.isDone = isDone;
     }
 
@@ -40,6 +43,6 @@ public class Deadlines extends Task {
 
     @Override
     public String getPrintStatus() {
-        return "[" + (isDone ? "X" : " ") + "] " + description + " (by: " + deadline + ")";
+        return "[" + (isDone ? "X" : " ") + "] " + description + " (by: " + deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
