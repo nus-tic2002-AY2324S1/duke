@@ -1,10 +1,19 @@
 package Duke;
-
 import Task.Shelf;
 import Task.Text;
 
 import java.io.IOException;
-
+/**
+ * <h1>CLARA</h1>
+ * The CLARA program is a chatbot that manages your task and seek to increase your productivity.
+ * <p>
+ * CLARA and many fuctions including:
+ * Creating, Deleting, Marking and setting deadline for your Tasks
+ *
+ * @author  Kai Siang
+ * @version 0.8
+ * @since   2023-11-14
+ */
 public class Duke {
     private Shelf tasks;
     private Text ui;

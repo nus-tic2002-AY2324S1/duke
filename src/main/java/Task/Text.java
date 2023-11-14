@@ -1,5 +1,8 @@
 package Task;
-
+/**
+ * List of custom text for the UI
+ * Non-simple text output is store here and called in the main program
+ */
 public class Text { //aka UI
     public static final String newline = "____________________________________________________________\n";
     public enum Message {

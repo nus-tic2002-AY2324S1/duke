@@ -1,12 +1,14 @@
 package Duke;
-
 import Duke.DukeException;
 import Task.Shelf;
 import Task.Text;
 
 import java.io.IOException;
 import java.util.Scanner;
-
+/**
+ * Reads input and convert it other other forms usable by the rest of code.
+ * Parse method check user input and identifies keywords to carry out specific command
+ */
 public class Parser {
 
     public static void Parse(Shelf tasklist) throws DukeException {
@@ -33,7 +35,7 @@ public class Parser {
                 case "todo" :
                 case "deadline":
                 case "event":
-                    if(!input[2].isEmpty()){
+                    if(input.length >= 3){
                         Shelf.addDateTask(input[1], input[0], input[2]);
                         System.out.println("test");
                     }else{

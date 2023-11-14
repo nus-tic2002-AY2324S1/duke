@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
+/**
+ * Methods for saving and loading file operation
+ *
+ */
 public class Storage {
 
     public static Path getSavefilePath(){

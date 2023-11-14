@@ -1,6 +1,10 @@
 package Task;
 import Duke.DukeException;
 import java.util.ArrayList;
+/**
+ * Methods to manipulate a list of information in the database based on user command
+ * Such as CRUD of tasks.
+ */
 
 public class Shelf {
     private static ArrayList<SpecialTask> shelf;
@@ -18,9 +22,9 @@ public class Shelf {
             String deadline = "";
             if (shelf.get(i) instanceof DateTask){
                 DateTask dateTask = (DateTask) shelf.get(i);
-                deadline = dateTask.getDate();
+                deadline = dateTask.showDate();
             }
-            System.out.println(Integer.toString(i+1)+ ": " + "["  + shelf.get(i).getTypeIcon() + "]" + "["  + shelf.get(i).getStatusIcon() + "]" + shelf.get(i).description + deadline);
+            System.out.println(i + 1 + ": " + "["  + shelf.get(i).getTypeIcon() + "]" + "["  + shelf.get(i).getStatusIcon() + "]" + shelf.get(i).description + deadline);
         }
         System.out.println(Text.newline);
     }
@@ -78,7 +82,7 @@ public class Shelf {
             String deadline = "";
             if (specialTask instanceof DateTask){
                 DateTask dateTask = (DateTask) specialTask;
-                deadline = " /by " + String.valueOf(dateTask.deadline);
+                deadline = "/by" + DateTask.dateToString(dateTask.deadline);
             }
             save += specialTask.getTypeIcon() + "|" + specialTask.getStatusIcon() + "|" + specialTask.description + deadline + "\n";
         }

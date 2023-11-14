@@ -1,5 +1,8 @@
 package Task;
-
+/**
+ * Stores and creates tasks with description and marking
+ * Main class that generate Tasks
+ */
 public class Task {
     protected String description;
     protected Boolean isMarked;

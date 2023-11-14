@@ -1,4 +1,8 @@
 package Task;
+/**
+ * Stores and creates different types of tasks
+ * Child class of Task
+ */
 public class SpecialTask extends Task {
     protected String type;
     public SpecialTask(String description, String type) {
