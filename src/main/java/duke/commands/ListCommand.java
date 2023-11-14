@@ -5,24 +5,23 @@ import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.UI;
 
-public class ListCommand extends Command{
+public class ListCommand extends Command {
     /**
      * {@inheritDoc}
      * 
-     * This implementation of {@code execute} lists every
-     * {@code task} in the user's {@code tasks} list.
+     * This implementation of {@code execute} lists every {@code task} in the user's {@code tasks}
+     * list.
      * 
      * @param storage is not used in this implementation.
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
-        try{
+        try {
             tasks.listItems();
-        }
-        catch(EmptyListException e){
+        } catch (EmptyListException e) {
             ui.showError(e.getMessage());
         }
 
     }
-    
+
 }

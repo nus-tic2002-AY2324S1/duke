@@ -15,7 +15,7 @@ public class Duke {
     private TaskList tasks;
     private UI ui;
 
-    public Duke(String filePath){
+    public Duke(String filePath) {
         ui = new UI();
         storage = new Storage(filePath);
         try {
@@ -45,7 +45,7 @@ public class Duke {
             }
         }
     }
-    
+
 
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();

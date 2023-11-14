@@ -1,11 +1,14 @@
 package duke.exceptions;
+
 public class InvalidInputException extends Exception {
-    String message;
-    public InvalidInputException(String message){
-      this.message = message;
-    }
-    @Override
-    public String getMessage() {
-      return this.message;
-    }
+  String message;
+
+  public InvalidInputException(String message) {
+    this.message = message;
   }
+
+  @Override
+  public String getMessage() {
+    return this.message;
+  }
+}
