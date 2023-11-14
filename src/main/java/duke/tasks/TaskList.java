@@ -59,7 +59,7 @@ public class TaskList {
             System.out.println("Task already marked!");
             return;
         }
-        task.markAsDone();
+        task.setDone();
         System.out.println("Nice! I've marked this task as done: " + task);
     }
 

@@ -90,7 +90,7 @@ public class Storage {
 
                 if (line[2].equals("true")) {
                     t = tasks.get(counter);
-                    t.markAsDone();
+                    t.setDone();
                 }
 
 
