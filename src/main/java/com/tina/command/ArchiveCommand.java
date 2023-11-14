@@ -21,9 +21,9 @@ public class ArchiveCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException, InvalidFilePathException, ExistedFileException, IOException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException, InvalidFilePathException, ExistedFileException, IOException {
         storage.archive(taskList, fileName);
         taskList.clear();
-        ui.printLine("Current tasks are successfully archived as " + storage.getArchivePath() + fileName);
+        return "Current tasks are successfully archived as " + storage.getArchivePath() + fileName;
     }
 }

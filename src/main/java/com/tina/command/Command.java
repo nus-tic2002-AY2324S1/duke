@@ -35,15 +35,7 @@ public abstract class Command {
      * @param ui       the ui
      * @throws InvalidTaskNumberException the invalid task number exception
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException, InvalidFilePathException, ExistedFileException, IOException;
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException, InvalidFilePathException, ExistedFileException, IOException;
 
-    /**
-     * Gets is bye flag.
-     *
-     * @return the is bye
-     */
-    public boolean getIsBye() {
-        return isBye;
-    }
 
 }

@@ -34,11 +34,11 @@ public class DeleteCommand extends Command {
      * @throws InvalidTaskNumberException if the task is not found.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException {
         try {
             Task curTask = taskList.getTaskList().get(taskNumber - 1);
             taskList.remove(curTask);
-            ui.printTask(curTask, true, taskList.size());
+            return ui.printTask(curTask, true, taskList.size());
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidTaskNumberException();
         }

@@ -32,11 +32,11 @@ public class UnmarkCommand extends Command {
      * @param ui       the ui
      * @throws InvalidTaskNumberException if the task is not found
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException {
         try {
             Task curTask = taskList.getTaskList().get(taskNumber - 1);
             curTask.setDone(false);
-            ui.printMark(curTask, false);
+            return ui.printMark(curTask, false);
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidTaskNumberException();
         }

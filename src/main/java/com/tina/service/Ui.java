@@ -19,35 +19,26 @@ public class Ui {
     /**
      * Show welcome message and give command list for help.
      */
-    public void showWelcome() {
-        String logo =   "                      \n" +
-                        "  ___________   _____ \n" +
-                        " /_  __/  _/ | / /   |\n" +
-                        "  / /  / //  |/ / /| |\n" +
-                        " / / _/ // /|  / ___ |\n" +
-                        "/_/ /___/_/ |_/_/  |_|\n"+
-                        "                      ";
-        System.out.println(logo);
-        System.out.println("Hello! I'm TINA. \nHow can I help you?\n");
-        System.out.println("type help to get command list");
-        printDividerLine();
+    public static String showWelcome() {
+        return  "Hello! I'm TINA. \nHow can I help you?\n" +
+                "type help to get command list";
     }
 
     /**
      * Print command list.
      */
-    public void printCommandList() {
-        System.out.println("Command List:");
-        System.out.println("bye");
-        System.out.println("list");
-        System.out.println("todo [task name]");
-        System.out.println("deadline [task name] /by [date]");
-        System.out.println("event [task name] /from [date] /to [date]");
-        System.out.println("mark [task number]");
-        System.out.println("unmark [task number]");
-        System.out.println("delete [task number]");
-        System.out.println("schedule [date]");
-        System.out.println("archive [file name].txt");
+    public String printCommandList() {
+        return  "Command List:\n" +
+                "bye\n" +
+                "list\n" +
+                "todo [task name]\n" +
+                "deadline [task name] /by [date]\n" +
+                "event [task name] /from [date] /to [date]\n" +
+                "mark [task number]\n" +
+                "unmark [task number]\n" +
+                "delete [task number]\n" +
+                "schedule [date]\n" +
+                "archive [file name].txt";
     }
 
     /**
@@ -57,11 +48,11 @@ public class Ui {
      * @param isDelete the flag indicates the task is added or removed.
      * @param size     the size
      */
-    public void printTask(Task task, boolean isDelete, int size) {
+    public String printTask(Task task, boolean isDelete, int size) {
         String str = isDelete ? "removed" : "added";
-        printLine("Got it. I've " + str + " this Tina.task:");
-        printLine("  " + task.toString());
-        printLine("Now you have " + size + " tasks in the list.");
+        return "Got it. I've " + str + " this Tina.task:\n" +
+                "  " + task.toString() + "\n" +
+                "Now you have " + size + " tasks in the list.";
     }
 
     /**
@@ -70,17 +61,10 @@ public class Ui {
      * @param task   the task
      * @param isMark a flag to indicate the task is mark as done or not done
      */
-    public void printMark(Task task, boolean isMark) {
+    public String printMark(Task task, boolean isMark) {
         String str = isMark ? "" : "not ";
-        printLine("Nice! I've marked this Tina.task as " + str +"done:");
-        printLine("[" + task.isDone() +"]" + task.getTaskName());
-    }
-
-    /**
-     * Print divider line.
-     */
-    public void printDividerLine() {
-        printLine("**************************************************");
+        return "Nice! I've marked this Tina.task as " + str +"done:\n" +
+                "[" + task.isDone() +"]" + task.getTaskName();
     }
 
     /**
@@ -88,41 +72,29 @@ public class Ui {
      *
      * @param str the message to be printed
      */
-    public void printLine(String str) {
-        System.out.print("  ");
-        System.out.println(str);
+    public String printLine(String str) {
+        return "  " + str;
     }
 
     /**
      * Print error when unknown command is received.
      */
-    public void printError() {
-        printLine("OOPS!!! I'm sorry, but I don't know what that means :-(");
-        printDividerLine();
-        printCommandList();
+    public String printError() {
+        return "OOPS!!! I'm sorry, but I don't know what that means :-(\n" + printCommandList();
     }
 
     /**
      * Print loading error.
      */
-    public void printLoadingError() {
-        printLine("Failed to load task list due to missing or invalid file.");
+    public String printLoadingError() {
+        return "Failed to load task list due to missing or invalid file.";
     }
 
     /**
      * Print goodbye message when exiting program.
      */
-    public void printBye() {
-        printLine("Bye. Hope to see you again.");
-    }
-
-    /**
-     * Read input string from user.
-     *
-     * @return the string
-     */
-    public String readInput() {
-        return sc.nextLine();
+    public String printBye() {
+        return"Bye. Hope to see you again.";
     }
 
     /**
@@ -130,11 +102,13 @@ public class Ui {
      *
      * @param taskList the task list
      */
-    public void printTaskList(TaskList taskList) {
+    public String printTaskList(TaskList taskList) {
+        StringBuilder sb = new StringBuilder();
         int count = 1;
         for (Task task : taskList.getTaskList()) {
-            printLine(count + "." + task.toString());
+            sb.append(count).append(".").append(task.toString()).append("\n");
             count++;
         }
+        return sb.toString();
     }
 }

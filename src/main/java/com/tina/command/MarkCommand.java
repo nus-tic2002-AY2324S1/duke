@@ -33,11 +33,11 @@ public class MarkCommand extends Command {
      * @throws InvalidTaskNumberException if the task is not found
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException {
         try {
             Task curTask = taskList.getTaskList().get(taskNumber - 1);
             curTask.setDone(true);
-            ui.printMark(curTask, true);
+            return ui.printMark(curTask, true);
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidTaskNumberException();
         }

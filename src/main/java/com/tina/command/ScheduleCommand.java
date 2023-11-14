@@ -35,7 +35,7 @@ public class ScheduleCommand extends Command {
      * @param ui       the ui
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         TaskList tasks = new TaskList();
         for (Task task : taskList.getTaskList()) {
             if (task instanceof DeadlineTask) {
@@ -54,7 +54,6 @@ public class ScheduleCommand extends Command {
                 }
             }
         }
-        ui.printLine("Deadlines/Events occurring on " + date + ":");
-        ui.printTaskList(tasks);
+        return "Deadlines/Events occurring on " + date + ":\n" + ui.printTaskList(tasks);
     }
 }

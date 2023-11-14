@@ -32,15 +32,6 @@ public class EventCommand extends Command {
     }
 
     /**
-     * Gets task name.
-     *
-     * @return the task name
-     */
-    public String getTaskName() {
-        return taskName;
-    }
-
-    /**
      * Gets start date.
      *
      * @return the start date
@@ -66,9 +57,9 @@ public class EventCommand extends Command {
      * @param ui       the ui
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         Task newTask = new EventTask(taskName, from, to);
         taskList.add(newTask);
-        ui.printTask(newTask, false, taskList.size());
+        return ui.printTask(newTask, false, taskList.size());
     }
 }

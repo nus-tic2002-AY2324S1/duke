@@ -30,15 +30,6 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Gets task name.
-     *
-     * @return the task name
-     */
-    public String getTaskName() {
-        return taskName;
-    }
-
-    /**
      * Gets deadline date.
      *
      * @return the deadline date
@@ -55,9 +46,9 @@ public class DeadlineCommand extends Command {
      * @param ui       the ui
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         Task newTask = new DeadlineTask(taskName, by);
         taskList.add(newTask);
-        ui.printTask(newTask, false, taskList.size());
+        return ui.printTask(newTask, false, taskList.size());
     }
 }
