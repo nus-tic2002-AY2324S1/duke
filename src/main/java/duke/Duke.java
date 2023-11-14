@@ -26,7 +26,6 @@ public class Duke {
         }
     }
 
-
     // Parser: deals with making sense of the user command
     public void run() {
         ui.greet();

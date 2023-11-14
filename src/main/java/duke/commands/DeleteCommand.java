@@ -14,19 +14,20 @@ public class DeleteCommand extends Command {
     public DeleteCommand(String userInput) throws DukeException {
         if (userInput.split(" ").length < 2) {
             throw new DukeException("Missing item number!");
-        }
-        try {
-            this.item = Integer.parseInt(userInput.split(" ")[1]);
-        } catch (NumberFormatException e) {
-            throw new DukeException("Ensure the item number is a valid integer!");
+        } else {
+            try {
+                this.item = Integer.parseInt(userInput.split(" ")[1]);
+            } catch (NumberFormatException e) {
+                throw new DukeException("Ensure the item number is a valid integer!");
+            }
         }
     }
 
     /**
      * {@inheritDoc}
      * 
-     * This implementation of {@code execute} deletes the specified {@code task} object from the
-     * user's {@code tasks}
+     * This implementation of {@code execute} deletes the specified {@code task} object from the user's
+     * {@code tasks}
      * 
      * @param storage is not used in this implementation.
      */
@@ -40,10 +41,11 @@ public class DeleteCommand extends Command {
         } catch (MissingTaskException e) {
             ui.showError(e.getMessage());
             return;
-        }
-        ui.printMessage(
-                "That's one less thing to do! You now have " + tasks.getTotalTasks() + " tasks left.");
+        } finally {
+            ui.printMessage(
+                    "That's one less thing to do! You now have " + tasks.getTotalTasks() + " tasks left.");
 
+        }
     }
 
 }

@@ -13,16 +13,19 @@ public class FindCommand extends Command {
     ArrayList<Task> userTasks;
 
     public FindCommand(String line) throws DukeException {
-        if (line.split(" ").length > 2)
+        if (line.split(" ").length > 2) {
             throw new DukeException("Please provide only one keyword at a time!");
-        this.keyword = line.split(" ")[1].toLowerCase();
+        } else {
+            this.keyword = line.split(" ")[1].toLowerCase();
+        }
+
     }
 
     /**
      * {@inheritDoc}
      * 
-     * This implementation of {@code execute} finds all tasks with the given {@code keyword}
-     * attribute and prints.
+     * This implementation of {@code execute} finds all tasks with the given {@code keyword} attribute
+     * and prints.
      * 
      * @param storage is not used in this implementation.
      */
@@ -43,8 +46,7 @@ public class FindCommand extends Command {
         if (counter == 0) {
             ui.printMessage("You have no tasks with this keyword: " + keyword);
         } else {
-            ui.printMessage(
-                    "You have a total of " + counter + " tasks with this keyword: " + keyword);
+            ui.printMessage("You have a total of " + counter + " tasks with this keyword: " + keyword);
         }
     }
 }

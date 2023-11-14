@@ -35,8 +35,6 @@ public class UnmarkCommand extends Command {
         } catch (MissingTaskException e) {
             ui.showError(e.getMessage());
         }
-
-
     }
 
 }

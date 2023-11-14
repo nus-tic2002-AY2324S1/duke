@@ -79,6 +79,10 @@ public class UI {
         System.out.println("Got it. I've added this task: \n" + task);
     }
 
+    public void showMarkedTask(Task task) {
+        System.out.println("Nice! I've marked this task: \n" + task);
+    }
+
     public void showTaskPrioritySet(Task task) {
         System.out.println("Successfully set " + task.getDescription() + " to " + task.getPriority()
                 + " Priority.");

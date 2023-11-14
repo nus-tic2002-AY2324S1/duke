@@ -23,18 +23,21 @@ public class DueCommand extends Command {
     public ArrayList<Task> tasksDue;
 
     public DueCommand(String line) throws DukeException {
-        if (line.split(" ").length < 2)
+        if (line.split(" ").length < 2) {
             throw new DukeException("Missing date!");
-        if (line.split(" ").length > 2)
+        } else if (line.split(" ").length > 2) {
             throw new DukeException("Please follow the correct format.");
-        String userDate = line.split(" ")[1];
+        } else {
+            String userDate = line.split(" ")[1];
+            String regex = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
 
-        String regex = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
+            if (!Pattern.matches(regex, userDate)) {
+                throw new DukeException("Please provide the date in this format: YYYY-MM-DD");
+            } else {
+                this.date = LocalDate.parse(userDate);
+            }
+        }
 
-        if (!Pattern.matches(regex, userDate))
-            throw new DukeException("Please provide the date in this format: YYYY-MM-DD");
-
-        this.date = LocalDate.parse(userDate);
     }
 
     /**

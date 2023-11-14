@@ -20,24 +20,25 @@ public class SetCommand extends Command {
     public SetCommand(String line) throws DukeException {
 
         // check if format of input is correct
-
         String regex = "^set (\\d+) to (.+)$";
-        if (!Pattern.matches(regex, line.toLowerCase()))
+        if (Pattern.matches(regex, line.toLowerCase())) {
+            try {
+                this.item = Integer.parseInt(line.split(" ")[1]);
+            } catch (NumberFormatException e) {
+                throw new DukeException("Ensure the item number is a valid integer!");
+            } finally {
+                String taskPriority = line.split(" ")[3].trim().toUpperCase();
+                try {
+                    this.p = Priority.valueOf(taskPriority);
+                } catch (IllegalArgumentException e) {
+                    throw new DukeException("Invalid Priority!");
+                }
+            }
+        } else {
             throw new DukeException("Please follow the correct format!");
-
-        // checks if integer is valid
-        try {
-            this.item = Integer.parseInt(line.split(" ")[1]);
-        } catch (NumberFormatException e) {
-            throw new DukeException("Ensure the item number is a valid integer!");
         }
 
-        String taskPriority = line.split(" ")[3].trim().toUpperCase();
-        try {
-            this.p = Priority.valueOf(taskPriority);
-        } catch (IllegalArgumentException e) {
-            throw new DukeException("Invalid Priority!");
-        }
+
 
     }
 
@@ -58,10 +59,8 @@ public class SetCommand extends Command {
             ui.showTaskPrioritySet(t);
         } catch (EmptyListException e) {
             ui.showError(e.getMessage());
-            return;
         } catch (MissingTaskException e) {
             ui.showError(e.getMessage());
-            return;
         }
     }
 
