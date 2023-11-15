@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
             UI.showTaskDeleted(deletedTask, taskList);
             Storage.save(taskList);
         } catch (DukeException | IOException e) {
-            UI.showError(e.getMessage());
+            UI.showMessage(e.getMessage());
         }
     }
 

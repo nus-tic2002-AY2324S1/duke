@@ -37,7 +37,7 @@ public class MarkCommand extends Command {
             Storage.save(taskList);
             UI.showTaskMarkedAsDone(markAsDOneTask);
         } catch (DukeException | IOException e) {
-            UI.showError(e.getMessage());
+            UI.showMessage(e.getMessage());
         }
     }
 

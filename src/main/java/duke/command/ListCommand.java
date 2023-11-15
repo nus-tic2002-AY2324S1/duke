@@ -27,7 +27,7 @@ public class ListCommand extends Command {
                 idx++;
             }
         } else {
-            UI.showMessage("list");
+            UI.showMessage("The task list is currently empty. You can begin by adding new tasks.");
         }
     }
 

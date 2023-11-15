@@ -4,9 +4,9 @@ import duke.command.Command;
 import duke.exception.DukeException;
 import duke.history.History;
 import duke.parser.Parser;
-import duke.task.Task;
-import duke.task.TaskList;
+import duke.task.*;
 import duke.ui.UI;
+import duke.utils.Utils;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -34,34 +34,56 @@ public class Storage {
     }
 
     /**
-     * Loads tasks from the data file and populates a `TaskList` object.
+     * Loads tasks from the data file into the task list.
+     * The method reads the file specified by the 'filePath' variable,
+     * parses each line according to the task type, and reconstructs the task list.
+     * This allows the task list to be restored to its previous state when the program is restarted.
      *
-     * @return A `TaskList` containing tasks loaded from the data file.
-     * @throws DukeException If there is an issue loading task data.
+     * @return An ArrayList of {@code Task} objects representing the loaded tasks.
+     * @throws DukeException If the data file does not exist or an IO error occurs.
      */
-    public static ArrayList load() throws DukeException {
+    public static ArrayList<Task> load() throws DukeException {
         TaskList taskList = new TaskList();
-        History history = new History();
         try {
             File file = new File(filePath);
             assert file.exists() : "Data file should exist for loading tasks";
             Scanner s = new Scanner(file);
-            UI.showMessage("Loading task ...... ");
+            UI.showMessage("Attempting to load the task list from dukeOut.txt to restore the previous session's history.");
             while (s.hasNextLine()) {
-                UI.showLine();
-                String fullCommand = s.nextLine().trim();
-                UI.showMessage(fullCommand);
-                UI.showLine();
-                Command command = Parser.parse(fullCommand);
-                assert command != null;
-                if (command.isChangingState() && !taskList.getTaskList().isEmpty()) {
-                    History.saveHistory(taskList);
+                String line = s.nextLine().trim();
+                if (line.isEmpty()) {
+                    continue; // Skip empty lines
                 }
-                command.execute(taskList, ui, storage);
+
+                String[] parts = line.split(" \\| ");
+                String type = parts[0];
+                boolean isDone = parts[1].trim().equals("1");
+                String description = parts[2].trim();
+
+                Task task = null;
+                switch (type) {
+                    case "T":
+                        task = new Todo(description);
+                        break;
+                    case "D":
+                        String by = parts.length > 3 ? parts[3].trim() : "";
+                        task = new Deadline(description, Utils.parseDateTime(by));
+                        break;
+                    case "E":
+                        String start = parts.length > 3 ? parts[3].trim() : "";
+                        String end = parts.length > 4 ? parts[4].trim() : "";
+                        task = new Event(description, Utils.parseDateTime(start), Utils.parseDateTime(end));
+                        break;
+                }
+
+                if (task != null) {
+                    if (isDone) task.markAsDone();
+                    taskList.addTask(task);
+                }
             }
             s.close();
         } catch (IOException e) {
-            throw new DukeException("Task data file not found." + e.getMessage());
+            throw new DukeException("Task data file not found: " + e.getMessage());
         }
         return taskList.getTaskList();
     }

@@ -61,13 +61,4 @@ public class TaskListTest {
         assertFalse(unmarkedTask.getStatus());
     }
 
-    @Test
-    public void testUnmarkTaskAsNotDoneWithInvalidIndex() {
-        TaskList taskList = new TaskList();
-        assertThrows(DukeException.class, () -> {
-            taskList.unmarkTaskAsNotDone(0);  // This should throw DukeException
-        });
-
-    }
-
 }

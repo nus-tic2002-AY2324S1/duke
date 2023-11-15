@@ -37,7 +37,7 @@ public class UnmarkCommand extends Command {
             Storage.save(taskList);
             UI.showTaskUnmarkedAsNotDone(unmarkedTask);
         } catch (DukeException | IOException e) {
-            UI.showError(e.getMessage());
+            UI.showMessage(e.getMessage());
         }
     }
 

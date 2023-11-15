@@ -2,6 +2,7 @@ package duke;
 
 import duke.command.Command;
 import duke.exception.DukeException;
+import duke.exception.IncorrectCommandFormatException;
 import duke.history.History;
 import duke.parser.Parser;
 import duke.storage.Storage;
@@ -9,6 +10,7 @@ import duke.task.TaskList;
 import duke.ui.UI;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Duke {
@@ -28,9 +30,14 @@ public class Duke {
         storage = new Storage(filePath);
         try {
             taskList = new TaskList(Storage.load());
+            if (taskList.getTaskList().isEmpty()){
+                UI.showMessage("The data file is empty. Starting BotGenius with an empty task list...\n");
+            } else {
+                UI.showMessage("Tasks loaded successfully. BotGenius is starting up...\n");
+            }
         } catch (DukeException e) {
-            UI.showLoadingError();
-            taskList = new TaskList();
+            taskList = new TaskList(new ArrayList<>());
+            UI.showMessage("Task data source not exist, proceed with empty task list.");
         }
     }
 
@@ -44,14 +51,14 @@ public class Duke {
                 UI.showLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
                 if (c != null) {
-                    if (c.isChangingState() && !taskList.getTaskList().isEmpty()) {
+                    if (c.isChangingState()) {
                         History.saveHistory(taskList);
                     }
                     c.execute(taskList, ui, storage);
                     isExit = c.isExit();
                 }
             } catch (DukeException | IOException e) {
-                UI.showError(e.getMessage());
+                UI.showMessage(e.getMessage());
             } finally {
                 UI.showLine();
             }
@@ -59,7 +66,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        String filePath = "data/tasks.txt"; // Default file path
+        String filePath = "data/dukeOut.txt"; // Default file path
         if (args.length > 0) {
         filePath = args[0]; // Use provided file path if available
         }

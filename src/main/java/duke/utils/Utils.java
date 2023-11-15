@@ -1,6 +1,7 @@
 package duke.utils;
 
 import duke.exception.DukeException;
+import duke.exception.IncorrectCommandFormatException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
@@ -34,7 +35,7 @@ public class Utils {
     public static Todo newTodoTask(String fullCommand) throws DukeException {
         Matcher todoMatcher = todoRegex.matcher(fullCommand);
         if (!todoMatcher.matches()) {
-            throw new DukeException("Invalid command, Please follow todo task command format");
+            throw new IncorrectCommandFormatException("Incorrect format for 'todo' command. Type 'help' for a list of available commands details.");
         }
         return new Todo(todoMatcher.group(0));
     }
@@ -49,29 +50,29 @@ public class Utils {
     public static Deadline newDeadlineTask(String fullCommand) throws DukeException {
         Matcher deadlineMatcher = deadlineRegex.matcher(fullCommand);
         if (!deadlineMatcher.matches()) {
-            throw new DukeException("Invalid command, Please follow deadline task command format");
+            throw new IncorrectCommandFormatException("Incorrect format for 'deadline' command. Type 'help' for a list of available commands details.");
         }
         String desc = deadlineMatcher.group(1) + " (by: " + deadlineMatcher.group(2) + ")";
-        Deadline newDeadlineTask = new Deadline(desc);
+        Deadline newDeadline = new Deadline(desc);
         LocalDateTime deadline = Utils.parseDateTime(deadlineMatcher.group(2).trim());
         if (deadline != null) {
             String newDesc = deadlineMatcher.group(1) + " (by: " + deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy, ha")) + ")";
             return new Deadline(newDesc, deadline);
         }
-        return new Deadline(desc);
+        return newDeadline;
     }
 
     /**
      * Create a new Event task base on provided command.
      *
-     * @param fullCommand full user command for creating a Event task
+     * @param fullCommand full user command for creating an Event task
      * @return A new Event task
      * @throws DukeException if the command format is invalid
      */
     public static Event newEventTask(String fullCommand) throws DukeException {
         Matcher eventMatcher = eventRegex.matcher(fullCommand);
         if (!eventMatcher.matches()) {
-            throw new DukeException("Invalid command, Please follow event task command format");
+            throw new IncorrectCommandFormatException("Incorrect format for 'event' command. Type 'help' for a list of available commands details.");
         }
         String desc = eventMatcher.group(1) + " (from: " + eventMatcher.group(2) + " to: " + eventMatcher.group(3) + ")";
         if (isDate(eventMatcher.group(2).trim()) && isDate(eventMatcher.group(3).trim())) {
@@ -96,6 +97,7 @@ public class Utils {
     public static LocalDateTime parseDateTime(String dateTimeString) {
         String[] dateTimePatterns = {
                 "dd/MM/yyyy HHmm",
+                "dd/M/yyyy HHmm",
                 "d/MM/yyyy HHmm",
                 "d/M/yyyy HHmm",
         };

@@ -25,20 +25,32 @@ public class UI {
     }
 
     public static void showWelcome() {
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        showLine();
+        String logo =
+            "██████╗  ██████╗ ████████╗ ██████╗ ███████╗███╗   ██╗██╗██╗   ██╗███████╗\n" +
+            "██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝ ██╔════╝████╗  ██║██║██║   ██║██╔════╝\n" +
+            "██████╔╝██║   ██║   ██║   ██║  ███╗█████╗  ██╔██╗ ██║██║██║   ██║███████╗\n" +
+            "██╔══██╗██║   ██║   ██║   ██║   ██║██╔══╝  ██║╚██╗██║██║██║   ██║╚════██║\n" +
+            "██████╔╝╚██████╔╝   ██║   ╚██████╔╝███████╗██║ ╚████║██║╚██████╔╝███████║\n" +
+            "╚═════╝  ╚═════╝    ╚═╝    ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═╝ ╚═════╝ ╚══════╝\n";
+
         showMessage(logo);
-        showMessage("Hello! I am  BotGenius, your chatBot.");
-        showMessage("What can I do for you?");
+        showMessage("Hello! I am  BotGenius,your personal chat assistant.");
+        showMessage("Here's a quick list of commands you can use:");
+        showMessage("  - list: Show all tasks");
+        showMessage("  - todo: Add a new todo task");
+        showMessage("  - deadline: Add a new task with a deadline");
+        showMessage("  - event: Add a new event with a start and end time");
+        showMessage("  - mark: Mark a task as completed");
+        showMessage("  - unmark: Mark a task as not completed");
+        showMessage("  - delete: Remove a task from the list");
+        showMessage("  - find: Search for tasks by keyword");
+        showMessage("  - help: Show detailed help for all commands");
+        showMessage("Type 'help' to learn more about how to use all commands.");
         showLine();
     }
 
     public static void showLoadingError() {
-        showMessage("Error: Unable to load task data. Please check the data file.");
+        showMessage("Task data source not exist, proceed with empty task list.");
         showLine();
     }
 

@@ -1,6 +1,8 @@
 package duke.task;
 
 import duke.exception.DukeException;
+import duke.exception.IndexOutOfRangeException;
+import duke.ui.UI;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,18 +33,18 @@ public class TaskList {
 
 
     public Task deleteTask(int index) throws DukeException, IOException {
-        if (index >= 0 && index < taskList.size()) {
+        if (index < 0 || index >= taskList.size()) {
+            throw new IndexOutOfRangeException("Index out of range, Please enter a valid int number within the size of list.");
+        } else {
             Task deletedTask = taskList.get(index);
             taskList.remove(index);
             return deletedTask;
-        } else {
-            throw new DukeException("Invalid index, Please enter a valid int number.");
         }
     }
 
     public Task markTaskAsDone(int index) throws DukeException, IOException {
         if (index < 0 || index >= taskList.size()) {
-            throw new DukeException("Invalid task index. Please specify a valid task to mark as done.");
+            throw new IndexOutOfRangeException("Index out of range, Please enter a valid int number within the size of list.");
         }
         taskList.get(index).markAsDone();
         return taskList.get(index);
@@ -50,7 +52,7 @@ public class TaskList {
 
     public Task unmarkTaskAsNotDone(int index) throws DukeException, IOException {
         if (index < 0 || index >= taskList.size()) {
-            throw new DukeException("Invalid task index. Please specify a valid task to mark as done.");
+            throw new IndexOutOfRangeException("Index out of range, Please enter a valid int number within the size of list.");
         }
         taskList.get(index).unmarkDone();
         Task task = taskList.get(index);

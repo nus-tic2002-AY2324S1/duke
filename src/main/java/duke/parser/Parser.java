@@ -1,16 +1,10 @@
 package duke.parser;
 
 
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ListCommand;
-import duke.command.ByeCommand;
-import duke.command.MarkCommand;
-import duke.command.UndoCommand;
-import duke.command.UnmarkCommand;
-import duke.command.FindCommand;
-import duke.command.NewTaskCommand;
+import duke.command.*;
 import duke.exception.DukeException;
+import duke.exception.InvalidCommandException;
+import duke.exception.MissingKeywordException;
 import duke.ui.UI;
 
 
@@ -45,8 +39,7 @@ public class Parser {
                     newCommand = new DeleteCommand(index);
                     break;
                 } catch (Exception e) {
-                    UI.showMessage("OOPS!!! Please input item number you want to delete");
-                    break;
+                    throw new MissingKeywordException("OOPS!!! Missing keyword, Please input item number you want to delete");
                 }
             case "mark":
                 try {
@@ -54,8 +47,7 @@ public class Parser {
                     newCommand = new MarkCommand(index);
                     break;
                 } catch (Exception e) {
-                    UI.showMessage("OOPS!!! Please input item number you want to mark");
-                    break;
+                    throw new MissingKeywordException("OOPS!!! Please input item number you want to mark");
                 }
             case "unmark":
                 try {
@@ -63,8 +55,7 @@ public class Parser {
                     newCommand = new UnmarkCommand(index);
                     break;
                 } catch (Exception e) {
-                    UI.showMessage("OOPS!!! Please input item number you want to unmark");
-                    break;
+                    throw new MissingKeywordException("OOPS!!! Missing keyword, Please input item number you want to unmark");
                 }
             case "todo":
             case "deadline":
@@ -73,8 +64,7 @@ public class Parser {
                     newCommand = new NewTaskCommand(fullCommand);
                     break;
                 } catch (Exception e) {
-                    UI.showMessage("OOPS!!! Please input valid Task command");
-                    break;
+                    throw new InvalidCommandException("OOPS!!! Please input valid Task command");
                 }
             case "undo":
                 try {
@@ -90,12 +80,13 @@ public class Parser {
                     newCommand = new FindCommand(keyword);
                     break;
                 } catch (Exception e) {
-                    UI.showMessage("OOPS!!! Please provide a keyword to search");
-                    break;
+                    throw new MissingKeywordException("OOPS!!! Missing keyword, Please provide a keyword to search");
                 }
+            case "help":
+                    newCommand = new HelpCommand();
+                    break;
             default:
-                UI.showMessage("OOPS!!! Please input valid  command");
-                break;
+                throw new InvalidCommandException("OOPS!!! I don't recognize that command. Type 'help' for a list of available commands.");
         }
         return newCommand;
     }
