@@ -1,7 +1,6 @@
 package com.tina.service;
 
 import com.tina.command.CommandEnum;
-import com.tina.exception.InvalidDateFormatException;
 import com.tina.exception.InvalidParameterException;
 import java.util.ArrayList;
 
@@ -17,10 +16,9 @@ public class Validator {
      * @param tokens  the tokens.
      * @param command the command.
      * @throws InvalidParameterException  if parameter is invalid.
-     * @throws InvalidDateFormatException if date format is invalid.
      */
     public static void validateCommand(ArrayList<String> tokens, CommandEnum command)
-            throws InvalidParameterException, InvalidDateFormatException {
+            throws InvalidParameterException {
         ArrayList<String> keywords = new ArrayList<>();
         switch (command) {
         case BYE:
@@ -109,11 +107,10 @@ public class Validator {
     public static void validateCommandParameter(ArrayList<String> tokens, CommandEnum command, ArrayList<String> keywords)
             throws InvalidParameterException {
         int size = tokens.size();
-        int index = -1;
         int indexOfLastKeyword = 0;
 
         for (String keyword : keywords) {
-            index = tokens.indexOf(keyword);
+            int index = tokens.indexOf(keyword);
 
             // can not find keyword || keyword is the last element
             if (index == -1 || index == size - 1) {
