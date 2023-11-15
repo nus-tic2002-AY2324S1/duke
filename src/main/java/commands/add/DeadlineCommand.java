@@ -13,8 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DeadlineCommand extends Command {
-    LocalDate date;
-    String description;
+    protected LocalDate date;
+    protected String description;
     protected static final int DESCRIPTION_GROUP_CAPTURE = 1;
     protected static final int DATE_GROUP_CAPTURE = 2;
 
