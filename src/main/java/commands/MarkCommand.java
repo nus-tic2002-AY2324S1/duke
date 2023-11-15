@@ -35,7 +35,7 @@ public class MarkCommand extends Command {
         try {
             Task t = tasks.markItem(item);
             ui.showMarkedTask(t);
-        } catch (MissingTaskException e) {
+        } catch (MissingTaskException | DukeException e) {
             ui.showError(e.getMessage());
         }
     }

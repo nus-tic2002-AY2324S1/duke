@@ -3,6 +3,7 @@ package tasks;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import constants.ErrorMessages;
+import exceptions.DukeException;
 import exceptions.EmptyListException;
 import exceptions.MissingTaskException;
 
@@ -57,13 +58,13 @@ public class TaskList {
         return this.task;
     }
 
-    public Task markItem(int item) throws MissingTaskException {
+    public Task markItem(int item) throws MissingTaskException, DukeException {
         if (item > totalTasks || item == 0) {
             throw new MissingTaskException(ErrorMessages.TASK_NOT_FOUND);
         }
         task = tasks.get(item - 1);
         if (task.isDone) {
-            System.out.println("Task already marked!");
+            System.out.println("Whoa there, adventurer! Attempting to mark an already marked task? Double the glory, I suppose!");
         } else {
             task.setDone();
         }
@@ -77,11 +78,11 @@ public class TaskList {
 
         task = tasks.get(item - 1);
         if (!task.isDone) {
-            System.out.println("Task was not previously marked!");
+            System.out.println("Hold your horses! Attempting to unmark a task that was never in the victory parade?");
             return;
         }
         task.unmarkTask();
-        System.out.println("OK, I've marked this task as not done yet: " + task);
+        System.out.println("Alrighty then! I've given this task a rain check: " + task);
 
     }
 
@@ -90,7 +91,7 @@ public class TaskList {
             throw new EmptyListException(ErrorMessages.EMPTY_LIST);
         }
 
-        System.out.println("Here are the tasks in your list: ");
+        System.out.println("Ta-da! Behold, the magnificent lineup of tasks in your grand list:");
         for (int i = 1; i <= totalTasks; i++) {
             System.out.println(i + ". " + tasks.get(i - 1));
         }
@@ -105,11 +106,11 @@ public class TaskList {
             throw new MissingTaskException(ErrorMessages.TASK_NOT_FOUND);
         }
 
-        System.out.println("Removing task " + item + ":" + tasks.get(item - 1));
         assert tasks.size() > 0 : "task list size should be more than 0 to delete";
+        System.out.println("TaskMaster at the helm! Time to perform a task vanishing act on: " + item + ":" + tasks.get(item - 1));
         tasks.remove((item - 1));
         totalTasks--;
-
+        
     }
 
     public Task setPriority(int item, Priority p) throws EmptyListException, MissingTaskException {

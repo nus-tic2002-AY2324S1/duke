@@ -18,7 +18,6 @@ import tasks.ToDo;
 import tasks.ToDoWithinPeriod;
 
 public class Storage {
-    // default values for storage
     private String filePath, directoryPath;
     private File file, directory;
     private FileWriter fw;
@@ -76,7 +75,7 @@ public class Storage {
 
                 case "D":
                     // doesnt add invalid task
-                    if (!Pattern.matches(RegExp.FILE_STORAGE_DEADLINE_FORMAT, string)){
+                    if (!Pattern.matches(RegExp.FILE_STORAGE_DEADLINE_FORMAT, string)) {
                         continue;
                     }
                     t = new Deadline(line[3], LocalDate.parse(line[4]));
@@ -85,12 +84,12 @@ public class Storage {
 
                 case "T":
                     // doesnt add invalid task
-                    if(Pattern.matches(RegExp.FILE_STORAGE_TODO_WITHIN_PERIOD_FORMAT, string)){
+                    if (Pattern.matches(RegExp.FILE_STORAGE_TODO_WITHIN_PERIOD_FORMAT, string)) {
                         t = new ToDoWithinPeriod(line[3], LocalDate.parse(line[4]), LocalDate.parse(line[5]));
                         tasks.add(t);
                         break;
                     }
-                    if (!Pattern.matches(RegExp.FILE_STORAGE_TODO_FORMAT, string)){
+                    if (!Pattern.matches(RegExp.FILE_STORAGE_TODO_FORMAT, string)) {
                         continue;
                     }
                     t = new ToDo(line[3]);
@@ -114,8 +113,8 @@ public class Storage {
         } catch (FileNotFoundException e) {
             if (!directory.exists()) {
                 directory.mkdir();
-            } 
-    
+            }
+
             file.createNewFile();
         }
 
@@ -143,7 +142,8 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println("Error Writing to File!");
+            System.out.println(
+                    "Uh-oh! TaskMaster encountered a hiccup while scribbling on the grand task scroll!");
         }
     }
 
