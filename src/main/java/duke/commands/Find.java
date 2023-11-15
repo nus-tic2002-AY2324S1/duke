@@ -38,7 +38,7 @@ public class Find extends Task {
 
         int n = 0;
         for (int i = 0; i < tasklist.size(); i++) {
-            if (tasklist.get(i).getDescription().contains(textToFind.trim())) {
+            if (tasklist.get(i).getDescription().toLowerCase().contains(textToFind.toLowerCase().trim())) {
                 if (n == 0) {
                     msg = "Here are the matching tasks in your list:";
                 }
