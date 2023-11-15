@@ -13,7 +13,7 @@ public class InvalidParameterException extends TinaException {
      * @param command the command
      */
     public InvalidParameterException(CommandEnum command) {
-        super("OOPS!!! Please use correct syntax: " + command.getSyntax());
+        super("OOPS!!! Please use correct syntax: \n" + command.getSyntax());
     }
 
 }
