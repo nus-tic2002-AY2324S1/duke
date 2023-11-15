@@ -1,10 +1,11 @@
+package task;
 import java.time.LocalDateTime;
 
 public class Deadline extends Todo {
 
     protected LocalDateTime by;
 
-    Deadline(String description, LocalDateTime by) {
+    public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
         tag = "D";

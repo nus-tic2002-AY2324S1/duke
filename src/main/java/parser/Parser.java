@@ -1,3 +1,9 @@
+package parser;
+import exception.MissingArgumentException;
+import UI.UI;
+import UI.Storage;
+import UI.ListTask;
+
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.text.SimpleDateFormat;
@@ -74,7 +80,7 @@ public class Parser{
                 throw new MissingArgumentException("If its not a real number, it wont be marked");
         else if(Storage.size()<Integer.parseInt(words[1]))
                 throw new MissingArgumentException("Task number is larger than the list , add more task");
-        else if(Storage.get(Integer.parseInt(words[1])-1).isDone)
+        else if(Storage.get(Integer.parseInt(words[1])-1).getIsDone())
                 throw new MissingArgumentException("Cate has already marked it as done");
         break;
         case UNMARK:
@@ -82,7 +88,7 @@ public class Parser{
                 throw new MissingArgumentException("Only real numbers please");
         else if(Storage.size()<Integer.parseInt(words[1]))
                 throw new MissingArgumentException("Task number is not within the list , try again");
-        else if(!Storage.get(Integer.parseInt(words[1])-1).isDone)
+        else if(!Storage.get(Integer.parseInt(words[1])-1).getIsDone())
                 throw new MissingArgumentException("Mark it as done first, Cate is unable to Unmark");
         break;
         case TODO:

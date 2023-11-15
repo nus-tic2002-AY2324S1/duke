@@ -1,3 +1,4 @@
+package exception;
 public class MissingArgumentException extends Exception{
     String argument;
     public MissingArgumentException(String argument){

@@ -1,3 +1,6 @@
+package duke;
+import parser.*;
+import UI.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 public class Duke {
