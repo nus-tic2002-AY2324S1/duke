@@ -89,17 +89,16 @@ public class UI {
     }
 
     public void showTasksDue(ArrayList<Task> tasks, LocalDate dueDate) {
-        Period days = LocalDate.now().until(dueDate);
 
         if (tasks.size() > 0) {
-            System.out.println("There are " + days.getDays() + " day(s) left until "
+            System.out.println("Here are the events and deadlines that falls on  "
                     + dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
             for (Task t : tasks) {
                 System.out.println(t);
             }
         } else {
             System.out.println(
-                    "You have nothing due on " + dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+                    "You have nothing on on " + dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
         }
     }
 }

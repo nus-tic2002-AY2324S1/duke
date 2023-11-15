@@ -19,6 +19,9 @@ public class ToDoWithinPeriodCommand extends Command {
     protected String description;
     protected static final int TODO_STRING_END_INDEX = 4;
     protected static final String BETWEEN_STRING = "/between";
+    protected static final int DESCRIPTION_GROUP_CAPTURE = 1;
+    protected static final int FROM_DATE_GROUP_CAPTURE = 2;
+    protected static final int TO_DATE_GROUP_CAPTURE = 5;
 
     // todo colllect certificate /between 2023-10-08 /and 2023-10-10
     public ToDoWithinPeriodCommand(String line) throws DukeException{
@@ -29,9 +32,10 @@ public class ToDoWithinPeriodCommand extends Command {
             throw new DukeException(ErrorMessages.INVALID_TODO_WITHIN_PERIOD_FORMAT);
         };
 
-        this.description = matcher.group(1).trim();
-        LocalDate firstDate =  LocalDate.parse(matcher.group(2));
-        LocalDate secondDate = LocalDate.parse(matcher.group(5));
+        assert matcher.groupCount() == 7 : "should have 7 capture groups based on regex";
+        this.description = matcher.group(DESCRIPTION_GROUP_CAPTURE).trim();
+        LocalDate firstDate =  LocalDate.parse(matcher.group(FROM_DATE_GROUP_CAPTURE));
+        LocalDate secondDate = LocalDate.parse(matcher.group(TO_DATE_GROUP_CAPTURE));
 
         if(firstDate.isAfter(secondDate)){
             throw new DukeException(ErrorMessages.ERROR_END_DATE_BEFORE_START_DATE);
@@ -49,7 +53,9 @@ public class ToDoWithinPeriodCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
-        Task t = tasks.addToDoWithinPeriod(description, to, from);
+        int currentSize = tasks.getTotalTasks();
+        Task t = tasks.addToDoWithinPeriod(description, from, to);
+        assert tasks.getTotalTasks() == currentSize + 1 : "todo should be added successfully";
         ui.showTaskAdded(t);
     }
     

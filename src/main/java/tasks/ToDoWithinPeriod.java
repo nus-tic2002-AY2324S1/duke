@@ -25,7 +25,7 @@ public class ToDoWithinPeriod extends Task{
     public String toString() {
         return "[T]" + super.toString() + " between "
                 + from.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " and "
-                + to.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+                + to.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
     @Override

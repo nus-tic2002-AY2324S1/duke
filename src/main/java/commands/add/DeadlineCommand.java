@@ -26,13 +26,16 @@ public class DeadlineCommand extends Command {
             throw new DukeException(ErrorMessages.INVALID_DEADLINE_COMMAND_FORMAT);
         }
 
+        assert matcher.groupCount() == 4 : "should have 4 capture groups based on regexp";
         this.description = matcher.group(DESCRIPTION_GROUP_CAPTURE);
         this.date = LocalDate.parse(matcher.group(DATE_GROUP_CAPTURE));
     }
 
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
+        int currentSize = tasks.getTotalTasks();
         Task t = tasks.addDeadline(description, date);
+        assert tasks.getTotalTasks() == currentSize + 1 : "deadline should be added successfully";
         ui.showTaskAdded(t);
     }
 

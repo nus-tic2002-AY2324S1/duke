@@ -33,10 +33,7 @@ public class DeleteCommand extends Command {
     public void execute(TaskList tasks, UI ui, Storage storage) {
         try {
             tasks.deleteItem(item);
-        } catch (EmptyListException e) {
-            ui.showError(e.getMessage());
-            return;
-        } catch (MissingTaskException e) {
+        } catch (EmptyListException | MissingTaskException e ) {
             ui.showError(e.getMessage());
             return;
         } finally {

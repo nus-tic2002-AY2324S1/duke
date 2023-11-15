@@ -52,7 +52,7 @@ public class TaskList {
 
     public Task addEvent(String description, LocalDate fromDate, LocalDate toDate) {
         this.task = new Event(description, fromDate, toDate);
-        this.tasks.add(this.task);
+        tasks.add(this.task);
         this.totalTasks++;
         return this.task;
     }
@@ -61,7 +61,6 @@ public class TaskList {
         if (item > totalTasks || item == 0) {
             throw new MissingTaskException(ErrorMessages.TASK_NOT_FOUND);
         }
-
         task = tasks.get(item - 1);
         if (task.isDone) {
             System.out.println("Task already marked!");
@@ -107,6 +106,7 @@ public class TaskList {
         }
 
         System.out.println("Removing task " + item + ":" + tasks.get(item - 1));
+        assert tasks.size() > 0 : "task list size should be more than 0 to delete";
         tasks.remove((item - 1));
         totalTasks--;
 

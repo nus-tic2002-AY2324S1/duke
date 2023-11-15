@@ -29,6 +29,7 @@ public class EventCommand extends Command {
             throw new DukeException(ErrorMessages.INVALID_EVENT_COMMAND_FORMAT);
         }
 
+        assert matcher.groupCount() == 7 : "should have 7 capture groups based on regex";
         this.description = matcher.group(DESCRIPTION_GROUP_CAPTURE);
         this.fromDate = LocalDate.parse(matcher.group(FROM_DATE_GROUP_CAPTURE));
         this.toDate = LocalDate.parse(matcher.group(TO_DATE_GROUP_CAPTURE));
@@ -40,7 +41,9 @@ public class EventCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
+        int currentSize = tasks.getTotalTasks();
         Task t = tasks.addEvent(description, fromDate, toDate);
+        assert tasks.getTotalTasks() == currentSize + 1 : "event should be added successfully";
         ui.showTaskAdded(t);
     }
 }

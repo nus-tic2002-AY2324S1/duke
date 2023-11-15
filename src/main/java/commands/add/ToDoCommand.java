@@ -27,7 +27,9 @@ public class ToDoCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
+        int currentSize = tasks.getTotalTasks();
         Task t = tasks.addToDo(description);
+        assert tasks.getTotalTasks() == currentSize + 1 : "todo within period should be added successfully";
         ui.showTaskAdded(t);
     }
 }
