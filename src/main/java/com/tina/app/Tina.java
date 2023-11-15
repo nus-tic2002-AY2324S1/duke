@@ -1,12 +1,13 @@
 package com.tina.app;
 
 import com.tina.command.Command;
+import com.tina.exception.InvalidFileFormatException;
+import com.tina.exception.InvalidFilePathException;
 import com.tina.exception.TinaException;
 import com.tina.service.Parser;
 import com.tina.service.Storage;
 import com.tina.service.Ui;
-import com.tina.task.*;
-
+import com.tina.task.TaskList;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,7 +25,7 @@ public class Tina {
     public Tina() {
     }
 
-    public void initiate() throws com.tina.exception.IOException {
+    public void initiate() throws com.tina.exception.IOException, InvalidFileFormatException, InvalidFilePathException {
         String dir = System.getProperty("user.home");
         Path path = Paths.get(dir, "tina/");
         Path archviePath = Paths.get(dir, "tina/archive/");
@@ -38,14 +39,14 @@ public class Tina {
         this.setPath(path, archviePath);
     }
 
-    public void setPath(Path path, Path archivePath) {
+    public void setPath(Path path, Path archivePath) throws InvalidFileFormatException, InvalidFilePathException {
         this.ui = new Ui();
         storage = new Storage(path, archivePath);
         try {
             taskList = new TaskList(storage.load());
         } catch (Exception e) {
-            ui.printLoadingError();
             taskList = new TaskList();
+            throw e;
         }
     }
 

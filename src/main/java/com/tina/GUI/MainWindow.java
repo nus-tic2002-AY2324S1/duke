@@ -1,16 +1,17 @@
 package com.tina.GUI;
 
 
+import com.tina.app.Tina;
+import com.tina.exception.IOException;
+import com.tina.exception.InvalidFileFormatException;
+import com.tina.exception.InvalidFilePathException;
 import com.tina.service.Ui;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
-import com.tina.app.Tina;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -25,8 +26,8 @@ public class MainWindow extends AnchorPane {
 
     private Tina tina;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image botImage = new Image(this.getClass().getResourceAsStream("/images/bot.png"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private final Image botImage = new Image(this.getClass().getResourceAsStream("/images/bot.png"));
 
     @FXML
     public void initialize() {
@@ -39,6 +40,18 @@ public class MainWindow extends AnchorPane {
 
     public void setTina(Tina tina) {
         this.tina = tina;
+
+        try {
+            tina.initiate();
+        } catch (IOException e) {
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getTinaDialog(Ui.printIOError(), botImage)
+            );
+        } catch (InvalidFileFormatException | InvalidFilePathException e) {
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getTinaDialog(Ui.printLoadingError(), botImage)
+            );
+        }
     }
 
     /**

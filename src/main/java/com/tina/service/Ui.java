@@ -1,9 +1,7 @@
 package com.tina.service;
 
-import com.tina.command.DeleteCommand;
 import com.tina.task.Task;
 import com.tina.task.TaskList;
-
 import java.util.Scanner;
 
 /**
@@ -14,7 +12,7 @@ import java.util.Scanner;
  * Print error message if exceptions are captured.
  */
 public class Ui {
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
     /**
      * Show welcome message and give command list for help.
@@ -83,10 +81,14 @@ public class Ui {
         return "OOPS!!! I'm sorry, but I don't know what that means :-(\n" + printCommandList();
     }
 
+    public static String printIOError() {
+        return "Failed due to IO error.";
+    }
+
     /**
      * Print loading error.
      */
-    public String printLoadingError() {
+    public static String printLoadingError() {
         return "Failed to load task list due to missing or invalid file.";
     }
 

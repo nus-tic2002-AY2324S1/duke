@@ -2,11 +2,17 @@ package com.tina.service;
 
 import com.joestelmach.natty.DateGroup;
 import com.tina.command.*;
-import com.tina.exception.*;
-import com.tina.task.*;
-
+import com.tina.exception.InvalidDateFormatException;
+import com.tina.exception.InvalidFileFormatException;
+import com.tina.exception.InvalidParameterException;
+import com.tina.task.DeadlineTask;
+import com.tina.task.EventTask;
+import com.tina.task.Task;
+import com.tina.task.TaskList;
+import com.tina.task.TodoTask;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -73,10 +79,20 @@ public class Parser {
         case "T":
             return new TodoTask(parts[2], isDone);
         case "D":
-            return new DeadlineTask(parts[2], isDone, LocalDate.parse(parts[3]));
+            try {
+                LocalDate by = LocalDate.parse(parts[3]);
+                return new DeadlineTask(parts[2], isDone, by);
+            } catch (DateTimeParseException e) {
+                throw new InvalidFileFormatException();
+            }
         case "E":
-            return new EventTask(parts[2], isDone, LocalDate.parse(parts[3]),
-                    LocalDate.parse(parts[4]));
+            try {
+                LocalDate from = LocalDate.parse(parts[3]);
+                LocalDate to = LocalDate.parse(parts[4]);
+                return new EventTask(parts[2], isDone, from, to);
+            } catch (DateTimeParseException e) {
+                throw new InvalidFileFormatException();
+            }
         default:
             throw new InvalidFileFormatException();
         }

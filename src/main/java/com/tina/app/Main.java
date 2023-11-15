@@ -1,16 +1,12 @@
 package com.tina.app;
 
 import com.tina.GUI.MainWindow;
-import com.tina.service.Ui;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Main extends Application {
 
@@ -24,7 +20,6 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
 
-            tina.initiate();
             fxmlLoader.<MainWindow>getController().setTina(tina);
             stage.show();
         } catch (IOException e) {
