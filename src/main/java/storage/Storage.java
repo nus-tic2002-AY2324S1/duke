@@ -27,7 +27,6 @@ public class Storage {
     protected static final int TODO_STORAGE_REQUIRED_WORDS = 4;
     protected static final String TRUE_STRING = "true";
 
-
     public Storage(String filePath) {
         this.tasks = new ArrayList<Task>();
 

@@ -29,8 +29,7 @@ public class UI {
 
     public void greet() {
         String botName = "Angel";
-        System.out.println(
-                "Hello! I'm " + botName + " your personal friendly to-do list tracker bot.");
+        System.out.println("Hello! I'm " + botName + " your personal friendly to-do list tracker bot.");
         System.out.println("I accept Deadlines, Events and simple To-Dos. Here's a mini manual!");
         System.out.println();
         help();
@@ -47,19 +46,21 @@ public class UI {
 
     public void help() {
         System.out.println("To Add:");
-        System.out.println("(a) A Deadline: deadline return book /by 2023-10-06");
-        System.out.println("(b) An Event: event project meeting /from 2023-10-05 /to 2023-10-06");
+        System.out.println("(a) A Deadline: deadline return book /by YYYY-MM-DD");
+        System.out.println("(b) An Event: event project meeting /from YYYY-MM-DD /to YYYY-MM-DD");
         System.out.println("(c) A To-Do: todo borrow book");
         System.out.println("To List all items in your list: list");
+        System.out.println("To Mark or Unmark your tasks, type: (a) mark 1 or (b) unmark 2 ");
+        System.out.println("To Delete your tasks, type: delete 3");
+        System.out.println("To View tasks due, type: due YYYY-MM-DD");
         System.out.println(
-                "To Mark or Unmark your tasks, type: (a) mark 'task no.' or (b) unmark 'task no' ");
-        System.out.println("To Delete your tasks, type: delete 'task no.' ");
+                "Default task priority is Low. To Change the Priority, type: set 2 to (LOW|HIGH|MEDIUM)");
         System.out.println();
     }
 
     public void showLoadingError() {
-        System.out.println(
-                "Uh Oh! Something went wrong with loading your previous tasks. Let's start fresh!");
+        System.out
+                .println("Uh Oh! Something went wrong with loading your previous tasks. Let's start fresh!");
     }
 
     public void killUI() {
@@ -83,8 +84,8 @@ public class UI {
     }
 
     public void showTaskPrioritySet(Task task) {
-        System.out.println("Successfully set " + task.getDescription() + " to " + task.getPriority()
-                + " Priority.");
+        System.out.println(
+                "Successfully set " + task.getDescription() + " to " + task.getPriority() + " Priority.");
     }
 
     public void showTasksDue(ArrayList<Task> tasks, LocalDate dueDate) {
@@ -97,8 +98,8 @@ public class UI {
                 System.out.println(t);
             }
         } else {
-            System.out.println("You have nothing due on "
-                    + dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+            System.out.println(
+                    "You have nothing due on " + dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
         }
     }
 }

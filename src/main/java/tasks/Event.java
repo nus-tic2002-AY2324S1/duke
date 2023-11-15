@@ -17,7 +17,11 @@ public class Event extends Task {
         this.end = end;
     }
 
-    public LocalDate getDueDate() {
+    public LocalDate getStartDate() {
+        return this.start;
+    }
+
+    public LocalDate getEndDate() {
         return this.end;
     }
 

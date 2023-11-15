@@ -17,7 +17,7 @@ import constants.RegExp;
 import exceptions.DukeException;
 
 public class Parser {
-    static Command c;
+    protected static Command c;
 
     /**
      * Returns a {@code Command} object based on user input.

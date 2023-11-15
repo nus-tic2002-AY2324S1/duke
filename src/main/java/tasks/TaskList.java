@@ -127,8 +127,9 @@ public class TaskList {
         for (Task t : this.tasks) {
             if (t instanceof tasks.Event) {
                 tasks.Event e = (tasks.Event) t;
-                LocalDate taskDue = e.getDueDate();
-                if (taskDue.equals(due)) {
+                LocalDate starDate = e.getStartDate();
+                LocalDate endDate = e.getEndDate();
+                if (starDate.equals(due) || endDate.equals(due)) {
                     taskDueList.add(e);
                 }
             }
