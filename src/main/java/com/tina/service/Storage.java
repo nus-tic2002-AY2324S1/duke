@@ -17,9 +17,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 /**
- * The Storage class.
- * Load task list from a local file.
- * Save task list to a local file.
+ * Represents a Storage class.
+ * Loads task list from a local file.
+ * Saves task list to a local file.
  */
 public class Storage {
 
@@ -29,7 +29,8 @@ public class Storage {
     /**
      * Instantiates a new Storage.
      *
-     * @param path the path of the local file
+     * @param path        the path of the local file.
+     * @param archivePath the archive path
      */
     public Storage(Path path, Path archivePath) {
         this.path = path;
@@ -37,12 +38,12 @@ public class Storage {
     }
 
     /**
-     * Load task list from a local file.
-     * Throw exception if file path or file format is invalid.
+     * Loads task list from a local file.
+     * Throws exception if file path or file format is invalid.
      *
-     * @return the array list
-     * @throws InvalidFileFormatException the invalid file format exception
-     * @throws InvalidFilePathException   the invalid file path exception
+     * @return the array list.
+     * @throws InvalidFileFormatException if file format is invalid.
+     * @throws InvalidFilePathException   if file path is invalid.
      */
     public ArrayList<Task> load() throws InvalidFileFormatException, InvalidFilePathException {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -61,11 +62,11 @@ public class Storage {
     }
 
     /**
-     * Save task list to a local file.
-     * Throw exception if the file path is invalid.
+     * Saves task list to a local file.
+     * Throws exception if the file path is invalid.
      *
-     * @param taskList the task list
-     * @throws InvalidFilePathException the invalid file path exception
+     * @param taskList the task list.
+     * @throws InvalidFilePathException if the file path is invalid.
      */
     public void save(TaskList taskList) throws InvalidFilePathException {
         ArrayList<String> tasks = Parser.parseTasksToStorage(taskList);
@@ -79,6 +80,17 @@ public class Storage {
         }
     }
 
+    /**
+     * Archives the current task list.
+     * Saves the file as given file name.
+     * Throws error if the file is already existed.
+     *
+     * @param taskList the task list.
+     * @param fileName the file name.
+     * @throws InvalidFilePathException if the file path is invalid.
+     * @throws IOException              if any IO error occurs.
+     * @throws ExistedFileException     if the file is already existed.
+     */
     public void archive(TaskList taskList, String fileName)
             throws InvalidFilePathException, com.tina.exception.IOException, ExistedFileException {
         ArrayList<String> tasks = Parser.parseTasksToStorage(taskList);
@@ -102,6 +114,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Gets archive path.
+     *
+     * @return the archive path.
+     */
     public Path getArchivePath() {
         return archivePath;
     }

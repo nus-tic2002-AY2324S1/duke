@@ -1,7 +1,7 @@
 package com.tina.command;
 
 /**
- * The enumeration class contains all command type and its corresponding syntax.
+ * Contains all command type and its corresponding syntax.
  */
 public enum CommandEnum {
     BYE("bye"),
@@ -15,22 +15,19 @@ public enum CommandEnum {
     SCHEDULE("schedule [date]"),
     ARCHIVE("archive [file name].txt"),
     FIND("find [keyword]"),
-    HELP("help"),
-    UNKNOWN();
+    HELP("help");
 
-    private String syntax;
+    private final String syntax;
 
     CommandEnum(String syntax) {
         this.syntax = syntax;
     }
 
-    CommandEnum() {
-    }
 
     /**
      * Gets syntax of current command type.
      *
-     * @return the syntax
+     * @return the syntax.
      */
     public String getSyntax() {
         return syntax;

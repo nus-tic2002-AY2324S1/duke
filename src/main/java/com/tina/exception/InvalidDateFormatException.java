@@ -1,8 +1,8 @@
 package com.tina.exception;
 
 /**
- * The type Invalid date format exception.
- * Thrown when date format is invalid.
+ * Represents a Invalid date format exception.
+ * Throws if date format is invalid.
  */
 public class InvalidDateFormatException extends TinaException {
 

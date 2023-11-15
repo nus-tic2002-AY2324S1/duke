@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * Parses input to a desired object, such as command object or task object.
- * Valid the input and throw exception if there is an error.
+ * Validates the input and throw exception if there is an error.
  */
 public class Parser {
 
@@ -50,7 +50,7 @@ public class Parser {
 
             command = parseTokensToCommand(tokens, commandEnum);
         } catch (IllegalArgumentException e) {
-            command = new Command(CommandEnum.UNKNOWN) {
+            command = new Command() {
                 @Override
                 public String execute(TaskList taskList, Ui ui, Storage storage) {
                     return ui.printError();
@@ -61,16 +61,16 @@ public class Parser {
     }
 
     /**
-     * Parses one line read from storage file to a task object
+     * Parses one line read from storage file to a task object.
      * Storage file format:
      * T | 1 | read book
      * D | 0 | return book | June 6th
      * E | 0 | project meeting | Aug 6th 2-4pm
      * T | 1 | join sports club
      *
-     * @param line the line read from storage file
-     * @return task parsed task object
-     * @throws InvalidFileFormatException if file format is invalid
+     * @param line the line read from storage file.
+     * @return task parsed task object.
+     * @throws InvalidFileFormatException if file format is invalid.
      */
     public static Task parseStorageToTask(String line) throws InvalidFileFormatException {
         String[] parts = line.split("\\s*\\|\\s*");
@@ -101,8 +101,8 @@ public class Parser {
     /**
      * Parses task list to storage file format and store in an array list.
      *
-     * @param tasks the task list
-     * @return the array list
+     * @param tasks the task list.
+     * @return the array list.
      */
     public static ArrayList<String> parseTasksToStorage(TaskList tasks) {
         ArrayList<String> taskArray = new ArrayList<>();
@@ -112,6 +112,13 @@ public class Parser {
         return taskArray;
     }
 
+    /**
+     * Parse date local date.
+     *
+     * @param dateString the date string.
+     * @return the local date.
+     * @throws InvalidDateFormatException if date format is invalid.
+     */
     public static LocalDate parseDate(String dateString) throws InvalidDateFormatException {
         com.joestelmach.natty.Parser parser = new com.joestelmach.natty.Parser();
 
@@ -130,6 +137,14 @@ public class Parser {
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
+    /**
+     * Parse tokens to command.
+     *
+     * @param tokens      the tokens.
+     * @param commandEnum the command enum.
+     * @return the parsed command.
+     * @throws InvalidDateFormatException if date format is invalid.
+     */
     public static Command parseTokensToCommand(ArrayList<String> tokens, CommandEnum commandEnum)
             throws InvalidDateFormatException {
         Command command = null;

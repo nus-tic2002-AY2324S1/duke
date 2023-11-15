@@ -2,20 +2,17 @@ package com.tina.service;
 
 import com.tina.task.Task;
 import com.tina.task.TaskList;
-import java.util.Scanner;
 
 /**
- * The Ui class.
- * Display the user interface, and it's the only interactive channel with user.
- * Read input from user.
- * Print output based on the given command.
- * Print error message if exceptions are captured.
+ * Represents an Ui class.
+ * Prints output based on the given command.
+ * Prints error message if exceptions are captured.
  */
 public class Ui {
-    private final Scanner sc = new Scanner(System.in);
-
     /**
-     * Show welcome message and give command list for help.
+     * Shows welcome message.
+     *
+     * @return the message.
      */
     public static String showWelcome() {
         return "Hello! I'm TINA. \nHow can I help you?\n" +
@@ -23,7 +20,9 @@ public class Ui {
     }
 
     /**
-     * Print command list.
+     * Prints command list.
+     *
+     * @return the command list.
      */
     public String printCommandList() {
         return "Command List:\n" +
@@ -40,11 +39,12 @@ public class Ui {
     }
 
     /**
-     * Print task according to the given task type.
+     * Prints task according to the given task type.
      *
-     * @param task     the task
+     * @param task     the task.
      * @param isDelete the flag indicates the task is added or removed.
-     * @param size     the size
+     * @param size     the size.
+     * @return the confirmation message.
      */
     public String printTask(Task task, boolean isDelete, int size) {
         String str = isDelete ? "removed" : "added";
@@ -54,10 +54,11 @@ public class Ui {
     }
 
     /**
-     * Print confirmation message for mark/unmark command.
+     * Prints confirmation message for mark/unmark command.
      *
-     * @param task   the task
-     * @param isMark a flag to indicate the task is mark as done or not done
+     * @param task   the task.
+     * @param isMark a flag to indicate the task is mark as done or not done.
+     * @return the confirmation message.
      */
     public String printMark(Task task, boolean isMark) {
         String str = isMark ? "" : "not ";
@@ -66,43 +67,46 @@ public class Ui {
     }
 
     /**
-     * Print line.
+     * Prints error when unknown command is received.
      *
-     * @param str the message to be printed
-     */
-    public String printLine(String str) {
-        return "  " + str;
-    }
-
-    /**
-     * Print error when unknown command is received.
+     * @return the error message.
      */
     public String printError() {
         return "OOPS!!! I'm sorry, but I don't know what that means :-(\n" + printCommandList();
     }
 
+    /**
+     * Prints IO error message.
+     *
+     * @return the error message.
+     */
     public static String printIOError() {
         return "Failed due to IO error.";
     }
 
     /**
-     * Print loading error.
+     * Prints loading error message.
+     *
+     * @return the error message.
      */
     public static String printLoadingError() {
         return "Failed to load task list due to missing or invalid file.";
     }
 
     /**
-     * Print goodbye message when exiting program.
+     * Prints goodbye message when exiting program.
+     *
+     * @return the message.
      */
     public String printBye() {
         return "Bye. Hope to see you again.";
     }
 
     /**
-     * Print task list.
+     * Prints task list.
      *
-     * @param taskList the task list
+     * @param taskList the task list.
+     * @return the task list.
      */
     public String printTaskList(TaskList taskList) {
         StringBuilder sb = new StringBuilder();

@@ -10,8 +10,8 @@ import java.time.LocalDate;
 
 
 /**
- * The type Deadline command.
- * Create a deadline task with deadline date
+ * Represents a Deadline command.
+ * Creates a deadline task with deadline date.
  */
 public class DeadlineCommand extends Command {
     private final String taskName;
@@ -20,11 +20,10 @@ public class DeadlineCommand extends Command {
     /**
      * Instantiates a new Deadline command.
      *
-     * @param taskName the task name
-     * @param by       the deadline date
+     * @param taskName the task name.
+     * @param by       the deadline date.
      */
     public DeadlineCommand(String taskName, LocalDate by) {
-        super(CommandEnum.DEADLINE);
         this.taskName = taskName;
         this.by = by;
     }
@@ -32,18 +31,21 @@ public class DeadlineCommand extends Command {
     /**
      * Gets deadline date.
      *
-     * @return the deadline date
+     * @return the deadline date.
      */
     public LocalDate getBy() {
         return by;
     }
 
     /**
-     * Create a deadline task and add it to task list.
-     * Call method from ui to print the confirmation message.
+     * Creates a deadline task and add it to task list.
+     * Calls method from ui to print the confirmation message.
      *
-     * @param taskList the task list
-     * @param ui       the ui
+     * @param taskList the task list.
+     * @param ui       the ui util.
+     * @param storage  the storage util.
+     * @return confirmation message.
+     * @throws InvalidFilePathException if file path is invalid.
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidFilePathException {

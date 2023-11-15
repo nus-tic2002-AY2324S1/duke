@@ -5,20 +5,33 @@ import com.tina.service.Ui;
 import com.tina.task.Task;
 import com.tina.task.TaskList;
 
+/**
+ * Represents a Find command.
+ */
 public class FindCommand extends Command {
     private final String keyword;
 
     /**
      * Instantiates a new Find Command.
-     * Find a task by searching for a keyword
+     * Finds a task by searching for the keyword.
      *
-     * @param keyword the keyword
+     * @param keyword the keyword.
      */
     public FindCommand(String keyword) {
-        super(CommandEnum.FIND);
         this.keyword = keyword;
     }
 
+    /**
+     * Searches the keyword in the task list.
+     * Stores all matching task in the new task list.
+     * Returns message and shows the matching task list.
+     * Returns not found message if no task matches the keyword.
+     *
+     * @param taskList the task list.
+     * @param ui       the ui util.
+     * @param storage  the storage util.
+     * @return  message and matching task list, or not found message if no task matches the keyword.
+     */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         TaskList tasks = new TaskList();

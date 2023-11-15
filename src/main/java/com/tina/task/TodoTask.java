@@ -1,13 +1,27 @@
 package com.tina.task;
 
+/**
+ * Represents a Todo task.
+ */
 public class TodoTask extends Task {
 
+    /**
+     * Instantiates a new Todo task.
+     *
+     * @param taskName the task name.
+     */
     public TodoTask(String taskName) {
-        super(TaskEnum.TODO, taskName);
+        super(taskName);
     }
 
+    /**
+     * Instantiates a new Todo task.
+     *
+     * @param taskName the task name.
+     * @param isDone   the is done flag.
+     */
     public TodoTask(String taskName, boolean isDone) {
-        super(TaskEnum.TODO, taskName);
+        super(taskName);
         this.setDone(isDone);
     }
 

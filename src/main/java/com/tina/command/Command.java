@@ -9,33 +9,20 @@ import com.tina.service.Ui;
 import com.tina.task.TaskList;
 
 /**
- * The parent Command class.
- * It contains command type and a flag that indicate the class is or is not a byb command.
+ * Represents the parent Command class.
  */
 public abstract class Command {
-    private final CommandEnum commandType;
     /**
-     * A flag that indicate the Command class is or is not a BybCommand class
-     */
-    boolean isBye = false;
-
-    /**
-     * Instantiates a new Command.
+     * Executes the action according to specific command.
      *
-     * @param commandType the command type
-     */
-    public Command(CommandEnum commandType) {
-        this.commandType = commandType;
-    }
-
-    /**
-     * Execute the action related to the command type
-     *
-     * @param taskList the task list
-     * @param ui       the ui
-     * @throws InvalidTaskNumberException the invalid task number exception
+     * @param taskList the task list.
+     * @param ui       the ui util.
+     * @param storage  the storage util.
+     * @return message to be displayed to user.
+     * @throws InvalidTaskNumberException   if task number is invalid.
+     * @throws InvalidFilePathException     if file path is invalid.
+     * @throws ExistedFileException         if file is already existed.
+     * @throws IOException                  if any IO error occurs.
      */
     public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException, InvalidFilePathException, ExistedFileException, IOException;
-
-
 }

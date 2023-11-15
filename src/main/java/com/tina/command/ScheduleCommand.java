@@ -9,8 +9,8 @@ import com.tina.task.TaskList;
 import java.time.LocalDate;
 
 /**
- * The type Schedule command.
- * Show all the tasks related to the given date.
+ * Represents a Schedule command.
+ * Shows all the tasks related to the given date.
  */
 public class ScheduleCommand extends Command {
     private final LocalDate date;
@@ -21,17 +21,18 @@ public class ScheduleCommand extends Command {
      * @param date the date
      */
     public ScheduleCommand(LocalDate date) {
-        super(CommandEnum.SCHEDULE);
         this.date = date;
     }
 
     /**
-     * Iterate the task list and find the task that related to the given date.
-     * Add these found tasks to a new task list.
-     * Call method from ui to print the new task list.
+     * Iterates the task list and find the task that related to the given date.
+     * Adds these found tasks to a new task list.
+     * Calls method from ui to print the new task list.
      *
-     * @param taskList the task list
-     * @param ui       the ui
+     * @param taskList the task list.
+     * @param ui       the ui util.
+     * @param storage  the storage util.
+     * @return message and matching tasks, or not found message if no task date matches.
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {

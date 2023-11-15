@@ -8,8 +8,8 @@ import com.tina.task.TaskList;
 import com.tina.task.TodoTask;
 
 /**
- * The type Todo command.
- * Create a todo task.
+ * Represents a Todo command.
+ * Creates a todo task.
  */
 public class TodoCommand extends Command {
     private final String taskName;
@@ -17,19 +17,21 @@ public class TodoCommand extends Command {
     /**
      * Instantiates a new Todo command.
      *
-     * @param taskName the task name
+     * @param taskName the task name.
      */
     public TodoCommand(String taskName) {
-        super(CommandEnum.TODO);
         this.taskName = taskName;
     }
 
     /**
-     * Create a todo task and add it to task list.
-     * Call method from ui to print confirmation message.
+     * Create sa todo task and add it to task list.
+     * Calls method from ui to print confirmation message.
      *
-     * @param taskList the task list
-     * @param ui       the ui
+     * @param taskList the task list.
+     * @param ui       the ui util.
+     * @param storage  the storage util.
+     * @return confirmation message.
+     * @throws InvalidFilePathException if file path is invalid.
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidFilePathException {

@@ -14,7 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * The main program Tina, a chatbot, allows to schedule tasks with flexible functions.
+ * Represents the main program Tina, a chatbot, allows to schedule tasks with flexible functions.
  */
 public class Tina {
 
@@ -25,6 +25,13 @@ public class Tina {
     public Tina() {
     }
 
+    /**
+     * Initiate the Tina object.
+     * Sets saving and archiving path based on user home directory.
+     *
+     * @throws InvalidFileFormatException if loading file format is invalid
+     * @throws InvalidFilePathException   if loading file path is invalid
+     */
     public void initiate() throws com.tina.exception.IOException, InvalidFileFormatException, InvalidFilePathException {
         String dir = System.getProperty("user.home");
         Path path = Paths.get(dir, "tina/");
@@ -39,6 +46,14 @@ public class Tina {
         this.setPath(path, archviePath);
     }
 
+    /**
+     * Sets the saving and archiving path.
+     *
+     * @param path        the saving path
+     * @param archivePath the archiving path
+     * @throws InvalidFileFormatException if loading file format is invalid
+     * @throws InvalidFilePathException   if loading file path is invalid
+     */
     public void setPath(Path path, Path archivePath) throws InvalidFileFormatException, InvalidFilePathException {
         this.ui = new Ui();
         storage = new Storage(path, archivePath);
@@ -50,6 +65,12 @@ public class Tina {
         }
     }
 
+    /**
+     * Gets response based on user input.
+     *
+     * @param input the input from user
+     * @return the response
+     */
     public String getResponse(String input) {
         String msg;
         try {

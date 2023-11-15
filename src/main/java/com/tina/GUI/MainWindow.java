@@ -14,7 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 /**
- * Controller for MainWindow. Provides the layout for the other controls.
+ * Represents the controller for MainWindow.
+ * Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
     @FXML
@@ -29,6 +30,10 @@ public class MainWindow extends AnchorPane {
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private final Image botImage = new Image(this.getClass().getResourceAsStream("/images/bot.png"));
 
+    /**
+     * Initialize.
+     * Shows welcome message in dialog window.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -38,6 +43,13 @@ public class MainWindow extends AnchorPane {
         );
     }
 
+    /**
+     * Sets tina.
+     * Loads task list from local file.
+     * Shows error message if the file format is invalid or file path is invalid.
+     *
+     * @param tina the tina.
+     */
     public void setTina(Tina tina) {
         this.tina = tina;
 
@@ -55,8 +67,9 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates two dialog boxes, one echoing user input and the other containing Tina'reply.
+     * Appends them to the dialog container.
+     * Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() {

@@ -8,8 +8,8 @@ import com.tina.task.Task;
 import com.tina.task.TaskList;
 
 /**
- * The type Unmark command.
- * Mark the task as not done.
+ * Represents a Unmark command.
+ * Marks the task as not done.
  */
 public class UnmarkCommand extends Command {
     private final int taskNumber;
@@ -17,21 +17,23 @@ public class UnmarkCommand extends Command {
     /**
      * Instantiates a new Unmark command.
      *
-     * @param taskNumber the task number
+     * @param taskNumber the task number.
      */
     public UnmarkCommand(int taskNumber) {
-        super(CommandEnum.UNMARK);
         this.taskNumber = taskNumber;
     }
 
     /**
-     * Get the task by given task number, throw error if the task is not found.
-     * Mark the task as not done.
-     * Call method from ui to print confirmation message.
+     * Gets the task by given task number, throw error if the task is not found.
+     * Marks the task as not done.
+     * Calls method from ui to print confirmation message.
      *
-     * @param taskList the task list
-     * @param ui       the ui
-     * @throws InvalidTaskNumberException if the task is not found
+     * @param taskList the task list.
+     * @param ui       the ui util.
+     * @param storage  the storage util.
+     * @return confirmation message.
+     * @throws InvalidTaskNumberException if task number is invalid.
+     * @throws InvalidFilePathException   if file path is invalid.
      */
     public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException, InvalidFilePathException {
         try {

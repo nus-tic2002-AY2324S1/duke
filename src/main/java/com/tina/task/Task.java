@@ -1,29 +1,46 @@
 package com.tina.task;
 
+/**
+ * Represents a parent Task.
+ */
 public abstract class Task {
-    private final TaskEnum taskType;
     private final String taskName;
     private boolean isDone = false;
 
-    public Task(TaskEnum taskType, String taskName) {
-        this.taskType = taskType;
+    /**
+     * Instantiates a new Task.
+     *
+     * @param taskName the task name.
+     */
+    public Task(String taskName) {
         this.taskName = taskName;
     }
 
+    /**
+     * Returns status of whether the task is done.
+     *
+     * @return the status.
+     */
     public String isDone() {
         return (isDone ? "X" : " ");
     }
 
+    /**
+     * Sets task status done.
+     *
+     * @param isDone the is done flag.
+     */
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
 
+    /**
+     * Gets task name.
+     *
+     * @return the task name.
+     */
     public String getTaskName() {
         return taskName;
-    }
-
-    public TaskEnum getTaskType() {
-        return taskType;
     }
 
     @Override

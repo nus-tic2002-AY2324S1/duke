@@ -6,17 +6,18 @@ import com.tina.exception.InvalidParameterException;
 import java.util.ArrayList;
 
 /**
- * The type Validator.
+ * Validates the user input.
+ * Throws exception if the input is not following command syntax.
  */
 public class Validator {
 
     /**
-     * Validate command.
+     * Validates command.
      *
-     * @param tokens  the tokens
-     * @param command the command
-     * @throws InvalidParameterException  the invalid parameter exception
-     * @throws InvalidDateFormatException the invalid date format exception
+     * @param tokens  the tokens.
+     * @param command the command.
+     * @throws InvalidParameterException  if parameter is invalid.
+     * @throws InvalidDateFormatException if date format is invalid.
      */
     public static void validateCommand(ArrayList<String> tokens, CommandEnum command)
             throws InvalidParameterException, InvalidDateFormatException {
@@ -59,12 +60,12 @@ public class Validator {
     }
 
     /**
-     * Validate task number.
+     * Validates task number.
      * Throws exception if task number is missing or task number is not in integer format.
      *
-     * @param tokens  the parameters from user input
-     * @param command the command type
-     * @throws InvalidParameterException if task number is missing or invalid
+     * @param tokens  the parameters from user input.
+     * @param command the command type.
+     * @throws InvalidParameterException if task number is missing or invalid.
      */
     public static void validateTaskNumber(ArrayList<String> tokens, CommandEnum command)
             throws InvalidParameterException {
@@ -76,14 +77,14 @@ public class Validator {
     }
 
     /**
-     * Validate command length by minimum length or fixed length.
-     * Throw exception if parameters are not given in correct syntax.
+     * Validates command length by minimum length or fixed length.
+     * Throws exception if parameters are not given in correct syntax.
      *
-     * @param tokens        the parameters from user input
-     * @param command       the command type
-     * @param minLength     the minimum length
-     * @param isFixedLength the flag to indicate it is a fixed length
-     * @throws InvalidParameterException if parameters are not given in correct syntax
+     * @param tokens        the parameters from user input.
+     * @param command       the command type.
+     * @param minLength     the minimum length.
+     * @param isFixedLength the flag to indicate it is a fixed length.
+     * @throws InvalidParameterException if parameters are not given in correct syntax.
      */
     public static void validateCommandParameter(ArrayList<String> tokens, CommandEnum command, int minLength, boolean isFixedLength)
             throws InvalidParameterException {
@@ -97,13 +98,13 @@ public class Validator {
     }
 
     /**
-     * Validate command parameter by checking keywords.
-     * Throws exception if keywords are missing or not in correct position
+     * Validates command parameter by checking keywords.
+     * Throws exception if keywords are missing or not in correct position.
      *
-     * @param tokens   the tokens
-     * @param command  the command
-     * @param keywords the keywords list
-     * @throws InvalidParameterException the invalid parameter exception
+     * @param tokens   the tokens.
+     * @param command  the command.
+     * @param keywords the keywords list.
+     * @throws InvalidParameterException if parameter is invalid.
      */
     public static void validateCommandParameter(ArrayList<String> tokens, CommandEnum command, ArrayList<String> keywords)
             throws InvalidParameterException {

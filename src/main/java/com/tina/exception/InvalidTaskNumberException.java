@@ -1,8 +1,8 @@
 package com.tina.exception;
 
 /**
- * The type Invalid task number exception.
- * Thrown when task number is invalid.
+ * Represents an Invalid task number exception.
+ * Throws if task number is invalid.
  */
 public class InvalidTaskNumberException extends TinaException {
     /**

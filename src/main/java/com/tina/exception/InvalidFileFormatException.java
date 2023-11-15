@@ -1,8 +1,8 @@
 package com.tina.exception;
 
 /**
- * The type Invalid file format exception.
- * Thrown when the file format is invalid.
+ * Represents a Invalid file format exception.
+ * Throws if the file format is invalid.
  */
 public class InvalidFileFormatException extends TinaException {
     /**
