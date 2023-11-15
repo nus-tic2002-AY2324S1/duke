@@ -2,7 +2,6 @@ package duke.commands;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-
 import java.time.LocalDate;
 import duke.constants.RegExp;
 import duke.constants.ErrorMessages;
@@ -20,26 +19,24 @@ import duke.ui.UI;
  */
 
 public class DueCommand extends Command {
-    LocalDate date;
-    public ArrayList<Task> tasksDue;
+    protected LocalDate date;
+    protected ArrayList<Task> tasksDue;
+    protected static final int INPUT_WORDS_REQUIRED = 2;
 
     public DueCommand(String line) throws DukeException {
-
-
-        if (line.split(" ").length < 2) {
+        if (line.split(RegExp.SPACE_DELIMITER).length < INPUT_WORDS_REQUIRED) {
             throw new DukeException(ErrorMessages.MISSING_DATE);
         }
-        if (line.split(" ").length > 2) {
+        if (line.split(RegExp.SPACE_DELIMITER).length > INPUT_WORDS_REQUIRED) {
             throw new DukeException(ErrorMessages.INVALID_COMMAND_FORMAT);
         }
 
-        String userDate = line.split(" ")[1];
+        String userDate = line.split(RegExp.SPACE_DELIMITER)[1];
         if (!Pattern.matches(RegExp.DATE_REGEX, userDate)) {
             throw new DukeException(ErrorMessages.INVALID_DATE_FORMAT);
         }
 
         this.date = LocalDate.parse(userDate);
-
     }
 
     /**

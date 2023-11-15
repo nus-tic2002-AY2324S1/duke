@@ -2,6 +2,7 @@ package duke.commands;
 
 import java.util.ArrayList;
 import duke.constants.ErrorMessages;
+import duke.constants.RegExp;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Task;
@@ -11,13 +12,14 @@ import duke.ui.UI;
 public class FindCommand extends Command {
     String keyword;
     ArrayList<Task> userTasks;
+    protected static final int INPUT_WORDS_REQUIRED = 2;
 
     public FindCommand(String line) throws DukeException {
-        if (line.split(" ").length > 2) {
+        if (line.split(RegExp.SPACE_DELIMITER).length > INPUT_WORDS_REQUIRED) {
             throw new DukeException(ErrorMessages.INVALID_FIND_COMMAND_FORMAT);
         } 
 
-        this.keyword = line.split(" ")[1].toLowerCase();
+        this.keyword = line.split(RegExp.SPACE_DELIMITER)[1].toLowerCase();
     }
 
     /**

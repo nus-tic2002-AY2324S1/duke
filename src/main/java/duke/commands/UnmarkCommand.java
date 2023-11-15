@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.constants.ErrorMessages;
+import duke.constants.RegExp;
 import duke.exceptions.DukeException;
 import duke.exceptions.MissingTaskException;
 import duke.storage.Storage;
@@ -8,15 +9,16 @@ import duke.tasks.TaskList;
 import duke.ui.UI;
 
 public class UnmarkCommand extends Command {
-    int item;
+    protected int item;
+    protected static final int INPUT_WORDS_REQUIRED = 2;
 
     public UnmarkCommand(String userInput) throws DukeException {
-        if (userInput.split(" ").length < 2) {
+        if (userInput.split(RegExp.SPACE_DELIMITER).length < INPUT_WORDS_REQUIRED) {
             throw new DukeException(ErrorMessages.MISSING_ITEM_NUMBER);
         }
 
         try {
-            this.item = Integer.parseInt(userInput.split(" ")[1]);
+            this.item = Integer.parseInt(userInput.split(RegExp.SPACE_DELIMITER)[1]);
         } catch (NumberFormatException e) {
             throw new DukeException(ErrorMessages.INVALID_INTEGER);
         }

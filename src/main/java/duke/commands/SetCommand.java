@@ -13,9 +13,8 @@ import duke.tasks.TaskList;
 import duke.ui.UI;
 
 public class SetCommand extends Command {
-
-    int item;
-    Priority p;
+    protected int item;
+    protected Priority p;
 
     // expected line arg: set 2 to (high/low/medium)
     public SetCommand(String line) throws DukeException {
@@ -25,10 +24,10 @@ public class SetCommand extends Command {
         }
 
         try {
-            this.item = Integer.parseInt(line.split(" ")[1]);
-            String taskPriority = line.split(" ")[3].trim().toUpperCase();
+            this.item = Integer.parseInt(line.split(RegExp.SPACE_DELIMITER)[1]);
+            String taskPriority = line.split(RegExp.SPACE_DELIMITER)[3].trim().toUpperCase();
             this.p = Priority.valueOf(taskPriority);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new DukeException(ErrorMessages.INVALID_PRIORITY);
         }
 

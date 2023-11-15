@@ -23,6 +23,10 @@ public class Storage {
     private File file, directory;
     private FileWriter fw;
     private ArrayList<Task> tasks;
+    protected static final int EVENT_STORAGE_REQUIRED_WORDS = 6;
+    protected static final int DEADLINE_STORAGE_REQUIRED_WORDS = 5;
+    protected static final int TODO_STORAGE_REQUIRED_WORDS = 4;
+    protected static final String TRUE_STRING = "true";
 
 
     public Storage(String filePath) {
@@ -58,12 +62,12 @@ public class Storage {
             Task t;
 
             while (s.hasNext()) {
-                String[] line = s.nextLine().split("\\|");
+                String[] line = s.nextLine().split(RegExp.LINE_DELIMITER);
 
                 switch (line[0]) {
                 case "E":
                     // doesnt add invalid task
-                    if (line.length != 6) {
+                    if (line.length != EVENT_STORAGE_REQUIRED_WORDS) {
                         continue;
                     }
                     if (!Pattern.matches(RegExp.DATE_REGEX, line[4])) {
@@ -77,7 +81,7 @@ public class Storage {
                     break;
 
                 case "D":
-                    if (line.length != 5) {
+                    if (line.length != DEADLINE_STORAGE_REQUIRED_WORDS) {
                         continue;
                     }
                     if (!Pattern.matches(RegExp.DATE_REGEX, line[4])) {
@@ -89,7 +93,7 @@ public class Storage {
 
                 case "T":
                     // doesnt add invalid task
-                    if (line.length != 4) {
+                    if (line.length != TODO_STORAGE_REQUIRED_WORDS) {
                         continue;
                     }
 
@@ -103,7 +107,7 @@ public class Storage {
 
                 tasks.get(counter).setTaskPriority(Priority.valueOf(line[1]));
 
-                if (line[2].equals("true")) {
+                if (line[2].equals(TRUE_STRING)) {
                     t = tasks.get(counter);
                     t.setDone();
                 }
@@ -139,7 +143,7 @@ public class Storage {
             ArrayList<Task> taskList = tasks.getTaskList();
             for (int i = 0; i < totalTasks; i++) {
                 String textToAdd = taskList.get(i).writeToFile();
-                fw.write(textToAdd + "\n");
+                fw.write(textToAdd + RegExp.NEW_LINE);
             }
             fw.close();
         } catch (IOException e) {

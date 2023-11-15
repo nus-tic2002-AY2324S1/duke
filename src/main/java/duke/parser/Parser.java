@@ -13,6 +13,7 @@ import duke.commands.add.DeadlineCommand;
 import duke.commands.add.EventCommand;
 import duke.commands.add.ToDoCommand;
 import duke.constants.ErrorMessages;
+import duke.constants.RegExp;
 import duke.exceptions.DukeException;
 
 public class Parser {
@@ -30,7 +31,7 @@ public class Parser {
      * @throws DukeException if input validations fail.
      */
     public static Command parse(String userInput) throws DukeException {
-        String userCommand = userInput.split(" ")[0];
+        String userCommand = userInput.split(RegExp.SPACE_DELIMITER)[0];
 
         switch (userCommand.toLowerCase()) {
         case "list":
