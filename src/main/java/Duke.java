@@ -31,6 +31,9 @@ public class Duke {
             userInput = ui.getUserInput();
             ParsedCommand parsedCommand = parser.parseCommand(userInput);
 
+            assert myTaskList != null;
+            assert storage != null;
+
             switch(parsedCommand.getCommandType()) {
                 case "list":
                     System.out.println("Listing out all stored tasks");
@@ -118,6 +121,10 @@ public class Duke {
                     }
                     break;
 
+                case "archive":
+                    storage.saveTasksToFile(myTaskList.getTasks(), parsedCommand.getTaskDescription());
+                    ui.showArchiveOutput(parsedCommand.getTaskDescription());
+                    break;
                 default:
                     System.out.println("[-] " + parsedCommand.getTaskDescription());
                     break;
@@ -125,7 +132,7 @@ public class Duke {
 
 
             ui.showHorizontalLine();
-            storage.saveTasksToFile(myTaskList.getTasks());
+            storage.saveTasksToFile(myTaskList.getTasks(), null);
         }
     }
 }

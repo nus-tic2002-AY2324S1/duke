@@ -1,5 +1,6 @@
 import java.time.temporal.Temporal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -15,7 +16,8 @@ public class Event extends Task {
     protected Temporal doneTo;
 
     /**
-     * Event Constructor
+     * Constructs Event
+     *
      * @param description
      * @param isDone
      * @param from
@@ -31,7 +33,8 @@ public class Event extends Task {
 
     /**
      * Represents all event variables as a string to be saved into a file
-     * @return
+     *
+     * @return returnString
      */
     public String toFileString() {
         String returnString = this.type + " | " + this.isDone + " | " + this.taskDescription + " | " + this.doneFrom + " | " + this.doneTo;
@@ -41,7 +44,8 @@ public class Event extends Task {
 
     /**
      * Represents all event variables as a string to be printed
-     * @return
+     *
+     * @return String to be parsed
      */
     public String toString() {
         String isDoneStr = getIsDone();
@@ -53,6 +57,8 @@ public class Event extends Task {
             doneFromStr = ((LocalDateTime) doneFrom).format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
         } else if (doneFrom instanceof LocalDate) {
             doneFromStr = ((LocalDate) doneFrom).format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        } else if (doneFrom instanceof LocalTime) {
+            doneFromStr = ((LocalTime) doneFrom).format(DateTimeFormatter.ofPattern("HH:mm"));
         } else {
             doneFromStr = "Unknown";
         }
@@ -61,6 +67,8 @@ public class Event extends Task {
             doneToStr = ((LocalDateTime) doneTo).format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
         } else if (doneTo instanceof LocalDate) {
             doneToStr = ((LocalDate) doneTo).format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        } else if (doneTo instanceof LocalTime) {
+            doneToStr = ((LocalTime) doneTo).format(DateTimeFormatter.ofPattern("HH:mm"));
         } else {
             doneToStr = "Unknown";
         }
@@ -70,7 +78,8 @@ public class Event extends Task {
 
     /**
      * Returns Event date
-     * @return Returns date
+     *
+     * @return Returns date From
      */
     public Temporal getDoneFrom() {
         return this.doneFrom;
@@ -78,7 +87,8 @@ public class Event extends Task {
 
     /**
      * Returns Event date
-     * @return Returns date
+     *
+     * @return Returns date To
      */
     public Temporal getDoneTo() {
         return this.doneTo;

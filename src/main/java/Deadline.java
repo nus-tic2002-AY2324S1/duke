@@ -1,5 +1,6 @@
 import java.time.temporal.Temporal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -15,7 +16,8 @@ public class Deadline extends Task {
     protected Temporal doneBefore;
 
     /**
-     * Deadline Constructor
+     * Constructs a Deadline
+     *
      * @param description
      * @param isDone
      * @param doneBefore
@@ -29,6 +31,7 @@ public class Deadline extends Task {
 
     /**
      * Represents all Deadline variables as a string to be saved into a file
+     *
      * @return A formatted string representing the Deadline object for storage.
      */
     public String toFileString() {
@@ -39,6 +42,7 @@ public class Deadline extends Task {
 
     /**
      * Represents all Deadline variables into a string to be printed
+     *
      * @return  A printable string of the Deadline object.
      */
     public String toString() {
@@ -50,6 +54,8 @@ public class Deadline extends Task {
             doneBeforeStr = ((LocalDateTime) doneBefore).format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
         } else if (doneBefore instanceof LocalDate) {
             doneBeforeStr = ((LocalDate) doneBefore).format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        } else if (doneBefore instanceof LocalTime) {
+            doneBeforeStr = ((LocalTime) doneBefore).format(DateTimeFormatter.ofPattern("HH:mm"));
         } else {
             doneBeforeStr = "Unknown";
         }
@@ -59,6 +65,7 @@ public class Deadline extends Task {
 
     /**
      * Returns Deadline date
+     *
      * @return Returns date
      */
     public Temporal getDoneBefore() {

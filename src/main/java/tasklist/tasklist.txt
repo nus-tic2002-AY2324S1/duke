@@ -1,9 +1,0 @@
-Deadline | false | eat shit | 1010-10-10T10:10
-Deadline | false | eat shit | 1010-10-10
-Deadline | false | eat shit | 1010-10-22
-Event | false | eat shit sleep | 2010-10-10T13:00 | 2013-12-12T12:00
-Event | false | eat shit sleep | 2010-10-10T13:00 | 2013-12-12
-Task | false | eat
-Task | false | sleep
-Task | false | eat
-Deadline | false | hello | 2010-10-10T23:59

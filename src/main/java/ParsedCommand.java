@@ -14,7 +14,7 @@ public class ParsedCommand {
     private int taskIndex;
 
     /**
-     * Constructor for commands like "list", "bye", "help".
+     * Constructs commands like "list", "bye", "help".
      *
      * @param commandType
      */
@@ -24,7 +24,7 @@ public class ParsedCommand {
     }
 
     /**
-     * Constructor for the "todo" and "findphrase" command.
+     * Constructs commands for the "todo", "find", and "save" command.
      *
      * @param commandType
      * @param taskDescription
@@ -35,7 +35,7 @@ public class ParsedCommand {
     }
 
     /**
-     * Constructor for the "finddate" command.
+     * Constructs commands for the "finddate" command.
      *
      * @param commandType
      * @param deadline
@@ -46,7 +46,7 @@ public class ParsedCommand {
     }
 
     /**
-     * Constructor for the "mark/unmark" or "delete" command.
+     * Constructs commands for the "mark/unmark" or "delete" command.
      *
      * @param commandType
      * @param taskIndex
@@ -57,7 +57,7 @@ public class ParsedCommand {
     }
 
     /**
-     * Constructor for the "deadline" command.
+     * Constructs commands for the "deadline" command.
      *
      * @param commandType
      * @param taskDescription
@@ -70,7 +70,7 @@ public class ParsedCommand {
     }
 
     /**
-     * Constructor for the "event" command.
+     * Constructs commands for the "event" command.
      *
      * @param commandType
      * @param taskDescription
@@ -85,7 +85,7 @@ public class ParsedCommand {
     }
 
     /**
-     * Get the type of the parsed command.
+     * Gets the type of the parsed command.
      *
      * @return The type of the command.
      */
@@ -94,7 +94,7 @@ public class ParsedCommand {
     }
 
     /**
-     * Get the description of the task associated with the command.
+     * Gets the description of the task associated with the command.
      *
      * @return The task description.
      */
@@ -103,7 +103,7 @@ public class ParsedCommand {
     }
 
     /**
-     * Get the deadline associated with the command.
+     * Gets the deadline associated with the command.
      *
      * @return The deadline as a Temporal object.
      */
@@ -112,7 +112,7 @@ public class ParsedCommand {
     }
 
     /**
-     * Get the start date or time associated with the command.
+     * Gets the start date or time associated with the command.
      *
      * @return The start date or time as a Temporal object.
      */
@@ -121,7 +121,7 @@ public class ParsedCommand {
     }
 
     /**
-     * Get the end date or time associated with the command.
+     * Gets the end date or time associated with the command.
      *
      * @return The end date or time as a Temporal object.
      */
@@ -130,7 +130,7 @@ public class ParsedCommand {
     }
 
     /**
-     * Get the index of the task associated with mark/unmark or delete commands.
+     * Gets the index of the task associated with mark/unmark or delete commands.
      *
      * @return The task index.
      */
@@ -139,7 +139,7 @@ public class ParsedCommand {
     }
 
     /**
-     * Get the date associated with the find command.
+     * Gets the date associated with the find command.
      *
      * @return The date as a Temporal object.
      */

@@ -1,3 +1,4 @@
+import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.Temporal;
 import java.time.LocalDate;
@@ -16,9 +17,9 @@ public class Task {
     protected boolean isDone;
 
     /**
-     * Task constructor
-     * @param Description
-     * @param isDone
+     * Constructs a Task
+     * @param Description Description of the Task
+     * @param isDone Whether the Task is done or not
      */
     public Task (String Description, boolean isDone){
         this.taskDescription = Description;
@@ -48,7 +49,7 @@ public class Task {
     }
 
     /**
-     * Parses an input to determine if it is LocalDate format or LocalDateTime format
+     * Parses an input to determine if it is LocalDate format, LocalDateTime format, or LocalTime format
      * @param input
      * @return Temporal object of the LocalDate or LocalDateTime
      */
@@ -58,6 +59,12 @@ public class Task {
             return LocalDateTime.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
         } catch (DateTimeParseException ignored) {
             // Ignore because this means it's not LocalDateTime but LocalDate instead
+        }
+
+        try {
+            return LocalTime.parse(input, DateTimeFormatter.ofPattern("HH:mm"));
+        } catch (DateTimeParseException ignored) {
+            // Ignore because this means it's not LocalTime
         }
 
         try {
@@ -107,7 +114,6 @@ public class Task {
         } else {
             System.out.println("[-] An entry wasn't recognized - data could have been corrupted. Continuing to the next entry...");
             return null;
-            //System.exit(0);
         }
 
         return null;

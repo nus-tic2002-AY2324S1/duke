@@ -26,10 +26,11 @@ public class UI {
             + "\tdelete <Task number to be deleted> = deletes the task\n"
             + "\tfind <search phrase> = finds all tasks with the search phrase\n"
             + "\tview <date> = View all tasks for the specific date\n"
+            + "\tarchive <filename> = Archives all current tasks into <filename> in the tasklist folder\n"
             + "\tbye = Say goodbye to Chat";
 
     /**
-     * Display the welcome message with the logo.
+     * Displays the welcome message with the logo.
      */
     public void showWelcomeMessage() {
         System.out.println(logo + "Hello! My name is Chat.");
@@ -37,7 +38,7 @@ public class UI {
     }
 
     /**
-     * Display a message to confirm storing a task.
+     * Displays a message to confirm storing a task.
      *
      * @param taskDescription
      * @param taskType
@@ -47,7 +48,17 @@ public class UI {
     }
 
     /**
-     * Display a message to confirm marking or unmarking a task.
+     * Displays a message to confirm archiving all tasks.
+     *
+     * @param taskDescription
+     * @param taskType
+     */
+    public void showArchiveOutput(String fileName){
+        System.out.println("[+] Got it. Archiving current tasks into the tasklist folder as filename '" + fileName +"' in the tasklist folder");
+    }
+
+    /**
+     * Displays a message to confirm marking or unmarking a task.
      *
      * @param taskDescription
      * @param markUnmark
@@ -58,7 +69,7 @@ public class UI {
     }
 
     /**
-     * Display a message to find task(s) with a specific search phrase.
+     * Displays a message to find task(s) with a specific search phrase.
      *
      * @param taskDescription
      * @param markUnmark
@@ -69,7 +80,7 @@ public class UI {
     }
 
     /**
-     * Get user input from the console.
+     * Gets user input from the console.
      *
      * @return The user's input as a string.
      */
@@ -81,34 +92,34 @@ public class UI {
         try {
             return scanner.nextLine();
         } catch (java.util.NoSuchElementException e) {
-            System.out.println("Control-C detected.");
+            System.out.println("Control-C detected. Exiting");
             return "";
         }
     }
 
     /**
-     * Display a horizontal line
+     * Displays a horizontal line
      */
     public void showHorizontalLine() {
-        System.out.print(horizontalLine);
+        System.out.print("\n" + horizontalLine + "\n");
     }
 
     /**
-     * Display a help message
+     * Displays a help message
      */
     public void showHelp(){
-        System.out.println(acceptedCommands +"\n");
+        System.out.println(acceptedCommands);
     }
 
     /**
-     * Prompt the user for input.
+     * Prompts the user for input.
      */
     public void askCommands(){
         System.out.print("What do you wish to do? - Enter 'help' for a list of accepted commands\n");
     }
 
     /**
-     * Display a goodbye message.
+     * Displays a goodbye message.
      */
     public void showGoodBye(){
         System.out.println("Goodbye. See you soon");

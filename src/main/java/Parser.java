@@ -1,6 +1,7 @@
 import java.time.temporal.Temporal;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +17,7 @@ public class Parser {
     String[] wordArray;
 
     /**
-     * Parses an input to determine if it is LocalDate format or LocalDateTime format
+     * Parses an input to determine if it is LocalDate format, LocalDateTime, or LocalTime format
      * @param input
      * @return Temporal object of the LocalDate or LocalDateTime
      */
@@ -25,6 +26,12 @@ public class Parser {
             return LocalDateTime.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         } catch (DateTimeParseException ignored) {
             // Ignore because this means it's not LocalDateTime but LocalDate instead
+        }
+
+        try {
+            return LocalTime.parse(input, DateTimeFormatter.ofPattern("HH:mm"));
+        } catch (DateTimeParseException ignored) {
+            // Ignore because this means it's not LocalTime
         }
 
         try {
@@ -37,11 +44,36 @@ public class Parser {
     }
 
     /**
-     * Parse the user input and return a ParsedCommand object.
+     * Loops through the String to find the index of keywords
+     *
+     * @param wordArray
+     * @param keyWord
+     * @return The index of the keyWord
+     */
+
+
+    private int findIndex(String[] wordArray, String keyWord){
+
+        int byIndex = -1;
+        for (int i = 1; i < wordArray.length; i++) {
+            if (wordArray[i].equals(keyWord)) {
+                byIndex = i;
+                break;
+            }
+        }
+        return byIndex;
+
+    }
+
+
+
+    /**
+     * Parses the user input and return a ParsedCommand object.
      *
      * @param userInput
      * @return A ParsedCommand object containing information about the user's command.
      */
+
 
     public ParsedCommand parseCommand(String userInput){
 
@@ -70,6 +102,7 @@ public class Parser {
             case "view":
                 if (wordArray.length == 2) {
                     Temporal taskDate = checkTimeOrNot(wordArray[1]);
+                    assert dateTime != null : "Parsing failed for input: " + input;
                     if (taskDate == null){
                         return new ParsedCommand("invalid", "Invalid date format. Usage: view <date>");
                     } else {
@@ -88,38 +121,28 @@ public class Parser {
                 }
 
             case "deadline":
-                int byIndex = -1;
-                for (int i = 1; i < wordArray.length; i++) {
-                    if (wordArray[i].equals("/by")) {
-                        byIndex = i;
-                        break;
-                    }
-                }
+
+                int byIndex = findIndex(wordArray, "/by");
+
                 if (byIndex != -1 && byIndex > 1 && byIndex < wordArray.length - 1) {
                     String taskDescription = String.join(" ", Arrays.copyOfRange(wordArray, 1, byIndex));
                     String dateTimePart = String.join(" ", Arrays.copyOfRange(wordArray, byIndex + 1, wordArray.length));
                     Temporal dateTime = checkTimeOrNot(dateTimePart);
+                    assert dateTime != null : "Parsing failed for input: " + input;
                     if (dateTime != null){
                         return new ParsedCommand("deadline", taskDescription, dateTime);
 
                     } else{
-                        return new ParsedCommand("invalid", "Deadline invalid date!");
+                        return new ParsedCommand("invalid", "Invalid Date. Usage: deadline <task description> /by <date> in the format YYYY-MM-DD, /by <time> in the format HH:MM, or /by <date time> in the format YYYY-MM-DD HH:MM");
                     }
 
                 } else {
-                    return new ParsedCommand("invalid", "Deadline command is missing the task description or date/time component. Usage: deadline <task description> /by <date/time>");
+                    return new ParsedCommand("invalid", "Deadline command is missing the task description or date/time component. Usage: deadline <task description> /by <date> in the format YYYY-MM-DD, /by <time> in the format HH:MM, or /by <date time> in the format YYYY-MM-DD HH:MM");
                 }
 
             case "event":
-                int fromIndex = -1;
-                int toIndex = -1;
-                for (int i = 1; i < wordArray.length; i++) {
-                    if (wordArray[i].equals("/from")) {
-                        fromIndex = i;
-                    } else if (wordArray[i].equals("/to")) {
-                        toIndex = i;
-                    }
-                }
+                int fromIndex = findIndex(wordArray, "/from");
+                int toIndex = findIndex(wordArray, "/to");
 
                 if (fromIndex != -1 && toIndex != -1 && fromIndex < toIndex && toIndex < wordArray.length - 1) {
                     String taskDescription = String.join(" ", Arrays.copyOfRange(wordArray, 1, fromIndex));
@@ -128,7 +151,8 @@ public class Parser {
 
                     Temporal fromDateTime = checkTimeOrNot(fromDateTimePart);
                     Temporal toDateTime = checkTimeOrNot(toDateTimePart);
-
+                    assert fromDateTime != null : "Parsing failed for input: " + input;
+                    assert toDateTime != null : "Parsing failed for input: " + input;
                     // Try to parse "from" and "to" date-time parts
                     if (fromDateTime == null || toDateTime == null) {
 
@@ -176,6 +200,13 @@ public class Parser {
                     return new ParsedCommand("invalid", "Delete command missing Task Index");
                 }
 
+            case "archive":
+                if (wordArray.length == 2) {
+                    String fileName = wordArray[1];
+                    return new ParsedCommand("archive", fileName);
+                } else {
+                    return new ParsedCommand("invalid", "Archive command missing filename. Usage: archive <filename>");
+                }
             default:
                 return new ParsedCommand("invalid", "Could not understand your command!");
         }

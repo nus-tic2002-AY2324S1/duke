@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
 
@@ -30,7 +31,7 @@ public class Tasklist {
     }
 
     /**
-     * Delete a task from the task list at the specified index.
+     * Deletes a task from the task list at the specified index.
      *
      * @param indexToDelete
      */
@@ -40,7 +41,7 @@ public class Tasklist {
 
 
     /**
-     * Store a new task in the task list with a task description.
+     * Stores a new task in the task list with a task description.
      *
      * @param userInput
      */
@@ -52,7 +53,7 @@ public class Tasklist {
 
 
     /**
-     * Store a new deadline in the task list
+     * Stores a new deadline in the task list
      *
      * @param userInput
      * @param doneBefore
@@ -64,7 +65,7 @@ public class Tasklist {
     }
 
     /**
-     * Store a new event in the task list
+     * Stores a new event in the task list
      *
      * @param userInput
      * @param doneFrom
@@ -77,7 +78,7 @@ public class Tasklist {
     }
 
     /**
-     * Check if a task index is within the valid range.
+     * Checks if a task index is within the valid range.
      *
      * @param taskString
      * @return Boolean if within range
@@ -93,7 +94,7 @@ public class Tasklist {
     }
 
     /**
-     * Get the list of tasks.
+     * Gets the list of tasks.
      *
      * @return The list of tasks.
      */
@@ -103,7 +104,7 @@ public class Tasklist {
 
 
     /**
-     * Get a task by its index.
+     * Gets a task by its index.
      *
      * @param taskNum
      * @return The task at the specified index.
@@ -115,6 +116,7 @@ public class Tasklist {
 
     /**
      * Looks for tasks with a specific search phrase and prints them out
+     *
      * @param searchPhrase
      *
      */
@@ -133,24 +135,28 @@ public class Tasklist {
 
     /**
      * Converts input into LocalDate format to be used for findTasksViaDate()
-     * @param placeholder
+     *
+     * @param inputLocalDateTime
      * @return LocalDate variable
      */
 
-    private LocalDate convertLocalDateTime(Temporal placeholder){
-        if (placeholder instanceof LocalDate){
-            LocalDate ldPlaceHolder = (LocalDate) placeholder;
+    private LocalDate convertLocalDateTime(Temporal inputLocalDateTime){
+        if (inputLocalDateTime instanceof LocalDate){
+            LocalDate ldPlaceHolder = (LocalDate) inputLocalDateTime;
             return ldPlaceHolder;
-        } else {
-            LocalDateTime ldtPlaceHolder = (LocalDateTime) placeholder;
+        } else if (inputLocalDateTime instanceof LocalDateTime) {
+            LocalDateTime ldtPlaceHolder = (LocalDateTime) inputLocalDateTime;
             LocalDate ldPlaceHolder = ldtPlaceHolder.toLocalDate();
             return ldPlaceHolder;
         }
+
+        return null;
     }
 
 
     /**
      * Looks for tasks with a specific date and prints them out
+     *
      * @param searchDate
      *
      */

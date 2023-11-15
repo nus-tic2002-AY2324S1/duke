@@ -12,19 +12,19 @@ import java.io.FileNotFoundException;
 /**
  * Manages the saving and loading of the task list into a file
  */
-public class Storage{
+public class Storage {
 
     /** File path where the task list is stored. */
-    private String myFilePath = "./tasklist/tasklist.txt";
+    private String storageFilePath = "./tasklist/tasklist.txt";
     /** Relative Folder where the task list is stored. */
-    private String myFileFolder = "./tasklist";
+    private String storageFileFolder = "./tasklist";
 
     /**
      * Checks if the task list folder exists and creates it if it doesn't.
      */
     public void checkFolderExistence(){
         try {
-            Path directoryPath = Paths.get(myFileFolder);
+            Path directoryPath = Paths.get(storageFileFolder);
             if (Files.notExists(directoryPath)) {
                 Files.createDirectories(directoryPath);
             }
@@ -40,7 +40,18 @@ public class Storage{
      *
      * @param myList The list of tasks to be saved.
      */
-    public void saveTasksToFile(ArrayList<Task> myList) {
+    public void saveTasksToFile(ArrayList<Task> myList, String fileName) {
+        String myFilePath = "";
+        if (fileName != null){
+            myFilePath = storageFileFolder + "/" + fileName;
+        } else {
+            myFilePath = storageFilePath;
+        }
+
+        if (!myFilePath.endsWith(".txt")){
+            myFilePath += ".txt";
+        }
+
         checkFolderExistence();
         try {
             FileWriter fileWriter = new FileWriter(myFilePath);
@@ -64,7 +75,7 @@ public class Storage{
     public ArrayList<Task> loadTasksFromFile() {
         ArrayList<Task> taskList = new ArrayList<>();
         try {
-            Scanner scanner = new Scanner(new File(myFilePath));
+            Scanner scanner = new Scanner(new File(storageFilePath));
             while (scanner.hasNextLine()) {
                 String taskDetails = scanner.nextLine();
                 Task task = Task.fromString(taskDetails);
