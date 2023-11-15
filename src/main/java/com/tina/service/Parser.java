@@ -139,14 +139,14 @@ public class Parser {
             break;
         case DEADLINE:
             int byIndex = tokens.indexOf("/by");
-            taskName = String.join(" ", tokens.subList(1, byIndex));
+            taskName = String.join(" ", tokens.subList(0, byIndex));
             String by = String.join(" ", tokens.subList(byIndex + 1, tokens.size()));
             command = new DeadlineCommand(taskName, parseDate(by));
             break;
         case EVENT:
             int fromIndex = tokens.indexOf("/from");
             int toIndex = tokens.indexOf("/to");
-            taskName = String.join(" ", tokens.subList(1, fromIndex));
+            taskName = String.join(" ", tokens.subList(0, fromIndex));
             String from = String.join(" ", tokens.subList(fromIndex + 1, toIndex));
             String to = String.join(" ", tokens.subList(toIndex + 1, tokens.size()));
             command = new EventCommand(taskName, parseDate(from), parseDate(to));
