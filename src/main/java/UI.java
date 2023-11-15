@@ -37,7 +37,10 @@ public class UI {
     }
     /**
      * prints number of task
-     */    public static void TaskCount(int i){
+     *
+     * @param i number of task
+     */
+    public static void TaskCount(int i){
         System.out.println("The list is increasing , there is "+ i +" Tasks now");
     }
     /**
@@ -50,7 +53,7 @@ public class UI {
         Separator();
     }
     /**
-     * scans input and return as string
+     * @return string input from scans
      */
     public static String Scan(){
         String line;
@@ -60,6 +63,10 @@ public class UI {
     }
     /**
      * returns flavour text response based on keyword input
+     *
+     * @param input Keyword used for switch case
+     * @param Storage list of tasks
+     * @param number task number in list
      */
     public static void Response(Keyword input,ListTask Storage,Integer number){
         switch (input){
@@ -111,6 +118,9 @@ public class UI {
     /**
      * main application run function that loops
      * uses parser to check for invalid keywords and returns error messages
+     *
+     * @param Storage List class used to run UI
+     * @param Checker Parser class used to run UI
      */
     public void Run(ListTask Storage,Parser Checker){
         Logo();

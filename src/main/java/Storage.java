@@ -84,7 +84,7 @@ public class Storage {
         String temp=line;
         boolean marker = words[2].equals("1");
 
-        int dividerPosition=0;
+        int dividerPosition;
         switch (words[0]) {
             case "T":
                 Selector = new Todo(temp.substring(8));
