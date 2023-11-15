@@ -1,0 +1,11 @@
+C:\Users\agqy-\OneDrive\Documents\NUS_Code\TIC2002\duke\src\main\java\duke\Duke.java
+C:\Users\agqy-\OneDrive\Documents\NUS_Code\TIC2002\duke\src\main\java\duke\command\TaskType.java
+C:\Users\agqy-\OneDrive\Documents\NUS_Code\TIC2002\duke\src\main\java\duke\error\ErrorType.java
+C:\Users\agqy-\OneDrive\Documents\NUS_Code\TIC2002\duke\src\main\java\duke\parser\Parser.java
+C:\Users\agqy-\OneDrive\Documents\NUS_Code\TIC2002\duke\src\main\java\duke\storage\Storage.java
+C:\Users\agqy-\OneDrive\Documents\NUS_Code\TIC2002\duke\src\main\java\duke\task\Deadlines.java
+C:\Users\agqy-\OneDrive\Documents\NUS_Code\TIC2002\duke\src\main\java\duke\task\Events.java
+C:\Users\agqy-\OneDrive\Documents\NUS_Code\TIC2002\duke\src\main\java\duke\task\Task.java
+C:\Users\agqy-\OneDrive\Documents\NUS_Code\TIC2002\duke\src\main\java\duke\task\ToDos.java
+C:\Users\agqy-\OneDrive\Documents\NUS_Code\TIC2002\duke\src\main\java\duke\tasklist\TaskList.java
+C:\Users\agqy-\OneDrive\Documents\NUS_Code\TIC2002\duke\src\main\java\duke\ui\UI.java
