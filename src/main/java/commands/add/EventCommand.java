@@ -23,9 +23,9 @@ public class EventCommand extends Command {
 
     public EventCommand(String input) throws DukeException {
         Pattern pattern = Pattern.compile(RegExp.EVENT_COMMAND_FORMAT_REGEX);
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = pattern.matcher(input.toLowerCase());
 
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             throw new DukeException(ErrorMessages.INVALID_EVENT_COMMAND_FORMAT);
         }
 

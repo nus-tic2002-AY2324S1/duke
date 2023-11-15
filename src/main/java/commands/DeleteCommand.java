@@ -8,25 +8,17 @@ import exceptions.MissingTaskException;
 import storage.Storage;
 import tasks.TaskList;
 import ui.UI;
+import java.util.regex.Pattern;
 
 public class DeleteCommand extends Command {
-
     protected int item;
-    protected static final int INPUT_WORDS_REQUIRED = 2;
 
-    public DeleteCommand(String userInput) throws DukeException {
-
-        // guard condition
-        if (userInput.split(RegExp.SPACE_DELIMITER).length < INPUT_WORDS_REQUIRED) {
-            throw new DukeException(ErrorMessages.MISSING_ITEM_NUMBER);
+    public DeleteCommand(String input) throws DukeException {
+        if(!Pattern.matches(RegExp.DELETE_COMMAND_FORMAT_REGEX,input.toLowerCase())){
+            throw new DukeException(ErrorMessages.INVALID_DELETE_COMMAND_FORMAT);
         }
 
-        try {
-            this.item = Integer.parseInt(userInput.split(RegExp.SPACE_DELIMITER)[1]);
-        } catch (NumberFormatException e) {
-            throw new DukeException(ErrorMessages.INVALID_INTEGER);
-        }
-
+        this.item = Integer.parseInt(input.split(RegExp.SPACE_DELIMITER)[1]);
     }
 
     /**

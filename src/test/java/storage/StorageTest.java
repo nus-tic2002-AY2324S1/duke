@@ -38,9 +38,9 @@ public class StorageTest {
 
         // test case 1: checks if all 3 tasks that were stored below are loaded properly
         assertEquals(3, tasks.size()); 
-        assertEquals(tasks.get(0).toString(),d.toString());  
-        assertEquals(tasks.get(1).toString(),td.toString()); 
-        assertEquals(tasks.get(2).toString(),e.toString());  
+        assertEquals(d.toString(),tasks.get(0).toString());  
+        assertEquals(td.toString(),tasks.get(1).toString()); 
+        assertEquals(e.toString(),tasks.get(2).toString());  
     }
     
     /**

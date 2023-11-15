@@ -21,21 +21,13 @@ import ui.UI;
 public class DueCommand extends Command {
     protected LocalDate date;
     protected ArrayList<Task> tasksDue;
-    protected static final int INPUT_WORDS_REQUIRED = 2;
 
     public DueCommand(String line) throws DukeException {
-        if (line.split(RegExp.SPACE_DELIMITER).length < INPUT_WORDS_REQUIRED) {
-            throw new DukeException(ErrorMessages.MISSING_DATE);
-        }
-        if (line.split(RegExp.SPACE_DELIMITER).length > INPUT_WORDS_REQUIRED) {
-            throw new DukeException(ErrorMessages.INVALID_COMMAND_FORMAT);
+        if(!Pattern.matches(RegExp.DUE_COMMAND_FORMAT_REGEX, line)){
+            throw new DukeException(ErrorMessages.INVALID_DUE_COMMAND_FORMAT);
         }
 
-        String userDate = line.split(RegExp.SPACE_DELIMITER)[1];
-        if (!Pattern.matches(RegExp.STRICT_DATE_REGEX, userDate)) {
-            throw new DukeException(ErrorMessages.INVALID_DATE_FORMAT);
-        }
-
+        String userDate = line.split(RegExp.SPACE_DELIMITER)[1].trim();
         this.date = LocalDate.parse(userDate);
     }
 

@@ -8,18 +8,18 @@ import storage.Storage;
 import tasks.Task;
 import tasks.TaskList;
 import ui.UI;
+import java.util.regex.Pattern;
 
 public class FindCommand extends Command {
-    String keyword;
-    ArrayList<Task> userTasks;
-    protected static final int INPUT_WORDS_REQUIRED = 2;
+    protected String keyword;
+    protected ArrayList<Task> userTasks;
 
     public FindCommand(String line) throws DukeException {
-        if (line.split(RegExp.SPACE_DELIMITER).length > INPUT_WORDS_REQUIRED) {
+        if(!Pattern.matches(RegExp.FIND_COMMAND_FORMAT_REGEX, line)){
             throw new DukeException(ErrorMessages.INVALID_FIND_COMMAND_FORMAT);
-        } 
+        }
 
-        this.keyword = line.split(RegExp.SPACE_DELIMITER)[1].toLowerCase();
+        this.keyword = line.split(RegExp.SPACE_DELIMITER)[1].toLowerCase().trim();
     }
 
     /**

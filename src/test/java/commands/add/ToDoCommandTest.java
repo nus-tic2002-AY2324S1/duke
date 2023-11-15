@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import exceptions.DukeException;
 import commands.add.ToDoCommand;
+import constants.ErrorMessages;
 
 public class ToDoCommandTest {
     @Test
@@ -17,6 +18,6 @@ public class ToDoCommandTest {
 
         // Test Case 1: Missing Task Description
         exception = assertThrows(DukeException.class, () -> new ToDoCommand("todo "));
-        assertEquals("Oops, missing todo description!", exception.getMessage());
+        assertEquals(ErrorMessages.INVALID_TODO_FORMAT, exception.getMessage());
     }
 }

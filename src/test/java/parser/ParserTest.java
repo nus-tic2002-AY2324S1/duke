@@ -1,5 +1,5 @@
 import org.junit.jupiter.api.Test;
-
+import constants.ErrorMessages;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,10 +13,10 @@ public class ParserTest {
 
         // Test Case 1: Invalid User Command
         exception = assertThrows(DukeException.class, () -> Parser.parse("ghjkl "));
-        assertEquals("Oops! Look at the manual to see accepted inputs!", exception.getMessage());
+        assertEquals(ErrorMessages.INVALID_USER_INPUT, exception.getMessage());
 
         exception = assertThrows(DukeException.class, () -> Parser.parse("bYs"));
-        assertEquals("Oops! Look at the manual to see accepted inputs!", exception.getMessage());
+        assertEquals(ErrorMessages.INVALID_USER_INPUT, exception.getMessage());
     }
 
 }

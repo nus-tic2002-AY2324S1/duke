@@ -8,22 +8,18 @@ import storage.Storage;
 import tasks.Task;
 import tasks.TaskList;
 import ui.UI;
+import java.util.regex.Pattern;
 
 public class MarkCommand extends Command {
     protected int item;
     protected static final int INPUT_WORDS_REQUIRED = 2;
 
-    public MarkCommand(String userInput) throws DukeException {
-        if (userInput.split(RegExp.SPACE_DELIMITER).length < INPUT_WORDS_REQUIRED) {
-            throw new DukeException(ErrorMessages.MISSING_ITEM_NUMBER);
+    public MarkCommand(String input) throws DukeException {
+        if(!Pattern.matches(RegExp.MARK_COMMAND_FORMAT_REGEX, input)){
+            throw new DukeException(ErrorMessages.INVALID_MARK_COMMAND_FORMAT);
         }
-
-        try {
-            this.item = Integer.parseInt(userInput.split(RegExp.SPACE_DELIMITER)[1]);
-        } catch (NumberFormatException e) {
-            throw new DukeException(ErrorMessages.INVALID_INTEGER);
-        }
-
+        
+        this.item = Integer.parseInt(input.split(RegExp.SPACE_DELIMITER)[1]);
     }
 
     /**

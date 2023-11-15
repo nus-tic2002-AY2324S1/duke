@@ -21,7 +21,6 @@ public class ListCommand extends Command {
         } catch (EmptyListException e) {
             ui.showError(e.getMessage());
         }
-
     }
 
 }

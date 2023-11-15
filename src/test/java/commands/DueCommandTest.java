@@ -5,23 +5,29 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import exceptions.DukeException;
 import commands.DueCommand;
+import constants.ErrorMessages;
+import constants.RegExp;
 
 public class DueCommandTest {
     @Test
-    public void dueCommandConstructorTest(){
+    public void dueCommandConstructorTest() throws DukeException{
         Throwable exception; 
         // Test Case 1: Missing Date
         exception = assertThrows(DukeException.class, () -> new DueCommand("due "));
-        assertEquals("Missing date!", exception.getMessage());
+        assertEquals(ErrorMessages.INVALID_DUE_COMMAND_FORMAT, exception.getMessage());
 
         // Test Case 2: Date in the wrong format
         exception = assertThrows(DukeException.class, () -> new DueCommand("due 10 Oct 2023"));
-        assertEquals("Please follow the correct format.", exception.getMessage());
+        assertEquals(ErrorMessages.INVALID_DUE_COMMAND_FORMAT, exception.getMessage());
 
         // Test Case 2: Invalid Date
         exception = assertThrows(DukeException.class, () -> new DueCommand("due 2023-02-56")); // invalid day
-        assertEquals("Please provide the date in this format: YYYY-MM-DD", exception.getMessage());
+        assertEquals(ErrorMessages.INVALID_DUE_COMMAND_FORMAT, exception.getMessage());
         exception = assertThrows(DukeException.class, () -> new DueCommand("due 2023-21-06")); // invalid month
-        assertEquals("Please provide the date in this format: YYYY-MM-DD", exception.getMessage());
+        assertEquals(ErrorMessages.INVALID_DUE_COMMAND_FORMAT, exception.getMessage());
+        
+        // Test Case 3: Trailing spaces <-- should pass
+        new DueCommand("due 2023-12-06");
+        
     }
 }

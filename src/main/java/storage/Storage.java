@@ -61,18 +61,13 @@ public class Storage {
             Task t;
 
             while (s.hasNext()) {
-                String[] line = s.nextLine().split(RegExp.LINE_DELIMITER);
+                String string = s.nextLine();
+                String[] line = string.split(RegExp.LINE_DELIMITER);
 
                 switch (line[0]) {
                 case "E":
                     // doesnt add invalid task
-                    if (line.length != EVENT_STORAGE_REQUIRED_WORDS) {
-                        continue;
-                    }
-                    if (!Pattern.matches(RegExp.STRICT_DATE_REGEX, line[4])) {
-                        continue;
-                    }
-                    if (!Pattern.matches(RegExp.STRICT_DATE_REGEX, line[5])) {
+                    if (!Pattern.matches(RegExp.FILE_STORAGE_EVENT_FORMAT, string)) {
                         continue;
                     }
                     t = new Event(line[3], LocalDate.parse(line[4]), LocalDate.parse(line[5]));
@@ -80,10 +75,8 @@ public class Storage {
                     break;
 
                 case "D":
-                    if (line.length != DEADLINE_STORAGE_REQUIRED_WORDS) {
-                        continue;
-                    }
-                    if (!Pattern.matches(RegExp.STRICT_DATE_REGEX, line[4])) {
+                    // doesnt add invalid task
+                    if (!Pattern.matches(RegExp.FILE_STORAGE_DEADLINE_FORMAT, string)){
                         continue;
                     }
                     t = new Deadline(line[3], LocalDate.parse(line[4]));
@@ -92,10 +85,9 @@ public class Storage {
 
                 case "T":
                     // doesnt add invalid task
-                    if (line.length != TODO_STORAGE_REQUIRED_WORDS) {
+                    if (!Pattern.matches(RegExp.FILE_STORAGE_TODO_FORMAT, string)){
                         continue;
                     }
-
                     t = new ToDo(line[3]);
                     tasks.add(t);
                     break;

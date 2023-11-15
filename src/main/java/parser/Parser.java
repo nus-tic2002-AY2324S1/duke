@@ -32,6 +32,7 @@ public class Parser {
      */
     public static Command parse(String userInput) throws DukeException {
         String userCommand = userInput.split(RegExp.SPACE_DELIMITER)[0];
+        userInput = userInput.trim().toLowerCase();
 
         switch (userCommand.toLowerCase()) {
         case "list":
@@ -50,22 +51,22 @@ public class Parser {
             c = new DeleteCommand(userInput);
             break;
         case "todo":
-            c = new ToDoCommand(userInput.trim());
+            c = new ToDoCommand(userInput);
             break;
         case "event":
-            c = new EventCommand(userInput.trim());
+            c = new EventCommand(userInput);
             break;
         case "deadline":
-            c = new DeadlineCommand(userInput.trim());
+            c = new DeadlineCommand(userInput);
             break;
         case "due":
-            c = new DueCommand(userInput.trim());
+            c = new DueCommand(userInput);
             break;
         case "set":
-            c = new SetCommand(userInput.trim());
+            c = new SetCommand(userInput);
             break;
         case "find":
-            c = new FindCommand(userInput.trim());
+            c = new FindCommand(userInput);
             break;
         default:
             throw new DukeException(ErrorMessages.INVALID_USER_INPUT);

@@ -7,21 +7,16 @@ import exceptions.MissingTaskException;
 import storage.Storage;
 import tasks.TaskList;
 import ui.UI;
+import java.util.regex.Pattern;
 
 public class UnmarkCommand extends Command {
     protected int item;
-    protected static final int INPUT_WORDS_REQUIRED = 2;
 
-    public UnmarkCommand(String userInput) throws DukeException {
-        if (userInput.split(RegExp.SPACE_DELIMITER).length < INPUT_WORDS_REQUIRED) {
-            throw new DukeException(ErrorMessages.MISSING_ITEM_NUMBER);
-        }
-
-        try {
-            this.item = Integer.parseInt(userInput.split(RegExp.SPACE_DELIMITER)[1]);
-        } catch (NumberFormatException e) {
-            throw new DukeException(ErrorMessages.INVALID_INTEGER);
-        }
+    public UnmarkCommand(String input) throws DukeException {
+        if(!Pattern.matches(RegExp.UNMARK_COMMAND_FORMAT_REGEX, input)){
+            throw new DukeException(ErrorMessages.INVALID_UNMARK_COMMAND_FORMAT);
+        };
+        this.item = Integer.parseInt(input.split(RegExp.SPACE_DELIMITER)[1]);
     }
 
     /**

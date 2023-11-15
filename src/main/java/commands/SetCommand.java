@@ -19,12 +19,13 @@ public class SetCommand extends Command {
     // expected line arg: set 2 to (high/low/medium)
     public SetCommand(String line) throws DukeException {
 
-        if (!Pattern.matches(RegExp.SET_COMMAND_FORMAT_REGEX, line.toLowerCase())) {
+        if (!Pattern.matches(RegExp.SET_COMMAND_FORMAT_REGEX, line)) {
             throw new DukeException(ErrorMessages.INVALID_COMMAND_FORMAT);
         }
 
+        this.item = Integer.parseInt(line.split(RegExp.SPACE_DELIMITER)[1].trim());
+
         try {
-            this.item = Integer.parseInt(line.split(RegExp.SPACE_DELIMITER)[1]);
             String taskPriority = line.split(RegExp.SPACE_DELIMITER)[3].trim().toUpperCase();
             this.p = Priority.valueOf(taskPriority);
         } catch (IllegalArgumentException e) {
