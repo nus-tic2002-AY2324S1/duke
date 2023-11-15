@@ -53,6 +53,11 @@ public class ScheduleCommand extends Command {
                 }
             }
         }
-        return "Deadlines/Events occurring on " + date + ":\n" + ui.printTaskList(tasks);
+        if (tasks.size() == 0) {
+            return "No Deadlines/Events occurring on " + date + ".";
+        }
+        else {
+            return "Deadlines/Events occurring on " + date + ":\n" + ui.printTaskList(tasks);
+        }
     }
 }
