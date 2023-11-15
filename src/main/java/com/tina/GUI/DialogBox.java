@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -58,6 +59,12 @@ public class DialogBox extends HBox {
     public static DialogBox getTinaDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        db.getChildren();
+        db.setTextAlignment(TextAlignment.LEFT);
         return db;
+    }
+
+    public void setTextAlignment(TextAlignment alignment) {
+        dialog.setTextAlignment(alignment);
     }
 }

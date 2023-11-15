@@ -39,13 +39,14 @@ test {
 }
 
 application {
-    mainClass.set("com.tina.service.Tina")
+    mainClass.set("com.tina.app.Launcher")
 }
 
 shadowJar {
     archiveBaseName = "tina"
     archiveClassifier = null
     dependsOn("distZip", "distTar")
+    archiveFileName = 'tina.jar'
 }
 
 run{

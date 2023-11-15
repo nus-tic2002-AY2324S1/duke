@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Text?>
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Text fx:id="dialog" text="Label" wrappingWidth="300.0" />
+        <Text fx:id="dialog" text="Label" wrappingWidth="300.0" textAlignment="RIGHT" />
         <ImageView fx:id="displayPicture" fitHeight="30" fitWidth="30" pickOnBounds="true" preserveRatio="true" />
     </children>
     <padding>
