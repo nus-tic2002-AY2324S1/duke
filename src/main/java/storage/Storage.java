@@ -15,6 +15,7 @@ import tasks.Priority;
 import tasks.Task;
 import tasks.TaskList;
 import tasks.ToDo;
+import tasks.ToDoWithinPeriod;
 
 public class Storage {
     // default values for storage
@@ -84,6 +85,11 @@ public class Storage {
 
                 case "T":
                     // doesnt add invalid task
+                    if(Pattern.matches(RegExp.FILE_STORAGE_TODO_WITHIN_PERIOD_FORMAT, string)){
+                        t = new ToDoWithinPeriod(line[3], LocalDate.parse(line[4]), LocalDate.parse(line[5]));
+                        tasks.add(t);
+                        break;
+                    }
                     if (!Pattern.matches(RegExp.FILE_STORAGE_TODO_FORMAT, string)){
                         continue;
                     }

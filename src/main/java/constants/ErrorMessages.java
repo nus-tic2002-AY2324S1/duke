@@ -12,6 +12,7 @@ public class ErrorMessages {
     public static final String MISSING_DATE = "Please provide a date!";
     public static final String INVALID_COMMAND_FORMAT = "Please follow the correct format.";
     public static final String INVALID_TODO_FORMAT = "Please follow the correct format for adding To Dos.";
+    public static final String INVALID_TODO_WITHIN_PERIOD_FORMAT = "Please follow the correct format for adding To Dos Within Period tasks.";
     public static final String INVALID_DELETE_COMMAND_FORMAT =
             "Please follow the correct format for deleting Tasks.";
     public static final String INVALID_DEADLINE_COMMAND_FORMAT =

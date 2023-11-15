@@ -12,13 +12,14 @@ import commands.UnmarkCommand;
 import commands.add.DeadlineCommand;
 import commands.add.EventCommand;
 import commands.add.ToDoCommand;
+import commands.add.ToDoWithinPeriodCommand;
 import constants.ErrorMessages;
 import constants.RegExp;
 import exceptions.DukeException;
 
 public class Parser {
     protected static Command c;
-
+    protected static final String BETWEEN_STRING = "/between";
     /**
      * Returns a {@code Command} object based on user input.
      * <p>
@@ -33,7 +34,7 @@ public class Parser {
     public static Command parse(String userInput) throws DukeException {
         String userCommand = userInput.split(RegExp.SPACE_DELIMITER)[0];
         userInput = userInput.trim().toLowerCase();
-
+    
         switch (userCommand.toLowerCase()) {
         case "list":
             c = new ListCommand();
@@ -51,7 +52,11 @@ public class Parser {
             c = new DeleteCommand(userInput);
             break;
         case "todo":
-            c = new ToDoCommand(userInput);
+            if(userInput.contains(BETWEEN_STRING)){
+                c = new ToDoWithinPeriodCommand(userInput);
+            } else {
+                c = new ToDoCommand(userInput);
+            }
             break;
         case "event":
             c = new EventCommand(userInput);

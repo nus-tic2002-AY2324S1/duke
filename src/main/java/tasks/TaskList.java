@@ -43,6 +43,13 @@ public class TaskList {
         return this.task;
     }
 
+    public Task addToDoWithinPeriod(String description, LocalDate start, LocalDate end) {
+        this.task = new ToDoWithinPeriod(description, start, end);
+        tasks.add(task);
+        this.totalTasks++;
+        return this.task;
+    }
+
     public Task addEvent(String description, LocalDate fromDate, LocalDate toDate) {
         this.task = new Event(description, fromDate, toDate);
         this.tasks.add(this.task);

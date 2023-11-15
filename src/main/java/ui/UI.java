@@ -50,11 +50,11 @@ public class UI {
         System.out.println("(b) An Event: event project meeting /from YYYY-MM-DD /to YYYY-MM-DD");
         System.out.println("(c) A To-Do: todo borrow book");
         System.out.println("To List all items in your list: list");
-        System.out.println("To Mark or Unmark your tasks, type: (a) mark 1 or (b) unmark 2 ");
-        System.out.println("To Delete your tasks, type: delete 3");
+        System.out.println("To Mark or Unmark your tasks, type: (a) mark <task no.> or (b) unmark <task no.> ");
+        System.out.println("To Delete your tasks, type: delete <task no.>");
         System.out.println("To View tasks due, type: due YYYY-MM-DD");
         System.out.println(
-                "Default task priority is Low. To Change the Priority, type: set 2 to (LOW|HIGH|MEDIUM)");
+                "To change Task Priority, type: set <task no.> to (LOW|HIGH|MEDIUM)");
         System.out.println();
     }
 

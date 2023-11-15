@@ -12,7 +12,7 @@ import tasks.Event;
 import tasks.Priority;
 import tasks.TaskList;
 import tasks.ToDo;
-
+import tasks.ToDoWithinPeriod;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -35,12 +35,14 @@ public class StorageTest {
         Task td = new ToDo("buy food");
         td.setTaskPriority(Priority.HIGH);
         Event e = new Event("project meeting", LocalDate.parse("2023-10-18"), LocalDate.parse("2023-10-20"));
+        ToDoWithinPeriod tdp = new ToDoWithinPeriod("collect certificate", LocalDate.parse("2023-10-08"), LocalDate.parse("2023-10-20"));
 
         // test case 1: checks if all 3 tasks that were stored below are loaded properly
-        assertEquals(3, tasks.size()); 
+        assertEquals(4, tasks.size()); 
         assertEquals(d.toString(),tasks.get(0).toString());  
         assertEquals(td.toString(),tasks.get(1).toString()); 
         assertEquals(e.toString(),tasks.get(2).toString());  
+        assertEquals(tdp.toString(),tasks.get(3).toString());  
     }
     
     /**
@@ -63,6 +65,7 @@ public class StorageTest {
         tasks.addToDo("buy food");
         tasks.setPriority(2,Priority.HIGH);
         tasks.addEvent("project meeting", LocalDate.parse("2023-10-18"), LocalDate.parse("2023-10-20"));
+        tasks.addToDoWithinPeriod("collect certificate", LocalDate.parse("2023-10-08"), LocalDate.parse("2023-10-20"));
 
         // test case 1: checks if all 3 tasks have been added in the file
         storage.storeData(tasks);
@@ -71,5 +74,6 @@ public class StorageTest {
         assertEquals("D|LOW|false|return book|2023-10-18",s.nextLine());
         assertEquals("T|HIGH|false|buy food",s.nextLine());
         assertEquals("E|LOW|false|project meeting|2023-10-18|2023-10-20",s.nextLine());
+        assertEquals("T|LOW|false|collect certificate|2023-10-08|2023-10-20",s.nextLine());
     }
 }
