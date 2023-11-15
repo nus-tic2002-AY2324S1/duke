@@ -4,7 +4,7 @@ public class RegExp {
     public static final String STRICT_DATE_REGEX = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
     public static final String DATE_REGEX = "\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])";
     public static final String SET_COMMAND_FORMAT_REGEX = "^set\\s+(\\d+)\\s+to\\s+(.+)$";
-    public static final String DEADLINE_COMMAND_FORMAT_REGEX = "^deadline\\s+(.+)\\s+/by\\s+" + DATE_REGEX + "$";
+    public static final String DEADLINE_COMMAND_FORMAT_REGEX = "^deadline\\s+(.+)\\s+/by\\s+(" + DATE_REGEX + ")$";
     public static final String EVENT_COMMAND_FORMAT_REGEX = "^event\\s+(.+)\\s+/from\\s+(" + DATE_REGEX + ")\\s+/to\\s+(" + DATE_REGEX + ")$";
     public static final String TODO_COMMAND_FORMAT_REGEX = "^todo\\s+(.+)$";
     public static final String TODO_COMMAND_WITHIN_PERIOD_FORMAT_REGEX = "^todo\\s+(.+)\\s+/between\\s+(" + DATE_REGEX + ")\\s+/and\\s+(" + DATE_REGEX + ")$";
