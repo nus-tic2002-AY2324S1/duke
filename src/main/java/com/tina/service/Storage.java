@@ -5,8 +5,11 @@ import com.tina.exception.InvalidFileFormatException;
 import com.tina.exception.InvalidFilePathException;
 import com.tina.task.Task;
 import com.tina.task.TaskList;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -21,13 +24,12 @@ import java.util.ArrayList;
 public class Storage {
 
     private final Path path;
-    private Path archivePath;
+    private final Path archivePath;
 
     /**
      * Instantiates a new Storage.
      *
-     * @param path        the path of the local file
-     * @param archivePath
+     * @param path the path of the local file
      */
     public Storage(Path path, Path archivePath) {
         this.path = path;

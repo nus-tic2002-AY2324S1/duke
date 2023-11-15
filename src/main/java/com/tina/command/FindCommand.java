@@ -29,8 +29,7 @@ public class FindCommand extends Command {
         }
         if (tasks.size() == 0) {
             return "No matching tasks found.";
-        }
-        else {
+        } else {
             return "Here are the matching tasks in your list:\n" + ui.printTaskList(tasks);
         }
     }

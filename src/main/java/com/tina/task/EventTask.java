@@ -3,8 +3,8 @@ package com.tina.task;
 import java.time.LocalDate;
 
 public class EventTask extends Task {
-    private LocalDate from;
-    private LocalDate to;
+    private final LocalDate from;
+    private final LocalDate to;
 
     public EventTask(String taskName, LocalDate from, LocalDate to) {
         super(TaskEnum.EVENT, taskName);

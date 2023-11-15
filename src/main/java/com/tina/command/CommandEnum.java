@@ -1,7 +1,5 @@
 package com.tina.command;
 
-import java.util.Map;
-
 /**
  * The enumeration class contains all command type and its corresponding syntax.
  */
