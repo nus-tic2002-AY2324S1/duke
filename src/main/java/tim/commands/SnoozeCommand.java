@@ -42,6 +42,7 @@ public class SnoozeCommand extends Command{
             Display.printDash();
         } catch (Exception e) {
             System.out.println("oh no!  please check index or date to postpone to!");
+            Display.printDash();
         }
     }
 
@@ -67,8 +68,10 @@ public class SnoozeCommand extends Command{
             break;
         case 'T':
             System.out.println("oh no!  ToDo tasks cannot be snoozed!");
+            Display.printDash();
         default:
             System.out.println("oh no!  unhandled error");
+            Display.printDash();
         }
 
     }
@@ -84,18 +87,19 @@ public class SnoozeCommand extends Command{
         index--;
         assert tasks.get(index).getType() != 'T' : "assert ToDo tasks cannot be snoozed!";
         switch (tasks.get(index).getType()){
-            case 'D':
-                Deadline deadline = (Deadline) tasks.get(index);
-                deadline.snoozeByDateByOneWeek();
-                break;
-            case 'E':
-                Event event = (Event) tasks.get(index);
-                event.snoozeToDateByOneWeek();
-                break;
-            case 'T':
-                System.out.println("oh no!  ToDo tasks cannot be snoozed!");
-            default:
-                System.out.println("oh no!  unhandled error");
+        case 'D':
+            Deadline deadline = (Deadline) tasks.get(index);
+            deadline.snoozeByDateByOneWeek();
+            break;
+        case 'E':
+            Event event = (Event) tasks.get(index);
+            event.snoozeToDateByOneWeek();
+            break;
+        case 'T':
+            System.out.println("oh no!  ToDo tasks cannot be snoozed!");
+            Display.printDash();
+        default:
+            System.out.println("oh no!  unhandled error");
         }
 
     }

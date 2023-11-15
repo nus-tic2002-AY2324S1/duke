@@ -1,5 +1,6 @@
 package tim.commands;
 
+import tim.ui.Display;
 import tim.util.TaskList;
 
 public class UnmarkCommand extends MarkCommand{
@@ -18,8 +19,10 @@ public class UnmarkCommand extends MarkCommand{
             markUnmarkTask(index, false, tasks);
         } catch (ArrayIndexOutOfBoundsException AIO) {
             System.out.println("oh no!  missing input for index!");
+            Display.printDash();
         } catch (IllegalArgumentException IAE){
-        System.out.println("oh no!  please include valid index of task to mark");
+            System.out.println("oh no!  please include valid index of task to mark");
+            Display.printDash();
     }
 
     }

@@ -24,6 +24,7 @@ public class EventCommand extends Command{
             addEvent(taskName, tasks);
         } catch (ArrayIndexOutOfBoundsException AIO) {
             System.out.println("oh no!  what is the name of the event?");
+            Display.printDash();
         }
     }
 
@@ -53,12 +54,16 @@ public class EventCommand extends Command{
             Display.printDash();
         } catch (ArrayIndexOutOfBoundsException AIO) {
             System.out.println("oh no!  you've missed out [/from] or [/to] !");
+            Display.printDash();
         } catch(DateTimeParseException DTPE ){
             System.out.println("oh no!  that's not a valid date, please enter << /from yyyy-mm-dd /to yyyy-mm-dd>>");
+            Display.printDash();
         } catch (BlankInputException BIE) {
             System.out.println("oh no!  you've missed out the description");
+            Display.printDash();
         } catch (DateException DE){
             System.out.println("oh no!  /from date shouldn't be later than /to date");
+            Display.printDash();
         }
 
     }

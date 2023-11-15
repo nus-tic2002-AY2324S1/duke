@@ -12,6 +12,7 @@ public class ClearCommand extends Command {
             clearList(tasks);
         } catch (Exception e) {
             System.out.println("oh no!  ");
+            Display.printDash();
         }
     }
 

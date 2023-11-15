@@ -1,5 +1,6 @@
 package tim.util;
 
+import tim.ui.Display;
 import tim.util.TaskList;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
@@ -14,6 +15,7 @@ import java.io.File;
  */
 public class Storage {
 
+    //solution below adapted from https://stackoverflow.com/questions/3921836/how-to-save-list-items-on-disk-instead-of-memory-in-java
     /**
      * Loads the list of tasks from the file.
      *
@@ -30,14 +32,22 @@ public class Storage {
                 FileInputStream fin = new FileInputStream(f);
                 ObjectInputStream ois = new ObjectInputStream(fin);
                 tasks = (TaskList) ois.readObject();
+                if(tasks.isEmpty()){
+                    System.out.println("no saved list");
+                } else {
+                    System.out.println("saved list loaded");
+                }
                 ois.close();
             } else {
-                System.out.println("no saved list");
+                System.out.println("new list created");
             }
+            Display.printDash();
         } catch (IOException e){
             System.out.println("oh no!  unable to read file");
+            Display.printDash();
         }catch (ClassNotFoundException e) {
             System.out.println("oh no!  file is corrupted");
+            Display.printDash();
         }
         return tasks;
     }
@@ -61,6 +71,7 @@ public class Storage {
 
         } catch (IOException e) {
             System.out.println("oh no!  unable to create file");
+            Display.printDash();
         }
     }
 

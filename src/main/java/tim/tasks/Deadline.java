@@ -1,5 +1,6 @@
 package tim.tasks;
 import tim.exceptions.DateException;
+import tim.ui.Display;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -36,6 +37,7 @@ public class Deadline extends Task {
         System.out.println(extendedByDate);
         if(parsedExtendedByDate.isBefore(this.byDate)){
             System.out.println("oh no!  New date is before the original deadline!");
+            Display.printDash();
             throw new DateException("improper date");
         }
         assert  parsedExtendedByDate != null : "assert parsedExtendedByDate is not null";

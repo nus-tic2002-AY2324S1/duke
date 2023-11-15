@@ -20,8 +20,10 @@ public class MarkCommand extends Command{
             markUnmarkTask(index, true, tasks);
         } catch (ArrayIndexOutOfBoundsException AIO) {
             System.out.println("oh no!  missing input for index!");
+            Display.printDash();
         } catch (IllegalArgumentException IAE){
             System.out.println("oh no!  please include valid index of task to mark");
+            Display.printDash();
         }
     }
 
@@ -50,6 +52,7 @@ public class MarkCommand extends Command{
             Display.printDash();
         } catch (IndexOutOfBoundsException IOOBE){
             System.out.println("oh no!  please include valid index of task to mark");
+            Display.printDash();
         }
 
 

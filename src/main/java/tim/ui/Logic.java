@@ -85,6 +85,7 @@ public class Logic {
             }
         } catch (IllegalArgumentException IAE) {
             System.out.println("oh no!  I've not learn to do this yet!!");
+            Display.printDash();
         }
     }
 }

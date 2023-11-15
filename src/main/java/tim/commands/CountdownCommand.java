@@ -33,6 +33,7 @@ public class CountdownCommand extends Command {
                 break;
             case 'T':
                 System.out.println("oh no!  ToDo tasks has no end date!");
+                Display.printDash();
                 break;
             default:
                 System.out.println("oh no!  unhandled error");
@@ -40,6 +41,7 @@ public class CountdownCommand extends Command {
 
         } catch (Exception e) {
             System.out.println("oh no!  please provide a valid index of the task!");
+            Display.printDash();
         }
     }
 

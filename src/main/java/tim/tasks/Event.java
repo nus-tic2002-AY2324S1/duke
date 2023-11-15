@@ -1,5 +1,6 @@
 package tim.tasks;
 import tim.exceptions.DateException;
+import tim.ui.Display;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -43,6 +44,7 @@ public class Event extends Task {
         if(parsedExtendedToDate.isBefore(this.fromDate)
                 || parsedExtendedToDate.isBefore(this.toDate) ){
             System.out.println("oh no!  New date is before the original event period!");
+            Display.printDash();
             throw new DateException("improper date");
         }
         this.toDate = LocalDate.parse(extendedToDate);

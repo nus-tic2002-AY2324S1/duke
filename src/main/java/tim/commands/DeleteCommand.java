@@ -19,6 +19,7 @@ public class DeleteCommand extends Command{
             deleteFromList(deleteIndex, tasks);
         } catch (Exception e) {
             System.out.println("oh no!  please include valid index of task to delete");
+            Display.printDash();
         }
     }
 

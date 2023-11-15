@@ -1,5 +1,6 @@
 package tim.commands;
 
+import tim.ui.Display;
 import tim.util.Search;
 import tim.util.TaskList;
 
@@ -19,6 +20,7 @@ public class SearchCommand extends Command{
             Search.searchTaskList(keyword, tasks);
         } catch (Exception e) {
             System.out.println("oh no!  please include valid keyword to find");
+            Display.printDash();
         }
     }
 }

@@ -22,6 +22,7 @@ public class DeadlineCommand extends Command{
             addDeadline(taskName, tasks);
         } catch (ArrayIndexOutOfBoundsException AIO) {
             System.out.println("oh no!  what is the name of the deadline agenda?");
+            Display.printDash();
         }
     }
 
@@ -49,10 +50,13 @@ public class DeadlineCommand extends Command{
             Display.printDash();
         } catch (ArrayIndexOutOfBoundsException AIO) {
             System.out.println("oh no!  you've missed out [/by] !");
+            Display.printDash();
         } catch(DateTimeParseException DTPE ){
             System.out.println("oh no!  that's not a valid date, please enter << /by yyyy-mm-dd >>");
+            Display.printDash();
         } catch (BlankInputException BIE) {
             System.out.println("oh no!  you've missed out the description");
+            Display.printDash();
         }
 
     }
