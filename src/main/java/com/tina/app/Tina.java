@@ -1,14 +1,14 @@
 package com.tina.app;
 
-import com.tina.GUI.DialogBox;
 import com.tina.command.Command;
 import com.tina.exception.TinaException;
-import com.tina.exception.InvalidFilePathException;
 import com.tina.service.Parser;
 import com.tina.service.Storage;
 import com.tina.service.Ui;
 import com.tina.task.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -22,6 +22,20 @@ public class Tina {
     private Storage storage;
 
     public Tina() {
+    }
+
+    public void initiate() throws com.tina.exception.IOException {
+        String dir = System.getProperty("user.home");
+        Path path = Paths.get(dir, "tina/");
+        Path archviePath = Paths.get(dir, "tina/archive/");
+        try {
+            Files.createDirectories(path);
+            Files.createDirectories(archviePath);
+        } catch (IOException e) {
+            throw new com.tina.exception.IOException();
+        }
+        path = path.resolve("Tina.txt");
+        this.setPath(path, archviePath);
     }
 
     public void setPath(Path path, Path archivePath) {

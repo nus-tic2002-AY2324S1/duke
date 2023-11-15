@@ -17,18 +17,14 @@ public class Main extends Application {
     private final Tina tina = new Tina();
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws com.tina.exception.IOException {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/views/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
 
-            String dir = System.getProperty("user.dir");
-            Path path = Paths.get(dir, "data/Tina.txt");
-            Path archviePath = Paths.get(dir, "data/archive/");
-            tina.setPath(path, archviePath);
-
+            tina.initiate();
             fxmlLoader.<MainWindow>getController().setTina(tina);
             stage.show();
         } catch (IOException e) {

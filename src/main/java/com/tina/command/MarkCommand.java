@@ -1,5 +1,6 @@
 package com.tina.command;
 
+import com.tina.exception.InvalidFilePathException;
 import com.tina.service.Storage;
 import com.tina.service.Ui;
 import com.tina.exception.InvalidTaskNumberException;
@@ -33,10 +34,11 @@ public class MarkCommand extends Command {
      * @throws InvalidTaskNumberException if the task is not found
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException, InvalidFilePathException {
         try {
             Task curTask = taskList.getTaskList().get(taskNumber - 1);
             curTask.setDone(true);
+            storage.save(taskList);
             return ui.printMark(curTask, true);
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidTaskNumberException();

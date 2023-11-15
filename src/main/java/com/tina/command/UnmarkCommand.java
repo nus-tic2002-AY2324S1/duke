@@ -1,5 +1,6 @@
 package com.tina.command;
 
+import com.tina.exception.InvalidFilePathException;
 import com.tina.service.Storage;
 import com.tina.service.Ui;
 import com.tina.exception.InvalidTaskNumberException;
@@ -32,10 +33,11 @@ public class UnmarkCommand extends Command {
      * @param ui       the ui
      * @throws InvalidTaskNumberException if the task is not found
      */
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException, InvalidFilePathException {
         try {
             Task curTask = taskList.getTaskList().get(taskNumber - 1);
             curTask.setDone(false);
+            storage.save(taskList);
             return ui.printMark(curTask, false);
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidTaskNumberException();

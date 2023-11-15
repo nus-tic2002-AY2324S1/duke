@@ -1,5 +1,6 @@
 package com.tina.command;
 
+import com.tina.exception.InvalidFilePathException;
 import com.tina.service.Storage;
 import com.tina.service.Ui;
 import com.tina.task.EventTask;
@@ -57,9 +58,10 @@ public class EventCommand extends Command {
      * @param ui       the ui
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidFilePathException {
         Task newTask = new EventTask(taskName, from, to);
         taskList.add(newTask);
+        storage.save(taskList);
         return ui.printTask(newTask, false, taskList.size());
     }
 }
