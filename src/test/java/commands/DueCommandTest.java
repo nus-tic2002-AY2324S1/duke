@@ -20,13 +20,13 @@ public class DueCommandTest {
         exception = assertThrows(DukeException.class, () -> new DueCommand("due 10 Oct 2023"));
         assertEquals(ErrorMessages.INVALID_DUE_COMMAND_FORMAT, exception.getMessage());
 
-        // Test Case 2: Invalid Date
+        // Test Case 3: Invalid Date
         exception = assertThrows(DukeException.class, () -> new DueCommand("due 2023-02-56")); // invalid day
         assertEquals(ErrorMessages.INVALID_DUE_COMMAND_FORMAT, exception.getMessage());
         exception = assertThrows(DukeException.class, () -> new DueCommand("due 2023-21-06")); // invalid month
         assertEquals(ErrorMessages.INVALID_DUE_COMMAND_FORMAT, exception.getMessage());
         
-        // Test Case 3: Trailing spaces <-- should pass
+        // Working Test 
         new DueCommand("due 2023-12-06");
         
     }

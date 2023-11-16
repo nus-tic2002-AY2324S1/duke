@@ -14,7 +14,7 @@ public class DeleteCommand extends Command {
     protected int item;
 
     public DeleteCommand(String input) throws DukeException {
-        if(!Pattern.matches(RegExp.DELETE_COMMAND_FORMAT_REGEX,input.toLowerCase())){
+        if (!Pattern.matches(RegExp.DELETE_COMMAND_FORMAT_REGEX, input.toLowerCase())) {
             throw new DukeException(ErrorMessages.INVALID_DELETE_COMMAND_FORMAT);
         }
 
@@ -25,7 +25,8 @@ public class DeleteCommand extends Command {
      * {@inheritDoc}
      * <p>
      * This implementation of {@code execute} deletes the specified {@code task} object from the user's
-     * {@code tasks}.
+     * {@code tasks} and uses the {@code ui} object to return the error or a successful message back to
+     * the user.
      *
      * @param storage This parameter is not used in this implementation.
      */
@@ -33,14 +34,12 @@ public class DeleteCommand extends Command {
     public void execute(TaskList tasks, UI ui, Storage storage) {
         try {
             tasks.deleteItem(item);
-        } catch (EmptyListException | MissingTaskException e ) {
+        } catch (MissingTaskException e) {
             ui.showError(e.getMessage());
             return;
-        } finally {
-            ui.printMessage(
-                    "That's one less thing to do! You now have " + tasks.getTotalTasks() + " tasks left.");
-
         }
+        ui.printMessage(
+                "That's one less thing to do! You now have " + tasks.getTotalTasks() + " tasks left.");
     }
 
 }

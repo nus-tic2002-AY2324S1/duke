@@ -16,7 +16,6 @@ import tasks.Task;
  * <li>{@code killUI()}: Terminates the UI object, concluding the interaction.</li>
  * </ul>
  */
-
 public class UI {
 
     Scanner in;

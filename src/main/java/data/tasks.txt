@@ -1,3 +1,5 @@
-D|LOW|false|return book|2023-10-18
-T|HIGH|false|buy food
-E|LOW|false|project meeting|2023-10-18|2023-10-20
+D|MEDIUM|false|conquer the world|2023-12-31
+E|LOW|true|epic brainstorming|2023-11-01|2023-11-02
+T|HIGH|false|master the art of juggling
+T|MEDIUM|false|write a novel|2024-01-01|2024-12-31
+D|LOW|false|complete the great novel escape plan|2023-12-15
