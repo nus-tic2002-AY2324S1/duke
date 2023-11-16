@@ -1,0 +1,12 @@
+todo research on report writing
+deadline finish report writing  /by 19/11/2023 23:59
+event report writing bonus /from 07/11/2023 20:00 /to 15/11/2023 23:59
+mark 1
+mark 2
+unmark 2
+list
+find bonus
+view 17/11/2023
+sort
+delete 1
+bye

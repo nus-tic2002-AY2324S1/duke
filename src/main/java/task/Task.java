@@ -83,6 +83,11 @@ public class Task {
      * @return true if the task is marked as done, false otherwise.
      */
     public boolean getIsDone(){return isDone;}
+
+    /**
+     *
+     * @return String format of task
+     */
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + getDescription();

@@ -9,15 +9,15 @@ public class Duke {
         UI ui = new UI();
         Storage storage = new Storage();
         Parser parse = new Parser();
-        ListTask listofitems;
+        ListTask list;
         try {
-            listofitems = storage.load();
+            list = storage.load();
         } catch (FileNotFoundException e) {
-            listofitems = new ListTask();
+            list = new ListTask();
         }
-        ui.Run(listofitems, parse);
+        ui.Run(list, parse);
         try{
-            storage.save(listofitems);
+            storage.save(list);
         }
         catch (IOException e) {
             System.out.println("Error in saving, data is lost");

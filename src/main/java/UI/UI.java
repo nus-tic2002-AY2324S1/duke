@@ -68,15 +68,15 @@ public class UI {
      * returns flavour text response based on keyword input
      *
      * @param input Keyword used for switch case
-     * @param Storage list of tasks
+     * @param list list of tasks
      * @param number task number in list
      */
-    public static void Response(Keyword input,ListTask Storage,Integer number){
+    public static void Response(Keyword input,ListTask list,Integer number){
         switch (input){
             case SORT:
             case DELETE:
             case LIST:
-                Storage.listAll(input);
+                list.listAll(input);
                 break;
             case BYE:
                 Separator();
@@ -86,34 +86,34 @@ public class UI {
             case MARK:
                 Separator();
                 System.out.println("Excellent , Cate marks your Task");
-                System.out.println(Storage.get(number));
+                System.out.println(list.get(number));
                 Separator();
                 break;
             case UNMARK:
                 Separator();
                 System.out.println("Don't worry , Cate un-marks your Task");
-                System.out.println(Storage.get(number));
+                System.out.println(list.get(number));
                 Separator();
                 break;
             case TODO:
                 Separator();
                 System.out.println("Just do it");
-                System.out.println(Storage.get(number));
-                TaskCount(Storage.size());
+                System.out.println(list.get(number));
+                TaskCount(list.size());
                 Separator();
                 break;
             case DEADLINE:
                 Separator();
                 System.out.println("Time is ticking");
-                System.out.println(Storage.get(number));
-                TaskCount(Storage.size());
+                System.out.println(list.get(number));
+                TaskCount(list.size());
                 Separator();
                 break;
             case EVENT:
                 Separator();
                 System.out.println("Track the duration");
-                System.out.println(Storage.get(number));
-                TaskCount(Storage.size());
+                System.out.println(list.get(number));
+                TaskCount(list.size());
                 Separator();
                 break;
         }
@@ -142,7 +142,7 @@ public class UI {
                             Storage.viewSchedule(words[1]);
                             break;
                         case SORT:
-                            Storage.sortSchedule(key);
+                            Storage.sortSchedule();
                             Response(key,Storage,0);
                             break;
                         case DELETE:

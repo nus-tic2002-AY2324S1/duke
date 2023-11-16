@@ -1,34 +1,71 @@
 package UI;
-import task.*;
-import parser.*;
-import javax.swing.text.View;
+
+import parser.Keyword;
+import parser.Parser;
+import task.Task;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * The ListTask class is responsible for holding the list of tasks and manipulating tasks
+ */
 public class ListTask {
     protected ArrayList<Task> List;
 
+    /**
+     * constructor for ListTask
+     */
     public ListTask(){
         List = new ArrayList<>();
     }
-    public ListTask(ArrayList<Task> AL){
-        List = AL;
-    }
+
+    /**
+     *
+     * @return true if empty , false otherwise
+     */
     public boolean isEmpty(){
         return List.isEmpty();
     }
+
+    /**
+     * prints separator line
+     */
     public static void Separator(){
         System.out.println("__________________________");
     }
+
+    /**
+     * adds tasks to the list
+     *
+     * @param T task to be added into the list
+     */
     public void add(Task T){
         List.add(T);
     }
+
+    /**
+     *
+     * @return size of list
+     */
     public Integer size(){
         return List.size();
     }
+
+    /**
+     *
+     * @param i task number in the list
+     * @return task in the list
+     */
     public Task get(Integer i){
         return List.get(i);
     }
+
+    /**
+     * removes task from the list
+     *
+     * @param number the task in the list to be removed
+     */
     public void removeTask(int number){
         ArrayList<Task> StorageUpdate = new ArrayList<>();
         for(int i=0;i< List.size();i++){
@@ -43,6 +80,12 @@ public class ListTask {
         }
         List = StorageUpdate;
     }
+
+    /**
+     * lists all the task in the list
+     *
+     * @param k flavor text after listing all tasks
+     */
     public void listAll(Keyword k){
         Separator();
         System.out.println("Here is your list of Tasks");
@@ -59,6 +102,12 @@ public class ListTask {
             System.out.println("The List has been sorted with the earliest End Date at the top");
         Separator();
     }
+
+    /**
+     * finds any tasks that contains input string
+     *
+     * @param line string to be searched for
+     */
     public void findTask(String line) {
         ArrayList<Task> Found = new ArrayList<>();
         for (Task task : List) {
@@ -77,7 +126,12 @@ public class ListTask {
         }
         Separator();
     }
-    public void sortSchedule(Keyword k){
+
+    /**
+     *
+     * sorts the list of tasks with the todos at the top and latest end time events or by time deadlines to the bottom
+     */
+    public void sortSchedule(){
         ArrayList<Task> PreSort = new ArrayList<>();
         ArrayList<Task> Sorted = new ArrayList<>();
         ArrayList<Task> Arrangement = new ArrayList<>();
@@ -107,6 +161,12 @@ public class ListTask {
         Arrangement.addAll(Sorted);
         List=Arrangement;
     }
+
+    /**
+     * view list of deadlines' by date before input date and inbetween event's from and to date
+     *
+     * @param date date to be compared with
+     */
     public void viewSchedule(String date){
         LocalDateTime ViewDay = Parser.constructDateTime(date+" 00:00");
         ArrayList<Task> PreSort = new ArrayList<>();

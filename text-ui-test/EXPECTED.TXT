@@ -1,7 +1,76 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+ _ _ _              _
+|  _ _ \   __    _ | | _    _ _
+| |      / __ \ | _   _ | / __ \
+| | _ _ | |__| |   | |   |  __ /
+| _ _ / |_|  |_|   |_|    \ __\
 
+__________________________
+
+Hello! I am Cate
+How may I help you?
+__________________________
+__________________________
+Just do it
+[T][ ] research on report writing
+The list is increasing , there is 1 Tasks now
+__________________________
+__________________________
+Time is ticking
+[D][ ] finish report writing  (by:19/11/2023 23:59)
+The list is increasing , there is 2 Tasks now
+__________________________
+__________________________
+Track the duration
+[E][ ] report writing bonus (from:07/11/2023 20:00 to:15/11/2023 23:59)
+The list is increasing , there is 3 Tasks now
+__________________________
+__________________________
+Excellent , Cate marks your Task
+[T][X] research on report writing
+__________________________
+__________________________
+Excellent , Cate marks your Task
+[D][X] finish report writing  (by:19/11/2023 23:59)
+__________________________
+__________________________
+Don't worry , Cate un-marks your Task
+[D][ ] finish report writing  (by:19/11/2023 23:59)
+__________________________
+__________________________
+Here is your list of Tasks
+1.[T][X] research on report writing
+2.[D][ ] finish report writing  (by:19/11/2023 23:59)
+3.[E][ ] report writing bonus (from:07/11/2023 20:00 to:15/11/2023 23:59)
+Work harder, there is 3 more task now
+__________________________
+__________________________
+Cate does not know what this means
+The available commands are : list , mark , unmark , todo , deadline , event , bye , find , view
+__________________________
+__________________________
+Here are the matching Tasks
+1.[E][ ] report writing bonus (from:07/11/2023 20:00 to:15/11/2023 23:59)
+__________________________
+__________________________
+Here is the schedule for 17/11/2023 that has not been marked done
+1.[D][ ] finish report writing  (by:19/11/2023 23:59)
+__________________________
+__________________________
+Here is your list of Tasks
+1.[T][X] research on report writing
+2.[E][ ] report writing bonus (from:07/11/2023 20:00 to:15/11/2023 23:59)
+3.[D][ ] finish report writing  (by:19/11/2023 23:59)
+The List has been sorted with the earliest End Date at the top
+__________________________
+__________________________
+Cate has deleted this Task:
+[T][X] research on report writing
+__________________________
+Here is your list of Tasks
+1.[E][ ] report writing bonus (from:07/11/2023 20:00 to:15/11/2023 23:59)
+2.[D][ ] finish report writing  (by:19/11/2023 23:59)
+Great! there is only 2 task in the List now
+__________________________
+__________________________
+Goodbye , See you next time '~'
+__________________________
