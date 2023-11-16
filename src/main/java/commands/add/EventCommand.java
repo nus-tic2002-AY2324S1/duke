@@ -11,6 +11,7 @@ import ui.UI;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class EventCommand extends Command {
     protected String description;
@@ -31,8 +32,12 @@ public class EventCommand extends Command {
 
         assert matcher.groupCount() == 7 : "should have 7 capture groups based on regex";
         this.description = matcher.group(DESCRIPTION_GROUP_CAPTURE);
-        this.fromDate = LocalDate.parse(matcher.group(FROM_DATE_GROUP_CAPTURE));
-        this.toDate = LocalDate.parse(matcher.group(TO_DATE_GROUP_CAPTURE));
+        try {
+            this.fromDate = LocalDate.parse(matcher.group(FROM_DATE_GROUP_CAPTURE));
+            this.toDate = LocalDate.parse(matcher.group(TO_DATE_GROUP_CAPTURE));
+        } catch (DateTimeParseException e) {
+            throw new DukeException(ErrorMessages.INVALID_DATE);
+        }
 
         if (fromDate.isAfter(toDate)) {
             throw new DukeException(ErrorMessages.ERROR_END_DATE_BEFORE_START_DATE);

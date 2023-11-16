@@ -9,6 +9,7 @@ import tasks.Task;
 import tasks.TaskList;
 import ui.UI;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,14 +22,19 @@ public class DeadlineCommand extends Command {
     public DeadlineCommand(String line) throws DukeException {
         Pattern pattern = Pattern.compile(RegExp.DEADLINE_COMMAND_FORMAT_REGEX);
         Matcher matcher = pattern.matcher(line.toLowerCase());
-       
-        if (!matcher.matches()){
+
+        if (!matcher.matches()) {
             throw new DukeException(ErrorMessages.INVALID_DEADLINE_COMMAND_FORMAT);
         }
 
         assert matcher.groupCount() == 4 : "should have 4 capture groups based on regexp";
         this.description = matcher.group(DESCRIPTION_GROUP_CAPTURE);
-        this.date = LocalDate.parse(matcher.group(DATE_GROUP_CAPTURE));
+        
+        try {
+            this.date = LocalDate.parse(matcher.group(DATE_GROUP_CAPTURE));
+        } catch (DateTimeParseException e) {
+            throw new DukeException(ErrorMessages.INVALID_DATE);
+        }
     }
 
     @Override

@@ -110,14 +110,13 @@ public class Storage {
             }
 
             s.close();
+
         } catch (FileNotFoundException e) {
             if (!directory.exists()) {
                 directory.mkdir();
             }
-
             file.createNewFile();
         }
-
         return tasks;
 
     }

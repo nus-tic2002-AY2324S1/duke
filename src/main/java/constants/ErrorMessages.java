@@ -1,10 +1,12 @@
 package constants;
 
 public class ErrorMessages {
-        public static final String TASK_NOT_FOUND =
-                        "Apologies, I couldn't find the task. Double-check your task list and try again.";
         public static final String EMPTY_LIST =
                         "Your task list is currently clear! Time for a new adventure.";
+        public static final String ERROR_END_DATE_BEFORE_START_DATE =
+                        "Whoops! Your End Date should come after the Start Date.";
+        public static final String TASK_NOT_FOUND =
+                        "Apologies, I couldn't find the task. Double-check your task list and try again.";
         public static final String INVALID_DATE_FORMAT =
                         "Whoops! Invalid date format. Please use YYYY-MM-DD for dates.";
         public static final String INVALID_COMMAND_FORMAT =
@@ -23,13 +25,13 @@ public class ErrorMessages {
                         "Something's amiss! Follow the correct format for marking tasks. Make sure to pass in a valid integer.";
         public static final String INVALID_UNMARK_COMMAND_FORMAT =
                         "Hmm, marking tasks? Follow the correct format and ensure to pass in a valid integer.";
+        public static final String INVALID_DATE =
+                        "Oh snap! It seems you've stumbled upon a date from an alternate dimension. Check the calendar, because the date you provided doesn't exist in this realm!";
         public static final String INVALID_DUE_COMMAND_FORMAT =
                         "Hold up! Follow the correct format for checking items due. Dates should be in YYYY-MM-DD format.";
         public static final String INVALID_FIND_COMMAND_FORMAT = "Oops! One keyword at a time, please.";
         public static final String INVALID_PRIORITY =
                         "Choose wisely! Priority should be either Low, Medium, or High.";
-        public static final String ERROR_END_DATE_BEFORE_START_DATE =
-                        "Whoops! Your End Date should come after the Start Date.";
         public static final String INVALID_USER_INPUT =
                         "Uh-oh! That's not quite right. Check the manual for accepted inputs and try again.";
 }

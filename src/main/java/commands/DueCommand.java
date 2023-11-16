@@ -3,6 +3,7 @@ package commands;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import constants.ErrorMessages;
 import constants.RegExp;
 import exceptions.DukeException;
@@ -23,12 +24,16 @@ public class DueCommand extends Command {
     protected ArrayList<Task> tasksDue;
 
     public DueCommand(String line) throws DukeException {
-        if(!Pattern.matches(RegExp.DUE_COMMAND_FORMAT_REGEX, line)){
+        if (!Pattern.matches(RegExp.DUE_COMMAND_FORMAT_REGEX, line)) {
             throw new DukeException(ErrorMessages.INVALID_DUE_COMMAND_FORMAT);
         }
 
         String userDate = line.split(RegExp.SPACE_DELIMITER)[1].trim();
-        this.date = LocalDate.parse(userDate);
+        try {
+            this.date = LocalDate.parse(userDate);
+        } catch (DateTimeParseException e) {
+            throw new DukeException(ErrorMessages.INVALID_DATE);
+        }
     }
 
     /**
