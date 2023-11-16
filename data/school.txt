@@ -1,0 +1,10 @@
+D || 0 || TIC2901 - Make the slide to presentation || 2023/10/31 2359
+E || 1 || TIC2901 - make a video introduction || 2023/10/31 2359
+D || 1 || TIC2002 - quiz || 2023/11/4 2200
+D || 0 || TIC2901 - Written Submission || 2023/11/16 2359
+E || 0 || TMA2031 - Final Exam || 2023/11/25 0900 || 2023/11/25 1100
+E || 0 || TIC2002 - Final Exam || 2023/12/4 1300 || 2023/12/4 1430
+D || 1 || TIC3901 - Presentation 1 || 2024/1/1 1200
+D || 0 || TIC3901 - Report 2 || 2024/1/28 2359
+D || 0 || TIC3901 - Report 3 || 2024/3/17 2359
+D || 0 || TIC3901 - Presentation 2 || 2024/4/14 2359

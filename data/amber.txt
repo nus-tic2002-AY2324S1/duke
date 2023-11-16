@@ -1,0 +1,14 @@
+D || 1 || Task to check sort by date - on top after use sort date/d || 1993/7/3 0530
+E || 0 || Chang & Felicia's wedding || 2023/11/4 1800 || 2023/11/4 2200
+D || 1 || TIC2002 quiz || 2023/11/4 2200
+E || 0 || TMA2031 - Final Exam || 2023/11/25 0900 || 2023/11/25 1100
+E || 0 || TIC2002 - Final Exam || 2023/12/4 1300 || 2023/12/4 1430
+E || 0 || Learn front end || 2023/12/4 1300 || 2023/12/31 2300
+D || 1 || TIC3901 - Presentation 1 || 2024/1/1 1200
+D || 0 || TIC3901 - Report 2 || 2024/1/28 0000
+D || 0 || Video call with Grandpa || 2024/3/1 1200
+D || 0 || TIC3901 - Report 3 || 2024/3/17 0000
+D || 0 || TIC3901 - Presentation 2 || 2024/4/14 0000
+T || 0 || Oder FoodPanda for dinner every weekday
+T || 1 || Drink more water
+T || 0 || Check undo mark
