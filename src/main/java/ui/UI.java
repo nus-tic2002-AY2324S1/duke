@@ -27,7 +27,7 @@ public class UI {
 
     public void greet() {
         System.out.println(
-                "Greetings from the whimisical realm of Duke! \n\nI'm TaskMaster, your efficient sidekick in the quest for productivity. \nImagine me with a superhero cape – I accept Deadlines, Events, and even the quirkiest To-Dos! \nReady for a mini manual adventure? Brace yourself, here it comes:");
+                "Greetings from the whimisical realm of Duke! ✨ \n\nI'm TaskMaster, your efficient sidekick in the quest for productivity. \nImagine me with a superhero cape – I accept Deadlines, Events, and even the quirkiest To-Dos! \nReady for a mini manual adventure? Brace yourself, here it comes:");
         System.out.println();
         help();
         System.out.println(
@@ -69,7 +69,10 @@ public class UI {
     }
 
     public void killUI() {
+        System.out.println(
+                "Taskmaster signing off! Your master list is safely stored, so take a break and return when the tasks start missing you. Until then, stay bossing those to-dos! ✨📋 #TaskConquerorOut");
         in.close();
+
     }
 
     public void showError(String message) {
