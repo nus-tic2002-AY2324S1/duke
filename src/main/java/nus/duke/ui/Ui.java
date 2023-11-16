@@ -26,7 +26,6 @@ public class Ui {
     public void showWelcome() {
         showLine();
         showWithPrefix(new String[] {
-            "Hello! I'm",
             " ______   __   __  ___   _  _______  _______  _______  _______ ",
             "|      | |  | |  ||   | | ||       ||  _    ||       ||       |",
             "|  _    ||  | |  ||   |_| ||    ___|| |_|   ||   _   ||_     _|",
@@ -34,6 +33,7 @@ public class Ui {
             "| |_|   ||       ||     |_ |    ___||  _   | |  |_|  |  |   |  ",
             "|       ||       ||    _  ||   |___ | |_|   ||       |  |   |  ",
             "|______| |_______||___| |_||_______||_______||_______|  |___|  ",
+            "Hello! I'm DukeBot.",
             "What can I do for you?",
             "HINT: Use the 'help' command for more information."
         });
