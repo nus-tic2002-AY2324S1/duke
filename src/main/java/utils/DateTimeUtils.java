@@ -1,5 +1,6 @@
 package utils;
 
+import static io.CrabyMessage.printDateTimeParseExceptionMessage;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -40,8 +41,12 @@ public class DateTimeUtils {
             now = now.withHour(23);
             now = now.withMinute(59);
         } else {
-            now = now.withHour(Integer.parseInt(getTimes.substring(0, 2)));
-            now = now.withMinute(Integer.parseInt(getTimes.substring(2)));
+            try {
+                now = now.withHour(Integer.parseInt(getTimes.substring(0, 2)));
+                now = now.withMinute(Integer.parseInt(getTimes.substring(2)));
+            } catch (Exception e) {
+                return null;
+            }
         }
         LocalDateTime now1 = specialCase(dateTimeStr, now);
         if (now1 != null) {

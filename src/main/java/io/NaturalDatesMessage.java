@@ -23,6 +23,4 @@ public class NaturalDatesMessage extends CrabyMessage {
         System.out.println(SPACES + "  • eoy/End-of-year -> end of this year");
         System.out.println(LINE);
     }
-
-
 }
