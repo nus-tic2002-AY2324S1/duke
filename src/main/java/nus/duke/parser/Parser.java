@@ -1,5 +1,6 @@
 package nus.duke.parser;
 
+import java.lang.reflect.Constructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -7,18 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.regex.Pattern;
 import nus.duke.commands.AbstractCommand;
-import nus.duke.commands.ByeCommand;
-import nus.duke.commands.DateCommand;
-import nus.duke.commands.DeadlineCommand;
-import nus.duke.commands.DeleteCommand;
-import nus.duke.commands.EventCommand;
-import nus.duke.commands.FindCommand;
-import nus.duke.commands.HelpCommand;
-import nus.duke.commands.ListCommand;
-import nus.duke.commands.MarkCommand;
-import nus.duke.commands.TodoCommand;
-import nus.duke.commands.UnmarkCommand;
 import nus.duke.data.TaskSource;
 import nus.duke.exceptions.DukeException;
 import nus.duke.exceptions.InvalidCommandArgsDukeException;
@@ -32,6 +23,13 @@ public class Parser {
     private static final String DATE_PATTERN_INPUT = "yyyy-M-d";
     private static final String TIME_PATTERN_INPUT = "HHmm";
     private static final String DATETIME_PATTERN_INPUT = DATE_PATTERN_INPUT + " " + TIME_PATTERN_INPUT;
+    private static final HashMap<String, String> COMMAND_ALIAS = new HashMap<>();
+
+    static {
+        COMMAND_ALIAS.put("d", "deadline");
+        COMMAND_ALIAS.put("e", "event");
+        COMMAND_ALIAS.put("t", "todo");
+    }
 
     /**
      * Parses the provided full command and returns an appropriate `AbstractCommand` based on the command name.
@@ -46,34 +44,17 @@ public class Parser {
         String trimmedFullCommand = fullCommand.trim();
         String commandName = trimmedFullCommand.split(" ", -1)[0];
         String commandArgs = trimmedFullCommand.substring(commandName.length()).trim();
-        switch (commandName) {
-        case "bye":
-            return new ByeCommand(commandArgs);
-        case "date":
-            return new DateCommand(commandArgs);
-        case "deadline":
-        case "d":
-            return new DeadlineCommand(commandArgs);
-        case "delete":
-            return new DeleteCommand(commandArgs);
-        case "event":
-        case "e":
-            return new EventCommand(commandArgs);
-        case "find":
-            return new FindCommand(commandArgs);
-        case "help":
-            return new HelpCommand(commandArgs);
-        case "list":
-            return new ListCommand(commandArgs);
-        case "mark":
-            return new MarkCommand(commandArgs);
-        case "todo":
-        case "t":
-            return new TodoCommand(commandArgs);
-        case "unmark":
-            return new UnmarkCommand(commandArgs);
-        default:
-            throw new UnknownCommandDukeException("Input: " + fullCommand);
+        String fullCommandName = COMMAND_ALIAS.getOrDefault(commandName, commandName);
+        String className = Pattern.compile("^.").matcher(fullCommandName).replaceFirst(m -> m.group().toUpperCase());
+        try {
+            Class<?> cl = Class.forName(String.format("nus.duke.commands.%sCommand", className));
+            Constructor<?> cons = cl.getConstructor(String.class);
+            Object commandInstance = cons.newInstance(commandArgs);
+            return (AbstractCommand) commandInstance;
+        } catch (ClassNotFoundException e) {
+            throw new UnknownCommandDukeException("Unknown command: " + fullCommand);
+        } catch (Exception e) {
+            throw new DukeException("Unable to execute command: " + fullCommand);
         }
     }
 

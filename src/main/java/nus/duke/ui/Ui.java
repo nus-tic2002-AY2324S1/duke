@@ -24,8 +24,7 @@ public class Ui {
      * Displays a welcome message when DukeBot is launched.
      */
     public void showWelcome() {
-        showLine();
-        showWithPrefix(new String[] {
+        String[] welcomeLines = new String[] {
             " ______   __   __  ___   _  _______  _______  _______  _______ ",
             "|      | |  | |  ||   | | ||       ||  _    ||       ||       |",
             "|  _    ||  | |  ||   |_| ||    ___|| |_|   ||   _   ||_     _|",
@@ -36,7 +35,10 @@ public class Ui {
             "Hello! I'm DukeBot.",
             "What can I do for you?",
             "HINT: Use the 'help' command for more information."
-        });
+        };
+
+        showLine();
+        showWithPrefix(welcomeLines);
         showLine();
     }
 

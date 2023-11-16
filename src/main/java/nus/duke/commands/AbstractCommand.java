@@ -19,7 +19,7 @@ public abstract class AbstractCommand {
      *
      * @param args The arguments associated with the command.
      */
-    public AbstractCommand(String args) {
+    protected AbstractCommand(String args) {
         assert args != null;
 
         this.args = args;

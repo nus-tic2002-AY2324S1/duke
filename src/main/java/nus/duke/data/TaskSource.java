@@ -1,6 +1,7 @@
 package nus.duke.data;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Optional;
 public class TaskSource {
 
     private final String description;
-    private final HashMap<String, String> options;
+    private final Map<String, String> options;
 
     /**
      * Constructs a `TaskSource` with the given description.
@@ -27,7 +28,7 @@ public class TaskSource {
      * @param description The description of the task source. Must not be null.
      * @param options     The key-value options associated with the task source. Must not be null.
      */
-    public TaskSource(String description, HashMap<String, String> options) {
+    public TaskSource(String description, Map<String, String> options) {
         assert description != null;
         assert options != null;
 
@@ -49,7 +50,7 @@ public class TaskSource {
      *
      * @return A HashMap containing the key-value options of the task source.
      */
-    public HashMap<String, String> getOptions() {
+    public Map<String, String> getOptions() {
         return options;
     }
 

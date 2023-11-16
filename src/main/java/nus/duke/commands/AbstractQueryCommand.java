@@ -9,7 +9,7 @@ public abstract class AbstractQueryCommand extends AbstractCommand {
      *
      * @param args The user input arguments.
      */
-    public AbstractQueryCommand(String args) {
+    protected AbstractQueryCommand(String args) {
         super(args);
     }
 }
