@@ -1,3 +1,0 @@
-T || 1 || Drink more water
-D || 0 || Increased by 3 kilograms || 2023/12/31 2359
-E || 1 || Chang & Felicia's wedding || 2023/11/4 1800 || 2023/11/4 2200

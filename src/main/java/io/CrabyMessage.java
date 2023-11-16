@@ -80,7 +80,7 @@ public class CrabyMessage {
         System.out.println(SPACES + "Oops!!! Looks like you used the wrong format (╯︵╰,)");
         System.out.println(SPACES + "Please enter in this format after used /by or /from and /to");
         System.out.println(SPACES + "╰┈➤ Try with: \"/by dd/mm/yyyy hhmm\" e.g: /by 12/12/2020 1800");
-        System.out.println(SPACES + "          or: \"/by mon\" - CrabY will put the date to the next Monday");
+        System.out.println(SPACES + "          or: type 'dates' to see the list keywords of natural dates.");
         System.out.println(LINE);
     }
 

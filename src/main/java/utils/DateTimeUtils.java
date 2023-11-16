@@ -32,8 +32,8 @@ public class DateTimeUtils {
         }
 
         if (!Arrays.asList("mon", "tue", "wed", "thu", "fri", "sat", "sun", "monday", "tuesday", "wednesday",
-                           "thursday", "friday", "saturday", "sunday", "today", "tmr", "tomorrow", "eoy", "end of year",
-                           "eom", "end of month").contains(getDate.toLowerCase())) {
+                           "thursday", "friday", "saturday", "sunday", "today", "tmr", "tomorrow", "eoy", "end-of-year",
+                           "eom", "end-of-month").contains(getDate.toLowerCase())) {
             return null;
         }
         if (getTimes.isBlank()) {
@@ -72,12 +72,12 @@ public class DateTimeUtils {
             return now.plusDays(1);
         }
         boolean isEndOfYear =
-                dateTimeStr.toLowerCase().contains("eoy") || dateTimeStr.toLowerCase().contains("end of year");
+                dateTimeStr.toLowerCase().contains("eoy") || dateTimeStr.toLowerCase().contains("end-of-year");
         if (isEndOfYear) {
             return now.withMonth(12).withDayOfMonth(31);
         }
         boolean isEndOfMonth =
-                dateTimeStr.toLowerCase().contains("eom") || dateTimeStr.toLowerCase().contains("end of month");
+                dateTimeStr.toLowerCase().contains("eom") || dateTimeStr.toLowerCase().contains("end-of-month");
         if (isEndOfMonth) {
             return now.withDayOfMonth(now.getMonth().maxLength());
         }

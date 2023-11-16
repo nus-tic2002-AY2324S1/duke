@@ -1,5 +1,0 @@
-D || 0 || TIC2002 - report, demo video and JAR || 2023/12/19 2359
-D || 0 || TIC2901 - Written Submission || 2023/11/16 2359
-E || 0 || TIC2002 - final exam || 2023/12/4 1300 || 2023/12/4 1400
-E || 0 || TIC2901 - Presentation || 2023/11/16 1930
-T || 0 || Study for the final exam

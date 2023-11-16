@@ -1,5 +1,0 @@
-T || 0 || Drink more water
-E || 1 || Chang & Felicia's wedding || 2023/11/4 1800 || 2023/11/4 2200
-T || 0 || Check and buy the flight tickets to return back home after final exam
-D || 0 || Buy some household items || 2023/11/11 0000
-T || 1 || Call grandparents every weekend

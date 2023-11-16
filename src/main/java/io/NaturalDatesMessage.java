@@ -1,12 +1,12 @@
 package io;
 
 /**
- * HelpMessage class is a class that handles the help message.
- * It has a method to print out the list of commands that what CrabY can do.
+ * NaturalDatesMessage class is a class that handles the natural dates message.
+ * It has a method to print out the list keywords of natural dates that what CrabY can do.
  */
 public class NaturalDatesMessage extends CrabyMessage {
     /**
-     * Sends the help message to the user.
+     * Sends the list keywords of natural dates to the user.
      */
     public static void printNaturalDatesList() {
         System.out.println(SPACES + "❉⊱• This is the list keywords of natural dates: •⊰❉");
@@ -19,8 +19,8 @@ public class NaturalDatesMessage extends CrabyMessage {
         System.out.println(SPACES + "  • Sun/Sunday -> next Sunday");
         System.out.println(SPACES + "  • Today -> today");
         System.out.println(SPACES + "  • tmr/Tomorrow -> tomorrow");
-        System.out.println(SPACES + "  • eom/End of month -> end of this month");
-        System.out.println(SPACES + "  • eoy/End of year -> end of this year");
+        System.out.println(SPACES + "  • eom/End-of-month -> end of this month");
+        System.out.println(SPACES + "  • eoy/End-of-year -> end of this year");
         System.out.println(LINE);
     }
 
