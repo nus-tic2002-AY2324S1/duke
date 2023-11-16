@@ -5,6 +5,7 @@ import commands.Command;
 import commands.DeleteCommand;
 import commands.DueCommand;
 import commands.FindCommand;
+import commands.HelpCommand;
 import commands.ListCommand;
 import commands.MarkCommand;
 import commands.SetCommand;
@@ -72,6 +73,9 @@ public class Parser {
             break;
         case "find":
             c = new FindCommand(userInput);
+            break;
+        case "help":
+            c = new HelpCommand();
             break;
         default:
             throw new DukeException(ErrorMessages.INVALID_USER_INPUT);

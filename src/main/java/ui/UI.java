@@ -27,11 +27,12 @@ public class UI {
 
     public void greet() {
         System.out.println(
-                "Greetings from the whimisical realm of Duke! ✨ \n\nI'm TaskMaster, your efficient sidekick in the quest for productivity. \nImagine me with a superhero cape – I accept Deadlines, Events, and even the quirkiest To-Dos! \nReady for a mini manual adventure? Brace yourself, here it comes:");
+                "Greetings from the whimisical realm of Duke! ✨ \n\nI'm TaskMaster 😎, your efficient sidekick in the quest for productivity. \nImagine me with a superhero cape – I accept Deadlines, Events, and even the quirkiest To-Dos! \n\nReady for a mini manual adventure? Brace yourself, here it comes:");
         System.out.println();
         help();
+        System.out.println();
         System.out.println(
-                "And now, let the epic task conquering commence! What grand adventure shall we embark on today?\n");
+                "And there you have it! Let the epic task conquering commence! \nWhat grand adventure shall we embark on today?\n");
     }
 
     public void showLine() {
@@ -56,11 +57,6 @@ public class UI {
         System.out.println("9. To Unearth Tasks with a Secret: 'find secret'");
         System.out.println("10. To Ascend Task Priorities: 'set 1 to HIGH'. Default is low.");
         System.out.println("11. Feeling lost on your quest? Fear not! To summon guidance, just type 'help'.");
-        System.out.println(
-                "And there you have it! Now, off to the tasking adventures, TaskMaster awaits your command!");
-        System.out.println();
-
-
     }
 
     public void showLoadingError() {
