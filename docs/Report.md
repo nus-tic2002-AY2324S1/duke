@@ -56,6 +56,35 @@
 3. The program should be able to run on any screen size.
 4. The program should be able to run on Mac, Windows, and Linux.
 
+## NFRs
+1. Data requirements
+    - The size of the local file should be minimal.
+    - The volatility of the local file should be minimal.
+    - The persistence of the local file should be maximal.
+2. Environment requirements
+    - The program should be able to run on any platform with support for Java.
+    - The program should be able to run on any screen size.
+3. Capacity requirements
+    - The program should be able to store at least 100 checklists.
+    - The program should be able to store at least 1000 tasks in each checklist.
+4. User interface requirements
+    - The program should be easy to use.
+    - The program should be easy to navigate.
+    - The program should be easy to read.
+5. Extensibility requirements
+    - The program should be able to add more commands in the future.
+    - The program should be able to add more types of tasks in the future.
+    - The program should be able to add more features in the future.
+6. Performance requirements
+    - The program should be able to run without any lag.
+    - The program should be able to run without any delay.
+    - The program should be able to run without any latency.
+    - The program should be able to respond to the user within 1 second.
+7. Reliability requirements
+    - The program should be able to run without any error.
+    - The program should be able to run without any crash.
+    - The program should be able to run without any bug.
+
 ## Showcase
 
 1. Show the output Duke shows when you launch the program.

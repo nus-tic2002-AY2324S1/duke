@@ -1,6 +1,7 @@
 package command;
 
 import io.HelpMessage;
+import static io.NaturalDatesMessage.printNaturalDatesList;
 import task.Task;
 
 import java.util.List;
@@ -17,7 +18,11 @@ public class HelpCommand extends HelpMessage implements CommandInterface {
     public void handleCommand(String input, List<Task> tasks) {
         assert input != null;
         assert tasks != null;
-        printHelpMessage();
-        printHelpMessage1();
+        if (input.equalsIgnoreCase("help")){
+            printHelpMessage();
+            printHelpMessage1();
+        }else {
+            printNaturalDatesList();
+        }
     }
 }

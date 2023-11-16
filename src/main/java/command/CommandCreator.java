@@ -34,6 +34,7 @@ public class CommandCreator {
         case SORT:
             return new SortCommand();
         case HELP:
+        case DATES:
             return new HelpCommand();
         case UNDO:
             return new UndoCommand();

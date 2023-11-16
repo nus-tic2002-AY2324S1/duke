@@ -1,91 +1,49 @@
-School
-find test
-  list
-Test mark
-test unmark
-Test undo mark
+school
+study for the final exam
+TIC2002 - final exam /from 04-12-2023 1300 /to 2023/12/04 1400
+TIC2002 - report, demo video and JAR /by 19/12/2023 2359
+TMA2301 - final exam /from end of month 0900 /to eom 1100
 list
-mark 1
-mark     2
-list
-unmark 2
 mark 3
-list
-undo
-test sort by type /by 2024-01-01 1200
-test sort by date /from 2024-01-01 1300
-test sort by date: this one will on top if system correct /from 2024-04-01 1600
-sort t
-sort d
-sort tr
-undo
-list
-test delete all
-Test undo delete
-Test delete
-list
-find sort
-find [d]
-delete 9
-list
-delete 8
-list
-undo
-list
-delete all
-list
-todo learn front end /from 04-12-2023 1300 /to 2023-12-31 2300
-TIC3901 - Presentation 1 /by 2024-01-01 1200
-TIC3901 - Report 2 /by 28/01/2024
-Video call with Grandpa /by 2024-03-01 1200
-Deadline TIC3901 - Report 3 /by 2024/03/17
-TIC3901 - Presentation 2 /by 14-04-2024
-mark 2
+      LisT
+uNmarK 3
+switch
+personal
+drink more water
+increased by 3 kilograms  /by eoy
 Chang & Felicia's wedding /from 04/11/2023 1800 /to 2023-11-04 2200
-        mark 3
-TIC2002 - Final Exam /from 04-12-2023 1300 /to 04-12-2023 1430
-Task to delete
+best friend's birthday /from end of month 0900 /to eom 1100
 list
-unmark            3
-Oder FoodPanda for dinner every weekday
-Task to check sort by date - on top after use sort date/d /by 1993/07/03 0530
-TIC2002 quiz /by 2023-11-04 2200
-MARK 12
-
-Event to check undo /from 2/10/2019 0900 /to 2/10/2019 1130
-undo
-liSt
-find tic
-find [d]
-   blah
-List
-sort T
-mark 12
-mark 6
-sort tr
-delete                       2
-LisT
-TMA2031 - Final Exam /from 25/11/2023 0900 /to 25/11/2023 1100
-Drink more water
-sort datE
-mark 99
-LisT
-check undo mark
-check multiple undo
-check undo add task
-undo
-undo
+mark ALL
 list
-sort tr
-undo
+unmark 25
+unmark 2
 list
-mark 14
-undo
+switch
+work
 list
-delete all
+apply a new job /by end of year
+Make a web games /from today /to eoy
+Make this CrabY become a website /by 31/12/2023
+list
+checklist
+switch
+school
+list
+TIC2901 - Presentation /from 16/11/2023 1930
+TIC2901 - Written Submission /by 2023/11/16 2359
+list
+find tic2002
+sort date
+sort type
+mark 4
+list
+delete 4
 list
 undo
 list
-     delete        all
-     help
-bye CrabY
+   undo
+list
+help
+dates
+Bye CrabY

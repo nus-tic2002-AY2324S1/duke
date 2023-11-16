@@ -18,14 +18,16 @@ public class HelpMessage extends CrabyMessage {
         System.out.println(SPACES + "2.  <task description> - add a todo task");
         System.out.println(SPACES + "    ╰┈➤e.g. read book");
 
-        System.out.println(SPACES + "3.  <task description> /by <dd/mm/yyy hhmm> - add a deadline task");
-        System.out.println(SPACES + "    Note: /by Mon -> CrabY will automatically fill the date (next Monday)");
+        System.out.println(SPACES + "3.  <task description> /by <dd/mm/yyyy hhmm> - add a deadline task");
         System.out.println(SPACES + "    ╰┈➤e.g. TIC2002 quiz 8 /by 2/12/2023 1800");
+        System.out.println(SPACES + "    Note: you can type 'dates' to see useful keywords that help you enter dates " +
+                                   "faster");
 
         System.out.println(SPACES +
-                "4.  event <task description> /from <dd/mm/yyy hhmm> /to <dd/mm/yyy hhmm> - add an event task");
-        System.out.println(SPACES + "    Note: /from Fri -> CrabY will automatically fill the date (next " + "Friday)");
-        System.out.println(SPACES + "    ╰┈➤e.g. project meeting /from 2/12/2023 1800 /to 2/12/2023 2000");
+                "4.  event <task description> /from <dd/mm/yyyy hhmm> /to <dd/mm/yyy hhmm> - add an event task");
+        System.out.println(SPACES + "    ╰┈➤e.g. project meeting /from 02/12/2023 1800 /to 02/12/2023 2000");
+        System.out.println(SPACES + "    Note: you can type 'dates' to see useful keywords that help you enter dates " +
+                                   "faster");
 
         System.out.println(SPACES + "5.  mark <task number> - mark a task as DONE");
         System.out.println(SPACES + "    ╰┈➤e.g. mark 1");
