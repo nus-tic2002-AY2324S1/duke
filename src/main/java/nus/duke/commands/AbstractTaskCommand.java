@@ -19,7 +19,7 @@ public abstract class AbstractTaskCommand extends AbstractCommand {
      *
      * @param args The user input arguments.
      */
-    public AbstractTaskCommand(String args) {
+    protected AbstractTaskCommand(String args) {
         super(args);
     }
 

@@ -4,7 +4,7 @@ package nus.duke.exceptions;
  * The `DukeException` class is the base class for exceptions specific to the Duke application.
  * It extends the standard Java `Exception` class and provides custom error handling for Duke.
  */
-public abstract class DukeException extends Exception {
+public class DukeException extends Exception {
     /**
      * Instantiates a new Duke exception with the specified error message.
      *

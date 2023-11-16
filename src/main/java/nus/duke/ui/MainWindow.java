@@ -1,5 +1,6 @@
 package nus.duke.ui;
 
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -31,11 +32,11 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-            DialogBox.getDukeDialog(String.join(System.lineSeparator(), new String[] {
+            DialogBox.getDukeDialog(String.join(System.lineSeparator(), List.of(
                 "Hello! I'm DukeBot.",
                 "What can I do for you?",
                 "HINT: Use the 'help' command for more information."
-            }), dukeImage)
+            )), dukeImage)
         );
     }
 

@@ -37,9 +37,7 @@ public class DateCommand extends AbstractQueryCommand {
         SortedMap<Integer, AbstractTask> tasksOnDate = tasks.getTasks(date);
 
         ArrayList<String> lines = new ArrayList<>();
-        tasksOnDate.forEach((index, task) -> {
-            lines.add(String.format("%d.%s", index + 1, task));
-        });
+        tasksOnDate.forEach((index, task) -> lines.add(String.format("%d.%s", index + 1, task)));
         return lines.toArray(String[]::new);
     }
 }

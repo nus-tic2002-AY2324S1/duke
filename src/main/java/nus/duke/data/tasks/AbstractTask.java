@@ -20,6 +20,7 @@ public abstract class AbstractTask {
     private static final String DATE_PATTERN_OUTPUT = "MMM dd yyyy";
     private static final String TIME_PATTERN_OUTPUT = "h:mma";
     private static final String DATETIME_PATTERN_OUTPUT = DATE_PATTERN_OUTPUT + " " + TIME_PATTERN_OUTPUT;
+    private static final String INVALID_TASK_AFTER_OPTION = "Invalid task after option.";
 
     /**
      * The description of the task.
@@ -112,24 +113,6 @@ public abstract class AbstractTask {
     }
 
     /**
-     * Formats the task after option as a string representation.
-     *
-     * @param afterOption The task after option to be formatted.
-     * @return A string representation of the after option, which could be a task number or a date and time.
-     * @throws IllegalArgumentException if the task after option is invalid or unsupported.
-     */
-    protected static String formatAfterOption(TaskAfterOption afterOption) {
-        assert afterOption != null;
-
-        if (afterOption.isAfterTask()) {
-            return String.valueOf(afterOption.getTaskNumber());
-        } else if (afterOption.isAfterTime()) {
-            return formatLocalDateTime(afterOption.getDateTime());
-        }
-        throw new IllegalArgumentException("Invalid task after option.");
-    }
-
-    /**
      * Gets the type of the task.
      *
      * @return A string representing the type of the task.
@@ -218,7 +201,7 @@ public abstract class AbstractTask {
         if (afterOption.isAfterTime()) {
             return Optional.of(formatLocalDateTime(afterOption.getDateTime()));
         }
-        throw new IllegalStateException("Invalid task after option.");
+        throw new IllegalStateException(INVALID_TASK_AFTER_OPTION);
     }
 
     /**
@@ -291,7 +274,7 @@ public abstract class AbstractTask {
      * Encodes the task after option as a string for storage.
      *
      * @return A string representation of the task after option.
-     * @throws RuntimeException if the task after option is invalid or unsupported.
+     * @throws AssertionError if the task after option is invalid or unsupported.
      */
     protected String encodeAfterOption() {
         if (afterOption == null) {
@@ -303,7 +286,7 @@ public abstract class AbstractTask {
         if (afterOption.isAfterTime()) {
             return afterOption.getDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         }
-        throw new RuntimeException("Invalid task after option.");
+        throw new AssertionError(INVALID_TASK_AFTER_OPTION);
     }
 
     @Override

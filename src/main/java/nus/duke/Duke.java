@@ -36,14 +36,14 @@ public class Duke {
 
         this.ui = new Ui();
         this.storage = new Storage(filePath);
-        TaskList tasks;
+        TaskList taskList;
         try {
-            tasks = storage.load();
+            taskList = storage.load();
         } catch (DukeException e) {
             ui.showLoadingError();
-            tasks = new TaskList();
+            taskList = new TaskList();
         }
-        this.tasks = tasks;
+        this.tasks = taskList;
     }
 
     /**
