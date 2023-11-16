@@ -1,8 +1,6 @@
 package main.java;
-import ExceptionClasses.CorruptedFileException;
-import ExceptionClasses.DupeException;
-import ExceptionClasses.IncompleteDataException;
-import TaskClasses.Task;
+import ExceptionClasses.*;
+import TaskClasses.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

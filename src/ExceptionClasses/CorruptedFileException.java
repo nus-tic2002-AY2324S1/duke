@@ -1,6 +1,6 @@
 package ExceptionClasses;
 
-public class CorruptedFileException extends Exception {
+public class CorruptedFileException extends DupeException {
     public CorruptedFileException(String message) {
         super(message);
     }

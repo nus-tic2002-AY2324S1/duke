@@ -2,9 +2,14 @@ package TaskClasses;
 
 import ExceptionClasses.IncompleteDataException;
 
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Event extends Task {
-    protected String from;
-    protected String to;
+    protected LocalDateTime from;
+    protected LocalDateTime to;
 
     public Event(String description, String from, String to) throws IncompleteDataException {
         super(description);
@@ -14,8 +19,14 @@ public class Event extends Task {
         if (to == null || to.isEmpty()) {
             throw new IncompleteDataException("Missing 'to' information in Event task");
         }
-        this.from = from;
-        this.to = to;
+        try {
+            // Attempt to parse "from" and "to" strings into LocalDateTime
+            this.from = parseEventDateTime(from);
+            this.to = parseEventDateTime(to);
+        } catch (DateTimeParseException e) {
+            // Handle the case where the date/time strings are not in the expected format
+            throw new IncompleteDataException("Invalid date/time format in Event task: " + e.getMessage());
+        }
     }
 
     public Event(String description, String from, String to, boolean isDone) throws IncompleteDataException {
@@ -26,8 +37,19 @@ public class Event extends Task {
         if (to == null || to.isEmpty()) {
             throw new IncompleteDataException("Missing 'to' information in Event task");
         }
-        this.from = from;
-        this.to = to;
+        try {
+            // Attempt to parse "from" and "to" strings into LocalDateTime
+            this.from = parseEventDateTime(from);
+            this.to = parseEventDateTime(to);
+        } catch (DateTimeParseException e) {
+            // Handle the case where the date/time strings are not in the expected format
+            throw new IncompleteDataException("Invalid date/time format in Event task: " + e.getMessage());
+        }
+    }
+
+    private LocalDateTime parseEventDateTime(String dateTimeString) {
+        //System.out.println(dateTimeString);
+        return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy/MM/dd['T'HH:mm][ HH:mm]"));
     }
 
     @Override

@@ -1,15 +1,8 @@
 package main.java;// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 import ExceptionClasses.*;
-import TaskClasses.Deadline;
-import TaskClasses.Event;
-import TaskClasses.Task;
-import TaskClasses.ToDo;
+import TaskClasses.*;
 
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 import java.util.ArrayList;
 
