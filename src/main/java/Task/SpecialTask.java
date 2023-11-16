@@ -5,7 +5,7 @@ package Task;
  */
 public class SpecialTask extends Task {
     protected String type;
-    public SpecialTask(String description, String type) {
+    public SpecialTask(String type, String description) {
         super(description);
         switch(type){
             case "todo":
@@ -18,10 +18,16 @@ public class SpecialTask extends Task {
                 this.type = "E";
                 break;
             default:
-                this.type = " ";
+                this.type = "~";
         }
     }
-    public String getTypeIcon(){
-        return type;
+    public String printTypeIcon(){
+        if(this.type.equals("~")){
+            return " ";
+        }
+        return this.type;
+    }
+    public String getType(){
+        return this.type;
     }
 }

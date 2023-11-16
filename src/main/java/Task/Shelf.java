@@ -17,19 +17,25 @@ public class Shelf {
             return;
         }
         System.out.print(Text.newline);
-        System.out.println("No. [Type] [Marking] Description"); // listing sequence
+        System.out.println("No. [Type] [Marking] Description (Date) #tag1..."); // listing sequence
         for(int i = 0; i < shelf.size(); i++){
-            String deadline = "";
+
+            String listString = i + 1 + ": " + "["  + shelf.get(i).printTypeIcon() + "]" + "["  + shelf.get(i).printStatusIcon() + "]" + shelf.get(i).description;
+
             if (shelf.get(i) instanceof DateTask){
                 DateTask dateTask = (DateTask) shelf.get(i);
-                deadline = dateTask.showDate();
+                listString += dateTask.showDate();
             }
-            System.out.println(i + 1 + ": " + "["  + shelf.get(i).getTypeIcon() + "]" + "["  + shelf.get(i).getStatusIcon() + "]" + shelf.get(i).description + deadline);
+            String tags = shelf.get(i).getTagSeries();
+            if (!tags.isEmpty()) {
+                listString += " " + tags;
+            }
+            System.out.println(listString);
         }
         System.out.println(Text.newline);
     }
     public static void addItem(String item){
-        SpecialTask t = new SpecialTask(item,"");
+        SpecialTask t = new SpecialTask("",item);
         shelf.add(t);
         System.out.println(
                 Text.newline
@@ -42,7 +48,7 @@ public class Shelf {
         SpecialTask t = shelf.get(idx);
         shelf.remove(idx);
         System.out.println("Noted. I've removed this task:");
-        System.out.print("[" + t.getTypeIcon() + "]" + "[" + t.getStatusIcon() +"] " + t.getDescription() + "\n" + Text.newline);
+        System.out.print("[" + t.printTypeIcon() + "]" + "[" + t.printStatusIcon() +"] " + t.getDescription() + "\n" + Text.newline);
         System.out.println("Now you have "+ shelf.size() +" tasks in the list.");
     }
     public static void markTask (String[] msg) throws DukeException {
@@ -60,31 +66,54 @@ public class Shelf {
             Task.setUnmarked(shelf.get(idx));
             System.out.println("OK, I've marked this task as not done yet:");
         }
-        System.out.println("[" + shelf.get(idx).getStatusIcon() + "]" + shelf.get(idx).description + "\n" + Text.newline);
+        System.out.println("[" + shelf.get(idx).printStatusIcon() + "]" + shelf.get(idx).description + "\n" + Text.newline);
     }
-    public static void addSpecialTask(String item, String type){
-        SpecialTask t = new SpecialTask(item,type);
+    public static void addSpecialTask(String type, String item){
+        SpecialTask t = new SpecialTask(type,item);
         shelf.add(t);
         System.out.println(Text.newline + "Got it. I've added this task:");
-        System.out.print("[" + t.getTypeIcon() + "]" + "[ ] " + item + "\n" + Text.newline);
+        System.out.print("[" + t.printTypeIcon() + "]" + "[ ] " + item + "\n" + Text.newline);
         System.out.println("Now you have "+ shelf.size() +" tasks in the list.");
     }
-    public static void addDateTask(String item, String type, String date){
-        DateTask d = new DateTask(item, type, date);
+    public static void addDateTask(String type, String item, String date){
+        DateTask d = new DateTask(type, item, date);
         shelf.add(d);
         System.out.println(Text.newline + "Got it. I've added this task with a deadline:");
-        System.out.print("[" + d.getTypeIcon() + "]" + "[ ] " + item + " " + date +"\n" + Text.newline);
+        System.out.print("[" + d.printTypeIcon() + "]" + "[ ] " + item + " " + d.showDate() +"\n" + Text.newline);
         System.out.println("Now you have "+ shelf.size() +" tasks in the list.");
+    }
+    public static void addTagslist (String tags, String pos) throws DukeException {
+        int idx = Integer.parseInt(pos) - 1;
+        if(idx >= shelf.size()){
+            System.out.println("You have selected an invalid task to add tags");
+            return;
+        }
+        String[] tagArray = tags.split(",");
+        for (String tag : tagArray){
+            Task.addTag(shelf.get(idx), tag);
+        }
+    }
+    public static void removeTagfromlist (String tags, String pos) throws DukeException {
+        int idx = Integer.parseInt(pos) - 1;
+        if(idx >= shelf.size()){
+            System.out.println("You have selected an invalid task number to remove a tag from...");
+            return;
+        }
+        String[] tagArray = tags.split(",");
+        for (String tag : tagArray){
+            Task.removeTag(shelf.get(idx), tag);
+        }
     }
     public static String ShelftoString(){
         String save = "";
+        String deadline = "~";
+        String tags = "~";;
         for (SpecialTask specialTask : shelf) {
-            String deadline = "";
             if (specialTask instanceof DateTask){
                 DateTask dateTask = (DateTask) specialTask;
-                deadline = "/by" + DateTask.dateToString(dateTask.deadline);
+                deadline = DateTask.dateToString(dateTask.deadline);
             }
-            save += specialTask.getTypeIcon() + "|" + specialTask.getStatusIcon() + "|" + specialTask.description + deadline + "\n";
+            save += specialTask.getType() + "|" + specialTask.getStatus() + "|" + specialTask.description + "|" + deadline + "|" + tags + "|" + "\n";
         }
         return save;
     }

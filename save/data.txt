@@ -1,3 +1,6 @@
- |X|hehe
- | |run to super
- |X|lsit
+T|X|special task check|~|patience|
+~|~|run to narnia|~|fun|
+E|X|hehe|~|~|
+~|~|run to super|~|~|
+D|~|submit duke|2023-11-19T23:59:59|fun,finally|
+~|~|test|1999-11-19T23:59:59|~|

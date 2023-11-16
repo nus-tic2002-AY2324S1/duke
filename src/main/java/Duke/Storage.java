@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import static java.lang.Integer.parseInt;
+
 /**
  * Methods for saving and loading file operation
  *
@@ -58,28 +61,29 @@ public class Storage {
 
     public static Shelf FileParser(String shelfData) throws DukeException { //converts file string into Task.Shelf arraylist
         Shelf newlist = new Shelf();
-        String type = "";
-        String marking = "";
         int line_no = 1;
-        String[] split = shelfData.split("[|\n]");
-        for (int i = 1; i-1 < split.length; i++) {
-            if (i%3 == 0) {
-                type = Parser.TypeParser(split[i-3]);
-                marking = split[i-2];
-                if(split[i-1].contains("/by")){
-                    String[] datesplit = split[i-1].split(" /by ");
-                    newlist.addDateTask(datesplit[0], type, datesplit[1]);
-                }else {
-                    newlist.addSpecialTask(split[i - 1], type);
-                }
-                System.out.println(split[i-1]);
-                if(!marking.equals(" ")){
-                    newlist.markTask(new String[]{"mark", Integer.toString(line_no)});
-                }
-                line_no++;
-                type = "";
-                marking = "";
+
+        String[] lines = shelfData.split("\n");
+        for(String line : lines){
+            String[] split = line.split("\\|");
+            String type = Parser.TypeParser(split[0]);
+            String marking = split[1];
+            String item = split[2];
+            String date = split[3];
+            String tags = split[4];
+            if(!date.equals("~")){
+                newlist.addDateTask(type, item, date);
+            }else {
+                newlist.addSpecialTask(type, item);
             }
+
+            if(!marking.equals("~")){
+                newlist.markTask(new String[]{"mark", Integer.toString(line_no)});
+            }
+            if(!tags.equals("~")){
+                newlist.addTagslist(tags, String.valueOf(line_no));
+            }
+            line_no++;
         }
         System.out.println("File loaded, Welcome Back Taskmaster!");
         return newlist;

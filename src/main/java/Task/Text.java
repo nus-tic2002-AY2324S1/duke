@@ -14,6 +14,13 @@ public class Text { //aka UI
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
+    private static final String CLARA = "...\n"
+            + "   ____ _        _    ____      _     \n"
+            + "  / ___| |      / \\  |  _ \\    / \\    \n"
+            + " | |   | |     / _ \\ | |_) |  / _\\   \n"
+            + " | |___| |___ / ___ \\|  _ <  / ___ \\  \n"
+            + "  \\____|_____/_/   \\_\\_| \\_\\/_/   \\_\\ \n";
+
     private static final String GREETING = newline +
             " Hello! I'm CLARA \n" +
             " What can I do for you?\n" +
@@ -35,7 +42,7 @@ public class Text { //aka UI
     public static void printMessage(Message message) {
         switch (message) {
             case LOGO:
-                System.out.println(LOGO);
+                System.out.println(CLARA);
                 break;
             case GREETING:
                 System.out.println(GREETING);
