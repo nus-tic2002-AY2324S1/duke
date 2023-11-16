@@ -3,7 +3,6 @@ package commands;
 import constants.ErrorMessages;
 import constants.RegExp;
 import exceptions.DukeException;
-import exceptions.EmptyListException;
 import exceptions.MissingTaskException;
 import storage.Storage;
 import tasks.TaskList;
@@ -39,7 +38,7 @@ public class DeleteCommand extends Command {
             return;
         }
         ui.printMessage(
-                "That's one less thing to do! You now have " + tasks.getTotalTasks() + " tasks left.");
+                "You now have " + tasks.getTotalTasks() + " tasks left.");
     }
 
 }

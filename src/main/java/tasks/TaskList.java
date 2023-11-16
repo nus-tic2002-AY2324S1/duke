@@ -105,7 +105,7 @@ public class TaskList {
         }
         assert totalTasks > 0 : "task list size should be more than 0 to delete";
 
-        System.out.println("TaskMaster at the helm! Time to perform a task vanishing act on: \n" + item + ":"
+        System.out.println("TaskMaster at the helm! 🪄 Time to perform a task vanishing act on: \n" + item + ":"
                 + tasks.get(item - 1));
         tasks.remove((item - 1));
         totalTasks--;
