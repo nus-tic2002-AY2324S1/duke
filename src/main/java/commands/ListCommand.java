@@ -1,7 +1,9 @@
 package commands;
 
+import java.util.ArrayList;
 import exceptions.EmptyListException;
 import storage.Storage;
+import tasks.Task;
 import tasks.TaskList;
 import ui.UI;
 
@@ -17,7 +19,8 @@ public class ListCommand extends Command {
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
         try {
-            tasks.listItems();
+            ArrayList<Task> list = tasks.listItems();
+            ui.showTaskList(list);
         } catch (EmptyListException e) {
             ui.showError(e.getMessage());
         }

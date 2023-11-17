@@ -78,15 +78,11 @@ public class TaskList {
         return task;
     }
 
-    public void listItems() throws EmptyListException {
+    public ArrayList<Task> listItems() throws EmptyListException {
         if (totalTasks < 1) {
             throw new EmptyListException(ErrorMessages.EMPTY_LIST);
         }
-
-        System.out.println("Ta-da! Behold, the magnificent lineup of tasks in your grand list:");
-        for (int i = 1; i <= totalTasks; i++) {
-            System.out.println(i + ". " + tasks.get(i - 1));
-        }
+        return this.tasks;
     }
 
     public Task deleteItem(int item) throws MissingTaskException {

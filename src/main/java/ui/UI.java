@@ -106,4 +106,11 @@ public class UI {
         System.out.println("TaskMaster at the helm! 🪄 Time to perform a task vanishing act on: \n" + task);
         System.out.println("You now have " + tasksLeft + " tasks left.");
     }
+
+    public void showTaskList(ArrayList<Task> list){
+        System.out.println("Ta-da! Behold, the magnificient lineup of tasks in your grand list:");
+        for(int i=1; i<=list.size();i++){
+            System.out.println(i + "." + list.get(i-1));
+        }
+    }
 }
