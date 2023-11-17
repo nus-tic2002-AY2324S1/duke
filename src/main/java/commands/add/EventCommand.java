@@ -14,12 +14,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class EventCommand extends Command {
-    protected String description;
-    protected LocalDate fromDate;
-    protected LocalDate toDate;
-    protected static final int DESCRIPTION_GROUP_CAPTURE = 1;
-    protected static final int FROM_DATE_GROUP_CAPTURE = 2;
-    protected static final int TO_DATE_GROUP_CAPTURE = 5;
+    private String description;
+    private LocalDate fromDate;
+    private LocalDate toDate;
+    private static final int DESCRIPTION_GROUP_CAPTURE = 1;
+    private static final int FROM_DATE_GROUP_CAPTURE = 2;
+    private static final int TO_DATE_GROUP_CAPTURE = 5;
 
 
     public EventCommand(String input) throws DukeException {

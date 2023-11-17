@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ToDoCommand extends Command {
-    String description;
+    private String description;
 
     public ToDoCommand(String line) throws DukeException {
         Pattern pattern = Pattern.compile(RegExp.TODO_COMMAND_FORMAT_REGEX);

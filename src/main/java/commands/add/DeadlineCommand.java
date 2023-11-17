@@ -14,10 +14,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DeadlineCommand extends Command {
-    protected LocalDate date;
-    protected String description;
-    protected static final int DESCRIPTION_GROUP_CAPTURE = 1;
-    protected static final int DATE_GROUP_CAPTURE = 2;
+    private LocalDate date;
+    private String description;
+    private static final int DESCRIPTION_GROUP_CAPTURE = 1;
+    private static final int DATE_GROUP_CAPTURE = 2;
 
     public DeadlineCommand(String line) throws DukeException {
         Pattern pattern = Pattern.compile(RegExp.DEADLINE_COMMAND_FORMAT_REGEX);
@@ -29,7 +29,7 @@ public class DeadlineCommand extends Command {
 
         assert matcher.groupCount() == 4 : "should have 4 capture groups based on regexp";
         this.description = matcher.group(DESCRIPTION_GROUP_CAPTURE);
-        
+
         try {
             this.date = LocalDate.parse(matcher.group(DATE_GROUP_CAPTURE));
         } catch (DateTimeParseException e) {

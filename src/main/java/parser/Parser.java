@@ -20,7 +20,7 @@ import exceptions.DukeException;
 
 public class Parser {
     protected static Command c;
-    protected static final String BETWEEN_STRING = "/between";
+    private static final String BETWEEN_STRING = "/between";
     /**
      * Returns a {@code Command} object based on user input.
      * <p>

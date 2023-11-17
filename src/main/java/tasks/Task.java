@@ -2,12 +2,11 @@ package tasks;
 
 public class Task {
     protected String description;
-    protected boolean isDone;
+    protected boolean isDone = false;
     protected Priority p = Priority.LOW;
 
     public Task(String description) {
         this.description = description;
-        this.isDone = false;
     }
 
     public String getStatusIcon() {

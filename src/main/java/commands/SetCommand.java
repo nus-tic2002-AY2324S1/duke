@@ -13,8 +13,8 @@ import tasks.TaskList;
 import ui.UI;
 
 public class SetCommand extends Command {
-    protected int item;
-    protected Priority p;
+    private int item;
+    private Priority p;
 
     // expected line arg: set 2 to (high/low/medium)
     public SetCommand(String line) throws DukeException {

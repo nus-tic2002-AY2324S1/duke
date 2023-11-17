@@ -15,13 +15,12 @@ import tasks.TaskList;
 import ui.UI;
 
 public class ToDoWithinPeriodCommand extends Command {
-    protected LocalDate from;
-    protected LocalDate to;
-    protected String description;
-    protected static final String BETWEEN_STRING = "/between";
-    protected static final int DESCRIPTION_GROUP_CAPTURE = 1;
-    protected static final int FROM_DATE_GROUP_CAPTURE = 2;
-    protected static final int TO_DATE_GROUP_CAPTURE = 5;
+    private LocalDate from;
+    private LocalDate to;
+    private String description;
+    private static final int DESCRIPTION_GROUP_CAPTURE = 1;
+    private static final int FROM_DATE_GROUP_CAPTURE = 2;
+    private static final int TO_DATE_GROUP_CAPTURE = 5;
 
     // todo colllect certificate /between 2023-10-08 /and 2023-10-10
     public ToDoWithinPeriodCommand(String line) throws DukeException {

@@ -11,7 +11,7 @@ import ui.UI;
 import java.util.regex.Pattern;
 
 public class DeleteCommand extends Command {
-    protected int item;
+    private int item;
 
     public DeleteCommand(String input) throws DukeException {
         if (!Pattern.matches(RegExp.DELETE_COMMAND_FORMAT_REGEX, input.toLowerCase())) {
