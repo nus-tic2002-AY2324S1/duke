@@ -6,7 +6,7 @@ import com.tina.service.Ui;
 import com.tina.task.DeadlineTask;
 import com.tina.task.Task;
 import com.tina.task.TaskList;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 /**
@@ -15,7 +15,7 @@ import java.time.LocalDate;
  */
 public class DeadlineCommand extends Command {
     private final String taskName;
-    private final LocalDate by;
+    private final LocalDateTime by;
 
     /**
      * Instantiates a new Deadline command.
@@ -23,7 +23,7 @@ public class DeadlineCommand extends Command {
      * @param taskName the task name.
      * @param by       the deadline date.
      */
-    public DeadlineCommand(String taskName, LocalDate by) {
+    public DeadlineCommand(String taskName, LocalDateTime by) {
         this.taskName = taskName;
         this.by = by;
     }
@@ -33,7 +33,7 @@ public class DeadlineCommand extends Command {
      *
      * @return the deadline date.
      */
-    public LocalDate getBy() {
+    public LocalDateTime getBy() {
         return by;
     }
 

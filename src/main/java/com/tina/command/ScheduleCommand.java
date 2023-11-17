@@ -6,21 +6,21 @@ import com.tina.task.DeadlineTask;
 import com.tina.task.EventTask;
 import com.tina.task.Task;
 import com.tina.task.TaskList;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Represents a Schedule command.
  * Shows all the tasks related to the given date.
  */
 public class ScheduleCommand extends Command {
-    private final LocalDate date;
+    private final LocalDateTime date;
 
     /**
      * Instantiates a new Schedule command.
      *
      * @param date the date
      */
-    public ScheduleCommand(LocalDate date) {
+    public ScheduleCommand(LocalDateTime date) {
         this.date = date;
     }
 
@@ -40,14 +40,14 @@ public class ScheduleCommand extends Command {
         for (Task task : taskList.getTaskList()) {
             if (task instanceof DeadlineTask) {
                 DeadlineTask deadlineTask = (DeadlineTask) task;
-                LocalDate by = deadlineTask.getBy();
+                LocalDateTime by = deadlineTask.getBy();
                 if (by.isEqual(date)) {
                     tasks.add(deadlineTask);
                 }
             } else if (task instanceof EventTask) {
                 EventTask eventTask = (EventTask) task;
-                LocalDate from = eventTask.getFrom();
-                LocalDate to = eventTask.getTo();
+                LocalDateTime from = eventTask.getFrom();
+                LocalDateTime to = eventTask.getTo();
                 if (from.isBefore(date) && to.isAfter(date)) {
                     tasks.add(eventTask);
                 }

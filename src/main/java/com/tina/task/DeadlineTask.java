@@ -1,12 +1,13 @@
 package com.tina.task;
 
-import java.time.LocalDate;
+import com.tina.service.Parser;
+import java.time.LocalDateTime;
 
 /**
  * Represents a Deadline task.
  */
 public class DeadlineTask extends Task {
-    LocalDate by;
+    LocalDateTime by;
 
     /**
      * Instantiates a new Deadline task.
@@ -14,7 +15,7 @@ public class DeadlineTask extends Task {
      * @param taskName the task name.
      * @param by       the deadline date.
      */
-    public DeadlineTask(String taskName, LocalDate by) {
+    public DeadlineTask(String taskName, LocalDateTime by) {
         super(taskName);
         this.by = by;
     }
@@ -26,7 +27,7 @@ public class DeadlineTask extends Task {
      * @param isDone   the is done status.
      * @param by       the deadline date.
      */
-    public DeadlineTask(String taskName, boolean isDone, LocalDate by) {
+    public DeadlineTask(String taskName, boolean isDone, LocalDateTime by) {
         super(taskName);
         this.by = by;
         this.setDone(isDone);
@@ -37,7 +38,7 @@ public class DeadlineTask extends Task {
      *
      * @return the deadline date.
      */
-    public LocalDate getBy() {
+    public LocalDateTime getBy() {
         return by;
     }
 
@@ -49,7 +50,7 @@ public class DeadlineTask extends Task {
      * @return the string.
      */
     public String toString() {
-        return "[D]" + "[" + this.isDone() + "] " + this.getTaskName() + " (by: " + this.by + ")";
+        return "[D]" + "[" + this.isDone() + "] " + this.getTaskName() + " (by: " + Parser.parseLocalDateTime(this.by) + ")";
     }
 
     /**

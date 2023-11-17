@@ -34,11 +34,12 @@ public class DeleteCommand extends Command {
      * @param ui       the ui util.
      * @param storage  the storage util.
      * @return confirmation message.
-     * @throws InvalidTaskNumberException   if the task is not found.
-     * @throws InvalidFilePathException     if file path is invalid.
+     * @throws InvalidTaskNumberException if the task is not found.
+     * @throws InvalidFilePathException   if file path is invalid.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException, InvalidFilePathException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException,
+            InvalidFilePathException {
         try {
             Task curTask = taskList.getTaskList().get(taskNumber - 1);
             taskList.remove(curTask);

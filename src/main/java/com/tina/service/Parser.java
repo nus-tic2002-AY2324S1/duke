@@ -1,7 +1,19 @@
 package com.tina.service;
 
-import com.joestelmach.natty.DateGroup;
-import com.tina.command.*;
+import com.tina.command.ArchiveCommand;
+import com.tina.command.ByeCommand;
+import com.tina.command.Command;
+import com.tina.command.CommandEnum;
+import com.tina.command.DeadlineCommand;
+import com.tina.command.DeleteCommand;
+import com.tina.command.EventCommand;
+import com.tina.command.FindCommand;
+import com.tina.command.HelpCommand;
+import com.tina.command.ListCommand;
+import com.tina.command.MarkCommand;
+import com.tina.command.ScheduleCommand;
+import com.tina.command.TodoCommand;
+import com.tina.command.UnmarkCommand;
 import com.tina.exception.InvalidDateFormatException;
 import com.tina.exception.InvalidFileFormatException;
 import com.tina.exception.InvalidParameterException;
@@ -10,13 +22,15 @@ import com.tina.task.EventTask;
 import com.tina.task.Task;
 import com.tina.task.TaskList;
 import com.tina.task.TodoTask;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
 
 /**
  * Parses input to a desired object, such as command object or task object.
@@ -32,8 +46,8 @@ public class Parser {
      * @throws InvalidParameterException  if input parameter is invalid
      * @throws InvalidDateFormatException if the date format is invalid
      */
-    public static Command parseInputToCommand(String userInput)
-            throws InvalidParameterException, InvalidDateFormatException {
+    public static Command parseInputToCommand(String userInput) throws InvalidParameterException,
+            InvalidDateFormatException {
         List<String> list = Arrays.asList(userInput.split(" "));
         ArrayList<String> tokens = new ArrayList<>(list);
 
@@ -80,15 +94,15 @@ public class Parser {
             return new TodoTask(parts[2], isDone);
         case "D":
             try {
-                LocalDate by = LocalDate.parse(parts[3]);
+                LocalDateTime by = LocalDateTime.parse(parts[3]);
                 return new DeadlineTask(parts[2], isDone, by);
             } catch (DateTimeParseException e) {
                 throw new InvalidFileFormatException();
             }
         case "E":
             try {
-                LocalDate from = LocalDate.parse(parts[3]);
-                LocalDate to = LocalDate.parse(parts[4]);
+                LocalDateTime from = LocalDateTime.parse(parts[3]);
+                LocalDateTime to = LocalDateTime.parse(parts[4]);
                 return new EventTask(parts[2], isDone, from, to);
             } catch (DateTimeParseException e) {
                 throw new InvalidFileFormatException();
@@ -119,22 +133,16 @@ public class Parser {
      * @return the local date.
      * @throws InvalidDateFormatException if date format is invalid.
      */
-    public static LocalDate parseDate(String dateString) throws InvalidDateFormatException {
-        com.joestelmach.natty.Parser parser = new com.joestelmach.natty.Parser();
-
-        List<DateGroup> groups = parser.parse(dateString);
-        if (groups.size() != 1) {
-            throw new InvalidDateFormatException();
-        }
-
-        List<Date> dates = groups.get(0).getDates();
+    public static LocalDateTime parseDate(String dateString) throws InvalidDateFormatException {
+        PrettyTimeParser p = new PrettyTimeParser();
+        List<Date> dates = p.parse(dateString);
         if (dates.isEmpty()) {
             throw new InvalidDateFormatException();
         }
 
         Date date = dates.get(0);
-        // parse Date object to LocalDate object
-        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        // parse Date object to LocalDateTime object
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
     /**
@@ -145,8 +153,7 @@ public class Parser {
      * @return the parsed command.
      * @throws InvalidDateFormatException if date format is invalid.
      */
-    public static Command parseTokensToCommand(ArrayList<String> tokens, CommandEnum commandEnum)
-            throws InvalidDateFormatException {
+    public static Command parseTokensToCommand(ArrayList<String> tokens, CommandEnum commandEnum) throws InvalidDateFormatException {
         Command command = null;
         String taskName;
         switch (commandEnum) {
@@ -196,5 +203,16 @@ public class Parser {
         default:
         }
         return command;
+    }
+
+    /**
+     * Parses local date time object to a readable string format.
+     *
+     * @param dateTime the date time.
+     * @return the string format.
+     */
+    public static String parseLocalDateTime(LocalDateTime dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy, ha");
+        return dateTime.format(formatter);
     }
 }

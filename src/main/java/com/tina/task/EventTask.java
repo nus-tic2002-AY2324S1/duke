@@ -1,13 +1,14 @@
 package com.tina.task;
 
-import java.time.LocalDate;
+import com.tina.service.Parser;
+import java.time.LocalDateTime;
 
 /**
  * Represents a Event task.
  */
 public class EventTask extends Task {
-    private final LocalDate from;
-    private final LocalDate to;
+    private final LocalDateTime from;
+    private final LocalDateTime to;
 
     /**
      * Instantiates a new Event task.
@@ -16,7 +17,7 @@ public class EventTask extends Task {
      * @param from     the from date.
      * @param to       the to date.
      */
-    public EventTask(String taskName, LocalDate from, LocalDate to) {
+    public EventTask(String taskName, LocalDateTime from, LocalDateTime to) {
         super(taskName);
         this.from = from;
         this.to = to;
@@ -27,7 +28,7 @@ public class EventTask extends Task {
      *
      * @return the from date.
      */
-    public LocalDate getFrom() {
+    public LocalDateTime getFrom() {
         return from;
     }
 
@@ -36,7 +37,7 @@ public class EventTask extends Task {
      *
      * @return the to date.
      */
-    public LocalDate getTo() {
+    public LocalDateTime getTo() {
         return to;
     }
 
@@ -48,7 +49,7 @@ public class EventTask extends Task {
      * @param from     the from date.
      * @param to       the to date.
      */
-    public EventTask(String taskName, boolean isDone, LocalDate from, LocalDate to) {
+    public EventTask(String taskName, boolean isDone, LocalDateTime from, LocalDateTime to) {
         super(taskName);
         this.from = from;
         this.to = to;
@@ -57,7 +58,7 @@ public class EventTask extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + "[" + this.isDone() + "] " + this.getTaskName() + " (from: " + this.from + " to: " + this.to + ")";
+        return "[E]" + "[" + this.isDone() + "] " + this.getTaskName() + " " + "(from: " + Parser.parseLocalDateTime(this.from) + " to: " + Parser.parseLocalDateTime(this.to) + ")";
     }
 
     /**

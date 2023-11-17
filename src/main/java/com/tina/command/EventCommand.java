@@ -6,7 +6,7 @@ import com.tina.service.Ui;
 import com.tina.task.EventTask;
 import com.tina.task.Task;
 import com.tina.task.TaskList;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Represents an Event command.
@@ -14,8 +14,8 @@ import java.time.LocalDate;
  */
 public class EventCommand extends Command {
     private final String taskName;
-    private final LocalDate from;
-    private final LocalDate to;
+    private final LocalDateTime from;
+    private final LocalDateTime to;
 
     /**
      * Instantiates a new Event command.
@@ -24,7 +24,7 @@ public class EventCommand extends Command {
      * @param from     the start date.
      * @param to       the end date.
      */
-    public EventCommand(String taskName, LocalDate from, LocalDate to) {
+    public EventCommand(String taskName, LocalDateTime from, LocalDateTime to) {
         this.taskName = taskName;
         this.from = from;
         this.to = to;
@@ -35,7 +35,7 @@ public class EventCommand extends Command {
      *
      * @return the start date.
      */
-    public LocalDate getFrom() {
+    public LocalDateTime getFrom() {
         return from;
     }
 
@@ -44,7 +44,7 @@ public class EventCommand extends Command {
      *
      * @return the end date.
      */
-    public LocalDate getTo() {
+    public LocalDateTime getTo() {
         return to;
     }
 
