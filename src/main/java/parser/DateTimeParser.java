@@ -21,7 +21,6 @@ public class DateTimeParser {
      * if date is not in "dd/MM/yyyy" format, method will return an empty string with a prompt
      * @param inputString datetime string input by the user.
      * @return date in "MMM dd yyyy" format and will be use in Tasklist.
-     * @throws DateTimeParseException If extracted date doesn't match the inputFormatter.
      */
     public static String toDate(String inputString){
         String printedDate = " ";
