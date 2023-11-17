@@ -1,22 +1,19 @@
 
 import org.junit.jupiter.api.Test;
+import util.Util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DukeTest {
-    @Test
-    public void AddTodoTasks() {
-        assertEquals(2, 2);
-    }
-
+    private Util helper = new Util();
 
     @Test
-    public void AddEvent(){
-        assertEquals(4, 4);
+    public void testTransformDescription(){
+        assertEquals("return book", helper.transformDescription("todo return book", "T"));
     }
 
     @Test
-    public void AddDeadlines(){
-        assertEquals(4, 4);
+    public void testTransformDeadlineInformation(){
+        assertEquals("14/05/2023 1800", helper.transfromDeadlineInformation("deadline return book /by 14/05/2023 1800"));
     }
 }
