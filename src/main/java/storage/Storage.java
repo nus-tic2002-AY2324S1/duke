@@ -23,10 +23,10 @@ public class Storage {
     public static final Pattern STORED_DEADLINE_ARGS_PATTERN = Pattern.compile("(?<desc>[^|]*) \\| (?<by>[^|]*)");
     public static final Pattern STORED_EVENT_ARGS_PATTERN = Pattern.compile("(?<desc>[^|]*) \\| (?<from>[^|]*) \\| (?<to>[^|]*)");
 
-    private final String FILEPATH = "./data/joshua.txt";
+    private final String filepath;
 
-    public Storage() {
-
+    public Storage(String filepath) {
+        this.filepath = filepath;
     }
 
     /**
@@ -36,7 +36,7 @@ public class Storage {
      * @throws IOException If error occurs when writing lines to stored file.
      */
     public void save(TaskList taskList) throws IOException {
-        FileWriter fw = new FileWriter(FILEPATH);
+        FileWriter fw = new FileWriter(filepath);
         for (int i = 0; i < taskList.listSize(); i++) {
             int taskNum = i + 1;
             Task task = taskList.getTask(taskNum);
@@ -53,7 +53,7 @@ public class Storage {
      * @throws IllegalStorageFormat If the storage file has an illegal format.
      */
     public TaskList load() throws FileNotFoundException, IllegalStorageFormat {
-        File file = new File(FILEPATH);
+        File file = new File(filepath);
         Scanner scanner = new Scanner(file);
         TaskList tasklist = new TaskList();
 

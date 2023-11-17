@@ -44,6 +44,7 @@ public class JoshuaParser {
      * @return Command object with respect to userInput.
      */
     public Command parse(String userInput) {
+        assert userInput.equals(userInput.toLowerCase()) : "User input should be in lower case: " + userInput;
 
         // parse() method adapted from
         // https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/parser/Parser.java#L56
@@ -165,7 +166,9 @@ public class JoshuaParser {
      * @return A DeadlineCommand or InvalidCommand object.
      */
     private Command prepareDeadline(String commandArgs) {
-        Matcher matcher = DEADLINE_ARGUMENT_FORMAT.matcher(commandArgs.trim());
+        assert commandArgs.equals(commandArgs.trim()) : "String was not trimmed as expected: " + commandArgs;
+
+        Matcher matcher = DEADLINE_ARGUMENT_FORMAT.matcher(commandArgs);
         if(!matcher.matches()) {
             return new InvalidCommand("Please follow this command format for \"deadline\":\n" +
                     "deadline <description> /by <date>");
@@ -198,7 +201,9 @@ public class JoshuaParser {
      * @return An EventCommand or InvalidCommand object.
      */
     private Command prepareEvent(String commandArgs) {
-        Matcher matcher = EVENT_ARGUMENT_FORMAT.matcher(commandArgs.trim());
+        assert commandArgs.equals(commandArgs.trim()) : "String was not trimmed as expected: " + commandArgs;
+
+        Matcher matcher = EVENT_ARGUMENT_FORMAT.matcher(commandArgs);
         if(!matcher.matches()) {
             return new InvalidCommand("Please follow this command format for \"event\":\n" +
                     "event <description> /from <date> /to <date>");

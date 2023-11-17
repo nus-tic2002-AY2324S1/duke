@@ -1,6 +1,5 @@
 package joshua;
 import commands.Command;
-import commands.ByeCommand;
 import exceptions.IllegalStorageFormat;
 import storage.Storage;
 
@@ -20,13 +19,12 @@ import java.io.FileNotFoundException;
  * @since 2023-11-19
  */
 public class Joshua {
-
     private Storage storage;
     private TaskList taskList;
     private JoshuaUi ui;
     private JoshuaParser parser;
+    private boolean isExit = false;
 
-    public Joshua() {
     /**
      * Initializes the Joshua chatbot by setting up the user interface, parser, storage,
      * and loading the task list from the storage if available.
@@ -40,14 +38,20 @@ public class Joshua {
      * @see JoshuaUi#printSuccessfulLoad()
      * @see JoshuaUi#printLoadingError()
      */
+    public Joshua(String filepath) {
         ui = new JoshuaUi();
         parser = new JoshuaParser();
-        storage = new Storage();
+        storage = new Storage(filepath);
         try {
             taskList = storage.load();
             ui.printSuccessfulLoad();
-        } catch (FileNotFoundException | IllegalStorageFormat e) {
+            ui.printGreetings();
+        } catch (IllegalStorageFormat e) {
+            ui.joshuaSays(e.getMessage());
             ui.printLoadingError();
+            isExit = true;
+        } catch (FileNotFoundException e) {
+            ui.printFileNotFoundError();
             taskList = new TaskList();
         }
     }
@@ -57,14 +61,16 @@ public class Joshua {
      * and executing the commands until the "bye" command is given.
      */
     public void run() {
-        ui.printGreetings();
-        Command c;
-        do {
-            String fullCommand = ui.readCommand();
-            c = parser.parse(fullCommand);
-            c.execute(taskList, ui, storage);
-
-        } while(!ByeCommand.isExit(c));
+        while(!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                Command c = parser.parse(fullCommand);
+                c.execute(taskList, ui, storage);
+                isExit = c.isExit();
+            } catch (Exception e) {
+                ui.joshuaSays(e.getMessage());
+            }
+        }
     }
 
     /**
@@ -73,6 +79,6 @@ public class Joshua {
      * @param args Arguments for the main method (not in use).
      */
     public static void main(String[] args) {
-        new Joshua().run();
+        new Joshua("./data/joshua.txt").run();
     }
 }
