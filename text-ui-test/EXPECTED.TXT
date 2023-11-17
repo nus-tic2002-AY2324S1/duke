@@ -14,6 +14,11 @@
    Ok I got it! Let start with your ➞ school list.
    ╰┈➤Type "help" if you need to see what I can do for you
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   ╭─────────────────────────────────────╮
+    ░░░░ Your SCHOOL list is empty! ░░░░
+         Let's start a new checklist
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ study for the final exam - to your list
    Now you have: 1 tasks in your list 🗎.
@@ -26,16 +31,16 @@
    ╰┈➤ TIC2002 - report, demo video and JAR /by 19/12/2023 2359 - to your list
    Now you have: 3 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-   Oops!!! Looks like you used the wrong format (╯︵╰,)
-   Please enter in this format after used /by or /from and /to
-   ╰┈➤ Try with: "/by dd/mm/yyyy hhmm" e.g: /by 12/12/2020 1800
-             or: "/by mon" - CrabY will put the date to the next Monday
+   ✎ added:
+   ╰┈➤ TMA2301 - final exam /from end-of-month 0900 /to eom 1100 - to your list
+   Now you have: 4 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ╭─────────────────────────────────────╮
    Here are the tasks in your SCHOOL list:
    1.  [T][҉҉҉] Study for the final exam
    2.  [E][҉҉҉] TIC2002 - final exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:00PM
    3.  [D][҉҉҉] TIC2002 - report, demo video and JAR || before: 19 Dec, Tue 11:59PM
+   4.  [E][҉҉҉] TMA2301 - final exam || from: 30 Nov, Thu 09:00AM ➞ to: 11:00AM
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Nice! I've marked this task as DONE ツ:
@@ -46,6 +51,7 @@
    1.  [T][҉҉҉] Study for the final exam
    2.  [E][҉҉҉] TIC2002 - final exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:00PM
    3.  [D][ ✓ ] TIC2002 - report, demo video and JAR || before: 19 Dec, Tue 11:59PM
+   4.  [E][҉҉҉] TMA2301 - final exam || from: 30 Nov, Thu 09:00AM ➞ to: 11:00AM
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    OK, I've marked this task as ☉⌓☉ NOT DONE yet:
@@ -63,23 +69,23 @@
    Now you have: 1 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
-   ╰┈➤ increased by 3 kilograms  /by eoy - to your list
+   ╰┈➤ increased by 3 kilograms /by eoy - to your list
    Now you have: 2 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ Chang & Felicia's wedding /from 04/11/2023 1800 /to 2023-11-04 2200 - to your list
    Now you have: 3 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-   Oops!!! Looks like you used the wrong format (╯︵╰,)
-   Please enter in this format after used /by or /from and /to
-   ╰┈➤ Try with: "/by dd/mm/yyyy hhmm" e.g: /by 12/12/2020 1800
-             or: "/by mon" - CrabY will put the date to the next Monday
+   ✎ added:
+   ╰┈➤ best friend's birthday /from end-of-month 1800 /to eom 2359 - to your list
+   Now you have: 4 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ╭─────────────────────────────────────╮
    Here are the tasks in your PERSONAL list:
    1.  [T][҉҉҉] Drink more water
    2.  [D][҉҉҉] Increased by 3 kilograms || before: 31 Dec, Sun 11:59PM
    3.  [E][҉҉҉] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   4.  [E][҉҉҉] Best friend's birthday || from: 30 Nov, Thu 06:00PM ➞ to: 11:59PM
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Congratulations! You have COMPLETED all your tasks.
@@ -89,9 +95,10 @@
    1.  [T][ ✓ ] Drink more water
    2.  [D][ ✓ ] Increased by 3 kilograms || before: 31 Dec, Sun 11:59PM
    3.  [E][ ✓ ] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   4.  [E][ ✓ ] Best friend's birthday || from: 30 Nov, Thu 06:00PM ➞ to: 11:59PM
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-   Oops!!! Something wrong! Your list only have 1 ➞ 3 tasks (╯︵╰,)
+   Oops!!! Something wrong! Your list only have 1 ➞ 4 tasks (╯︵╰,)
    ╰┈➤ Please try again with another number ☘
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    OK, I've marked this task as ☉⌓☉ NOT DONE yet:
@@ -102,6 +109,7 @@
    1.  [T][ ✓ ] Drink more water
    2.  [D][҉҉҉] Increased by 3 kilograms || before: 31 Dec, Sun 11:59PM
    3.  [E][ ✓ ] Chang & Felicia's wedding || from: 4 Nov, Sat 06:00PM ➞ to: 10:00PM
+   4.  [E][ ✓ ] Best friend's birthday || from: 30 Nov, Thu 06:00PM ➞ to: 11:59PM
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Which checklist do you want to switch to? (｡◕‿◕｡)
@@ -116,23 +124,23 @@
          Let's start a new checklist
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-   Oops!!! Looks like you used the wrong format (╯︵╰,)
-   Please enter in this format after used /by or /from and /to
-   ╰┈➤ Try with: "/by dd/mm/yyyy hhmm" e.g: /by 12/12/2020 1800
-             or: "/by mon" - CrabY will put the date to the next Monday
-  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
-   ╰┈➤ Make a web games /from today /to eoy - to your list
+   ╰┈➤ apply a new job /by end-of-year - to your list
    Now you have: 1 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
-   ╰┈➤ Make this CrabY become a website /by 31/12/2023 - to your list
+   ╰┈➤ Make a web games /from today /to eoy - to your list
    Now you have: 2 tasks in your list 🗎.
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   ✎ added:
+   ╰┈➤ Make this CrabY become a website /by 31/12/2023 - to your list
+   Now you have: 3 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ╭─────────────────────────────────────╮
    Here are the tasks in your WORK list:
-   1.  [E][҉҉҉] Make a web games || from: 17 Nov, Fri 11:59PM ➞ to: 31 Dec, Sun 11:59PM
-   2.  [D][҉҉҉] Make this CrabY become a website || before: 31 Dec, Sun 11:59PM
+   1.  [D][҉҉҉] Apply a new job || before: 31 Dec, Sun 11:59PM
+   2.  [E][҉҉҉] Make a web games || from: 17 Nov, Fri 11:59PM ➞ to: 31 Dec, Sun 11:59PM
+   3.  [D][҉҉҉] Make this CrabY become a website || before: 31 Dec, Sun 11:59PM
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ╭─────────────────────────────────────╮
@@ -146,6 +154,10 @@
    ╰┈➤You can typing: "School" | "Work" | "Personal" |
                   or  [checklist-name] if you want to creat a new list.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   Oops!!! The [checklist-name] cannot contain special character.
+   NOTE: if you use the same [checklist-name] that used before
+   ╰┈➤You can continue to use the previous list of tasks.
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Ok I got it! Let start with your ➞ school list.
    ╰┈➤Type "help" if you need to see what I can do for you
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
@@ -154,23 +166,25 @@
    1.  [T][҉҉҉] Study for the final exam
    2.  [E][҉҉҉] TIC2002 - final exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:00PM
    3.  [D][҉҉҉] TIC2002 - report, demo video and JAR || before: 19 Dec, Tue 11:59PM
+   4.  [E][҉҉҉] TMA2301 - final exam || from: 30 Nov, Thu 09:00AM ➞ to: 11:00AM
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ TIC2901 - Presentation /from 16/11/2023 1930 - to your list
-   Now you have: 4 tasks in your list 🗎.
+   Now you have: 5 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✎ added:
    ╰┈➤ TIC2901 - Written Submission /by 2023/11/16 2359 - to your list
-   Now you have: 5 tasks in your list 🗎.
+   Now you have: 6 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ╭─────────────────────────────────────╮
    Here are the tasks in your SCHOOL list:
    1.  [T][҉҉҉] Study for the final exam
    2.  [E][҉҉҉] TIC2002 - final exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:00PM
    3.  [D][҉҉҉] TIC2002 - report, demo video and JAR || before: 19 Dec, Tue 11:59PM
-   4.  [E][҉҉҉] TIC2901 - Presentation || from: 16 Nov, Thu 07:30PM
-   5.  [D][҉҉҉] TIC2901 - Written Submission || before: 16 Nov, Thu 11:59PM
+   4.  [E][҉҉҉] TMA2301 - final exam || from: 30 Nov, Thu 09:00AM ➞ to: 11:00AM
+   5.  [E][҉҉҉] TIC2901 - Presentation || from: 16 Nov, Thu 07:30PM
+   6.  [D][҉҉҉] TIC2901 - Written Submission || before: 16 Nov, Thu 11:59PM
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ⌖ Here are the list tasks matching with "tic2002":
@@ -182,9 +196,10 @@
    Here are the tasks in your SCHOOL list:
    1.  [E][҉҉҉] TIC2901 - Presentation || from: 16 Nov, Thu 07:30PM
    2.  [D][҉҉҉] TIC2901 - Written Submission || before: 16 Nov, Thu 11:59PM
-   3.  [E][҉҉҉] TIC2002 - final exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:00PM
-   4.  [D][҉҉҉] TIC2002 - report, demo video and JAR || before: 19 Dec, Tue 11:59PM
-   5.  [T][҉҉҉] Study for the final exam
+   3.  [E][҉҉҉] TMA2301 - final exam || from: 30 Nov, Thu 09:00AM ➞ to: 11:00AM
+   4.  [E][҉҉҉] TIC2002 - final exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:00PM
+   5.  [D][҉҉҉] TIC2002 - report, demo video and JAR || before: 19 Dec, Tue 11:59PM
+   6.  [T][҉҉҉] Study for the final exam
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Sorting by type...
@@ -194,7 +209,8 @@
    2.  [D][҉҉҉] TIC2901 - Written Submission || before: 16 Nov, Thu 11:59PM
    3.  [E][҉҉҉] TIC2002 - final exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:00PM
    4.  [E][҉҉҉] TIC2901 - Presentation || from: 16 Nov, Thu 07:30PM
-   5.  [T][҉҉҉] Study for the final exam
+   5.  [E][҉҉҉] TMA2301 - final exam || from: 30 Nov, Thu 09:00AM ➞ to: 11:00AM
+   6.  [T][҉҉҉] Study for the final exam
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Nice! I've marked this task as DONE ツ:
@@ -206,19 +222,21 @@
    2.  [D][҉҉҉] TIC2901 - Written Submission || before: 16 Nov, Thu 11:59PM
    3.  [E][҉҉҉] TIC2002 - final exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:00PM
    4.  [E][ ✓ ] TIC2901 - Presentation || from: 16 Nov, Thu 07:30PM
-   5.  [T][҉҉҉] Study for the final exam
+   5.  [E][҉҉҉] TMA2301 - final exam || from: 30 Nov, Thu 09:00AM ➞ to: 11:00AM
+   6.  [T][҉҉҉] Study for the final exam
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ✂ Noted. I've removed this task:
    ╰┈➤ [E][ ✓ ] TIC2901 - Presentation || from: 16 Nov, Thu 07:30PM - in your list
-   Now you have: 4 tasks in your list 🗎.
+   Now you have: 5 tasks in your list 🗎.
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    ╭─────────────────────────────────────╮
    Here are the tasks in your SCHOOL list:
    1.  [D][҉҉҉] TIC2002 - report, demo video and JAR || before: 19 Dec, Tue 11:59PM
    2.  [D][҉҉҉] TIC2901 - Written Submission || before: 16 Nov, Thu 11:59PM
    3.  [E][҉҉҉] TIC2002 - final exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:00PM
-   4.  [T][҉҉҉] Study for the final exam
+   4.  [E][҉҉҉] TMA2301 - final exam || from: 30 Nov, Thu 09:00AM ➞ to: 11:00AM
+   5.  [T][҉҉҉] Study for the final exam
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
@@ -230,7 +248,8 @@
    2.  [D][҉҉҉] TIC2901 - Written Submission || before: 16 Nov, Thu 11:59PM
    3.  [E][҉҉҉] TIC2002 - final exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:00PM
    4.  [E][ ✓ ] TIC2901 - Presentation || from: 16 Nov, Thu 07:30PM
-   5.  [T][҉҉҉] Study for the final exam
+   5.  [E][҉҉҉] TMA2301 - final exam || from: 30 Nov, Thu 09:00AM ➞ to: 11:00AM
+   6.  [T][҉҉҉] Study for the final exam
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Undo Successful!!!
@@ -242,7 +261,8 @@
    2.  [D][҉҉҉] TIC2901 - Written Submission || before: 16 Nov, Thu 11:59PM
    3.  [E][҉҉҉] TIC2002 - final exam || from: 4 Dec, Mon 01:00PM ➞ to: 02:00PM
    4.  [E][҉҉҉] TIC2901 - Presentation || from: 16 Nov, Thu 07:30PM
-   5.  [T][҉҉҉] Study for the final exam
+   5.  [E][҉҉҉] TMA2301 - final exam || from: 30 Nov, Thu 09:00AM ➞ to: 11:00AM
+   6.  [T][҉҉҉] Study for the final exam
    ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
        ❉⊱•  Welcome to Craby's help page! •⊰❉
@@ -293,8 +313,39 @@
      • Sun/Sunday -> next Sunday
      • Today -> today
      • tmr/Tomorrow -> tomorrow
-     • eom/End of month -> end of this month
-     • eoy/End of year -> end of this year
+     • eom/End-of-month -> end of this month
+     • eoy/End-of-year -> end of this year
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   Which checklist do you want to switch to? (｡◕‿◕｡)
+   ╰┈➤You can typing: "School" | "Work" | "Personal" |
+                  or  [checklist-name] if you want to creat a new list.
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   Ok I got it! Let start with your ➞ Work list.
+   ╰┈➤Type "help" if you need to see what I can do for you
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   ✂ Ok, I clean up all your tasks
+   ╰┈➤ Let's start a new checklist
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   ╭─────────────────────────────────────╮
+    ░░░░ Your WORK list is empty! ░░░░
+         Let's start a new checklist
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   Which checklist do you want to switch to? (｡◕‿◕｡)
+   ╰┈➤You can typing: "School" | "Work" | "Personal" |
+                  or  [checklist-name] if you want to creat a new list.
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   Ok I got it! Let start with your ➞ School list.
+   ╰┈➤Type "help" if you need to see what I can do for you
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   Oops!!! The description cannot be empty.
+   ╰┈➤Type "help" if you need to see the list of command
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+   ╭─────────────────────────────────────╮
+   Here are categories of your checklist:
+   ……✎ SCHOOL 🗎.
+   ……✎ PERSONAL 🗎.
+   ꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
    Bye ♡, hope to see you again soon! •ᴗ•
   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈◦•✩•◦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈

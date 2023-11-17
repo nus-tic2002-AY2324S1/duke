@@ -40,7 +40,7 @@ public class Craby extends HelloAndByeMessage {
         if (is1stTime) {
             printHello();
         }
-        String nameOfList = checkListName(scanner);
+        String nameOfList = checkListName();
         assert nameOfList != null;
         printFirstMessage(nameOfList);
         taskStorage = new TaskStorage(nameOfList.toLowerCase() + ".txt");
@@ -65,29 +65,29 @@ public class Craby extends HelloAndByeMessage {
         }
     }
 
-    private static String checkListName(Scanner scanner) {
-        String listName = scanner.nextLine().trim();
-        if (listName.isBlank()) {
-            printEmptyTypeName();
-            checkListName(scanner);
-        }
+    private static String checkListName() {
+        String listName = Craby.scanner.nextLine().trim();
+        boolean isKeyword = isKeyword(listName);
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(listName);
-        if (matcher.find()) {
-            printTypeNameError();
-            checkListName(scanner);
-        }
-        boolean isKeyword = isKeyword(listName);
-        if (isKeyword) {
-            printNameSameWithKeyWord();
-            checkListName(scanner);
+        while (listName.isBlank() || isKeyword || matcher.find()) {
+            if (listName.isBlank()) {
+                printEmptyTypeName();
+            } else if (isKeyword) {
+                printNameSameWithKeyWord();
+            } else {
+                printTypeNameError();
+            }
+            listName = Craby.scanner.nextLine().trim();
+            isKeyword = isKeyword(listName);
+            matcher = pattern.matcher(listName);
         }
         return listName;
     }
 
     private static boolean isKeyword(String name) {
         return Stream.of("list", "blah", "bye", "mark", "unmark", "delete", "find", "sort", "help", "undo")
-                .anyMatch(name.toLowerCase()::equalsIgnoreCase);
+                     .anyMatch(name.toLowerCase()::equalsIgnoreCase);
     }
 
     private static boolean handleInput(String input, List<Task> tasks) throws InputBlankException {

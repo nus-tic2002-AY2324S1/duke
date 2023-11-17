@@ -1,8 +1,9 @@
 school
+List
 study for the final exam
 TIC2002 - final exam /from 04-12-2023 1300 /to 2023/12/04 1400
 TIC2002 - report, demo video and JAR /by 19/12/2023 2359
-TMA2301 - final exam /from end of month 0900 /to eom 1100
+TMA2301 - final exam /from end-of-month 0900 /to eom 1100
 list
 mark 3
       LisT
@@ -10,9 +11,9 @@ uNmarK 3
 switch
 personal
 drink more water
-increased by 3 kilograms  /by eoy
+increased by 3 kilograms /by eoy
 Chang & Felicia's wedding /from 04/11/2023 1800 /to 2023-11-04 2200
-best friend's birthday /from end of month 0900 /to eom 1100
+best friend's birthday /from end-of-month 1800 /to eom 2359
 list
 mark ALL
 list
@@ -22,12 +23,13 @@ list
 switch
 work
 list
-apply a new job /by end of year
+apply a new job /by end-of-year
 Make a web games /from today /to eoy
 Make this CrabY become a website /by 31/12/2023
 list
 checklist
 switch
+l*ve
 school
 list
 TIC2901 - Presentation /from 16/11/2023 1930
@@ -46,4 +48,12 @@ list
 list
 help
 dates
+Switch
+Work
+Delete all
+List
+Switch
+School
+
+checklist
 Bye CrabY
