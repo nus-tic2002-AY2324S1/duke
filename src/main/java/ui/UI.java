@@ -101,4 +101,9 @@ public class UI {
                     "No quests scheduled on " + dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
         }
     }
+
+    public void showTaskDeleted(Task task, int tasksLeft) {
+        System.out.println("TaskMaster at the helm! 🪄 Time to perform a task vanishing act on: \n" + task);
+        System.out.println("You now have " + tasksLeft + " tasks left.");
+    }
 }

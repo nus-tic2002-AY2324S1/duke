@@ -5,6 +5,7 @@ import constants.RegExp;
 import exceptions.DukeException;
 import exceptions.MissingTaskException;
 import storage.Storage;
+import tasks.Task;
 import tasks.TaskList;
 import ui.UI;
 import java.util.regex.Pattern;
@@ -32,13 +33,11 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
         try {
-            tasks.deleteItem(item);
+            Task t = tasks.deleteItem(item);
+            ui.showTaskDeleted(t, tasks.getTotalTasks());
         } catch (MissingTaskException e) {
             ui.showError(e.getMessage());
-            return;
         }
-        ui.printMessage(
-                "You now have " + tasks.getTotalTasks() + " tasks left.");
     }
 
 }
