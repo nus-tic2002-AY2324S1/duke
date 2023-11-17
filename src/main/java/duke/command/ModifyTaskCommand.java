@@ -2,6 +2,7 @@ package duke.command;
 
 import java.util.List;
 
+import duke.dukeexceptions.DukeException;
 import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
@@ -9,7 +10,7 @@ import duke.userinterface.UserInterface.MessageDisplay;
 /**
  * Represents an abstract class for commands that modify tasks in the Duke application.
  */
-abstract class ModifyTaskCommand extends Command {
+abstract class ModifyTaskCommand implements Command {
 
     // The index of the task to be modified.
     protected final int itemIndex;
@@ -32,6 +33,6 @@ abstract class ModifyTaskCommand extends Command {
      * @param taskList    The list of tasks that the command will operate on.
      */
     public abstract void execute(FileStorage fileStorage, MessageDisplay display,
-                                 List<Task> taskList);
+                                 List<Task> taskList) throws DukeException;
 
 }

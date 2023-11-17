@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import duke.dukeexceptions.DeadlineDateException;
+import duke.dukeexceptions.DueDatePastDateException;
 import duke.dukeexceptions.EventDateException;
 
 /**
@@ -106,7 +106,7 @@ public abstract class Task {
      * @param taskDueDate The new end date for the task.
      */
     public void changeEndDate(LocalDateTime taskDueDate)
-            throws DeadlineDateException, EventDateException {
+            throws DueDatePastDateException, EventDateException {
 
     }
 

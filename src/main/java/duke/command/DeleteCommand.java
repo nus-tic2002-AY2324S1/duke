@@ -9,10 +9,7 @@ import duke.userinterface.UserInterface.MessageDisplay;
 /**
  * Represents a `DeleteCommand` to delete a task from the task list.
  */
-public class DeleteCommand extends Command {
-
-    // The index of the task to be deleted.
-    private final int itemIndex;
+public class DeleteCommand extends ModifyTaskCommand {
 
     /**
      * Constructs a `DeleteCommand` with the specified item index to delete.
@@ -21,7 +18,7 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(int itemIndex) {
 
-        this.itemIndex = itemIndex;
+        super(itemIndex);
     }
 
     /**
@@ -33,6 +30,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
+        assert !taskList.isEmpty() : "Task list can't be empty!";
         // Remove the task from the task list
         Task deletedTask = taskList.remove(itemIndex);
         storeDuke(fileStorage, taskList);

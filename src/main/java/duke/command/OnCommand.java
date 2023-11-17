@@ -3,6 +3,7 @@ package duke.command;
 import java.time.LocalDate;
 import java.util.List;
 
+import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
 
@@ -28,13 +29,8 @@ public class OnCommand extends CheckTaskCommand {
      * @param taskList The list of user tasks to be checked.
      * @param date     The specific date for which tasks should be displayed.
      */
-    public void checkTasks(List<Task> taskList, LocalDate date) {
-        // Check if there are no tasks in the list
-        if (taskList.isEmpty()) {
-            System.out.println("There's nothing on " + date);
-            MessageDisplay.printLineBreak();
-            return;
-        }
+    void checkTasks(List<Task> taskList, LocalDate date) {
+        assert !taskList.isEmpty() : "Task list can't be empty!";
         boolean printed = false;
         int index = 1;
         // Display the date and the tasks as of that date
@@ -67,7 +63,13 @@ public class OnCommand extends CheckTaskCommand {
      * @param taskList The list of user tasks to be checked.
      */
     @Override
-    public void execute(MessageDisplay display, List<Task> taskList) {
+    public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
+        // Check if there are no tasks in the list
+        if (taskList.isEmpty()) {
+            System.out.println("There's nothing on " + checkedDate);
+            MessageDisplay.printLineBreak();
+            return;
+        }
         // Call the checkTasks method to display the tasks as of the specified date
         checkTasks(taskList, checkedDate);
     }

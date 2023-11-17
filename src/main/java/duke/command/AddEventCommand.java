@@ -41,6 +41,7 @@ public class AddEventCommand extends AddTaskCommand {
      */
     @Override
     public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
+        assert !taskName.isEmpty() : "Task name can't be blank!";
         // Create an `EventTask` with the specified name, start date, and end date
         Task task = new EventTask(taskName, taskFromDate, taskToDate);
         // Add the created `EventTask` to the task list

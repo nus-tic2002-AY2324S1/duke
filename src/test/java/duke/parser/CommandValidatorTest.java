@@ -185,7 +185,7 @@ class CommandValidatorTest {
     }
     @Test
     void executeCommand_validRescheduleCommand_shouldExecuteRescheduleCommand() throws DukeException {
-        LocalDateTime date = DukeParser.parseDateTimeOrDate("2050-01-01");
+        LocalDateTime date = DukeParser.parseDateTimeOrDate("2050-01-01 18:00");
         taskList.add(new DeadlineTask("Sample Task", date));
         commandValidator.executeCommand(fileStorage, messageDisplay, taskList,
             CommandValidator.RESCHEDULE_COMMAND, "reschedule 1 2050-01-01 18:00");

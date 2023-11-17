@@ -25,7 +25,7 @@ public class FileRead extends FileHandler {
      *
      * @param taskList The list of tasks to load the saved tasks into.
      */
-    public void getSavedTask(List<Task> taskList) {
+    public boolean getSavedTask(List<Task> taskList) {
 
         try {
             // Create a FileReader to open the file
@@ -90,13 +90,16 @@ public class FileRead extends FileHandler {
             // Close the BufferedReader and FileReader to release system resources
             bufferedReader.close();
             fileReader.close();
+
         } catch (FileNotFoundException e) {
-            System.out.println("No saved tasks found, proceed to start.");
+            return true;
+            //System.out.println("No saved tasks found, proceed to start.");
         } catch (FileCorruptedException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             e.printStackTrace(); // Handle any exceptions that may occur
         }
+        return false;
     }
 
 }

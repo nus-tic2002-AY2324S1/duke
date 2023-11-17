@@ -31,6 +31,7 @@ public class AddTodoCommand extends AddTaskCommand {
      */
     @Override
     public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
+        assert !taskName.isEmpty() : "Task name can't be blank!";
         // Create a `TodoTask` with the specified name
         Task task = new TodoTask(taskName);
         // Add the created todo task to the task list

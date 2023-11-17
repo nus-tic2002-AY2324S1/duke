@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.task.TodoTask;
 import duke.userinterface.UserInterface.MessageDisplay;
@@ -24,6 +25,10 @@ public class ListCommandTest {
     private ByteArrayOutputStream outputStream;
     private ListCommand listCommand;
 
+    private MessageDisplay messageDisplay;
+
+    private FileStorage fileStorage;
+
     /**
      * Set up the test environment before each test case.
      */
@@ -33,6 +38,8 @@ public class ListCommandTest {
         taskList = new ArrayList<>();
         outputStream = new ByteArrayOutputStream();
         listCommand = new ListCommand();
+        messageDisplay = new MessageDisplay();
+        fileStorage = new FileStorage();
     }
 
     /**
@@ -51,7 +58,7 @@ public class ListCommandTest {
     void testPrintListWithEmptyTaskList() {
 
         System.setOut(new PrintStream(outputStream));
-        listCommand.printList(taskList);
+        listCommand.execute(fileStorage, messageDisplay, taskList);
         String expectedOutput =
                 "There's nothing in your list" + System.lineSeparator() + MessageDisplay.LINE_BREAK
                         + System.lineSeparator();

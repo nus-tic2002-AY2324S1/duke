@@ -2,6 +2,7 @@ package duke.command;
 
 import java.util.List;
 
+import duke.filehandler.FileStorage;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
 
@@ -15,13 +16,8 @@ public class ListCommand extends CheckTaskCommand {
      *
      * @param taskList The list of user tasks to be displayed.
      */
-    public void printList(List<Task> taskList) {
-
-        if (taskList.isEmpty()) {
-            System.out.println("There's nothing in your list");
-            MessageDisplay.printLineBreak();
-            return;
-        }
+    void printList(List<Task> taskList) {
+        assert !taskList.isEmpty() : "Task list can't be empty!";
         System.out.println("Here are the tasks in your list:");
         MessageDisplay.printLineBreak();
         int index = 1;
@@ -39,7 +35,12 @@ public class ListCommand extends CheckTaskCommand {
      * @param taskList The list of user tasks to be displayed.
      */
     @Override
-    public void execute(MessageDisplay display, List<Task> taskList) {
+    public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
+        if (taskList.isEmpty()) {
+            System.out.println("There's nothing in your list");
+            MessageDisplay.printLineBreak();
+            return;
+        }
         // Call the printList method to display the tasks
         printList(taskList);
     }

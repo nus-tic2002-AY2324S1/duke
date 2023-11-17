@@ -10,8 +10,8 @@ import duke.task.Task;
  */
 public class UserInterface {
 
-    private UserInterface.UserInput userInput;
-    private UserInterface.MessageDisplay messageDisplay;
+    private final UserInterface.UserInput userInput;
+    private final UserInterface.MessageDisplay messageDisplay;
 
     /**
      * The UserInterface class represents the user interface of the Duke application.
@@ -68,17 +68,14 @@ public class UserInterface {
      */
     public static class MessageDisplay {
 
-        public static final String LINE_BREAK = "****************************************";
+        public static final String LINE_BREAK = "********************************************";
         private static final String LOGO =
-            "╭━━━╮╱╱╱╱╱╭╮\n"
-                + "┃╭━╮┃╱╱╱╱╱┃┃\n"
-                + "┃╰━━┳━━┳━━┫╰━┳━━┳━╮\n"
-                + "╰━━╮┃╭╮┃╭╮┃╭╮┃╭╮┃╭╮╮\n"
-                + "┃╰━╯┃╰╯┃╰╯┃┃┃┃╰╯┃┃┃┃\n"
-                + "╰━━━┻━━┫╭━┻╯╰┻━━┻╯╰╯\n"
-                + "╱╱╱╱╱╱╱┃┃\n"
-                + "╱╱╱╱╱╱╱╰╯\n";
-
+                "███████╗ ██████╗ ██████╗ ██╗  ██╗ ██████╗ ███╗   ██╗" + System.lineSeparator()
+                + "██╔════╝██╔═══██╗██╔══██╗██║  ██║██╔═══██╗████╗  ██║" + System.lineSeparator()
+                + "███████╗██║   ██║██████╔╝███████║██║   ██║██╔██╗ ██║" + System.lineSeparator()
+                + "╚════██║██║   ██║██╔═══╝ ██╔══██║██║   ██║██║╚██╗██║" + System.lineSeparator()
+                + "███████║╚██████╔╝██║     ██║  ██║╚██████╔╝██║ ╚████║" + System.lineSeparator()
+                + "╚══════╝ ╚═════╝ ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝" + System.lineSeparator();
         /**
          * Prints a line break using a predefined LINE_BREAK constant.
          */
@@ -174,11 +171,54 @@ public class UserInterface {
 
 
         /**
-         * Displays a welcome message with the Duke LOGO.
+         * Displays a welcome message for existing user with the Duke LOGO.
          */
-        public void hello() {
+        public void existingUserHello() {
+            System.out.println(LOGO + "Sophon here, Your personal Task assistant! \nHow can I assist you today?");
+            printLineBreak();
+        }
+        /**
+         * Displays an informative guide for new user to help them understand what are the commands available.
+         */
+        public void newUserHello() {
 
-            System.out.println(LOGO + "hello, I'm Sophon:). \nHow can I assist you today?");
+            System.out.println(LOGO + "Hello, I'm Sophon. Your personal Task assistant." + System.lineSeparator()
+                + LINE_BREAK + System.lineSeparator()
+                 + "It seems that you're here for the first time. Here are the list of the "
+                 + "command that can help you with your task management:" + System.lineSeparator()
+                 + "Todo        -> To create a simple to-do task." + System.lineSeparator()
+                + "Deadline    -> To create a deadline task with a deadline." + System.lineSeparator()
+                + "Event       -> To create a event task that comes with a start and end date." + System.lineSeparator()
+                + "Delete      -> To delete a task from the list." + System.lineSeparator()
+                + "Find        -> To find a task from the list using a keyword." + System.lineSeparator()
+                + "List        -> To show all recorded tasks." + System.lineSeparator()
+                + "Mark        -> To mark a task as completed." + System.lineSeparator()
+                + "Unmark      -> To unmark a task as incomplete." + System.lineSeparator()
+                + "On          -> To check if any task is due on a certain deadline." + System.lineSeparator()
+                + "Reschedule  -> To reschedule a task's deadline." + System.lineSeparator()
+                + "You can also use 'help' to learn the command format."
+            );
+            printLineBreak();
+        }
+        /**
+         * Displays an informative guide for new user to help them understand how to interact with Sophon.
+         */
+        public static void helpUserOnCommand() {
+
+            System.out.println("Here are the format of the commands:" + System.lineSeparator()
+                + "Todo        -> <todo> + <Task Name>" + System.lineSeparator()
+                + "Deadline    -> <deadline> + <task name> + </by> + <task due Date (yyyy-MM-dd HH:mm)>"
+                + System.lineSeparator()
+                + "Event       -> <event> + <task name> + </from> + <task start Date (yyyy-MM-dd HH:mm)> "
+                + "+ </to> + <task due Date (yyyy-MM-dd HH:mm)>" + System.lineSeparator()
+                + "Delete      -> <delete> + <task index>" + System.lineSeparator()
+                + "Find        -> <find> + <keyword in task name>" + System.lineSeparator()
+                + "List        -> <list>" + System.lineSeparator()
+                + "Mark        -> <mark> + <task index>" + System.lineSeparator()
+                + "Unmark      -> <unmark> + <task index>" + System.lineSeparator()
+                + "On          -> <on> + <task due Date (yyyy-MM-dd HH:mm)>" + System.lineSeparator()
+                + "Reschedule  -> <reschedule> + <task index> + <task due Date (yyyy-MM-dd HH:mm)>"
+            );
             printLineBreak();
         }
 

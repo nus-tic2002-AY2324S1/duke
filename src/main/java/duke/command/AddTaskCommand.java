@@ -9,7 +9,7 @@ import duke.userinterface.UserInterface.MessageDisplay;
 /**
  * Represents an abstract `AddTaskCommand` that adds tasks to the Duke application.
  */
-abstract class AddTaskCommand extends Command {
+abstract class AddTaskCommand implements Command {
 
     // The name of the task to be added
     protected final String taskName;
@@ -34,7 +34,6 @@ abstract class AddTaskCommand extends Command {
      */
     protected void addTask(FileStorage fileStorage, MessageDisplay display, List<Task> taskList,
                            Task task) {
-
         taskList.add(task);
         storeDuke(fileStorage, taskList);
         display.addedMessage(taskList);

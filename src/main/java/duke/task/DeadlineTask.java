@@ -3,7 +3,7 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import duke.dukeexceptions.DeadlineDateException;
+import duke.dukeexceptions.DueDatePastDateException;
 
 /**
  * Represents a `DeadlineTask` class that extends `Task` and represents a task with a deadline.
@@ -63,17 +63,11 @@ public class DeadlineTask extends Task {
      * @param taskDueDate The new end date for the task.
      */
     @Override
-    public void changeEndDate(LocalDateTime taskDueDate) throws DeadlineDateException {
-
-        try {
-            if (taskDueDate.isBefore(LocalDateTime.now())) {
-                throw new DeadlineDateException();
-            }
-            assert taskDueDate.isAfter(LocalDateTime.now());
-            this.taskDueDate = taskDueDate;
-        } catch (AssertionError e) {
-            throw new DeadlineDateException();
+    public void changeEndDate(LocalDateTime taskDueDate) throws DueDatePastDateException {
+        if (taskDueDate.isBefore(LocalDateTime.now())) {
+            throw new DueDatePastDateException();
         }
+        this.taskDueDate = taskDueDate;
     }
 
     /**

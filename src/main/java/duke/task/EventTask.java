@@ -102,17 +102,10 @@ public class EventTask extends Task {
      */
     @Override
     public void changeEndDate(LocalDateTime taskDueDate) throws EventDateException {
-
-        try {
-            if (taskDueDate.isBefore(taskTo)) {
-                throw new EventDateException();
-            }
-            assert taskDueDate.isAfter(taskTo);
-            this.taskTo = taskDueDate;
-        } catch (AssertionError e) {
+        if (taskDueDate.isBefore(taskFrom)) {
             throw new EventDateException();
         }
-
+        this.taskTo = taskDueDate;
     }
 
 

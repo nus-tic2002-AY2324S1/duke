@@ -16,7 +16,7 @@ import duke.command.MarkAsInCompletedCommand;
 import duke.command.OnCommand;
 import duke.command.RescheduleCommand;
 import duke.dukeexceptions.ChangeTodoDateException;
-import duke.dukeexceptions.DeadlineDateException;
+import duke.dukeexceptions.DueDatePastDateException;
 import duke.dukeexceptions.DukeException;
 import duke.dukeexceptions.EmptyArgumentException;
 import duke.dukeexceptions.EmptyTaskListException;
@@ -28,6 +28,7 @@ import duke.dukeexceptions.InvalidTaskFormatException;
 import duke.dukeexceptions.TaskNotFoundException;
 import duke.filehandler.FileStorage;
 import duke.task.Task;
+import duke.userinterface.UserInterface;
 import duke.userinterface.UserInterface.MessageDisplay;
 
 /**
@@ -36,6 +37,7 @@ import duke.userinterface.UserInterface.MessageDisplay;
 public class CommandValidator {
 
     // Constants for command keywords
+    public static final String HELP_COMMAND = "help";
     public static final String LIST_COMMAND = "list";
     public static final String TODO_COMMAND = "todo";
     public static final String DEADLINE_COMMAND = "deadline";
@@ -51,8 +53,8 @@ public class CommandValidator {
      * Executes the specified command based on user input.
      * This method parses the command from the user input, extracts the relevant arguments,
      * and then executes the corresponding command on the task list. The supported commands
-     * include listing tasks, adding todo/deadline/event tasks, finding tasks, rescheduling
-     * tasks, and modifying tasks (delete/mark/unmark).
+     * include help to guide on command usage, listing tasks, adding todo/deadline/event tasks, finding tasks,
+     * check task on a specific due date, rescheduling tasks, and modifying tasks (delete/mark/unmark).
      *
      * @param fileStorage The file storage for persisting task data.
      * @param display The message display for printing messages to the user.
@@ -62,13 +64,16 @@ public class CommandValidator {
      * @throws DukeException If an unsupported or invalid command is provided,
      *                      or if any specific command execution encounters an exception.
      */
-    public void executeCommand(FileStorage fileStorage, MessageDisplay display, List<Task> taskList,
+    void executeCommand(FileStorage fileStorage, MessageDisplay display, List<Task> taskList,
                                String command, String userInput) throws DukeException {
 
         String arguments = userInput.substring(command.length()).trim();
         switch (command) {
+        case HELP_COMMAND:
+            UserInterface.MessageDisplay.helpUserOnCommand();
+            break;
         case LIST_COMMAND:
-            executeListCommand(display, taskList);
+            executeListCommand(fileStorage, display, taskList);
             break;
         case TODO_COMMAND:
             executeTodoCommand(fileStorage, display, taskList, arguments);
@@ -80,10 +85,10 @@ public class CommandValidator {
             executeEventCommand(fileStorage, display, taskList, arguments);
             break;
         case ON_COMMAND:
-            executeOnCommand(display, taskList, arguments);
+            executeOnCommand(fileStorage, display, taskList, arguments);
             break;
         case FIND_COMMAND:
-            executeFindCommand(display, taskList, arguments);
+            executeFindCommand(fileStorage, display, taskList, arguments);
             break;
         case RESCHEDULE_COMMAND:
             rescheduleTask(fileStorage, display, taskList, arguments);
@@ -91,7 +96,7 @@ public class CommandValidator {
         case DELETE_COMMAND:
         case MARK_COMMAND:
         case UNMARK_COMMAND:
-            modifyTask(fileStorage, display, taskList, userInput);
+            modifyTask(fileStorage, display, taskList, command, arguments);
             break;
         default:
             throw new InvalidCommandException();
@@ -147,14 +152,11 @@ public class CommandValidator {
         try {
             LocalDateTime taskDueDate = DukeParser.parseDateTimeOrDate(taskDueDateString);
             if (taskDueDate.isBefore((LocalDateTime.now()))) {
-                throw new DeadlineDateException();
+                throw new DueDatePastDateException();
             }
-            assert taskDueDate.isAfter(LocalDateTime.now());
             new AddDeadlineCommand(taskName, taskDueDate).execute(fileStorage, display, taskList);
         } catch (DateTimeParseException e) {
             throw new InvalidTaskFormatException(DEADLINE_COMMAND);
-        } catch (AssertionError e) {
-            throw new DeadlineDateException();
         }
     }
 
@@ -169,16 +171,16 @@ public class CommandValidator {
      * @throws DukeException If an empty date string is encountered or provided for the "on" command,
      *                      or an invalid date format is provided.
      */
-    private void executeOnCommand(MessageDisplay display, List<Task> taskList, String arguments)
+    private void executeOnCommand(FileStorage fileStorage, MessageDisplay display,
+                                  List<Task> taskList, String arguments)
             throws DukeException {
-
         String dateString = arguments.trim();
         if (dateString.isEmpty()) {
             throw new EmptyArgumentException(ON_COMMAND);
         }
         try {
             LocalDate date = DukeParser.parseDate(dateString);
-            new OnCommand(date).execute(display, taskList);
+            new OnCommand(date).execute(fileStorage, display, taskList);
         } catch (DateTimeParseException e) {
             throw new InvalidDateFormatException();
         }
@@ -194,14 +196,14 @@ public class CommandValidator {
      * @param arguments The user input arguments specifying the keyword for the find command.
      * @throws DukeException If an empty keyword is encountered or provided for the find command.
      */
-    private void executeFindCommand(MessageDisplay display, List<Task> taskList, String arguments)
+    private void executeFindCommand(FileStorage fileStorage, MessageDisplay display,
+                                    List<Task> taskList, String arguments)
             throws DukeException {
-
         String keywordString = arguments.trim();
         if (keywordString.isEmpty()) {
             throw new EmptyArgumentException(FIND_COMMAND);
         }
-        new FindCommand(keywordString).execute(display, taskList);
+        new FindCommand(keywordString).execute(fileStorage, display, taskList);
     }
 
     /**
@@ -239,13 +241,13 @@ public class CommandValidator {
             if (taskFromDateTime.isAfter(taskToDateTime)) {
                 throw new EventDateException();
             }
-            assert taskFromDateTime.isBefore(taskToDateTime);
+            if (taskToDateTime.isBefore(LocalDateTime.now())) {
+                throw new DueDatePastDateException();
+            }
             new AddEventCommand(taskName, taskFromDateTime, taskToDateTime).execute(fileStorage, display,
                 taskList);
         } catch (DateTimeParseException e) {
             throw new InvalidTaskFormatException(EVENT_COMMAND);
-        } catch (AssertionError e) {
-            throw new EventDateException();
         }
     }
 
@@ -256,9 +258,9 @@ public class CommandValidator {
      * @param display The message display for printing messages to the user.
      * @param taskList The list of tasks to be listed.
      */
-    private void executeListCommand(MessageDisplay display, List<Task> taskList) {
+    private void executeListCommand(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
 
-        new ListCommand().execute(display, taskList);
+        new ListCommand().execute(fileStorage, display, taskList);
     }
 
     /**
@@ -281,7 +283,13 @@ public class CommandValidator {
         }
         try {
             int itemIndex = DukeParser.parseInteger(input[0]) - 1;
-            LocalDateTime revisedDateTime = DukeParser.parseDateTimeOrDate(input[1]);
+            String revisedDateTimeString;
+            if (input.length > 2) {
+                revisedDateTimeString = input[1] + " " + input[2];
+            } else {
+                revisedDateTimeString = input[1];
+            }
+            LocalDateTime revisedDateTime = DukeParser.parseDateTimeOrDate(revisedDateTimeString);
             // Item index must be positive and does not exceed the maximum number of tasks in the list.
             if (itemIndex < 0 || itemIndex >= taskList.size()) {
                 throw new TaskNotFoundException();
@@ -292,8 +300,6 @@ public class CommandValidator {
             new RescheduleCommand(itemIndex, revisedDateTime).execute(fileStorage, display, taskList);
         } catch (DateTimeParseException e) {
             throw new InvalidDateFormatException();
-        } catch (AssertionError e) {
-            throw new TaskNotFoundException();
         }
     }
 
@@ -308,21 +314,24 @@ public class CommandValidator {
      * @param fileStorage The file storage for persisting task data.
      * @param display The message display for printing messages to the user.
      * @param taskList The list of tasks to be modified.
-     * @param userInput The user input specifying the modification command and task index.
+     * @param command The user input specifying the modification command and task index.
+     * @param argument The remaining of user input which contain the task index
      * @throws DukeException If the task list is empty, an invalid command or
      *                      task index is provided, or an empty argument is encountered.
      */
 
-    public void modifyTask(FileStorage fileStorage, MessageDisplay display, List<Task> taskList,
-                           String userInput) throws DukeException {
-        if (taskList.isEmpty()) {
-            throw new EmptyTaskListException();
+    private void modifyTask(FileStorage fileStorage, MessageDisplay display, List<Task> taskList,
+                           String command, String argument) throws DukeException {
+        if (argument.isEmpty()) {
+            throw new EmptyArgumentException(command);
         }
         try {
-            String command = DukeParser.parseCommandFromInput(userInput);
-            int itemIndex = DukeParser.extractItemIndex(taskList, command, userInput);
+            int itemIndex = DukeParser.extractItemIndex(taskList, command, argument);
             if (itemIndex == -1) {
                 return;
+            }
+            if (taskList.isEmpty()) {
+                throw new EmptyTaskListException();
             }
             if (itemIndex < 0 || itemIndex >= taskList.size()) {
                 throw new TaskNotFoundException();
@@ -343,8 +352,6 @@ public class CommandValidator {
         } catch (InvalidNumberFormatException e) {
             System.out.printf("%s\n", e.getMessage());
             MessageDisplay.printLineBreak();
-        } catch (AssertionError e) {
-            throw new TaskNotFoundException();
         }
     }
 

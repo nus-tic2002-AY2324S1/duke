@@ -15,7 +15,7 @@ import duke.userinterface.UserInterface;
  */
 public class Duke {
 
-    public final UserInterface userInterface;
+    private final UserInterface userInterface;
     private final DukeParser dukeParser;
     private final FileRead fileRead;
 
@@ -54,11 +54,14 @@ public class Duke {
     /**
      * Starts the Duke application, greets the user, and handles user input.
      */
-    public void start() {
+    private void start() {
 
-        fileRead.getSavedTask(taskList);
-        // Greet the user
-        userInterface.getMessageDisplay().hello();
+        boolean isNewUser = fileRead.getSavedTask(taskList);
+        if (isNewUser) {
+            userInterface.getMessageDisplay().newUserHello();
+        } else {
+            userInterface.getMessageDisplay().existingUserHello();
+        }
         while (true) {
             String userInput = this.userInterface.getUserInput().getLine();
             UserInterface.MessageDisplay.printLineBreak();
@@ -70,11 +73,6 @@ public class Duke {
         }
         userInterface.getUserInput().closeScanner();
         userInterface.getMessageDisplay().goodbye();
-    }
-
-    public List<Task> getTaskList() {
-
-        return taskList;
     }
 
 }

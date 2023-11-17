@@ -37,6 +37,7 @@ public class AddDeadlineCommand extends AddTaskCommand {
      */
     @Override
     public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
+        assert !taskName.isEmpty() : "Task name can't be blank!";
         // Create a `DeadlineTask` with the specified task name and task due date
         Task task = new DeadlineTask(taskName, taskDueDate);
         // Add the created `DeadlineTask` to the task list

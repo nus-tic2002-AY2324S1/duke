@@ -12,6 +12,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import duke.filehandler.FileStorage;
 import duke.task.DeadlineTask;
 import duke.task.Task;
 import duke.userinterface.UserInterface.MessageDisplay;
@@ -25,6 +26,8 @@ public class OnCommandTest {
     private List<Task> taskList;
     private ByteArrayOutputStream outputStream;
     private OnCommand onCommand;
+    private MessageDisplay display;
+    private FileStorage fileStorage;
 
     /**
      * Set up the test environment before each test case.
@@ -36,6 +39,8 @@ public class OnCommandTest {
         taskList = new ArrayList<>();
         outputStream = new ByteArrayOutputStream();
         onCommand = new OnCommand(checkDate);
+        display = new MessageDisplay();
+        fileStorage = new FileStorage();
     }
 
     /**
@@ -54,7 +59,7 @@ public class OnCommandTest {
     void testCheckTasksWithEmptyTaskList() {
 
         System.setOut(new PrintStream(outputStream));
-        onCommand.checkTasks(taskList, checkDate);
+        onCommand.execute(fileStorage, display, taskList);
         System.setOut(System.out);
         String expectedOutput =
                 "There's nothing on " + checkDate + System.lineSeparator() + MessageDisplay.LINE_BREAK

@@ -30,6 +30,7 @@ public class MarkAsCompletedCommand extends ModifyTaskCommand {
      */
     @Override
     public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList) {
+        assert !taskList.isEmpty() : "Task list can't be empty!";
         // Get the task to mark as completed from the task list
         Task task = taskList.get(itemIndex);
         if (task.isCompleted()) {

@@ -126,6 +126,7 @@ public class DukeParser {
      * appropriate exception and prints an error message.
      *
      * @param taskList The list of tasks.
+     * @param command The extracted command
      * @param userInput The user input string containing the task index.
      * @return The validated item index in the task list.
      * @throws DukeException If the task index is out of bounds or cannot be parsed,
@@ -134,12 +135,10 @@ public class DukeParser {
     static int extractItemIndex(List<Task> taskList, String command , String userInput) throws DukeException {
 
         try {
-            int spaceIndex = userInput.indexOf(' ');
-            String integerPart = userInput.substring(spaceIndex + 1).trim();
-            if (integerPart.isEmpty()) {
+            if (userInput.isEmpty()) {
                 throw new EmptyArgumentException(command);
             }
-            int itemIndex = parseInteger(integerPart) - 1;
+            int itemIndex = parseInteger(userInput) - 1;
             if (itemIndex < 0 || itemIndex >= taskList.size()) {
                 // Handle exception case where the item index is out of bounds or does not exist
                 throw new TaskNotFoundException();

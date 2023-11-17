@@ -11,10 +11,8 @@ import duke.userinterface.UserInterface.MessageDisplay;
 /**
  * Represents a `RescheduleCommand` to reschedule a task by extending its end date.
  */
-public class RescheduleCommand extends Command {
+public class RescheduleCommand extends ModifyTaskCommand {
 
-    // The index of the task to be rescheduled.
-    private final int itemIndex;
     private final LocalDateTime revisedDateTime;
 
     /**
@@ -23,9 +21,8 @@ public class RescheduleCommand extends Command {
      * @param itemIndex The index of the task to be rescheduled.
      */
     public RescheduleCommand(int itemIndex, LocalDateTime revisedDateTime) {
-
+        super(itemIndex);
         this.revisedDateTime = revisedDateTime;
-        this.itemIndex = itemIndex;
     }
 
     /**
@@ -38,7 +35,7 @@ public class RescheduleCommand extends Command {
     @Override
     public void execute(FileStorage fileStorage, MessageDisplay display, List<Task> taskList)
             throws DukeException {
-
+        assert !taskList.isEmpty() : "Task list can't be empty!";
         taskList.get(itemIndex).changeEndDate(revisedDateTime);
         storeDuke(fileStorage, taskList);
         display.rescheduleMessage(taskList.get(itemIndex));

@@ -9,53 +9,50 @@ Find
 On
 List
 Reschedule
-Deadline Read book
-Deadline Read book /by
-Deadline Read book /by Not a Date
+Deadline duke project
+Deadline duke project /by
+Deadline duke project /by Not a Date
 Deadline /by 2023-12-31
-Event Return Book
-Event Return Book /from /by
-Event Return Book /from Not a Date
-Event Return Book /by Not a Date
+Event Software Engineering Exam
+Event Software Engineering Exam /from /by
+Event Software Engineering Exam /from Not a Date
+Event Software Engineering Exam /by Not a Date
 Event /from 2023-11-20 /to 2023-12-01
 Mark NotNumber
 Unmark NotNumber
 Delete NotNumber
 Find Empty list
-Todo gym
+Deadline duke project /by 2023-11-19
 Mark NotNumber
 Unmark NotNumber
 Delete NotNumber
-Find Empty list
+Find Nomatch
 On Not a Date
-Reschedule Not number 2023-12-01
+Reschedule NotNumber 2023-12-01
 Reschedule 1 Not a Date
-Deadline Borrow Book /by 2023-12-16 20:00
-Deadline Homework /by 2023-12-20
-Event Return Book /from 2023-12-22 23:00 /to 2023-12-24 12:00
-Event Group Project /from 2023-12-10 /to 2023-12-24 12:00
-Deadline Dinner /by 2023-12-15
+Event Software Engineering Exam /from 2023-12-04 13:00 /to 2023-12-04 14:30
+Todo gym
+Event Statistics & Probabilities Exam /from 2023-11-25 09:00 /to 2023-11-25 11:00
+Deadline Family Dinner /by 2023-12-25 13:00
 List
 Mark 2
 Mark 7
-Mark -1
 Mark 4
 Mark 4
 Unmark 1
 Unmark 2
-Unmarked 7
 Unmarked -1
 Unmark 2
 Reschedule 6 2023-12-25
-Reschedule 1 2022-12-11
-Reschedule 2 2022-12-11
-Reschedule -1 2023-12-14
+Reschedule 3 2023-12-23
+Reschedule 5 2023-11-25 19:00
 List
-Delete 1
-Delete -1
-Delete 10
+Delete 3
+Delete 5
 List
-Find book
-reschedule 2 2023-12-25
-On 2023-12-25
+Find exam
+Find Stats
+Find Probability
+on 2023-11-25
+on 2023-12-25
 Bye
