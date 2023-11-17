@@ -44,7 +44,13 @@ list
 mark
 mark 0
 mark 99
+mark 2
+todo test /after 2222-2-2 0202
+mark 13
+delete 13
 mark 1
+list
+mark 2
 list
 mark 4
 list
@@ -56,6 +62,7 @@ date 2019-10-15
 unmark
 unmark 0
 unmark 99
+unmark 1
 unmark 2
 list
 unmark 4
@@ -65,6 +72,7 @@ list
 delete
 delete 0
 delete 99
+delete 1
 delete 12
 list
 delete 5

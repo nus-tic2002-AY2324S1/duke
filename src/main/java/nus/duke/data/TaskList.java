@@ -2,9 +2,11 @@ package nus.duke.data;
 
 import java.text.MessageFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import nus.duke.data.tasks.AbstractTask;
@@ -85,6 +87,24 @@ public class TaskList implements Iterable<AbstractTask> {
     }
 
     /**
+     * Gets a sorted map of tasks that depend on a specific task number.
+     *
+     * @param taskNumber The task number to check for dependencies.
+     * @return A sorted map of task indexes as keys and tasks that depend on the specified task number as values.
+     */
+    public SortedMap<Integer, AbstractTask> getAllTasksDependingOn(int taskNumber) {
+        SortedMap<Integer, AbstractTask> result = new TreeMap<>();
+        for (int i = 0; i < tasks.size(); i++) {
+            AbstractTask task = tasks.get(i);
+            TaskAfterOption afterOption = task.getAfterOption();
+            if (afterOption != null && afterOption.isAfterTask() && afterOption.getTaskNumber() == taskNumber) {
+                result.put(i, task);
+            }
+        }
+        return result;
+    }
+
+    /**
      * Retrieves a task at a specified index in the list.
      *
      * @param index The index of the task to retrieve.
@@ -104,15 +124,73 @@ public class TaskList implements Iterable<AbstractTask> {
     }
 
     /**
-     * Removes a task at the specified index from the list.
+     * Marks a task as completed at the specified index, taking task dependencies into account.
+     *
+     * @param index The index of the task to be marked as completed.
+     * @return The completed task.
+     * @throws InvalidCommandArgsDukeException If a task dependency is not completed.
+     */
+    public AbstractTask markTask(int index) throws InvalidCommandArgsDukeException {
+        assert index >= 0 && index < tasks.size();
+
+        AbstractTask task = getTask(index);
+        TaskAfterOption afterOption = task.getAfterOption();
+        if (afterOption != null) {
+            if (afterOption.isAfterTask()) {
+                int dependencyTaskNumber = afterOption.getTaskNumber();
+                int dependencyTaskIndex = dependencyTaskNumber - 1;
+                assert dependencyTaskIndex >= 0 && dependencyTaskIndex < tasks.size();
+                AbstractTask dependencyTask = getTask(dependencyTaskIndex);
+                if (!dependencyTask.getDone()) {
+                    throw new InvalidCommandArgsDukeException(
+                        String.format("The dependent task #%d is not yet done.", dependencyTaskNumber));
+                }
+            } else if (afterOption.isAfterTime()) {
+                LocalDateTime dependencyDateTime = afterOption.getDateTime();
+                if (LocalDateTime.now().isBefore(dependencyDateTime)) {
+                    throw new InvalidCommandArgsDukeException("The dependent datetime has not yet been reached.");
+                }
+            }
+        }
+        task.setDone(true);
+        return task;
+    }
+
+    /**
+     * Unmarks a task as not done at the specified index, considering task dependencies.
+     *
+     * @param index The index of the task to be marked as not done.
+     * @return The task that has been marked as not done.
+     * @throws InvalidCommandArgsDukeException If a task dependency is already marked as done.
+     */
+    public AbstractTask unmarkTask(int index) throws InvalidCommandArgsDukeException {
+        int taskNumber = index + 1;
+        SortedMap<Integer, AbstractTask> tasksDependingOn = getAllTasksDependingOn(taskNumber);
+        for (Map.Entry<Integer, AbstractTask> entry : tasksDependingOn.entrySet()) {
+            int taskIndexDependingOn = entry.getKey();
+            AbstractTask task = entry.getValue();
+            if (task.getDone()) {
+                int taskNumberDependingOn = taskIndexDependingOn + 1;
+                throw new InvalidCommandArgsDukeException(
+                    String.format("The task #%d which depends on this task has been already done.",
+                        taskNumberDependingOn));
+            }
+        }
+        AbstractTask task = getTask(index);
+        task.setDone(false);
+        return task;
+    }
+
+    /**
+     * Deletes a task at the specified index from the list.
      *
      * @param index The index of the task to remove.
      * @throws InvalidCommandArgsDukeException if the provided index is out of range.
      */
-    public void removeTask(int index) throws InvalidCommandArgsDukeException {
+    public void deleteTask(int index) throws InvalidCommandArgsDukeException {
         assert index >= 0 && index < tasks.size();
 
-        onRemoveTask(index);
+        onDeleteTask(index);
         tasks.remove(index);
     }
 
@@ -131,12 +209,12 @@ public class TaskList implements Iterable<AbstractTask> {
     }
 
     /**
-     * Handles the adjustments needed when a task is to be removed from the list.
+     * Handles the adjustments needed when a task is to be deleted from the list.
      *
      * @param taskIndex The index of the task to be removed.
      * @throws InvalidCommandArgsDukeException if a task depends on the task to be removed.
      */
-    private void onRemoveTask(int taskIndex) throws InvalidCommandArgsDukeException {
+    private void onDeleteTask(int taskIndex) throws InvalidCommandArgsDukeException {
         int deletingTaskNumber = taskIndex + 1;
         for (int i = taskIndex + 1; i < tasks.size(); i++) {
             AbstractTask task = getTask(i);

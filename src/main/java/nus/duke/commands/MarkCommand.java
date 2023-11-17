@@ -36,8 +36,7 @@ public class MarkCommand extends AbstractCommand {
             throw new InvalidCommandArgsDukeException("Invalid task number to be marked.");
         }
 
-        AbstractTask task = tasks.getTask(taskNumber - 1);
-        task.setDone(true);
+        AbstractTask task = tasks.markTask(taskNumber - 1);
         storage.save(tasks);
         return new String[] {
             "Nice! I've marked this task as done:",
