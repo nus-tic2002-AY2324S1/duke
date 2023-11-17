@@ -1,0 +1,12 @@
+Genebot
+list
+read book
+return book
+borrow book
+list
+mark 1
+mark 3
+list
+unmark 3
+list
+bye
