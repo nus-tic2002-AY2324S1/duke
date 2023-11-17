@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Child class of SpecialTask
  */
 public class DateTask extends SpecialTask {
-    protected LocalDateTime deadline;
+    public LocalDateTime deadline;
     public DateTask(String type, String description, String deadline) {
         super(type, description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");

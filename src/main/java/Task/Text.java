@@ -32,6 +32,13 @@ public class Text { //aka UI
     private static final String NOITEM = newline +
             "No items found!, Please add items" + "\n" +
             newline;
+
+    public static final String NOMATCHINGTASK = newline +
+            "There are no matches found with this keyword." + "\n" +
+            "Please use another keyword instead" + "\n" +
+            newline;
+    public static final String MATCHINGTASK = newline +
+            "Here are the matching tasks in your list:" + "\n";
     public static void showWelcome(){
         printMessage(Text.Message.LOGO);
         printMessage(Text.Message.GREETING);

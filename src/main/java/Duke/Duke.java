@@ -1,5 +1,5 @@
 package Duke;
-import Task.Shelf;
+import Shelf.Shelf;
 import Task.Text;
 
 import java.io.IOException;

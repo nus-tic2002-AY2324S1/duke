@@ -1,5 +1,5 @@
 package Duke;
-import Task.Shelf;
+import Shelf.Shelf;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -59,7 +59,7 @@ public class Storage {
         return shelfData;
     }
 
-    public static Shelf FileParser(String shelfData) throws DukeException { //converts file string into Task.Shelf arraylist
+    public static Shelf FileParser(String shelfData) throws DukeException { //converts file string into Shelf.Shelf arraylist
         Shelf newlist = new Shelf();
         int line_no = 1;
 

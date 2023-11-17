@@ -1,5 +1,10 @@
-package Task;
+package Shelf;
 import Duke.DukeException;
+import Task.DateTask;
+import Task.SpecialTask;
+import Task.Task;
+import Task.Text;
+
 import java.util.ArrayList;
 /**
  * Methods to manipulate a list of information in the database based on user command
@@ -11,6 +16,18 @@ public class Shelf {
     public Shelf(){
         shelf = new ArrayList<>();
     }
+    public static String listItem(Integer i){
+        String listString = i + 1 + ": " + "["  + shelf.get(i).printTypeIcon() + "]" + "["  + shelf.get(i).printStatusIcon() + "]" + shelf.get(i).getDescription();
+        if (shelf.get(i) instanceof DateTask){
+            DateTask dateTask = (DateTask) shelf.get(i);
+            listString += dateTask.showDate();
+        }
+        String tags = shelf.get(i).getTagSeries();
+        if (!tags.isEmpty()) {
+            listString += " " + tags;
+        }
+        return listString;
+    }
     public static void listShelf(){
         if(shelf.isEmpty()){
             Text.printMessage(Text.Message.NOITEM);
@@ -19,18 +36,7 @@ public class Shelf {
         System.out.print(Text.newline);
         System.out.println("No. [Type] [Marking] Description (Date) #tag1..."); // listing sequence
         for(int i = 0; i < shelf.size(); i++){
-
-            String listString = i + 1 + ": " + "["  + shelf.get(i).printTypeIcon() + "]" + "["  + shelf.get(i).printStatusIcon() + "]" + shelf.get(i).description;
-
-            if (shelf.get(i) instanceof DateTask){
-                DateTask dateTask = (DateTask) shelf.get(i);
-                listString += dateTask.showDate();
-            }
-            String tags = shelf.get(i).getTagSeries();
-            if (!tags.isEmpty()) {
-                listString += " " + tags;
-            }
-            System.out.println(listString);
+            System.out.println(listItem(i));
         }
         System.out.println(Text.newline);
     }
@@ -66,7 +72,7 @@ public class Shelf {
             Task.setUnmarked(shelf.get(idx));
             System.out.println("OK, I've marked this task as not done yet:");
         }
-        System.out.println("[" + shelf.get(idx).printStatusIcon() + "]" + shelf.get(idx).description + "\n" + Text.newline);
+        System.out.println("[" + shelf.get(idx).printStatusIcon() + "]" + shelf.get(idx).getDescription() + "\n" + Text.newline);
     }
     public static void addSpecialTask(String type, String item){
         SpecialTask t = new SpecialTask(type,item);
@@ -104,6 +110,24 @@ public class Shelf {
             Task.removeTag(shelf.get(idx), tag);
         }
     }
+    public static void findItem(String keyword){
+        ArrayList<Integer> idxArray = new ArrayList<>();
+        for(int i = 0; i < shelf.size(); i++ ){
+            String description = shelf.get(i).getDescription();
+            if(description.contains(keyword)){
+                idxArray.add(i);
+            }
+        }
+        if(!idxArray.isEmpty()){
+            System.out.print(Text.MATCHINGTASK);
+            for(Integer idx : idxArray){
+                System.out.println(listItem(idx));
+            }
+            System.out.print(Text.newline);
+        }else {
+            System.out.println(Text.NOMATCHINGTASK);
+        }
+    }
     public static String ShelftoString(){
         String save = "";
         String deadline = "~";
@@ -113,7 +137,7 @@ public class Shelf {
                 DateTask dateTask = (DateTask) specialTask;
                 deadline = DateTask.dateToString(dateTask.deadline);
             }
-            save += specialTask.getType() + "|" + specialTask.getStatus() + "|" + specialTask.description + "|" + deadline + "|" + tags + "|" + "\n";
+            save += specialTask.getType() + "|" + specialTask.getStatus() + "|" + specialTask.getDescription() + "|" + deadline + "|" + tags + "|" + "\n";
         }
         return save;
     }

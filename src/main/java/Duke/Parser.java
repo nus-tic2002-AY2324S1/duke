@@ -1,7 +1,5 @@
 package Duke;
-import Duke.DukeException;
-import Task.Shelf;
-import Task.Task;
+import Shelf.Shelf;
 import Task.Text;
 
 import java.io.IOException;
@@ -48,6 +46,9 @@ public class Parser {
                     break;
                 case "-":
                     Shelf.removeTagfromlist(input[1], input[2]);
+                    break;
+                case "find":
+                    Shelf.findItem(input[1]);
                     break;
                 case "delete":
                     Shelf.deleteTask(input[1]);
