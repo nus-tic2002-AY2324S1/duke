@@ -63,7 +63,7 @@ public class Storage {
                 String string = s.nextLine();
                 String[] line = string.split(RegExp.LINE_DELIMITER);
 
-                switch (line[0]) {
+                switch (line[0].toUpperCase()) {
                 case "E":
                     // doesnt add invalid task
                     if (!Pattern.matches(RegExp.FILE_STORAGE_EVENT_FORMAT, string)) {
@@ -100,7 +100,7 @@ public class Storage {
                     continue;
                 }
 
-                tasks.get(counter).setTaskPriority(Priority.valueOf(line[1]));
+                tasks.get(counter).setTaskPriority(Priority.valueOf(line[1].toUpperCase()));
 
                 if (line[2].equals(TRUE_STRING)) {
                     t = tasks.get(counter);
