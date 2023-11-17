@@ -15,7 +15,7 @@ public class Duke {
         } catch (FileNotFoundException e) {
             list = new ListTask();
         }
-        ui.Run(list, parse);
+        ui.run(list, parse);
         try{
             storage.save(list);
         }

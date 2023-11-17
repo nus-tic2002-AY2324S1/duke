@@ -11,13 +11,13 @@ import java.util.ArrayList;
  * The ListTask class is responsible for holding the list of tasks and manipulating tasks
  */
 public class ListTask {
-    protected ArrayList<Task> List;
+    protected ArrayList<Task> list;
 
     /**
      * constructor for ListTask
      */
     public ListTask(){
-        List = new ArrayList<>();
+        list = new ArrayList<>();
     }
 
     /**
@@ -25,13 +25,13 @@ public class ListTask {
      * @return true if empty , false otherwise
      */
     public boolean isEmpty(){
-        return List.isEmpty();
+        return list.isEmpty();
     }
 
     /**
      * prints separator line
      */
-    public static void Separator(){
+    public static void separator(){
         System.out.println("__________________________");
     }
 
@@ -41,7 +41,7 @@ public class ListTask {
      * @param T task to be added into the list
      */
     public void add(Task T){
-        List.add(T);
+        list.add(T);
     }
 
     /**
@@ -49,7 +49,7 @@ public class ListTask {
      * @return size of list
      */
     public Integer size(){
-        return List.size();
+        return list.size();
     }
 
     /**
@@ -58,7 +58,7 @@ public class ListTask {
      * @return task in the list
      */
     public Task get(Integer i){
-        return List.get(i);
+        return list.get(i);
     }
 
     /**
@@ -68,17 +68,17 @@ public class ListTask {
      */
     public void removeTask(int number){
         ArrayList<Task> StorageUpdate = new ArrayList<>();
-        for(int i=0;i< List.size();i++){
+        for(int i = 0; i< list.size(); i++){
             if(i != number) {
-                StorageUpdate.add(List.get(i));
+                StorageUpdate.add(list.get(i));
             }
             else {
-                Separator();
+                separator();
                 System.out.println("Cate has deleted this Task:");
-                System.out.println(List.get(i));
+                System.out.println(list.get(i));
             }
         }
-        List = StorageUpdate;
+        list = StorageUpdate;
     }
 
     /**
@@ -87,20 +87,20 @@ public class ListTask {
      * @param k flavor text after listing all tasks
      */
     public void listAll(Keyword k){
-        Separator();
+        separator();
         System.out.println("Here is your list of Tasks");
-        for (int i = 0; i < List.size(); i++) {
-            System.out.println(i + 1 + "." + List.get(i));
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(i + 1 + "." + list.get(i));
         }
-        if(List.isEmpty())
+        if(list.isEmpty())
             System.out.println("Well done , the List is now empty");
         else if(k==Keyword.LIST)
-            System.out.println("Work harder, there is " + List.size() + " more task now");
+            System.out.println("Work harder, there is " + list.size() + " more task now");
         else if (k==Keyword.DELETE)
-            System.out.println("Great! there is only " + List.size() + " task in the List now");
+            System.out.println("Great! there is only " + list.size() + " task in the List now");
         else if (k==Keyword.SORT)
             System.out.println("The List has been sorted with the earliest End Date at the top");
-        Separator();
+        separator();
     }
 
     /**
@@ -110,12 +110,12 @@ public class ListTask {
      */
     public void findTask(String line) {
         ArrayList<Task> Found = new ArrayList<>();
-        for (Task task : List) {
+        for (Task task : list) {
             if (task.toString().contains(line)) {
                 Found.add(task);
             }
         }
-        Separator();
+        separator();
         if (Found.isEmpty()) {
             System.out.println("Oops , Cate did not find any matching Tasks");
         } else {
@@ -124,7 +124,7 @@ public class ListTask {
                 System.out.println(i + 1 + "." + Found.get(i));
             }
         }
-        Separator();
+        separator();
     }
 
     /**
@@ -135,11 +135,11 @@ public class ListTask {
         ArrayList<Task> PreSort = new ArrayList<>();
         ArrayList<Task> Sorted = new ArrayList<>();
         ArrayList<Task> Arrangement = new ArrayList<>();
-        for ( Task task : List){
+        for ( Task task : list){
             if(task.getTag().equals("T"))
                 Arrangement.add(task);
         }
-        for ( Task task : List){
+        for ( Task task : list){
             if(task.getTag().equals("D"))
                 PreSort.add(task);
             if(task.getTag().equals("E"))
@@ -159,7 +159,7 @@ public class ListTask {
         Sorted.add(earliest);
         }
         Arrangement.addAll(Sorted);
-        List=Arrangement;
+        list =Arrangement;
     }
 
     /**
@@ -171,7 +171,7 @@ public class ListTask {
         LocalDateTime ViewDay = Parser.constructDateTime(date+" 00:00");
         ArrayList<Task> PreSort = new ArrayList<>();
         ArrayList<Task> Sorted = new ArrayList<>();
-        for ( Task task : List){
+        for ( Task task : list){
             if(task.getStatusIcon().equals(" ")) {
                 if (task.getTag().equals("D")){
                     PreSort.add(task);
@@ -189,11 +189,11 @@ public class ListTask {
             if(ViewDay.isBefore(task.endTime()))
                 Sorted.add(task);
         }
-        Separator();
+        separator();
         System.out.println("Here is the schedule for " + date + " that has not been marked done");
         for (int i = 0; i < Sorted.size(); i++) {
             System.out.println(i + 1 + "." + Sorted.get(i));
         }
-        Separator();
+        separator();
     }
 }

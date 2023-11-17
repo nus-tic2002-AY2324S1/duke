@@ -8,7 +8,7 @@ public class UI {
     /**
      * prints logo of the UI
      */
-    public static void Logo(){
+    public static void logo(){
         String logo = " _ _ _              _ \n"
                 + "|  _ _ \\   __    _ | | _    _ _\n"
                 + "| |      / __ \\ | _   _ | / __ \\\n"
@@ -19,9 +19,9 @@ public class UI {
     /**
      * prints the welcome message at the start of the application run.
      */
-    public static void Greeter(){
+    public static void greeter(){
         Separator();
-        Spacer();
+        spacer();
         System.out.println("Hello! I am Cate");
         System.out.println("How may I help you?");
         Separator();
@@ -35,7 +35,7 @@ public class UI {
     /**
      * print blank space line
      */
-    public static void Spacer(){
+    public static void spacer(){
         System.out.println("    ");
     }
     /**
@@ -43,13 +43,13 @@ public class UI {
      *
      * @param i number of task
      */
-    public static void TaskCount(int i){
+    public static void taskCount(int i){
         System.out.println("The list is increasing , there is "+ i +" Tasks now");
     }
     /**
      * prints default error message
      */
-    public static void ErrorDuke(){
+    public static void errorDuke(){
         Separator();
         System.out.println("Cate does not know what this means");
         System.out.println("The available commands are : list , mark , unmark , todo , deadline , event , bye , find , view");
@@ -58,7 +58,7 @@ public class UI {
     /**
      * @return string input from scans
      */
-    public static String Scan(){
+    public static String scan(){
         String line;
         Scanner in = new Scanner(System.in);
         line = in.nextLine();
@@ -71,7 +71,7 @@ public class UI {
      * @param list list of tasks
      * @param number task number in list
      */
-    public static void Response(Keyword input,ListTask list,Integer number){
+    public static void response(Keyword input, ListTask list, Integer number){
         switch (input){
             case SORT:
             case DELETE:
@@ -99,21 +99,21 @@ public class UI {
                 Separator();
                 System.out.println("Just do it");
                 System.out.println(list.get(number));
-                TaskCount(list.size());
+                taskCount(list.size());
                 Separator();
                 break;
             case DEADLINE:
                 Separator();
                 System.out.println("Time is ticking");
                 System.out.println(list.get(number));
-                TaskCount(list.size());
+                taskCount(list.size());
                 Separator();
                 break;
             case EVENT:
                 Separator();
                 System.out.println("Track the duration");
                 System.out.println(list.get(number));
-                TaskCount(list.size());
+                taskCount(list.size());
                 Separator();
                 break;
         }
@@ -125,64 +125,64 @@ public class UI {
      * @param Storage List class used to run UI
      * @param Checker Parser class used to run UI
      */
-    public void Run(ListTask Storage,Parser Checker){
-        Logo();
-        Greeter();
+    public void run(ListTask Storage, Parser Checker){
+        logo();
+        greeter();
         Task Selector;
         boolean Power=true;
         while(Power){
             try {
-                String line = Scan();
+                String line = scan();
                 String[] words = line.split(" ");
                 Keyword key = Keyword.valueOf(words[0].toUpperCase());
                 Checker.checkError(key,line,Storage);
-                if(Checker.getNoError())
+                if(Checker.getError())
                     switch (key) {
                         case VIEW:
                             Storage.viewSchedule(words[1]);
                             break;
                         case SORT:
                             Storage.sortSchedule();
-                            Response(key,Storage,0);
+                            response(key,Storage,0);
                             break;
                         case DELETE:
                             Storage.removeTask(Integer.parseInt(words[1]) - 1);
-                            Response(key,Storage,Integer.parseInt(words[1]) - 1);
+                            response(key,Storage,Integer.parseInt(words[1]) - 1);
                             break;
                         case BYE:
-                            Response(key,Storage,0);
+                            response(key,Storage,0);
                             Power = false;
                             break;
                         case LIST:
-                            Response(key,Storage,0);
+                            response(key,Storage,0);
                             break;
                         case MARK:
                             Selector = Storage.get(Integer.parseInt(words[1]) - 1);
                             Selector.mark(true);
-                            Response(key,Storage,Integer.parseInt(words[1]) - 1);
+                            response(key,Storage,Integer.parseInt(words[1]) - 1);
                             break;
                         case UNMARK:
                             Selector = Storage.get(Integer.parseInt(words[1]) - 1);
                             Selector.mark(false);
-                            Response(key,Storage,Integer.parseInt(words[1]) - 1);
+                            response(key,Storage,Integer.parseInt(words[1]) - 1);
                             break;
                         case TODO:
                             Selector = new Todo(line.substring(5));
                             Storage.add(Selector);
-                            Response(key,Storage,Storage.size()-1);
+                            response(key,Storage,Storage.size()-1);
                             break;
                         case DEADLINE:
                             String byDateTime= line.substring(line.indexOf("/by")+4);
                             Selector = new Deadline(line.substring(9, line.indexOf("/by")), Parser.constructDateTime(byDateTime));
                             Storage.add(Selector);
-                            Response(key,Storage,Storage.size()-1);
+                            response(key,Storage,Storage.size()-1);
                             break;
                         case EVENT:
                             String fromDateTime= line.substring(line.indexOf("/from")+6,line.indexOf("/to"));
                             String toDateTime= line.substring(line.indexOf("/to")+4);
                             Selector = new Event(line.substring(6, line.indexOf("/from")), Parser.constructDateTime(fromDateTime), Parser.constructDateTime(toDateTime));
                             Storage.add(Selector);
-                            Response(key,Storage,Storage.size()-1);
+                            response(key,Storage,Storage.size()-1);
                             break;
                         case FIND:
                             Storage.findTask(line.substring(5));
@@ -191,7 +191,7 @@ public class UI {
                             throw new IllegalArgumentException();
                     }
             } catch (IllegalArgumentException e){
-                ErrorDuke();
+                errorDuke();
             }
         }
     }

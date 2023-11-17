@@ -8,27 +8,27 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 public class Parser{
-        protected boolean NoError;
+        protected boolean isError;
 
         /**
          *
          * @return true if there is no error , false otherwise
          */
-        public boolean getNoError(){
-            return NoError;
+        public boolean getError(){
+            return isError;
         }
 
         /**
          * constructor for parser
          */
         public Parser(){
-                NoError=true;
+                isError =true;
         }
 
         /**
          * prints separator line
          */
-        public static void Separator(){
+        public static void separator(){
                 System.out.println("__________________________");
         }
 
@@ -90,7 +90,7 @@ public class Parser{
          * @param list current list of tasks
          */
         public void checkError(Keyword k, String line, ListTask list) {
-                this.NoError = true;
+                this.isError = true;
                 String[] words = line.split(" ");
                 try {
                         switch (k) {
@@ -189,10 +189,10 @@ public class Parser{
                                         break;
                         }
                 } catch (MissingArgumentException e) {
-                        this.NoError = false;
-                        Separator();
+                        this.isError = false;
+                        separator();
                         System.out.println(e);
-                        Separator();
+                        separator();
                 }
         }
 
