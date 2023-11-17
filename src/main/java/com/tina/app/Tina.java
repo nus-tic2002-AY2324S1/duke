@@ -14,7 +14,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Represents the main program Tina, a chatbot, allows to schedule tasks with flexible functions.
+ * Represents the main program Tina, a chatbot, allows to schedule tasks with flexible
+ * functions.
  */
 public class Tina {
 
@@ -32,7 +33,8 @@ public class Tina {
      * @throws InvalidFileFormatException if loading file format is invalid
      * @throws InvalidFilePathException   if loading file path is invalid
      */
-    public void initiate() throws com.tina.exception.IOException, InvalidFileFormatException, InvalidFilePathException {
+    public void initiate() throws com.tina.exception.IOException, InvalidFileFormatException,
+            InvalidFilePathException {
         String dir = System.getProperty("user.home");
         Path path = Paths.get(dir, "tina/");
         Path archviePath = Paths.get(dir, "tina/archive/");
@@ -54,7 +56,8 @@ public class Tina {
      * @throws InvalidFileFormatException if loading file format is invalid
      * @throws InvalidFilePathException   if loading file path is invalid
      */
-    public void setPath(Path path, Path archivePath) throws InvalidFileFormatException, InvalidFilePathException {
+    public void setPath(Path path, Path archivePath) throws InvalidFileFormatException,
+            InvalidFilePathException {
         this.ui = new Ui();
         storage = new Storage(path, archivePath);
         try {

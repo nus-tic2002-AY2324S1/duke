@@ -15,7 +15,7 @@ public class Validator {
      *
      * @param tokens  the tokens.
      * @param command the command.
-     * @throws InvalidParameterException  if parameter is invalid.
+     * @throws InvalidParameterException if parameter is invalid.
      */
     public static void validateCommand(ArrayList<String> tokens, CommandEnum command)
             throws InvalidParameterException {
@@ -116,7 +116,8 @@ public class Validator {
             if (index == -1 || index == size - 1) {
                 throw new InvalidParameterException(command);
             }
-            // the last keyword does not have any parameters followed before the next keyword
+            // the last keyword does not have any parameters followed
+            // before the next keyword
             if (index - 1 == indexOfLastKeyword) {
                 throw new InvalidParameterException(command);
             }

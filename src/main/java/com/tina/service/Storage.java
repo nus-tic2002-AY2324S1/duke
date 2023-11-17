@@ -91,8 +91,8 @@ public class Storage {
      * @throws IOException              if any IO error occurs.
      * @throws ExistedFileException     if the file is already existed.
      */
-    public void archive(TaskList taskList, String fileName)
-            throws InvalidFilePathException, com.tina.exception.IOException, ExistedFileException {
+    public void archive(TaskList taskList, String fileName) throws InvalidFilePathException,
+            com.tina.exception.IOException, ExistedFileException {
         ArrayList<String> tasks = Parser.parseTasksToStorage(taskList);
         try {
             Path archiveFile = archivePath.resolve(fileName);

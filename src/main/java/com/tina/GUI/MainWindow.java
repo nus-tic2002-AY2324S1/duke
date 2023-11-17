@@ -67,7 +67,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Tina'reply.
+     * Creates two dialog boxes, one echoing user input and the other containing
+     * Tina'reply.
      * Appends them to the dialog container.
      * Clears the user input after processing.
      */

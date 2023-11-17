@@ -33,11 +33,13 @@ public class ArchiveCommand extends Command {
      * @param storage  the storage util.
      * @return successful message.
      * @throws InvalidFilePathException if file path is invalid.
-     * @throws ExistedFileException     if a file with desired file name is already existed.
+     * @throws ExistedFileException     if a file with desired file name is already
+     *                                  existed.
      * @throws IOException              if any IO error occurs.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidFilePathException, ExistedFileException, IOException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidFilePathException,
+            ExistedFileException, IOException {
         storage.archive(taskList, fileName);
         taskList.clear();
         storage.save(taskList);

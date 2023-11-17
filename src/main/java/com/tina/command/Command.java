@@ -19,10 +19,10 @@ public abstract class Command {
      * @param ui       the ui util.
      * @param storage  the storage util.
      * @return message to be displayed to user.
-     * @throws InvalidTaskNumberException   if task number is invalid.
-     * @throws InvalidFilePathException     if file path is invalid.
-     * @throws ExistedFileException         if file is already existed.
-     * @throws IOException                  if any IO error occurs.
+     * @throws InvalidTaskNumberException if task number is invalid.
+     * @throws InvalidFilePathException   if file path is invalid.
+     * @throws ExistedFileException       if file is already existed.
+     * @throws IOException                if any IO error occurs.
      */
     public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException, InvalidFilePathException, ExistedFileException, IOException;
 }

@@ -35,7 +35,8 @@ public class UnmarkCommand extends Command {
      * @throws InvalidTaskNumberException if task number is invalid.
      * @throws InvalidFilePathException   if file path is invalid.
      */
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException, InvalidFilePathException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws InvalidTaskNumberException,
+            InvalidFilePathException {
         try {
             Task curTask = taskList.getTaskList().get(taskNumber - 1);
             curTask.setDone(false);
