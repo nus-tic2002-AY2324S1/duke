@@ -125,12 +125,12 @@ public class UI {
     }
     /**
      * main application run function that loops
-     * uses parser to check for invalid keywords and returns error messages
+     * uses parse to check for invalid keywords and returns error messages
      *
-     * @param Storage List class used to run UI
-     * @param Checker Parser class used to run UI
+     * @param list List class used to run UI
+     * @param parse Parser class used to run UI
      */
-    public void run(ListTask Storage, Parser Checker){
+    public void run(ListTask list, Parser parse){
         logo();
         greeter();
         Task Selector;
@@ -140,57 +140,57 @@ public class UI {
                 String line = scan();
                 String[] words = line.split(" ");
                 Keyword key = Keyword.valueOf(words[0].toUpperCase());
-                Checker.checkError(key,line,Storage);
-                if(Checker.getError())
+                parse.checkError(key,line,list);
+                if(parse.getError())
                     switch (key) {
                         case VIEW:
-                            Storage.viewSchedule(words[1]);
+                            list.viewSchedule(words[1]);
                             break;
                         case SORT:
-                            Storage.sortSchedule();
-                            response(key,Storage,0);
+                            list.sortSchedule();
+                            response(key,list,0);
                             break;
                         case DELETE:
-                            Storage.removeTask(Integer.parseInt(words[1]) - 1);
-                            response(key,Storage,Integer.parseInt(words[1]) - 1);
+                            list.removeTask(Integer.parseInt(words[1]) - 1);
+                            response(key,list,Integer.parseInt(words[1]) - 1);
                             break;
                         case BYE:
-                            response(key,Storage,0);
+                            response(key,list,0);
                             Power = false;
                             break;
                         case LIST:
-                            response(key,Storage,0);
+                            response(key,list,0);
                             break;
                         case MARK:
-                            Selector = Storage.get(Integer.parseInt(words[1]) - 1);
+                            Selector = list.get(Integer.parseInt(words[1]) - 1);
                             Selector.mark(true);
-                            response(key,Storage,Integer.parseInt(words[1]) - 1);
+                            response(key,list,Integer.parseInt(words[1]) - 1);
                             break;
                         case UNMARK:
-                            Selector = Storage.get(Integer.parseInt(words[1]) - 1);
+                            Selector = list.get(Integer.parseInt(words[1]) - 1);
                             Selector.mark(false);
-                            response(key,Storage,Integer.parseInt(words[1]) - 1);
+                            response(key,list,Integer.parseInt(words[1]) - 1);
                             break;
                         case TODO:
                             Selector = new Todo(line.substring(5));
-                            Storage.add(Selector);
-                            response(key,Storage,Storage.size()-1);
+                            list.add(Selector);
+                            response(key,list,list.size()-1);
                             break;
                         case DEADLINE:
                             String byDateTime= line.substring(line.indexOf("/by")+4);
                             Selector = new Deadline(line.substring(9, line.indexOf("/by")), Parser.constructDateTime(byDateTime));
-                            Storage.add(Selector);
-                            response(key,Storage,Storage.size()-1);
+                            list.add(Selector);
+                            response(key,list,list.size()-1);
                             break;
                         case EVENT:
                             String fromDateTime= line.substring(line.indexOf("/from")+6,line.indexOf("/to"));
                             String toDateTime= line.substring(line.indexOf("/to")+4);
                             Selector = new Event(line.substring(6, line.indexOf("/from")), Parser.constructDateTime(fromDateTime), Parser.constructDateTime(toDateTime));
-                            Storage.add(Selector);
-                            response(key,Storage,Storage.size()-1);
+                            list.add(Selector);
+                            response(key,list,list.size()-1);
                             break;
                         case FIND:
-                            Storage.findTask(line.substring(5));
+                            list.findTask(line.substring(5));
                             break;
                         default:
                             throw new IllegalArgumentException();
