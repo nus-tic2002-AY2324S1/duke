@@ -36,8 +36,8 @@ public class UnmarkCommand extends AbstractCommand {
             throw new InvalidCommandArgsDukeException("Invalid task number to be unmarked.");
         }
 
-        AbstractTask task = tasks.getTask(taskNumber - 1);
-        task.setDone(false);
+
+        AbstractTask task = tasks.unmarkTask(taskNumber - 1);
         storage.save(tasks);
         return new String[] {
             "OK, I've marked this task as not done yet:",
