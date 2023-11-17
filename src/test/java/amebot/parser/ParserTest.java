@@ -1,8 +1,6 @@
 package amebot.parser;
 
-import amebot.common.Regex;
 import amebot.commands.Command;
-import amebot.tasks.Event;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
