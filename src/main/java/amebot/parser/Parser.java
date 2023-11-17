@@ -304,7 +304,7 @@ public class Parser {
         boolean isToFormat = command.contains(Regex.TO_PATTERN);
 
         if (isUpdateDateTimeCommand) {
-            int startIndexOfUpdateDateTime = -1;
+            int startIndexOfUpdateDateTime;
             String dateTime = "";
 
             if (isFromFormat) {
