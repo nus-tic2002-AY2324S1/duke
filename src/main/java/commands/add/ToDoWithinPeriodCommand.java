@@ -18,7 +18,6 @@ public class ToDoWithinPeriodCommand extends Command {
     protected LocalDate from;
     protected LocalDate to;
     protected String description;
-    protected static final int TODO_STRING_END_INDEX = 4;
     protected static final String BETWEEN_STRING = "/between";
     protected static final int DESCRIPTION_GROUP_CAPTURE = 1;
     protected static final int FROM_DATE_GROUP_CAPTURE = 2;
