@@ -8,13 +8,10 @@ import exceptions.EmptyListException;
 import exceptions.MissingTaskException;
 
 public class TaskList {
-    protected ArrayList<Task> tasks;
-    protected int totalTasks;
+    private ArrayList<Task> tasks = new ArrayList<Task>();
+    private int totalTasks = 0;
 
-    public TaskList() {
-        this.tasks = new ArrayList<Task>();
-        this.totalTasks = 0;
-    }
+    public TaskList() {}
 
     public TaskList(ArrayList<Task> taskList) {
         this.tasks = taskList;
@@ -104,8 +101,8 @@ public class TaskList {
         }
         assert totalTasks > 0 : "task list size should be more than 0 to delete";
 
-        System.out.println("TaskMaster at the helm! 🪄 Time to perform a task vanishing act on: \n" + item + ":"
-                + tasks.get(item - 1));
+        System.out.println("TaskMaster at the helm! 🪄 Time to perform a task vanishing act on: \n" + item
+                + ":" + tasks.get(item - 1));
         tasks.remove((item - 1));
         totalTasks--;
     }
