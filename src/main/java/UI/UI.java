@@ -1,6 +1,11 @@
 package UI;
-import parser.*;
-import task.*;
+import parser.Keyword;
+import parser.Parser;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.Todo;
+
 import java.util.Scanner;
 
 public class UI {
