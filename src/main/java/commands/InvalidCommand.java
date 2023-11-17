@@ -5,7 +5,7 @@ import joshua.JoshuaUi;
 import joshua.TaskList;
 
 /**
- * Represents an invalid command
+ * Represents an invalid command.
  */
 public class InvalidCommand extends Command {
     public static final String INVALID_COMMAND_MESSAGE = "Please be more articulate, Professor Falken.\n" +
@@ -16,6 +16,9 @@ public class InvalidCommand extends Command {
         this.errorMessage = errorMessage;
     }
 
+    /**
+     * {@inheritDoc} Prints an error message for the user.
+     */
     @Override
     public void execute(TaskList taskList, JoshuaUi ui, Storage storage) {
         ui.joshuaSays(errorMessage);

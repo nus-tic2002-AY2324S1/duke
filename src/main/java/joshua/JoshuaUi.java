@@ -4,6 +4,9 @@ package joshua;
 
 import java.util.Scanner;
 
+/**
+ * Provides user interface methods for the chatbot.
+ */
 public class JoshuaUi {
     private final Scanner scanner;
     public JoshuaUi() {
@@ -26,12 +29,13 @@ public class JoshuaUi {
                      + "\tEVENT /FROM /TO\n"
                      + "\tFIND\n"
                      + "\tDELETE #\n"
+                     + "\tHELP #\n"
                      + "\tBYE\n"
                      + "\tGLOBAL THERMONUCLEAR WAR");
     }
 
     public void printSuccessfulLoad() {
-        joshuaSays("YOUR TASK LIST HAS BEEN LOADED FROM JOSHUA.TXT\n___");
+        joshuaSays("YOUR TASK LIST HAS BEEN LOADED FROM AN EXISTING FILE\n___");
     }
 
     public void printExitMessage() {
@@ -39,10 +43,15 @@ public class JoshuaUi {
     }
 
     public void printSaveMessage() {
-        joshuaSays("SAVING TASK LIST IN JOSHUA.TXT...");
+        joshuaSays("SAVING TASK LIST...");
     }
 
     public void printLoadingError() {
+        joshuaSays("UNABLE TO LOAD TASK LIST FROM STORAGE.");
+        joshuaSays("PLEASE CHECK JOSHUA.TXT AND ENSURE THAT THE FORMATTING IS CORRECT.");
+    }
+
+    public void printFileNotFoundError() {
         joshuaSays("UNABLE TO LOAD TASK LIST FROM STORAGE.");
         joshuaSays("I HAVE CREATED AN EMPTY TASK LIST FOR YOU INSTEAD, PROFESSOR FALKEN.");
     }

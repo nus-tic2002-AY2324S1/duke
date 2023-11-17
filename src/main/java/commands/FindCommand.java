@@ -5,9 +5,10 @@ import joshua.TaskList;
 import storage.Storage;
 import task.Task;
 
+/**
+ * Represents a find command.
+ */
 public class FindCommand extends Command {
-    public static final String COMMAND_WORD = "find";
-
     private final String findStr;
 
     public FindCommand(String findStr) {
@@ -15,12 +16,8 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Iterates through the tasks in the taskList and looks for tasks containing the findStr in the
-     * task description.
-     *
-     * @param taskList The task list from the current session
-     * @param ui JoshuaUI object for printing responses
-     * @param storage Storage object to load or save to joshua.txt
+     * {@inheritDoc} Prints all tasks containing the findStr in its task description by iterating
+     * through each task in the task list.
      */
     @Override
     public void execute(TaskList taskList, JoshuaUi ui, Storage storage) {
@@ -36,7 +33,7 @@ public class FindCommand extends Command {
             String desc = task.getDesc().toLowerCase();
             if (desc.contains(findStr)) {
                 count++;
-                tasksStr.append(taskNum).append(". ").append(taskList.getTask(taskNum)).append("\n");
+                tasksStr.append(taskNum).append(". ").append(task).append("\n");
             }
         }
 

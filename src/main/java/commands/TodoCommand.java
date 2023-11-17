@@ -6,15 +6,19 @@ import task.ToDo;
 import joshua.JoshuaUi;
 import joshua.TaskList;
 
+/**
+ * Represents a todo command.
+ */
 public class TodoCommand extends Command {
-    public static final String COMMAND_WORD = "todo";
-
     private final Task todoToAdd;
 
     public TodoCommand(String desc) {
         this.todoToAdd = new ToDo(desc);
     }
 
+    /**
+     * {@inheritDoc} Adds a new ToDo task to the TaskList.
+     */
     @Override
     public void execute(TaskList taskList, JoshuaUi ui, Storage storage) {
         taskList.addToTaskList(todoToAdd);

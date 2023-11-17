@@ -1,5 +1,8 @@
 package task;
 
+/**
+ * Represents a task.
+ */
 public class Task {
     private String desc;
     private boolean isDone;
@@ -35,6 +38,13 @@ public class Task {
         return doneMarker + " | " + desc;
     }
 
+    /**
+     * Returns a string representation of the task in the format:
+     * "[X] description" if the task is marked as done,
+     * or "[ ] description" if the task is not done.
+     *
+     * @return A string representation of the task.
+     */
     @Override
     public String toString() {
         String doneMarker = this.getIsDone() ? "X" : " ";

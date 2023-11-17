@@ -7,13 +7,19 @@ import joshua.TaskList;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a delete command.
+ */
 public class DeleteCommand extends Command {
-    public static final String COMMAND_WORD = "delete";
-
     private final int[] taskNums;
 
     public DeleteCommand(int[] taskNums) { this.taskNums = taskNums; }
 
+    /**
+     * {@inheritDoc} Deletes tasks based on the task numbers input by the user (stored in taskNums).
+     *
+     * @throws IndexOutOfBoundsException If a task number is not within the valid range.
+     */
     @Override
     public void execute(TaskList taskList, JoshuaUi ui, Storage storage) {
         ArrayList<Task> tasksToDelete = new ArrayList<>();

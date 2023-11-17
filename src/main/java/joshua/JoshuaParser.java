@@ -12,6 +12,7 @@ import commands.FindCommand;
 import commands.ByeCommand;
 import commands.HelpCommand;
 import commands.InvalidCommand;
+import commands.GTWCommand;
 import exceptions.InvalidCommandException;
 
 import java.time.DateTimeException;
@@ -20,31 +21,37 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Parses the commands input by the user into a format understood by the program.
+ */
 public class JoshuaParser {
-    /**
-     * Pattern to identify command word and the following arguments.
-     */
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     public static final Pattern DEADLINE_ARGUMENT_FORMAT = Pattern.compile("(?<desc>.*)/by(?<by>.*)");
     public static final Pattern EVENT_ARGUMENT_FORMAT = Pattern.compile("(?<desc>.*)/from(?<from>.*)/to(?<to>.*)");
-
-    /**
-     * Pattern to identify date format if user has entered a date.
-     */
     public static final Pattern DATE_REGEX_PATTERN = Pattern.compile("(\\d{1,2}\\/\\d{1,2}\\/\\d{4}) (\\d{4})");
-
     private final String PARSED_DATE_STRING = "d/M/yyyy HHmm";
-    private final String FORMATTED_DATE_STRING = "d MMM yyyy, hh:mm a";
     private final DateTimeFormatter PARSED_DATE_FORMATTER = DateTimeFormatter.ofPattern(PARSED_DATE_STRING);
-    private final DateTimeFormatter FORMATTED_DATE_FORMATTER = DateTimeFormatter.ofPattern(FORMATTED_DATE_STRING);
+    private final DateTimeFormatter FORMATTED_DATE_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm a");
 
     public JoshuaParser() {
 
     }
 
+    /**
+     * Returns a Command object based on the command input by the user.
+     *
+     * @param userInput The command input by the user.
+     * @return Command object with respect to userInput.
+     */
     public Command parse(String userInput) {
+
+        // parse() method adapted from
+        // https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/parser/Parser.java#L56
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if(!matcher.matches()) {
+        if(userInput.equals("global thermonuclear war")) {
+            return new GTWCommand();
+        }
+        else if(!matcher.matches()) {
             return new HelpCommand();
         }
 
@@ -52,32 +59,32 @@ public class JoshuaParser {
         String args = matcher.group("arguments").trim();
 
         switch(commandWord) {
-        case MarkCommand.COMMAND_WORD:
+        case "mark":
             // Fallthrough
-        case UnmarkCommand.COMMAND_WORD:
+        case "unmark":
             // Fallthrough
-        case DeleteCommand.COMMAND_WORD:
+        case "delete":
             return prepareTaskOperationCommand(commandWord, args);
 
-        case ListCommand.COMMAND_WORD:
+        case "list":
             return new ListCommand();
 
-        case TodoCommand.COMMAND_WORD:
+        case "todo":
             return prepareTodo(args);
 
-        case DeadlineCommand.COMMAND_WORD:
+        case "deadline":
             return prepareDeadline(args);
 
-        case EventCommand.COMMAND_WORD:
+        case "event":
             return prepareEvent(args);
 
-        case FindCommand.COMMAND_WORD:
+        case "find":
             return new FindCommand(args);
 
-        case ByeCommand.COMMAND_WORD:
+        case "bye":
             return new ByeCommand();
 
-        case HelpCommand.COMMAND_WORD:
+        case "help":
             return new HelpCommand();
 
         default:
@@ -86,13 +93,12 @@ public class JoshuaParser {
     }
 
     /**
-     *  This method should only be used for task operation commands (ie mark, unmark, delete).
-     *  It parses the command arguments which should be a string of numbers eg: "1,2,3,4,5"
-     *  into an int array and uses it to instantiate the corresponding Command object.
+     *  Returns a Command object of a task operation (ie mark, unmark, delete)
+     *  which is instantiated with the task numbers given in commandArgs
      *
-     * @param commandWord The command input by the user
-     * @param commandArgs The arguments for the command
-     * @return A Command object corresponding to the commandWord or InvalidCommand if command is invalid
+     * @param commandWord The command input by the user.
+     * @param commandArgs The arguments of the command.
+     * @return A Command object.
      */
     private Command prepareTaskOperationCommand(String commandWord, String commandArgs) {
         int[] taskNums;
@@ -103,17 +109,26 @@ public class JoshuaParser {
         }
 
         switch (commandWord) {
-        case MarkCommand.COMMAND_WORD:
+        case "mark":
             return new MarkCommand(taskNums);
-        case UnmarkCommand.COMMAND_WORD:
+        case "unmark":
             return new UnmarkCommand(taskNums);
-        case DeleteCommand.COMMAND_WORD:
+        case "delete":
             return new DeleteCommand(taskNums);
         default:
             return new InvalidCommand(InvalidCommand.INVALID_COMMAND_MESSAGE);
         }
     }
 
+    /**
+     * Returns an integer array of the task numbers to be operated on.
+     * The method takes in a string and splits it by the commas into a String array.
+     * Each String in the array is parsed into an integer and added to an integer array.
+     *
+     * @param commandArgs The arguments of the command.
+     * @return An integer array.
+     * @throws InvalidCommandException If the string cannot be parsed into an integer.
+     */
     private int[] parseTaskNumbers(String commandArgs) throws InvalidCommandException {
         String[] taskNumsStrArray = commandArgs.split(",");
         int[] taskNums = new int[taskNumsStrArray.length];
@@ -127,6 +142,13 @@ public class JoshuaParser {
         return taskNums;
     }
 
+    /**
+     * Returns a TodoCommand object, instantiating it with the task description
+     * as parsed from the commandArgs input by the user.
+     *
+     * @param commandArgs The arguments of the command.
+     * @return A TodoCommand or InvalidCommand object.
+     */
     private Command prepareTodo(String commandArgs) {
         String desc = commandArgs.trim();
         if (desc.isEmpty()) {
@@ -135,6 +157,13 @@ public class JoshuaParser {
         return new TodoCommand(desc);
     }
 
+    /**
+     * Returns a DeadlineCommand object, instantiating it with the task description and "by" date
+     * as parsed from the commandArgs input by the user.
+     *
+     * @param commandArgs The arguments of the command.
+     * @return A DeadlineCommand or InvalidCommand object.
+     */
     private Command prepareDeadline(String commandArgs) {
         Matcher matcher = DEADLINE_ARGUMENT_FORMAT.matcher(commandArgs.trim());
         if(!matcher.matches()) {
@@ -156,13 +185,18 @@ public class JoshuaParser {
             by = parseDateTime(by);
         } catch (InvalidCommandException e) {
             return new InvalidCommand(e.getMessage());
-        } catch (DateTimeException e) {
-            return new InvalidCommand("Entered date is invalid. Please check your input.");
         }
 
         return new DeadlineCommand(desc, by);
     }
 
+    /**
+     * Returns an EventCommand object, instantiating it with the task description, "from" date and "to" date
+     * as parsed from the commandArgs input by the user.
+     *
+     * @param commandArgs The arguments of the command.
+     * @return An EventCommand or InvalidCommand object.
+     */
     private Command prepareEvent(String commandArgs) {
         Matcher matcher = EVENT_ARGUMENT_FORMAT.matcher(commandArgs.trim());
         if(!matcher.matches()) {
@@ -189,29 +223,33 @@ public class JoshuaParser {
             to = parseDateTime(to);
         } catch (InvalidCommandException e) {
             return new InvalidCommand(e.getMessage());
-        } catch (DateTimeException e) {
-            return new InvalidCommand("Entered date is invalid. Please check your input.");
         }
 
         return new EventCommand(desc, from ,to);
     }
 
     /**
-     * Takes in a string and checks if it is in the accepted date format (d/M/yyyy HHmm)
-     * then parses it into a LocalDateTime object before finally formatting it as a string
+     * Returns a string of the parsed date. It will check if dateStr is in the accepted date format (d/M/yyyy HHmm)
+     * then parse it into a LocalDateTime object before finally formatting it as a string.
      *
      * @param dateStr The date entered by the user
      * @return Date and time in the format: dd MMM yyyy, hh:mm a
      * @throws InvalidCommandException If user entered date does not follow the specified format
      */
-    private String parseDateTime(String dateStr) throws InvalidCommandException {
+    public String parseDateTime(String dateStr) throws InvalidCommandException {
         Matcher dateMatcher = DATE_REGEX_PATTERN.matcher(dateStr);
         if(!dateMatcher.matches()) {
             throw new InvalidCommandException("Please follow this format for entering a date:\n" + PARSED_DATE_STRING);
         }
 
-        LocalDateTime parsedDateTime = LocalDateTime.parse(dateStr, PARSED_DATE_FORMATTER);
-        String formattedDateTime = parsedDateTime.format(FORMATTED_DATE_FORMATTER);
+        String formattedDateTime;
+        try {
+            LocalDateTime parsedDateTime = LocalDateTime.parse(dateStr, PARSED_DATE_FORMATTER);
+            formattedDateTime = parsedDateTime.format(FORMATTED_DATE_FORMATTER);
+        } catch (DateTimeException e) {
+            throw new InvalidCommandException("Entered date is invalid. Please check your input.");
+        }
+
         return formattedDateTime;
     }
 }

@@ -4,13 +4,15 @@ import storage.Storage;
 import joshua.JoshuaUi;
 import joshua.TaskList;
 
+/**
+ * Represents a help command.
+ */
 public class HelpCommand extends Command {
-    public static final String COMMAND_WORD = "help";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " - Shows program usage instructions.\n"
-            + "\tExample: " + COMMAND_WORD;
-
     public HelpCommand() {}
 
+    /**
+     * {@inheritDoc} Prints a list of available commands the user can input.
+     */
     @Override
     public void execute(TaskList taskList, JoshuaUi ui, Storage storage) {
         ui.joshuaSays(
@@ -23,8 +25,8 @@ public class HelpCommand extends Command {
                 + "\tEVENT /FROM /TO\n"
                 + "\tFIND\n"
                 + "\tDELETE #\n"
+                + "\tHELP\n"
                 + "\tBYE\n"
-                        // + "\n" + HelpCommand.MESSAGE_USAGE
                 + "\tGLOBAL THERMONUCLEAR WAR");
     }
 }

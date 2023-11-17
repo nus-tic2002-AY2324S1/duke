@@ -6,9 +6,13 @@ import joshua.TaskList;
 
 import java.io.IOException;
 
+/**
+ * Represents a bye command.
+ */
 public class ByeCommand extends Command{
-    public static final String COMMAND_WORD = "bye";
-
+    /**
+     * {@inheritDoc} Saves tasks from latest session in storage and prints exit message.
+     */
     @Override
     public void execute(TaskList taskList, JoshuaUi ui, Storage storage) {
         try {
@@ -17,10 +21,7 @@ public class ByeCommand extends Command{
         } catch (IOException e) {
             ui.joshuaSays(e.getMessage());
         }
+        super.isExit = true;
         ui.printExitMessage();;
-    }
-
-    public static boolean isExit(Command command) {
-        return command instanceof ByeCommand; // instanceof returns false if it is null
     }
 }
