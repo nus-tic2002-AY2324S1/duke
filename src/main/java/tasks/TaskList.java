@@ -10,7 +10,6 @@ import exceptions.MissingTaskException;
 public class TaskList {
     protected ArrayList<Task> tasks;
     protected int totalTasks;
-    protected Task task;
 
     public TaskList() {
         this.tasks = new ArrayList<Task>();
@@ -31,38 +30,38 @@ public class TaskList {
     }
 
     public Task addDeadline(String description, LocalDate date) {
-        this.task = new Deadline(description, date);
+        Task task = new Deadline(description, date);
         tasks.add(task);
         this.totalTasks++;
-        return this.task;
+        return task;
     }
 
     public Task addToDo(String description) {
-        this.task = new ToDo(description);
+        Task task = new ToDo(description);
         tasks.add(task);
         this.totalTasks++;
-        return this.task;
+        return task;
     }
 
     public Task addToDoWithinPeriod(String description, LocalDate start, LocalDate end) {
-        this.task = new ToDoWithinPeriod(description, start, end);
+        Task task = new ToDoWithinPeriod(description, start, end);
         tasks.add(task);
         this.totalTasks++;
-        return this.task;
+        return task;
     }
 
     public Task addEvent(String description, LocalDate fromDate, LocalDate toDate) {
-        this.task = new Event(description, fromDate, toDate);
-        tasks.add(this.task);
+        Task task = new Event(description, fromDate, toDate);
+        tasks.add(task);
         this.totalTasks++;
-        return this.task;
+        return task;
     }
 
     public Task markItem(int item) throws MissingTaskException, DukeException {
         if (item > totalTasks || item == 0) {
             throw new MissingTaskException(ErrorMessages.TASK_NOT_FOUND);
         }
-        task = tasks.get(item - 1);
+        Task task = tasks.get(item - 1);
         if (task.isDone) {
             System.out.println(
                     "Whoa there, adventurer! Attempting to mark an already marked task? Double the glory, I suppose!");
@@ -77,7 +76,7 @@ public class TaskList {
             throw new MissingTaskException(ErrorMessages.TASK_NOT_FOUND);
         }
 
-        task = tasks.get(item - 1);
+        Task task = tasks.get(item - 1);
         if (!task.isDone) {
             System.out.println(
                     "Hold your horses! Attempting to unmark a task that was never in the victory parade?");
