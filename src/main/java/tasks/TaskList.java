@@ -60,28 +60,22 @@ public class TaskList {
         }
         Task task = tasks.get(item - 1);
         if (task.isDone) {
-            System.out.println(
-                    "Whoa there, adventurer! Attempting to mark an already marked task? Double the glory, I suppose!");
-        } else {
-            task.setDone();
+            throw new DukeException(ErrorMessages.ERROR_MARKING_MARKED_TASK);
         }
+        task.setDone();
         return task;
     }
 
-    public void unmarkItem(int item) throws MissingTaskException {
+    public Task unmarkItem(int item) throws MissingTaskException, DukeException {
         if (item > totalTasks || item == 0) {
             throw new MissingTaskException(ErrorMessages.TASK_NOT_FOUND);
         }
-
         Task task = tasks.get(item - 1);
         if (!task.isDone) {
-            System.out.println(
-                    "Hold your horses! Attempting to unmark a task that was never in the victory parade?");
-            return;
+            throw new DukeException(ErrorMessages.ERROR_UMARKING_UNMARKED_TASK);
         }
         task.unmarkTask();
-        System.out.println("Alrighty then! I've given this task a rain check: " + task);
-
+        return task;
     }
 
     public void listItems() throws EmptyListException {
@@ -122,8 +116,6 @@ public class TaskList {
     }
 
     public ArrayList<Task> getTasksDue(LocalDate due) {
-        // iterate through arraylist to check for Due Dates from Events and Deadlines
-
         ArrayList<Task> taskDueList = new ArrayList<Task>();
 
         for (Task t : this.tasks) {

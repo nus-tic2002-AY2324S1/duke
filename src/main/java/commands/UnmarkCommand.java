@@ -5,6 +5,7 @@ import constants.RegExp;
 import exceptions.DukeException;
 import exceptions.MissingTaskException;
 import storage.Storage;
+import tasks.Task;
 import tasks.TaskList;
 import ui.UI;
 import java.util.regex.Pattern;
@@ -30,8 +31,9 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
         try {
-            tasks.unmarkItem(item);
-        } catch (MissingTaskException e) {
+            Task t = tasks.unmarkItem(item);
+            ui.showUnmarkedTask(t);
+        } catch (MissingTaskException | DukeException e) {
             ui.showError(e.getMessage());
         }
     }

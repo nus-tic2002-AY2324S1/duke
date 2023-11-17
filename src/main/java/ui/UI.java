@@ -17,11 +17,7 @@ import tasks.Task;
  * </ul>
  */
 public class UI {
-    private Scanner in;
-
-    public UI() {
-        in = new Scanner(System.in);
-    }
+    private Scanner in = new Scanner(System.in);
 
     public void greet() {
         System.out.println(
@@ -84,7 +80,11 @@ public class UI {
         System.out.println("Marvelous! I've marked this task as conquered:\n" + task);
     }
 
-    public void showTaskPrioritySet(Task task) {
+    public void showUnmarkedTask(Task task) {
+        System.out.println("Alrighty then! I've given this task a rain check:\n" + task);
+    }
+
+    public void showTaskPriority(Task task) {
         System.out.println("Successfully awarded the mighty title of '" + task.getDescription() + "' with "
                 + task.getPriority() + " Priority.");
     }
