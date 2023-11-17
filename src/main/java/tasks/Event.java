@@ -4,12 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-
-    // accept date format: yyyy-mm-dd (2019-10-15)
-    // print in format: MMM dd yyyy (Oct 15 2019)
-    protected LocalDate start;
-    protected LocalDate end;
-
+    private LocalDate start;
+    private LocalDate end;
 
     public Event(String description, LocalDate start, LocalDate end) {
         super(description);

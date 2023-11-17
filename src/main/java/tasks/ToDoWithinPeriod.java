@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class ToDoWithinPeriod extends Task{
-    protected LocalDate from;
-    protected LocalDate to;
+    private LocalDate from;
+    private LocalDate to;
 
     public ToDoWithinPeriod(String description, LocalDate from, LocalDate to) {
         super(description);
