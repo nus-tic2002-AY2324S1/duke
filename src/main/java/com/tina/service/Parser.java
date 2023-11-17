@@ -22,6 +22,9 @@ import com.tina.task.EventTask;
 import com.tina.task.Task;
 import com.tina.task.TaskList;
 import com.tina.task.TodoTask;
+import com.zoho.hawking.HawkingTimeParser;
+import com.zoho.hawking.datetimeparser.configuration.HawkingConfiguration;
+import com.zoho.hawking.language.english.model.DatesFound;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -30,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
+import org.joda.time.DateTime;
 
 /**
  * Parses input to a desired object, such as command object or task object.
@@ -133,16 +136,29 @@ public class Parser {
      * @return the local date.
      * @throws InvalidDateFormatException if date format is invalid.
      */
-    public static LocalDateTime parseDate(String dateString) throws InvalidDateFormatException {
-        PrettyTimeParser p = new PrettyTimeParser();
-        List<Date> dates = p.parse(dateString);
-        if (dates.isEmpty()) {
-            throw new InvalidDateFormatException();
+    public static LocalDateTime parseDate(String dateString) throws InvalidDateFormatException{
+        HawkingTimeParser parser = new HawkingTimeParser();
+        HawkingConfiguration hawkingConfiguration = new HawkingConfiguration();
+        try {
+            hawkingConfiguration.setFiscalYearStart(2);
+            hawkingConfiguration.setFiscalYearEnd(1);
+            hawkingConfiguration.setTimeZone("GMT+08:00");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        Date referenceDate = new Date();
+        DatesFound datesFound = parser.parse(dateString, referenceDate, hawkingConfiguration, "eng");
 
-        Date date = dates.get(0);
-        // parse Date object to LocalDateTime object
-        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        DatesFound datesFound1 = parser.parse("do something by tomorrow", referenceDate, hawkingConfiguration, "eng");
+        System.out.println(datesFound1.toString());
+        DatesFound datesFound2 = parser.parse("do something from Sunday", referenceDate, hawkingConfiguration, "eng");
+        System.out.println(datesFound2.toString());
+        DatesFound datesFound3 = parser.parse("do something from Sunday to Monday", referenceDate, hawkingConfiguration, "eng");
+        System.out.println(datesFound3.toString());
+        DatesFound datesFound4 = parser.parse("do something by today 5pm", referenceDate, hawkingConfiguration, "eng");
+        System.out.println(datesFound4.toString());
+        DateTime dateTime = datesFound.getParserOutputs().get(0).getDateRange().getStart();
+        return dateTime.toDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
     /**
