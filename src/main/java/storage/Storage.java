@@ -1,12 +1,12 @@
 package storage;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 import constants.RegExp;
 import tasks.Deadline;
@@ -18,24 +18,17 @@ import tasks.ToDo;
 import tasks.ToDoWithinPeriod;
 
 public class Storage {
-    private String filePath, directoryPath;
+    private String filePath;
     private File file, directory;
-    private FileWriter fw;
-    private ArrayList<Task> tasks;
-    protected static final int EVENT_STORAGE_REQUIRED_WORDS = 6;
-    protected static final int DEADLINE_STORAGE_REQUIRED_WORDS = 5;
-    protected static final int TODO_STORAGE_REQUIRED_WORDS = 4;
-    protected static final String TRUE_STRING = "true";
+    private static final String TRUE_STRING = "true";
 
     public Storage(String filePath) {
-        this.tasks = new ArrayList<Task>();
-
         this.filePath = filePath;
         this.file = new File(filePath);
 
         int endIndex = filePath.lastIndexOf("/");
 
-        this.directoryPath = filePath.substring(0, endIndex + 1);
+        String directoryPath = filePath.substring(0, endIndex + 1);
         directory = new File(directoryPath);
     }
 
@@ -54,6 +47,7 @@ public class Storage {
      * @throws IOException If file creation fails.
      */
     public ArrayList<Task> loadData() throws IOException {
+        ArrayList<Task> tasks = new ArrayList<Task>();
         try {
             Scanner s = new Scanner(file);
             int counter = 0;
@@ -132,7 +126,7 @@ public class Storage {
      */
     public void storeData(TaskList tasks) {
         try {
-            fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter(filePath);
             int totalTasks = tasks.getTotalTasks();
             ArrayList<Task> taskList = tasks.getTaskList();
             for (int i = 0; i < totalTasks; i++) {
