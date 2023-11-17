@@ -34,4 +34,5 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
      `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'
    ================================================================================
    Yokoso, your personal assistant AMEBOT~!
+   Please enter the command(s):
    ```
