@@ -44,20 +44,25 @@ public class AddTaskCommand extends CrabyMessage implements CommandInterface {
             return;
         }
         try {
-            handleTo(tasks, formatEvent);
-            printAddMessage(input, tasks);
+            handleTo(tasks, formatEvent, input);
         } catch (DateTimeException d) {
             printDateTimeParseExceptionMessage();
         }
     }
 
-    private static void handleTo(List<Task> tasks, String[] formatEvent) {
+    private static void handleTo(List<Task> tasks, String[] formatEvent, String input) {
         if (formatEvent[1].contains(("/to"))) {
             String[] timeEvent = formatEvent[1].split("/to");
+            if (timeEvent.length <= 1) {
+                printDateTimeParseExceptionMessage();
+                return;
+            }
             tasks.add(new Event(formatEvent[0].trim(), timeEvent[0], timeEvent[1]));
-        } else {
-            tasks.add(new Event(formatEvent[0].trim(), formatEvent[1]));
+            printAddMessage(input, tasks);
+            return;
         }
+        tasks.add(new Event(formatEvent[0].trim(), formatEvent[1]));
+        printAddMessage(input, tasks);
     }
 
     private static void handleBy(String input, List<Task> tasks, String[] formatDeadline) {

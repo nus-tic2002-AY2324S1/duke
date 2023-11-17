@@ -67,21 +67,20 @@ public class Craby extends HelloAndByeMessage {
 
     private static String checkListName(Scanner scanner) {
         String listName = scanner.nextLine().trim();
-        while (listName.isBlank()) {
+        if (listName.isBlank()) {
             printEmptyTypeName();
-            listName = scanner.nextLine();
+            checkListName(scanner);
         }
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(listName);
-        while (matcher.find()) {
+        if (matcher.find()) {
             printTypeNameError();
-            listName = scanner.nextLine();
+            checkListName(scanner);
         }
         boolean isKeyword = isKeyword(listName);
-        while (isKeyword) {
+        if (isKeyword) {
             printNameSameWithKeyWord();
-            listName = scanner.nextLine();
-            isKeyword = isKeyword(listName);
+            checkListName(scanner);
         }
         return listName;
     }
