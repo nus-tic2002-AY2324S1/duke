@@ -17,9 +17,7 @@ import tasks.Task;
  * </ul>
  */
 public class UI {
-
-    Scanner in;
-    String userInput;
+    private Scanner in;
 
     public UI() {
         in = new Scanner(System.in);
@@ -68,7 +66,6 @@ public class UI {
         System.out.println(
                 "Taskmaster signing off! Your master list is safely stored, so take a break and return when the tasks start missing you. Until then, stay bossing those to-dos! ✨📋 #TaskConquerorOut");
         in.close();
-
     }
 
     public void showError(String message) {
@@ -93,7 +90,6 @@ public class UI {
     }
 
     public void showTasksDue(ArrayList<Task> tasks, LocalDate dueDate) {
-
         if (tasks.size() > 0) {
             System.out.println("Ahoy! Here are the events and deadlines scheduled for  "
                     + dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
