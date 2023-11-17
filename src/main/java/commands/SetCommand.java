@@ -48,7 +48,7 @@ public class SetCommand extends Command {
     public void execute(TaskList tasks, UI ui, Storage storage) {
         try {
             Task t = tasks.setPriority(item, p);
-            ui.showTaskPrioritySet(t);
+            ui.showTaskPriority(t);
         } catch (EmptyListException e) {
             ui.showError(e.getMessage());
         } catch (MissingTaskException e) {
