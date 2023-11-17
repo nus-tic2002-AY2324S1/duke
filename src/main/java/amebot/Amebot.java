@@ -1,8 +1,8 @@
 package amebot;
 
+import amebot.ui.UserInterface;
 import amebot.common.Messages;
 import amebot.storage.Storage;
-import amebot.ui.UserInterface;
 import amebot.parser.Parser;
 import amebot.commands.Command;
 import amebot.commands.ExitCommand;
@@ -49,14 +49,14 @@ public class Amebot {
      */
     public void render() throws AmebotException {
         String commandLine = "";
-        Command command = new Command();
+        Command command;
 
         do {
             commandLine = this.userInterface.getInputCommand();
-            ArrayList<String> parsedCommand = new Parser().parseCommand(commandLine);
-            ArrayList<String> logs = command.executeCommand(parsedCommand);
+            command = new Parser().parseCommand(commandLine);
+            ArrayList<String> logs = command.executeCommand();
             this.userInterface.printOutput(logs);
             this.storage.saveTasks();
-        } while (!ExitCommand.isExit(commandLine));
+        } while (!ExitCommand.isExit(command));
     }
 }

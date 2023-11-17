@@ -26,8 +26,8 @@ public class UserInterface {
      */
     public String getInputCommand() {
         Scanner scanInput = new Scanner(System.in);
-        String commandLine = scanInput.nextLine().toLowerCase();
-        return commandLine;
+        String command = scanInput.nextLine().toLowerCase();
+        return command;
     }
 
     /**

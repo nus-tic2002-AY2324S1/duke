@@ -1,5 +1,6 @@
 package amebot.storage;
 
+import amebot.common.Messages;
 import amebot.enumerations.Keyword;
 import amebot.tasks.Task;
 import amebot.tasks.Event;
@@ -21,7 +22,12 @@ public class TaskEncoder {
         String taskDetail = "";
 
         String type = task.getType().replaceAll("\\[", "").replaceAll("]", "");
-        Keyword commandType = Keyword.valueOf(type.trim().toUpperCase());
+        Keyword commandType;
+        try {
+            commandType = Keyword.valueOf(type.trim().toUpperCase());
+        } catch (IllegalArgumentException err) {
+            commandType = Keyword.INVALID;
+        }
 
         String status = task.getStatus();
         String description = task.getDescription();
@@ -38,6 +44,9 @@ public class TaskEncoder {
         case DEADLINE:
             String dueDateTime = ((Deadline) task).getDueDateTime();
             taskDetail = type + DELIMITER + status + DELIMITER + description + DELIMITER + dueDateTime;
+            break;
+        default:
+            System.out.println(Messages.ERROR_MESSAGE);
             break;
         }
 

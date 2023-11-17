@@ -7,13 +7,6 @@ public class Deadline extends Task {
     protected static final String DEADLINE = "[DEADLINE] ";
     protected String dueDateTime;
 
-    /**
-     * Creates a Deadline task.
-     *
-     * @param isMarked    Whether the task is marked.
-     * @param description The description of the task.
-     * @param dueDateTime The due date and time of the task.
-     */
     public Deadline(boolean isMarked, String description, String dueDateTime) {
         super(isMarked, description);
         super.type = DEADLINE;
@@ -27,7 +20,7 @@ public class Deadline extends Task {
      */
     @Override
     public String getTask() {
-        return type + status + description + dueDateTime;
+        return type + status + description + this.dueDateTime;
     }
 
     /**
@@ -36,7 +29,7 @@ public class Deadline extends Task {
      * @param dueDateTime Due date and time of the task.
      */
     public void setDueDateTime(String dueDateTime) {
-        this.dueDateTime = dueDateTime;
+        this.dueDateTime = dueDateTime.toUpperCase();
     }
 
     /**
@@ -45,6 +38,6 @@ public class Deadline extends Task {
      * @return Due date and time of the task.
      */
     public String getDueDateTime() {
-        return dueDateTime;
+        return this.dueDateTime;
     }
 }

@@ -1,5 +1,6 @@
 package amebot.storage;
 
+import amebot.common.Messages;
 import amebot.enumerations.Keyword;
 import amebot.commands.AddCommand;
 
@@ -20,23 +21,31 @@ public class TaskDecoder {
         String[] taskDetail = task.toLowerCase().split("\\|");
 
         String type = taskDetail[0].replaceAll("\\[", "").replaceAll("]", "");
-        Keyword commandType = Keyword.valueOf(type.trim().toUpperCase());
+        Keyword commandType;
+        try {
+            commandType = Keyword.valueOf(type.trim().toUpperCase());
+        } catch (IllegalArgumentException err) {
+            commandType = Keyword.INVALID;
+        }
 
-        boolean isMarked = taskDetail[1].contains(MARKED);
+        boolean isStatusMarked = taskDetail[1].contains(MARKED);
         String description = taskDetail[2];
 
         switch (commandType) {
         case TODO:
-            new AddCommand(isMarked, description);
+            new AddCommand(isStatusMarked, description);
             break;
         case EVENT:
             String fromDateTime = taskDetail[3];
             String toDateTime = taskDetail[4];
-            new AddCommand(isMarked, description, fromDateTime, toDateTime);
+            new AddCommand(isStatusMarked, description, fromDateTime, toDateTime);
             break;
         case DEADLINE:
             String dueDateTime = taskDetail[3];
-            new AddCommand(isMarked, description, dueDateTime);
+            new AddCommand(isStatusMarked, description, dueDateTime);
+            break;
+        default:
+            System.out.println(Messages.ERROR_MESSAGE);
             break;
         }
     }

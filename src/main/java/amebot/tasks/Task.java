@@ -11,19 +11,13 @@ public abstract class Task {
     protected static final String UNMARK = "[ ] ";
     protected static int listSize;
 
-    /**
-     * Creates a task.
-     *
-     * @param isMarked    Status of the task.
-     * @param description Description of the task.
-     */
     public Task(boolean isMarked, String description) {
         this.description = description.toUpperCase();
 
         if (isMarked) {
-            status = MARK;
+            this.status = MARK;
         } else {
-            status = UNMARK;
+            this.status = UNMARK;
         }
 
         listSize++;
@@ -37,7 +31,7 @@ public abstract class Task {
      * @param type Type of task.
      */
     public void setType(String type) {
-        this.type = type;
+        this.type = "[" + type.toUpperCase() + "]";
     }
 
     /**
@@ -46,7 +40,7 @@ public abstract class Task {
      * @return Type of task.
      */
     public String getType() {
-        return type;
+        return this.type;
     }
 
     /**
@@ -55,7 +49,7 @@ public abstract class Task {
      * @param description Description of the task.
      */
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description.toUpperCase();
     }
 
     /**
@@ -64,7 +58,7 @@ public abstract class Task {
      * @return Description of the task.
      */
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     /**
@@ -87,7 +81,7 @@ public abstract class Task {
      * @return Status of the task.
      */
     public String getStatus() {
-        return status;
+        return this.status;
     }
 
     /**

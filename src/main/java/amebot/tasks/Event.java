@@ -8,14 +8,6 @@ public class Event extends Task {
     protected String fromDateTime;
     protected String toDateTime;
 
-    /**
-     * Creates an Event task.
-     *
-     * @param isMarked     Whether the task is marked.
-     * @param description  The description of the task.
-     * @param fromDateTime The starting date and time of the event.
-     * @param toDateTime   The ending date and time of the event.
-     */
     public Event(boolean isMarked, String description, String fromDateTime, String toDateTime) {
         super(isMarked, description);
         super.type = EVENT;
@@ -30,7 +22,7 @@ public class Event extends Task {
      */
     @Override
     public String getTask() {
-        return type + status + description + fromDateTime + toDateTime;
+        return type + status + description + this.fromDateTime + this.toDateTime;
     }
 
     /**
@@ -39,7 +31,7 @@ public class Event extends Task {
      * @param fromDateTime Start date and time of the event.
      */
     public void setFromDateTime(String fromDateTime) {
-        this.fromDateTime = fromDateTime;
+        this.fromDateTime = fromDateTime.toUpperCase();
     }
 
     /**
@@ -48,7 +40,7 @@ public class Event extends Task {
      * @return Start date and time of the event.
      */
     public String getFromDateTime() {
-        return fromDateTime;
+        return this.fromDateTime;
     }
 
     /**
@@ -57,7 +49,7 @@ public class Event extends Task {
      * @param toDateTime End date and time of the event.
      */
     public void setToDateTime(String toDateTime) {
-        this.toDateTime = toDateTime;
+        this.toDateTime = toDateTime.toUpperCase();
     }
 
     /**
@@ -66,6 +58,6 @@ public class Event extends Task {
      * @return End date and time of the event.
      */
     public String getToDateTime() {
-        return toDateTime;
+        return this.toDateTime;
     }
 }

@@ -2,23 +2,29 @@ package amebot.commands;
 
 import amebot.common.Messages;
 
+import java.util.ArrayList;
+
 /**
  * Represents a command that marks a task as not completed.
  */
 public class UnmarkCommand extends Command {
-    /**
-     * UnmarkCommand constructor
-     *
-     * @param index Index of the task to be set as unmark
-     */
+    protected int index;
+    protected ArrayList<String> logs = new ArrayList<>();
+
     public UnmarkCommand(int index) {
-        boolean isValidIndex = index > 0 && index <= tasks.size();
+        this.index = index;
+    }
 
-        if (isValidIndex) {
-            tasks.get(index - 1).setStatusAsUnmarked();
-            logs.add(Messages.STATUS_UNMARKED);
+    /**
+     * Marks a task as not completed.
+     *
+     * @return Logs for output.
+     */
+    public ArrayList<String> executeCommand() {
+        tasks.get(index - 1).setStatusAsUnmarked();
+        logs.add(Messages.STATUS_UNMARKED);
+        logs.add(tasks.get(index - 1).getTask());
 
-            logs.add(tasks.get(index - 1).getTask());
-        }
+        return logs;
     }
 }

@@ -9,8 +9,8 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
-import java.util.ArrayList;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Storage class handles the tasks loaded from file and
@@ -26,7 +26,9 @@ public class Storage {
      * Loads tasks from the file.
      */
     public void loadTasks() {
-        if (!isTasksFileFound() || isTasksFileEmpty()) {
+        boolean isTasksFileEmpty = TASKS_FILE.length() == 0;
+
+        if (!isTasksFileFound() || isTasksFileEmpty) {
             return;
         }
 
@@ -39,12 +41,10 @@ public class Storage {
                 TaskDecoder.decodeTask(task);
             }
 
-            System.out.println(Messages.SUCCESS_LOAD_TASK);
-
             bufferedReader.close();
             tasksFileReader.close();
         } catch (IOException err) {
-            System.out.println((Messages.ERROR_MESSAGE));
+            System.out.println(Messages.ERROR_MESSAGE);
         }
     }
 
@@ -58,42 +58,23 @@ public class Storage {
             return true;
         }
 
-        System.out.println(Messages.FILE_NOT_FOUND);
         createNewTasksFile();
         return false;
     }
 
     /**
-     * Creates a file if it does not exist.
+     * Creates a folder and file if they do not exist.
      */
     public void createNewTasksFile() {
         try {
             boolean isFolderCreated = TASKS_FOLDER.mkdir();
-            if (isFolderCreated) {
-                System.out.println(Messages.FOLDER_CREATED);
-            }
 
-            boolean isCreated = TASKS_FILE.createNewFile();
-            if (isCreated) {
-                System.out.println(Messages.FILE_CREATED);
+            if (isFolderCreated) {
+                TASKS_FILE.createNewFile();
             }
         } catch (IOException err) {
-            System.out.println((Messages.ERROR_MESSAGE));
+            System.out.println(Messages.ERROR_MESSAGE);
         }
-    }
-
-    /**
-     * Returns true if the file is empty.
-     *
-     * @return True if the file is empty, false otherwise.
-     */
-    public boolean isTasksFileEmpty() {
-        if (TASKS_FILE.length() == 0) {
-            System.out.println((Messages.EMPTY_FILE));
-            return true;
-        }
-
-        return false;
     }
 
     /**
@@ -117,7 +98,7 @@ public class Storage {
             bufferedWriter.close();
             tasksFileWriter.close();
         } catch (IOException err) {
-            System.out.println((Messages.ERROR_MESSAGE));
+            System.out.println(Messages.ERROR_MESSAGE);
         }
     }
 }
