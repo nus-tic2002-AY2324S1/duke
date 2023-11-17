@@ -53,35 +53,38 @@ public class Duke {
         String input = scanner.nextLine();
         String trimInput = input.trim().toLowerCase();
         //read string and execute functions accordingly.
-        while (!input.trim().equalsIgnoreCase("bye")){
+        while (!trimInput.equalsIgnoreCase("bye")){
             //added function that handles whitespace as well
 //            if (input.trim().isEmpty()){
 //                continue;
 //            }
-            if (input.trim().toLowerCase().startsWith("mark")){
+            if (trimInput.startsWith("mark")){
                 int index = tasks.getNumber(input);
                 actions.get(index-1).setIsDone(true);
                 ui.markDone();
                 //print "[X] return book"
                 actions.get(index-1).printTask();
 
-            }else if (input.trim().toLowerCase().startsWith("unmark")){
+            }else if (trimInput.startsWith("unmark")){
                 int index = tasks.getNumber(input);
                 actions.get(index-1).setIsDone(false);
                 ui.markNotDone();
                 //print "[ ] return book"
                 actions.get(index-1).printTask();
                 ui.printLine();
-            }else if (input.trim().toLowerCase().startsWith("delete")){
+            }else if (trimInput.startsWith("delete")){
                 actions = tasks.removeTasks(input, actions);
                 //lift it up to the first line to reduce runtime
-            }else if (!input.trim().equalsIgnoreCase("list")) {
+            }else if (!trimInput.equalsIgnoreCase("list")) {
+                assert (trimInput.startsWith("todo") || trimInput.startsWith("deadline")
+                        || trimInput.startsWith("event"));
                 actions = tasks.addTasks(input, actions);
             }else{
                 tasks.printTaskList(actions);
             }
             storage.convertToTxtFile(actions);
             input = scanner.nextLine();
+            trimInput = input.trim().toLowerCase();
 
         }
         ui.printBye();
