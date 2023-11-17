@@ -8,30 +8,31 @@ public class Event extends Task{
     private String to;
 
     //variable x stands for isDone
-    public Event(String d, boolean x) {
-        super(d,x);
-        extractFromAndTo(d);
+    public Event(String description, boolean isDone, String eventFrom, String eventTo) {
+        super(description,isDone);
+        setFrom(eventFrom);
+        setTo(eventTo);
     }
 
-    public void setFrom(String newFrom) {
-        this.from = dateParser.toDate(newFrom);
-    }
 
     public void extractFromAndTo(String description) {
         String[] words = description.split(" ", 2);
         try {
             String[] splitFrom = words[1].split("/from ");
-            setDescription(splitFrom[0]);
             String[] splitTo = splitFrom[1].split("/to ");
-            setFrom(splitTo[0]);
-            setTo(splitTo[1]);
+
         } catch(ArrayIndexOutOfBoundsException e) {
             //error message display is at main class
         }
     }
 
+    //TODO: another use case  "Event <description> <date> from <time>  to <time>"
+    public void setFrom(String newFrom) {
+        this.from = newFrom;
+    }
+
     public void setTo(String newTo) {
-        this.to = dateParser.toDate(newTo);
+        this.to = newTo;
     }
 
     public String getFrom(){

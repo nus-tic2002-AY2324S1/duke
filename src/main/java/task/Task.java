@@ -35,13 +35,7 @@ public class Task {
      * @throws ArrayIndexOutOfBoundsException If there is no input in the description .
      */
     public void setDescription(String description){
-        String[] words = description.split(" ", 2);
-        try {
-            this.description = words[1];
-        } catch(ArrayIndexOutOfBoundsException e) {
-            //error message display is at main class
-        }
-
+        this.description = description;
     }
 
     /**

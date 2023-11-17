@@ -27,9 +27,8 @@ public class DateTimeParser {
         String printedDate = " ";
 
         //need to check if the date fit into the format
-
-
         //compile regex format to match the expected result
+        // input should be "dd/MM/yyyy"
         Pattern pattern = Pattern.compile("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[1,2])/((19|20)\\d\\d)");
 
         //create matcher to check if the string matches expected results

@@ -1,5 +1,6 @@
 package task;
-import java.lang.reflect.Array;
+
+import util.Util;
 import java.util.ArrayList;
 
 /**
@@ -8,6 +9,12 @@ import java.util.ArrayList;
  * also print all the <code>Task</code> in the <code>Task</code> list.
  */
 public class TaskList {
+
+    private Task task;
+    private Deadline deadline;
+    private Event event;
+
+    private Util helper = new Util();
 
     /**
      * Constructor for TaskList class
@@ -63,28 +70,28 @@ public class TaskList {
     public ArrayList<Task> addTasks(String input, ArrayList<Task> actions){
         boolean isValid = validateInput(input);
         //if isValid ==false, stop process.
-        Task newTask = getNewTask(input);
         if (!isValid){
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
-        } else if(newTask.getDescription()==null){
-            System.out.println("OOPS!!! The description of a todo task cannot be empty.");
         }else{
-            System.out.println(
-                    "    ____________________________________________________________\n" +
-                            "     Got it. I've added this task:");
-            //e.g. "   [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)"
-            System.out.print("       ");
-            newTask.printTask();
+            Task newTask = createNewTask(input);
+//            Task newTask1 = newTask;
+            if(newTask.getDescription()==null) {
+                System.out.println("OOPS!!! The description of a todo task cannot be empty.");
+            }else{
+                System.out.println(
+                        "    ____________________________________________________________\n" +
+                                "     Got it. I've added this task:");
+                //e.g. "   [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)"
+                System.out.print("       ");
+                newTask.printTask();
 
-            actions.add(newTask) ;
-            //addInputCount();
-
-            //print task number as of now
-            System.out.println(
-                    "     Now you have "+actions.size()+ " tasks in the list.\n" +
-                            "    ____________________________________________________________\n");
+                actions.add(newTask) ;
+                //print task number as of now
+                System.out.println(
+                        "     Now you have "+actions.size()+ " tasks in the list.\n" +
+                                "    ____________________________________________________________\n");
+            }
         }
-
         return actions;
     }
 
@@ -125,18 +132,30 @@ public class TaskList {
 
     /**
      * Identifies the type of <code>Task</code>, <code>Deadline</code>
-     * OR <code>Event</code> OR todo task.
+     * OR <code>Event</code> OR todo task
+     * and create new <code>Task</code>.
      *
      * @param input String input contains task to be added by user.
      * @return A new <code>Task</code> according to the type of the task.
      */
-    public Task getNewTask (String input){
+    public Task createNewTask(String input){
+        String taskType = " ";
+        String description = "";
         if (input.trim().toLowerCase().startsWith("deadline")){
-            return new Deadline(input, false);
+            taskType = "D";
+            description = helper.transformDescription(input,taskType);
+            String deadlineInformation = helper.transfromDeadlineInformation(input);
+            return new Deadline(description, false, deadlineInformation);
         }else if (input.trim().toLowerCase().startsWith("event")){
-            return new Event(input, false);
-        }else  {
-            return new Task(input, false);
+            taskType = "E";
+            description = helper.transformDescription(input,taskType);
+            String eventFrom = helper.transformEventFrom(input);
+            String eventTo = helper.transformEventTo(input);
+            return new Event(description, false, eventFrom, eventTo);
+        }else {
+            taskType = "T";
+            description = helper.transformDescription(input,taskType);
+            return new Todo(description, false);
         }
     }
 }

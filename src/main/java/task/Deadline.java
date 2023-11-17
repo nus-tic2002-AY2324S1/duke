@@ -12,30 +12,28 @@ public class Deadline extends Task{
 
     private static DateTimeParser dateParser;
     private String by;
-    private String description;
-    public Deadline(String d,boolean x) {
-        super(d,x);
-        extractBy(d);
+    //private String description;
+    public Deadline(String description, boolean isDone, String deadlineInformation) {
+        //set description first time in the Task class
+        super(description,isDone);
+
+        //second time setting description
+         extractBy(deadlineInformation);
+
     }
     public String getBy() {
         return by;
     }
 
-    public void setBy( String newBy) {
+    public void setBy(String newBy) {
         this.by = newBy;
     }
 
-    public void extractBy(String description) {
-        String[] words = description.split(" ", 2);
-        try {
-            String[] splitBy = words[1].split("/by ");
-            //setDescription(splitBy[0]);
-            String deadline = splitBy[1];
-            String newBy = dateParser.toDate(deadline);
-            setBy(newBy);
-        } catch(ArrayIndexOutOfBoundsException e) {
-            //error message display is at main class
-        }
+
+    public void extractBy(String deadlineInformation) {
+        String deadline = deadlineInformation; //--> "14/05/2023 1800"
+        String newBy = dateParser.toDate(deadline);// --> "May 14 2023"
+        setBy(newBy); //--> this.by
     }
 
     @Override

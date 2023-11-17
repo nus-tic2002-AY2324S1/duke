@@ -74,6 +74,7 @@ public class Duke {
                 ui.printLine();
             }else if (input.trim().toLowerCase().startsWith("delete")){
                 actions = tasks.removeTasks(input, actions);
+                //lift it up to the first line to reduce runtime
             }else if (!input.trim().equalsIgnoreCase("list")) {
                 actions = tasks.addTasks(input, actions);
             }else{
