@@ -22,11 +22,11 @@ public class Messages {
     public static final String DESCRIPTION_UPDATED = "Description updated successfully!";
     public static final String DATE_TIME_UPDATED = "DateTime updated successfully!";
     public static final String INVALID_DESC = "Description is empty!";
-    public static final String INVALID_DESC_DATE = "Description is empty or you've entered an invalid format!"
-            + System.lineSeparator()
-            + "Please enter yyyy-MM-dd or dd/MM/yyyy (HHmm is optional)~";
+    public static final String INVALID_DESC_DATE = "Description is empty or you've entered an invalid format!";
+    public static final String INVALID_DATE = "Please enter yyyy-MM-dd or dd/MM/yyyy (HHmm is optional)~";
     public static final String INVALID_DATE_TIME_RANGE = "Invalid date or time range!";
     public static final String INVALID_DATE_TIME = "From dateTime must be earlier than To dateTime!";
+    public static final String INVALID_INDEX = "Index is empty! Please select an index from 1 to ";
     public static final String INVALID_INDEX_VALUE = "Index is out of bound! Please select an index from 1 to ";
     public static final String STATUS_MARKED = "You've completed this item!";
     public static final String STATUS_UNMARKED = "Pending item";
