@@ -54,10 +54,6 @@ public class Duke {
         String trimInput = input.trim().toLowerCase();
         //read string and execute functions accordingly.
         while (!trimInput.equalsIgnoreCase("bye")){
-            //added function that handles whitespace as well
-//            if (input.trim().isEmpty()){
-//                continue;
-//            }
             if (trimInput.startsWith("mark")){
                 int index = tasks.getNumber(input);
                 actions.get(index-1).setIsDone(true);
@@ -76,8 +72,6 @@ public class Duke {
                 actions = tasks.removeTasks(input, actions);
                 //lift it up to the first line to reduce runtime
             }else if (!trimInput.equalsIgnoreCase("list")) {
-                assert (trimInput.startsWith("todo") || trimInput.startsWith("deadline")
-                        || trimInput.startsWith("event"));
                 actions = tasks.addTasks(input, actions);
             }else{
                 tasks.printTaskList(actions);

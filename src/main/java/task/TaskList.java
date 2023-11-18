@@ -110,7 +110,7 @@ public class TaskList {
             try {
                 return Integer.parseInt(word);
             } catch (NumberFormatException nfe) {
-                continue;
+                System.out.println("Please put in a task number (integer) you would like to operate on :/");
             }
         }
         return -1;

@@ -8,7 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * A parser for datetime formatting. Any datetime format will be formatted from "dd/MM/yyyy" to "MMM dd yyyy" in <code>DateTimeParser</code> .
+ * A parser for datetime formatting. Any datetime format will be formatted
+ * from "dd/MM/yyyy" to "MMM dd yyyy" in <code>DateTimeParser</code> .
  */
 public class DateTimeParser {
     /*
@@ -31,7 +32,15 @@ public class DateTimeParser {
         Pattern pattern = Pattern.compile("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[1,2])/((19|20)\\d\\d)");
 
         //create matcher to check if the string matches expected results
+//        try {
+//            Matcher matcher = pattern.matcher(inputString);
+//        }catch (NullPointerException e){
+//            System.out.println("please enter a Date (dd/MM/yyyy)!");
+//        }
+
         Matcher matcher = pattern.matcher(inputString);
+
+
 
         //validate if the inputDate matches expected pattern
         if (matcher.find()){
@@ -48,7 +57,7 @@ public class DateTimeParser {
             printedDate = formattedDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")); // -> Example: Oct 15 2019
         }
         else {
-            System.out.println("Please follow date format as 'dd/MM/yyyy'");
+            printedDate = inputString;
         }
         return printedDate;
     }

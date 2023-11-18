@@ -11,12 +11,12 @@ public class Task {
     /**
      * Constructor for Task object
      *
-     * @param d A String contains description of the <code>Task</code> input by the user.
-     * @param x represent the condition of the task "done/not done".
+     * @param description A String contains description of the <code>Task</code> input by the user.
+     * @param isDone represent the condition of the task "done/not done".
      */
-    public Task (String d,boolean x){
-        this.isDone = x ;
-        setDescription(d);
+    public Task (String description,boolean isDone){
+        this.isDone = isDone ;
+        setDescription(description);
     }
 
     /**
