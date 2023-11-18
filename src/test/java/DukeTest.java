@@ -14,6 +14,6 @@ public class DukeTest {
 
     @Test
     public void testTransformDeadlineInformation(){
-        assertEquals("14/05/2023 1800", helper.transfromDeadlineInformation("deadline return book /by 14/05/2023 1800"));
+        assertEquals("14/05/2023 1800", helper.transformDeadlineInformation("deadline return book /by 14/05/2023 1800"));
     }
 }
