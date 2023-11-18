@@ -54,6 +54,7 @@ public class Parser {
         List<String> list = Arrays.asList(userInput.split(" "));
         ArrayList<String> tokens = new ArrayList<>(list);
 
+        assert !tokens.isEmpty() : "Empty input";
         String firstToken = tokens.get(0).toUpperCase();
         Command command;
 
@@ -63,6 +64,7 @@ public class Parser {
             // validate the command syntax and parameter format
             Validator.validateCommand(tokens, commandEnum);
             // removes the command type and remains parameters
+            assert !tokens.isEmpty() : "Empty input";
             tokens.remove(0);
 
             command = parseTokensToCommand(tokens, commandEnum);
@@ -91,6 +93,7 @@ public class Parser {
      */
     public static Task parseStorageToTask(String line) throws InvalidFileFormatException {
         String[] parts = line.split("\\s*\\|\\s*");
+        assert parts.length > 0 : "Blank line";
         boolean isDone = parts[1].equals("X");
         switch (parts[0]) {
         case "T":
