@@ -1,7 +1,519 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+____________________________________________________________
+  ______   __   __  ___   _  _______  _______  _______  _______ 
+ |      | |  | |  ||   | | ||       ||  _    ||       ||       |
+ |  _    ||  | |  ||   |_| ||    ___|| |_|   ||   _   ||_     _|
+ | | |   ||  |_|  ||      _||   |___ |       ||  | |  |  |   |  
+ | |_|   ||       ||     |_ |    ___||  _   | |  |_|  |  |   |  
+ |       ||       ||    _  ||   |___ | |_|   ||       |  |   |  
+ |______| |_______||___| |_||_______||_______||_______|  |___|  
+ Hello! I'm DukeBot.
+ What can I do for you?
+ HINT: Use the 'help' command for more information.
+____________________________________________________________
+____________________________________________________________
+ deadline /by {datetime} [/after {datetime/task-number}]
+     Create a deadline task with the specified due datetime and an optional dependency.
+ 
+ event /from {datetime} /to {datetime} [/after {datetime/task-number}]
+     Create an event task with the specified start and end datetime, and an optional dependency.
+ 
+ todo [/after {datetime/task-number}]
+     Create a todo task with an optional dependency.
+ 
+ delete {task-number}
+     Delete the task with the given task number.
+ 
+ mark {task-number}
+     Mark the task with the given task number as complete.
+ 
+ unmark {task-number}
+     Mark the task with the given task number as incomplete.
+ 
+ list
+     Show all tasks.
+ 
+ find {criteria}
+     Display tasks with descriptions containing the specified criteria.
+ 
+ date {date}
+     Show tasks scheduled on the given date.
+ 
+ bye
+     Display the farewell message.
+ 
+ help
+     Display this help message.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The list command should not take any arguments.
+____________________________________________________________
+____________________________________________________________
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The description of a todo cannot be empty.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [T][ ] borrow book
+ Now you have 1 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The task number of "/after" is invalid.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [T][ ] read book (after: 1)
+ Now you have 2 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[T][ ] read book (after: 1)
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [T][ ] review book (after: Sep 01 2019 9:30AM)
+ Now you have 3 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The description of a deadline cannot be empty.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The "/by {datetime}" of a deadline is required.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The "/by {datetime}" of a deadline is required.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [D][ ] return book (by: Sep 01 2019 6:30PM)
+ Now you have 4 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The task number of "/after" is invalid.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ Now you have 5 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ Now you have 6 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The description of an event cannot be empty.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The "/from {datetime}" of an event is required.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The "/to {datetime}" of an event is required.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The "/from {datetime}" of an event is required.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The "/from {datetime}" of an event is required.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ Now you have 7 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ Now you have 8 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The task number of "/after" is invalid.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ Now you have 9 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The time of "/after" is not between "/from" and "/to".
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ Now you have 10 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The task number of "/after" is invalid.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+ Now you have 11 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The time of "/after" is not between "/from" and "/to".
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ Now you have 12 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][ ] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+ 12.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The task number to be marked cannot be empty.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! Invalid task number to be marked.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! Invalid task number to be marked.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The dependent task #1 is not yet done.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [T][ ] test (after: Feb 02 2222 2:02AM)
+ Now you have 13 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The dependent datetime has not yet been reached.
+____________________________________________________________
+____________________________________________________________
+ Noted. I've removed this task:
+   [T][ ] test (after: Feb 02 2222 2:02AM)
+ Now you have 12 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ Nice! I've marked this task as done:
+   [T][X] borrow book
+____________________________________________________________
+____________________________________________________________
+ 1.[T][X] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+ 12.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+____________________________________________________________
+____________________________________________________________
+ Nice! I've marked this task as done:
+   [T][X] read book (after: 1)
+____________________________________________________________
+____________________________________________________________
+ 1.[T][X] borrow book
+ 2.[T][X] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+ 12.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+____________________________________________________________
+____________________________________________________________
+ Nice! I've marked this task as done:
+   [D][X] return book (by: Sep 01 2019 6:30PM)
+____________________________________________________________
+____________________________________________________________
+ 1.[T][X] borrow book
+ 2.[T][X] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][X] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+ 12.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+____________________________________________________________
+____________________________________________________________
+ Nice! I've marked this task as done:
+   [E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+____________________________________________________________
+____________________________________________________________
+ 1.[T][X] borrow book
+ 2.[T][X] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][X] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+ 12.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+____________________________________________________________
+____________________________________________________________
+ 4.[D][X] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+ 12.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+____________________________________________________________
+____________________________________________________________
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+____________________________________________________________
+____________________________________________________________
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The task number to be unmarked cannot be empty.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! Invalid task number to be unmarked.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! Invalid task number to be unmarked.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The task #2 which depends on this task has been already done.
+____________________________________________________________
+____________________________________________________________
+ OK, I've marked this task as not done yet:
+   [T][ ] read book (after: 1)
+____________________________________________________________
+____________________________________________________________
+ 1.[T][X] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][X] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+ 12.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+____________________________________________________________
+____________________________________________________________
+ OK, I've marked this task as not done yet:
+   [D][ ] return book (by: Sep 01 2019 6:30PM)
+____________________________________________________________
+____________________________________________________________
+ 1.[T][X] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+ 12.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+____________________________________________________________
+____________________________________________________________
+ OK, I've marked this task as not done yet:
+   [D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+____________________________________________________________
+____________________________________________________________
+ 1.[T][X] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+ 12.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The task number to be deleted cannot be empty.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! Invalid task number to be deleted.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! Invalid task number to be deleted.
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The task #2 depends on the task #1, please delete the task #2 first.
+____________________________________________________________
+____________________________________________________________
+ Noted. I've removed this task:
+   [E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ Now you have 11 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][X] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ 6.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 7.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 8)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 11.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 10)
+____________________________________________________________
+____________________________________________________________
+ Noted. I've removed this task:
+   [D][ ] save notes (by: Sep 01 2019 6:30PM after: 4)
+ Now you have 10 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][X] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[T][ ] review book (after: Sep 01 2019 9:30AM)
+ 4.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 5.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 6.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 7.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 7)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 10.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 9)
+____________________________________________________________
+____________________________________________________________
+ Noted. I've removed this task:
+   [T][ ] review book (after: Sep 01 2019 9:30AM)
+ Now you have 9 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ 1.[T][X] borrow book
+ 2.[T][ ] read book (after: 1)
+ 3.[D][ ] return book (by: Sep 01 2019 6:30PM)
+ 4.[D][ ] call library (by: Sep 01 2019 6:30PM after: Sep 01 2019 9:30AM)
+ 5.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 6.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 7.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 6)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 8)
+____________________________________________________________
+____________________________________________________________
+ 5.[E][X] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM)
+ 6.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM)
+ 7.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: 6)
+ 8.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: 4:30PM after: Sep 01 2019 3:30PM)
+ 9.[E][ ] project meeting (from: Sep 01 2019 2:30PM to: Oct 15 2019 4:30PM after: 8)
+____________________________________________________________
+____________________________________________________________
+ OOPS!!! The bye command should not take any arguments.
+____________________________________________________________
+____________________________________________________________
+ Bye. Hope to see you again soon!
+____________________________________________________________
