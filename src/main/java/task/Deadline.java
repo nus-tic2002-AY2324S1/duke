@@ -39,7 +39,7 @@ public class Deadline extends Task{
         }catch (NullPointerException e){
             System.out.println("please enter a Date (dd/MM/yyyy)!");
         }
-
+        assert deadline!=null:"Deadline task has to have detailed date!";
     }
 
     @Override
