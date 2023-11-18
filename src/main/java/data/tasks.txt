@@ -1,0 +1,7 @@
+D|MEDIUM|false|conquer the world|2023-12-31
+E|LOW|true|epic brainstorming|2023-11-01|2023-11-02
+T|HIGH|true|master the art of juggling
+T|MEDIUM|false|write a novel|2024-01-01|2024-12-31
+D|LOW|false|complete the great novel escape plan|2023-12-31
+E|HIGH|false|mind-bending ideathon|2023-12-30|2023-12-31
+E|LOW|false|quantum leap hackathon|2023-12-31|2024-01-03
