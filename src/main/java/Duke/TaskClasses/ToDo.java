@@ -1,6 +1,6 @@
-package TaskClasses;
+package Duke.TaskClasses;
 
-import ExceptionClasses.IncompleteDataException;
+import Duke.ExceptionClasses.IncompleteDataException;
 
 public class ToDo extends Task {
     public ToDo(String description) {

@@ -1,4 +1,4 @@
-package ExceptionClasses;
+package Duke.ExceptionClasses;
 
 public class CorruptedFileException extends DupeException {
     public CorruptedFileException(String message) {

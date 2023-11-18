@@ -1,4 +1,4 @@
-package ExceptionClasses;
+package Duke.ExceptionClasses;
 
 public class EmptyDescriptionException extends DupeException {
     public EmptyDescriptionException() {

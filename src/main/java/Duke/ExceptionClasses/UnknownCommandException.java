@@ -1,4 +1,4 @@
-package ExceptionClasses;
+package Duke.ExceptionClasses;
 
 public class UnknownCommandException extends DupeException {
     public UnknownCommandException() {

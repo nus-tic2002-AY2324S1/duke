@@ -1,7 +1,16 @@
-package main.java;// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
+package Duke;
+// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
-import ExceptionClasses.*;
-import TaskClasses.*;
+
+import Duke.ExceptionClasses.DupeException;
+import Duke.ExceptionClasses.EmptyDescriptionException;
+import Duke.ExceptionClasses.IncompleteDataException;
+import Duke.ExceptionClasses.UnknownCommandException;
+
+import Duke.TaskClasses.Deadline;
+import Duke.TaskClasses.Event;
+import Duke.TaskClasses.Task;
+import Duke.TaskClasses.ToDo;
 
 
 import java.util.ArrayList;
@@ -15,7 +24,7 @@ public class Dupe {
 
     public static void main(String[] args) throws DupeException {
         try {
-            tasks = storage.load();
+            tasks = storage.load(fileContent);
         } catch (DupeException e) {
             // Handle the exception (e.g., show an error message)
             System.out.println("Error loading tasks: " + e.getMessage());
@@ -216,7 +225,7 @@ public class Dupe {
         try {
             int taskIndex = Integer.parseInt(inputParts[1]);
             if (taskIndex < 1 || taskIndex > tasks.size()) {
-                System.out.println("TaskClasses.Task index is out of range.");
+                System.out.println("Duke.TaskClasses.Task index is out of range.");
             } else {
                 // Remove the task from the list
                 Task deletedTask = tasks.remove(taskIndex - 1);

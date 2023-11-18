@@ -1,6 +1,6 @@
-package main.java;
+package Duke;
 
-import TaskClasses.Task;
+import Duke.TaskClasses.Task;
 
 import java.util.Scanner;
 

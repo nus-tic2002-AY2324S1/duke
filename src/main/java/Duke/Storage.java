@@ -1,6 +1,10 @@
-package main.java;
-import ExceptionClasses.*;
-import TaskClasses.*;
+package Duke;
+
+import Duke.ExceptionClasses.CorruptedFileException;
+import Duke.ExceptionClasses.DupeException;
+import Duke.ExceptionClasses.IncompleteDataException;
+import Duke.TaskClasses.Task;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,7 +19,7 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public ArrayList<Task> load() throws DupeException {
+    public ArrayList<Task> load(String fileContent) throws DupeException {
         ArrayList<Task> loadedTasks = new ArrayList<>();
 
         try {

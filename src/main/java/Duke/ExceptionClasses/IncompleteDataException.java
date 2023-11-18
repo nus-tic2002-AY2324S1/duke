@@ -1,4 +1,4 @@
-package ExceptionClasses;
+package Duke.ExceptionClasses;
 
 public class IncompleteDataException extends DupeException {
     public IncompleteDataException() {

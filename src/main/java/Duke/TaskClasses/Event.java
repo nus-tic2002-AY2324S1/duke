@@ -1,6 +1,6 @@
-package TaskClasses;
+package Duke.TaskClasses;
 
-import ExceptionClasses.IncompleteDataException;
+import Duke.ExceptionClasses.IncompleteDataException;
 
 
 import java.time.LocalDateTime;
