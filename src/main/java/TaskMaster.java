@@ -8,13 +8,13 @@ import storage.Storage;
 import tasks.TaskList;
 import ui.UI;
 
-public class Duke {
+public class TaskMaster {
 
     private Storage storage;
     private TaskList tasks;
     private UI ui;
 
-    public Duke(String filePath) {
+    public TaskMaster(String filePath) {
         ui = new UI();
         storage = new Storage(filePath);
         try {
@@ -45,7 +45,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("data/temp.txt").run();
+        new TaskMaster("data/temp.txt").run();
     }
 
 }
