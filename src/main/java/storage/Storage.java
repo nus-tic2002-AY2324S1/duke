@@ -8,7 +8,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import constants.ErrorMessages;
 import constants.RegExp;
+import exceptions.DukeException;
 import tasks.Deadline;
 import tasks.Event;
 import tasks.Priority;
@@ -124,7 +126,7 @@ public class Storage {
      * 
      * @param tasks The users current TaskList object.
      */
-    public void storeData(TaskList tasks) {
+    public void storeData(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(filePath);
             int totalTasks = tasks.getTotalTasks();
@@ -135,8 +137,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println(
-                    "Uh-oh! TaskMaster encountered a hiccup while scribbling on the grand task scroll!");
+            throw new DukeException(ErrorMessages.ERROR_STORING_TO_FILE);
         }
     }
 

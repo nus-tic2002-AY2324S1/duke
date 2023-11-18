@@ -38,4 +38,6 @@ public class ErrorMessages {
                         "Whoa there, adventurer! Attempting to mark an already marked task? Double the glory, I suppose!";
         public static final String ERROR_UMARKING_UNMARKED_TASK =
                         "Hold your horses! Attempting to unmark a task that was never in the victory parade?";
+        public static final String ERROR_STORING_TO_FILE =
+                        "Uh-oh! TaskMaster encountered a hiccup while scribbling on the grand task scroll!";
 }
