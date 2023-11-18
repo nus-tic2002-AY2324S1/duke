@@ -31,6 +31,7 @@ public class UpdateCommand extends Command {
      *
      * @return logs for output.
      */
+    @Override
     public ArrayList<String> executeCommand() {
         String taskType = tasks.get(this.index - 1).getType().replaceAll("\\[", "").replaceAll("]", "").replaceAll(" ", "");
         boolean isEventType = taskType.equals(Keyword.EVENT.toString());

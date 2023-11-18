@@ -15,6 +15,7 @@ public class ExitCommand extends Command {
      *
      * @return Logs for output.
      */
+    @Override
     public ArrayList<String> executeCommand() {
         logs.add(Messages.EXIT_MESSAGE);
         return logs;

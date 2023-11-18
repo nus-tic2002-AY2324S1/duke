@@ -35,6 +35,7 @@ public class AddCommand extends Command {
      *
      * @return list of tasks.
      */
+    @Override
     public ArrayList<String> executeCommand() {
         logs.add(item.getTask());
         logs.add(Messages.SUCCESS_ADD_MESSAGE);

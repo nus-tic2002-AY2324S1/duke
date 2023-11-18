@@ -16,6 +16,7 @@ public class ListCommand extends Command {
      *
      * @return Logs for output.
      */
+    @Override
     public ArrayList<String> executeCommand() {
         ArrayList<String> logs = new ArrayList<>();
 

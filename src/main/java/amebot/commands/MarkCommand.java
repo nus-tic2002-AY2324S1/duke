@@ -20,6 +20,7 @@ public class MarkCommand extends Command {
      *
      * @return Logs for output.
      */
+    @Override
     public ArrayList<String> executeCommand() {
         tasks.get(index - 1).setStatusAsMarked();
         logs.add(Messages.STATUS_MARKED);

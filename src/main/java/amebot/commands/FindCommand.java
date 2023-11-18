@@ -24,6 +24,7 @@ public class FindCommand extends Command {
      *
      * @return Logs for output.
      */
+    @Override
     public ArrayList<String> executeCommand() {
         if (tasks.isEmpty()) {
             logs.add(Messages.EMPTY_LIST);

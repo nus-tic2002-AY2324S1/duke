@@ -20,6 +20,7 @@ public class UnmarkCommand extends Command {
      *
      * @return Logs for output.
      */
+    @Override
     public ArrayList<String> executeCommand() {
         tasks.get(index - 1).setStatusAsUnmarked();
         logs.add(Messages.STATUS_UNMARKED);

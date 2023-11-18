@@ -18,6 +18,7 @@ public class InvalidCommand extends Command {
      *
      * @return the error message.
      */
+    @Override
     public ArrayList<String> executeCommand() {
         logs.add(this.errorMessage);
         return logs;

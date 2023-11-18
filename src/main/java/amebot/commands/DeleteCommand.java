@@ -20,6 +20,7 @@ public class DeleteCommand extends Command {
      *
      * @return Logs for output.
      */
+    @Override
     public ArrayList<String> executeCommand() {
         logs.add(tasks.get(index - 1).getTask());
         tasks.remove(index - 1);
