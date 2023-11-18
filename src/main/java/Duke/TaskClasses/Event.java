@@ -11,6 +11,7 @@ public class Event extends Task {
     protected LocalDateTime from;
     protected LocalDateTime to;
 
+
     public Event(String description, String from, String to) throws IncompleteDataException {
         super(description);
         if (from == null || from.isEmpty()) {
@@ -45,11 +46,28 @@ public class Event extends Task {
             // Handle the case where the date/time strings are not in the expected format
             throw new IncompleteDataException("Invalid date/time format in Event task: " + e.getMessage());
         }
+
+        System.out.println("test: " + this.from.toString());
     }
+
+    public Event(String description, LocalDateTime from, LocalDateTime to){
+        super(description);
+        this.from = from;
+        this.to = to;
+    }
+
 
     private LocalDateTime parseEventDateTime(String dateTimeString) {
         //System.out.println(dateTimeString);
         return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy/MM/dd['T'HH:mm][ HH:mm]"));
+    }
+
+    public LocalDateTime getFromDateTime() {
+        return from;
+    }
+
+    public LocalDateTime getToDateTime() {
+        return to;
     }
 
     @Override

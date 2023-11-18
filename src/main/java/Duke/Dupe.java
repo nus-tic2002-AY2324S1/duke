@@ -7,12 +7,10 @@ import Duke.ExceptionClasses.EmptyDescriptionException;
 import Duke.ExceptionClasses.IncompleteDataException;
 import Duke.ExceptionClasses.UnknownCommandException;
 
-import Duke.TaskClasses.Deadline;
-import Duke.TaskClasses.Event;
-import Duke.TaskClasses.Task;
-import Duke.TaskClasses.ToDo;
+import Duke.TaskClasses.*;
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Dupe {
@@ -48,6 +46,8 @@ public class Dupe {
                 unmarkTask(userInput);
             } else if(userInput.toLowerCase().startsWith("delete")){
                 deleteTask(userInput);
+            } else if (userInput.toLowerCase().startsWith("recur")) {
+                handleRecurringEvent(userInput);
             } else {
                 addTask(userInput);
             }
@@ -240,6 +240,74 @@ public class Dupe {
         }
         catch (DupeException e) {
             System.out.println("Error saving tasks: " + e.getMessage());
+        }
+    }
+
+    private static void handleRecurringEvent(String userInput) {
+        String[] words = userInput.trim().split("\\s+");
+        if (words.length == 4) {
+            try {
+                int taskNumber = Integer.parseInt(words[1]);
+                String recurrenceType = words[2].toUpperCase(); // Convert to uppercase
+                int recurrenceCount = Integer.parseInt(words[3]);
+
+                // Call the corresponding method to add recurring event based on the parsed information
+                addRecurringEvent(taskNumber, Recurrence.valueOf(recurrenceType), recurrenceCount);
+            } catch (NumberFormatException e) {
+                System.err.println("Invalid number format in the input. Please provide valid numbers.");
+            } catch (IllegalArgumentException e) {
+                System.err.println("Invalid recurrence type. Please provide a valid recurrence type (e.g., DAILY, WEEKLY, BIWEEKLY, MONTHLY).");
+            }
+        } else {
+            System.err.println("Invalid input format. Please use the format: recur <taskNumber> <recurrenceType> <recurrenceInterval> <recurrenceCount>");
+        }
+        // Call the corresponding method to add recurring event based on the parsed information
+        // For example, if userInput is "recur 2 biweekly 4", you might extract taskNumber=2, recurrenceType=BIWEEKLY, recurrenceInterval=2, recurrenceCount=4
+        // Then call addRecurringEvent method with these parameters
+    }
+
+    private static void addRecurringEvent(int taskNumber, Recurrence recurrenceType, int recurrenceCount) {
+        // Retrieve the task from the tasks list based on taskNumber
+        Task eventTask = tasks.get(taskNumber - 1);
+
+        if (eventTask instanceof Event) {
+            for (int i = 0; i < recurrenceCount; i++) {
+                LocalDateTime originalFrom = ((Event) eventTask).getFromDateTime();
+                LocalDateTime originalTo = ((Event) eventTask).getToDateTime();
+
+                LocalDateTime newFrom, newTo;
+
+                switch (recurrenceType) {
+                    case DAILY:
+                        newFrom = originalFrom.plusDays(1 * (i + 1));
+                        newTo = originalTo.plusDays(1 * (i + 1));
+                        break;
+                    case WEEKLY:
+                        newFrom = originalFrom.plusWeeks(7 * (i + 1));
+                        newTo = originalTo.plusWeeks(7 * (i + 1));
+                        break;
+                    case BIWEEKLY:
+                        newFrom = originalFrom.plusWeeks(2 * 7 * (i + 1));
+                        newTo = originalTo.plusWeeks(2 * 7 * (i + 1));
+                        break;
+                    case MONTHLY:
+                        newFrom = originalFrom.plusMonths(1 * (i + 1));
+                        newTo = originalTo.plusMonths(1 * (i + 1));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Unsupported recurrence type");
+                }
+
+                // Create a new task with the same properties as the original task
+                Task recurringTask = new Event(eventTask.getDescription(), newFrom, newTo);
+
+                // Add the recurring task to the tasks list
+                tasks.add(recurringTask);
+            }
+
+            System.out.println("Recurring event added successfully!");
+        } else {
+            System.err.println("Task " + taskNumber + " is not an event and cannot have a recurrence.");
         }
     }
 

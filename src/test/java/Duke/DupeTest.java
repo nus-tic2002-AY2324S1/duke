@@ -34,7 +34,7 @@ public class DupeTest {
 
         // Initialize Storage with the test file path
         storage = new Storage(testFile.getPath());
-        
+
         ArrayList<Task> loadedTasks = storage.load();
 
         String expectedTaskDescription = "Sample Task";
