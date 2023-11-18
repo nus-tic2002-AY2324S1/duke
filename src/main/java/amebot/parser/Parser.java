@@ -130,7 +130,7 @@ public class Parser {
         boolean isEventCommand = command.matches(Regex.EVENT_COMMAND);
 
         if (!isEventCommand) {
-            return new InvalidCommand(Messages.INVALID_COMMAND);
+            return new InvalidCommand(Messages.INVALID_DESC_DATE);
         }
 
         int startIndexOfDateTime = command.indexOf(Regex.FROM_PATTERN);
@@ -138,7 +138,7 @@ public class Parser {
         boolean isEventDateTimeFormat = dateTime.matches(Regex.FROM_PATTERN + Regex.DATE_TIME_PATTERN + Regex.TO_PATTERN + Regex.DATE_TIME_PATTERN);
 
         if (!isEventDateTimeFormat) {
-            return new InvalidCommand(Messages.INVALID_DESC_DATE);
+            return new InvalidCommand(Messages.INVALID_DATE);
         }
 
         boolean isStatusMarked = false;
@@ -216,7 +216,7 @@ public class Parser {
         boolean isDeadlineCommand = command.matches(Regex.DEADLINE_COMMAND);
 
         if (!isDeadlineCommand) {
-            return new InvalidCommand(Messages.INVALID_COMMAND);
+            return new InvalidCommand(Messages.INVALID_DESC_DATE);
         }
 
         int startIndexOfDateTime = command.indexOf(Regex.DUE_PATTERN);
@@ -224,7 +224,7 @@ public class Parser {
         boolean isDeadlineDateTimeFormat = dateTime.matches(Regex.DUE_PATTERN + Regex.DATE_TIME_PATTERN);
 
         if (!isDeadlineDateTimeFormat) {
-            return new InvalidCommand(Messages.INVALID_DESC_DATE);
+            return new InvalidCommand(Messages.INVALID_DATE);
         }
 
         boolean isStatusMarked = false;
@@ -284,7 +284,9 @@ public class Parser {
         boolean isUpdateDescriptionCommand = command.matches(Regex.UPDATE_DESCRIPTION_COMMAND);
 
         if (!isUpdateDateTimeCommand && !isUpdateDescriptionCommand) {
-            return new InvalidCommand(Messages.INVALID_COMMAND);
+            return new InvalidCommand(Messages.INVALID_INDEX_VALUE
+                    + Task.getListSize()
+                    + "!");
         }
 
         int taskIndex = Integer.parseInt(taskDetail[1]);
@@ -366,7 +368,9 @@ public class Parser {
         boolean isRemoveCommand = command.matches(Regex.REMOVE_INDEX_COMMAND);
 
         if ((!isMarkCommand && !isRemoveCommand)) {
-            return new InvalidCommand(Messages.INVALID_COMMAND);
+            return new InvalidCommand(Messages.INVALID_INDEX
+                    + Task.getListSize()
+                    + "!");
         }
 
         int taskIndex = Integer.parseInt(taskDetail[1]);
