@@ -33,6 +33,7 @@ public class Deadline extends Task{
     public void extractBy(String deadlineInformation) {
         String deadline = deadlineInformation; //--> "14/05/2023 1800"
         String newBy = dateParser.toDate(deadline);// --> "May 14 2023"
+        assert deadline!=null:"Deadline has to be detailed with dates.";
         setBy(newBy); //--> this.by
     }
 

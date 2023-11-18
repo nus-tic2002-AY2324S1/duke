@@ -144,7 +144,7 @@ public class TaskList {
         if (input.trim().toLowerCase().startsWith("deadline")){
             taskType = "D";
             description = helper.transformDescription(input,taskType);
-            String deadlineInformation = helper.transfromDeadlineInformation(input);
+            String deadlineInformation = helper.transformDeadlineInformation(input);
             return new Deadline(description, false, deadlineInformation);
         }else if (input.trim().toLowerCase().startsWith("event")){
             taskType = "E";
