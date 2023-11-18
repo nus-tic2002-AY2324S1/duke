@@ -39,6 +39,7 @@ public class Parser {
      * @return Parsed user input command.
      */
     public Command parseCommand(String command) {
+        assert command != null : "Command should not be null!";
         int endIndex = command.length();
         String[] taskDetail = command.trim().split(" ");
         String commandName = taskDetail[0].toUpperCase();
