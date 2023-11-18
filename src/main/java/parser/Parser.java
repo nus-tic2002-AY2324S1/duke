@@ -19,7 +19,7 @@ import constants.RegExp;
 import exceptions.DukeException;
 
 public class Parser {
-    protected static Command c;
+    private static Command c;
     private static final String BETWEEN_STRING = "/between";
     /**
      * Returns a {@code Command} object based on user input.

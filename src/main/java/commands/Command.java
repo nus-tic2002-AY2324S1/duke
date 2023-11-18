@@ -16,7 +16,6 @@ import ui.UI;
 
 public abstract class Command {
     protected boolean isExit = false;
-    protected String input;
     
     /**
      * Executes the specified user command, defining its behavior.
