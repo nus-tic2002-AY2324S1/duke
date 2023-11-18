@@ -19,7 +19,7 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public ArrayList<Task> load(String fileContent) throws DupeException {
+    public ArrayList<Task> load() throws DupeException {
         ArrayList<Task> loadedTasks = new ArrayList<>();
 
         try {

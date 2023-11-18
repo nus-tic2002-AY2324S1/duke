@@ -24,7 +24,7 @@ public class Dupe {
 
     public static void main(String[] args) throws DupeException {
         try {
-            tasks = storage.load(fileContent);
+            tasks = storage.load();
         } catch (DupeException e) {
             // Handle the exception (e.g., show an error message)
             System.out.println("Error loading tasks: " + e.getMessage());
