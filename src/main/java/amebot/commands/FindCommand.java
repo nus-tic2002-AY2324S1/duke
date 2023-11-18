@@ -16,7 +16,7 @@ public class FindCommand extends Command {
     protected ArrayList<String> logs = new ArrayList<>();
 
     public FindCommand(String keyword) {
-        this.keyword = keyword;
+        this.keyword = keyword.toUpperCase();
     }
 
     /**
@@ -52,7 +52,7 @@ public class FindCommand extends Command {
      * @param itemNum Item number of the task.
      */
     public void storeMatchingTask(Task task, int itemNum) {
-        String taskType = task.getType();
+        String taskType = task.getType().replaceAll("\\[", "").replaceAll("]", "").replaceAll(" ", "");
 
         String taskDescription = task.getDescription();
         boolean isDescriptionMatched = taskDescription.contains(this.keyword);
