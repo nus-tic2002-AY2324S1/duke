@@ -15,6 +15,9 @@ public class Task {
         isMarked = false;
         this.tags = new ArrayList<>();
     }
+    public void replaceDescription(String newdescription) {
+        this.description = newdescription;
+    }
     public String printStatusIcon(){
         String mark = " ";
         if(this.isMarked){
@@ -44,6 +47,13 @@ public class Task {
             tagSeries += ("#" + tag);
         }
         return tagSeries;
+    }
+    public String TagString(){
+        String tagString = String.join(",", this.tags);
+        if(tagString.isEmpty()){
+            return "~";
+        }
+        return tagString;
     }
     public static void addTag(Task task, String tag){
         task.tags.add(tag);

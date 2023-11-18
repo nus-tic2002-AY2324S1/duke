@@ -1,16 +1,13 @@
 package Duke;
-import Shelf.Shelf;
+import Shelf.ShelfManager;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static java.lang.Integer.parseInt;
-
-/**
+/*
  * Methods for saving and loading file operation
- *
  */
 public class Storage {
 
@@ -18,9 +15,9 @@ public class Storage {
         String home = System.getProperty("user.dir");
         return Paths.get(home, "save");
     }
-    public static void CreateFile(String fileData) {
+    public static void CreateFile(String filename, String fileData) {
         try {
-            Path filePath = Paths.get(getSavefilePath() + "\\data.txt");
+            Path filePath = Paths.get(getSavefilePath() + "\\" + filename + ".txt");
             if (!java.nio.file.Files.exists(filePath)) {
                 Files.createFile(filePath);
                 System.out.println("File created: " + filePath.toString() +" ...proceed to save file");
@@ -59,8 +56,8 @@ public class Storage {
         return shelfData;
     }
 
-    public static Shelf FileParser(String shelfData) throws DukeException { //converts file string into Shelf.Shelf arraylist
-        Shelf newlist = new Shelf();
+    public static ShelfManager FileParser(String shelfData) throws DukeException { //converts file string into Shelf.Shelf arraylist
+        ShelfManager newlist = new ShelfManager();
         int line_no = 1;
 
         String[] lines = shelfData.split("\n");

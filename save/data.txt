@@ -1,6 +1,7 @@
-T|X|special task check|~|patience|
-~|X|run to narnia|~|fun|
-E|X|hehe|~|~|
+~|X|special task check|~|~|
+T|X|run to narnia|~|fantasy|
+E|~|End of year exam|2023-12-31|busy|
 ~|~|run to super|~|~|
-D|~|submit duke|2023-11-19T23:59:59|fun,finally|
-~|~|test|1999-11-19T23:59:59|~|
+D|~|submit duke at night|2023-11-19|~|
+~|~|test|1999-11-19|~|
+E|X|halloween horror night|2011-10-31|scary,spooky,fun|

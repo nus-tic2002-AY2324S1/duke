@@ -1,5 +1,5 @@
 package Duke;
-import Shelf.Shelf;
+import Shelf.ShelfManager;
 import Task.Text;
 
 import java.io.IOException;
@@ -15,17 +15,19 @@ import java.io.IOException;
  * @since   2023-11-14
  */
 public class Duke {
-    private Shelf tasks;
-    public Duke(String fileName) {
-        tasks = new Shelf();
-        try {
-            tasks = Storage.FileParser(Storage.loadFile(fileName));
-
-        } catch (DukeException e) {
-            Text.showLoadingError();
-            tasks = new Shelf();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    private ShelfManager tasks;
+    public Duke() {
+        tasks = new ShelfManager();
+        String response = Text.showPrompt("Do you wish to load saved file...[y/n]: ");
+        if (response.equals("y") || response.equals("Y")) {
+            try {
+                tasks = Storage.FileParser(Storage.loadFile("data"));
+            } catch (DukeException e) {
+                Text.showLoadingError();
+                tasks = new ShelfManager();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
     public void run() {
@@ -38,6 +40,6 @@ public class Duke {
 
     }
     public static void main(String[] args) {
-        new Duke("data").run();
+        new Duke().run();
     }
 }

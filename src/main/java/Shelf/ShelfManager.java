@@ -11,9 +11,12 @@ import java.util.ArrayList;
  * Such as CRUD of tasks.
  */
 
-public class Shelf {
+public class ShelfManager {
     private static ArrayList<SpecialTask> shelf;
-    public Shelf(){
+    public static ArrayList<SpecialTask> getShelf() {
+        return shelf;
+    }
+    public ShelfManager(){
         shelf = new ArrayList<>();
     }
     public static String listItem(Integer i){
@@ -34,7 +37,7 @@ public class Shelf {
             return;
         }
         System.out.print(Text.newline);
-        System.out.println("No. [Type] [Marking] Description (Date) #tag1..."); // listing sequence
+        System.out.println("No. [Type] [Marking] Description (Date) #tag1#tag2..."); // listing sequence
         for(int i = 0; i < shelf.size(); i++){
             System.out.println(listItem(i));
         }
@@ -72,21 +75,25 @@ public class Shelf {
             Task.setUnmarked(shelf.get(idx));
             System.out.println("OK, I've marked this task as not done yet:");
         }
-        System.out.println("[" + shelf.get(idx).printStatusIcon() + "]" + shelf.get(idx).getDescription() + "\n" + Text.newline);
+        System.out.println(listItem(idx));
+        System.out.println(Text.newline);
+        //System.out.println("[" + shelf.get(idx).printStatusIcon() + "]" + shelf.get(idx).getDescription() + "\n" + Text.newline);
     }
     public static void addSpecialTask(String type, String item){
         SpecialTask t = new SpecialTask(type,item);
         shelf.add(t);
         System.out.println(Text.newline + "Got it. I've added this task:");
-        System.out.print("[" + t.printTypeIcon() + "]" + "[ ] " + item + "\n" + Text.newline);
+        System.out.println(listItem(shelf.size()-1));
         System.out.println("Now you have "+ shelf.size() +" tasks in the list.");
+        System.out.println(Text.newline);
     }
     public static void addDateTask(String type, String item, String date){
         DateTask d = new DateTask(type, item, date);
         shelf.add(d);
         System.out.println(Text.newline + "Got it. I've added this task with a deadline:");
-        System.out.print("[" + d.printTypeIcon() + "]" + "[ ] " + item + " " + d.showDate() +"\n" + Text.newline);
+        System.out.println(listItem(shelf.size()-1));
         System.out.println("Now you have "+ shelf.size() +" tasks in the list.");
+        System.out.println(Text.newline);
     }
     public static void addTagslist (String tags, String pos) throws DukeException {
         int idx = Integer.parseInt(pos) - 1;
@@ -98,6 +105,8 @@ public class Shelf {
         for (String tag : tagArray){
             Task.addTag(shelf.get(idx), tag);
         }
+        System.out.println(listItem(idx));
+        System.out.println(Text.newline);
     }
     public static void removeTagfromlist (String tags, String pos) throws DukeException {
         int idx = Integer.parseInt(pos) - 1;
@@ -109,6 +118,8 @@ public class Shelf {
         for (String tag : tagArray){
             Task.removeTag(shelf.get(idx), tag);
         }
+        System.out.println(listItem(idx));
+        System.out.println(Text.newline);
     }
     public static void findItem(String keyword){
         ArrayList<Integer> idxArray = new ArrayList<>();
@@ -137,6 +148,7 @@ public class Shelf {
                 DateTask dateTask = (DateTask) specialTask;
                 deadline = DateTask.dateToString(dateTask.deadline);
             }
+                tags = specialTask.TagString();
             save += specialTask.getType() + "|" + specialTask.getStatus() + "|" + specialTask.getDescription() + "|" + deadline + "|" + tags + "|" + "\n";
         }
         return save;
