@@ -7,6 +7,8 @@ import task.Task;
 import task.Todo;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,12 +20,18 @@ import java.util.Scanner;
  * it provides methods to decode text file , load text file , encode task list , save task list
  */
 public class Storage {
-    private final String FILEPATH = "src\\main\\java\\DataStorage.txt";
+    private String filepath;
+    private Path path;
 
     /**
-     * constructor for storage
+     * creates path for Storage class
+     *
+     * @param Filepath filepath to be used for path class and path name
      */
-    public Storage() {}
+    public Storage(String Filepath) {
+        this.filepath = Filepath;
+        this.path = Path.of(Filepath);
+    }
 
     /**
      * Load function to copy previously saved list of tasks
@@ -32,7 +40,7 @@ public class Storage {
      * @throws FileNotFoundException text file not found
      */
     public ListTask load() throws FileNotFoundException {
-        File file = new File(FILEPATH);
+        File file = new File(filepath);
         Scanner scanner = new Scanner(file);
         ListTask list = new ListTask();
         while (scanner.hasNext()) {
@@ -44,12 +52,21 @@ public class Storage {
 
     /**
      * Save function to save current list of tasks
+     * Creates new file if there is no current file
      *
      * @param list current list of tasks to be saved
      * @throws IOException if list was not saved into the text file
      */
     public void save(ListTask list) throws IOException {
-        FileWriter fw = new FileWriter(FILEPATH);
+        FileWriter fw;
+        if (!Files.exists(path)) {
+            Files.createDirectories(path.getParent());
+            fw = new FileWriter(Files.createDirectories(path.getParent()) +"\\DataStorage.txt");
+        }
+        else {
+        fw = new FileWriter(filepath);
+        }
+
         for (int i = 0; i < list.size(); i++) {
             Task task = list.get(i);
             String encodedTask = encodeTaskForStorage(task);

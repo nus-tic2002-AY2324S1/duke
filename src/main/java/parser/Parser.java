@@ -38,7 +38,7 @@ public class Parser{
          * @param dateStr date string to be checked
          * @return boolean validity
          */
-        public boolean dateFormatInvalid(String dateStr) {
+        public static boolean dateFormatInvalid(String dateStr) {
                 if(dateStr.length()<16){
                         return true;
                 }
