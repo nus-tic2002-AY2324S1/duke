@@ -148,15 +148,9 @@ public class Parser {
         }
         Date referenceDate = new Date();
         DatesFound datesFound = parser.parse(dateString, referenceDate, hawkingConfiguration, "eng");
-
-        DatesFound datesFound1 = parser.parse("do something by tomorrow", referenceDate, hawkingConfiguration, "eng");
-        System.out.println(datesFound1.toString());
-        DatesFound datesFound2 = parser.parse("do something from Sunday", referenceDate, hawkingConfiguration, "eng");
-        System.out.println(datesFound2.toString());
-        DatesFound datesFound3 = parser.parse("do something from Sunday to Monday", referenceDate, hawkingConfiguration, "eng");
-        System.out.println(datesFound3.toString());
-        DatesFound datesFound4 = parser.parse("do something by today 5pm", referenceDate, hawkingConfiguration, "eng");
-        System.out.println(datesFound4.toString());
+        if (datesFound.getParserOutputs().isEmpty()) {
+            throw new InvalidDateFormatException();
+        }
         DateTime dateTime = datesFound.getParserOutputs().get(0).getDateRange().getStart();
         return dateTime.toDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }

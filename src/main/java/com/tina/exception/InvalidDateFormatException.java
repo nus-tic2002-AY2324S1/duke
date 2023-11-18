@@ -10,6 +10,6 @@ public class InvalidDateFormatException extends TinaException {
      * Instantiates a new Invalid date format exception.
      */
     public InvalidDateFormatException() {
-        super("OOPS!!! Invalid date format. Please use format: yyyy-mm-dd, e.g., 2023-10-30");
+        super("OOPS!!! Invalid date or invalid date format. Please use format: dd/mm/yyyy, e.g., 2/12/2019");
     }
 }
