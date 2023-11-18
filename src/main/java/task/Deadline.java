@@ -3,7 +3,6 @@ package task;
 import parser.DateTimeParser;
 
 import java.time.LocalDate;
-import java.util.regex.Matcher;
 
 /**
  *  Represent a <code>Deadline</code> object that extends an instance from <code>Task</code> object
@@ -32,14 +31,9 @@ public class Deadline extends Task{
 
 
     public void extractBy(String deadlineInformation) {
-        String deadline = deadlineInformation; //--> "14/05/2023 1800" OR "Sunday"
-        try {
-            String newBy = dateParser.toDate(deadline);// --> "May 14 2023"
-            setBy(newBy); //--> this.by
-        }catch (NullPointerException e){
-            System.out.println("please enter a Date (dd/MM/yyyy)!");
-        }
-
+        String deadline = deadlineInformation; //--> "14/05/2023 1800"
+        String newBy = dateParser.toDate(deadline);// --> "May 14 2023"
+        setBy(newBy); //--> this.by
     }
 
     @Override

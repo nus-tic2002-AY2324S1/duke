@@ -15,12 +15,12 @@ public class Util {
         return " ";
     }
 
-    public String transfromDeadlineInformation(String input){
+    public String transformDeadlineInformation(String input){
         String result = null;
         try{
             result =  input.split(" ", 2)[1].split("/by ")[1];
         } catch(Exception e){
-
+            System.out.println("Invalid Deadline details.");
         }
         return result;
     }
