@@ -20,13 +20,13 @@ import java.util.Scanner;
  * it provides methods to decode text file , load text file , encode task list , save task list
  */
 public class Storage {
-    private String filepath;
-    private Path path;
+    private final String filepath;
+    private final Path path;
 
     /**
      * creates path for Storage class
      *
-     * @param Filepath filepath to be used for path class and path name
+     * @param Filepath filepath to be used for path class and path string
      */
     public Storage(String Filepath) {
         this.filepath = Filepath;
@@ -60,11 +60,11 @@ public class Storage {
     public void save(ListTask list) throws IOException {
         FileWriter fw;
         if (!Files.exists(path)) {
-            Files.createDirectories(path.getParent());
-            fw = new FileWriter(Files.createDirectories(path.getParent()) +"\\DataStorage.txt");
+            fw = new FileWriter(Files.createDirectories(path.getParent()) + "\\DataStorage.txt");
         }
         else {
-        fw = new FileWriter(filepath);
+            assert Files.getFileStore(path) !=null;
+            fw = new FileWriter(filepath);
         }
 
         for (int i = 0; i < list.size(); i++) {

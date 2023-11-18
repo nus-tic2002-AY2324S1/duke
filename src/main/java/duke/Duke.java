@@ -2,7 +2,6 @@ package duke;
 import UI.ListTask;
 import UI.Storage;
 import UI.UI;
-import parser.Parser;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,14 +12,13 @@ public class Duke {
         String filepath = "src\\main\\java\\DataStorage.txt";
         UI ui = new UI();
         Storage storage = new Storage(filepath);
-        Parser parser = new Parser();
         ListTask list;
         try {
             list = storage.load();
         } catch (FileNotFoundException e) {
             list = new ListTask();
         }
-        ui.run(list, parser);
+        ui.run(list);
         try{
             storage.save(list);
         }

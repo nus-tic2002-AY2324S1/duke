@@ -9,6 +9,9 @@ import task.Todo;
 import java.util.Scanner;
 
 public class UI {
+    /**
+     * Constructor for UI
+     */
     public UI(){}
     /**
      * prints logo of the UI
@@ -128,9 +131,8 @@ public class UI {
      * uses parse to check for invalid keywords and returns error messages
      *
      * @param list List class used to run UI
-     * @param parse Parser class used to run UI
      */
-    public void run(ListTask list, Parser parse){
+    public void run(ListTask list){
         logo();
         greeter();
         Task Selector;
@@ -140,8 +142,7 @@ public class UI {
                 String line = scan();
                 String[] words = line.split(" ");
                 Keyword key = Keyword.valueOf(words[0].toUpperCase());
-                parse.checkError(key,line,list);
-                if(parse.getError())
+                if(Parser.isCorrect(key,line,list))
                     switch (key) {
                         case VIEW:
                             list.viewSchedule(words[1]);
