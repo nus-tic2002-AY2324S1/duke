@@ -8,11 +8,11 @@ import tasks.Task;
 
 /**
  * Object of class UI gives access to methods which offers interactions to the user via the command
- * line. This class offers methods for various interactions, including:
+ * line. This class handles all the returning of messages to the user.
  * <ul>
  * <li>{@code greet()}: Displays a greeting message.</li>
  * <li>{@code readCommand()}: Reads and retrieves a command from the input.</li>
- * <li>{@code help()}: Displays informative content or instructions.</li>
+ * <li>{@code help()}: Displays the manual to the user.</li>
  * <li>{@code killUI()}: Terminates the UI object, concluding the interaction.</li>
  * </ul>
  */
@@ -107,10 +107,10 @@ public class UI {
         System.out.println("You now have " + tasksLeft + " tasks left.");
     }
 
-    public void showTaskList(ArrayList<Task> list){
+    public void showTaskList(ArrayList<Task> list) {
         System.out.println("Ta-da! Behold, the magnificient lineup of tasks in your grand list:");
-        for(int i=1; i<=list.size();i++){
-            System.out.println(i + "." + list.get(i-1));
+        for (int i = 1; i <= list.size(); i++) {
+            System.out.println(i + "." + list.get(i - 1));
         }
     }
 }
