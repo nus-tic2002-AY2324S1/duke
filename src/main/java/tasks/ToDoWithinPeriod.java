@@ -13,11 +13,11 @@ public class ToDoWithinPeriod extends Task{
         this.to = to;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDate getFromDate() {
         return this.from;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDate getToDate() {
         return this.to;
     }
 

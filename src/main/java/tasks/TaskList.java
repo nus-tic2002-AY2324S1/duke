@@ -122,11 +122,19 @@ public class TaskList {
                     taskDueList.add(e);
                 }
             }
-            if (t instanceof tasks.Deadline) {
+            else if (t instanceof tasks.Deadline) {
                 tasks.Deadline d = (tasks.Deadline) t;
-                LocalDate taskDue = d.getDueDate();
-                if (taskDue.equals(due)) {
+                LocalDate dueDate = d.getDueDate();
+                if (dueDate.equals(due)) {
                     taskDueList.add(d);
+                }
+            }
+            else if (t instanceof tasks.ToDoWithinPeriod) {
+                tasks.ToDoWithinPeriod td = (tasks.ToDoWithinPeriod) t;
+                LocalDate fromDate = td.getFromDate();
+                LocalDate toDate = td.getToDate();
+                if (fromDate.equals(due) || toDate.equals(due)) {
+                    taskDueList.add(td);
                 }
             }
         }
