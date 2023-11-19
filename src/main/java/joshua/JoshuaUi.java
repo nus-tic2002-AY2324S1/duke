@@ -43,17 +43,17 @@ public class JoshuaUi {
     }
 
     public void printSaveMessage() {
-        joshuaSays("SAVING TASK LIST...");
+        joshuaSays("SAVING TASK LIST IN ./DATA/JOSHUA.TXT...");
     }
 
     public void printLoadingError() {
         joshuaSays("UNABLE TO LOAD TASK LIST FROM STORAGE.");
-        joshuaSays("PLEASE CHECK JOSHUA.TXT AND ENSURE THAT THE FORMATTING IS CORRECT.");
+        joshuaSays("PLEASE CHECK JOSHUA.TXT AND ENSURE THAT THE FORMATTING IS CORRECT.\n___");
     }
 
     public void printFileNotFoundError() {
-        joshuaSays("UNABLE TO LOAD TASK LIST FROM STORAGE.");
-        joshuaSays("I HAVE CREATED AN EMPTY TASK LIST FOR YOU INSTEAD, PROFESSOR FALKEN.");
+        joshuaSays("COULD NOT FIND AN EXISTING TASK LIST IN STORAGE.");
+        joshuaSays("I HAVE CREATED AN EMPTY TASK LIST FOR YOU INSTEAD, PROFESSOR FALKEN.\n___");
     }
 
     public String readCommand() {

@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 
 /**
  * Saves and loads tasks for the existing task list.
@@ -36,6 +38,8 @@ public class Storage {
      * @throws IOException If error occurs when writing lines to stored file.
      */
     public void save(TaskList taskList) throws IOException {
+        Files.createDirectories(Paths.get("./data"));
+
         FileWriter fw = new FileWriter(filepath);
         for (int i = 0; i < taskList.listSize(); i++) {
             int taskNum = i + 1;

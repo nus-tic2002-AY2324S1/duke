@@ -53,6 +53,7 @@ public class Joshua {
         } catch (FileNotFoundException e) {
             ui.printFileNotFoundError();
             taskList = new TaskList();
+            ui.printGreetings();
         }
     }
 
