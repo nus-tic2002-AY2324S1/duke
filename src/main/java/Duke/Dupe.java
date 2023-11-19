@@ -258,7 +258,7 @@ public class Dupe {
         String[] words = userInput.trim().split("\\s+");
         if (words.length == 4) {
             int taskNumber = Integer.parseInt(words[1]);
-            if (taskNumber > 1 && taskNumber < tasks.size()) {
+            if (taskNumber >= 1 && taskNumber < tasks.size()) {
                 try {
                     String recurrenceType = words[2].toUpperCase(); // Convert to uppercase
                     int recurrenceCount = Integer.parseInt(words[3]);
