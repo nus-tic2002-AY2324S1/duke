@@ -1,5 +1,8 @@
 package task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents an event task.
  */
@@ -25,6 +28,13 @@ public class Event extends Task {
 
     public String getTo() {
         return to;
+    }
+
+    public boolean isDateInRange(LocalDate targetDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm a");
+        LocalDate fromLdt = LocalDate.parse(from, formatter);
+        LocalDate toLdt = LocalDate.parse(to, formatter);
+        return !targetDate.isBefore(fromLdt) && !targetDate.isAfter(toLdt);
     }
 
     @Override

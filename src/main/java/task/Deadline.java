@@ -1,5 +1,8 @@
 package task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a deadline task.
  */
@@ -18,6 +21,12 @@ public class Deadline extends Task {
 
     public String getBy() {
         return by;
+    }
+
+    public boolean isDateInRange(LocalDate targetDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm a");
+        LocalDate byLdt = LocalDate.parse(by, formatter);
+        return !targetDate.isBefore(byLdt) && !targetDate.isAfter(byLdt);
     }
 
     @Override

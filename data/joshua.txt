@@ -4,3 +4,4 @@ E | 0 | annual bake sale | 15 Nov 2023, 9:00 am | 17 Nov 2023, 8:00 pm
 T | 1 | finalise report
 D | 0 | submit report | 19 Nov 2023, 11:59 pm
 E | 0 | nus orientation | 27 Jul 2023, 9:00 am | 2 Aug 2023, 8:00 pm
+E | 0 | early christmas party | 18 Nov 2023, 6:00 pm | 20 Nov 2023, 6:00 pm

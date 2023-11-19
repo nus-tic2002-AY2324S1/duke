@@ -9,6 +9,7 @@ import commands.TodoCommand;
 import commands.DeadlineCommand;
 import commands.EventCommand;
 import commands.FindCommand;
+import commands.ScheduleCommand;
 import commands.ByeCommand;
 import commands.HelpCommand;
 import commands.InvalidCommand;
@@ -28,10 +29,10 @@ public class JoshuaParser {
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     public static final Pattern DEADLINE_ARGUMENT_FORMAT = Pattern.compile("(?<desc>.*)/by(?<by>.*)");
     public static final Pattern EVENT_ARGUMENT_FORMAT = Pattern.compile("(?<desc>.*)/from(?<from>.*)/to(?<to>.*)");
-    public static final Pattern DATE_REGEX_PATTERN = Pattern.compile("(\\d{1,2}\\/\\d{1,2}\\/\\d{4}) (\\d{4})");
-    private final String PARSED_DATE_STRING = "d/M/yyyy HHmm";
-    private final DateTimeFormatter PARSED_DATE_FORMATTER = DateTimeFormatter.ofPattern(PARSED_DATE_STRING);
-    private final DateTimeFormatter FORMATTED_DATE_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm a");
+    public static final Pattern DATETIME_REGEX_PATTERN = Pattern.compile("(\\d{1,2}\\/\\d{1,2}\\/\\d{4}) (\\d{4})");
+    private final String PARSED_DATETIME_STRING = "d/M/yyyy HHmm";
+    private final DateTimeFormatter PARSED_DATETIME_FORMATTER = DateTimeFormatter.ofPattern(PARSED_DATETIME_STRING);
+    private final DateTimeFormatter FORMATTED_DATETIME_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm a");
 
     public JoshuaParser() {
 
@@ -81,6 +82,9 @@ public class JoshuaParser {
 
         case "find":
             return new FindCommand(args);
+
+        case "schedule":
+            return prepareSchedule(args);
 
         case "bye":
             return new ByeCommand();
@@ -234,6 +238,28 @@ public class JoshuaParser {
     }
 
     /**
+     * Returns a ScheduleCommand object, instantiating it with the date string
+     * as parsed from the commandArgs input by the user.
+     *
+     * @param commandArgs The arguments of the command.
+     * @return A ScheduleCommand or InvalidCommand object.
+     */
+    private Command prepareSchedule(String commandArgs) {
+        if (commandArgs.isEmpty()) {
+            return new InvalidCommand("Enter a date to view schedule.");
+        }
+
+        String targetDate;
+        try {
+            targetDate = parseDateTime(commandArgs);
+        } catch (InvalidCommandException e) {
+            return new InvalidCommand(e.getMessage());
+        }
+
+        return new ScheduleCommand(targetDate);
+    }
+
+    /**
      * Returns a string of the parsed date. It will check if dateStr is in the accepted date format (d/M/yyyy HHmm)
      * then parse it into a LocalDateTime object before finally formatting it as a string.
      *
@@ -242,15 +268,15 @@ public class JoshuaParser {
      * @throws InvalidCommandException If user entered date does not follow the specified format
      */
     public String parseDateTime(String dateStr) throws InvalidCommandException {
-        Matcher dateMatcher = DATE_REGEX_PATTERN.matcher(dateStr);
-        if(!dateMatcher.matches()) {
-            throw new InvalidCommandException("Please follow this format for entering a date:\n" + PARSED_DATE_STRING);
+        Matcher dateTimeMatcher = DATETIME_REGEX_PATTERN.matcher(dateStr);
+        if(!dateTimeMatcher.matches()) {
+            throw new InvalidCommandException("Please follow this format for entering a date:\n" + PARSED_DATETIME_STRING);
         }
 
         String formattedDateTime;
         try {
-            LocalDateTime parsedDateTime = LocalDateTime.parse(dateStr, PARSED_DATE_FORMATTER);
-            formattedDateTime = parsedDateTime.format(FORMATTED_DATE_FORMATTER);
+            LocalDateTime parsedDateTime = LocalDateTime.parse(dateStr, PARSED_DATETIME_FORMATTER);
+            formattedDateTime = parsedDateTime.format(FORMATTED_DATETIME_FORMATTER);
         } catch (DateTimeException e) {
             throw new InvalidCommandException("Entered date is invalid. Please check your input.");
         }
