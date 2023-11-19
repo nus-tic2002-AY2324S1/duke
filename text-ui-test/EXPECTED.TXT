@@ -1,7 +1,78 @@
 Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+ _______                 
+|__   __| [ ]  __  __    
+   | |    | | |  \/  |  
+   | |    | | | |\/| |  
+   |_|    |_| |_|  |_|   
 
+
+____________________________________________________________
+Hello I'm Tim. 
+What can I do for you?
+
+____________________________________________________________
+no saved list
+|| event ||
+Gotcha! Added this task:
+1. [E] [ ] study math (from: Nov 01 2023 to: Dec 01 2023)
+now there is: 1 item(s)
+
+____________________________________________________________
+|| todo ||
+Gotcha! Added this task:
+2. [T] [ ] pay school fee
+now there is: 2 item(s)
+
+____________________________________________________________
+|| todo ||
+Gotcha! Added this task:
+3. [T] [ ] return books
+now there is: 3 item(s)
+
+____________________________________________________________
+|| deadline ||
+Gotcha! Added this task:
+4. [D] [ ] pay credit bill  (by: Dec 01 2023)
+now there is: 4 item(s)
+
+____________________________________________________________
+|| list ||
+1. [E] [ ] study math (from: Nov 01 2023 to: Dec 01 2023)
+2. [T] [ ] pay school fee
+3. [T] [ ] return books
+4. [D] [ ] pay credit bill  (by: Dec 01 2023)
+
+____________________________________________________________
+|| mark ||
+Nice! I've marked this task as done:
+1. [E] [x] study math (from: Nov 01 2023 to: Dec 01 2023)
+
+____________________________________________________________
+|| delete ||
+Deleting: 2. [T] [ ] pay school fee
+
+____________________________________________________________
+1. [E] [x] study math (from: Nov 01 2023 to: Dec 01 2023)
+2. [T] [ ] return books
+3. [D] [ ] pay credit bill  (by: Dec 01 2023)
+
+____________________________________________________________
+|| search ||
+I found tasks that contain the keywords:
+1. [E] [x] study math (from: Nov 01 2023 to: Dec 01 2023)
+3. [D] [ ] pay credit bill  (by: Dec 01 2023)
+
+____________________________________________________________
+|| find ||
+I found task that exactly matches the keywords:
+2. [T] [ ] return books
+
+____________________________________________________________
+|| find ||
+No task matches the keywords!
+
+____________________________________________________________
+|| bye ||
+Bye. Hope to see you again soon!
+
+____________________________________________________________
