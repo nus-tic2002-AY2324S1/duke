@@ -285,12 +285,12 @@ public class Dupe {
                         newTo = originalTo.plusDays(1 * (i + 1));
                         break;
                     case WEEKLY:
-                        newFrom = originalFrom.plusWeeks(7 * (i + 1));
-                        newTo = originalTo.plusWeeks(7 * (i + 1));
+                        newFrom = originalFrom.plusWeeks(1 * (i + 1));
+                        newTo = originalTo.plusWeeks(1 * (i + 1));
                         break;
                     case BIWEEKLY:
-                        newFrom = originalFrom.plusWeeks(2 * 7 * (i + 1));
-                        newTo = originalTo.plusWeeks(2 * 7 * (i + 1));
+                        newFrom = originalFrom.plusWeeks(2 * (i + 1));
+                        newTo = originalTo.plusWeeks(2 * (i + 1));
                         break;
                     case MONTHLY:
                         newFrom = originalFrom.plusMonths(1 * (i + 1));
