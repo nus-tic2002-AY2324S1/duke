@@ -60,12 +60,16 @@ public class Task {
         System.out.println("Tag: #"+ tag +" is added");
     }
     public static void removeTag(Task task, String tag){
-        for (int i = 0; i < task.tags.size(); i++)
+        Boolean removed = false;
+        for (int i = 0; i < task.tags.size(); i++) {
             if(task.tags.get(i).equals(tag)){
                 task.tags.remove(tag);
+                removed = true;
                 System.out.println("Tag: #"+ tag +" is removed");
-            }else{
-                System.out.println("The specific tag you are trying to remove is not found, please remove another one!");
+            }
+        }
+            if(!removed){
+                System.out.println("The '" + tag + "' tag you are trying to remove is not found, please remove another one!");
             }
 
     }

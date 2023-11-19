@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.util.*;
 
 import static Shelf.ShelfManager.listItem;
-
 /**
  * Reads input and convert it to other forms usable by the rest of code.
- * Parse method check user input and identifies keywords to carry out specific command
+ * Parse methods check user input and identifies keywords to carry out specific command
+ * Specific Parsers are mainly helper functions clean up user inputs for commands
  */
 public class Parser {
     public static void Parse(ShelfManager tasklist) throws DukeException {
@@ -73,7 +73,7 @@ public class Parser {
                     ShelfEditor.editSelector(prompt, input[1]);
                     break;
                 default:
-                    ShelfManager.addItem(input[0]);
+                    ShelfManager.addItem(joinArray(input));
                 }
             } catch (IndexOutOfBoundsException e){
                 System.out.println("OOPS!!! You must have done something wrong xxx.");
@@ -87,11 +87,11 @@ public class Parser {
         String[] words = input.split(" ", 2);
         if(input.charAt(0) == '#' || input.charAt(0) == '-'){ // parse input with tags
             String tags = words[0].substring(1);
-            assert words.length > 1 : "Insufficient input for 'add tag' command. Requires tag description and task NO";
-            if(words.length == 1){
-                System.out.println("assertion fail");
-                return new String[]{" "};
-            }
+            assert words.length == 1 : "Insufficient input for 'tag' command. Requires tag description and task NO";
+//            if(words.length == 1){
+//                System.out.println("assertion fail");
+//                return new String[]{" "};
+//            }
             return new String[]{String.valueOf(input.charAt(0)), tags, words[1]};
         }
         if(words.length > 1){ //parse input with date and time
@@ -119,5 +119,8 @@ public class Parser {
             str = str.substring(0, str.length() - 1);
         }
         return str;
+    }
+    public static String joinArray (String[] arr){
+        return String.join(" ", arr);
     }
 }

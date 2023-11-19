@@ -1,0 +1,4 @@
+~|~|do you want to build a snowman?|~|cold|
+T|~|check all Junit test cases|~|edgecase,essential|
+D|~|submit duke project report|2023-11-20|~|
+E|~|add a date to event|2012-11-11|~|

@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShelfEditorTest {
-
     @Test
     public void testEditDescription() {
         ShelfManager shelfManager = new ShelfManager();
@@ -17,6 +16,7 @@ public class ShelfEditorTest {
         dateTask.replaceDescription("Run 2nd test on edit function");
         assertEquals("Run 2nd test on edit function", dateTask.getDescription());
     }
+}
 
 //    @Test
 //    public void testEditDate() {
@@ -25,4 +25,3 @@ public class ShelfEditorTest {
 //        ShelfEditor.editDate(0);
 //        assertEquals(LocalDate.parse("2023-11-08", DateTimeFormatter.ISO_LOCAL_DATE), ((DateTask) shelfManager.getShelf().get(0)).getDeadline());
 //    }
-}

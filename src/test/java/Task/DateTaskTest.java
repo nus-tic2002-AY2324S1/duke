@@ -14,5 +14,4 @@ public class DateTaskTest {
         assertEquals("Run JUnit test on dates", dateTask.getDescription());
         assertEquals(LocalDate.parse("2023-11-08", DateTimeFormatter.ofPattern("yyyy-MM-dd")), dateTask.deadline);
     }
-
 }
