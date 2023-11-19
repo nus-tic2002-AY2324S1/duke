@@ -50,4 +50,9 @@ public class Task {
         String doneMarker = this.getIsDone() ? "X" : " ";
         return "[" + doneMarker + "] " + desc;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj.toString().equals(this.toString());
+    }
 }

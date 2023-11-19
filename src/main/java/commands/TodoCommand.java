@@ -16,6 +16,10 @@ public class TodoCommand extends Command {
         this.todoToAdd = new ToDo(desc);
     }
 
+    public Task getTodoToAdd() {
+        return todoToAdd;
+    }
+
     /**
      * {@inheritDoc} Adds a new ToDo task to the TaskList.
      */

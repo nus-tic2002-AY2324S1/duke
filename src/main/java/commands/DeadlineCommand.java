@@ -16,6 +16,10 @@ public class DeadlineCommand extends Command {
         this.deadlineToAdd = new Deadline(desc, by);
     }
 
+    public Task getDeadlineToAdd() {
+        return deadlineToAdd;
+    }
+
     /**
      * {@inheritDoc} Adds a new Deadline task to the TaskList.
      */

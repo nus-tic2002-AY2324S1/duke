@@ -16,6 +16,10 @@ public class EventCommand extends Command {
         this.eventToAdd = new Event(desc, from, to);
     }
 
+    public Task getEventToAdd() {
+        return eventToAdd;
+    }
+
     /**
      * {@inheritDoc} Adds a new Event task to the TaskList.
      */
