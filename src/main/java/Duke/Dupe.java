@@ -145,7 +145,7 @@ public class Dupe {
                     case "deadline":
                         String by = extractBy(description);
                         String actualDescriptionDeadline = extractDescription(description);
-                        if (by.isEmpty() || actualDescriptionDeadline.isEmpty()) {
+                        if (actualDescriptionDeadline.isEmpty()) {
                             throw new IncompleteDataException(); // Handle incomplete data
                         }
                         task = new Deadline(actualDescriptionDeadline, by);
@@ -154,7 +154,7 @@ public class Dupe {
                         String from = extractFrom(description);
                         String to = extractTo(description);
                         String actualDescriptionEvent = extractDescription(description);
-                        if (from.isEmpty() || to.isEmpty() || actualDescriptionEvent.isEmpty()) {
+                        if (actualDescriptionEvent.isEmpty()) {
                             throw new IncompleteDataException(); // Handle incomplete data
                         }
                         task = new Event(actualDescriptionEvent, from, to);
