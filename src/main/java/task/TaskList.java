@@ -1,5 +1,6 @@
 package task;
 
+import ui.Ui;
 import util.Util;
 import java.util.ArrayList;
 
@@ -13,6 +14,8 @@ public class TaskList {
     private Task task;
     private Deadline deadline;
     private Event event;
+
+    private Ui ui;
 
     private Util helper = new Util();
 
@@ -37,10 +40,11 @@ public class TaskList {
             actions.get(taskNo-1).printTask();
             actions.remove(taskNo-1) ;
             //print task number as of now
+            ui.printRemoveMsg();
             System.out.println(
                     "     Now you have "+actions.size()+ " tasks in the list.\n" +
                             "    ____________________________________________________________\n");
-        }else if(taskNo <= actions.size()){
+        }else if(taskNo > actions.size()){
             System.out.println("Task you wish to delete doesn't exist!");
         }else{
             System.out.println("Please put in a task number (integer) you would like to operate on :/");
