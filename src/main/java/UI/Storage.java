@@ -61,6 +61,7 @@ public class Storage {
         FileWriter fw;
         if (!Files.exists(path)) {
             fw = new FileWriter(Files.createDirectories(path.getParent()) + "\\DataStorage.txt");
+            System.out.println("Cate creates new save file for storage");
         }
         else {
             assert Files.getFileStore(path) !=null;

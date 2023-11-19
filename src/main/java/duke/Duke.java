@@ -16,6 +16,7 @@ public class Duke {
         try {
             list = storage.load();
         } catch (FileNotFoundException e) {
+            System.out.println("Cate is unable to load file , starting a new list");
             list = new ListTask();
         }
         ui.run(list);
