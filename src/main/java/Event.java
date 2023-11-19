@@ -10,10 +10,9 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-            return "[E]" + getStatusIcon() + " " + super.getDescription() + " (from: " + start + " to: " + end + ")";
-
-
+        return "[E]" + getStatusIcon() + " " + super.getDescription() + " (from: " + start + " to: " + end + ")";
     }
+
 }
 
 

@@ -2,8 +2,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.lang.*;
 
-
-
 public class Duke {
     public static void main(String[] args) {
             // Rename the chatbot
@@ -19,22 +17,18 @@ public class Duke {
         System.out.println("What can I do for you? :) ");
         System.out.println ("*************************************************************");
 
-            // Create a Scanner object for user input
-            Scanner userInput = new Scanner(System.in);
-            String userCommand;
+        // Create a Scanner object for user input
+        Scanner userInput = new Scanner(System.in);
+        String userCommand;
 
-            //Declaring an array to store the commands;
-            ArrayList<Task> list = new ArrayList<Task>();
+        //Declaring an array to store the commands;
+        ArrayList<Task> list = new ArrayList<Task>();
 
 
             do {
                 System.out.print("Enter your command: ");
                 userCommand = userInput.nextLine();
 
-                //Exit if the user command is "bye"
-                if (userCommand.equalsIgnoreCase("bye")) {
-                    break;
-                }
 
                 if (userCommand.startsWith("mark")) {
                     try {
@@ -82,11 +76,11 @@ public class Duke {
                         list.add(t);
                         System.out.println("Got it. I've added this task:\n  " + t);
                         System.out.println("Now you have " + list.size() + " tasks in the list.");
-                        System.out.println("--------------------------------------------------------");
 
                     } catch (DukeException d) {
                         System.out.println(d.getMessage());
                     }
+                    System.out.println("--------------------------------------------------------");
 
                 } else if (userCommand.startsWith("deadline")) {
                     // Parse the description and deadline details here
@@ -94,7 +88,6 @@ public class Duke {
                     String description = parts[0];
 
                     try {
-                        //System.out.println("try-catch block testing");
                         if (description.isEmpty()) {
                             throw new DukeException("The description of a Deadline cannot be empty.");
                         }
@@ -104,11 +97,11 @@ public class Duke {
                         list.add(d);
                         System.out.println("Got it. I've added this task:\n  " + d);
                         System.out.println("Now you have " + list.size() + " tasks in the list.");
-                        System.out.println("--------------------------------------------------------");
 
                     } catch (DukeException d) {
                         System.out.println(d.getMessage());
                     }
+                    System.out.println("--------------------------------------------------------");
 
                 } else if (userCommand.startsWith("event")) {
                     // Parse the description and event details here
@@ -116,7 +109,6 @@ public class Duke {
                     String description = parts[0];
 
                     try {
-                        //System.out.println("try-catch block testing");
                         if (description.isEmpty()) {
                             throw new DukeException("The description of an Event cannot be empty.");
                         }
@@ -129,7 +121,6 @@ public class Duke {
                             list.add(e);
                             System.out.println("Got it. I've added this task:\n  " + e);
                             System.out.println("Now you have " + list.size() + " tasks in the list.");
-                            System.out.println("--------------------------------------------------------");
                         } else {
                             System.out.println("Invalid event format.");
                         }
@@ -137,6 +128,7 @@ public class Duke {
                     } catch (DukeException d) {
                         System.out.println(d.getMessage());
                     }
+                    System.out.println("--------------------------------------------------------");
 
                     // list all added items if user command is "list"
                 } else if (userCommand.startsWith("delete")){
@@ -162,7 +154,7 @@ public class Duke {
                     }
                     System.out.println("--------------------------------------------------------");
 
-                }else if (userCommand.equalsIgnoreCase("list")) {
+                }else if (userCommand.startsWith("list")) {
                     try{
                         if(list.isEmpty()) {
                             throw new DukeException("OOPS!!!...There are no tasks in your list :-(");
@@ -179,11 +171,12 @@ public class Duke {
                     }
 
                     System.out.println("--------------------------------------------------------");
-                    continue;
 
                 } else {
                     try {
-                        throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :");
+                        if (!userCommand.equalsIgnoreCase("bye")) {
+                            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :");
+                        }
                     } catch (DukeException d) {
                         System.out.println(d.getMessage());
                     }
