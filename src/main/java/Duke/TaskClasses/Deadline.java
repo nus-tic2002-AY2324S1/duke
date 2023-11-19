@@ -1,7 +1,5 @@
 package Duke.TaskClasses;
 
-
-
 import Duke.ExceptionClasses.IncompleteDataException;
 
 import java.time.LocalDateTime;
@@ -12,6 +10,13 @@ import java.time.format.DateTimeParseException;
 public class Deadline extends Task {
     private LocalDateTime by;
 
+    /**
+     * Constructs a task with the given description.
+     *
+     * @param description The description of the task.
+     *
+     * This constructor is used when user adds new task
+     */
     public Deadline(String description, String by) throws IncompleteDataException {
         //parser for user input
         super(description);
@@ -21,6 +26,14 @@ public class Deadline extends Task {
         parseDateTime(by);
     }
 
+    /**
+     * Constructs a task with the given description and completion status.
+     *
+     * @param description The description of the task.
+     * @param isDone      The completion status of the task.
+     * @throws IncompleteDataException If the task data is incomplete.
+     * This constructor is used when loading tasks from a saved file.
+     */
     public Deadline(String description, String by, boolean isDone) throws IncompleteDataException {
         //parser for saved file
         super(description, isDone);

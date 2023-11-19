@@ -12,6 +12,17 @@ public class Event extends Task {
     protected LocalDateTime to;
 
 
+    /**
+     * Constructs an event task with the given description, start, and end date/time
+     * provided as string representations.
+     *
+     * @param description The description of the event task.
+     * @param from        The start date/time of the event in string format.
+     * @param to          The end date/time of the event in string format.
+     * @throws IncompleteDataException If the provided date/time strings are in an invalid format.
+     * * This constructor is used when user adds new task
+     */
+
     public Event(String description, String from, String to) throws IncompleteDataException {
         super(description);
         if (from == null || from.isEmpty()) {
@@ -30,6 +41,16 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Constructs an event task with the given description, start, and end date/time,
+     * provided as string representations, and sets its completion status.
+     *
+     * @param description The description of the event task.
+     * @param from        The start date/time of the event in string format.
+     * @param to          The end date/time of the event in string format.
+     * @param isDone      The completion status of the event task.
+     * This constructor is used when loading tasks from a saved file.
+     */
     public Event(String description, String from, String to, boolean isDone) throws IncompleteDataException {
         super(description, isDone);
         if (from == null || from.isEmpty()) {
@@ -50,13 +71,28 @@ public class Event extends Task {
         System.out.println("test: " + this.from.toString());
     }
 
+
+    /**
+     * Constructs an event task with the given description, start, and end date/time.
+     *
+     * @param description The description of the event task.
+     * @param from        The start date/time of the event.
+     * @param to          The end date/time of the event.
+     * This constructor is used by recurring events
+     */
     public Event(String description, LocalDateTime from, LocalDateTime to){
         super(description);
         this.from = from;
         this.to = to;
     }
 
-
+    /**
+     * Parses the date/time information provided as a string.
+     *
+     * @param dateTimeString The date/time information in string format.
+     * @return The parsed date/time as a {@code LocalDateTime} object.
+     * @throws IncompleteDataException If the provided date/time string is in an invalid format.
+     */
     private LocalDateTime parseEventDateTime(String dateTimeString) throws IncompleteDataException{
         try {
             return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy/MM/dd['T'HH:mm][ HH:mm]"));
