@@ -47,7 +47,8 @@ public class Storage {
                 System.out.println("Loading file from: " + filePath);
                 shelfData = Files.readString(filePath);
             } else {
-                System.out.println("File not found, please create a new one");
+                System.out.println("File not found, created a new file!");
+                return null;
             }
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
@@ -58,8 +59,10 @@ public class Storage {
 
     public static ShelfManager FileParser(String shelfData) throws DukeException { //converts file string into Shelf.Shelf arraylist
         ShelfManager newlist = new ShelfManager();
+        if(shelfData == null){
+            return newlist;
+        }
         int line_no = 1;
-
         String[] lines = shelfData.split("\n");
         for(String line : lines){
             String[] split = line.split("\\|");

@@ -87,7 +87,8 @@ public class Parser {
         String[] words = input.split(" ", 2);
         if(input.charAt(0) == '#' || input.charAt(0) == '-'){ // parse input with tags
             String tags = words[0].substring(1);
-            assert words.length == 1 : "Insufficient input for 'tag' command. Requires tag description and task NO";
+            System.out.println(String.valueOf(words.length));
+            assert (words.length > 1) : "Insufficient input for 'tag' command. Requires tag description and task NO";
 //            if(words.length == 1){
 //                System.out.println("assertion fail");
 //                return new String[]{" "};
