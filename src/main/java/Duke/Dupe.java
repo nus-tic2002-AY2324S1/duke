@@ -178,25 +178,34 @@ public class Dupe {
     private static String extractBy(String description) {
         //extract string after /by
         int byIndex = description.indexOf("/by");
-        if (byIndex != -1) {
+        if (byIndex != -1 && byIndex + 3 < description.length()) {
             return description.substring(byIndex + 3).trim();
         }
         return ""; // Return an empty string if no "/by" information is found
     }
 
     private static String extractFrom(String description) {
-        //extract string after /from
         int fromIndex = description.indexOf("/from");
-        if (fromIndex != -1) {
-            return description.substring(fromIndex + 5, description.indexOf("/to")).trim();
+        if (fromIndex != -1 && fromIndex + 5 < description.length()) {
+            int toIndex = description.indexOf("/to", fromIndex + 5);
+            if (toIndex != -1) {
+                return description.substring(fromIndex + 5, toIndex).trim();
+            } else {
+                // Handle the case where "/to" information is missing
+                System.err.println("Missing '/to' information after '/from'.");
+            }
+        } else {
+            // Handle the case where "/from" information is missing or incomplete
+            System.err.println("Missing or incomplete '/from' information.");
         }
-        return ""; // Return an empty string if no "/from" information is found
+        return ""; // Return an empty string if information is missing or invalid
     }
+
 
     private static String extractTo(String description) {
         //extract string after /to
         int toIndex = description.indexOf("/to");
-        if (toIndex != -1) {
+        if (toIndex != -1 && toIndex + 3 < description.length()) {
             return description.substring(toIndex + 3).trim();
         }
         return ""; // Return an empty string if no "/to" information is found
@@ -248,17 +257,22 @@ public class Dupe {
     private static void handleRecurringEvent(String userInput) {
         String[] words = userInput.trim().split("\\s+");
         if (words.length == 4) {
-            try {
-                int taskNumber = Integer.parseInt(words[1]);
-                String recurrenceType = words[2].toUpperCase(); // Convert to uppercase
-                int recurrenceCount = Integer.parseInt(words[3]);
+            int taskNumber = Integer.parseInt(words[1]);
+            if (taskNumber > 1 && taskNumber < tasks.size()) {
+                try {
+                    String recurrenceType = words[2].toUpperCase(); // Convert to uppercase
+                    int recurrenceCount = Integer.parseInt(words[3]);
 
-                // Call the corresponding method to add recurring event based on the parsed information
-                addRecurringEvent(taskNumber, Recurrence.valueOf(recurrenceType), recurrenceCount);
-            } catch (NumberFormatException e) {
-                System.err.println("Invalid number format in the input. Please provide valid numbers.");
-            } catch (IllegalArgumentException e) {
-                System.err.println("Invalid recurrence type. Please provide a valid recurrence type (e.g., DAILY, WEEKLY, BIWEEKLY, MONTHLY).");
+                    // Call the corresponding method to add recurring event based on the parsed information
+                    addRecurringEvent(taskNumber, Recurrence.valueOf(recurrenceType), recurrenceCount);
+
+                } catch (DupeException e) {
+                    System.err.println("unable to save");
+                } catch (IllegalArgumentException e) {
+                    System.err.println("Invalid recurrence type. Please provide a valid recurrence type (e.g., DAILY, WEEKLY, BIWEEKLY, MONTHLY).");
+                }
+            } else {
+                System.err.println("Duke.TaskClasses.Task index is out of range.");
             }
         } else {
             System.err.println("Invalid input format. Please use the format: recur <taskNumber> <recurrenceType> <recurrenceInterval> <recurrenceCount>");
@@ -268,7 +282,7 @@ public class Dupe {
         // Then call addRecurringEvent method with these parameters
     }
 
-    private static void addRecurringEvent(int taskNumber, Recurrence recurrenceType, int recurrenceCount) {
+    private static void addRecurringEvent(int taskNumber, Recurrence recurrenceType, int recurrenceCount) throws DupeException {
         // Retrieve the task from the tasks list based on taskNumber
         Task eventTask = tasks.get(taskNumber - 1);
 
@@ -306,7 +320,7 @@ public class Dupe {
                 // Add the recurring task to the tasks list
                 tasks.add(recurringTask);
             }
-
+            storage.save(tasks);
             System.out.println("Recurring event added successfully!");
         } else {
             System.err.println("Task " + taskNumber + " is not an event and cannot have a recurrence.");
