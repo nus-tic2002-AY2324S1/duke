@@ -41,10 +41,13 @@ public class Tina {
         try {
             Files.createDirectories(path);
             Files.createDirectories(archviePath);
+            path = path.resolve("Tina.txt");
+            if (!Files.exists(path)) {
+                Files.createFile(path);
+            }
         } catch (IOException e) {
             throw new com.tina.exception.IOException();
         }
-        path = path.resolve("Tina.txt");
         this.setPath(path, archviePath);
     }
 
