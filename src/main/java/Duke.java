@@ -17,6 +17,7 @@ public class Duke {
 
         while(true) {
             String input = in.nextLine();
+            assert input != null : "Input is null";
             String[] stringArray = input.split(" ");
             String command = stringArray[0];
             int taskIndex;
