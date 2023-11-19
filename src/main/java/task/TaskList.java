@@ -33,14 +33,20 @@ public class TaskList {
     public ArrayList<Task> removeTasks(String input, ArrayList<Task> actions){
         int taskNo = getNumber(input);
         //e.g. "   [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)"
-
-        actions.get(taskNo-1).printTask();
-        actions.remove(taskNo-1) ;
-        //print task number as of now
-        System.out.println(
-                "     Now you have "+actions.size()+ " tasks in the list.\n" +
-                        "    ____________________________________________________________\n");
+        if (taskNo> -1 && taskNo <= actions.size()){
+            actions.get(taskNo-1).printTask();
+            actions.remove(taskNo-1) ;
+            //print task number as of now
+            System.out.println(
+                    "     Now you have "+actions.size()+ " tasks in the list.\n" +
+                            "    ____________________________________________________________\n");
+        }else if(taskNo <= actions.size()){
+            System.out.println("Task you wish to delete doesn't exist!");
+        }else{
+            System.out.println("Please put in a task number (integer) you would like to operate on :/");
+        }
         return actions;
+
     }
 
     /**
@@ -110,7 +116,7 @@ public class TaskList {
             try {
                 return Integer.parseInt(word);
             } catch (NumberFormatException nfe) {
-                System.out.println("Please put in a task number (integer) you would like to operate on :/");
+                //first item will be string like "mark" so there will be error.
             }
         }
         return -1;

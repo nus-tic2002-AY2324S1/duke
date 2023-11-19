@@ -56,18 +56,24 @@ public class Duke {
         while (!trimInput.equalsIgnoreCase("bye")){
             if (trimInput.startsWith("mark")){
                 int index = tasks.getNumber(input);
-                actions.get(index-1).setIsDone(true);
-                ui.markDone();
-                //print "[X] return book"
-                actions.get(index-1).printTask();
-
+                if (index> -1 && index <= actions.size()) {
+                    actions.get(index - 1).setIsDone(true);
+                    ui.markDone();//--> print "[X] return book"
+                    actions.get(index-1).printTask();
+                    ui.printLine();
+                }else{
+                    System.out.println("Task you wish to unmark doesn't exist!");
+                }
             }else if (trimInput.startsWith("unmark")){
                 int index = tasks.getNumber(input);
-                actions.get(index-1).setIsDone(false);
-                ui.markNotDone();
-                //print "[ ] return book"
-                actions.get(index-1).printTask();
-                ui.printLine();
+                if (index> -1 && index <= actions.size()) {
+                    actions.get(index - 1).setIsDone(false);
+                    ui.markNotDone();//--> print "[ ] return book"
+                    actions.get(index-1).printTask();
+                    ui.printLine();
+                }else{
+                    System.out.println("Task you wish to unmark doesn't exist!");
+                }
             }else if (trimInput.startsWith("delete")){
                 actions = tasks.removeTasks(input, actions);
                 ui.printRemoveMsg();
