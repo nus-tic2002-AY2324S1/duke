@@ -41,15 +41,31 @@ public class ScheduleCommand extends Command {
             if (task instanceof DeadlineTask) {
                 DeadlineTask deadlineTask = (DeadlineTask) task;
                 LocalDateTime by = deadlineTask.getBy();
-                if (by.isEqual(date)) {
-                    tasks.add(deadlineTask);
+
+                // If date ends with 00:00:00, compare only the Date parts
+                if (date.toLocalTime().equals(LocalDateTime.MIN.toLocalTime())) {
+                    if (date.toLocalDate().isEqual(by.toLocalDate())) {
+                        tasks.add(deadlineTask);
+                    }
+                } else {
+                    if (by.isEqual(date)) {
+                        tasks.add(deadlineTask);
+                    }
                 }
             } else if (task instanceof EventTask) {
                 EventTask eventTask = (EventTask) task;
                 LocalDateTime from = eventTask.getFrom();
                 LocalDateTime to = eventTask.getTo();
-                if (from.isBefore(date) && to.isAfter(date)) {
-                    tasks.add(eventTask);
+
+                // If date ends with 00:00:00, compare only the Date parts
+                if (date.toLocalTime().equals(LocalDateTime.MIN.toLocalTime())) {
+                    if (date.toLocalDate().isEqual(from.toLocalDate()) || date.toLocalDate().isEqual(to.toLocalDate())) {
+                        tasks.add(eventTask);
+                    }
+                } else {
+                    if (from.isBefore(date) && to.isAfter(date)) {
+                        tasks.add(eventTask);
+                    }
                 }
             }
         }
