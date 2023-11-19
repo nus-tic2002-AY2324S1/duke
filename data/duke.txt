@@ -1,0 +1,5 @@
+[T][ ] todo read book
+[T][ ] todo return book
+[T][ ] todo buy bread
+[E][ ] project meeting Mon (from:  2pm to: 4pm)
+[T][ ] borrow book 
