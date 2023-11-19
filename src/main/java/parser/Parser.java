@@ -124,7 +124,6 @@ public class Parser {
                     }
                     break;
                 case DEADLINE:
-                    String byDateTime = line.substring(line.indexOf("/by") + 4);
                     if (words.length == 1) {
                         throw new MissingArgumentException("Where is the Deadline context and due time?");
                     } else if (words[1].equals("/by")) {
@@ -134,6 +133,7 @@ public class Parser {
                     } else if (words[words.length - 1].equals("/by")) {
                         throw new MissingArgumentException("Deadline due time is blank");
                     }
+                    String byDateTime = line.substring(line.indexOf("/by") + 4);
                     if (dateFormatInvalid(byDateTime)) {
                         throw new MissingArgumentException("Please use the format dd/MM/yyyy HH:mm with valid Date for due date");
                     }
