@@ -57,10 +57,20 @@ public class Event extends Task {
     }
 
 
-    private LocalDateTime parseEventDateTime(String dateTimeString) {
-        //System.out.println(dateTimeString);
-        return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy/MM/dd['T'HH:mm][ HH:mm]"));
+    private LocalDateTime parseEventDateTime(String dateTimeString) throws IncompleteDataException{
+        try {
+            return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy/MM/dd['T'HH:mm][ HH:mm]"));
+        } catch (DateTimeParseException e1) {
+            try {
+                // Add an alternative date-time format here
+                return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+            } catch (DateTimeParseException e2) {
+                // Handle the case where both formats fail
+                throw new IncompleteDataException("Invalid date/time format in Event task: " + e1.getMessage() + ", " + e2.getMessage());
+            }
+        }
     }
+
 
     public LocalDateTime getFromDateTime() {
         return from;

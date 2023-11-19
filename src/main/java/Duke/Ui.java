@@ -31,20 +31,8 @@ public class Ui {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    public void showError(String message) {
-        System.out.println("OOPS!!! " + message);
-    }
-
     public void showLine() {
         System.out.println("____________________________________________________________");
     }
 
-    public void displayTasks(Task[] tasks, int taskCounter) {
-        showLine();
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < taskCounter; i++) {
-            System.out.println((i + 1) + ". " + tasks[i].toString());
-        }
-        showLine();
-    }
 }

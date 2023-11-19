@@ -48,6 +48,8 @@ public class Dupe {
                 deleteTask(userInput);
             } else if (userInput.toLowerCase().startsWith("recur")) {
                 handleRecurringEvent(userInput);
+            } else if (userInput.toLowerCase().startsWith("find")){
+                findTasks(userInput);
             } else {
                 addTask(userInput);
             }
@@ -311,5 +313,18 @@ public class Dupe {
         }
     }
 
+    private static void findTasks(String userInput) {
+        String keyword = userInput.substring("find".length()).trim();
+        if (tasks.isEmpty()) {
+            System.out.println("The task list is currently empty");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 0; i < tasks.size(); i++) {
+                if(tasks.get(i).getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                    System.out.println((i + 1) + ". " + tasks.get(i).toString());
+                }
+            }
+        }
+    }
 }
 

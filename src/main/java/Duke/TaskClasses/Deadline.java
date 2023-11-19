@@ -18,7 +18,7 @@ public class Deadline extends Task {
         if (by == null || by.isEmpty()) {
             throw new IncompleteDataException("Deadline 'by' information is missing");
         }
-        parseDeadlineDateTime(by);
+        parseDateTime(by);
     }
 
     public Deadline(String description, String by, boolean isDone) throws IncompleteDataException {
@@ -27,16 +27,21 @@ public class Deadline extends Task {
         if (by == null || by.isEmpty()) {
             throw new IncompleteDataException("Deadline 'by' information is missing");
         }
-        parseDeadlineDateTime(by);
+        parseDateTime(by);
     }
 
-    private void parseDeadlineDateTime(String by) throws IncompleteDataException {
+    private void parseDateTime(String by) throws IncompleteDataException {
         //System.out.println(by);
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd['T'HH:mm][ HH:mm]");
-            this.by = LocalDateTime.parse(by, formatter);
-        } catch (DateTimeParseException e) {
-            throw new IncompleteDataException("Invalid date format for Deadline 'by' information");
+            DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy/MM/dd['T'HH:mm][ HH:mm]");
+            this.by = LocalDateTime.parse(by, formatter1);
+        } catch (DateTimeParseException e1) {
+            try {
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd['T'HH:mm][ HH:mm]");
+                this.by = LocalDateTime.parse(by, formatter2);
+            } catch (DateTimeParseException e2) {
+                throw new IncompleteDataException("Invalid date format for Deadline 'by' information");
+            }
         }
     }
 
