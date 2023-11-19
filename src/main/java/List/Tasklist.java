@@ -20,7 +20,7 @@ public class Tasklist {
     /**
      * Constructs a Tasklist object.
      *
-     * @param allTasks
+     * @param allTasks An arraylist that contains all the tasks
      */
     public Tasklist(ArrayList<Task> allTasks) {
         this.tasks = allTasks;
@@ -45,7 +45,7 @@ public class Tasklist {
     /**
      * Deletes a task from the task list at the specified index.
      *
-     * @param indexToDelete
+     * @param indexToDelete Index in the Tasklist array to be deleted
      */
     public void deleteTask(int indexToDelete){
         tasks.remove(indexToDelete);
@@ -55,7 +55,7 @@ public class Tasklist {
     /**
      * Stores a new task in the task list with a task description.
      *
-     * @param userInput
+     * @param userInput Task's description that was inputted by User
      */
     public void storeTasks(String userInput) {
 
@@ -67,8 +67,8 @@ public class Tasklist {
     /**
      * Stores a new deadline in the task list
      *
-     * @param userInput
-     * @param doneBefore
+     * @param userInput Task's description that was inputted by User
+     * @param doneBefore Task's deadline that was inputted by User
      */
     public void storeTasks(String userInput, Temporal doneBefore){
 
@@ -79,9 +79,9 @@ public class Tasklist {
     /**
      * Stores a new event in the task list
      *
-     * @param userInput
-     * @param doneFrom
-     * @param doneTo
+     * @param userInput Task's description that was inputted by User
+     * @param doneFrom Task's Date From that was inputted by User
+     * @param doneTo Task's Date To that was inputted by User
      */
     public void storeTasks(String userInput, Temporal doneFrom, Temporal doneTo){
 
@@ -92,7 +92,7 @@ public class Tasklist {
     /**
      * Checks if a task index is within the valid range.
      *
-     * @param taskString
+     * @param taskString Index of tasklist to be checked
      * @return Boolean if within range
      */
     public boolean checkTaskRange(int taskString){
@@ -118,7 +118,7 @@ public class Tasklist {
     /**
      * Gets a task by its index.
      *
-     * @param taskNum
+     * @param taskNum Index of a task within the Task List array
      * @return The task at the specified index.
      */
     public Task getTask(int taskNum){
@@ -129,7 +129,7 @@ public class Tasklist {
     /**
      * Looks for tasks with a specific search phrase and prints them out
      *
-     * @param searchPhrase
+     * @param searchPhrase Search phrase to be searched within task description
      *
      */
     public void findTasksViaDescription(String searchPhrase) {
@@ -154,7 +154,7 @@ public class Tasklist {
     /**
      * Converts input into LocalDate format to be used for findTasksViaDate()
      *
-     * @param inputLocalDateTime
+     * @param inputLocalDateTime Temporal variable to be converted to LocalDate
      * @return LocalDate variable
      */
 
@@ -175,7 +175,7 @@ public class Tasklist {
     /**
      * Looks for tasks with a specific date and prints them out
      *
-     * @param searchDate
+     * @param searchDateInput Search date to be searched
      *
      */
     public void findTasksViaDate(Temporal searchDateInput) {

@@ -42,8 +42,8 @@ public class UI {
     /**
      * Displays a message to confirm storing a task.
      *
-     * @param taskDescription
-     * @param taskType
+     * @param taskDescription Task's description
+     * @param taskType Task's type
      */
     public void showStoreOutput(String taskDescription, String taskType){
         System.out.println("[+] Got it. Storing '" + taskDescription + "' as a " + taskType + ".");
@@ -52,8 +52,7 @@ public class UI {
     /**
      * Displays a message to confirm archiving all tasks.
      *
-     * @param taskDescription
-     * @param taskType
+     * @param fileName File name of the archiving file
      */
     public void showArchiveOutput(String fileName){
         System.out.println("[+] Got it. Archiving current tasks into the tasklist folder as filename '" + fileName +"' in the tasklist folder");
@@ -62,8 +61,8 @@ public class UI {
     /**
      * Displays a message to confirm marking or unmarking a task.
      *
-     * @param taskDescription
-     * @param markUnmark
+     * @param taskDescription Task's description
+     * @param markUnmark Whether if it is marking or unmarking a task
      */
 
     public void showMarkUnMarkOutput(int taskDescription, String markUnmark){
@@ -73,8 +72,7 @@ public class UI {
     /**
      * Displays a message to find task(s) with a specific search phrase.
      *
-     * @param taskDescription
-     * @param markUnmark
+     * @param taskDescription Search phrase to be searched
      */
 
     public void findOutput(String taskDescription){

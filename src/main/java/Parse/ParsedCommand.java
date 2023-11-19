@@ -18,7 +18,7 @@ public class ParsedCommand {
     /**
      * Constructs commands like "list", "bye", "help".
      *
-     * @param commandType
+     * @param commandType Type of Command
      */
 
     public ParsedCommand(String commandType) {
@@ -28,8 +28,8 @@ public class ParsedCommand {
     /**
      * Constructs commands for the "todo", "find", and "save" command.
      *
-     * @param commandType
-     * @param taskDescription
+     * @param commandType Type of Command
+     * @param taskDescription Task Description
      */
     public ParsedCommand(String commandType, String taskDescription) {
         this.commandType = commandType;
@@ -39,8 +39,8 @@ public class ParsedCommand {
     /**
      * Constructs commands for the "finddate" command.
      *
-     * @param commandType
-     * @param findDate
+     * @param commandType Type of Command
+     * @param findDate Date to be searched
      */
     public ParsedCommand(String commandType, Temporal findDate) {
         this.commandType = commandType;
@@ -50,8 +50,8 @@ public class ParsedCommand {
     /**
      * Constructs commands for the "mark/unmark" or "delete" command.
      *
-     * @param commandType
-     * @param taskIndex
+     * @param commandType Type of Command
+     * @param taskIndex Index of the task to be marked, unmarked or deleted
      */
     public ParsedCommand(String commandType, int taskIndex) {
         this.commandType = commandType;
@@ -61,9 +61,9 @@ public class ParsedCommand {
     /**
      * Constructs commands for the "deadline" command.
      *
-     * @param commandType
-     * @param taskDescription
-     * @param deadline
+     * @param commandType Type of Command
+     * @param taskDescription Task's Description
+     * @param deadline Deadline of task
      */
     public ParsedCommand(String commandType, String taskDescription, Temporal deadline) {
         this.commandType = commandType;
@@ -74,10 +74,10 @@ public class ParsedCommand {
     /**
      * Constructs commands for the "event" command.
      *
-     * @param commandType
-     * @param taskDescription
-     * @param startDate
-     * @param endDate
+     * @param commandType Type of Command
+     * @param taskDescription Task's description
+     * @param startDate Start date of task
+     * @param endDate End date of task
      */
     public ParsedCommand(String commandType, String taskDescription, Temporal startDate, Temporal endDate) {
         this.commandType = commandType;

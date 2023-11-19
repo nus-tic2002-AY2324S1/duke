@@ -20,9 +20,9 @@ public class Deadline extends Task {
     /**
      * Constructs a Deadline
      *
-     * @param description
-     * @param isDone
-     * @param doneBefore
+     * @param description Task's description
+     * @param isDone If Task is done or not
+     * @param doneBefore deadline of task
      */
     public Deadline(String description, boolean isDone, Temporal doneBefore){
         super(description, isDone);

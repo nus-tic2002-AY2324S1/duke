@@ -20,7 +20,7 @@ public class Parser {
 
     /**
      * Parses an input to determine if it is LocalDate format, LocalDateTime, or LocalTime format
-     * @param input
+     * @param input User's input of Date, Time, both, or none
      * @return Temporal object of the LocalDate or LocalDateTime
      */
     public static Temporal checkTimeOrNot(String input) {
@@ -49,8 +49,8 @@ public class Parser {
     /**
      * Loops through the String to find the index of keywords
      *
-     * @param wordArray
-     * @param keyWord
+     * @param wordArray Array for keyword to be searched against
+     * @param keyWord User's input of search phrase
      * @return The index of the keyWord
      */
 
@@ -76,7 +76,7 @@ public class Parser {
     /**
      * Parses the user input and return a ParsedCommand object.
      *
-     * @param userInput
+     * @param userInput User's input
      * @return A ParsedCommand object containing information about the user's command.
      */
 

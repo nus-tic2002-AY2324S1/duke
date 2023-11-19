@@ -20,10 +20,10 @@ public class Event extends Task {
     /**
      * Constructs Event
      *
-     * @param description
-     * @param isDone
-     * @param from
-     * @param to
+     * @param description Task's description
+     * @param isDone If Task is done or not
+     * @param from Start date of Event
+     * @param to End date of Event
      */
     public Event(String description, boolean isDone, Temporal from, Temporal to){
         super(description, isDone);

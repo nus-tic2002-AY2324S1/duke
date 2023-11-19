@@ -52,7 +52,7 @@ public class Task {
 
     /**
      * Parses an input to determine if it is LocalDate format, LocalDateTime format, or LocalTime format
-     * @param input
+     * @param input User's input of date, time or both
      * @return Temporal object of the LocalDate or LocalDateTime
      */
 
@@ -83,7 +83,7 @@ public class Task {
 
     /**
      * Creates a task object based on a string of details from reading a file
-     * @param taskDetails
+     * @param taskDetails A single line read from tasklist.txt - Holds task type, status, date (if any) and description
      * @return The Task object
      */
     public static Task fromString(String taskDetails){
