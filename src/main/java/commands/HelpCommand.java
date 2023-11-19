@@ -24,6 +24,7 @@ public class HelpCommand extends Command {
                 + "\tDEADLINE /BY\n"
                 + "\tEVENT /FROM /TO\n"
                 + "\tFIND\n"
+                + "\tSCHEDULE\n"
                 + "\tDELETE #\n"
                 + "\tHELP\n"
                 + "\tBYE\n"
