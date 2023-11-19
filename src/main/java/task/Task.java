@@ -25,16 +25,16 @@ public class Task {
         this.desc = desc;
     }
 
-    public boolean getIsDone(){
+    public boolean getDone(){
         return isDone;
     }
 
-    public void setIsDone(boolean isDone){
+    public void setDone(boolean isDone){
         this.isDone = isDone;
     }
 
     public String toStorageString() {
-        String doneMarker = this.getIsDone() ? "1" : "0";
+        String doneMarker = this.getDone() ? "1" : "0";
         return doneMarker + " | " + desc;
     }
 
@@ -47,7 +47,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        String doneMarker = this.getIsDone() ? "X" : " ";
+        String doneMarker = this.getDone() ? "X" : " ";
         return "[" + doneMarker + "] " + desc;
     }
 

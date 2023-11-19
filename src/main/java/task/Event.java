@@ -32,9 +32,9 @@ public class Event extends Task {
 
     public boolean isDateInRange(LocalDate targetDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm a");
-        LocalDate fromLdt = LocalDate.parse(from, formatter);
-        LocalDate toLdt = LocalDate.parse(to, formatter);
-        return !targetDate.isBefore(fromLdt) && !targetDate.isAfter(toLdt);
+        LocalDate fromDateObj = LocalDate.parse(from, formatter);
+        LocalDate toDateObj = LocalDate.parse(to, formatter);
+        return !targetDate.isBefore(fromDateObj) && !targetDate.isAfter(toDateObj);
     }
 
     @Override

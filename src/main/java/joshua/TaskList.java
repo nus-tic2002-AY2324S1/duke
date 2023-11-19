@@ -26,12 +26,12 @@ public class TaskList {
 
     public void markTaskAsDone(int taskNum) {
         Task task = getTask(taskNum);
-        task.setIsDone(true);
+        task.setDone(true);
     }
 
     public void markTaskAsNotDone(int taskNum) {
         Task task = getTask(taskNum);
-        task.setIsDone(false);
+        task.setDone(false);
     }
 
     public void addToTaskList(Task task) {
