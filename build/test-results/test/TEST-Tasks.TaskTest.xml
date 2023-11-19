@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Tasks.TaskTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-11-19T06:26:52" hostname="KENNETH-PC" time="0.01">
+  <properties/>
+  <testcase name="testFromFileString()" classname="Tasks.TaskTest" time="0.001"/>
+  <testcase name="testTaskConstructor()" classname="Tasks.TaskTest" time="0.0"/>
+  <testcase name="testToString()" classname="Tasks.TaskTest" time="0.005"/>
+  <testcase name="testToFileString()" classname="Tasks.TaskTest" time="0.001"/>
+  <testcase name="testMarkDone()" classname="Tasks.TaskTest" time="0.001"/>
+  <testcase name="testUnmarkDone()" classname="Tasks.TaskTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
