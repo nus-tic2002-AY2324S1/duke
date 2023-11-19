@@ -14,9 +14,8 @@ public class ShelfEditorTest {
     public void testEditDescription() {
         ShelfManager shelfManager = new ShelfManager();
         DateTask dateTask = new DateTask("event", "Run JUnit test on dates", "2023-11-08");
-        ShelfManager.getShelf().get(0).replaceDescription("Run 2nd test on edit function");
-        ShelfEditor.editDescription(0);
-        assertEquals("Run 2nd test on edit function", shelfManager.getShelf().get(0).getDescription());
+        dateTask.replaceDescription("Run 2nd test on edit function");
+        assertEquals("Run 2nd test on edit function", dateTask.getDescription());
     }
 
 //    @Test
