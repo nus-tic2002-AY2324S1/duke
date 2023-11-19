@@ -1,12 +1,45 @@
+list
 todo research on report writing
 deadline finish report writing  /by 19/11/2023 23:59
 event report writing bonus /from 07/11/2023 20:00 /to 15/11/2023 23:59
+deadline extended submission /by 26/11/2023 23:59
+todo last task
 mark 1
 mark 2
 unmark 2
 list
+mark 0
+mark 7
+mark 1
+unmark 0
+unmark 7
+unmark 2
+delete
+delete 0
+delete 7
+todo
+deadline
+deadline /by 19/11/2023 23:59
+deadline test /by
+deadline test by 19/11/2023 18:00
+deadline test /by 29/2/2023 18:00
+event
+event /from 12/11/2023 00:00 /to 19/11/2023 23:59
+event testing program from 12/11/2023 00:00 /to 19/11/2023 23:59
+event testing program /from 12/11/2023 00:00 to 19/11/2023 23:59
+event testing program /from /to 19/11/2023 23:59
+event testing program /from 12/11/2023 00:00 /to
+event testing program /to 19/11/2023 23:59 /from 12/11/2023 00:00
+event testing program /from 19/11/2023 00:00 /to 12/11/2023 23:59
+event testing program /from 29/02/2023 00:00 /to 12/11/2023 23:59
+event testing program /from 09/01/2023 00:00 /to 9/9/2023 23:59
+find
+view
+view 14/9/2023
 find bonus
 view 17/11/2023
 sort
+mark 4
+view 17/11/2023
 delete 1
 bye
