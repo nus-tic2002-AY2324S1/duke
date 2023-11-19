@@ -97,7 +97,7 @@ public class Event extends Task {
         } catch (DateTimeParseException e1) {
             try {
                 // Add an alternative date-time format here
-                return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+                return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd['T'HH:mm][ HH:mm]"));
             } catch (DateTimeParseException e2) {
                 // Handle the case where both formats fail
                 throw new IncompleteDataException("Invalid date/time format in Event task, please ensure format is in yyyy/mm/dd hh:mm " + e1.getMessage() + ", " + e2.getMessage());
