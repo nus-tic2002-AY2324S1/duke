@@ -20,7 +20,18 @@ public class Storage {
         return filePath;
     }
 
-    // methods
+    // the methods below are adapted from
+    // https://github.com/wamps-jp/ip/blob/master/src/main/java/duke/Storage.java
+
+    /**
+     * Allows Duke to read from a text file, i.e. ./duke.txt
+     * and populate the Task list.
+     * <p></p>
+     * If the file does not yet exist, a file of the
+     * same name will be created.
+     * @return an ArrayList of type Task
+     * @throws RuntimeException if file does not exist
+     */
     public ArrayList<Task> readFromFile() {
         ArrayList<Task> contents = new ArrayList<>();
 
@@ -43,9 +54,10 @@ public class Storage {
             String line = s.nextLine();
             String[] input = line.split(" \\| ");
 
-            if (input.length < 2) {
-                continue;
-            }
+            assert input.length > 2 : "empty line";
+//            if (input.length < 2) {
+//                continue;
+//            }
 
             String task = input[0];
             boolean isDone = input[1].equals("1");
@@ -83,6 +95,16 @@ public class Storage {
         return contents;
     }
 
+    /**
+     * Allows Duke to save the list of created Tasks
+     * to a pre-determined location, i.e. ./duke.txt
+     * <p></p>
+     * The naming follows this format:
+     * <br>
+     * "T/D/E" | "0/1" | "description" | "by/from" | "to"
+     * @param taskList an ArrayList of type Task
+     * @throws IOException if the file does not exist
+     */
     public void saveToFile(ArrayList<Task> taskList) throws IOException {
         FileWriter fw = new FileWriter(file);
         try {
@@ -97,9 +119,24 @@ public class Storage {
         fw.close();
     }
 
-    public void appendToFile(String line) throws IOException {
+    /**
+     * Allows Duke to append text to
+     * a pre-determined location, i.e. ./duke.txt
+     * <p></p>
+     * The naming follows this format:
+     * <br>
+     * "T/D/E" | "0/1" | "description" | "by/from" | "to"
+     * @param taskList an ArrayList of type Task
+     * @param index the index number of the Task
+     * @throws IOException if the file does not exist
+     */
+    public void appendToFile(ArrayList<Task> taskList, int index) throws IOException {
         FileWriter fw = new FileWriter(file, true);
-        fw.write(line + "\n");
+        try {
+            fw.write(taskList.get(index).toSave());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         fw.close();
     }
 }

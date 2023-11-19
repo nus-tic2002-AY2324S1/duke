@@ -4,29 +4,26 @@ import java.util.Scanner;
 
 
 public class Duke {
-    private static ArrayList<Task> taskList = new ArrayList<>(100);
-    private static Storage storage = new Storage("./duke.txt");
+    private static final Storage storage = new Storage("./duke.txt");
 
     public static void main(String[] args) throws IOException {
 
-        taskList = storage.readFromFile();
+        ArrayList<Task> taskList = storage.readFromFile();
 
         Scanner in = new Scanner(System.in);
-//        Scanner arr = new Scanner(new File(storage.getPath()));
         int index = taskList.size();
 
         UI.welcome();
-        System.out.println(index);
 
         while(true) {
             String input = in.nextLine();
             String[] stringArray = input.split(" ");
             String command = stringArray[0];
-            int taskIndex = 0;
-            String description = null;
-            String by = null;
-            String from = null;
-            String to = null;
+            int taskIndex;
+            String description;
+            String by;
+            String from;
+            String to;
 
             switch (command) {
                 case "hello" : {
@@ -108,11 +105,7 @@ public class Duke {
                     taskList.add(index, new Todo(description));
                     UI.printTaskAdded(taskList, index);
 
-                    try {
-                        storage.appendToFile(taskList.get(index).toSave());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    storage.appendToFile(taskList, index);
 
                     index++;
                     break;
@@ -129,11 +122,7 @@ public class Duke {
                     taskList.add(index, new Deadline(description, by));
                     UI.printTaskAdded(taskList, index);
 
-                    try {
-                        storage.appendToFile(taskList.get(index).toSave());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    storage.appendToFile(taskList, index);
 
                     index++;
                     break;
@@ -151,11 +140,7 @@ public class Duke {
                     taskList.add(index, new Event(description, from, to));
                     UI.printTaskAdded(taskList, index);
 
-                    try {
-                        storage.appendToFile(taskList.get(index).toSave());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    storage.appendToFile(taskList, index);
 
                     index++;
                     break;
@@ -171,13 +156,12 @@ public class Duke {
                         break;
                     }
 
-                    try {
-                        UI.printTaskDeleted(taskList, taskIndex, index);
-                        taskList.remove(taskIndex);
-                    } catch (IndexOutOfBoundsException e) {
+                    if (taskIndex > index) {
                         UI.errorIndexOutOfBounds();
                         break;
                     }
+                    UI.printTaskDeleted(taskList, taskIndex, index);
+                    taskList.remove(taskIndex);
 
                     storage.saveToFile(taskList);
 
