@@ -53,7 +53,7 @@ public class Deadline extends Task {
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd['T'HH:mm][ HH:mm]");
                 this.by = LocalDateTime.parse(by, formatter2);
             } catch (DateTimeParseException e2) {
-                throw new IncompleteDataException("Invalid date format for Deadline 'by' information");
+                throw new IncompleteDataException("Invalid date format for Deadline 'by' information, please ensure format is in yyyy/mm/dd hh:mm");
             }
         }
     }

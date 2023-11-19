@@ -65,10 +65,8 @@ public class Event extends Task {
             this.to = parseEventDateTime(to);
         } catch (DateTimeParseException e) {
             // Handle the case where the date/time strings are not in the expected format
-            throw new IncompleteDataException("Invalid date/time format in Event task: " + e.getMessage());
+            throw new IncompleteDataException("Invalid date/time format in Event task, please ensure format is in yyyy/mm/dd hh:mm " + e.getMessage());
         }
-
-        System.out.println("test: " + this.from.toString());
     }
 
 
@@ -102,7 +100,7 @@ public class Event extends Task {
                 return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
             } catch (DateTimeParseException e2) {
                 // Handle the case where both formats fail
-                throw new IncompleteDataException("Invalid date/time format in Event task: " + e1.getMessage() + ", " + e2.getMessage());
+                throw new IncompleteDataException("Invalid date/time format in Event task, please ensure format is in yyyy/mm/dd hh:mm " + e1.getMessage() + ", " + e2.getMessage());
             }
         }
     }
