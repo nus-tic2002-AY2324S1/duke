@@ -84,7 +84,7 @@ public class Duke {
 
                 } else if (userCommand.startsWith("deadline")) {
                     // Parse the description and deadline details here
-                    String[] parts = userCommand.substring(8).split(" /by ");
+                    String[] parts = userCommand.substring(8).split(" /by ");//reused from chatGpt
                     String description = parts[0];
 
                     try {
@@ -105,7 +105,7 @@ public class Duke {
 
                 } else if (userCommand.startsWith("event")) {
                     // Parse the description and event details here
-                    String[] parts = userCommand.substring(5).split(" /from ");
+                    String[] parts = userCommand.substring(5).split(" /from "); //reused from chatGpt
                     String description = parts[0];
 
                     try {
