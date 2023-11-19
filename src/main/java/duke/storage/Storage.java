@@ -48,7 +48,7 @@ public class Storage {
             File file = new File(filePath);
             assert file.exists() : "Data file should exist for loading tasks";
             Scanner s = new Scanner(file);
-            UI.showMessage("Attempting to load the task list from dukeOut.txt to restore the previous session's history.");
+            UI.showMessage("Attempting to load the task list from data source to restore the previous session's history.");
             while (s.hasNextLine()) {
                 String line = s.nextLine().trim();
                 if (line.isEmpty()) {

@@ -37,7 +37,7 @@ public class Utils {
         if (!todoMatcher.matches()) {
             throw new IncorrectCommandFormatException("Incorrect format for 'todo' command. Type 'help' for a list of available commands details.");
         }
-        return new Todo(todoMatcher.group(0));
+        return new Todo(todoMatcher.group(1));
     }
 
     /**

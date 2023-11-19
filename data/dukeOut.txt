@@ -1,5 +1,6 @@
-T | 0 | todo return book
+T | 0 | borrow book
 D | 0 | return book (by: Sunday)
+E | 0 | project meeting (from: Mon 2pm to: 4pm)
 D | 0 | do homework (by: no idea :-p)
 E | 0 | orientation week (from: Oct 04 2019 to: Oct 11 2019)
 D | 0 | return book (by: Dec 02 2019, 6PM)

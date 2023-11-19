@@ -1,3 +1,0 @@
-todo Task 1
-event Task 2 /from 11/11/2023 /to 20/11/2023
-deadline Task 3 /by 30/11/2023 1800
