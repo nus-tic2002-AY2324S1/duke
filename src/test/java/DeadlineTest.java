@@ -1,3 +1,6 @@
+// the methods below are adapted from
+// https://github.com/wamps-jp/ip/blob/master/src/test/java/duke/tasks/DeadlineTest.java
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
