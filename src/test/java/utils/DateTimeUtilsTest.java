@@ -8,7 +8,8 @@ class DateTimeUtilsTest {
 
     @Test
     void parseNextDay() {
-        assertEquals("2023-10-25T23:59", Objects.requireNonNull(DateTimeUtils.parseNextDay("today")).toString());
+        assertTrue(Objects.requireNonNull(DateTimeUtils.parseNextDay("end-of-year"))
+                          .toString().startsWith("2023-12-31T23:59"));
     }
 
 }

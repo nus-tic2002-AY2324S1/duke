@@ -9,7 +9,7 @@ class EventTest {
     @Test
     void testToString() {
         Event event = new Event("test description", "2023/10/20 2359");
-        assertEquals("[E][҉҉҉] Test description (from: 20 Oct 2023, Fri - 11:59PM)", event.toString());
+        assertEquals("[E][҉҉҉] Test description || from: 20 Oct, Fri 11:59PM", event.toString());
     }
 
     @Test

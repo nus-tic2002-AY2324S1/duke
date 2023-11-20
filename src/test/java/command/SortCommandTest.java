@@ -1,5 +1,6 @@
 package command;
 
+import io.*;
 import org.junit.jupiter.api.Test;
 import task.Task;
 
@@ -19,6 +20,7 @@ class SortCommandTest {
         addTaskCommand.handleCommand("present /from 2020-04-20", tasks);
         addTaskCommand.handleCommand("input", tasks);
         SortCommand sortCommand = new SortCommand();
+        CrabyMessage.checkListName = "test";
         sortCommand.handleCommand("sort date", tasks);
         assertTrue(tasks.get(0).toString().toLowerCase().contains("present"));
         sortCommand.handleCommand("sort type", tasks);
