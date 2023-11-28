@@ -7,13 +7,14 @@ import java.util.Scanner;
 
 public class Storage {
     private File file;
-    private File directory;
+    private String directory;
     private String filePath;
 
     // constructor
     public Storage(String filePath) {
         this.filePath = filePath;
         this.file = new File(filePath);
+        this.directory = file.getAbsolutePath();
     }
 
     public String getPath() {

@@ -161,6 +161,7 @@ public class Duke {
                         UI.errorIndexOutOfBounds();
                         break;
                     }
+
                     UI.printTaskDeleted(taskList, taskIndex, index);
                     taskList.remove(taskIndex);
 

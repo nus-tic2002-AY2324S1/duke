@@ -1,3 +1,4 @@
-D | 0 | project | Sunday
-E | 0 | presentation | Thurs 16 Nov 2023 7 pm | 7.30 pm
+T | 1 | this
+D | 0 | project | midnight
+E | 0 | presentation | 7pm | 9pm
 
